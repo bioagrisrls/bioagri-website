@@ -23,7 +23,8 @@
  *
  */
 
-package it.bioagri;import org.springframework.boot.SpringApplication;
+package it.bioagri;
+
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;

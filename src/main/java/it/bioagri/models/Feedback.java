@@ -23,46 +23,52 @@
  *
  */
 
-plugins {
-    id 'java'
-    id 'war'
-    id 'idea'
-    id 'org.springframework.boot' version '2.4.0'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-}
+package it.bioagri.models;
 
-group 'it.bioagri'
-version '0.0.1'
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-sourceCompatibility = 15
-targetCompatibility = 15
+import java.sql.Timestamp;
 
+public final class Feedback {
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    private final long id;
+    private final String title;
+    private final String description;
+    private final float vote;
+    private final Timestamp createdAt;
+    private final Timestamp updatedAt;
+
+    public Feedback(long id, String title, String description, float vote, Timestamp createdAt, Timestamp updatedAt) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.vote = vote;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
-}
 
-repositories {
-    mavenCentral()
-}
+    public long getId() {
+        return id;
+    }
 
-dependencies {
+    public String getTitle() {
+        return title;
+    }
 
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.session:spring-session-core'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    public String getDescription() {
+        return description;
+    }
 
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    public float getVote() {
+        return vote;
+    }
 
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-}
-
-test {
-    useJUnitPlatform()
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
 }

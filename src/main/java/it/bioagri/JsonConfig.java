@@ -23,46 +23,28 @@
  *
  */
 
-plugins {
-    id 'java'
-    id 'war'
-    id 'idea'
-    id 'org.springframework.boot' version '2.4.0'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-}
+package it.bioagri;
 
-group 'it.bioagri'
-version '0.0.1'
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-sourceCompatibility = 15
-targetCompatibility = 15
+@Configuration
+public class JsonConfig {
 
+    @Bean
+    public ObjectMapper objectMapper() {
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+        return new ObjectMapper() {{
+            setVisibility(getSerializationConfig().getDefaultVisibilityChecker()
+                    .withCreatorVisibility(JsonAutoDetect.Visibility.NONE)
+                    .withFieldVisibility(JsonAutoDetect.Visibility.NONE)
+                    .withGetterVisibility(JsonAutoDetect.Visibility.NONE)
+                    .withIsGetterVisibility(JsonAutoDetect.Visibility.NONE)
+                    .withSetterVisibility(JsonAutoDetect.Visibility.NONE));
+        }};
+
     }
-}
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.session:spring-session-core'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-}
-
-test {
-    useJUnitPlatform()
 }

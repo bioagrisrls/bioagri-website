@@ -1,10 +1,8 @@
 
-server:
-  ssl:
-    key-store: classpath:keystore/keystore.p12
-    key-store-password: 123456
-    key-store-type: pkcs12
-    key-alias: bioagri
-    key-password: 123456
+spring:
+  mvc:
+    #static-path-pattern: "/resources/**"
 
-  port: 8443
+    view:
+      prefix: "/WEB-INF/jsp/"
+      suffix: ".jsp"

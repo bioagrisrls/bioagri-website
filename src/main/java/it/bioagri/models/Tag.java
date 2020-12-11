@@ -23,46 +23,18 @@
  *
  */
 
-plugins {
-    id 'java'
-    id 'war'
-    id 'idea'
-    id 'org.springframework.boot' version '2.4.0'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-}
+package it.bioagri.models;
 
-group 'it.bioagri'
-version '0.0.1'
+public final class Tag {
 
-sourceCompatibility = 15
-targetCompatibility = 15
+    private final String hashtag;
 
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    public Tag(String hashtag) {
+        this.hashtag = hashtag;
     }
-}
 
-repositories {
-    mavenCentral()
-}
+    public String getHashtag() {
+        return hashtag;
+    }
 
-dependencies {
-
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.session:spring-session-core'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-}
-
-test {
-    useJUnitPlatform()
 }

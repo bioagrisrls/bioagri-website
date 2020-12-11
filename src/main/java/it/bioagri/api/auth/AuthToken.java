@@ -23,30 +23,61 @@
  *
  */
 
-package it.bioagri.api;
+package it.bioagri.api.auth;
 
-import org.springframework.security.authentication.AbstractAuthenticationToken;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
-import java.util.Collections;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.UUID;
+
+@Component
+@SessionScope
+public class AuthToken {
+
+    private String token;
+    private Timestamp timestamp;
 
 
-public class AuthenticationToken extends AbstractAuthenticationToken {
-
-    private final String token;
-
-    public AuthenticationToken(String token) {
-        super(Collections.emptyList());
-        this.token = token;
-    }
-
-    @Override
-    public Object getCredentials() {
+    @JsonProperty("token")
+    public String getToken() {
         return token;
     }
 
-    @Override
-    public Object getPrincipal() {
-        return null;
+    @JsonProperty("timestamp")
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public boolean isExpired() {
+
+        return  token == null           ||
+                timestamp == null       ||
+                token.isEmpty()         ||
+                timestamp.before(Timestamp.from(Instant.now().minus(30, ChronoUnit.MINUTES)));
+
+    }
+
+
+    public AuthToken generateToken() {
+
+        setToken(UUID.randomUUID().toString());
+        setTimestamp(Timestamp.from(Instant.now()));
+
+        return this;
+
+    }
+
 
 }

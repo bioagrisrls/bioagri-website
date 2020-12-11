@@ -23,19 +23,24 @@
  *
  */
 
-package it.bioagri.api;
+package it.bioagri.models;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+public final class Category {
 
-@RestController
-@RequestMapping("/api/auth")
-public class AuthController {
+    private final long id;
+    private final String name;
 
-    @PostMapping("authenticate")
-    public Iterable<AuthToken> authenticate(String username, String password) {
-        return null;
+    public Category(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

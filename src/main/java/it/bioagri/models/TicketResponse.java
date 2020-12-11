@@ -23,46 +23,38 @@
  *
  */
 
-plugins {
-    id 'java'
-    id 'war'
-    id 'idea'
-    id 'org.springframework.boot' version '2.4.0'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-}
+package it.bioagri.models;
 
-group 'it.bioagri'
-version '0.0.1'
+import java.sql.Timestamp;
 
-sourceCompatibility = 15
-targetCompatibility = 15
+public class TicketResponse {
 
+    private final long id;
+    private final String response;
+    private final Timestamp createdAt;
+    private final Timestamp updatedAt;
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    public TicketResponse(long id, String response, Timestamp createdAt, Timestamp updatedAt) {
+        this.id = id;
+        this.response = response;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
-}
 
-repositories {
-    mavenCentral()
-}
+    public long getId() {
+        return id;
+    }
 
-dependencies {
+    public String getResponse() {
+        return response;
+    }
 
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.session:spring-session-core'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
 
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
 
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-}
-
-test {
-    useJUnitPlatform()
 }

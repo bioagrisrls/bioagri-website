@@ -23,41 +23,46 @@
  *
  */
 
-package it.bioagri;
+package it.bioagri.api;
 
-import it.bioagri.api.AuthProvider;
+import it.bioagri.api.auth.AuthToken;
+import it.bioagri.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.Collections;
+
 
 @RestController
 public class Test {
 
+    private final AuthToken authToken;
+
+    @Autowired
+    public Test(AuthToken authToken) {
+        this.authToken = authToken;
+    }
+
+
     @GetMapping("/")
     public String index() {
-        return "Hello World";
+        return "index";
     }
 
-    @GetMapping("/api/public/prova")
-    public String api() {
-
-        return "approved";
-
+    @GetMapping("/api/public/test")
+    public ResponseEntity<Feedback> publtest() {
+        return null;
     }
 
-    @GetMapping("/api/private/prova")
-    public String priv() {
-        return "UEEEEE";
+    @GetMapping("/api/private/test")
+    public String privtest() {
+        return "Hello World from " + authToken.getToken();
     }
 
 }
