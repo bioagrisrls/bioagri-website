@@ -29,7 +29,7 @@ import java.sql.Timestamp;
 
 public final class Transaction {
 
-    private final long id;
+    private long id;
     private final TransactionStatus status;
     private final String result;
     private final double total;
@@ -68,6 +68,31 @@ public final class Transaction {
         this.invoice = invoice;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public Transaction() {
+        this.id = 0;
+        this.status = null;
+        this.result = null;
+        this.total = 0;
+        this.type = null;
+        this.courierService = null;
+        this.shipmentNumber = null;
+        this.weight = 0;
+        this.recipient = null;
+        this.address = null;
+        this.city = null;
+        this.province = null;
+        this.zip = null;
+        this.phone = null;
+        this.additionalInfo = null;
+        this.invoice = null;
+        this.createdAt = null;
+        this.updatedAt = null;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {

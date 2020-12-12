@@ -29,7 +29,7 @@ import java.sql.Timestamp;
 
 public final class Feedback {
 
-    private final long id;
+    private long id;
     private final String title;
     private final String description;
     private final float vote;
@@ -43,6 +43,19 @@ public final class Feedback {
         this.vote = vote;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public Feedback() {
+        this.id = 0;
+        this.title = null;
+        this.description = null;
+        this.vote = 0f;
+        this.createdAt = null;
+        this.updatedAt = null;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {

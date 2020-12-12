@@ -32,7 +32,7 @@ import java.util.List;
 
 public final class Ticket {
 
-    private final long id;
+    private long id;
     private final String title;
     private final String description;
     private final TicketStatus status;
@@ -48,6 +48,20 @@ public final class Ticket {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.responses = responses;
+    }
+
+    public Ticket() {
+        this.id = 0;
+        this.title = null;
+        this.description = null;
+        this.status = null;
+        this.createdAt = null;
+        this.updatedAt = null;
+        this.responses = null;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {

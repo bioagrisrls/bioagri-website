@@ -31,5 +31,8 @@ public enum ApiPermissionType {
     WISHLIST,
     CATEGORIES,
     FEEDBACKS,
+    ORDERS,
+    PRODUCTS,
+    TAGS,
 
 }

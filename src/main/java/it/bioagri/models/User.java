@@ -33,7 +33,7 @@ import java.util.List;
 
 public final class User {
 
-    private final long id;
+    private long id;
     private final String mail;
     private final String password;
     private final UserStatus status;
@@ -66,6 +66,28 @@ public final class User {
         this.wishList = wishList;
         this.feedbacks = feedbacks;
         this.tickets = tickets;
+    }
+
+    public User() {
+        this.id = 0;
+        this.mail = null;
+        this.password = null;
+        this.status = null;
+        this.role = null;
+        this.name = null;
+        this.surname = null;
+        this.gender = null;
+        this.phone = null;
+        this.birth = null;
+        this.createdAt = null;
+        this.updatedAt = null;
+        this.wishList = null;
+        this.feedbacks = null;
+        this.tickets = null;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {

@@ -88,7 +88,7 @@ public class FeedbackDaoImpl extends FeedbackDao {
     }
 
     @Override
-    public void update(Feedback value, Object... params) {
+    public void update(Feedback oldValue, Feedback newValue) {
 
     }
 

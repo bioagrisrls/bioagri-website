@@ -47,7 +47,7 @@ public abstract class Dao<T, K> {
     public abstract List<T> findAll();
 
     public abstract void save(T value);
-    public abstract void update(T value, Object... params);
+    public abstract void update(T oldValue, T newValue);
     public abstract void delete(T value);
 
 }

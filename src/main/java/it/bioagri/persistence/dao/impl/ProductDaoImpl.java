@@ -146,7 +146,7 @@ public class ProductDaoImpl extends ProductDao {
     }
 
     @Override
-    public void update(Product value, Object... params) {
+    public void update(Product oldValue, Product newValue) {
 
     }
 

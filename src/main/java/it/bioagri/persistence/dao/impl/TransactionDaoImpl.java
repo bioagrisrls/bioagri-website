@@ -113,7 +113,7 @@ public class TransactionDaoImpl extends TransactionDao {
     }
 
     @Override
-    public void update(Transaction value, Object... params) {
+    public void update(Transaction oldValue, Transaction newValue) {
 
     }
 

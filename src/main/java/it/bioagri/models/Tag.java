@@ -27,12 +27,21 @@ package it.bioagri.models;
 
 public final class Tag {
 
-    private final long id;
+    private long id;
     private final String hashtag;
 
     public Tag(Long id, String hashtag) {
         this.id = id;
         this.hashtag = hashtag;
+    }
+
+    public Tag() {
+        this.id = 0;
+        this.hashtag = null;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {

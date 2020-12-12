@@ -83,7 +83,7 @@ public class TicketResponseDaoImpl extends TicketResponseDao {
     }
 
     @Override
-    public void update(TicketResponse value, Object... params) {
+    public void update(TicketResponse oldValue, TicketResponse newValue) {
 
     }
 

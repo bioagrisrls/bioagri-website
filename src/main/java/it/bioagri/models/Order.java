@@ -33,7 +33,7 @@ import java.util.Map;
 
 public final class Order {
 
-    private final long id;
+    private long id;
     private final OrderStatus status;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
@@ -47,6 +47,19 @@ public final class Order {
         this.updatedAt = updatedAt;
         this.products = products;
         this.transactions = transactions;
+    }
+
+    public Order() {
+        this.id = 0;
+        this.status = null;
+        this.createdAt = null;
+        this.updatedAt = null;
+        this.products = null;
+        this.transactions = null;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {
