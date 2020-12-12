@@ -25,10 +25,9 @@
 
 package it.bioagri.persistence;
 
-import it.bioagri.persistence.dao.ProductDao;
-import it.bioagri.persistence.dao.UserDao;
-import it.bioagri.persistence.dao.impl.ProductDaoImpl;
-import it.bioagri.persistence.dao.impl.UserDaoImpl;
+import it.bioagri.models.TicketResponse;
+import it.bioagri.persistence.dao.*;
+import it.bioagri.persistence.dao.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -49,6 +48,13 @@ public class DataSource {
 
     private final UserDao userRepository;
     private final ProductDao productRepository;
+    private final CategoryDao categoryRepository;
+    private final FeedbackDao feedbackRepository;
+    private final OrderDao orderRepository;
+    private final TagDao tagRepository;
+    private final TicketDao ticketRepository;
+    private final TicketResponseDao ticketResponseRepository;
+    private final TransactionDao transactionRepository;
 
 
     @Autowired
@@ -64,6 +70,13 @@ public class DataSource {
         // TODO...
         this.userRepository = new UserDaoImpl(this);
         this.productRepository = new ProductDaoImpl(this);
+        this.categoryRepository = new CategoryDaoImpl(this);
+        this.feedbackRepository = new FeedbackDaoImpl(this);
+        this.orderRepository = new OrderDaoImpl(this);
+        this.tagRepository = new TagDaoImpl(this);
+        this.ticketRepository = new TicketDaoImpl(this);
+        this.ticketResponseRepository = new TicketResponseDaoImpl(this);
+        this.transactionRepository = new TransactionDaoImpl(this);
 
     }
 
@@ -77,5 +90,33 @@ public class DataSource {
 
     public ProductDao getProductRepository() {
         return productRepository;
+    }
+
+    public CategoryDao getCategoryRepository() {
+        return categoryRepository;
+    }
+
+    public FeedbackDao getFeedbackRepository() {
+        return feedbackRepository;
+    }
+
+    public OrderDao getOrderRepository() {
+        return orderRepository;
+    }
+
+    public TagDao getTagRepository() {
+        return tagRepository;
+    }
+
+    public TicketDao getTicketRepository() {
+        return ticketRepository;
+    }
+
+    public TicketResponseDao getTicketResponseRepository() {
+        return ticketResponseRepository;
+    }
+
+    public TransactionDao getTransactionRepository() {
+        return transactionRepository;
     }
 }

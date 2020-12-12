@@ -75,14 +75,14 @@ public class ProductDaoImpl extends ProductDao {
                 );
 
 
-//                do {
-//
-//                    product.getCategories().add(getDataSource().getCategoryRepository()
-//                            .findByPrimaryKey(result.getLong("category_id"))
-//                            .orElseThrow(SQLException::new)
-//                    );
-//
-//                } while (result.next());
+                do {
+
+                    getDataSource().getCategoryRepository()
+                            .findByPrimaryKey(result.getLong("category_id"))
+                            .ifPresent(product.getCategories()::add);
+
+
+                } while (result.next());
 //
 //
 //                product.getTags().addAll(getDataSource()
