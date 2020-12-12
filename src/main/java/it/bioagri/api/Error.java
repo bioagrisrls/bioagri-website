@@ -23,42 +23,37 @@
  *
  */
 
-package it.bioagri.api.auth;
+package it.bioagri.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import it.bioagri.api.ApiException;
-import it.bioagri.api.ApiExceptionType;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-public class AuthExpiredException extends ApiException {
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
 
-    private final AuthToken authToken;
+@RestController
+public class Error implements ErrorController {
 
-    public AuthExpiredException(AuthToken authToken) {
-        super(ApiExceptionType.ERROR_AUTH_TOKEN_EXPIRED, "auth token has expired", HttpStatus.I_AM_A_TEAPOT);
-        this.authToken = authToken.generateToken();
-    }
+    @RequestMapping("/error")
+    public void error(HttpServletRequest request) {
 
-    @JsonProperty("token")
-    public AuthToken getAuthToken() {
-        return authToken;
-    }
+        HttpStatus status = HttpStatus.resolve((Integer) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE));
+
+        if(status == null)
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
 
 
-    @ControllerAdvice
-    static class AuthExpiredExceptionAdvice {
-
-        @ExceptionHandler(AuthExpiredException.class)
-        @ResponseBody
-        public ResponseEntity<AuthExpiredException> handle(AuthExpiredException e) {
-            return new ResponseEntity<>(e, e.getStatus());
-        }
+        throw new ApiException(
+                ApiExceptionType.ERROR_INTERNAL,
+                request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI).toString(), status);
 
     }
 
+    @Override
+    public String getErrorPath() {
+        return null;
+    }
 
 }

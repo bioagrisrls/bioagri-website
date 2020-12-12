@@ -25,7 +25,7 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.*;
+import it.bioagri.models.Category;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.CategoryDao;
 
@@ -81,7 +81,7 @@ public class CategoryDaoImpl extends CategoryDao {
             var statement = connection.prepareStatement("SELECT * FROM shop_category");
             var result = statement.executeQuery();
 
-            if(result.next()) {
+            while (result.next()) {
 
                 categories.add(new Category(
                         result.getLong("id"),

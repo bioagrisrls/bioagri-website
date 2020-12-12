@@ -25,7 +25,6 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.Category;
 import it.bioagri.models.Feedback;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.FeedbackDao;
@@ -57,7 +56,7 @@ public class FeedbackDaoImpl extends FeedbackDao {
             var statement = connection.prepareStatement("SELECT * FROM shop_feedback");
             var result = statement.executeQuery();
 
-            if(result.next()) {
+            while (result.next()) {
 
                 feedbacks.add(new Feedback(
                         result.getLong("id"),

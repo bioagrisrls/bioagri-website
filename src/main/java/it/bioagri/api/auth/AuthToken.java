@@ -25,6 +25,7 @@
 
 package it.bioagri.api.auth;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
@@ -36,29 +37,33 @@ import java.util.UUID;
 
 @Component
 @SessionScope
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.NONE)
 public class AuthToken {
 
     private String token;
     private Timestamp timestamp;
 
 
-    @JsonProperty("token")
+    @JsonProperty
     public String getToken() {
         return token;
     }
 
-    @JsonProperty("timestamp")
+    @JsonProperty
     public Timestamp getTimestamp() {
         return timestamp;
     }
+
 
     public void setToken(String token) {
         this.token = token;
     }
 
+
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
+
 
     public boolean isExpired() {
 

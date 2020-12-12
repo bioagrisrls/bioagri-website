@@ -37,18 +37,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.PUBLIC_ONLY)
 public class ApiException extends RuntimeException {
 
-    private final String error;
+    private final ApiExceptionType error;
     private final String reason;
     private final HttpStatus status;
 
-    public ApiException(String error, String reason, HttpStatus status) {
+    public ApiException(ApiExceptionType error, String reason, HttpStatus status) {
         this.error = error;
         this.reason = reason;
         this.status = status;
     }
 
     @JsonProperty("error")
-    public String getError() {
+    public ApiExceptionType getError() {
         return error;
     }
 
