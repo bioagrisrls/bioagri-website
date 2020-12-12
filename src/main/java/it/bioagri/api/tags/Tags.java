@@ -27,7 +27,6 @@ package it.bioagri.api.tags;
 
 import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
-import it.bioagri.models.Product;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;

@@ -27,10 +27,6 @@ package it.bioagri.api.auth;
 
 import org.junit.jupiter.api.Test;
 
-import java.net.http.HttpRequest;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class AuthTest {
 
     @Test

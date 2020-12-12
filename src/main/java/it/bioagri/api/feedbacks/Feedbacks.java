@@ -27,7 +27,6 @@ package it.bioagri.api.feedbacks;
 
 import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
-import it.bioagri.models.Category;
 import it.bioagri.models.Feedback;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
@@ -37,7 +36,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.sql.Timestamp;
 import java.util.List;
 
 @RestController

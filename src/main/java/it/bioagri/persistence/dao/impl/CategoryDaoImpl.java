@@ -27,10 +27,8 @@ package it.bioagri.persistence.dao.impl;
 
 import it.bioagri.models.Category;
 import it.bioagri.persistence.DataSource;
-import it.bioagri.persistence.DataSourceSQLException;
 import it.bioagri.persistence.dao.CategoryDao;
 
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;

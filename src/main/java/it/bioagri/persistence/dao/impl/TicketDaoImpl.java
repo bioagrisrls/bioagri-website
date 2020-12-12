@@ -25,7 +25,6 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.Product;
 import it.bioagri.models.Ticket;
 import it.bioagri.models.TicketStatus;
 import it.bioagri.persistence.DataSource;
