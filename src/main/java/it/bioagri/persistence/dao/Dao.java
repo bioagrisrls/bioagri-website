@@ -27,7 +27,6 @@ package it.bioagri.persistence.dao;
 
 import it.bioagri.persistence.DataSource;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 

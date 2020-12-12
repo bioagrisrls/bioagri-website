@@ -25,7 +25,6 @@
 
 package it.bioagri.persistence;
 
-import it.bioagri.models.Product;
 import it.bioagri.persistence.dao.*;
 import it.bioagri.persistence.dao.impl.*;
 import org.intellij.lang.annotations.Language;
@@ -36,9 +35,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
 
 
 @Component

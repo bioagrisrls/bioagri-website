@@ -25,9 +25,9 @@
 
 package it.bioagri.api.users;
 
-import it.bioagri.api.*;
-import it.bioagri.api.auth.AuthToken;
-import it.bioagri.models.Product;
+import it.bioagri.api.ApiDatabaseException;
+import it.bioagri.api.ApiException;
+import it.bioagri.api.ApiExceptionType;
 import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;

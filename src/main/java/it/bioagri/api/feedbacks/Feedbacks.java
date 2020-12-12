@@ -28,7 +28,6 @@ package it.bioagri.api.feedbacks;
 import it.bioagri.api.ApiDatabaseException;
 import it.bioagri.api.ApiException;
 import it.bioagri.api.ApiExceptionType;
-import it.bioagri.models.Category;
 import it.bioagri.models.Feedback;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;

@@ -25,11 +25,12 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.*;
+import it.bioagri.models.Transaction;
+import it.bioagri.models.TransactionStatus;
+import it.bioagri.models.TransactionType;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TransactionDao;
 
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;

@@ -25,14 +25,11 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.Category;
-import it.bioagri.models.Feedback;
 import it.bioagri.models.Order;
 import it.bioagri.models.OrderStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.OrderDao;
 
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
