@@ -23,16 +23,20 @@
  *
  */
 
-package it.bioagri.api.auth;
+package it.bioagri.api;
 
-import it.bioagri.api.ApiException;
-import it.bioagri.api.ApiExceptionType;
-import org.springframework.http.HttpStatus;
+public enum ApiExceptionType {
 
-public class AuthFailedException extends ApiException {
+    ERROR_INTERNAL,
+    ERROR_GENERIC,
+    ERROR_DATABASE,
 
-    public AuthFailedException(String reason) {
-        super(ApiExceptionType.ERROR_AUTH_FAILED, reason, HttpStatus.UNAUTHORIZED);
-    }
+    ERROR_RESOURCE_NOT_FOUND,
+    ERROR_RESOURCE_NOT_AVAILABLE,
+    ERROR_RESOURCE_BUSY,
+
+    ERROR_AUTH_REQUIRED,
+    ERROR_AUTH_FAILED,
+    ERROR_AUTH_TOKEN_EXPIRED,
 
 }

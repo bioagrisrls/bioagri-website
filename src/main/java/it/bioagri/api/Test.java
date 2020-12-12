@@ -66,12 +66,12 @@ public class Test {
                     .findByPrimaryKey(id);
 
             if(v.isEmpty())
-                throw new ApiException("GENERIC_ERROR", String.format("user id %s not found", id), HttpStatus.I_AM_A_TEAPOT);
+                throw new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("user id %s not found", id), HttpStatus.I_AM_A_TEAPOT);
 
             return new ResponseEntity<>(v.get(), HttpStatus.OK);
 
         } catch (SQLException e) {
-            throw new ApiException("SQL_ERROR", e.getStackTrace()[0].toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new ApiException(ApiExceptionType.ERROR_DATABASE, e.getStackTrace()[0].toString(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
@@ -84,7 +84,7 @@ public class Test {
             return new ResponseEntity<>(dataSource.getProductRepository().findByWishUserId(id), HttpStatus.OK);
 
         } catch (SQLException e) {
-            throw new ApiException("SQL_ERROR", e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new ApiException(ApiExceptionType.ERROR_DATABASE, e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

@@ -26,12 +26,13 @@
 package it.bioagri.api.auth;
 
 import it.bioagri.api.ApiException;
+import it.bioagri.api.ApiExceptionType;
 import org.springframework.http.HttpStatus;
 
 public class AuthRequiredException extends ApiException {
 
     public AuthRequiredException(String reason) {
-        super("AUTH_REQUIRED", reason, HttpStatus.UNAUTHORIZED);
+        super(ApiExceptionType.ERROR_AUTH_REQUIRED, reason, HttpStatus.UNAUTHORIZED);
     }
 
 }

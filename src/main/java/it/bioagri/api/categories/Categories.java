@@ -23,65 +23,58 @@
  *
  */
 
-package it.bioagri.api.auth;
+package it.bioagri.api.categories;
 
+import it.bioagri.api.ApiDatabaseException;
+import it.bioagri.api.ApiException;
+import it.bioagri.api.ApiExceptionType;
+import it.bioagri.models.Category;
 import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
+import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/auth")
-public final class Auth {
+@RequestMapping("/api/categories")
+public class Categories {
 
-    private final AuthToken authToken;
     private final DataSource dataSource;
 
     @Autowired
-    public Auth(AuthToken authToken, DataSource dataSource) {
-        this.authToken = authToken;
+    public Categories(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-
-    //@PostMapping("authenticate")
-    @GetMapping("authenticate")
-    public ResponseEntity<AuthToken> authenticate(HttpSession session,
-                                                  @RequestParam(required = false) String username,
-                                                  @RequestParam(required = false) String password) {
-
-        if(username == null || username.isEmpty())
-            throw new AuthFailedException("username can not be null or empty");
-
-        if(password == null || password.isEmpty())
-            throw new AuthFailedException("password can not be null or empty");
-
-
-        // if(!validateUser(username, encryptedPassword))
-        //     throw new AuthFailedException("username/password wrong");
-
-        if(authToken.isExpired())
-            authToken.generateToken();
-
-        return new ResponseEntity<>(authToken, HttpStatus.OK);
-
+    @GetMapping("")
+    public ResponseEntity<List<Category>> findAll() {
+        try {
+            return new ResponseEntity<>(dataSource.getCategoryRepository().findAll(), HttpStatus.OK);
+        } catch (SQLException e) {
+            throw new ApiDatabaseException(e.getMessage(), e.getSQLState());
+        }
     }
 
-    @RequestMapping("disconnect")
-    public void disconnect(HttpSession session) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> findById(@PathVariable Long id) {
+        try {
 
-        authToken.setToken(null);
-        authToken.setTimestamp(null);
+            return new ResponseEntity<>(dataSource.getCategoryRepository()
+                    .findByPrimaryKey(id)
+                    .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested category id not found: %s", id), HttpStatus.NOT_FOUND)), HttpStatus.OK);
 
-        session.invalidate();
-
+        } catch (SQLException e) {
+            throw new ApiDatabaseException(e.getMessage(), e.getSQLState());
+        }
     }
+
+
 
 }
