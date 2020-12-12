@@ -44,11 +44,11 @@ public abstract class Dao<T, K> {
     }
 
 
-    public abstract Optional<T> findByPrimaryKey(K id) throws SQLException;
-    public abstract List<T> findAll() throws SQLException;
+    public abstract Optional<T> findByPrimaryKey(K id);
+    public abstract List<T> findAll();
 
-    public abstract void save(T value) throws SQLException;
-    public abstract void update(T value, Object... params) throws SQLException;
-    public abstract void delete(T value) throws SQLException;
+    public abstract void save(T value);
+    public abstract void update(T value, Object... params);
+    public abstract void delete(T value);
 
 }

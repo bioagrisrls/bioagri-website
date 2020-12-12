@@ -25,13 +25,15 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.Transaction;
+import it.bioagri.models.*;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TransactionDao;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TransactionDaoImpl extends TransactionDao {
 
@@ -40,27 +42,87 @@ public class TransactionDaoImpl extends TransactionDao {
     }
 
     @Override
-    public Optional<Transaction> findByPrimaryKey(Long id) throws SQLException {
-        return Optional.empty();
+    public Optional<Transaction> findByPrimaryKey(Long id) {
+
+        final AtomicReference<Optional<Transaction>> result = new AtomicReference<>(Optional.empty());
+
+        getDataSource().fetch("SELECT * FROM shop_transaction WHERE shop_transaction.id = ?",
+                s -> s.setLong(1, id),
+                r -> result.set(Optional.of(new Transaction(
+                        r.getLong("id"),
+                        TransactionStatus.values()[r.getShort("status")],
+                        r.getString("result"),
+                        r.getDouble("total"),
+                        TransactionType.values()[r.getShort("type")],
+                        r.getString("courier_service"),
+                        r.getString("shipment_number"),
+                        r.getDouble("weight"),
+                        r.getString("recipient"),
+                        r.getString("address"),
+                        r.getString("city"),
+                        r.getString("province"),
+                        r.getString("zip"),
+                        r.getString("phone"),
+                        r.getString("additional_info"),
+                        r.getString("invoice"),
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at")
+                )))
+        );
+
+        return result.get();
+
     }
 
     @Override
-    public List<Transaction> findAll() throws SQLException {
+    public List<Transaction> findAll() {
+
+        final var transactions = new LinkedList<Transaction>();
+
+        getDataSource().fetch("SELECT * FROM shop_transaction", null,
+                r -> transactions.add(new Transaction(
+                        r.getLong("id"),
+                        TransactionStatus.values()[r.getShort("status")],
+                        r.getString("result"),
+                        r.getDouble("total"),
+                        TransactionType.values()[r.getShort("type")],
+                        r.getString("courier_service"),
+                        r.getString("shipment_number"),
+                        r.getDouble("weight"),
+                        r.getString("recipient"),
+                        r.getString("address"),
+                        r.getString("city"),
+                        r.getString("province"),
+                        r.getString("zip"),
+                        r.getString("phone"),
+                        r.getString("additional_info"),
+                        r.getString("invoice"),
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at")
+                ))
+        );
+
+        return transactions;
+
+    }
+
+    @Override
+    public void save(Transaction value) {
+
+    }
+
+    @Override
+    public void update(Transaction value, Object... params) {
+
+    }
+
+    @Override
+    public void delete(Transaction value) {
+
+    }
+
+    @Override
+    public List<Transaction> findByOrderId(Long id) {
         return null;
-    }
-
-    @Override
-    public void save(Transaction value) throws SQLException {
-
-    }
-
-    @Override
-    public void update(Transaction value, Object... params) throws SQLException {
-
-    }
-
-    @Override
-    public void delete(Transaction value) throws SQLException {
-
     }
 }

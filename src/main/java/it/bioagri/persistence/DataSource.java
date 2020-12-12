@@ -25,8 +25,10 @@
 
 package it.bioagri.persistence;
 
+import it.bioagri.models.Product;
 import it.bioagri.persistence.dao.*;
 import it.bioagri.persistence.dao.impl.*;
+import org.intellij.lang.annotations.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -34,7 +36,9 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 
 @Component
@@ -118,4 +122,33 @@ public class DataSource {
     public TransactionDao getTransactionRepository() {
         return transactionRepository;
     }
+
+
+    public boolean fetch(@Language("SQL") String sql, DataSourcePrepareStatement prepareStatement, DataSourceFetchResult fetchResult) {
+
+
+        try(var connection = getConnection()) {
+
+            var statement = connection.prepareStatement(sql);
+
+            if(prepareStatement != null)
+                prepareStatement.prepare(statement);
+
+            if(fetchResult == null)
+                return statement.execute();
+
+
+            var result = statement.executeQuery();
+
+            while (result.next())
+                fetchResult.fetch(result);
+
+            return true;
+
+        } catch (SQLException e) {
+            throw new DataSourceSQLException(e);
+        }
+
+    }
+
 }

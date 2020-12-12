@@ -23,12 +23,11 @@
  *
  */
 
-package it.bioagri.api.categories;
+package it.bioagri.api.users;
 
-import it.bioagri.api.ApiDatabaseException;
-import it.bioagri.api.ApiException;
-import it.bioagri.api.ApiExceptionType;
-import it.bioagri.models.Category;
+import it.bioagri.api.*;
+import it.bioagri.api.auth.AuthToken;
+import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,47 +38,38 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.SQLException;
 import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/categories")
-public class Categories {
+@RequestMapping("/api/users")
+public class WishList {
 
+    private final AuthToken authToken;
     private final DataSource dataSource;
 
     @Autowired
-    public Categories(DataSource dataSource) {
+    public WishList(AuthToken authToken, DataSource dataSource) {
+        this.authToken = authToken;
         this.dataSource = dataSource;
     }
 
-    @GetMapping("")
-    public ResponseEntity<List<Category>> findAll() {
-
-        try {
-            return new ResponseEntity<>(dataSource.getCategoryRepository().findAll(), HttpStatus.OK);
-        } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
-        }
-
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Category> findById(@PathVariable Long id) {
+    @GetMapping("/{id}/wishlist")
+    public ResponseEntity<List<Product>> findById(@PathVariable Long id) {
 
         try {
 
-            return new ResponseEntity<>(dataSource.getCategoryRepository()
+            if(!authToken.getUserId().equals(id))
+                authToken.checkPermission(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ);
+
+            return new ResponseEntity<>(dataSource.getUserRepository()
                     .findByPrimaryKey(id)
-                    .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested category id not found: %s", id), HttpStatus.NOT_FOUND)), HttpStatus.OK);
+                    .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested user id not found: %s", id), HttpStatus.NOT_FOUND)).getWishList(), HttpStatus.OK);
 
         } catch (DataSourceSQLException e) {
             throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
         }
 
     }
-
-
 
 }

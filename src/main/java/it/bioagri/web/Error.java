@@ -23,22 +23,38 @@
  *
  */
 
-package it.bioagri.persistence.dao;
+package it.bioagri.web;
 
-import it.bioagri.models.Product;
-import it.bioagri.persistence.DataSource;
+import it.bioagri.api.ApiException;
+import it.bioagri.api.ApiExceptionType;
+import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.SQLException;
-import java.util.List;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
 
-public abstract class ProductDao extends Dao<Product, Long> {
+@RestController
+public class Error implements ErrorController {
 
-    public ProductDao(DataSource dataSource) {
-        super(dataSource);
+    @RequestMapping("/error")
+    public void error(HttpServletRequest request) {
+
+        HttpStatus status = HttpStatus.resolve((Integer) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE));
+
+        if(status == null)
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        
+        throw new ApiException(
+                ApiExceptionType.ERROR_INTERNAL,
+                request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI).toString(), status);
+
     }
 
-
-    public abstract List<Product> findByWishUserId(Long id);
-    public abstract List<Product> findByOrderId(Long id);
+    @Override
+    public String getErrorPath() {
+        return null;
+    }
 
 }

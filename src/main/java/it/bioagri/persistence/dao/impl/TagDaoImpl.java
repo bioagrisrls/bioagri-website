@@ -25,13 +25,16 @@
 
 package it.bioagri.persistence.dao.impl;
 
+import it.bioagri.models.Category;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TagDao;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TagDaoImpl extends TagDao {
 
@@ -40,27 +43,48 @@ public class TagDaoImpl extends TagDao {
     }
 
     @Override
-    public Optional<Tag> findByPrimaryKey(String id) throws SQLException {
-        return Optional.empty();
-    }
+    public Optional<Tag> findByPrimaryKey(String id) {
 
-    @Override
-    public List<Tag> findAll() throws SQLException {
-        return null;
-    }
+        final AtomicReference<Optional<Tag>> result = new AtomicReference<>(Optional.empty());
 
-    @Override
-    public void save(Tag value) throws SQLException {
+        getDataSource().fetch("SELECT * FROM shop_tag WHERE shop_tag.hashtag = ?",
+                s -> s.setString(1, id),
+                r -> result.set(Optional.of(new Tag(
+                        r.getString("hashtag")
+                )))
+        );
 
-    }
-
-    @Override
-    public void update(Tag value, Object... params) throws SQLException {
+        return result.get();
 
     }
 
     @Override
-    public void delete(Tag value) throws SQLException {
+    public List<Tag> findAll() {
+
+        final var tags = new LinkedList<Tag>();
+
+        getDataSource().fetch("SELECT * FROM shop_tag", null,
+                r -> tags.add(new Tag(
+                        r.getString("hashtag")
+                ))
+        );
+
+        return tags;
+
+    }
+
+    @Override
+    public void save(Tag value) {
+
+    }
+
+    @Override
+    public void update(Tag value, Object... params) {
+
+    }
+
+    @Override
+    public void delete(Tag value) {
 
     }
 }

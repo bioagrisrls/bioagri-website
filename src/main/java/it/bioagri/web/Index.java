@@ -23,22 +23,17 @@
  *
  */
 
-package it.bioagri.persistence.dao;
+package it.bioagri.web;
 
-import it.bioagri.models.Product;
-import it.bioagri.persistence.DataSource;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import java.sql.SQLException;
-import java.util.List;
+@Controller
+public class Index {
 
-public abstract class ProductDao extends Dao<Product, Long> {
-
-    public ProductDao(DataSource dataSource) {
-        super(dataSource);
+    @GetMapping("/")
+    public String index() {
+        return "index";
     }
-
-
-    public abstract List<Product> findByWishUserId(Long id);
-    public abstract List<Product> findByOrderId(Long id);
 
 }

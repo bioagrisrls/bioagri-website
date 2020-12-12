@@ -25,15 +25,19 @@
 
 package it.bioagri.persistence.dao.impl;
 
+import it.bioagri.models.Order;
+import it.bioagri.models.OrderStatus;
 import it.bioagri.models.Product;
 import it.bioagri.models.ProductStatus;
 import it.bioagri.persistence.DataSource;
+import it.bioagri.persistence.DataSourceSQLException;
 import it.bioagri.persistence.dao.ProductDao;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ProductDaoImpl extends ProductDao {
 
@@ -42,113 +46,142 @@ public class ProductDaoImpl extends ProductDao {
     }
 
     @Override
-    public Optional<Product> findByPrimaryKey(Long id) throws SQLException {
+    public Optional<Product> findByPrimaryKey(Long id) {
 
-        try(var connection = getDataSource().getConnection()) {
+        final AtomicReference<Optional<Product>> result = new AtomicReference<>(Optional.empty());
 
-            var statement = connection.prepareStatement (
-                    """
+        getDataSource().fetch(
+                """
                         SELECT * FROM shop_product,
                                       shop_product_category
                         WHERE shop_product.id = ?
                           AND shop_product_category.product_id = shop_product.id
-                    """
-            );
+                    """,
 
-            statement.setLong(1, id);
+                s -> s.setLong(1, id),
+                r -> {
+
+                    var product = new Product(
+                            r.getLong("id"),
+                            r.getString("name"),
+                            r.getString("description"),
+                            r.getFloat("price"),
+                            r.getInt("quantity"),
+                            ProductStatus.values()[r.getShort("status")],
+                            r.getTimestamp("updated_at"),
+                            r.getTimestamp("created_at"),
+                            new LinkedList<>(),
+                            new LinkedList<>(),
+                            new LinkedList<>()
+                    );
 
 
-            var result = statement.executeQuery();
+                    do {
 
-            if(result.next()) {
+                        getDataSource().getCategoryRepository()
+                                .findByPrimaryKey(r.getLong("category_id"))
+                                .ifPresent(product.getCategories()::add);
 
-                var product = new Product(
-                        result.getLong("id"),
-                        result.getString("name"),
-                        result.getString("description"),
-                        result.getFloat("price"),
-                        result.getInt("quantity"),
-                        ProductStatus.values()[result.getShort("status")],
-                        result.getTimestamp("updated_at"),
-                        result.getTimestamp("created_at"),
+
+                    } while (r.next());
+
+
+                    result.set(Optional.of(product));
+
+                }
+
+        );
+
+
+        // TODO: fetch tags & feedbacks for product.
+
+//        result.get().ifPresent(r -> r.getTags()
+//                .addAll(getDataSource().getTagRepository().findByProductId(r.getId())));
+//
+//        result.get().ifPresent(r -> r.getFeedbacks()
+//                .addAll(getDataSource().getFeedbackRepository().findByProductId(r.getId())));
+
+
+        return result.get();
+
+    }
+
+    @Override
+    public List<Product> findAll() {
+
+        final var products = new LinkedList<Product>();
+
+        getDataSource().fetch("SELECT * FROM shop_product", null,
+                r -> products.add(new Product(
+                        r.getLong("id"),
+                        r.getString("name"),
+                        r.getString("description"),
+                        r.getFloat("price"),
+                        r.getInt("quantity"),
+                        ProductStatus.values()[r.getShort("status")],
+                        r.getTimestamp("updated_at"),
+                        r.getTimestamp("created_at"),
                         new LinkedList<>(),
                         new LinkedList<>(),
                         new LinkedList<>()
-                );
+                ))
+        );
 
 
-                do {
+        // TODO: fetch tags & feedbacks for product.
 
-                    getDataSource().getCategoryRepository()
-                            .findByPrimaryKey(result.getLong("category_id"))
-                            .ifPresent(product.getCategories()::add);
-
-
-                } while (result.next());
+//        for(var product : products) {
 //
+//            product.getTags()
+//                    .addAll(getDataSource().getTagRepository().findByProductId(product.getId()));
 //
-//                product.getTags().addAll(getDataSource()
-//                        .getTagRepository()
-//                        .findByProductId(id)
-//                );
+//            product.getFeedbacks()
+//                    .addAll(getDataSource().getFeedbackRepository().findByProductId(product.getId()));
 //
-//                product.getFeedbacks().addAll(getDataSource()
-//                        .getFeedbackRepository()
-//                        .findByProductId(id)
-//                );
+//        }
 
 
-                return Optional.of(product);
-
-
-            }
-
-            return Optional.empty();
-
-        }
-    }
-
-    @Override
-    public List<Product> findAll() throws SQLException {
-        return null;
-    }
-
-    @Override
-    public void save(Product value) throws SQLException {
+        return products;
 
     }
 
     @Override
-    public void update(Product value, Object... params) throws SQLException {
+    public void save(Product value) {
 
     }
 
     @Override
-    public void delete(Product value) throws SQLException {
+    public void update(Product value, Object... params) {
 
     }
 
     @Override
-    public List<Product> findByWishUserId(Long id) throws SQLException {
+    public void delete(Product value) {
+
+    }
+
+    @Override
+    public List<Product> findByWishUserId(Long id) {
 
         var products = new LinkedList<Product>();
 
+        getDataSource().fetch("SELECT * FROM shop_wish WHERE shop_wish.user_id = ?",
+                s -> s.setLong(1, id),
+                r -> findByPrimaryKey(r.getLong("product_id")).ifPresent(products::add));
 
-        try(var connection = getDataSource().getConnection()) {
+        return products;
 
-            var statement = connection.prepareStatement(
-                    "SELECT * FROM shop_wish WHERE shop_wish.user_id = ?"
-            );
-
-            statement.setLong(1, id);
+    }
 
 
-            var result = statement.executeQuery();
+    @Override
+    public List<Product> findByOrderId(Long id) {
 
-            while (result.next())
-                findByPrimaryKey(result.getLong("product_id")).ifPresent(products::add);
+        var products = new LinkedList<Product>();
 
-        }
+        getDataSource().fetch("SELECT * FROM shop_order_product WHERE shop_order_product.order_id = ?",
+                s -> s.setLong(1, id),
+                r -> findByPrimaryKey(r.getLong("product_id")).ifPresent(products::add));
 
         return products;
 

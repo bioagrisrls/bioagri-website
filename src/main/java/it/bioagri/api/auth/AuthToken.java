@@ -27,12 +27,20 @@ package it.bioagri.api.auth;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import it.bioagri.api.ApiPermissionException;
+import it.bioagri.api.ApiPermissionHandler;
+import it.bioagri.api.ApiPermissionType;
+import it.bioagri.api.ApiPermissionOperation;
+import it.bioagri.models.UserRole;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.AbstractMap;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Component
@@ -40,8 +48,33 @@ import java.util.UUID;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.NONE)
 public class AuthToken {
 
+    private final static Map<Map.Entry<ApiPermissionType, ApiPermissionOperation>, ApiPermissionHandler> permissionsHandler;
+
+    static {
+
+        permissionsHandler = new HashMap<>() {{
+
+            put(new SimpleImmutableEntry<>(ApiPermissionType.USER, ApiPermissionOperation.CREATE), ApiPermissionHandler.granted());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.USER, ApiPermissionOperation.READ  ), ApiPermissionHandler.granted());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.USER, ApiPermissionOperation.WRITE ), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.USER, ApiPermissionOperation.DELETE), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.USER, ApiPermissionOperation.UPDATE), ApiPermissionHandler.denied());
+
+            put(new SimpleImmutableEntry<>(ApiPermissionType.WISHLIST, ApiPermissionOperation.CREATE), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ  ), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.WISHLIST, ApiPermissionOperation.WRITE ), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.WISHLIST, ApiPermissionOperation.UPDATE), ApiPermissionHandler.denied());
+
+        }};
+
+    }
+
+
     private String token;
     private Timestamp timestamp;
+    private Long userId;
+    private UserRole userRole;
 
 
     @JsonProperty
@@ -54,6 +87,15 @@ public class AuthToken {
         return timestamp;
     }
 
+    @JsonProperty
+    public Long getUserId() {
+        return userId;
+    }
+
+    @JsonProperty
+    public UserRole getUserRole() {
+        return userRole;
+    }
 
     public void setToken(String token) {
         this.token = token;
@@ -62,6 +104,14 @@ public class AuthToken {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
 
@@ -75,12 +125,30 @@ public class AuthToken {
     }
 
 
-    public AuthToken generateToken() {
+    public AuthToken generateToken(Long userId, UserRole userRole) {
 
         setToken(UUID.randomUUID().toString());
         setTimestamp(Timestamp.from(Instant.now()));
+        setUserId(userId);
+        setUserRole(userRole);
 
         return this;
+
+    }
+
+    public AuthToken generateToken() {
+        return generateToken(getUserId(), getUserRole());
+    }
+
+
+    public void checkPermission(ApiPermissionType type, ApiPermissionOperation operation) {
+
+        if(getUserRole().equals(UserRole.CUSTOMER)) {
+
+            if(!permissionsHandler.get(new AbstractMap.SimpleImmutableEntry<>(type, operation)).handle(type, operation, this))
+                throw new ApiPermissionException();
+
+        }
 
     }
 

@@ -25,35 +25,18 @@
 
 package it.bioagri.api;
 
-import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import it.bioagri.api.auth.AuthToken;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
+public interface ApiPermissionHandler {
 
-@RestController
-public class Error implements ErrorController {
+    boolean handle(ApiPermissionType type, ApiPermissionOperation operation, AuthToken token);
 
-    @RequestMapping("/error")
-    public void error(HttpServletRequest request) {
-
-        HttpStatus status = HttpStatus.resolve((Integer) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE));
-
-        if(status == null)
-            status = HttpStatus.INTERNAL_SERVER_ERROR;
-
-
-        throw new ApiException(
-                ApiExceptionType.ERROR_INTERNAL,
-                request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI).toString(), status);
-
+    static ApiPermissionHandler granted() {
+        return (t, o, k) -> true;
     }
 
-    @Override
-    public String getErrorPath() {
-        return null;
+    static ApiPermissionHandler denied() {
+        return (t, o, k) -> false;
     }
 
 }

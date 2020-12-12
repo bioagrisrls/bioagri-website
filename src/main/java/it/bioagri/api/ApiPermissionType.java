@@ -23,22 +23,11 @@
  *
  */
 
-package it.bioagri.persistence.dao;
+package it.bioagri.api;
 
-import it.bioagri.models.Product;
-import it.bioagri.persistence.DataSource;
+public enum ApiPermissionType {
 
-import java.sql.SQLException;
-import java.util.List;
-
-public abstract class ProductDao extends Dao<Product, Long> {
-
-    public ProductDao(DataSource dataSource) {
-        super(dataSource);
-    }
-
-
-    public abstract List<Product> findByWishUserId(Long id);
-    public abstract List<Product> findByOrderId(Long id);
+    USER,
+    WISHLIST,
 
 }
