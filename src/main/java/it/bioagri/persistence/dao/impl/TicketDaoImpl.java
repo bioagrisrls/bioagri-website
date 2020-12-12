@@ -25,14 +25,11 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.Category;
-import it.bioagri.models.Tag;
 import it.bioagri.models.Ticket;
 import it.bioagri.models.TicketStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TicketDao;
 
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;

@@ -28,7 +28,6 @@ package it.bioagri.api.tickets;
 import it.bioagri.api.ApiDatabaseException;
 import it.bioagri.api.ApiException;
 import it.bioagri.api.ApiExceptionType;
-import it.bioagri.models.Ticket;
 import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;

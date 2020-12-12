@@ -28,7 +28,6 @@ package it.bioagri.api.products;
 import it.bioagri.api.ApiDatabaseException;
 import it.bioagri.api.ApiException;
 import it.bioagri.api.ApiExceptionType;
-import it.bioagri.models.Order;
 import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;

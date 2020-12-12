@@ -25,11 +25,13 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.*;
+import it.bioagri.models.User;
+import it.bioagri.models.UserGender;
+import it.bioagri.models.UserRole;
+import it.bioagri.models.UserStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.UserDao;
 
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;

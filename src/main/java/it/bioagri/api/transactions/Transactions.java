@@ -28,7 +28,6 @@ package it.bioagri.api.transactions;
 import it.bioagri.api.ApiDatabaseException;
 import it.bioagri.api.ApiException;
 import it.bioagri.api.ApiExceptionType;
-import it.bioagri.models.Tag;
 import it.bioagri.models.Transaction;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;

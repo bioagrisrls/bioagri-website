@@ -25,8 +25,6 @@
 
 package it.bioagri;
 
-import it.bioagri.api.auth.AuthExpiredException;
-import it.bioagri.api.auth.AuthRequiredException;
 import it.bioagri.api.auth.AuthToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
