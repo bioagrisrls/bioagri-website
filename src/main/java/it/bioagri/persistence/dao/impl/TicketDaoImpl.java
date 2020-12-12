@@ -25,6 +25,7 @@
 
 package it.bioagri.persistence.dao.impl;
 
+import it.bioagri.models.Product;
 import it.bioagri.models.Ticket;
 import it.bioagri.models.TicketStatus;
 import it.bioagri.persistence.DataSource;
@@ -109,8 +110,23 @@ public class TicketDaoImpl extends TicketDao {
 
     }
 
+
     @Override
     public void delete(Ticket value) {
+
+    }
+
+
+    @Override
+    public List<Ticket> findByUserId(Long id) {
+
+        var tickets = new LinkedList<Ticket>();
+
+        getDataSource().fetch("SELECT * FROM shop_ticket WHERE shop_ticket.user_id = ?",
+                s -> s.setLong(1, id),
+                r -> findByPrimaryKey(r.getLong("id")).ifPresent(tickets::add));
+
+        return tickets;
 
     }
 }

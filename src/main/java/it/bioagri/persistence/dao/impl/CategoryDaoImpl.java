@@ -27,8 +27,10 @@ package it.bioagri.persistence.dao.impl;
 
 import it.bioagri.models.Category;
 import it.bioagri.persistence.DataSource;
+import it.bioagri.persistence.DataSourceSQLException;
 import it.bioagri.persistence.dao.CategoryDao;
 
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -36,9 +38,11 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class CategoryDaoImpl extends CategoryDao {
 
+
     public CategoryDaoImpl(DataSource dataSource) {
         super(dataSource);
     }
+
 
     @Override
     public Optional<Category> findByPrimaryKey(Long id) {
@@ -57,6 +61,7 @@ public class CategoryDaoImpl extends CategoryDao {
 
     }
 
+
     @Override
     public List<Category> findAll() {
 
@@ -73,19 +78,40 @@ public class CategoryDaoImpl extends CategoryDao {
 
     }
 
+
     @Override
     public void save(Category value) {
 
+        getDataSource().update("INSERT INTO shop_category (id, name) VALUES (?, ?)",
+                s -> {
+                    s.setLong(1, value.getId());
+                    s.setString(2, value.getName());
+                }, false);
+
     }
+
 
     @Override
     public void update(Category value, Object... params) {
 
+        getDataSource().update("UPDATE shop_category SET name = ? WHERE id = ?",
+                s -> {
+                    s.setString(1, params[0].toString());
+                    s.setLong(2, value.getId());
+                }, false);
+
     }
+
 
     @Override
     public void delete(Category value) {
 
+        getDataSource().update("DELETE FROM shop_category WHERE id = ?",
+                s -> {
+                    s.setLong(1, value.getId());
+                }, false);
+
     }
+
 
 }

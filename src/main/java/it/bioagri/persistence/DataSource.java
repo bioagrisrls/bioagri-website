@@ -36,6 +36,7 @@ import org.springframework.stereotype.Component;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 @Component
@@ -81,7 +82,12 @@ public class DataSource {
     }
 
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(uri, username, password);
+
+        var connection = DriverManager.getConnection(uri, username, password);
+        connection.setAutoCommit(true);
+
+        return connection;
+
     }
 
     public UserDao getUserRepository() {
@@ -121,30 +127,73 @@ public class DataSource {
     }
 
 
-    public boolean fetch(@Language("SQL") String sql, DataSourcePrepareStatement prepareStatement, DataSourceFetchResult fetchResult) {
+    public void fetch(@Language("SQL") String sql, DataSourcePrepareStatement prepareStatement, DataSourceFetchResult fetchResult) {
 
+        try(var connection = getConnection();
+            var statement = connection.prepareStatement(sql)) {
 
-        try(var connection = getConnection()) {
-
-            var statement = connection.prepareStatement(sql);
 
             if(prepareStatement != null)
                 prepareStatement.prepare(statement);
 
-            if(fetchResult == null)
-                return statement.execute();
 
+            if(fetchResult != null) {
 
-            var result = statement.executeQuery();
+                var result = statement.executeQuery();
 
-            while (result.next())
-                fetchResult.fetch(result);
+                while (result.next())
+                    fetchResult.fetch(result);
 
-            return true;
+                result.close();
+
+            } else {
+
+                statement.execute();
+
+            }
 
         } catch (SQLException e) {
             throw new DataSourceSQLException(e);
         }
+
+    }
+
+
+    public int update(@Language("SQL") String sql, DataSourcePrepareStatement prepareStatement, boolean batch) {
+
+        try(var connection = getConnection();
+            var statement = connection.prepareStatement(sql)) {
+
+
+            if(prepareStatement != null)
+                prepareStatement.prepare(statement);
+
+            if(!batch)
+                return statement.executeUpdate();
+
+            statement.executeBatch();
+
+        } catch (SQLException e) {
+            throw new DataSourceSQLException(e);
+        }
+
+        return 0;
+
+    }
+
+
+    public Long getId(String ref) {
+
+        final AtomicReference<Long> result = new AtomicReference<>(0L);
+
+        fetch(String.format("SELECT nextval(pg_get_serial_sequence('%s', 'id')) AS id", ref), null,
+                r -> result.set(r.getLong("id")));
+
+
+        System.out.println("result.get() = " + result.get());
+
+        return result.get();
+
 
     }
 

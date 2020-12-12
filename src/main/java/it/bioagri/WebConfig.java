@@ -26,6 +26,7 @@
 package it.bioagri;
 
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.models.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -60,6 +61,7 @@ public class WebConfig implements WebMvcConfigurer {
 //            if(authToken.isExpired())
 //                throw new AuthExpiredException(authToken);
 
+            authToken.generateToken(1L, UserRole.ADMIN);
             return true;
 
         }

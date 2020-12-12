@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 public final class Order {
 
@@ -36,10 +37,10 @@ public final class Order {
     private final OrderStatus status;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
-    private final List<Product> products;
+    private final Map<Product, Integer> products;
     private final List<Transaction> transactions;
 
-    public Order(long id, OrderStatus status, Timestamp createdAt, Timestamp updatedAt, List<Product> products, List<Transaction> transactions) {
+    public Order(long id, OrderStatus status, Timestamp createdAt, Timestamp updatedAt, Map<Product, Integer> products, List<Transaction> transactions) {
         this.id = id;
         this.status = status;
         this.createdAt = createdAt;
@@ -66,7 +67,7 @@ public final class Order {
 
 
     @JsonIgnore
-    public List<Product> getProducts() {
+    public Map<Product, Integer> getProducts() {
         return products;
     }
 

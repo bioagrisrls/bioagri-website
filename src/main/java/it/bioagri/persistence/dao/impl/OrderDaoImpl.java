@@ -30,6 +30,7 @@ import it.bioagri.models.OrderStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.OrderDao;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -53,14 +54,14 @@ public class OrderDaoImpl extends OrderDao {
                         OrderStatus.values()[r.getShort("status")],
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
-                        new LinkedList<>(),
+                        new HashMap<>(),
                         new LinkedList<>()
                 )))
         );
 
 
         result.get().ifPresent(r -> r.getProducts()
-                .addAll(getDataSource().getProductRepository().findByOrderId(r.getId())));
+                .putAll(getDataSource().getProductRepository().findByOrderId(r.getId())));
 
         result.get().ifPresent(r -> r.getTransactions()
                 .addAll(getDataSource().getTransactionRepository().findByOrderId(r.getId())));
@@ -81,7 +82,7 @@ public class OrderDaoImpl extends OrderDao {
                         OrderStatus.values()[r.getShort("status")],
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
-                        new LinkedList<>(),
+                        new HashMap<>(),
                         new LinkedList<>()
                 ))
         );
@@ -90,7 +91,7 @@ public class OrderDaoImpl extends OrderDao {
         for(var order : orders) {
 
             order.getProducts()
-                    .addAll(getDataSource().getProductRepository().findByOrderId(order.getId()));
+                    .putAll(getDataSource().getProductRepository().findByOrderId(order.getId()));
 
             order.getTransactions()
                     .addAll(getDataSource().getTransactionRepository().findByOrderId(order.getId()));
@@ -116,4 +117,5 @@ public class OrderDaoImpl extends OrderDao {
     public void delete(Order value) {
 
     }
+
 }

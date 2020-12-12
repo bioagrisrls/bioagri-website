@@ -63,6 +63,8 @@ public class UserDaoImpl extends UserDao {
                         r.getDate("birth"),
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
+                        new LinkedList<>(),
+                        new LinkedList<>(),
                         new LinkedList<>()
                 )))
         );
@@ -70,6 +72,12 @@ public class UserDaoImpl extends UserDao {
 
         result.get().ifPresent(r -> r.getWishList()
                 .addAll(getDataSource().getProductRepository().findByWishUserId(r.getId())));
+
+        result.get().ifPresent(r -> r.getFeedbacks()
+                .addAll(getDataSource().getFeedbackRepository().findByUserId(r.getId())));
+
+        result.get().ifPresent(r -> r.getTickets()
+            .addAll(getDataSource().getTicketRepository().findByUserId(r.getId())));
 
 
         return result.get();
@@ -96,6 +104,8 @@ public class UserDaoImpl extends UserDao {
                         r.getDate("birth"),
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
+                        new LinkedList<>(),
+                        new LinkedList<>(),
                         new LinkedList<>()
                 ))
         );
@@ -105,6 +115,12 @@ public class UserDaoImpl extends UserDao {
 
             user.getWishList()
                     .addAll(getDataSource().getProductRepository().findByWishUserId(user.getId()));
+
+            user.getFeedbacks()
+                    .addAll(getDataSource().getFeedbackRepository().findByUserId(user.getId()));
+
+            user.getTickets()
+                    .addAll(getDataSource().getTicketRepository().findByUserId(user.getId()));
 
         }
 
@@ -126,6 +142,5 @@ public class UserDaoImpl extends UserDao {
     public void delete(User value) {
 
     }
-
 
 }

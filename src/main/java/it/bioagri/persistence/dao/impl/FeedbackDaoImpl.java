@@ -26,6 +26,7 @@
 package it.bioagri.persistence.dao.impl;
 
 import it.bioagri.models.Feedback;
+import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.FeedbackDao;
 
@@ -93,6 +94,20 @@ public class FeedbackDaoImpl extends FeedbackDao {
 
     @Override
     public void delete(Feedback value) {
+
+    }
+
+
+    @Override
+    public List<Feedback> findByUserId(Long id) {
+
+        var feedbacks = new LinkedList<Feedback>();
+
+        getDataSource().fetch("SELECT * FROM shop_feedback WHERE shop_feedback.user_id = ?",
+                s -> s.setLong(1, id),
+                r -> findByPrimaryKey(r.getLong("id")).ifPresent(feedbacks::add));
+
+        return feedbacks;
 
     }
 }
