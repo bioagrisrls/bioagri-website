@@ -41,13 +41,14 @@ public class TagDaoImpl extends TagDao {
     }
 
     @Override
-    public Optional<Tag> findByPrimaryKey(String id) {
+    public Optional<Tag> findByPrimaryKey(Long id) {
 
         final AtomicReference<Optional<Tag>> result = new AtomicReference<>(Optional.empty());
 
-        getDataSource().fetch("SELECT * FROM shop_tag WHERE shop_tag.hashtag = ?",
-                s -> s.setString(1, id),
+        getDataSource().fetch("SELECT * FROM shop_tag WHERE shop_tag.id = ?",
+                s -> s.setLong(1, id),
                 r -> result.set(Optional.of(new Tag(
+                        r.getLong("id"),
                         r.getString("hashtag")
                 )))
         );
@@ -63,6 +64,7 @@ public class TagDaoImpl extends TagDao {
 
         getDataSource().fetch("SELECT * FROM shop_tag", null,
                 r -> tags.add(new Tag(
+                        r.getLong("id"),
                         r.getString("hashtag")
                 ))
         );
@@ -85,4 +87,5 @@ public class TagDaoImpl extends TagDao {
     public void delete(Tag value) {
 
     }
+
 }

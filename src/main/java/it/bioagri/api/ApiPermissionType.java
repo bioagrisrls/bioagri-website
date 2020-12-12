@@ -29,5 +29,7 @@ public enum ApiPermissionType {
 
     USER,
     WISHLIST,
+    CATEGORIES,
+    FEEDBACKS,
 
 }

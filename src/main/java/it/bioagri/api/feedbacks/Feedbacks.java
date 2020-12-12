@@ -25,9 +25,8 @@
 
 package it.bioagri.api.feedbacks;
 
-import it.bioagri.api.ApiDatabaseException;
-import it.bioagri.api.ApiException;
-import it.bioagri.api.ApiExceptionType;
+import it.bioagri.api.*;
+import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Feedback;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
@@ -45,17 +44,20 @@ import java.util.List;
 @RequestMapping("/api/feedbacks")
 public class Feedbacks {
 
-
+    private final AuthToken authToken;
     private final DataSource dataSource;
 
     @Autowired
-    public Feedbacks(DataSource dataSource) {
+    public Feedbacks(AuthToken authToken, DataSource dataSource) {
+        this.authToken = authToken;
         this.dataSource = dataSource;
     }
 
 
     @GetMapping("")
     public ResponseEntity<List<Feedback>> findAll() {
+
+        authToken.checkPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ);
 
         try {
             return new ResponseEntity<>(dataSource.getFeedbackRepository().findAll(), HttpStatus.OK);
@@ -67,6 +69,8 @@ public class Feedbacks {
 
     @GetMapping("/{id}")
     public ResponseEntity<Feedback> findById(@PathVariable Long id) {
+
+        authToken.checkPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ);
 
         try {
 

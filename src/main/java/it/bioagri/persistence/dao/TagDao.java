@@ -28,7 +28,7 @@ package it.bioagri.persistence.dao;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 
-public abstract class TagDao extends Dao<Tag, String> {
+public abstract class TagDao extends Dao<Tag, Long> {
 
     public TagDao(DataSource dataSource) {
         super(dataSource);

@@ -28,10 +28,14 @@ package it.bioagri.persistence.dao;
 import it.bioagri.models.Feedback;
 import it.bioagri.persistence.DataSource;
 
+import java.util.List;
+
 public abstract class FeedbackDao extends Dao<Feedback, Long> {
 
     public FeedbackDao(DataSource dataSource) {
         super(dataSource);
     }
+
+    public abstract List<Feedback> findByUserId(Long id);
 
 }

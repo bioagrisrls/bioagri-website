@@ -36,7 +36,7 @@ public final class Product {
     private final String name;
     private final String description;
     private final float price;
-    private final int quantity;
+    private final int stock;
     private final ProductStatus status;
     private final Timestamp updatedAt;
     private final Timestamp createdAt;
@@ -45,12 +45,12 @@ public final class Product {
     private final List<Feedback> feedbacks;
 
 
-    public Product(long id, String name, String description, float price, int quantity, ProductStatus status, Timestamp updatedAt, Timestamp createdAt, List<Category> categories, List<Tag> tags, List<Feedback> feedbacks) {
+    public Product(long id, String name, String description, float price, int stock, ProductStatus status, Timestamp updatedAt, Timestamp createdAt, List<Category> categories, List<Tag> tags, List<Feedback> feedbacks) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.quantity = quantity;
+        this.stock = stock;
         this.status = status;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
@@ -75,8 +75,8 @@ public final class Product {
         return price;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getStock() {
+        return stock;
     }
 
     public ProductStatus getStatus() {

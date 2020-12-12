@@ -23,24 +23,22 @@
  *
  */
 
-package it.bioagri.models;
+package it.bioagri.api.auth;
 
-public final class Category {
+import org.junit.jupiter.api.Test;
 
-    private final long id;
-    private final String name;
+import java.net.http.HttpRequest;
 
-    public Category(Long id, String name) {
-        this.id = id;
-        this.name = name;
+import static org.junit.jupiter.api.Assertions.*;
+
+class AuthTest {
+
+    @Test
+    void authenticate() {
+
     }
 
-    public long getId() {
-        return id;
+    @Test
+    void disconnect() {
     }
-
-    public String getName() {
-        return name;
-    }
-
 }

@@ -30,9 +30,8 @@ import it.bioagri.models.ProductStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.ProductDao;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.sql.SQLException;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ProductDaoImpl extends ProductDao {
@@ -62,7 +61,7 @@ public class ProductDaoImpl extends ProductDao {
                             r.getString("name"),
                             r.getString("description"),
                             r.getFloat("price"),
-                            r.getInt("quantity"),
+                            r.getInt("stock"),
                             ProductStatus.values()[r.getShort("status")],
                             r.getTimestamp("updated_at"),
                             r.getTimestamp("created_at"),
@@ -113,7 +112,7 @@ public class ProductDaoImpl extends ProductDao {
                         r.getString("name"),
                         r.getString("description"),
                         r.getFloat("price"),
-                        r.getInt("quantity"),
+                        r.getInt("stock"),
                         ProductStatus.values()[r.getShort("status")],
                         r.getTimestamp("updated_at"),
                         r.getTimestamp("created_at"),
@@ -156,6 +155,7 @@ public class ProductDaoImpl extends ProductDao {
 
     }
 
+
     @Override
     public List<Product> findByWishUserId(Long id) {
 
@@ -171,15 +171,23 @@ public class ProductDaoImpl extends ProductDao {
 
 
     @Override
-    public List<Product> findByOrderId(Long id) {
+    public Map<Product, Integer> findByOrderId(Long id) {
 
-        var products = new LinkedList<Product>();
+        var products = new HashMap<Product, Integer>();
 
         getDataSource().fetch("SELECT * FROM shop_order_product WHERE shop_order_product.order_id = ?",
                 s -> s.setLong(1, id),
-                r -> findByPrimaryKey(r.getLong("product_id")).ifPresent(products::add));
+                r -> findByPrimaryKey(r.getLong("product_id"))
+                        .ifPresent(p -> {
+                            try {
+                                products.put(p, r.getInt("quantity"));
+                            } catch (SQLException ignored) { }
+                        })
+        );
 
         return products;
 
     }
+
+
 }

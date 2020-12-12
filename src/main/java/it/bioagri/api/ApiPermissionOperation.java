@@ -29,6 +29,5 @@ public enum ApiPermissionOperation {
     CREATE,
     UPDATE,
     READ,
-    WRITE,
     DELETE,
 };

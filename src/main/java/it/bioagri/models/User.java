@@ -46,9 +46,11 @@ public final class User {
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
     private final List<Product> wishList;
+    private final List<Feedback> feedbacks;
+    private final List<Ticket> tickets;
 
 
-    public User(long id, String mail, String password, UserStatus status, UserRole role, String name, String surname, UserGender gender, String phone, Date birth, Timestamp createdAt, Timestamp updatedAt, List<Product> wishList) {
+    public User(long id, String mail, String password, UserStatus status, UserRole role, String name, String surname, UserGender gender, String phone, Date birth, Timestamp createdAt, Timestamp updatedAt, List<Product> wishList, List<Feedback> feedbacks, List<Ticket> tickets) {
         this.id = id;
         this.mail = mail;
         this.password = password;
@@ -62,6 +64,8 @@ public final class User {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.wishList = wishList;
+        this.feedbacks = feedbacks;
+        this.tickets = tickets;
     }
 
     public long getId() {
@@ -115,6 +119,16 @@ public final class User {
     @JsonIgnore
     public List<Product> getWishList() {
         return wishList;
+    }
+
+    @JsonIgnore
+    public List<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+
+    @JsonIgnore
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 
 }

@@ -66,7 +66,7 @@ public class Tags {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tag> findById(@PathVariable String id) {
+    public ResponseEntity<Tag> findById(@PathVariable Long id) {
 
         try {
 

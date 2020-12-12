@@ -56,15 +56,23 @@ public class AuthToken {
 
             put(new SimpleImmutableEntry<>(ApiPermissionType.USER, ApiPermissionOperation.CREATE), ApiPermissionHandler.granted());
             put(new SimpleImmutableEntry<>(ApiPermissionType.USER, ApiPermissionOperation.READ  ), ApiPermissionHandler.granted());
-            put(new SimpleImmutableEntry<>(ApiPermissionType.USER, ApiPermissionOperation.WRITE ), ApiPermissionHandler.denied());
             put(new SimpleImmutableEntry<>(ApiPermissionType.USER, ApiPermissionOperation.DELETE), ApiPermissionHandler.denied());
             put(new SimpleImmutableEntry<>(ApiPermissionType.USER, ApiPermissionOperation.UPDATE), ApiPermissionHandler.denied());
 
             put(new SimpleImmutableEntry<>(ApiPermissionType.WISHLIST, ApiPermissionOperation.CREATE), ApiPermissionHandler.denied());
             put(new SimpleImmutableEntry<>(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ  ), ApiPermissionHandler.denied());
-            put(new SimpleImmutableEntry<>(ApiPermissionType.WISHLIST, ApiPermissionOperation.WRITE ), ApiPermissionHandler.denied());
             put(new SimpleImmutableEntry<>(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE), ApiPermissionHandler.denied());
             put(new SimpleImmutableEntry<>(ApiPermissionType.WISHLIST, ApiPermissionOperation.UPDATE), ApiPermissionHandler.denied());
+
+            put(new SimpleImmutableEntry<>(ApiPermissionType.CATEGORIES, ApiPermissionOperation.CREATE), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ  ), ApiPermissionHandler.granted());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.CATEGORIES, ApiPermissionOperation.UPDATE), ApiPermissionHandler.denied());
+
+            put(new SimpleImmutableEntry<>(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.CREATE), ApiPermissionHandler.granted());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ  ), ApiPermissionHandler.granted());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.DELETE), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.UPDATE), ApiPermissionHandler.denied());
 
         }};
 

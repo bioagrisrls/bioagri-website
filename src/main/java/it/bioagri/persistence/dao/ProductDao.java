@@ -29,6 +29,7 @@ import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
 
 import java.util.List;
+import java.util.Map;
 
 public abstract class ProductDao extends Dao<Product, Long> {
 
@@ -38,6 +39,6 @@ public abstract class ProductDao extends Dao<Product, Long> {
 
 
     public abstract List<Product> findByWishUserId(Long id);
-    public abstract List<Product> findByOrderId(Long id);
+    public abstract Map<Product, Integer> findByOrderId(Long id);
 
 }
