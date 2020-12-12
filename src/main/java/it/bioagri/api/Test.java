@@ -27,12 +27,17 @@ package it.bioagri.api;
 
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.*;
+import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
+import java.util.List;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Arrays;
@@ -43,10 +48,12 @@ import java.util.Collections;
 public class Test {
 
     private final AuthToken authToken;
+    private final DataSource dataSource;
 
     @Autowired
-    public Test(AuthToken authToken) {
+    public Test(AuthToken authToken, DataSource dataSource) {
         this.authToken = authToken;
+        this.dataSource = dataSource;
     }
 
 
@@ -55,9 +62,35 @@ public class Test {
         return "index";
     }
 
-    @GetMapping("/api/public/test")
-    public ResponseEntity<Feedback> publtest() {
-        return null;
+    @GetMapping("/api/public/users/{id}")
+    public ResponseEntity<User> publtest(@PathVariable Long id) {
+
+        try {
+            var v = dataSource.getUserRepository()
+                    .findByPrimaryKey(id);
+
+            if(v.isEmpty())
+                throw new ApiException("GENERIC_ERROR", String.format("user id %s not found", id), HttpStatus.I_AM_A_TEAPOT);
+
+            return new ResponseEntity<>(v.get(), HttpStatus.OK);
+
+        } catch (SQLException e) {
+            throw new ApiException("SQL_ERROR", e.getStackTrace()[0].toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+    @GetMapping("/api/public/users/{id}/wishlist")
+    public ResponseEntity<List<Product>> publtest2(@PathVariable Long id) {
+
+        try {
+            System.out.println("dataSource.getProductRepository().findByWishUserId(id) = " + dataSource.getProductRepository().findByWishUserId(id));
+            return new ResponseEntity<>(dataSource.getProductRepository().findByWishUserId(id), HttpStatus.OK);
+
+        } catch (SQLException e) {
+            throw new ApiException("SQL_ERROR", e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @GetMapping("/api/private/test")

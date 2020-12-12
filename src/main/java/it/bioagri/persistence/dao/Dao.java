@@ -23,32 +23,32 @@
  *
  */
 
-package it.bioagri;
+package it.bioagri.persistence.dao;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import it.bioagri.persistence.DataSource;
 
-@Configuration
-public class JsonConfig {
+import java.sql.SQLException;
+import java.util.Optional;
+import java.util.List;
 
-    @Bean
-    public ObjectMapper objectMapper() {
+public abstract class Dao<T, K> {
 
-        return new ObjectMapper() {{
-            setVisibility(getSerializationConfig().getDefaultVisibilityChecker()
-                    .withCreatorVisibility(JsonAutoDetect.Visibility.NONE)
-                    .withFieldVisibility(JsonAutoDetect.Visibility.ANY)
-                    .withGetterVisibility(JsonAutoDetect.Visibility.NONE)
-                    .withIsGetterVisibility(JsonAutoDetect.Visibility.NONE)
-                    .withSetterVisibility(JsonAutoDetect.Visibility.NONE));
+    private final DataSource dataSource;
 
-            configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-
-        }};
-
+    public Dao(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
+
+    public DataSource getDataSource() {
+        return dataSource;
+    }
+
+
+    public abstract Optional<T> findByPrimaryKey(K id) throws SQLException;
+    public abstract List<T> findAll() throws SQLException;
+
+    public abstract void save(T value) throws SQLException;
+    public abstract void update(T value, Object... params) throws SQLException;
+    public abstract void delete(T value) throws SQLException;
 
 }

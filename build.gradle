@@ -53,6 +53,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.session:spring-session-core'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'org.postgresql:postgresql:42.2.18'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 

@@ -23,32 +23,23 @@
  *
  */
 
-package it.bioagri;
+package it.bioagri.persistence.dao;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import it.bioagri.models.Product;
+import it.bioagri.models.User;
+import it.bioagri.persistence.DataSource;
 
-@Configuration
-public class JsonConfig {
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
 
-    @Bean
-    public ObjectMapper objectMapper() {
+public abstract class ProductDao extends Dao<Product, Long> {
 
-        return new ObjectMapper() {{
-            setVisibility(getSerializationConfig().getDefaultVisibilityChecker()
-                    .withCreatorVisibility(JsonAutoDetect.Visibility.NONE)
-                    .withFieldVisibility(JsonAutoDetect.Visibility.ANY)
-                    .withGetterVisibility(JsonAutoDetect.Visibility.NONE)
-                    .withIsGetterVisibility(JsonAutoDetect.Visibility.NONE)
-                    .withSetterVisibility(JsonAutoDetect.Visibility.NONE));
-
-            configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-
-        }};
-
+    public ProductDao(DataSource dataSource) {
+        super(dataSource);
     }
+
+
+    public abstract List<Product> findByWishUserId(Long id) throws SQLException;
 
 }
