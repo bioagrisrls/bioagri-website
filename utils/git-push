@@ -25,9 +25,10 @@
 #
 #
 
-git add -A            || exit
-git commit -m "$1"    || exit
-git checkout main     || exit
-git pull origin main  || exit
-git push origin main  || exit
-git checkout dev      || exit
+git add -A              || exit
+git commit -m "$1"      || exit
+git checkout main       || exit
+git pull origin main    || exit
+git merge dev           || exit
+git push origin main    || exit
+git checkout dev        || exit

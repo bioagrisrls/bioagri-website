@@ -25,13 +25,15 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.*;
+import it.bioagri.models.Product;
+import it.bioagri.models.ProductStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.ProductDao;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 
 public class ProductDaoImpl extends ProductDao {
 

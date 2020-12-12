@@ -25,11 +25,12 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.Category;
+import it.bioagri.models.*;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.CategoryDao;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,12 +42,59 @@ public class CategoryDaoImpl extends CategoryDao {
 
     @Override
     public Optional<Category> findByPrimaryKey(Long id) throws SQLException {
-        return Optional.empty();
+
+        try(var connection = getDataSource().getConnection()) {
+
+            var statement = connection.prepareStatement(
+                    "SELECT * FROM shop_category WHERE shop_category.id = ?"
+            );
+
+            statement.setLong(1, id);
+
+
+
+            var result = statement.executeQuery();
+
+            if(result.next()) {
+
+                return Optional.of(new Category(
+                        result.getLong("id"),
+                        result.getString("name")
+                ));
+
+            }
+
+            return Optional.empty();
+
+        }
+
     }
 
     @Override
     public List<Category> findAll() throws SQLException {
-        return null;
+
+        var categories = new LinkedList<Category>();
+
+
+        try(var connection = getDataSource().getConnection()) {
+
+            var statement = connection.prepareStatement("SELECT * FROM shop_category");
+            var result = statement.executeQuery();
+
+            if(result.next()) {
+
+                categories.add(new Category(
+                        result.getLong("id"),
+                        result.getString("name")
+                ));
+
+            }
+
+        }
+
+
+        return categories;
+
     }
 
     @Override
