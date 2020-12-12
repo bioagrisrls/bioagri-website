@@ -27,12 +27,21 @@ package it.bioagri.models;
 
 public final class Category {
 
-    private final long id;
+    private long id;
     private final String name;
+
+    public Category() {
+        this.id = 0;
+        this.name = null;
+    }
 
     public Category(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {

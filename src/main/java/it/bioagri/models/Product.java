@@ -32,7 +32,7 @@ import java.util.List;
 
 public final class Product {
 
-    private final long id;
+    private long id;
     private final String name;
     private final String description;
     private final float price;
@@ -57,6 +57,24 @@ public final class Product {
         this.categories = categories;
         this.tags = tags;
         this.feedbacks = feedbacks;
+    }
+
+    public Product() {
+        this.id = 0;
+        this.name = null;
+        this.description = null;
+        this.price = 0;
+        this.stock = 0;
+        this.status = null;
+        this.updatedAt = null;
+        this.createdAt = null;
+        this.categories = null;
+        this.tags = null;
+        this.feedbacks = null;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {

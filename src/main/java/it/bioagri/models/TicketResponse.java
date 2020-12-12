@@ -29,7 +29,7 @@ import java.sql.Timestamp;
 
 public class TicketResponse {
 
-    private final long id;
+    private long id;
     private final String response;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
@@ -39,6 +39,17 @@ public class TicketResponse {
         this.response = response;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public TicketResponse() {
+        this.id = 0;
+        this.response = null;
+        this.createdAt = null;
+        this.updatedAt = null;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {

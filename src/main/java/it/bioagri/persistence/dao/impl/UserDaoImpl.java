@@ -134,7 +134,7 @@ public class UserDaoImpl extends UserDao {
     }
 
     @Override
-    public void update(User value, Object... params) {
+    public void update(User oldValue, User newValue) {
 
     }
 

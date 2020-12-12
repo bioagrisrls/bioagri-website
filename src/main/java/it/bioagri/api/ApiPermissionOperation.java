@@ -27,7 +27,7 @@ package it.bioagri.api;
 
 public enum ApiPermissionOperation {
     CREATE,
-    UPDATE,
     READ,
+    UPDATE,
     DELETE,
 };

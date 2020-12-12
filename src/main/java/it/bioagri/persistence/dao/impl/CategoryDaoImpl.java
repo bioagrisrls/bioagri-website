@@ -92,12 +92,12 @@ public class CategoryDaoImpl extends CategoryDao {
 
 
     @Override
-    public void update(Category value, Object... params) {
+    public void update(Category oldValue, Category newValue) {
 
         getDataSource().update("UPDATE shop_category SET name = ? WHERE id = ?",
                 s -> {
-                    s.setString(1, params[0].toString());
-                    s.setLong(2, value.getId());
+                    s.setString(1, newValue.getName());
+                    s.setLong(2, oldValue.getId());
                 }, false);
 
     }

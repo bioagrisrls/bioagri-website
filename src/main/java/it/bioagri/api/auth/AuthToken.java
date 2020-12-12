@@ -74,6 +74,21 @@ public class AuthToken {
             put(new SimpleImmutableEntry<>(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.DELETE), ApiPermissionHandler.denied());
             put(new SimpleImmutableEntry<>(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.UPDATE), ApiPermissionHandler.denied());
 
+            put(new SimpleImmutableEntry<>(ApiPermissionType.ORDERS, ApiPermissionOperation.CREATE), ApiPermissionHandler.granted());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.ORDERS, ApiPermissionOperation.READ  ), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.ORDERS, ApiPermissionOperation.DELETE), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE), ApiPermissionHandler.denied());
+
+            put(new SimpleImmutableEntry<>(ApiPermissionType.PRODUCTS, ApiPermissionOperation.CREATE), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ  ), ApiPermissionHandler.granted());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE), ApiPermissionHandler.denied());
+
+            put(new SimpleImmutableEntry<>(ApiPermissionType.TAGS, ApiPermissionOperation.CREATE), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.TAGS, ApiPermissionOperation.READ  ), ApiPermissionHandler.granted());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE), ApiPermissionHandler.denied());
+            put(new SimpleImmutableEntry<>(ApiPermissionType.TAGS, ApiPermissionOperation.UPDATE), ApiPermissionHandler.denied());
+
         }};
 
     }

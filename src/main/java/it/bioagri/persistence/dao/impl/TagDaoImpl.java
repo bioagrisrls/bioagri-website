@@ -79,7 +79,7 @@ public class TagDaoImpl extends TagDao {
     }
 
     @Override
-    public void update(Tag value, Object... params) {
+    public void update(Tag oldValue, Tag newValue) {
 
     }
 

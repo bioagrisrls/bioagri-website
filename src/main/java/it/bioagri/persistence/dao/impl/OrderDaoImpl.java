@@ -109,7 +109,7 @@ public class OrderDaoImpl extends OrderDao {
     }
 
     @Override
-    public void update(Order value, Object... params) {
+    public void update(Order oldValue, Order newValue) {
 
     }
 

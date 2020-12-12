@@ -86,15 +86,15 @@ public class Categories {
 
 
     @PostMapping("")
-    public ResponseEntity<String> create(@RequestParam String name) {
+    public ResponseEntity<String> create(@RequestBody Category category) {
 
         authToken.checkPermission(ApiPermissionType.CATEGORIES, ApiPermissionOperation.CREATE);
 
 
-        Category category = null;
+        category.setId(dataSource.getId("shop_category"));
 
         try {
-            dataSource.getCategoryRepository().save((category = new Category(dataSource.getId("shop_category"), name)));
+            dataSource.getCategoryRepository().save(category);
         } catch (DataSourceSQLException e) {
             throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
         }
@@ -105,16 +105,18 @@ public class Categories {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> update(@PathVariable Long id, @RequestParam String name) {
+    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Category category) {
 
         authToken.checkPermission(ApiPermissionType.CATEGORIES, ApiPermissionOperation.UPDATE);
 
         try {
 
+            category.setId(dataSource.getId("shop_category"));
+
             dataSource.getCategoryRepository().findByPrimaryKey(id)
                     .ifPresentOrElse(
-                            (r) -> dataSource.getCategoryRepository().update(r, name),
-                            ( ) -> dataSource.getCategoryRepository().save(new Category(dataSource.getId("shop_category"), name))
+                            (r) -> dataSource.getCategoryRepository().update(r, category),
+                            ( ) -> dataSource.getCategoryRepository().save(category)
                     );
 
         } catch (DataSourceSQLException e) {

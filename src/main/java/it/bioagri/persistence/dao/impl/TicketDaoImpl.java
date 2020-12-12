@@ -106,7 +106,7 @@ public class TicketDaoImpl extends TicketDao {
     }
 
     @Override
-    public void update(Ticket value, Object... params) {
+    public void update(Ticket oldValue, Ticket newValue) {
 
     }
 
