@@ -25,13 +25,18 @@
 
 package it.bioagri.persistence.dao.impl;
 
+import it.bioagri.models.Category;
+import it.bioagri.models.Tag;
 import it.bioagri.models.Ticket;
+import it.bioagri.models.TicketStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TicketDao;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TicketDaoImpl extends TicketDao {
 
@@ -40,27 +45,75 @@ public class TicketDaoImpl extends TicketDao {
     }
 
     @Override
-    public Optional<Ticket> findByPrimaryKey(Long id) throws SQLException {
-        return Optional.empty();
+    public Optional<Ticket> findByPrimaryKey(Long id) {
+
+        final AtomicReference<Optional<Ticket>> result = new AtomicReference<>(Optional.empty());
+
+        getDataSource().fetch("SELECT * FROM shop_ticket WHERE shop_ticket.id = ?",
+                s -> s.setLong(1, id),
+                r -> result.set(Optional.of(new Ticket(
+                        r.getLong("id"),
+                        r.getString("title"),
+                        r.getString("description"),
+                        TicketStatus.values()[r.getShort("status")],
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at"),
+                        new LinkedList<>()
+                )))
+        );
+
+        // TODO: get ticket responses for a ticket
+
+//        result.get().ifPresent(r -> r.getResponses()
+//                .addAll(getDataSource().getTicketResponseRepository().findByTicketId(r.getId())));
+
+        return result.get();
+
     }
 
     @Override
-    public List<Ticket> findAll() throws SQLException {
-        return null;
+    public List<Ticket> findAll() {
+
+        final var tickets = new LinkedList<Ticket>();
+
+        getDataSource().fetch("SELECT * FROM shop_ticket", null,
+                r -> tickets.add(new Ticket(
+                        r.getLong("id"),
+                        r.getString("title"),
+                        r.getString("description"),
+                        TicketStatus.values()[r.getShort("status")],
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at"),
+                        new LinkedList<>()
+                ))
+        );
+
+
+        // TODO: get ticket responses for a ticket
+
+        for(var ticket : tickets) {
+
+//            ticket.getTags()
+//                    .addAll(getDataSource().getTicketResponseRepository().findByTicketId(ticket.getId()));
+
+        }
+
+        return tickets;
+
     }
 
     @Override
-    public void save(Ticket value) throws SQLException {
+    public void save(Ticket value) {
 
     }
 
     @Override
-    public void update(Ticket value, Object... params) throws SQLException {
+    public void update(Ticket value, Object... params) {
 
     }
 
     @Override
-    public void delete(Ticket value) throws SQLException {
+    public void delete(Ticket value) {
 
     }
 }

@@ -25,6 +25,7 @@
 
 package it.bioagri.api.auth;
 
+import it.bioagri.models.UserRole;
 import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -68,7 +69,7 @@ public final class Auth {
         //     throw new AuthFailedException("username/password wrong");
 
         if(authToken.isExpired())
-            authToken.generateToken();
+            authToken.generateToken(1L, UserRole.CUSTOMER); // TODO: get userId and userRole
 
         return new ResponseEntity<>(authToken, HttpStatus.OK);
 

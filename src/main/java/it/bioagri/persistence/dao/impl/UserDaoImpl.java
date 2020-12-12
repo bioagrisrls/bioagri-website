@@ -25,10 +25,7 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.User;
-import it.bioagri.models.UserGender;
-import it.bioagri.models.UserRole;
-import it.bioagri.models.UserStatus;
+import it.bioagri.models.*;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.UserDao;
 
@@ -36,6 +33,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class UserDaoImpl extends UserDao {
 
@@ -44,59 +42,72 @@ public class UserDaoImpl extends UserDao {
     }
 
     @Override
-    public Optional<User> findByPrimaryKey(Long id) throws SQLException {
-        
-        try(var connection = getDataSource().getConnection()) {
-            
-            var statement = connection.prepareStatement(
-                    "SELECT * FROM shop_user  WHERE shop_user.id = ?"
-            );
+    public Optional<User> findByPrimaryKey(Long id) {
 
-            statement.setLong(1, id);
+        final AtomicReference<Optional<User>> result = new AtomicReference<>(Optional.empty());
 
-
-
-            var result = statement.executeQuery();
-
-            if(result.next()) {
-
-                var user = new User(
-                        result.getLong("id"),
-                        result.getString("email"),
-                        result.getString("password"),
-                        UserStatus.values()[result.getShort("status")],
-                        UserRole.values()[result.getShort("role")],
-                        result.getString("name"),
-                        result.getString("surname"),
-                        UserGender.values()[result.getShort("gender")],
-                        result.getString("phone"),
-                        result.getDate("birth"),
-                        result.getTimestamp("created_at"),
-                        result.getTimestamp("updated_at"),
+        getDataSource().fetch("SELECT * FROM shop_user WHERE shop_user.id = ?",
+                s -> s.setLong(1, id),
+                r -> result.set(Optional.of(new User(
+                        r.getLong("id"),
+                        r.getString("email"),
+                        r.getString("password"),
+                        UserStatus.values()[r.getShort("status")],
+                        UserRole.values()[r.getShort("role")],
+                        r.getString("name"),
+                        r.getString("surname"),
+                        UserGender.values()[r.getShort("gender")],
+                        r.getString("phone"),
+                        r.getDate("birth"),
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at"),
                         new LinkedList<>()
-                );
+                )))
+        );
 
 
-                user.getWishList().addAll(getDataSource()
-                        .getProductRepository()
-                        .findByWishUserId(id)
-                );
+        result.get().ifPresent(r -> r.getWishList()
+                .addAll(getDataSource().getProductRepository().findByWishUserId(r.getId())));
 
 
-                return Optional.of(user);
+        return result.get();
 
-
-            }
-
-            return Optional.empty();
-            
-        }
 
     }
 
     @Override
     public List<User> findAll() {
-        return null;
+
+        final var users = new LinkedList<User>();
+
+        getDataSource().fetch("SELECT * FROM shop_user", null,
+                r -> users.add(new User(
+                        r.getLong("id"),
+                        r.getString("email"),
+                        r.getString("password"),
+                        UserStatus.values()[r.getShort("status")],
+                        UserRole.values()[r.getShort("role")],
+                        r.getString("name"),
+                        r.getString("surname"),
+                        UserGender.values()[r.getShort("gender")],
+                        r.getString("phone"),
+                        r.getDate("birth"),
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at"),
+                        new LinkedList<>()
+                ))
+        );
+
+
+        for(var user : users) {
+
+            user.getWishList()
+                    .addAll(getDataSource().getProductRepository().findByWishUserId(user.getId()));
+
+        }
+
+        return users;
+
     }
 
     @Override

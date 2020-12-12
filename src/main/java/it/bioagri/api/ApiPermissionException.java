@@ -23,22 +23,12 @@
  *
  */
 
-package it.bioagri.persistence.dao;
+package it.bioagri.api;
 
-import it.bioagri.models.Product;
-import it.bioagri.persistence.DataSource;
+import org.springframework.http.HttpStatus;
 
-import java.sql.SQLException;
-import java.util.List;
-
-public abstract class ProductDao extends Dao<Product, Long> {
-
-    public ProductDao(DataSource dataSource) {
-        super(dataSource);
+public class ApiPermissionException extends ApiException {
+    public ApiPermissionException() {
+        super(ApiExceptionType.ERROR_RESOURCE_NOT_AVAILABLE, "permission denied", HttpStatus.UNAUTHORIZED);
     }
-
-
-    public abstract List<Product> findByWishUserId(Long id);
-    public abstract List<Product> findByOrderId(Long id);
-
 }

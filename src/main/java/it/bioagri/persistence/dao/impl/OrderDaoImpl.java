@@ -25,13 +25,18 @@
 
 package it.bioagri.persistence.dao.impl;
 
+import it.bioagri.models.Category;
+import it.bioagri.models.Feedback;
 import it.bioagri.models.Order;
+import it.bioagri.models.OrderStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.OrderDao;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class OrderDaoImpl extends OrderDao {
 
@@ -40,27 +45,78 @@ public class OrderDaoImpl extends OrderDao {
     }
 
     @Override
-    public Optional<Order> findByPrimaryKey(Long id) throws SQLException {
-        return Optional.empty();
+    public Optional<Order> findByPrimaryKey(Long id) {
+
+        final AtomicReference<Optional<Order>> result = new AtomicReference<>(Optional.empty());
+
+        getDataSource().fetch("SELECT * FROM shop_order WHERE shop_order.id = ?",
+                s -> s.setLong(1, id),
+                r -> result.set(Optional.of(new Order(
+                        r.getLong("id"),
+                        OrderStatus.values()[r.getShort("status")],
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at"),
+                        new LinkedList<>(),
+                        new LinkedList<>()
+                )))
+        );
+
+
+        result.get().ifPresent(r -> r.getProducts()
+                .addAll(getDataSource().getProductRepository().findByOrderId(r.getId())));
+
+        result.get().ifPresent(r -> r.getTransactions()
+                .addAll(getDataSource().getTransactionRepository().findByOrderId(r.getId())));
+
+
+        return result.get();
+
     }
 
     @Override
-    public List<Order> findAll() throws SQLException {
-        return null;
+    public List<Order> findAll() {
+
+        final var orders = new LinkedList<Order>();
+
+        getDataSource().fetch("SELECT * FROM shop_order", null,
+                r -> orders.add(new Order(
+                        r.getLong("id"),
+                        OrderStatus.values()[r.getShort("status")],
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at"),
+                        new LinkedList<>(),
+                        new LinkedList<>()
+                ))
+        );
+
+
+        for(var order : orders) {
+
+            order.getProducts()
+                    .addAll(getDataSource().getProductRepository().findByOrderId(order.getId()));
+
+            order.getTransactions()
+                    .addAll(getDataSource().getTransactionRepository().findByOrderId(order.getId()));
+
+        }
+
+
+        return orders;
+        
     }
 
     @Override
-    public void save(Order value) throws SQLException {
+    public void save(Order value) {
 
     }
 
     @Override
-    public void update(Order value, Object... params) throws SQLException {
+    public void update(Order value, Object... params) {
 
     }
 
     @Override
-    public void delete(Order value) throws SQLException {
+    public void delete(Order value) {
 
     }
 }

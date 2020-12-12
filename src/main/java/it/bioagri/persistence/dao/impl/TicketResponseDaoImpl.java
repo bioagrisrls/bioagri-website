@@ -25,13 +25,16 @@
 
 package it.bioagri.persistence.dao.impl;
 
+import it.bioagri.models.Category;
 import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TicketResponseDao;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TicketResponseDaoImpl extends TicketResponseDao {
 
@@ -40,27 +43,54 @@ public class TicketResponseDaoImpl extends TicketResponseDao {
     }
 
     @Override
-    public Optional<TicketResponse> findByPrimaryKey(Long id) throws SQLException {
-        return Optional.empty();
+    public Optional<TicketResponse> findByPrimaryKey(Long id) {
+
+        final AtomicReference<Optional<TicketResponse>> result = new AtomicReference<>(Optional.empty());
+
+        getDataSource().fetch("SELECT * FROM shop_ticket_response WHERE shop_ticket_response.id = ?",
+                s -> s.setLong(1, id),
+                r -> result.set(Optional.of(new TicketResponse(
+                        r.getLong("id"),
+                        r.getString("response"),
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at")
+                )))
+        );
+
+        return result.get();
+
     }
 
     @Override
-    public List<TicketResponse> findAll() throws SQLException {
-        return null;
+    public List<TicketResponse> findAll() {
+
+        final var responses = new LinkedList<TicketResponse>();
+
+        getDataSource().fetch("SELECT * FROM shop_ticket_response", null,
+                r -> responses.add(new TicketResponse(
+                        r.getLong("id"),
+                        r.getString("response"),
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at")
+                ))
+        );
+
+        return responses;
+
     }
 
     @Override
-    public void save(TicketResponse value) throws SQLException {
+    public void save(TicketResponse value) {
 
     }
 
     @Override
-    public void update(TicketResponse value, Object... params) throws SQLException {
+    public void update(TicketResponse value, Object... params) {
 
     }
 
     @Override
-    public void delete(TicketResponse value) throws SQLException {
+    public void delete(TicketResponse value) {
 
     }
 }

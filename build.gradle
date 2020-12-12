@@ -38,6 +38,7 @@ sourceCompatibility = 15
 targetCompatibility = 15
 
 
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -54,6 +55,7 @@ dependencies {
     implementation 'org.springframework.session:spring-session-core'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     implementation 'org.postgresql:postgresql:42.2.18'
+    implementation 'org.jetbrains:annotations:19.0.0'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 

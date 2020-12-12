@@ -23,22 +23,20 @@
  *
  */
 
-package it.bioagri.persistence.dao;
-
-import it.bioagri.models.Product;
-import it.bioagri.persistence.DataSource;
+package it.bioagri.persistence;
 
 import java.sql.SQLException;
-import java.util.List;
 
-public abstract class ProductDao extends Dao<Product, Long> {
+public class DataSourceSQLException extends RuntimeException {
 
-    public ProductDao(DataSource dataSource) {
-        super(dataSource);
+    private final SQLException exception;
+
+    public DataSourceSQLException(SQLException exception) {
+        this.exception = exception;
     }
 
-
-    public abstract List<Product> findByWishUserId(Long id);
-    public abstract List<Product> findByOrderId(Long id);
+    public SQLException getException() {
+        return exception;
+    }
 
 }

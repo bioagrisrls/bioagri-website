@@ -25,6 +25,7 @@
 
 package it.bioagri.persistence.dao.impl;
 
+import it.bioagri.models.Category;
 import it.bioagri.models.Feedback;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.FeedbackDao;
@@ -33,6 +34,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class FeedbackDaoImpl extends FeedbackDao {
 
@@ -41,53 +43,58 @@ public class FeedbackDaoImpl extends FeedbackDao {
     }
 
     @Override
-    public Optional<Feedback> findByPrimaryKey(Long id) throws SQLException {
-        return Optional.empty();
+    public Optional<Feedback> findByPrimaryKey(Long id) {
+
+        final AtomicReference<Optional<Feedback>> result = new AtomicReference<>(Optional.empty());
+
+        getDataSource().fetch("SELECT * FROM shop_feedback WHERE shop_feedback.id = ?",
+                s -> s.setLong(1, id),
+                r -> result.set(Optional.of(new Feedback(
+                        r.getLong("id"),
+                        r.getString("title"),
+                        r.getString("description"),
+                        r.getFloat("vote"),
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at")
+                )))
+        );
+
+        return result.get();
+
     }
 
     @Override
-    public List<Feedback> findAll() throws SQLException {
+    public List<Feedback> findAll() {
 
-        var feedbacks = new LinkedList<Feedback>();
+        final var feedbacks = new LinkedList<Feedback>();
 
-
-        try(var connection = getDataSource().getConnection()) {
-
-            var statement = connection.prepareStatement("SELECT * FROM shop_feedback");
-            var result = statement.executeQuery();
-
-            while (result.next()) {
-
-                feedbacks.add(new Feedback(
-                        result.getLong("id"),
-                        result.getString("title"),
-                        result.getString("description"),
-                        result.getFloat("vote"),
-                        result.getTimestamp("created_at"),
-                        result.getTimestamp("updated_at")
-                ));
-
-            }
-
-        }
-
+        getDataSource().fetch("SELECT * FROM shop_feedback", null,
+                r -> feedbacks.add(new Feedback(
+                        r.getLong("id"),
+                        r.getString("title"),
+                        r.getString("description"),
+                        r.getFloat("vote"),
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at")
+                ))
+        );
 
         return feedbacks;
 
     }
 
     @Override
-    public void save(Feedback value) throws SQLException {
+    public void save(Feedback value) {
 
     }
 
     @Override
-    public void update(Feedback value, Object... params) throws SQLException {
+    public void update(Feedback value, Object... params) {
 
     }
 
     @Override
-    public void delete(Feedback value) throws SQLException {
+    public void delete(Feedback value) {
 
     }
 }

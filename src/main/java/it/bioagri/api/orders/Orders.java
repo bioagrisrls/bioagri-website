@@ -23,75 +23,63 @@
  *
  */
 
-package it.bioagri.api;
+package it.bioagri.api.orders;
 
-import it.bioagri.api.auth.AuthToken;
-import it.bioagri.models.Product;
-import it.bioagri.models.User;
+import it.bioagri.api.ApiDatabaseException;
+import it.bioagri.api.ApiException;
+import it.bioagri.api.ApiExceptionType;
+import it.bioagri.models.Feedback;
+import it.bioagri.models.Order;
 import it.bioagri.persistence.DataSource;
+import it.bioagri.persistence.DataSourceSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.SQLException;
 import java.util.List;
 
-
 @RestController
-public class Test {
+@RequestMapping("/api/orders")
+public class Orders {
 
-    private final AuthToken authToken;
+
     private final DataSource dataSource;
 
     @Autowired
-    public Test(AuthToken authToken, DataSource dataSource) {
-        this.authToken = authToken;
+    public Orders(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
-    @GetMapping("/api/public/users/{id}")
-    public ResponseEntity<User> publtest(@PathVariable Long id) {
+    @GetMapping("")
+    public ResponseEntity<List<Order>> findAll() {
 
         try {
-            var v = dataSource.getUserRepository()
-                    .findByPrimaryKey(id);
-
-            if(v.isEmpty())
-                throw new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("user id %s not found", id), HttpStatus.I_AM_A_TEAPOT);
-
-            return new ResponseEntity<>(v.get(), HttpStatus.OK);
-
-        } catch (SQLException e) {
-            throw new ApiException(ApiExceptionType.ERROR_DATABASE, e.getStackTrace()[0].toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(dataSource.getOrderRepository().findAll(), HttpStatus.OK);
+        } catch (DataSourceSQLException e) {
+            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
         }
 
     }
 
-    @GetMapping("/api/public/users/{id}/wishlist")
-    public ResponseEntity<List<Product>> publtest2(@PathVariable Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Order> findById(@PathVariable Long id) {
 
         try {
-            System.out.println("dataSource.getProductRepository().findByWishUserId(id) = " + dataSource.getProductRepository().findByWishUserId(id));
-            return new ResponseEntity<>(dataSource.getProductRepository().findByWishUserId(id), HttpStatus.OK);
 
-        } catch (SQLException e) {
-            throw new ApiException(ApiExceptionType.ERROR_DATABASE, e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(dataSource.getOrderRepository()
+                    .findByPrimaryKey(id)
+                    .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested order id not found: %s", id), HttpStatus.NOT_FOUND)), HttpStatus.OK);
+
+        } catch (DataSourceSQLException e) {
+            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
         }
 
     }
 
-    @GetMapping("/api/private/test")
-    public String privtest() {
-        return "Hello World from " + authToken.getToken();
-    }
 
 }

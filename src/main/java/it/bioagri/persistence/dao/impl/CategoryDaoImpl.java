@@ -33,6 +33,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class CategoryDaoImpl extends CategoryDao {
 
@@ -41,74 +42,50 @@ public class CategoryDaoImpl extends CategoryDao {
     }
 
     @Override
-    public Optional<Category> findByPrimaryKey(Long id) throws SQLException {
+    public Optional<Category> findByPrimaryKey(Long id) {
 
-        try(var connection = getDataSource().getConnection()) {
+        final AtomicReference<Optional<Category>> result = new AtomicReference<>(Optional.empty());
 
-            var statement = connection.prepareStatement(
-                    "SELECT * FROM shop_category WHERE shop_category.id = ?"
-            );
+        getDataSource().fetch("SELECT * FROM shop_category WHERE shop_category.id = ?",
+                s -> s.setLong(1, id),
+                r -> result.set(Optional.of(new Category(
+                        r.getLong("id"),
+                        r.getString("name")
+                )))
+        );
 
-            statement.setLong(1, id);
-
-
-
-            var result = statement.executeQuery();
-
-            if(result.next()) {
-
-                return Optional.of(new Category(
-                        result.getLong("id"),
-                        result.getString("name")
-                ));
-
-            }
-
-            return Optional.empty();
-
-        }
+        return result.get();
 
     }
 
     @Override
-    public List<Category> findAll() throws SQLException {
+    public List<Category> findAll() {
 
-        var categories = new LinkedList<Category>();
+        final var categories = new LinkedList<Category>();
 
-
-        try(var connection = getDataSource().getConnection()) {
-
-            var statement = connection.prepareStatement("SELECT * FROM shop_category");
-            var result = statement.executeQuery();
-
-            while (result.next()) {
-
-                categories.add(new Category(
-                        result.getLong("id"),
-                        result.getString("name")
-                ));
-
-            }
-
-        }
-
+        getDataSource().fetch("SELECT * FROM shop_category", null,
+                r -> categories.add(new Category(
+                        r.getLong("id"),
+                        r.getString("name")
+                ))
+        );
 
         return categories;
 
     }
 
     @Override
-    public void save(Category value) throws SQLException {
+    public void save(Category value) {
 
     }
 
     @Override
-    public void update(Category value, Object... params) throws SQLException {
+    public void update(Category value, Object... params) {
 
     }
 
     @Override
-    public void delete(Category value) throws SQLException {
+    public void delete(Category value) {
 
     }
 
