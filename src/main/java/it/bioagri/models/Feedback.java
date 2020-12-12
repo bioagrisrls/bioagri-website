@@ -25,9 +25,6 @@
 
 package it.bioagri.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.sql.Timestamp;
 
 public final class Feedback {

@@ -25,11 +25,13 @@
 
 package it.bioagri.persistence.dao.impl;
 
+import it.bioagri.models.Category;
 import it.bioagri.models.Feedback;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.FeedbackDao;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +48,33 @@ public class FeedbackDaoImpl extends FeedbackDao {
 
     @Override
     public List<Feedback> findAll() throws SQLException {
-        return null;
+
+        var feedbacks = new LinkedList<Feedback>();
+
+
+        try(var connection = getDataSource().getConnection()) {
+
+            var statement = connection.prepareStatement("SELECT * FROM shop_feedback");
+            var result = statement.executeQuery();
+
+            if(result.next()) {
+
+                feedbacks.add(new Feedback(
+                        result.getLong("id"),
+                        result.getString("title"),
+                        result.getString("description"),
+                        result.getFloat("vote"),
+                        result.getTimestamp("created_at"),
+                        result.getTimestamp("updated_at")
+                ));
+
+            }
+
+        }
+
+
+        return feedbacks;
+
     }
 
     @Override

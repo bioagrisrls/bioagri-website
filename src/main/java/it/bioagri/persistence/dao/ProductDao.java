@@ -26,12 +26,10 @@
 package it.bioagri.persistence.dao;
 
 import it.bioagri.models.Product;
-import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 public abstract class ProductDao extends Dao<Product, Long> {
 

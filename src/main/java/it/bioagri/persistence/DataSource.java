@@ -25,7 +25,6 @@
 
 package it.bioagri.persistence;
 
-import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.dao.*;
 import it.bioagri.persistence.dao.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
