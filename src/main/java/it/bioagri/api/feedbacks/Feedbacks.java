@@ -88,7 +88,7 @@ public class Feedbacks {
         authToken.checkPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.CREATE);
 
 
-        feedback.setId(dataSource.getId("shop_feedback"));
+        feedback.setId(dataSource.getId("shop_feedback", Long.class));
 
         try {
             dataSource.getFeedbackRepository().save(feedback);
@@ -108,7 +108,7 @@ public class Feedbacks {
 
         try {
 
-            feedback.setId(dataSource.getId("shop_feedback"));
+            feedback.setId(dataSource.getId("shop_feedback", Long.class));
 
             dataSource.getFeedbackRepository().findByPrimaryKey(id)
                     .ifPresentOrElse(

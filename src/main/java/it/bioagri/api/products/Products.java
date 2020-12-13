@@ -90,7 +90,7 @@ public class Products {
         authToken.checkPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE);
 
 
-        product.setId(dataSource.getId("shop_product"));
+        product.setId(dataSource.getId("shop_product", Long.class));
 
         try {
             dataSource.getProductRepository().save(product);
@@ -110,7 +110,7 @@ public class Products {
 
         try {
 
-            product.setId(dataSource.getId("shop_product"));
+            product.setId(dataSource.getId("shop_product", Long.class));
 
             dataSource.getProductRepository().findByPrimaryKey(id)
                     .ifPresentOrElse(
