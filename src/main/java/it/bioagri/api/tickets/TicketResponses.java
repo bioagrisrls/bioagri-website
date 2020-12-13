@@ -25,20 +25,18 @@
 
 package it.bioagri.api.tickets;
 
-import it.bioagri.api.ApiDatabaseException;
-import it.bioagri.api.ApiException;
-import it.bioagri.api.ApiExceptionType;
+import it.bioagri.api.*;
+import it.bioagri.api.auth.AuthToken;
+import it.bioagri.models.Category;
 import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -46,10 +44,12 @@ import java.util.List;
 public class TicketResponses {
 
 
+    private final AuthToken authToken;
     private final DataSource dataSource;
 
     @Autowired
-    public TicketResponses(DataSource dataSource) {
+    public TicketResponses(AuthToken authToken, DataSource dataSource) {
+        this.authToken = authToken;
         this.dataSource = dataSource;
     }
 
@@ -82,6 +82,88 @@ public class TicketResponses {
         }
 
     }
+
+
+    @PostMapping("/{tid}/responses")
+    public ResponseEntity<String> create(@PathVariable Long tid, @RequestBody TicketResponse response) {
+
+        authToken.checkPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.CREATE);
+
+
+        response.setId(dataSource.getId("shop_ticket_response", Long.class));
+
+        try {
+            dataSource.getTicketResponseRepository().save(response);
+        } catch (DataSourceSQLException e) {
+            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+        }
+
+        return ResponseEntity.created(URI.create(String.format("/api/responses/%d", response.getId()))).build();
+
+    }
+
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Category category) {
+//
+//        authToken.checkPermission(ApiPermissionType.CATEGORIES, ApiPermissionOperation.UPDATE);
+//
+//        try {
+//
+//            category.setId(dataSource.getId("shop_category", Long.class));
+//
+//            dataSource.getCategoryRepository().findByPrimaryKey(id)
+//                    .ifPresentOrElse(
+//                            (r) -> dataSource.getCategoryRepository().update(r, category),
+//                            ( ) -> dataSource.getCategoryRepository().save(category)
+//                    );
+//
+//        } catch (DataSourceSQLException e) {
+//            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+//        }
+//
+//        return ResponseEntity.created(URI.create(String.format("/api/categories/%d", id))).build();
+//
+//    }
+//
+//
+//    @DeleteMapping("")
+//    public ResponseEntity<String> deleteAll() {
+//
+//        authToken.checkPermission(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE);
+//
+//        try {
+//
+//            dataSource.getCategoryRepository().findAll()
+//                    .forEach(dataSource.getCategoryRepository()::delete);
+//
+//        } catch (DataSourceSQLException e) {
+//            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+//        }
+//
+//        return ResponseEntity.noContent().build();
+//
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<String> delete(@PathVariable Long id) {
+//
+//        authToken.checkPermission(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE);
+//
+//        try {
+//            dataSource.getCategoryRepository().delete(
+//                    dataSource.getCategoryRepository()
+//                            .findByPrimaryKey(id)
+//                            .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested category id not found: %s", id), HttpStatus.NOT_FOUND))
+//            );
+//
+//        } catch (DataSourceSQLException e) {
+//            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+//        }
+//
+//        return ResponseEntity.noContent().build();
+//
+//    }
 
 
 }

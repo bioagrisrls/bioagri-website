@@ -33,6 +33,6 @@ public enum ApiPermissionType {
     FEEDBACKS,
     ORDERS,
     PRODUCTS,
-    TAGS,
+    TAGS, TICKETS, TICKET_RESPONSES, TRANSACTIONS,
 
 }
