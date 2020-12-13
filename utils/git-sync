@@ -32,3 +32,4 @@ git pull origin main    || exit
 git merge dev           || exit
 git push origin main    || exit
 git checkout dev        || exit
+git merge main          || exit
