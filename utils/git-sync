@@ -33,12 +33,11 @@ if git commit -m "$1"; then
   git pull origin main    || exit
   git merge dev           || exit
   git push origin main    || exit
-  git checkout dev        || exit
-  git merge main          || exit
 else
   git checkout main       || exit
   git pull origin main    || exit
-  git checkout dev        || exit
-  git merge main          || exit
 fi
+
+git checkout dev        || exit
+git merge main          || exit
 
