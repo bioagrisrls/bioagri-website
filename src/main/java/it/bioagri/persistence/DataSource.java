@@ -25,6 +25,7 @@
 
 package it.bioagri.persistence;
 
+import it.bioagri.models.User;
 import it.bioagri.persistence.dao.*;
 import it.bioagri.persistence.dao.impl.*;
 import org.intellij.lang.annotations.Language;
@@ -194,6 +195,27 @@ public class DataSource {
 
         return result.get();
 
+
+    }
+
+    public User authenticate(String username, String password) {
+
+        final AtomicReference<User> result = new AtomicReference<>(null);
+
+
+        fetch("SELECT id FROM shop_user WHERE email = ? AND password = ?",
+                s -> {
+                    s.setString(1, username);
+                    s.setString(2, password);
+                },
+                r -> {
+                    getUserRepository().findByPrimaryKey(r.getLong("id"))
+                            .ifPresent(result::set);
+                }
+        );
+
+
+        return result.get();
 
     }
 
