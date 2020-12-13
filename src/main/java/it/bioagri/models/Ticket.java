@@ -26,9 +26,11 @@
 package it.bioagri.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.bioagri.persistence.DataSource;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 public final class Ticket {
 
@@ -38,9 +40,13 @@ public final class Ticket {
     private final TicketStatus status;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
+    private final Long userId;
     private final List<TicketResponse> responses;
 
-    public Ticket(long id, String title, String description, TicketStatus status, Timestamp createdAt, Timestamp updatedAt, List<TicketResponse> responses) {
+    private User user;
+
+
+    public Ticket(long id, String title, String description, TicketStatus status, Timestamp createdAt, Timestamp updatedAt, Long userId, List<TicketResponse> responses) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -48,6 +54,7 @@ public final class Ticket {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.responses = responses;
+        this.userId = userId;
     }
 
     public Ticket() {
@@ -58,6 +65,7 @@ public final class Ticket {
         this.createdAt = null;
         this.updatedAt = null;
         this.responses = null;
+        this.userId = null;
     }
 
     public void setId(long id) {
@@ -86,6 +94,24 @@ public final class Ticket {
 
     public Timestamp getUpdatedAt() {
         return updatedAt;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+
+    @JsonIgnore
+    public Optional<User> getUser(DataSource dataSource) {
+
+        if(user == null) {
+            user = dataSource.getUserRepository()
+                    .findByPrimaryKey(userId)
+                    .orElse(null);
+        }
+
+        return Optional.ofNullable(user);
+
     }
 
     @JsonIgnore

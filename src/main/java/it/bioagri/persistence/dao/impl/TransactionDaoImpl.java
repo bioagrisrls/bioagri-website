@@ -67,7 +67,8 @@ public class TransactionDaoImpl extends TransactionDao {
                         r.getString("additional_info"),
                         r.getString("invoice"),
                         r.getTimestamp("created_at"),
-                        r.getTimestamp("updated_at")
+                        r.getTimestamp("updated_at"),
+                        r.getLong("order_id")
                 )))
         );
 
@@ -99,7 +100,8 @@ public class TransactionDaoImpl extends TransactionDao {
                         r.getString("additional_info"),
                         r.getString("invoice"),
                         r.getTimestamp("created_at"),
-                        r.getTimestamp("updated_at")
+                        r.getTimestamp("updated_at"),
+                        r.getLong("order_id")
                 ))
         );
 

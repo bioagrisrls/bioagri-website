@@ -25,7 +25,11 @@
 
 package it.bioagri.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.bioagri.persistence.DataSource;
+
 import java.sql.Timestamp;
+import java.util.Optional;
 
 public final class Transaction {
 
@@ -47,9 +51,12 @@ public final class Transaction {
     private final String invoice;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
+    private final Long orderId;
+
+    private Order order;
 
 
-    public Transaction(long id, TransactionStatus status, String result, double total, TransactionType type, String courierService, String shipmentNumber, double weight, String recipient, String address, String city, String province, String zip, String phone, String additionalInfo, String invoice, Timestamp createdAt, Timestamp updatedAt) {
+    public Transaction(long id, TransactionStatus status, String result, double total, TransactionType type, String courierService, String shipmentNumber, double weight, String recipient, String address, String city, String province, String zip, String phone, String additionalInfo, String invoice, Timestamp createdAt, Timestamp updatedAt, Long orderId) {
         this.id = id;
         this.status = status;
         this.result = result;
@@ -68,6 +75,7 @@ public final class Transaction {
         this.invoice = invoice;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.orderId = orderId;
     }
 
     public Transaction() {
@@ -89,6 +97,7 @@ public final class Transaction {
         this.invoice = null;
         this.createdAt = null;
         this.updatedAt = null;
+        this.orderId = null;
     }
 
     public void setId(long id) {
@@ -166,4 +175,23 @@ public final class Transaction {
     public Timestamp getUpdatedAt() {
         return updatedAt;
     }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+
+    @JsonIgnore
+    public Optional<Order> getOrder(DataSource dataSource) {
+
+        if(order == null) {
+            order = dataSource.getOrderRepository()
+                    .findByPrimaryKey(orderId)
+                    .orElse(null);
+        }
+
+        return Optional.ofNullable(order);
+
+    }
+
 }

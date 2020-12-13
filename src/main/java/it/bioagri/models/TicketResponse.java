@@ -25,7 +25,11 @@
 
 package it.bioagri.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.bioagri.persistence.DataSource;
+
 import java.sql.Timestamp;
+import java.util.Optional;
 
 public class TicketResponse {
 
@@ -33,12 +37,17 @@ public class TicketResponse {
     private final String response;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
+    private final Long ticketId;
 
-    public TicketResponse(long id, String response, Timestamp createdAt, Timestamp updatedAt) {
+    private Ticket ticket;
+
+
+    public TicketResponse(long id, String response, Timestamp createdAt, Timestamp updatedAt, Long ticketId) {
         this.id = id;
         this.response = response;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.ticketId = ticketId;
     }
 
     public TicketResponse() {
@@ -46,6 +55,7 @@ public class TicketResponse {
         this.response = null;
         this.createdAt = null;
         this.updatedAt = null;
+        this.ticketId = null;
     }
 
     public void setId(long id) {
@@ -66,6 +76,24 @@ public class TicketResponse {
 
     public Timestamp getUpdatedAt() {
         return updatedAt;
+    }
+
+    public Long getTicketId() {
+        return ticketId;
+    }
+
+
+    @JsonIgnore
+    public Optional<Ticket> getTicket(DataSource dataSource) {
+
+        if(ticket == null) {
+            ticket = dataSource.getTicketRepository()
+                    .findByPrimaryKey(ticketId)
+                    .orElse(null);
+        }
+
+        return Optional.ofNullable(ticket);
+
     }
 
 }

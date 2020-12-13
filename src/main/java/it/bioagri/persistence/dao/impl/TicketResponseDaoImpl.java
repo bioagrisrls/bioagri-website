@@ -51,7 +51,8 @@ public class TicketResponseDaoImpl extends TicketResponseDao {
                         r.getLong("id"),
                         r.getString("response"),
                         r.getTimestamp("created_at"),
-                        r.getTimestamp("updated_at")
+                        r.getTimestamp("updated_at"),
+                        r.getLong("ticket_id")
                 )))
         );
 
@@ -69,7 +70,8 @@ public class TicketResponseDaoImpl extends TicketResponseDao {
                         r.getLong("id"),
                         r.getString("response"),
                         r.getTimestamp("created_at"),
-                        r.getTimestamp("updated_at")
+                        r.getTimestamp("updated_at"),
+                        r.getLong("ticket_id")
                 ))
         );
 

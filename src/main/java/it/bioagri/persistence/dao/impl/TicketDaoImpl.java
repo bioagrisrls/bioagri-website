@@ -55,6 +55,7 @@ public class TicketDaoImpl extends TicketDao {
                         TicketStatus.values()[r.getShort("status")],
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
+                        r.getLong("user_id"),
                         new ArrayList<>()
                 )))
         );
@@ -81,6 +82,7 @@ public class TicketDaoImpl extends TicketDao {
                         TicketStatus.values()[r.getShort("status")],
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
+                        r.getLong("user_id"),
                         new ArrayList<>()
                 ))
         );

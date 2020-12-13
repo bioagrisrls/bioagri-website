@@ -111,7 +111,7 @@ public final class Feedback {
 
         if(user == null) {
             user = dataSource.getUserRepository()
-                    .findByPrimaryKey(productId)
+                    .findByPrimaryKey(userId)
                     .orElse(null);
         }
 
