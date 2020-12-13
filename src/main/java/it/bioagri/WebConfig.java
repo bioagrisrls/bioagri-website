@@ -41,7 +41,7 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class WebConfig implements WebMvcConfigurer {
 
-//    ciso
+
     @Component
     static class Interceptor implements HandlerInterceptor {
 
