@@ -32,7 +32,7 @@ import it.bioagri.models.UserStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.UserDao;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -63,9 +63,9 @@ public class UserDaoImpl extends UserDao {
                         r.getDate("birth"),
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
-                        new LinkedList<>(),
-                        new LinkedList<>(),
-                        new LinkedList<>()
+                        new ArrayList<>(),
+                        new ArrayList<>(),
+                        new ArrayList<>()
                 )))
         );
 
@@ -88,7 +88,7 @@ public class UserDaoImpl extends UserDao {
     @Override
     public List<User> findAll() {
 
-        final var users = new LinkedList<User>();
+        final var users = new ArrayList<User>();
 
         getDataSource().fetch("SELECT * FROM shop_user", null,
                 r -> users.add(new User(
@@ -104,9 +104,9 @@ public class UserDaoImpl extends UserDao {
                         r.getDate("birth"),
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
-                        new LinkedList<>(),
-                        new LinkedList<>(),
-                        new LinkedList<>()
+                        new ArrayList<>(),
+                        new ArrayList<>(),
+                        new ArrayList<>()
                 ))
         );
 

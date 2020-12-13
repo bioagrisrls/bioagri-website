@@ -30,7 +30,7 @@ import it.bioagri.models.TicketStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TicketDao;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -55,7 +55,7 @@ public class TicketDaoImpl extends TicketDao {
                         TicketStatus.values()[r.getShort("status")],
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
-                        new LinkedList<>()
+                        new ArrayList<>()
                 )))
         );
 
@@ -71,7 +71,7 @@ public class TicketDaoImpl extends TicketDao {
     @Override
     public List<Ticket> findAll() {
 
-        final var tickets = new LinkedList<Ticket>();
+        final var tickets = new ArrayList<Ticket>();
 
         getDataSource().fetch("SELECT * FROM shop_ticket", null,
                 r -> tickets.add(new Ticket(
@@ -81,7 +81,7 @@ public class TicketDaoImpl extends TicketDao {
                         TicketStatus.values()[r.getShort("status")],
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
-                        new LinkedList<>()
+                        new ArrayList<>()
                 ))
         );
 
@@ -119,7 +119,7 @@ public class TicketDaoImpl extends TicketDao {
     @Override
     public List<Ticket> findByUserId(Long id) {
 
-        var tickets = new LinkedList<Ticket>();
+        var tickets = new ArrayList<Ticket>();
 
         getDataSource().fetch("SELECT * FROM shop_ticket WHERE shop_ticket.user_id = ?",
                 s -> s.setLong(1, id),

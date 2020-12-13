@@ -31,7 +31,7 @@ import it.bioagri.models.TransactionType;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TransactionDao;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -78,7 +78,7 @@ public class TransactionDaoImpl extends TransactionDao {
     @Override
     public List<Transaction> findAll() {
 
-        final var transactions = new LinkedList<Transaction>();
+        final var transactions = new ArrayList<Transaction>();
 
         getDataSource().fetch("SELECT * FROM shop_transaction", null,
                 r -> transactions.add(new Transaction(

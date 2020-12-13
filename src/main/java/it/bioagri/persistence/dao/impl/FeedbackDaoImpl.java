@@ -29,7 +29,7 @@ import it.bioagri.models.Feedback;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.FeedbackDao;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -64,7 +64,7 @@ public class FeedbackDaoImpl extends FeedbackDao {
     @Override
     public List<Feedback> findAll() {
 
-        final var feedbacks = new LinkedList<Feedback>();
+        final var feedbacks = new ArrayList<Feedback>();
 
         getDataSource().fetch("SELECT * FROM shop_feedback", null,
                 r -> feedbacks.add(new Feedback(
@@ -100,7 +100,7 @@ public class FeedbackDaoImpl extends FeedbackDao {
     @Override
     public List<Feedback> findByUserId(Long id) {
 
-        var feedbacks = new LinkedList<Feedback>();
+        var feedbacks = new ArrayList<Feedback>();
 
         getDataSource().fetch("SELECT * FROM shop_feedback WHERE shop_feedback.user_id = ?",
                 s -> s.setLong(1, id),
