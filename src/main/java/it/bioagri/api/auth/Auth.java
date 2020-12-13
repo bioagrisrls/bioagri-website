@@ -25,12 +25,11 @@
 
 package it.bioagri.api.auth;
 
-import it.bioagri.models.UserRole;
+import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,8 +51,7 @@ public final class Auth {
     }
 
 
-    //@PostMapping("authenticate")
-    @GetMapping("authenticate")
+    @PostMapping("authenticate")
     public ResponseEntity<AuthToken> authenticate(HttpSession session,
                                                   @RequestParam(required = false) String username,
                                                   @RequestParam(required = false) String password) {
@@ -65,19 +63,20 @@ public final class Auth {
             throw new AuthFailedException("password can not be null or empty");
 
 
-        // if(!validateUser(username, encryptedPassword))
-        //     throw new AuthFailedException("username/password wrong");
+        User user;
+        if((user = dataSource.authenticate(username, password)) == null)
+            throw new AuthFailedException("username/password wrong");
 
-        if(authToken.isExpired())
-            authToken.generateToken(1L, UserRole.CUSTOMER); // TODO: get userId and userRole
 
-        return new ResponseEntity<>(authToken, HttpStatus.OK);
+        return ResponseEntity.ok(authToken.generateToken(user.getId(), user.getRole()));
 
     }
 
     @RequestMapping("disconnect")
     public void disconnect(HttpSession session) {
 
+        authToken.setUserId(-1L);
+        authToken.setUserRole(null);
         authToken.setToken(null);
         authToken.setTimestamp(null);
 

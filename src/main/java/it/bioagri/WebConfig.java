@@ -25,8 +25,10 @@
 
 package it.bioagri;
 
+import it.bioagri.api.auth.AuthExpiredException;
+import it.bioagri.api.auth.AuthRequiredException;
 import it.bioagri.api.auth.AuthToken;
-import it.bioagri.models.UserRole;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -49,22 +51,23 @@ public class WebConfig implements WebMvcConfigurer {
             this.authToken = authToken;
         }
 
+
         @Override
-        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        public boolean preHandle(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) throws Exception {
 
-//            if(request.getHeader("X-Auth-Token") == null)
-//                throw new AuthRequiredException("missing auth token");
-//
-//            if(!request.getHeader("X-Auth-Token").equals(authToken.getToken()))
-//                throw new AuthRequiredException("wrong auth token");
-//
-//            if(authToken.isExpired())
-//                throw new AuthExpiredException(authToken);
+            if(request.getHeader("X-Auth-Token") == null)
+                throw new AuthRequiredException("missing auth token");
 
-            authToken.generateToken(1L, UserRole.ADMIN);
+            if(!request.getHeader("X-Auth-Token").equals(authToken.getToken()))
+                throw new AuthRequiredException("wrong auth token");
+
+            if(authToken.isExpired())
+                throw new AuthExpiredException(authToken);
+
             return true;
 
         }
+
     }
 
 
@@ -80,7 +83,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(interceptor)
                 .addPathPatterns("/api/**")
                 .excludePathPatterns("/api/public/**")
-                .excludePathPatterns("/api/auth/**");
+                .excludePathPatterns("/api/auth/authenticate");
     }
 
 }
