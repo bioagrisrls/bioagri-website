@@ -53,7 +53,9 @@ public class FeedbackDaoImpl extends FeedbackDao {
                         r.getString("description"),
                         r.getFloat("vote"),
                         r.getTimestamp("created_at"),
-                        r.getTimestamp("updated_at")
+                        r.getTimestamp("updated_at"),
+                        r.getLong("user_id"),
+                        r.getLong("product_id")
                 )))
         );
 
@@ -73,7 +75,9 @@ public class FeedbackDaoImpl extends FeedbackDao {
                         r.getString("description"),
                         r.getFloat("vote"),
                         r.getTimestamp("created_at"),
-                        r.getTimestamp("updated_at")
+                        r.getTimestamp("updated_at"),
+                        r.getLong("user_id"),
+                        r.getLong("product_id")
                 ))
         );
 

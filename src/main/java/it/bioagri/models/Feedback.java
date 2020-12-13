@@ -25,7 +25,11 @@
 
 package it.bioagri.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.bioagri.persistence.DataSource;
+
 import java.sql.Timestamp;
+import java.util.Optional;
 
 public final class Feedback {
 
@@ -35,14 +39,22 @@ public final class Feedback {
     private final float vote;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
+    private final Long userId;
+    private final Long productId;
 
-    public Feedback(long id, String title, String description, float vote, Timestamp createdAt, Timestamp updatedAt) {
+    private User user;
+    private Product product;
+
+
+    public Feedback(long id, String title, String description, float vote, Timestamp createdAt, Timestamp updatedAt, Long userId, Long productId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.vote = vote;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.userId = userId;
+        this.productId = productId;
     }
 
     public Feedback() {
@@ -52,6 +64,8 @@ public final class Feedback {
         this.vote = 0f;
         this.createdAt = null;
         this.updatedAt = null;
+        this.userId = null;
+        this.productId = null;
     }
 
     public void setId(long id) {
@@ -81,4 +95,41 @@ public final class Feedback {
     public Timestamp getUpdatedAt() {
         return updatedAt;
     }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+
+
+    @JsonIgnore
+    public Optional<User> getUser(DataSource dataSource) {
+
+        if(user == null) {
+            user = dataSource.getUserRepository()
+                    .findByPrimaryKey(productId)
+                    .orElse(null);
+        }
+
+        return Optional.ofNullable(user);
+
+    }
+
+    @JsonIgnore
+    public Optional<Product> getProduct(DataSource dataSource) {
+
+        if(product == null) {
+            product = dataSource.getProductRepository()
+                    .findByPrimaryKey(productId)
+                    .orElse(null);
+        }
+
+        return Optional.ofNullable(product);
+
+    }
+
 }
