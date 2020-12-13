@@ -25,16 +25,38 @@
 
 package it.bioagri.api.auth;
 
+import io.restassured.RestAssured;
+
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import net.minidev.json.JSONObject;
+import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+
+
+import static io.restassured.RestAssured.given;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class AuthTest {
 
     @Test
-    void authenticate() {
+    public void useSpec(){
 
-    }
 
-    @Test
-    void disconnect() {
+        RestAssured.baseURI ="http://localhost:8080/api/auth/authenticate";
+        RequestSpecification request = given();
+
+        JSONObject requestParams = new JSONObject();
+        requestParams.put("Email",  "lollo@gmail.com");
+        requestParams.put("Password", "234234");
+        request.body(requestParams.toJSONString());
+        Response response = request.post("http://localhost:8080/api/auth/authenticate");
+
+        int statusCode = response.getStatusCode();
+        assertEquals("200", statusCode);
+        String successCode = response.jsonPath().get("SuccessCode");
+        assertEquals( "Correct Success code was returned", successCode, "OPERATION_SUCCESS");
     }
 }
