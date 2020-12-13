@@ -29,7 +29,7 @@ import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TagDao;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -60,7 +60,7 @@ public class TagDaoImpl extends TagDao {
     @Override
     public List<Tag> findAll() {
 
-        final var tags = new LinkedList<Tag>();
+        final var tags = new ArrayList<Tag>();
 
         getDataSource().fetch("SELECT * FROM shop_tag", null,
                 r -> tags.add(new Tag(

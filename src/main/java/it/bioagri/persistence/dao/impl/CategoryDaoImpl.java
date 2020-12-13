@@ -29,7 +29,7 @@ import it.bioagri.models.Category;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.CategoryDao;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -63,7 +63,7 @@ public class CategoryDaoImpl extends CategoryDao {
     @Override
     public List<Category> findAll() {
 
-        final var categories = new LinkedList<Category>();
+        final var categories = new ArrayList<Category>();
 
         getDataSource().fetch("SELECT * FROM shop_category", null,
                 r -> categories.add(new Category(

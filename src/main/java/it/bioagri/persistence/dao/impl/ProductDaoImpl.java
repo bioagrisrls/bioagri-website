@@ -65,9 +65,9 @@ public class ProductDaoImpl extends ProductDao {
                             ProductStatus.values()[r.getShort("status")],
                             r.getTimestamp("updated_at"),
                             r.getTimestamp("created_at"),
-                            new LinkedList<>(),
-                            new LinkedList<>(),
-                            new LinkedList<>()
+                            new ArrayList<>(),
+                            new ArrayList<>(),
+                            new ArrayList<>()
                     );
 
 
@@ -104,7 +104,7 @@ public class ProductDaoImpl extends ProductDao {
     @Override
     public List<Product> findAll() {
 
-        final var products = new LinkedList<Product>();
+        final var products = new ArrayList<Product>();
 
         getDataSource().fetch("SELECT * FROM shop_product", null,
                 r -> products.add(new Product(
@@ -116,9 +116,9 @@ public class ProductDaoImpl extends ProductDao {
                         ProductStatus.values()[r.getShort("status")],
                         r.getTimestamp("updated_at"),
                         r.getTimestamp("created_at"),
-                        new LinkedList<>(),
-                        new LinkedList<>(),
-                        new LinkedList<>()
+                        new ArrayList<>(),
+                        new ArrayList<>(),
+                        new ArrayList<>()
                 ))
         );
 
@@ -159,7 +159,7 @@ public class ProductDaoImpl extends ProductDao {
     @Override
     public List<Product> findByWishUserId(Long id) {
 
-        var products = new LinkedList<Product>();
+        var products = new ArrayList<Product>();
 
         getDataSource().fetch("SELECT * FROM shop_wish WHERE shop_wish.user_id = ?",
                 s -> s.setLong(1, id),

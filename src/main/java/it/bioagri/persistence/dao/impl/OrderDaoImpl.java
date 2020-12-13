@@ -30,8 +30,8 @@ import it.bioagri.models.OrderStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.OrderDao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -55,7 +55,7 @@ public class OrderDaoImpl extends OrderDao {
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
                         new HashMap<>(),
-                        new LinkedList<>()
+                        new ArrayList<>()
                 )))
         );
 
@@ -74,7 +74,7 @@ public class OrderDaoImpl extends OrderDao {
     @Override
     public List<Order> findAll() {
 
-        final var orders = new LinkedList<Order>();
+        final var orders = new ArrayList<Order>();
 
         getDataSource().fetch("SELECT * FROM shop_order", null,
                 r -> orders.add(new Order(
@@ -83,7 +83,7 @@ public class OrderDaoImpl extends OrderDao {
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
                         new HashMap<>(),
-                        new LinkedList<>()
+                        new ArrayList<>()
                 ))
         );
 

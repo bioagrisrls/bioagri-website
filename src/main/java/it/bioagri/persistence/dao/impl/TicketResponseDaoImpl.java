@@ -29,7 +29,7 @@ import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TicketResponseDao;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -62,7 +62,7 @@ public class TicketResponseDaoImpl extends TicketResponseDao {
     @Override
     public List<TicketResponse> findAll() {
 
-        final var responses = new LinkedList<TicketResponse>();
+        final var responses = new ArrayList<TicketResponse>();
 
         getDataSource().fetch("SELECT * FROM shop_ticket_response", null,
                 r -> responses.add(new TicketResponse(
