@@ -30,4 +30,4 @@ public enum ApiPermissionOperation {
     READ,
     UPDATE,
     DELETE,
-};
+}

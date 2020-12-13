@@ -30,4 +30,4 @@ public enum TransactionType {
     PAYPAL,
     BANK_TRANSFER,
     CASH_ON_DELIVERY
-};
+}
