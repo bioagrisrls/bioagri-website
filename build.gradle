@@ -62,8 +62,11 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
+    testImplementation 'io.rest-assured:rest-assured-common:4.2.0'
+    testImplementation 'io.rest-assured:json-path:4.2.0'
+    testImplementation 'io.rest-assured:xml-path:4.2.0'
+    testImplementation 'io.rest-assured:rest-assured:4.2.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
 }
 
 test {
