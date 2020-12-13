@@ -27,6 +27,7 @@ package it.bioagri.api.auth;
 
 import io.restassured.RestAssured;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import net.minidev.json.JSONObject;
@@ -47,16 +48,16 @@ class AuthTest {
 
         RestAssured.baseURI ="http://localhost:8080/api/auth/authenticate";
         RequestSpecification request = given();
-
+        request.accept(ContentType.JSON);
+        request.contentType(ContentType.JSON);
         JSONObject requestParams = new JSONObject();
-        requestParams.put("Email",  "lollo@gmail.com");
-        requestParams.put("Password", "234234");
+        requestParams.put("username",  "lollo@gmail.com");
+        requestParams.put("password", "324324");
         request.body(requestParams.toJSONString());
         Response response = request.post("http://localhost:8080/api/auth/authenticate");
 
         int statusCode = response.getStatusCode();
-        assertEquals("200", statusCode);
-        String successCode = response.jsonPath().get("SuccessCode");
-        assertEquals( "Correct Success code was returned", successCode, "OPERATION_SUCCESS");
+        System.out.println("DIO CANE: " + response.getBody().print());
+        assertEquals(200, statusCode);
     }
 }
