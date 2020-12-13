@@ -84,6 +84,15 @@ public class FeedbackDaoImpl extends FeedbackDao {
     @Override
     public void save(Feedback value) {
 
+        getDataSource().update("INSERT INTO shop_feedback (id, title, description, vote, product_id, created_at, updated_at, user_id) VALUES (?,?,?,?,?,?,?,?)",
+                s -> {
+                    s.setLong(1, value.getId());
+                    s.setString(2, value.getTitle());
+                    s.setString(2, value.getDescription());
+                    s.setDouble(2, value.getVote());
+                    //TODO...
+                }, false);
+
     }
 
     @Override
