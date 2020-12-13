@@ -29,10 +29,7 @@ import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -52,19 +49,17 @@ public final class Auth {
 
 
     @PostMapping("authenticate")
-    public ResponseEntity<AuthToken> authenticate(HttpSession session,
-                                                  @RequestParam(required = false) String username,
-                                                  @RequestParam(required = false) String password) {
+    public ResponseEntity<AuthToken> authenticate(HttpSession session, @RequestBody AuthLogin authLogin) {
 
-        if(username == null || username.isEmpty())
+        if(authLogin.getUsername().isEmpty())
             throw new AuthFailedException("username can not be null or empty");
 
-        if(password == null || password.isEmpty())
+        if(authLogin.getPassword().isEmpty())
             throw new AuthFailedException("password can not be null or empty");
 
 
         User user;
-        if((user = dataSource.authenticate(username, password)) == null)
+        if((user = dataSource.authenticate(authLogin)) == null)
             throw new AuthFailedException("username/password wrong");
 
 
