@@ -55,9 +55,7 @@ class AuthTest {
         requestParams.put("password", "324324");
         request.body(requestParams.toJSONString());
         Response response = request.post("http://localhost:8080/api/auth/authenticate");
-
         int statusCode = response.getStatusCode();
-        System.out.println("DIO CANE: " + response.getBody().print());
         assertEquals(200, statusCode);
     }
 }
