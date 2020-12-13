@@ -25,6 +25,8 @@
 
 package it.bioagri;
 
+import it.bioagri.api.auth.AuthExpiredException;
+import it.bioagri.api.auth.AuthRequiredException;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.UserRole;
 import org.jetbrains.annotations.NotNull;
@@ -55,16 +57,15 @@ public class WebConfig implements WebMvcConfigurer {
         @Override
         public boolean preHandle(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) throws Exception {
 
-//            if(request.getHeader("X-Auth-Token") == null)
-//                throw new AuthRequiredException("missing auth token");
-//
-//            if(!request.getHeader("X-Auth-Token").equals(authToken.getToken()))
-//                throw new AuthRequiredException("wrong auth token");
-//
-//            if(authToken.isExpired())
-//                throw new AuthExpiredException(authToken);
+            if(request.getHeader("X-Auth-Token") == null)
+                throw new AuthRequiredException("missing auth token");
 
-            authToken.generateToken(1L, UserRole.CUSTOMER);
+            if(!request.getHeader("X-Auth-Token").equals(authToken.getToken()))
+                throw new AuthRequiredException("wrong auth token");
+
+            if(authToken.isExpired())
+                throw new AuthExpiredException(authToken);
+
             return true;
 
         }
