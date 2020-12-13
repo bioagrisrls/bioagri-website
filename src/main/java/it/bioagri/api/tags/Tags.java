@@ -89,7 +89,7 @@ public class Tags {
         authToken.checkPermission(ApiPermissionType.TAGS, ApiPermissionOperation.UPDATE);
 
 
-        tag.setId(dataSource.getId("shop_tag"));
+        tag.setId(dataSource.getId("shop_tag", Long.class));
 
         try {
             dataSource.getTagRepository().save(tag);
@@ -109,7 +109,7 @@ public class Tags {
 
         try {
 
-            tag.setId(dataSource.getId("shop_tag"));
+            tag.setId(dataSource.getId("shop_tag", Long.class));
 
             dataSource.getTagRepository().findByPrimaryKey(id)
                     .ifPresentOrElse(

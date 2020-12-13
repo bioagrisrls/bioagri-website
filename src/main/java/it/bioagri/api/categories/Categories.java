@@ -91,7 +91,7 @@ public class Categories {
         authToken.checkPermission(ApiPermissionType.CATEGORIES, ApiPermissionOperation.CREATE);
 
 
-        category.setId(dataSource.getId("shop_category"));
+        category.setId(dataSource.getId("shop_category", Long.class));
 
         try {
             dataSource.getCategoryRepository().save(category);
@@ -111,7 +111,7 @@ public class Categories {
 
         try {
 
-            category.setId(dataSource.getId("shop_category"));
+            category.setId(dataSource.getId("shop_category", Long.class));
 
             dataSource.getCategoryRepository().findByPrimaryKey(id)
                     .ifPresentOrElse(

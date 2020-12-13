@@ -183,20 +183,18 @@ public class DataSource {
     }
 
 
-    public Long getId(String ref) {
+    public <T> T getId(String ref, Class<T> type) {
 
-        final AtomicReference<Long> result = new AtomicReference<>(0L);
+        final AtomicReference<Object> result = new AtomicReference<>(null);
 
         fetch(String.format("SELECT nextval(pg_get_serial_sequence('%s', 'id')) AS id", ref), null,
-                r -> result.set(r.getLong("id")));
+                r -> result.set(r.getObject("id")));
 
 
-        System.out.println("result.get() = " + result.get());
-
-        return result.get();
-
+        return type.cast(result.get());
 
     }
+
 
     public User authenticate(String username, String password) {
 

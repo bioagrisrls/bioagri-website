@@ -90,7 +90,7 @@ public class Orders {
         authToken.checkPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE);
 
 
-        order.setId(dataSource.getId("shop_order"));
+        order.setId(dataSource.getId("shop_order", Long.class));
 
         try {
             dataSource.getOrderRepository().save(order);
@@ -110,7 +110,7 @@ public class Orders {
 
         try {
 
-            order.setId(dataSource.getId("shop_order"));
+            order.setId(dataSource.getId("shop_order", Long.class));
 
             dataSource.getOrderRepository().findByPrimaryKey(id)
                     .ifPresentOrElse(
