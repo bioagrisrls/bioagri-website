@@ -26,36 +26,119 @@
 package it.bioagri.api.auth;
 
 import io.restassured.RestAssured;
-
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import net.minidev.json.JSONObject;
-import org.assertj.core.api.Assert;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.UUID;
 
 
-import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+public class AuthTest {
+
+    public static RequestSpecification getSpecs() {
+        return new RequestSpecBuilder()
+                .setBaseUri(RestAssured.DEFAULT_URI)
+                .setPort(8080)
+                .setBasePath("/api")
+                .setAccept(ContentType.JSON)
+                .setContentType(ContentType.JSON)
+                .setSessionId(RestAssured.sessionId)
+                .addFilter(new RequestLoggingFilter())
+                .addFilter(new ResponseLoggingFilter())
+                .build();
+    }
+
+    public static String authenticate(String username, String password) {
+
+        var response = RestAssured.given()
+                .baseUri(RestAssured.DEFAULT_URI)
+                .port(8080)
+                .basePath("/api")
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
+                .sessionId(UUID.randomUUID().toString())
+                .body(String.format(
+                        """
+                        {
+                            "username" : "%s",
+                            "password" : "%s"
+                        }  
+                        """, username, password))
+                .post("/auth/authenticate");
 
 
-class AuthTest {
+
+        response.then().statusCode(200);
+        response.then().contentType(ContentType.JSON);
+
+
+        RestAssured.sessionId = response.sessionId();
+
+        return response.then()
+                .extract()
+                .jsonPath()
+                .getString("token");
+
+    }
+
+
+
 
     @Test
-    public void useSpec(){
-
-
-        RestAssured.baseURI ="http://localhost:8080/api/auth/authenticate";
-        RequestSpecification request = given();
-        request.accept(ContentType.JSON);
-        request.contentType(ContentType.JSON);
-        JSONObject requestParams = new JSONObject();
-        requestParams.put("username",  "lollo@gmail.com");
-        requestParams.put("password", "324324");
-        request.body(requestParams.toJSONString());
-        Response response = request.post("http://localhost:8080/api/auth/authenticate");
-        int statusCode = response.getStatusCode();
-        assertEquals(200, statusCode);
+    public void authenticateAsUserTest() {
+        authenticate("user@test.com", "123");
     }
+
+    @Test
+    public void authenticateAsAdminTest() {
+        authenticate("admin@test.com", "123");
+    }
+
+    @Test
+    public void authenticateAsInvalidUserTest() {
+        Assertions.assertThrows(AssertionError.class,
+                () -> authenticate("invalid-username@test.com", "invalid-password"));
+    }
+
+
+    @Test
+    public void disconnectAsUserTest() {
+
+        RestAssured.given()
+                .header("X-Auth-Token", authenticate("user@test.com", "123"))
+                .spec(getSpecs())
+                .get("/auth/disconnect")
+                .then()
+                .statusCode(200);
+
+    }
+
+    @Test
+    public void disconnectAsAdminTest() {
+
+        RestAssured.given()
+                .header("X-Auth-Token", authenticate("admin@test.com", "123"))
+                .spec(getSpecs())
+                .get("/auth/disconnect")
+                .then()
+                .statusCode(200);
+
+    }
+
+    @Test
+    public void disconnectWithInvalidToken() {
+
+        RestAssured.given()
+                .header("X-Auth-Token", authenticate("user@test.com", "123") + "_INVALID_TOKEN")
+                .spec(getSpecs())
+                .get("/auth/disconnect")
+                .then()
+                .statusCode(401);
+
+    }
+
 }
