@@ -27,30 +27,60 @@
 const baseUri = "http://localhost:8080";
 const basePath = "/api";
 
-export default async (method = 'GET', path, body = {}) => {
 
-    let authToken = document.cookie.split("; ").reduce((r, v) => {
-        const p = v.split('=');
-        return p[0] === "X-Auth-Token"
-            ? decodeURIComponent(p[1])
-            : r;
-    }, '');
+const api = async (path, method = 'GET', body = {}, returnJson = true) => {
 
-    let response = (await fetch(baseUri + basePath + path, {
+    return fetch(baseUri + basePath + path, {
+
         method: method,
         mode: 'cors',
         cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'X-Auth-Token': authToken,
-            'Content-Type': 'application/json',
-            'Accept' : 'application/json'
-        },
+        credentials: 'include',
         redirect: 'follow',
         referrerPolicy: "no-referrer",
-        body: JSON.stringify(body)
-    }));
 
-    console.log(response);
+        headers: {
+            'X-Auth-Token': Cookies.get('X-Auth-Token'),
+            'Content-Type': 'application/json',
+            'Accept'      : 'application/json',
+        },
+
+        body: method !== 'GET' ? JSON.stringify(body) : null
+
+    }).then(response => {
+
+        if(response.headers.has('X-Auth-Token'))
+            Cookies.set('X-Auth-Token', response.headers.get('X-Auth-Token'));
+
+        if(response.status !== 200)
+            throw new Error(`failed: ${response.statusText}`);
+
+        if(returnJson)
+            return response.json();
+
+        return response;
+
+    });
 
 }
+
+
+
+const authenticate = async (username, password) => {
+
+    return api('/auth/authenticate', 'POST', {
+        username: username,
+        password: password
+    }).then(
+        response => {
+            Cookies.set('X-Auth-Token', response.token);
+            return response;
+        },
+        reason => {
+            throw reason;
+        }
+    );
+
+}
+
+
