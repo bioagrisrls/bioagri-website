@@ -82,15 +82,47 @@ public class TicketResponseDaoImpl extends TicketResponseDao {
     @Override
     public void save(TicketResponse value) {
 
+        getDataSource().update(
+                """     
+                    INSERT INTO shop_ticket_response (id, response, created_at, updated_at, ticket_id) 
+                                              VALUES (?, ?, ?, ?, ?)
+                    """,
+                    s -> {
+                        s.setLong(1, value.getId());
+                        s.setString(2, value.getResponse());
+                        s.setTimestamp(3, value.getCreatedAt());
+                        s.setTimestamp(4, value.getUpdatedAt());
+                        s.setLong(5, value.getTicketId());
+                    }, false);
+
     }
 
     @Override
     public void update(TicketResponse oldValue, TicketResponse newValue) {
 
+        getDataSource().update(
+                """
+                    UPDATE shop_ticket_response
+                       SET response = ?, created_at = ?, updated_at = ?, ticket_id = ?
+                     WHERE id = ?
+                    """,
+                    s -> {
+                        s.setString(1, newValue.getResponse());
+                        s.setTimestamp(2, newValue.getCreatedAt());
+                        s.setTimestamp(3, newValue.getUpdatedAt());
+                        s.setLong(4, newValue.getTicketId());
+                        s.setLong(5, oldValue.getId());
+                    }, false);
+
     }
 
     @Override
     public void delete(TicketResponse value) {
+
+        getDataSource().update("DELETE FROM shop_ticket_response WHERE id = ?",
+                s -> {
+                    s.setLong(1, value.getId());
+                }, false);
 
     }
 

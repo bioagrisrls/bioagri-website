@@ -109,10 +109,32 @@ public class FeedbackDaoImpl extends FeedbackDao {
     @Override
     public void update(Feedback oldValue, Feedback newValue) {
 
+        getDataSource().update(
+                    """
+                        UPDATE shop_feedback 
+                           SET title = ?, description = ?, vote = ?, product_id = ?, created_at = ?, updated_at = ?, user_id = ?
+                         WHERE id = ?
+                        """,
+                    s -> {
+                        s.setString(1, newValue.getTitle());
+                        s.setString(2, newValue.getDescription());
+                        s.setFloat(3, newValue.getVote());
+                        s.setLong(4, newValue.getProductId());
+                        s.setTimestamp(5, newValue.getCreatedAt());
+                        s.setTimestamp(6, newValue.getUpdatedAt());
+                        s.setLong(7, newValue.getUserId());
+                        s.setLong(8, oldValue.getId());
+                    }, false);
+
     }
 
     @Override
     public void delete(Feedback value) {
+
+        getDataSource().update("DELETE FROM shop_feedback WHERE id = ?",
+                s -> {
+                    s.setLong(1, value.getId());
+                }, false);
 
     }
 

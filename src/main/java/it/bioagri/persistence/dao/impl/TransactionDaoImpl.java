@@ -25,6 +25,7 @@
 
 package it.bioagri.persistence.dao.impl;
 
+import it.bioagri.models.Ticket;
 import it.bioagri.models.Transaction;
 import it.bioagri.models.TransactionStatus;
 import it.bioagri.models.TransactionType;
@@ -68,7 +69,8 @@ public class TransactionDaoImpl extends TransactionDao {
                         r.getString("invoice"),
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
-                        r.getLong("order_id")
+                        r.getLong("order_id"),
+                        r.getString("transaction_code")
                 )))
         );
 
@@ -101,7 +103,8 @@ public class TransactionDaoImpl extends TransactionDao {
                         r.getString("invoice"),
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
-                        r.getLong("order_id")
+                        r.getLong("order_id"),
+                        r.getString("transaction_code")
                 ))
         );
 
@@ -112,20 +115,95 @@ public class TransactionDaoImpl extends TransactionDao {
     @Override
     public void save(Transaction value) {
 
+        getDataSource().update(
+                """
+                    INSERT INTO shop_transaction (id, status, created_at, updated_at, result, total, type, 
+                                                  courier_service, shipment_number, weight, recipient, address, city, 
+                                                  province, zip, phone, additional_info, invoice, order_id, 
+                                                  transaction_code) 
+                                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                s -> {
+                    s.setLong(1, value.getId());
+                    s.setShort(2, (short) value.getStatus().ordinal());
+                    s.setTimestamp(3, value.getCreatedAt());
+                    s.setTimestamp(4, value.getUpdatedAt());
+                    s.setString(5, value.getResult());
+                    s.setDouble(6, value.getTotal());
+                    s.setShort(7, (short) value.getType().ordinal());
+                    s.setString(8, value.getCourierService());
+                    s.setString(9, value.getShipmentNumber());
+                    s.setDouble(10, value.getWeight());
+                    s.setString(11, value.getRecipient());
+                    s.setString(12, value.getAddress());
+                    s.setString(13, value.getCity());
+                    s.setString(14, value.getProvince());
+                    s.setString(15, value.getZip());
+                    s.setString(16, value.getPhone());
+                    s.setString(17, value.getAdditionalInfo());
+                    s.setString(18, value.getInvoice());
+                    s.setLong(19, value.getOrderId());
+                    s.setString(20, value.getTransactionCode());
+                }, false);
+
     }
 
     @Override
     public void update(Transaction oldValue, Transaction newValue) {
+
+        getDataSource().update(
+            """
+                UPDATE shop_transaction
+                   SET status = ?, created_at = ?, updated_at = ?, result = ?, total = ?, type = ?, courier_service = ?, 
+                       shipment_number = ?, weight = ?, recipient = ?, address = ?, city = ?, province = ?, zip = ?, 
+                       phone = ?, additional_info = ?, invoice = ?, order_id = ?, transaction_code = ? 
+                 WHERE id = ?
+                """,
+                    s -> {
+                        s.setShort(1, (short) newValue.getStatus().ordinal());
+                        s.setTimestamp(2, newValue.getCreatedAt());
+                        s.setTimestamp(3, newValue.getUpdatedAt());
+                        s.setString(4, newValue.getResult());
+                        s.setDouble(5, newValue.getTotal());
+                        s.setShort(6, (short) newValue.getType().ordinal());
+                        s.setString(7, newValue.getCourierService());
+                        s.setString(8, newValue.getShipmentNumber());
+                        s.setDouble(9, newValue.getWeight());
+                        s.setString(10, newValue.getRecipient());
+                        s.setString(11, newValue.getAddress());
+                        s.setString(12, newValue.getCity());
+                        s.setString(13, newValue.getProvince());
+                        s.setString(14, newValue.getZip());
+                        s.setString(15, newValue.getPhone());
+                        s.setString(16, newValue.getAdditionalInfo());
+                        s.setString(17, newValue.getInvoice());
+                        s.setLong(18, newValue.getOrderId());
+                        s.setString(19, newValue.getTransactionCode());
+                        s.setLong(20, oldValue.getId());
+                    }, false);
 
     }
 
     @Override
     public void delete(Transaction value) {
 
+        getDataSource().update("DELETE FROM shop_transaction WHERE id = ?",
+                s -> {
+                    s.setLong(1, value.getId());
+                }, false);
+
     }
 
     @Override
     public List<Transaction> findByOrderId(Long id) {
-        return null;
+
+        var transactions = new ArrayList<Transaction>();
+
+        getDataSource().fetch("SELECT * FROM shop_transaction WHERE shop_transaction.order_id = ?",
+                s -> s.setLong(1, id),
+                r -> findByPrimaryKey(r.getLong("id")).ifPresent(transactions::add));
+
+        return transactions;
+
     }
 }

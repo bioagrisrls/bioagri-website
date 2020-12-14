@@ -76,15 +76,32 @@ public class TagDaoImpl extends TagDao {
     @Override
     public void save(Tag value) {
 
+        getDataSource().update("INSERT INTO shop_tag (id, hashtag) VALUES (?, ?)",
+                s -> {
+                    s.setLong(1, value.getId());
+                    s.setString(2, value.getHashtag());
+                }, false);
+
     }
 
     @Override
     public void update(Tag oldValue, Tag newValue) {
 
+        getDataSource().update("UPDATE shop_tag SET hashtag = ? WHERE id = ?",
+                s -> {
+                    s.setString(1, newValue.getHashtag());
+                    s.setLong(2, oldValue.getId());
+                }, false);
+
     }
 
     @Override
     public void delete(Tag value) {
+
+        getDataSource().update("DELETE FROM shop_tag WHERE id = ?",
+                s -> {
+                    s.setLong(1, value.getId());
+                }, false);
 
     }
 
