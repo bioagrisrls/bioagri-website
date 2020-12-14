@@ -37,23 +37,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FeedbacksTest {
 
-    private String createAs(String username,  int product_id, int user_id, int expectedCode) {
+    private String createAs(String username,  int productId, int userId, int expectedCode) {
         return RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate(username, "123"))
                 .spec(AuthTest.getSpecs())
                 .body(String.format(
                         """
                         {
-                            "id"          : "0",
+                            "userId"     : "%d",  
                             "title"       : "TestFeedback",
-                            "description" : "descriptionTest",
                             "vote"        : "5",
-                            "product_id"  : "%d",
-                            "created_at"  : "2020-12-14 16:32:23.896573",
-                            "updated_at"  : "2020-12-14 17:32:23.896573",
-                            "user_id"     : "%d"     
+                            "id"          : "0",
+                            "description" : "descriptionTest",
+                            "updatedAt"  : "2014-01-01T23:28:56.782Z",
+                            "createdAt"  : "2014-01-01T23:28:56.782Z",
+                            "productId"  : "%d"           
                         }
-                        """,product_id, user_id)
+                        """,userId,productId)
                 )
                 .post("/feedbacks")
                 .then()
@@ -66,8 +66,8 @@ class FeedbacksTest {
     @Test
     public void createFeedback() {
 
-        createAs("user@test.com", 1,1,200);
-        //createAs("admin@test.com", 201);
+        createAs("user@test.com", 3,1,201);
+        createAs("admin@test.com", 3,6,201);
 
     }
 
@@ -75,10 +75,12 @@ class FeedbacksTest {
     @Test
     void findAll() {
 
+        //var feedbackId = createAs("admin@test.com", 201).split("/")[3];
+
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123"))
                 .spec(AuthTest.getSpecs())
-                .get("/feedbacks")
+                .get("/feedbacks/")
                 .then()
                 .statusCode(200);
 
@@ -86,21 +88,64 @@ class FeedbacksTest {
 
     @Test
     void findById() {
-    }
 
-    @Test
-    void create() {
+        RestAssured.given()
+                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .spec(AuthTest.getSpecs())
+                .get("/feedbacks/" + "4" )
+                .then()
+                .statusCode(200);
+
+        RestAssured.given()
+                .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123"))
+                .spec(AuthTest.getSpecs())
+                .get("/feedbacks/" + "4" )
+                .then()
+                .statusCode(200);
     }
 
     @Test
     void update() {
+
+        RestAssured.given()
+                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .spec(AuthTest.getSpecs())
+                .body(
+                        """
+                        {
+                            "userId"     : "1",  
+                            "title"       : "TestFeedback",
+                            "vote"        : "1",
+                            "id"          : "0",
+                            "description" : "descriptionTest",
+                            "updatedAt"  : "2014-01-01T23:28:56.782Z",
+                            "createdAt"  : "2014-01-01T23:28:56.782Z",
+                            "productId"  : "1"           
+                        }
+                        """
+                )
+                .put("/feedbacks/3")
+                .then()
+                .statusCode(201)
+                .extract()
+                .header("Location");
+
     }
 
     @Test
     void deleteAll() {
+        // Just skip...
     }
 
     @Test
-    void delete() {
+    void deleteById() {
+
+        RestAssured.given()
+                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .spec(AuthTest.getSpecs())
+                .delete("/feedbacks/" + "4" )
+                .then()
+                .statusCode(204);
+
     }
 }
