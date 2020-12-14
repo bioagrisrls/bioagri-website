@@ -132,9 +132,7 @@ public class FeedbackDaoImpl extends FeedbackDao {
     public void delete(Feedback value) {
 
         getDataSource().update("DELETE FROM shop_feedback WHERE id = ?",
-                s -> {
-                    s.setLong(1, value.getId());
-                }, false);
+                s -> s.setLong(1, value.getId()), false);
 
     }
 
@@ -155,12 +153,12 @@ public class FeedbackDaoImpl extends FeedbackDao {
     @Override
     public List<Feedback> findByProductId(Long id) {
 
-        var feedbacks = new ArrayList<Feedback>();
+        return new ArrayList<>() {{
 
-        getDataSource().fetch("SELECT * FROM shop_feedback WHERE product_id = ?",
-                s -> s.setLong(1, id),
-                r -> findByPrimaryKey(r.getLong("id")).ifPresent(feedbacks::add));
+                getDataSource().fetch("SELECT * FROM shop_feedback WHERE product_id = ?",
+                        s -> s.setLong(1, id),
+                        r -> findByPrimaryKey(r.getLong("id")).ifPresent(this::add));
 
-        return feedbacks;
+        }};
     }
 }

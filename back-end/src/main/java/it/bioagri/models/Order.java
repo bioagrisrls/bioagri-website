@@ -32,6 +32,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public final class Order {
 
@@ -40,9 +41,11 @@ public final class Order {
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
     private final Long userId;
-    private final Map<Product, Integer> products;
-    private final List<Transaction> transactions;
 
+    private Map<Product, Integer> products;
+    private List<Transaction> transactions;
+
+    @JsonIgnore
     private User user;
 
 
@@ -90,7 +93,6 @@ public final class Order {
         return userId;
     }
 
-
     @JsonIgnore
     public Optional<User> getUser(DataSource dataSource) {
 
@@ -105,12 +107,24 @@ public final class Order {
     }
 
     @JsonIgnore
-    public Map<Product, Integer> getProducts() {
+    public Map<Product, Integer> getProducts(DataSource dataSource) {
+
+        if(products == null) {
+            products = dataSource.getProductRepository()
+                    .findByOrderId(id);
+        }
+
         return products;
     }
 
     @JsonIgnore
-    public List<Transaction> getTransactions() {
+    public List<Transaction> getTransactions(DataSource dataSource) {
+
+        if(transactions == null) {
+            transactions = dataSource.getTransactionRepository()
+                    .findByOrderId(id);
+        }
+
         return transactions;
     }
 

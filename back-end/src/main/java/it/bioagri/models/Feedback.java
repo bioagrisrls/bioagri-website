@@ -107,8 +107,6 @@ public final class Feedback {
         return productId;
     }
 
-
-
     @JsonIgnore
     public Optional<User> getUser(DataSource dataSource) {
 

@@ -28,10 +28,13 @@ package it.bioagri.persistence.dao;
 import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 
+import java.util.List;
+
 public abstract class TicketResponseDao extends Dao<TicketResponse, Long> {
 
     public TicketResponseDao(DataSource dataSource) {
         super(dataSource);
     }
 
+    public abstract List<TicketResponse> findByTicketId(long id);
 }

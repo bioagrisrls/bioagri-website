@@ -55,18 +55,10 @@ public class OrderDaoImpl extends OrderDao {
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
                         r.getLong("user_id"),
-                        new HashMap<>(),
-                        new ArrayList<>()
+                        null,
+                        null
                 )))
         );
-
-
-        result.get().ifPresent(r -> r.getProducts()
-                .putAll(getDataSource().getProductRepository().findByOrderId(r.getId())));
-
-        result.get().ifPresent(r -> r.getTransactions()
-                .addAll(getDataSource().getTransactionRepository().findByOrderId(r.getId())));
-
 
         return result.get();
 
@@ -84,22 +76,10 @@ public class OrderDaoImpl extends OrderDao {
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
                         r.getLong("user_id"),
-                        new HashMap<>(),
-                        new ArrayList<>()
+                        null,
+                        null
                 ))
         );
-
-
-        for(var order : orders) {
-
-            order.getProducts()
-                    .putAll(getDataSource().getProductRepository().findByOrderId(order.getId()));
-
-            order.getTransactions()
-                    .addAll(getDataSource().getTransactionRepository().findByOrderId(order.getId()));
-
-        }
-
 
         return orders;
         

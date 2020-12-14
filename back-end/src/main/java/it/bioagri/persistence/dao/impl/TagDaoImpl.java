@@ -101,9 +101,7 @@ public class TagDaoImpl extends TagDao {
     public void delete(Tag value) {
 
         getDataSource().update("DELETE FROM shop_tag WHERE id = ?",
-                s -> {
-                    s.setLong(1, value.getId());
-                }, false);
+                s -> s.setLong(1, value.getId()), false);
 
     }
 
