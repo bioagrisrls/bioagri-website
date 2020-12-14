@@ -31,7 +31,6 @@ import it.bioagri.api.ApiPermissionType;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Product;
-import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -57,136 +55,158 @@ public class WishList {
         this.dataSource = dataSource;
     }
 
-//    @GetMapping("/{sid}/wishlist")
-//    public ResponseEntity<List<Product>> findAll(@PathVariable Long sid) {
-//
-//        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
-//
-//        try {
-//
-//            return ResponseEntity.ok(dataSource.getUserRepository()
-//                    .findByPrimaryKey(sid)
-//                    .orElseThrow(() -> new ApiResponseStatus(404))
-//                    .getWishList());
-//
-//        } catch (DataSourceSQLException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//        }
-//
-//    }
-//
-//    @GetMapping("/{sid}/wishlist/{id}")
-//    public ResponseEntity<Product> findById(@PathVariable Long sid, @PathVariable Long id) {
-//
-//        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
-//
-//        try {
-//
-//            return ResponseEntity.ok(dataSource.getUserRepository()
-//                    .findByPrimaryKey(sid)
-//                    .orElseThrow(() -> new ApiResponseStatus(404))
-//                    .getWishList()
-//                    .stream()
-//                    .filter(i -> id.equals(i.getId()))
-//                    .findFirst()
-//                    .orElseThrow(() -> new ApiResponseStatus(404)));
-//
-//        } catch (DataSourceSQLException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//        }
-//
-//    }
-//
-//
-//    @PostMapping("/{sid}/wishlist")
-//    public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody Product product) {
-//
-//        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.CREATE, authToken, sid);
-//
-//        try {
-//
-//            product.setId(dataSource.getId("shop_ticket_response", Long.class));
-//
-//            dataSource.getTicketResponseRepository().save(response);
-//
-//        } catch (DataSourceSQLException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//        }
-//
-//        return ResponseEntity.created(URI.create(String.format("/api/tickets/%d/responses/%d", sid, response.getId()))).build();
-//
-//    }
-//
-//
-//    @PutMapping("/{sid}/wishlist/{id}")
-//    public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id, @RequestBody TicketResponse response) {
-//
-//        ApiPermission.verify(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.UPDATE, authToken, response.getTicket(dataSource)
-//                .orElseThrow(() -> new ApiResponseStatus(404))
-//                .getUserId());
-//
-//        try {
-//
-//            response.setId(dataSource.getId("shop_ticket_response", Long.class));
-//
-//            dataSource.getTicketResponseRepository().findByPrimaryKey(id)
-//                    .ifPresentOrElse(
-//                            (r) -> dataSource.getTicketResponseRepository().update(r, response),
-//                            ( ) -> dataSource.getTicketResponseRepository().save(response)
-//                    );
-//
-//        } catch (DataSourceSQLException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//        }
-//
-//        return ResponseEntity.created(URI.create(String.format("/api/tickets/%d/responses/%d", sid, response.getId()))).build();
-//
-//    }
-//
-//
-//    @DeleteMapping("/{sid}/wishlist")
-//    public ResponseEntity<String> deleteAll(@PathVariable Long sid) {
-//
-//        try {
-//
-//            dataSource.getTicketResponseRepository()
-//                    .findAll()
-//                    .stream()
-//                    .filter(i -> i.getTicketId().equals(sid))
-//                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.DELETE, authToken, i.getTicket(dataSource)
-//                            .orElseThrow(() -> new ApiResponseStatus(502))
-//                            .getUserId()))
-//                    .forEach(dataSource.getTicketResponseRepository()::delete);
-//
-//        } catch (DataSourceSQLException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//        }
-//
-//        return ResponseEntity.noContent().build();
-//
-//    }
-//
-//
-//    @DeleteMapping("/{sid}/wishlist/{id}")
-//    public ResponseEntity<String> delete(@PathVariable Long sid, @PathVariable Long id) {
-//
-//        try {
-//
-//            dataSource.getTicketResponseRepository().delete(
-//                    dataSource.getTicketResponseRepository()
-//                            .findByPrimaryKey(id)
-//                            .filter(i -> i.getTicketId().equals(sid))
-//                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.DELETE, authToken, i.getTicket(dataSource)
-//                                    .orElseThrow(() -> new ApiResponseStatus(502))
-//                                    .getUserId()))
-//                            .orElseThrow(() -> new ApiResponseStatus(404)));
-//
-//        } catch (DataSourceSQLException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//        }
-//
-//        return ResponseEntity.noContent().build();
-//
-//    }
+    @GetMapping("/{sid}/wishlist")
+    public ResponseEntity<List<Product>> findAll(@PathVariable Long sid) {
+
+        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
+
+        try {
+
+            return ResponseEntity.ok(dataSource.getUserRepository()
+                    .findByPrimaryKey(sid)
+                    .orElseThrow(() -> new ApiResponseStatus(404))
+                    .getWishList());
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
+
+    @GetMapping("/{sid}/wishlist/{id}")
+    public ResponseEntity<Product> findById(@PathVariable Long sid, @PathVariable Long id) {
+
+        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
+
+        try {
+
+            return ResponseEntity.ok(dataSource.getUserRepository()
+                    .findByPrimaryKey(sid)
+                    .orElseThrow(() -> new ApiResponseStatus(404))
+                    .getWishList()
+                    .stream()
+                    .filter(i -> id.equals(i.getId()))
+                    .findFirst()
+                    .orElseThrow(() -> new ApiResponseStatus(404)));
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
+
+
+    @PostMapping("/{sid}/wishlist")
+    public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody Product product) {
+
+        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.CREATE, authToken, sid);
+
+        try {
+
+            var p = dataSource.getProductRepository()
+                    .findByPrimaryKey(product.getId())
+                    .orElseThrow(() -> new ApiResponseStatus(404));
+
+            var u = dataSource.getUserRepository()
+                    .findByPrimaryKey(sid)
+                    .orElseThrow(() -> new ApiResponseStatus(404));
+
+
+            u.getWishList().add(p);
+            dataSource.getUserRepository().update(u, u);
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.created(URI.create(String.format("/api/users/%d/wishlist/%d", sid, product.getId()))).build();
+
+    }
+
+
+    @PutMapping("/{sid}/wishlist/{id}")
+    public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id, @RequestBody Product product) {
+
+        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.UPDATE, authToken, sid);
+
+        try {
+
+            var p = dataSource.getProductRepository()
+                    .findByPrimaryKey(product.getId())
+                    .orElseThrow(() -> new ApiResponseStatus(404));
+
+            var u = dataSource.getUserRepository()
+                    .findByPrimaryKey(sid)
+                    .orElseThrow(() -> new ApiResponseStatus(404));
+
+
+            u.getWishList()
+                .stream()
+                .filter(i -> i.getId().equals(id))
+                .findFirst()
+                .ifPresent(u.getWishList()::remove);
+
+            u.getWishList().add(p);
+            dataSource.getUserRepository().update(u, u);
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.created(URI.create(String.format("/api/users/%d/wishlist/%d", sid, product.getId()))).build();
+
+    }
+
+
+    @DeleteMapping("/{sid}/wishlist")
+    public ResponseEntity<String> deleteAll(@PathVariable Long sid) {
+
+        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE, authToken, sid);
+
+        try {
+
+            var u = dataSource.getUserRepository()
+                    .findByPrimaryKey(sid)
+                    .orElseThrow(() -> new ApiResponseStatus(404));
+
+            u.getWishList().clear();
+            dataSource.getUserRepository().update(u, u);
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.noContent().build();
+
+    }
+
+
+    @DeleteMapping("/{sid}/wishlist/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long sid, @PathVariable Long id) {
+
+        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE, authToken, sid);
+
+        try {
+
+            var u = dataSource.getUserRepository()
+                    .findByPrimaryKey(sid)
+                    .orElseThrow(() -> new ApiResponseStatus(404));
+
+            var p = u.getWishList()
+                    .stream()
+                    .filter(i -> i.getId().equals(id))
+                    .findFirst()
+                    .orElseThrow(() -> new ApiResponseStatus(404));
+
+            u.getWishList().remove(p);
+            dataSource.getUserRepository().update(u, u);
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.noContent().build();
+
+    }
 
 }
