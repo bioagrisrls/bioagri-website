@@ -1,3 +1,7 @@
+import org.gradle.work.ChangeType
+import org.gradle.work.Incremental
+import org.gradle.work.InputChanges
+
 /*
  * MIT License
  *
@@ -25,6 +29,7 @@
 
 plugins {
     id 'idea'
+    id 'base'
 }
 
 group 'it.bioagri'
@@ -38,3 +43,12 @@ repositories {
 dependencies {
 
 }
+
+task run(type: Copy) {
+
+    from "src/main/webapp"
+    into "${project(":back-end").projectDir}/src/main/webapp"
+
+}
+
+run.finalizedBy(project(":back-end").tasks.bootRun)
