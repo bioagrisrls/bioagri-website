@@ -42,7 +42,10 @@ public final class Feedback {
     private final Long userId;
     private final Long productId;
 
+    @JsonIgnore
     private User user;
+
+    @JsonIgnore
     private Product product;
 
 

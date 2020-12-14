@@ -23,3 +23,55 @@
  *
  */
 
+
+
+const expandTemplate = (template = '', data = {}) => {
+
+    let output = '';
+    let index = 0;
+    let reg
+    let match;
+
+    let i = 0;
+    while (match = (/<&([^&>]+)?&>/g).exec(template) !== null) {
+
+        if(match[0] === undefined)
+            break;
+
+        output += `r.push("${template.slice(index, match.index).replace("\"", "\\\"")}");\\n`;
+        output += `${match[1]}\\n`;
+
+        index += match.index + match[0].length;
+        i++;
+    }
+
+    output += template.slice(index, template.length - index);
+
+    console.log(output);
+
+}
+
+
+const render = (id, component) => {
+
+    if(!component.template)
+        throw new Error('template cannot be null');
+
+    if($(id).length === 0)
+        throw new Error(`invalid id/class reference: ${id}`);
+
+
+    console.log(component);
+
+    $(id).html(component.init || 'Loading...');
+
+    if(component.data.then) {
+        component.data.then(data => {
+            $(id).html(expandTemplate(component.template, data));
+        })
+    } else {
+
+        $(id).html(expandTemplate(component.template, component.data));
+
+    }
+}

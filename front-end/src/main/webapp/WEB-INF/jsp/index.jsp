@@ -27,8 +27,10 @@
 <html>
     <head>
         <title>Hello World!</title>
+        <script src="/assets/js/third-party/jquery-3.5.1.min.js"></script>
         <script src="/assets/js/third-party/js.cookie-2.2.1.min.js"></script>
         <script src="/assets/js/back-end/api.js"></script>
+        <script src="/assets/js/back-end/components.js"></script>
     </head>
     <body>
         <h1>Hello World!</h1>
@@ -62,6 +64,9 @@
             <div>
                 <h1>Component Sample</h1>
                 <h4>{{ message }}</h4>
+                <& for(let i = 0; i < 10; i++) { &>
+                    <h5>Line {{ i }}</h5>
+                <& } &>
             </div>
         `,
 
