@@ -23,5 +23,8 @@
  *
  */
 
-rootProject.name = 'back-end'
+rootProject.name = 'bioagri-website'
+
+include 'back-end'
+//include 'front-end'
 
