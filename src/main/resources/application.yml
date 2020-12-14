@@ -1,7 +1,7 @@
 
 spring:
   mvc:
-    #static-path-pattern: "/resources/**"
+    #static-path-pattern: "/webapp/front-end/**"
 
     view:
       prefix: "/WEB-INF/jsp/"

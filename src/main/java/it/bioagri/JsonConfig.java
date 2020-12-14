@@ -38,6 +38,7 @@ public class JsonConfig {
     public ObjectMapper objectMapper() {
 
         return new ObjectMapper() {{
+
             setVisibility(getSerializationConfig().getDefaultVisibilityChecker()
                     .withCreatorVisibility(JsonAutoDetect.Visibility.NONE)
                     .withFieldVisibility(JsonAutoDetect.Visibility.ANY)
