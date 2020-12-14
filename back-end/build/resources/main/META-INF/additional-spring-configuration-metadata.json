@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "database.uri",
+      "type": "java.lang.String",
+      "description": "Description for database.uri."
+    },
+    {
+      "name": "database.username",
+      "type": "java.lang.String",
+      "description": "Description for database.username."
+    },
+    {
+      "name": "database.password",
+      "type": "java.lang.String",
+      "description": "Description for database.password."
+    }
+  ] }

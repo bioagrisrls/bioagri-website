@@ -1,0 +1,23 @@
+
+spring:
+  mvc:
+    #static-path-pattern: "/webapp/front-end/**"
+
+    view:
+      prefix: "/WEB-INF/jsp/"
+      suffix: ".jsp"
+
+#  devtools:
+#    add-properties: false
+
+
+database:
+  uri: "jdbc:postgresql://localhost:5432/bioagridb"
+  username: "admin"
+  password: "admin"
+
+
+server:
+  error:
+    whitelabel:
+      enabled: false

@@ -25,7 +25,6 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.Ticket;
 import it.bioagri.models.Transaction;
 import it.bioagri.models.TransactionStatus;
 import it.bioagri.models.TransactionType;

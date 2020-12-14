@@ -31,7 +31,6 @@ import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionType;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
-import it.bioagri.models.Order;
 import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
