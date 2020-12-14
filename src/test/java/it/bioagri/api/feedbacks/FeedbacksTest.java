@@ -20,8 +20,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ *
  */
-
 
 package it.bioagri.api.feedbacks;
 
@@ -29,20 +29,28 @@ import io.restassured.RestAssured;
 import it.bioagri.api.auth.AuthTest;
 import org.junit.jupiter.api.Test;
 
-public class FeedbacksTest {
+import static org.junit.jupiter.api.Assertions.*;
 
-    private String createAs(String username, int expectedCode) {
+class FeedbacksTest {
+
+    private String createAs(String username, int user_id, int product_id, int expectedCode) {
 
         return RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate(username, "123"))
                 .spec(AuthTest.getSpecs())
-                .body(
+                .body(String.format(
                         """
                         {
-                            "id" : "0",
-                            "name" : "TestFeedbacks"
+                            "id"          : "0",
+                            "title"       : "TestFeedback",
+                            "description" : "descriptionTest",
+                            "vote"        : "5.0",
+                            "product_id"  : "%d",
+                            "created_at"  : "20201214163223896574",
+                            "updated_at"  : "20201214162238896573",
+                            "user_id"     : "%d"     
                         }
-                        """
+                        """,product_id, user_id)
                 )
                 .post("/feedbacks")
                 .then()
@@ -53,12 +61,36 @@ public class FeedbacksTest {
     }
 
     @Test
-    public void create() {
+    public void createF() {
 
-        createAs("user@test.com", 201);
-        createAs("admin@test.com", 401);
+        createAs("user@test.com", 1,1,200);
+        //createAs("admin@test.com", 201);
 
     }
 
-}
 
+    @Test
+    void findAll() {
+
+    }
+
+    @Test
+    void findById() {
+    }
+
+    @Test
+    void create() {
+    }
+
+    @Test
+    void update() {
+    }
+
+    @Test
+    void deleteAll() {
+    }
+
+    @Test
+    void delete() {
+    }
+}

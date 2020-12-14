@@ -130,15 +130,16 @@ public class AuthTest {
     }
 
     @Test
-    public void disconnectWithInvalidToken() {
+    public void disconnectWithNoToken() {
 
         RestAssured.given()
-                .header("X-Auth-Token", authenticate("user@test.com", "123") + "_INVALID_TOKEN")
                 .spec(getSpecs())
                 .get("/auth/disconnect")
                 .then()
                 .statusCode(401);
 
     }
+
+
 
 }

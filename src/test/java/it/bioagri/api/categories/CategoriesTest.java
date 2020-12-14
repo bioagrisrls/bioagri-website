@@ -60,7 +60,7 @@ public class CategoriesTest {
     @Test
     public void create() {
 
-        createAs("user@test.com", 401);
+        createAs("user@test.com", 403);
         createAs("admin@test.com", 201);
 
     }
@@ -120,7 +120,7 @@ public class CategoriesTest {
                 .spec(AuthTest.getSpecs())
                 .delete("/categories/" + categoryId)
                 .then()
-                .statusCode(401);
+                .statusCode(403);
 
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
