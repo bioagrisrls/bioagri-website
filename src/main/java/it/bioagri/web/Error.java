@@ -25,8 +25,8 @@
 
 package it.bioagri.web;
 
-import it.bioagri.api.ApiException;
-import it.bioagri.api.ApiExceptionType;
+
+import it.bioagri.api.ApiResponseStatus;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,9 +46,7 @@ public class Error implements ErrorController {
         if(status == null)
             status = HttpStatus.INTERNAL_SERVER_ERROR;
         
-        throw new ApiException(
-                ApiExceptionType.ERROR_INTERNAL,
-                request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI).toString(), status);
+        throw new ApiResponseStatus(status);
 
     }
 
