@@ -25,29 +25,45 @@
 
 
 
+const sanitizeSnippet = (snippet) => {
+
+    return snippet
+        .replace(/(")/gm, "\\\"")
+        .replace(/(\r\n|\n|\r)/gm, "")
+        .replace(/{{/g, "\" + ")
+        .replace(/}}/g, " + \"");
+
+}
+
 const expandTemplate = (template = '', data = {}) => {
 
     let output = '';
     let index = 0;
-    let reg
-    let match;
+    let regexp = /<\?([^?>]+)?\?>/g;
 
-    let i = 0;
-    while (match = (/<&([^&>]+)?&>/g).exec(template) !== null) {
+
+    output += 'let ____r = []\n';
+
+    let match;
+    while ((match = regexp.exec(template)) !== null) {
 
         if(match[0] === undefined)
             break;
 
-        output += `r.push("${template.slice(index, match.index).replace("\"", "\\\"")}");\\n`;
-        output += `${match[1]}\\n`;
 
-        index += match.index + match[0].length;
-        i++;
+        output += `____r.push("${sanitizeSnippet(template.slice(index, match.index))}");\n`;
+        output += `${match[1]}\n`;
+
+        index = regexp.lastIndex;
+
     }
 
-    output += template.slice(index, template.length - index);
+    output += `____r.push("${sanitizeSnippet(template.slice(index, template.length - index))}");\n`;
+    output += 'return ____r.join("");';
 
-    console.log(output);
+
+    return new Function(Object.keys(data).join(", "), output)
+        .call(null, Object.values(data));
 
 }
 

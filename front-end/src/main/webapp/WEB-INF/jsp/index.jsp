@@ -54,26 +54,25 @@
             document.getElementById('categoriesCount').innerHTML = response.length;
         }).catch(reason => {
             console.error(reason);
-        })
+        });
 
-    });
 
-    render('#component', {
+        render('#component', {
 
-        template: `
+            template: `
             <div>
-                <h1>Component Sample</h1>
-                <h4>{{ message }}</h4>
-                <& for(let i = 0; i < 10; i++) { &>
-                    <h5>Line {{ i }}</h5>
-                <& } &>
+                <h1 class="title">Categories {{ message }} {{ other }} </h1>
             </div>
         `,
 
-        data: {
-            message: "Hello World!"
-        }
+            data: api("/categories").then(response => {
+                return { message: "Hello World", other: "Hello World" };
+            })
+
+        });
 
     });
+
+
 
 </script>
