@@ -65,21 +65,10 @@ public class ProductDaoImpl extends ProductDao {
                             ProductStatus.values()[r.getShort("status")],
                             r.getTimestamp("updated_at"),
                             r.getTimestamp("created_at"),
-                            new ArrayList<>(),
-                            new ArrayList<>(),
-                            new ArrayList<>()
+                            getDataSource().getCategoryRepository().findByProductId(r.getLong("id")),
+                            getDataSource().getTagRepository().findByProductId(r.getLong("id")),
+                            getDataSource().getFeedbackRepository().findByProductId(r.getLong("id"))
                     );
-
-
-                    do {
-
-                        getDataSource().getCategoryRepository()
-                                .findByPrimaryKey(r.getLong("category_id"))
-                                .ifPresent(product.getCategories()::add);
-
-
-                    } while (r.next());
-
 
                     result.set(Optional.of(product));
 

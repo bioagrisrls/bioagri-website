@@ -144,11 +144,23 @@ public class FeedbackDaoImpl extends FeedbackDao {
 
         var feedbacks = new ArrayList<Feedback>();
 
-        getDataSource().fetch("SELECT * FROM shop_feedback WHERE shop_feedback.user_id = ?",
+        getDataSource().fetch("SELECT * FROM shop_feedback WHERE user_id = ?",
                 s -> s.setLong(1, id),
                 r -> findByPrimaryKey(r.getLong("id")).ifPresent(feedbacks::add));
 
         return feedbacks;
 
+    }
+
+    @Override
+    public List<Feedback> findByProductId(Long id) {
+
+        var feedbacks = new ArrayList<Feedback>();
+
+        getDataSource().fetch("SELECT * FROM shop_feedback WHERE product_id = ?",
+                s -> s.setLong(1, id),
+                r -> findByPrimaryKey(r.getLong("id")).ifPresent(feedbacks::add));
+
+        return feedbacks;
     }
 }

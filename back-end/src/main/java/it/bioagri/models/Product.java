@@ -26,9 +26,11 @@
 package it.bioagri.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.bioagri.persistence.DataSource;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 public final class Product {
 
@@ -40,10 +42,10 @@ public final class Product {
     private final ProductStatus status;
     private final Timestamp updatedAt;
     private final Timestamp createdAt;
-    private final List<Category> categories;
-    private final List<Tag> tags;
-    private final List<Feedback> feedbacks;
 
+    private List<Category> categories;
+    private List<Tag> tags;
+    private List<Feedback> feedbacks;
 
     public Product(long id, String name, String description, float price, int stock, ProductStatus status, Timestamp updatedAt, Timestamp createdAt, List<Category> categories, List<Tag> tags, List<Feedback> feedbacks) {
         this.id = id;
@@ -110,18 +112,37 @@ public final class Product {
     }
 
     @JsonIgnore
-    public List<Category> getCategories() {
+    public List<Category> getCategories(DataSource dataSource) {
+
+        if(categories == null) {
+            categories = dataSource.getCategoryRepository()
+                    .findByProductId(id);
+        }
+
         return categories;
     }
 
     @JsonIgnore
-    public List<Tag> getTags() {
+    public List<Tag> getTags(DataSource dataSource) {
+
+        if(tags == null) {
+            tags = dataSource.getTagRepository()
+                    .findByProductId(id);
+        }
+
         return tags;
     }
 
     @JsonIgnore
-    public List<Feedback> getFeedbacks() {
+    public List<Feedback> getFeedbacks(DataSource dataSource) {
+
+        if(feedbacks == null) {
+            feedbacks = dataSource.getFeedbackRepository()
+                    .findByProductId(id);
+        }
+
         return feedbacks;
     }
+
 
 }

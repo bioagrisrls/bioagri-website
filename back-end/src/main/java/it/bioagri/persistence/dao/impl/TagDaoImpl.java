@@ -25,6 +25,8 @@
 
 package it.bioagri.persistence.dao.impl;
 
+import it.bioagri.models.Feedback;
+import it.bioagri.models.Product;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TagDao;
@@ -102,6 +104,20 @@ public class TagDaoImpl extends TagDao {
                 s -> {
                     s.setLong(1, value.getId());
                 }, false);
+
+    }
+
+    @Override
+    public List<Tag> findByProductId(Long id) {
+
+        return new ArrayList<>() {{
+
+            getDataSource().fetch("SELECT tag_id FROM shop_product_tag WHERE product_id = ?",
+                    s -> s.setLong(1, id),
+                    r -> findByPrimaryKey(r.getLong("tag_id")).ifPresent(this::add)
+            );
+
+        }};
 
     }
 

@@ -26,12 +26,17 @@
 package it.bioagri.persistence.dao;
 
 import it.bioagri.models.Category;
+import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
+
+import java.util.List;
 
 public abstract class CategoryDao extends Dao<Category, Long> {
 
     public CategoryDao(DataSource dataSource) {
         super(dataSource);
     }
+
+    public abstract List<Category> findByProductId(Long id);
 
 }

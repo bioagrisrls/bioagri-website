@@ -26,6 +26,7 @@
 package it.bioagri.persistence.dao.impl;
 
 import it.bioagri.models.Category;
+import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.CategoryDao;
 
@@ -40,7 +41,6 @@ public class CategoryDaoImpl extends CategoryDao {
     public CategoryDaoImpl(DataSource dataSource) {
         super(dataSource);
     }
-
 
     @Override
     public Optional<Category> findByPrimaryKey(Long id) {
@@ -105,10 +105,21 @@ public class CategoryDaoImpl extends CategoryDao {
     public void delete(Category value) {
 
         getDataSource().update("DELETE FROM shop_category WHERE id = ?",
-                s -> {
-                    s.setLong(1, value.getId());
-                }, false);
+                s -> s.setLong(1, value.getId()), false);
 
+    }
+
+    @Override
+    public List<Category> findByProductId(Long id) {
+
+        var categories = new ArrayList<Category>();
+
+        getDataSource().fetch("SELECT category_id FROM shop_product_category WHERE product_id = ?",
+                s -> s.setLong(1, id),
+                r -> findByPrimaryKey(r.getLong("category_id")).ifPresent(categories::add)
+        );
+
+        return categories;
     }
 
 

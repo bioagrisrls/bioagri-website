@@ -37,5 +37,6 @@ public abstract class FeedbackDao extends Dao<Feedback, Long> {
     }
 
     public abstract List<Feedback> findByUserId(Long id);
+    public abstract List<Feedback> findByProductId(Long id);
 
 }
