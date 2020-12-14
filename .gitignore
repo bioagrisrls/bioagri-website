@@ -14,4 +14,5 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 /back-end/build/
+/back-end/src/main/webapp/
 /front-end/build/
