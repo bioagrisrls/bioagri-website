@@ -146,9 +146,7 @@ public class OrderDaoImpl extends OrderDao {
     public void delete(Order value) {
 
         getDataSource().update("DELETE FROM shop_order  WHERE id = ?",
-                s -> {
-                    s.setLong(1, value.getId());
-                }, false);
+                s -> s.setLong(1, value.getId()), false);
 
     }
 
