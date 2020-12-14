@@ -29,12 +29,15 @@ import io.restassured.RestAssured;
 import it.bioagri.api.auth.AuthTest;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class FeedbacksTest {
 
-    private String createAs(String username, int user_id, int product_id, int expectedCode) {
-
+    private String createAs(String username,  int product_id, int user_id, int expectedCode) {
         return RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate(username, "123"))
                 .spec(AuthTest.getSpecs())
@@ -44,10 +47,10 @@ class FeedbacksTest {
                             "id"          : "0",
                             "title"       : "TestFeedback",
                             "description" : "descriptionTest",
-                            "vote"        : "5.0",
+                            "vote"        : "5",
                             "product_id"  : "%d",
-                            "created_at"  : "20201214163223896574",
-                            "updated_at"  : "20201214162238896573",
+                            "created_at"  : "2020-12-14 16:32:23.896573",
+                            "updated_at"  : "2020-12-14 17:32:23.896573",
                             "user_id"     : "%d"     
                         }
                         """,product_id, user_id)
@@ -61,7 +64,7 @@ class FeedbacksTest {
     }
 
     @Test
-    public void createF() {
+    public void createFeedback() {
 
         createAs("user@test.com", 1,1,200);
         //createAs("admin@test.com", 201);
