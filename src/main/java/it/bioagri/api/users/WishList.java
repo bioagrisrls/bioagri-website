@@ -60,16 +60,14 @@ public class WishList {
 //    @GetMapping("/{sid}/wishlist")
 //    public ResponseEntity<List<Product>> findAll(@PathVariable Long sid) {
 //
+//        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
+//
 //        try {
 //
-//            return ResponseEntity.ok(dataSource.getProductRepository()
-//                    .findAll()
-//                    .stream()
-//                    .filter(i -> dataSource.getUserRepository().findByPrimaryKey(sid).orElse(null).getWishList().co)
-//                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.READ, authToken, i.getTicket(dataSource)
-//                            .orElseThrow(() -> new ApiResponseStatus(502))
-//                            .getUserId()))
-//                    .collect(Collectors.toList()));
+//            return ResponseEntity.ok(dataSource.getUserRepository()
+//                    .findByPrimaryKey(sid)
+//                    .orElseThrow(() -> new ApiResponseStatus(404))
+//                    .getWishList());
 //
 //        } catch (DataSourceSQLException e) {
 //            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -78,16 +76,19 @@ public class WishList {
 //    }
 //
 //    @GetMapping("/{sid}/wishlist/{id}")
-//    public ResponseEntity<TicketResponse> findById(@PathVariable Long sid, @PathVariable Long id) {
+//    public ResponseEntity<Product> findById(@PathVariable Long sid, @PathVariable Long id) {
+//
+//        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
 //
 //        try {
 //
-//            return ResponseEntity.ok(dataSource.getTicketResponseRepository()
-//                    .findByPrimaryKey(id)
-//                    .filter(i -> i.getTicketId().equals(sid))
-//                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.READ, authToken, i.getTicket(dataSource)
-//                            .orElseThrow(() -> new ApiResponseStatus(502))
-//                            .getUserId()))
+//            return ResponseEntity.ok(dataSource.getUserRepository()
+//                    .findByPrimaryKey(sid)
+//                    .orElseThrow(() -> new ApiResponseStatus(404))
+//                    .getWishList()
+//                    .stream()
+//                    .filter(i -> id.equals(i.getId()))
+//                    .findFirst()
 //                    .orElseThrow(() -> new ApiResponseStatus(404)));
 //
 //        } catch (DataSourceSQLException e) {
@@ -98,15 +99,13 @@ public class WishList {
 //
 //
 //    @PostMapping("/{sid}/wishlist")
-//    public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody TicketResponse response) {
+//    public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody Product product) {
 //
-//        ApiPermission.verify(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.CREATE, authToken, response.getTicket(dataSource)
-//                .orElseThrow(() -> new ApiResponseStatus(404))
-//                .getUserId());
+//        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.CREATE, authToken, sid);
 //
 //        try {
 //
-//            response.setId(dataSource.getId("shop_ticket_response", Long.class));
+//            product.setId(dataSource.getId("shop_ticket_response", Long.class));
 //
 //            dataSource.getTicketResponseRepository().save(response);
 //
