@@ -27,6 +27,9 @@ package it.bioagri.api.orders;
 
 import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.api.ApiPermission;
+import it.bioagri.api.ApiPermissionOperation;
+import it.bioagri.api.ApiPermissionType;
 import it.bioagri.models.Order;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
@@ -37,6 +40,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -56,12 +60,17 @@ public class Orders {
     @GetMapping("")
     public ResponseEntity<List<Order>> findAll() {
 
-        authToken.checkPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.READ);
-
         try {
-            return new ResponseEntity<>(dataSource.getOrderRepository().findAll(), HttpStatus.OK);
+
+            return ResponseEntity.ok(
+                    dataSource.getOrderRepository()
+                            .findAll()
+                            .stream()
+                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                            .collect(Collectors.toList()));
+
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
@@ -69,16 +78,15 @@ public class Orders {
     @GetMapping("/{id}")
     public ResponseEntity<Order> findById(@PathVariable Long id) {
 
-        authToken.checkPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.READ);
-
         try {
 
-            return new ResponseEntity<>(dataSource.getOrderRepository()
+            return ResponseEntity.ok(dataSource.getOrderRepository()
                     .findByPrimaryKey(id)
-                    .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested order id not found: %s", id), HttpStatus.NOT_FOUND)), HttpStatus.OK);
+                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                    .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
@@ -87,15 +95,16 @@ public class Orders {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Order order) {
 
-        authToken.checkPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE);
-
-
-        order.setId(dataSource.getId("shop_order", Long.class));
+        ApiPermission.verify(ApiPermissionType.ORDERS, ApiPermissionOperation.CREATE, authToken);
 
         try {
+
+            order.setId(dataSource.getId("shop_order", Long.class));
+
             dataSource.getOrderRepository().save(order);
+
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.created(URI.create(String.format("/api/orders/%d", order.getId()))).build();
@@ -106,7 +115,7 @@ public class Orders {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Order order) {
 
-        authToken.checkPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE);
+        ApiPermission.verify(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE, authToken);
 
         try {
 
@@ -119,7 +128,7 @@ public class Orders {
                     );
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.created(URI.create(String.format("/api/orders/%d", id))).build();
@@ -130,15 +139,16 @@ public class Orders {
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
 
-        authToken.checkPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.DELETE);
-
         try {
 
-            dataSource.getOrderRepository().findAll()
+            dataSource.getOrderRepository()
+                    .findAll()
+                    .stream()
+                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
                     .forEach(dataSource.getOrderRepository()::delete);
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.noContent().build();
@@ -148,18 +158,16 @@ public class Orders {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
 
-        authToken.checkPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.DELETE);
-
         try {
 
             dataSource.getOrderRepository().delete(
                     dataSource.getOrderRepository()
                             .findByPrimaryKey(id)
-                            .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested order id not found: %s", id), HttpStatus.NOT_FOUND))
-            );
+                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
+                            .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.noContent().build();

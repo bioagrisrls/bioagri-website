@@ -25,8 +25,9 @@
 
 package it.bioagri.api.products;
 
-import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.api.ApiPermissionOperation;
+import it.bioagri.api.ApiPermissionType;
 import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
@@ -56,7 +57,7 @@ public class Products {
     @GetMapping("")
     public ResponseEntity<List<Product>> findAll() {
 
-        authToken.checkPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ);
+        authToken.hasPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ);
 
         try {
             return new ResponseEntity<>(dataSource.getProductRepository().findAll(), HttpStatus.OK);
@@ -69,7 +70,7 @@ public class Products {
     @GetMapping("/{id}")
     public ResponseEntity<Product> findById(@PathVariable Long id) {
 
-        authToken.checkPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ);
+        authToken.hasPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ);
 
         try {
 
@@ -87,7 +88,7 @@ public class Products {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Product product) {
 
-        authToken.checkPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE);
+        authToken.hasPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE);
 
 
         product.setId(dataSource.getId("shop_product", Long.class));
@@ -106,7 +107,7 @@ public class Products {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Product product) {
 
-        authToken.checkPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE);
+        authToken.hasPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE);
 
         try {
 
@@ -130,7 +131,7 @@ public class Products {
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
 
-        authToken.checkPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE);
+        authToken.hasPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE);
 
         try {
 
@@ -148,7 +149,7 @@ public class Products {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
 
-        authToken.checkPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE);
+        authToken.hasPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE);
 
         try {
 

@@ -25,8 +25,9 @@
 
 package it.bioagri.api.tickets;
 
-import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.api.ApiPermissionOperation;
+import it.bioagri.api.ApiPermissionType;
 import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
@@ -86,7 +87,7 @@ public class TicketResponses {
     @PostMapping("/{tid}/responses")
     public ResponseEntity<String> create(@PathVariable Long tid, @RequestBody TicketResponse response) {
 
-        authToken.checkPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.CREATE);
+        authToken.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.CREATE);
 
 
         response.setId(dataSource.getId("shop_ticket_response", Long.class));

@@ -25,6 +25,8 @@
 
 package it.bioagri.api;
 
+import it.bioagri.api.ApiException;
+import it.bioagri.api.ApiExceptionType;
 import org.springframework.http.HttpStatus;
 
 public class ApiPermissionException extends ApiException {

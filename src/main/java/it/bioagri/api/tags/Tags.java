@@ -25,8 +25,9 @@
 
 package it.bioagri.api.tags;
 
-import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.api.ApiPermissionOperation;
+import it.bioagri.api.ApiPermissionType;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
@@ -55,7 +56,7 @@ public class Tags {
     @GetMapping("")
     public ResponseEntity<List<Tag>> findAll() {
 
-        authToken.checkPermission(ApiPermissionType.TAGS, ApiPermissionOperation.READ);
+        authToken.hasPermission(ApiPermissionType.TAGS, ApiPermissionOperation.READ);
 
         try {
             return new ResponseEntity<>(dataSource.getTagRepository().findAll(), HttpStatus.OK);
@@ -68,7 +69,7 @@ public class Tags {
     @GetMapping("/{id}")
     public ResponseEntity<Tag> findById(@PathVariable Long id) {
 
-        authToken.checkPermission(ApiPermissionType.TAGS, ApiPermissionOperation.READ);
+        authToken.hasPermission(ApiPermissionType.TAGS, ApiPermissionOperation.READ);
 
         try {
 
@@ -86,7 +87,7 @@ public class Tags {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Tag tag) {
 
-        authToken.checkPermission(ApiPermissionType.TAGS, ApiPermissionOperation.UPDATE);
+        authToken.hasPermission(ApiPermissionType.TAGS, ApiPermissionOperation.UPDATE);
 
 
         tag.setId(dataSource.getId("shop_tag", Long.class));
@@ -105,7 +106,7 @@ public class Tags {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Tag tag) {
 
-        authToken.checkPermission(ApiPermissionType.TAGS, ApiPermissionOperation.UPDATE);
+        authToken.hasPermission(ApiPermissionType.TAGS, ApiPermissionOperation.UPDATE);
 
         try {
 
@@ -129,7 +130,7 @@ public class Tags {
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
 
-        authToken.checkPermission(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE);
+        authToken.hasPermission(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE);
 
         try {
 
@@ -147,7 +148,7 @@ public class Tags {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
 
-        authToken.checkPermission(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE);
+        authToken.hasPermission(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE);
 
         try {
 

@@ -27,6 +27,9 @@ package it.bioagri.api.categories;
 
 import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.api.ApiPermission;
+import it.bioagri.api.ApiPermissionOperation;
+import it.bioagri.api.ApiPermissionType;
 import it.bioagri.models.Category;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
@@ -56,12 +59,12 @@ public class Categories {
     @GetMapping("")
     public ResponseEntity<List<Category>> findAll() {
 
-        authToken.checkPermission(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ);
+        ApiPermission.verify(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
 
         try {
-            return new ResponseEntity<>(dataSource.getCategoryRepository().findAll(), HttpStatus.OK);
+            return ResponseEntity.ok(dataSource.getCategoryRepository().findAll());
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
@@ -70,16 +73,16 @@ public class Categories {
     @GetMapping("/{id}")
     public ResponseEntity<Category> findById(@PathVariable Long id) {
 
-        authToken.checkPermission(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ);
+        ApiPermission.verify(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
 
         try {
 
-            return new ResponseEntity<>(dataSource.getCategoryRepository()
+            return ResponseEntity.ok(dataSource.getCategoryRepository()
                     .findByPrimaryKey(id)
-                    .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested category id not found: %s", id), HttpStatus.NOT_FOUND)), HttpStatus.OK);
+                    .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
@@ -88,15 +91,16 @@ public class Categories {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Category category) {
 
-        authToken.checkPermission(ApiPermissionType.CATEGORIES, ApiPermissionOperation.CREATE);
-
-
-        category.setId(dataSource.getId("shop_category", Long.class));
+        ApiPermission.verify(ApiPermissionType.CATEGORIES, ApiPermissionOperation.CREATE, authToken);
 
         try {
+
+            category.setId(dataSource.getId("shop_category", Long.class));
+
             dataSource.getCategoryRepository().save(category);
+
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.created(URI.create(String.format("/api/categories/%d", category.getId()))).build();
@@ -107,7 +111,7 @@ public class Categories {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Category category) {
 
-        authToken.checkPermission(ApiPermissionType.CATEGORIES, ApiPermissionOperation.UPDATE);
+        ApiPermission.verify(ApiPermissionType.CATEGORIES, ApiPermissionOperation.UPDATE, authToken);
 
         try {
 
@@ -120,7 +124,7 @@ public class Categories {
                     );
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.created(URI.create(String.format("/api/categories/%d", id))).build();
@@ -131,7 +135,7 @@ public class Categories {
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
 
-        authToken.checkPermission(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE);
+        ApiPermission.verify(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE, authToken);
 
         try {
 
@@ -139,7 +143,7 @@ public class Categories {
                     .forEach(dataSource.getCategoryRepository()::delete);
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.noContent().build();
@@ -149,17 +153,17 @@ public class Categories {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
 
-        authToken.checkPermission(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE);
+        ApiPermission.verify(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE, authToken);
 
         try {
+
             dataSource.getCategoryRepository().delete(
                     dataSource.getCategoryRepository()
                             .findByPrimaryKey(id)
-                            .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested category id not found: %s", id), HttpStatus.NOT_FOUND))
-            );
+                            .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.noContent().build();

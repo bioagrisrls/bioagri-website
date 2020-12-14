@@ -25,13 +25,13 @@
 
 package it.bioagri;
 
-import it.bioagri.api.auth.AuthExpiredException;
-import it.bioagri.api.auth.AuthRequiredException;
+import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -57,15 +57,21 @@ public class WebConfig implements WebMvcConfigurer {
         public boolean preHandle(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) throws Exception {
 
             if(request.getHeader("X-Auth-Token") == null)
-                throw new AuthRequiredException("missing auth token");
+                throw new ApiResponseStatus(401);
 
             if(!request.getHeader("X-Auth-Token").equals(authToken.getToken()))
-                throw new AuthRequiredException("wrong auth token");
-
-            if(authToken.isExpired())
-                throw new AuthExpiredException(authToken);
+                throw new ApiResponseStatus(403);
 
             return true;
+
+        }
+
+
+        @Override
+        public void postHandle(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler, ModelAndView modelAndView) throws Exception {
+
+            if(authToken.isExpired())
+                response.addHeader("X-Auth-Token", authToken.generateToken().getToken());
 
         }
 

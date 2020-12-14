@@ -23,42 +23,40 @@
  *
  */
 
-package it.bioagri.api.auth;
+package it.bioagri.api;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import it.bioagri.api.ApiException;
-import it.bioagri.api.ApiExceptionType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-public class AuthExpiredException extends ApiException {
+public class ApiResponseStatus extends RuntimeException {
 
-    private final AuthToken authToken;
+    private final HttpStatus status;
 
-    public AuthExpiredException(AuthToken authToken) {
-        super(ApiExceptionType.ERROR_AUTH_TOKEN_EXPIRED, "auth token has expired", HttpStatus.I_AM_A_TEAPOT);
-        this.authToken = authToken.generateToken();
+    public ApiResponseStatus(HttpStatus status) {
+        this.status = status;
     }
 
-    @JsonProperty("token")
-    public AuthToken getAuthToken() {
-        return authToken;
+    public ApiResponseStatus(int status) {
+        this.status = HttpStatus.resolve(status);
+    }
+
+    public HttpStatus getStatus() {
+        return status;
     }
 
 
     @ControllerAdvice
-    static class AuthExpiredExceptionAdvice {
+    static class ApiExceptionAdvice {
 
-        @ExceptionHandler(AuthExpiredException.class)
+        @ExceptionHandler(ApiResponseStatus.class)
         @ResponseBody
-        public ResponseEntity<AuthExpiredException> handle(AuthExpiredException e) {
-            return new ResponseEntity<>(e, e.getStatus());
+        public ResponseEntity<String> handle(ApiResponseStatus e) {
+            return ResponseEntity.status(e.getStatus()).build();
         }
 
     }
-
 
 }

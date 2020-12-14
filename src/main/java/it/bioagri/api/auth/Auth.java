@@ -28,6 +28,7 @@ package it.bioagri.api.auth;
 import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,15 +56,14 @@ public final class Auth {
     public ResponseEntity<AuthToken> authenticate(HttpSession session, @RequestBody AuthLogin authLogin) {
 
         if(authLogin.getUsername().isEmpty())
-            throw new AuthFailedException("username can not be null or empty");
+            return ResponseEntity.badRequest().build();
 
         if(authLogin.getPassword().isEmpty())
-            throw new AuthFailedException("password can not be null or empty");
-
+            return ResponseEntity.badRequest().build();
 
         User user;
         if((user = dataSource.authenticate(authLogin)) == null)
-            throw new AuthFailedException("username/password wrong");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 
 
         return ResponseEntity.ok(authToken.generateToken(user.getId(), user.getRole()));

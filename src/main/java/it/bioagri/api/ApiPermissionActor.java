@@ -25,10 +25,8 @@
 
 package it.bioagri.api;
 
-import org.springframework.http.HttpStatus;
-
-public class ApiDatabaseException extends ApiException {
-    public ApiDatabaseException(String reason, String state) {
-        super(ApiExceptionType.ERROR_DATABASE, String.format("%s: %s", reason, state), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+public enum ApiPermissionActor {
+    ADMIN,
+    OWNER,
+    ALL
 }

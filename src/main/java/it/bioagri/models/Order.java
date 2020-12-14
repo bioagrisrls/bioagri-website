@@ -26,10 +26,12 @@
 package it.bioagri.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.bioagri.persistence.DataSource;
 
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public final class Order {
 
@@ -37,14 +39,19 @@ public final class Order {
     private final OrderStatus status;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
+    private final Long userId;
     private final Map<Product, Integer> products;
     private final List<Transaction> transactions;
 
-    public Order(long id, OrderStatus status, Timestamp createdAt, Timestamp updatedAt, Map<Product, Integer> products, List<Transaction> transactions) {
+    private User user;
+
+
+    public Order(long id, OrderStatus status, Timestamp createdAt, Timestamp updatedAt, Long userId, Map<Product, Integer> products, List<Transaction> transactions) {
         this.id = id;
         this.status = status;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.userId = userId;
         this.products = products;
         this.transactions = transactions;
     }
@@ -54,6 +61,7 @@ public final class Order {
         this.status = null;
         this.createdAt = null;
         this.updatedAt = null;
+        this.userId = null;
         this.products = null;
         this.transactions = null;
     }
@@ -78,6 +86,23 @@ public final class Order {
         return updatedAt;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+
+    @JsonIgnore
+    public Optional<User> getUser(DataSource dataSource) {
+
+        if(user == null) {
+            user = dataSource.getUserRepository()
+                    .findByPrimaryKey(userId)
+                    .orElse(null);
+        }
+
+        return Optional.ofNullable(user);
+
+    }
 
     @JsonIgnore
     public Map<Product, Integer> getProducts() {

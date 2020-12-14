@@ -27,6 +27,9 @@ package it.bioagri.api.feedbacks;
 
 import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.api.ApiPermission;
+import it.bioagri.api.ApiPermissionOperation;
+import it.bioagri.api.ApiPermissionType;
 import it.bioagri.models.Feedback;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
@@ -37,6 +40,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/feedbacks")
@@ -55,45 +59,52 @@ public class Feedbacks {
     @GetMapping("")
     public ResponseEntity<List<Feedback>> findAll() {
 
-        authToken.checkPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ);
-
         try {
-            return new ResponseEntity<>(dataSource.getFeedbackRepository().findAll(), HttpStatus.OK);
+
+            return ResponseEntity.ok(
+                    dataSource.getFeedbackRepository()
+                    .findAll()
+                    .stream()
+                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                    .collect(Collectors.toList()));
+
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Feedback> findById(@PathVariable Long id) {
 
-        authToken.checkPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ);
-
         try {
 
-            return new ResponseEntity<>(dataSource.getFeedbackRepository()
+            return ResponseEntity.ok(dataSource.getFeedbackRepository()
                     .findByPrimaryKey(id)
-                    .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested feedback id not found: %s", id), HttpStatus.NOT_FOUND)), HttpStatus.OK);
+                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                    .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
 
+
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Feedback feedback) {
 
-        authToken.checkPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.CREATE);
-
-
-        feedback.setId(dataSource.getId("shop_feedback", Long.class));
+        ApiPermission.verify(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.CREATE, authToken, feedback.getUserId());
 
         try {
+
+            feedback.setId(dataSource.getId("shop_feedback", Long.class));
+
             dataSource.getFeedbackRepository().save(feedback);
+
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.created(URI.create(String.format("/api/feedbacks/%d", feedback.getId()))).build();
@@ -104,7 +115,7 @@ public class Feedbacks {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Feedback feedback) {
 
-        authToken.checkPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.UPDATE);
+        ApiPermission.verify(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.UPDATE, authToken, feedback.getUserId());
 
         try {
 
@@ -117,7 +128,7 @@ public class Feedbacks {
                     );
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.created(URI.create(String.format("/api/feedbacks/%d", id))).build();
@@ -128,35 +139,36 @@ public class Feedbacks {
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
 
-        authToken.checkPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.DELETE);
-
         try {
 
-            dataSource.getFeedbackRepository().findAll()
+            dataSource.getFeedbackRepository()
+                    .findAll()
+                    .stream()
+                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
                     .forEach(dataSource.getFeedbackRepository()::delete);
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.noContent().build();
 
     }
 
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
 
-        authToken.checkPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.DELETE);
-
         try {
+
             dataSource.getFeedbackRepository().delete(
                     dataSource.getFeedbackRepository()
                             .findByPrimaryKey(id)
-                            .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested feedback id not found: %s", id), HttpStatus.NOT_FOUND))
-            );
+                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
+                            .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.noContent().build();

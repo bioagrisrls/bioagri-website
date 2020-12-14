@@ -25,8 +25,9 @@
 
 package it.bioagri.api.users;
 
-import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.api.ApiPermissionOperation;
+import it.bioagri.api.ApiPermissionType;
 import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
@@ -60,7 +61,7 @@ public class WishList {
         try {
 
             if(!authToken.getUserId().equals(id))
-                authToken.checkPermission(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ);
+                authToken.hasPermission(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ);
 
             return new ResponseEntity<>(dataSource.getUserRepository()
                     .findByPrimaryKey(id)

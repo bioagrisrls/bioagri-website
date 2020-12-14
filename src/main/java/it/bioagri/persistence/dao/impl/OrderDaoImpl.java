@@ -54,6 +54,7 @@ public class OrderDaoImpl extends OrderDao {
                         OrderStatus.values()[r.getShort("status")],
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
+                        r.getLong("user_id"),
                         new HashMap<>(),
                         new ArrayList<>()
                 )))
@@ -82,6 +83,7 @@ public class OrderDaoImpl extends OrderDao {
                         OrderStatus.values()[r.getShort("status")],
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
+                        r.getLong("user_id"),
                         new HashMap<>(),
                         new ArrayList<>()
                 ))
