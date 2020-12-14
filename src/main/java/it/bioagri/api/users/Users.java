@@ -25,40 +25,54 @@
 
 package it.bioagri.api.users;
 
-import it.bioagri.api.ApiDatabaseException;
-import it.bioagri.api.ApiException;
-import it.bioagri.api.ApiExceptionType;
+
+import it.bioagri.api.ApiPermission;
+import it.bioagri.api.ApiPermissionOperation;
+import it.bioagri.api.ApiPermissionType;
+import it.bioagri.api.ApiResponseStatus;
+import it.bioagri.api.auth.AuthToken;
+import it.bioagri.models.Order;
 import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
 public class Users {
 
+
+    private final AuthToken authToken;
     private final DataSource dataSource;
 
     @Autowired
-    public Users(DataSource dataSource) {
+    public Users(AuthToken authToken, DataSource dataSource) {
+        this.authToken = authToken;
         this.dataSource = dataSource;
     }
+
 
     @GetMapping("")
     public ResponseEntity<List<User>> findAll() {
 
         try {
-            return new ResponseEntity<>(dataSource.getUserRepository().findAll(), HttpStatus.OK);
+
+            return ResponseEntity.ok(
+                    dataSource.getUserRepository()
+                            .findAll()
+                            .stream()
+                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.READ, authToken, i.getId()))
+                            .collect(Collectors.toList()));
+
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
@@ -68,13 +82,97 @@ public class Users {
 
         try {
 
-            return new ResponseEntity<>(dataSource.getUserRepository()
+            return ResponseEntity.ok(dataSource.getUserRepository()
                     .findByPrimaryKey(id)
-                    .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested user id not found: %s", id), HttpStatus.NOT_FOUND)), HttpStatus.OK);
+                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.READ, authToken, i.getId()))
+                    .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+
+    }
+
+
+    @PostMapping("")
+    public ResponseEntity<String> create(@RequestBody User user) {
+
+        ApiPermission.verify(ApiPermissionType.USERS, ApiPermissionOperation.CREATE, authToken, user.getId());
+
+        try {
+
+            user.setId(dataSource.getId("shop_user", Long.class));
+
+            dataSource.getUserRepository().save(user);
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.created(URI.create(String.format("/api/users/%d", user.getId()))).build();
+
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody User user) {
+
+        ApiPermission.verify(ApiPermissionType.USERS, ApiPermissionOperation.UPDATE, authToken, user.getId());
+
+        try {
+
+            user.setId(dataSource.getId("shop_user", Long.class));
+
+            dataSource.getUserRepository().findByPrimaryKey(id)
+                    .ifPresentOrElse(
+                            (r) -> dataSource.getUserRepository().update(r, user),
+                            ( ) -> dataSource.getUserRepository().save(user)
+                    );
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.created(URI.create(String.format("/api/users/%d", id))).build();
+
+    }
+
+
+    @DeleteMapping("")
+    public ResponseEntity<String> deleteAll() {
+
+        try {
+
+            dataSource.getUserRepository()
+                    .findAll()
+                    .stream()
+                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.DELETE, authToken, i.getId()))
+                    .forEach(dataSource.getUserRepository()::delete);
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.noContent().build();
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+
+        try {
+
+            dataSource.getUserRepository().delete(
+                    dataSource.getUserRepository()
+                            .findByPrimaryKey(id)
+                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.DELETE, authToken, i.getId()))
+                            .orElseThrow(() -> new ApiResponseStatus(404)));
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.noContent().build();
 
     }
 

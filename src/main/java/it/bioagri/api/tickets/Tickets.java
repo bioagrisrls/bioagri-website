@@ -25,31 +25,34 @@
 
 package it.bioagri.api.tickets;
 
-import it.bioagri.api.ApiDatabaseException;
-import it.bioagri.api.ApiException;
-import it.bioagri.api.ApiExceptionType;
+
+import it.bioagri.api.ApiPermission;
+import it.bioagri.api.ApiPermissionOperation;
+import it.bioagri.api.ApiPermissionType;
+import it.bioagri.api.ApiResponseStatus;
+import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Ticket;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/tickets")
 public class Tickets {
 
-
+    private final AuthToken authToken;
     private final DataSource dataSource;
 
     @Autowired
-    public Tickets(DataSource dataSource) {
+    public Tickets(AuthToken authToken, DataSource dataSource) {
+        this.authToken = authToken;
         this.dataSource = dataSource;
     }
 
@@ -58,9 +61,16 @@ public class Tickets {
     public ResponseEntity<List<Ticket>> findAll() {
 
         try {
-            return new ResponseEntity<>(dataSource.getTicketRepository().findAll(), HttpStatus.OK);
+
+            return ResponseEntity.ok(
+                    dataSource.getTicketRepository()
+                            .findAll()
+                            .stream()
+                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKETS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                            .collect(Collectors.toList()));
+
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
@@ -70,16 +80,97 @@ public class Tickets {
 
         try {
 
-            return new ResponseEntity<>(dataSource.getTicketRepository()
+            return ResponseEntity.ok(dataSource.getTicketRepository()
                     .findByPrimaryKey(id)
-                    .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested ticket id not found: %s", id), HttpStatus.NOT_FOUND)), HttpStatus.OK);
+                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKETS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                    .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
 
+    @PostMapping("")
+    public ResponseEntity<String> create(@RequestBody Ticket ticket) {
 
+        ApiPermission.verify(ApiPermissionType.TICKETS, ApiPermissionOperation.CREATE, authToken, ticket.getUserId());
+
+        try {
+
+            ticket.setId(dataSource.getId("shop_ticket", Long.class));
+
+            dataSource.getTicketRepository().save(ticket);
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.created(URI.create(String.format("/api/tickets/%d", ticket.getId()))).build();
+
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Ticket ticket) {
+
+        ApiPermission.verify(ApiPermissionType.TICKETS, ApiPermissionOperation.UPDATE, authToken, ticket.getUserId());
+
+        try {
+
+            ticket.setId(dataSource.getId("shop_ticket", Long.class));
+
+            dataSource.getTicketRepository().findByPrimaryKey(id)
+                    .ifPresentOrElse(
+                            (r) -> dataSource.getTicketRepository().update(r, ticket),
+                            ( ) -> dataSource.getTicketRepository().save(ticket)
+                    );
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.created(URI.create(String.format("/api/tickets/%d", id))).build();
+
+    }
+
+
+    @DeleteMapping("")
+    public ResponseEntity<String> deleteAll() {
+
+        try {
+
+            dataSource.getTicketRepository()
+                    .findAll()
+                    .stream()
+                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKETS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
+                    .forEach(dataSource.getTicketRepository()::delete);
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.noContent().build();
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+
+        try {
+
+            dataSource.getTicketRepository().delete(
+                    dataSource.getTicketRepository()
+                            .findByPrimaryKey(id)
+                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKETS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
+                            .orElseThrow(() -> new ApiResponseStatus(404)));
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.noContent().build();
+
+    }
 
 }

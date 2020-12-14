@@ -25,8 +25,10 @@
 
 package it.bioagri.api.products;
 
+import it.bioagri.api.ApiPermission;
 import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionType;
+import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
@@ -57,12 +59,12 @@ public class Products {
     @GetMapping("")
     public ResponseEntity<List<Product>> findAll() {
 
-        authToken.hasPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ);
+        ApiPermission.verify(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
 
         try {
-            return new ResponseEntity<>(dataSource.getProductRepository().findAll(), HttpStatus.OK);
+            return ResponseEntity.ok(dataSource.getProductRepository().findAll());
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
@@ -70,16 +72,16 @@ public class Products {
     @GetMapping("/{id}")
     public ResponseEntity<Product> findById(@PathVariable Long id) {
 
-        authToken.hasPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ);
+        ApiPermission.verify(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
 
         try {
 
-            return new ResponseEntity<>(dataSource.getProductRepository()
+            return ResponseEntity.ok(dataSource.getProductRepository()
                     .findByPrimaryKey(id)
-                    .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested product id not found: %s", id), HttpStatus.NOT_FOUND)), HttpStatus.OK);
+                    .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
@@ -88,15 +90,16 @@ public class Products {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Product product) {
 
-        authToken.hasPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE);
-
-
-        product.setId(dataSource.getId("shop_product", Long.class));
+        ApiPermission.verify(ApiPermissionType.PRODUCTS, ApiPermissionOperation.CREATE, authToken);
 
         try {
+
+            product.setId(dataSource.getId("shop_product", Long.class));
+
             dataSource.getProductRepository().save(product);
+
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.created(URI.create(String.format("/api/products/%d", product.getId()))).build();
@@ -107,7 +110,7 @@ public class Products {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Product product) {
 
-        authToken.hasPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE);
+        ApiPermission.verify(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE, authToken);
 
         try {
 
@@ -120,7 +123,7 @@ public class Products {
                     );
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.created(URI.create(String.format("/api/products/%d", id))).build();
@@ -131,7 +134,7 @@ public class Products {
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
 
-        authToken.hasPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE);
+        ApiPermission.verify(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE, authToken);
 
         try {
 
@@ -139,7 +142,7 @@ public class Products {
                     .forEach(dataSource.getOrderRepository()::delete);
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.noContent().build();
@@ -149,18 +152,17 @@ public class Products {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
 
-        authToken.hasPermission(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE);
+        ApiPermission.verify(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE, authToken);
 
         try {
 
             dataSource.getProductRepository().delete(
                     dataSource.getProductRepository()
                             .findByPrimaryKey(id)
-                            .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested product id not found: %s", id), HttpStatus.NOT_FOUND))
-            );
+                            .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.noContent().build();

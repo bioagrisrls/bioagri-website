@@ -25,8 +25,10 @@
 
 package it.bioagri.api.tags;
 
+import it.bioagri.api.ApiPermission;
 import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionType;
+import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
@@ -56,12 +58,12 @@ public class Tags {
     @GetMapping("")
     public ResponseEntity<List<Tag>> findAll() {
 
-        authToken.hasPermission(ApiPermissionType.TAGS, ApiPermissionOperation.READ);
+        ApiPermission.verify(ApiPermissionType.TAGS, ApiPermissionOperation.READ, authToken);
 
         try {
             return new ResponseEntity<>(dataSource.getTagRepository().findAll(), HttpStatus.OK);
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
@@ -69,16 +71,16 @@ public class Tags {
     @GetMapping("/{id}")
     public ResponseEntity<Tag> findById(@PathVariable Long id) {
 
-        authToken.hasPermission(ApiPermissionType.TAGS, ApiPermissionOperation.READ);
+        ApiPermission.verify(ApiPermissionType.TAGS, ApiPermissionOperation.READ, authToken);
 
         try {
 
-            return new ResponseEntity<>(dataSource.getTagRepository()
+            return ResponseEntity.ok(dataSource.getTagRepository()
                     .findByPrimaryKey(id)
-                    .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested tag id not found: %s", id), HttpStatus.NOT_FOUND)), HttpStatus.OK);
+                    .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
@@ -87,7 +89,7 @@ public class Tags {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Tag tag) {
 
-        authToken.hasPermission(ApiPermissionType.TAGS, ApiPermissionOperation.UPDATE);
+        ApiPermission.verify(ApiPermissionType.TAGS, ApiPermissionOperation.CREATE, authToken);
 
 
         tag.setId(dataSource.getId("shop_tag", Long.class));
@@ -95,7 +97,7 @@ public class Tags {
         try {
             dataSource.getTagRepository().save(tag);
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.created(URI.create(String.format("/api/tags/%d", tag.getId()))).build();
@@ -106,7 +108,7 @@ public class Tags {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Tag tag) {
 
-        authToken.hasPermission(ApiPermissionType.TAGS, ApiPermissionOperation.UPDATE);
+        ApiPermission.verify(ApiPermissionType.TAGS, ApiPermissionOperation.UPDATE, authToken);
 
         try {
 
@@ -119,7 +121,7 @@ public class Tags {
                     );
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.created(URI.create(String.format("/api/tags/%d", id))).build();
@@ -130,7 +132,7 @@ public class Tags {
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
 
-        authToken.hasPermission(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE);
+        ApiPermission.verify(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE, authToken);
 
         try {
 
@@ -138,7 +140,7 @@ public class Tags {
                     .forEach(dataSource.getTagRepository()::delete);
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.noContent().build();
@@ -148,18 +150,17 @@ public class Tags {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
 
-        authToken.hasPermission(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE);
+        ApiPermission.verify(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE, authToken);
 
         try {
 
             dataSource.getTagRepository().delete(
                     dataSource.getTagRepository()
                             .findByPrimaryKey(id)
-                            .orElseThrow(() -> new ApiException(ApiExceptionType.ERROR_RESOURCE_NOT_FOUND, String.format("requested tag id not found: %s", id), HttpStatus.NOT_FOUND))
-            );
+                            .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
-            throw new ApiDatabaseException(e.getMessage(), e.getException().getSQLState());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
         return ResponseEntity.noContent().build();

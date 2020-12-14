@@ -23,14 +23,14 @@
  *
  */
 
-package it.bioagri.api.tickets;
+package it.bioagri.api.orders;
 
 import it.bioagri.api.ApiPermission;
 import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionType;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
-import it.bioagri.models.TicketResponse;
+import it.bioagri.models.Transaction;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,30 +43,30 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/tickets")
-public class TicketResponses {
+@RequestMapping("/api/orders")
+public class Transactions {
 
 
     private final AuthToken authToken;
     private final DataSource dataSource;
 
     @Autowired
-    public TicketResponses(AuthToken authToken, DataSource dataSource) {
+    public Transactions(AuthToken authToken, DataSource dataSource) {
         this.authToken = authToken;
         this.dataSource = dataSource;
     }
 
 
-    @GetMapping("/{sid}/responses")
-    public ResponseEntity<List<TicketResponse>> findAll(@PathVariable Long sid) {
+    @GetMapping("/{sid}/transactions")
+    public ResponseEntity<List<Transaction>> findAll(@PathVariable Long sid) {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getTicketResponseRepository()
+            return ResponseEntity.ok(dataSource.getTransactionRepository()
                     .findAll()
                     .stream()
-                    .filter(i -> i.getTicketId().equals(sid))
-                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.READ, authToken, i.getTicket(dataSource)
+                    .filter(i -> i.getOrderId().equals(sid))
+                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.READ, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
                     .collect(Collectors.toList()));
@@ -77,15 +77,15 @@ public class TicketResponses {
 
     }
 
-    @GetMapping("/{sid}/responses/{id}")
-    public ResponseEntity<TicketResponse> findById(@PathVariable Long sid, @PathVariable Long id) {
+    @GetMapping("/{sid}/transactions/{id}")
+    public ResponseEntity<Transaction> findById(@PathVariable Long sid, @PathVariable Long id) {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getTicketResponseRepository()
+            return ResponseEntity.ok(dataSource.getTransactionRepository()
                     .findByPrimaryKey(id)
-                    .filter(i -> i.getTicketId().equals(sid))
-                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.READ, authToken, i.getTicket(dataSource)
+                    .filter(i -> i.getOrderId().equals(sid))
+                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.READ, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
                     .orElseThrow(() -> new ApiResponseStatus(404)));
@@ -97,67 +97,67 @@ public class TicketResponses {
     }
 
 
-    @PostMapping("/{sid}/responses")
-    public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody TicketResponse response) {
+    @PostMapping("/{sid}/transactions")
+    public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody Transaction transaction) {
 
-        ApiPermission.verify(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.CREATE, authToken, response.getTicket(dataSource)
+        ApiPermission.verify(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.CREATE, authToken, transaction.getOrder(dataSource)
                 .orElseThrow(() -> new ApiResponseStatus(404))
                 .getUserId());
 
         try {
 
-            response.setId(dataSource.getId("shop_ticket_response", Long.class));
+            transaction.setId(dataSource.getId("shop_transaction", Long.class));
 
-            dataSource.getTicketResponseRepository().save(response);
+            dataSource.getTransactionRepository().save(transaction);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/tickets/%d/responses/%d", sid, response.getId()))).build();
+        return ResponseEntity.created(URI.create(String.format("/api/orders/%d/transactions/%d", sid, transaction.getId()))).build();
 
     }
 
 
-    @PutMapping("/{sid}/responses/{id}")
-    public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id, @RequestBody TicketResponse response) {
+    @PutMapping("/{sid}/transactions/{id}")
+    public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id, @RequestBody Transaction transaction) {
 
-        ApiPermission.verify(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.UPDATE, authToken, response.getTicket(dataSource)
+        ApiPermission.verify(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.UPDATE, authToken, transaction.getOrder(dataSource)
                 .orElseThrow(() -> new ApiResponseStatus(404))
                 .getUserId());
 
         try {
 
-            response.setId(dataSource.getId("shop_ticket_response", Long.class));
+            transaction.setId(dataSource.getId("shop_transaction", Long.class));
 
-            dataSource.getTicketResponseRepository().findByPrimaryKey(id)
+            dataSource.getTransactionRepository().findByPrimaryKey(id)
                     .ifPresentOrElse(
-                            (r) -> dataSource.getTicketResponseRepository().update(r, response),
-                            ( ) -> dataSource.getTicketResponseRepository().save(response)
+                            (r) -> dataSource.getTransactionRepository().update(r, transaction),
+                            ( ) -> dataSource.getTransactionRepository().save(transaction)
                     );
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/tickets/%d/responses/%d", sid, response.getId()))).build();
+        return ResponseEntity.created(URI.create(String.format("/api/orders/%d/transactions/%d", sid, transaction.getId()))).build();
 
     }
 
 
-    @DeleteMapping("/{sid}/responses")
+    @DeleteMapping("/{sid}/transactions")
     public ResponseEntity<String> deleteAll(@PathVariable Long sid) {
 
         try {
 
-            dataSource.getTicketResponseRepository()
+            dataSource.getTransactionRepository()
                     .findAll()
                     .stream()
-                    .filter(i -> i.getTicketId().equals(sid))
-                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.DELETE, authToken, i.getTicket(dataSource)
+                    .filter(i -> i.getOrderId().equals(sid))
+                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.DELETE, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
-                    .forEach(dataSource.getTicketResponseRepository()::delete);
+                    .forEach(dataSource.getTransactionRepository()::delete);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -168,16 +168,16 @@ public class TicketResponses {
     }
 
 
-    @DeleteMapping("/{sid}/responses/{id}")
+    @DeleteMapping("/{sid}/transactions/{id}")
     public ResponseEntity<String> delete(@PathVariable Long sid, @PathVariable Long id) {
 
         try {
 
-            dataSource.getTicketResponseRepository().delete(
-                    dataSource.getTicketResponseRepository()
+            dataSource.getTransactionRepository().delete(
+                    dataSource.getTransactionRepository()
                             .findByPrimaryKey(id)
-                            .filter(i -> i.getTicketId().equals(sid))
-                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.DELETE, authToken, i.getTicket(dataSource)
+                            .filter(i -> i.getOrderId().equals(sid))
+                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.DELETE, authToken, i.getOrder(dataSource)
                                     .orElseThrow(() -> new ApiResponseStatus(502))
                                     .getUserId()))
                             .orElseThrow(() -> new ApiResponseStatus(404)));
@@ -189,6 +189,5 @@ public class TicketResponses {
         return ResponseEntity.noContent().build();
 
     }
-
 
 }

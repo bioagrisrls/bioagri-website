@@ -60,14 +60,14 @@ public class ApiPermission {
                 new ApiPermission(CATEGORIES, DELETE, ADMIN),
 
                 new ApiPermission(FEEDBACKS, CREATE, ADMIN, USER),
-                new ApiPermission(FEEDBACKS, READ,   ADMIN, USER),
+                new ApiPermission(FEEDBACKS, READ,   ADMIN, USER, ALL),
                 new ApiPermission(FEEDBACKS, UPDATE, ADMIN, USER),
                 new ApiPermission(FEEDBACKS, DELETE, ADMIN, USER),
 
-                new ApiPermission(ORDERS, CREATE, ADMIN),
-                new ApiPermission(ORDERS, READ,   ADMIN, ALL),
-                new ApiPermission(ORDERS, UPDATE, ADMIN),
-                new ApiPermission(ORDERS, DELETE, ADMIN),
+                new ApiPermission(ORDERS, CREATE, ADMIN, USER),
+                new ApiPermission(ORDERS, READ,   ADMIN, USER),
+                new ApiPermission(ORDERS, UPDATE, ADMIN, USER),
+                new ApiPermission(ORDERS, DELETE, ADMIN, USER),
 
                 new ApiPermission(PRODUCTS, CREATE, ADMIN),
                 new ApiPermission(PRODUCTS, READ,   ADMIN, ALL),

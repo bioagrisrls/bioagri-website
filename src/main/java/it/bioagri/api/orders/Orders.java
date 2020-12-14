@@ -95,7 +95,7 @@ public class Orders {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Order order) {
 
-        ApiPermission.verify(ApiPermissionType.ORDERS, ApiPermissionOperation.CREATE, authToken);
+        ApiPermission.verify(ApiPermissionType.ORDERS, ApiPermissionOperation.CREATE, authToken, order.getUserId());
 
         try {
 
@@ -115,7 +115,7 @@ public class Orders {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Order order) {
 
-        ApiPermission.verify(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE, authToken);
+        ApiPermission.verify(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE, authToken, order.getUserId());
 
         try {
 
