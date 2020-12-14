@@ -104,16 +104,52 @@ public class TicketDaoImpl extends TicketDao {
     @Override
     public void save(Ticket value) {
 
+        getDataSource().update(
+                """
+                    INSERT INTO shop_ticket (id, title, description, status, user_id, created_at, updated_at) 
+                                     VALUES (?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    s -> {
+                        s.setLong(1, value.getId());
+                        s.setString(2, value.getTitle());
+                        s.setString(3, value.getDescription());
+                        s.setShort(4, (short) value.getStatus().ordinal());
+                        s.setLong(5, value.getUserId());
+                        s.setTimestamp(6, value.getCreatedAt());
+                        s.setTimestamp(7, value.getUpdatedAt());
+                    }, false);
+
     }
 
     @Override
     public void update(Ticket oldValue, Ticket newValue) {
+
+        getDataSource().update(
+                """
+                    UPDATE shop_ticket 
+                       SET title = ?, description = ?, status = ?, user_id = ?, created_at = ?, updated_at = ?
+                     WHERE id = ?
+                    """,
+                    s -> {
+                        s.setString(1, newValue.getTitle());
+                        s.setString(2,newValue.getDescription());
+                        s.setShort(3, (short) newValue.getStatus().ordinal());
+                        s.setLong(4, newValue.getUserId());
+                        s.setTimestamp(5, newValue.getCreatedAt());
+                        s.setTimestamp(6, newValue.getUpdatedAt());
+                        s.setLong(7, oldValue.getId());
+                    }, false);
 
     }
 
 
     @Override
     public void delete(Ticket value) {
+
+        getDataSource().update("DELETE FROM shop_ticket WHERE id = ?",
+                s -> {
+                    s.setLong(1, value.getId());
+                }, false);
 
     }
 
