@@ -37,7 +37,7 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
         cache: 'no-cache',
         credentials: 'include',
         redirect: 'follow',
-        referrerPolicy: "no-referrer",
+        referrerPolicy: 'no-referrer',
 
         headers: {
             'X-Auth-Token': Cookies.get('X-Auth-Token'),
@@ -53,7 +53,7 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
             Cookies.set('X-Auth-Token', response.headers.get('X-Auth-Token'));
 
         if(response.status !== 200)
-            throw new Error(`failed: ${response.statusText}`);
+            throw new Error(`failed: ${response.status}`);
 
         if(returnJson)
             return response.json();

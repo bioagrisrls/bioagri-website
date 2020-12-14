@@ -35,21 +35,40 @@
         UserId: <span id="userId">Loading...</span><br>
         UserRole: <span id="userRole">Loading...</span><br>
         Categories: <span id="categoriesCount"></span><br>
+        <div id="component"></div>
     </body>
 </html>
 
 <script type="module">
 
     authenticate('user@test.com', '123').then(response => {
+
         document.getElementById('userId').innerHTML = response.userId;
         document.getElementById('userRole').innerHTML = response.userRole;
+
+    }).then(response => {
+
+        api('/categories').then(response => {
+            document.getElementById('categoriesCount').innerHTML = response.length;
+        }).catch(reason => {
+            console.error(reason);
+        })
+
     });
 
-    api('/categories').then(response => {
-        document.getElementById('categoriesCount').innerHTML = response.length;
-    }).catch(reason => {
-        document.getElementById('categoriesCount').innerHTML = reason;
-    })
+    render('#component', {
 
+        template: `
+            <div>
+                <h1>Component Sample</h1>
+                <h4>{{ message }}</h4>
+            </div>
+        `,
+
+        data: {
+            message: "Hello World!"
+        }
+
+    });
 
 </script>
