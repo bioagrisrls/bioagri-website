@@ -132,6 +132,7 @@ public class AuthTest {
     @Test
     public void disconnectWithNoToken() {
 
+        RestAssured.sessionId = UUID.randomUUID().toString();
         RestAssured.given()
                 .spec(getSpecs())
                 .get("/auth/disconnect")
