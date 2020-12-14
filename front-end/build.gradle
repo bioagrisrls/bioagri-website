@@ -23,8 +23,18 @@
  *
  */
 
-rootProject.name = 'bioagri-website'
+plugins {
+    id 'idea'
+}
 
-include 'back-end'
-include 'front-end'
+group 'it.bioagri'
+version '0.0.1'
 
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
