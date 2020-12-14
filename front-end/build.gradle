@@ -1,7 +1,3 @@
-import org.gradle.work.ChangeType
-import org.gradle.work.Incremental
-import org.gradle.work.InputChanges
-
 /*
  * MIT License
  *
