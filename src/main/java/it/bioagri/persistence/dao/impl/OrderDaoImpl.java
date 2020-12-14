@@ -108,15 +108,47 @@ public class OrderDaoImpl extends OrderDao {
     @Override
     public void save(Order value) {
 
+        getDataSource().update(
+                """
+                    INSERT INTO shop_order (id, status, created_at, updated_at, user_id) 
+                                    VALUES (?, ?, ?, ?, ?)
+                    """,
+                    s -> {
+                        s.setLong(1, value.getId());
+                        s.setShort(2, (short) value.getStatus().ordinal());
+                        s.setTimestamp(3, value.getCreatedAt());
+                        s.setTimestamp(4, value.getUpdatedAt());
+                        s.setLong(5, value.getUserId());
+                    }, false);
+
     }
 
     @Override
     public void update(Order oldValue, Order newValue) {
 
+        getDataSource().update(
+                """
+                    UPDATE shop_order 
+                       SET  status = ?, created_at = ?, updated_at = ?, user_id = ?
+                     WHERE id = ?
+                    """,
+                    s -> {
+                        s.setShort(1, (short) oldValue.getStatus().ordinal());
+                        s.setTimestamp(2, oldValue.getCreatedAt());
+                        s.setTimestamp(3, oldValue.getUpdatedAt());
+                        s.setLong(4, oldValue.getUserId());
+                        s.setLong(5, newValue.getId());
+                    }, false);
+
     }
 
     @Override
     public void delete(Order value) {
+
+        getDataSource().update("DELETE FROM shop_order  WHERE id = ?",
+                s -> {
+                    s.setLong(1, value.getId());
+                }, false);
 
     }
 

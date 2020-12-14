@@ -131,15 +131,63 @@ public class UserDaoImpl extends UserDao {
     @Override
     public void save(User value) {
 
+        getDataSource().update(
+                """
+                    INSERT INTO shop_user (id, email, password, status, role, name, surname, gender, phone, birth, created_at, updated_at) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    s -> {
+                        s.setLong(1, value.getId());
+                        s.setString(2, value.getMail());
+                        s.setString(3, value.getPassword());
+                        s.setShort(4, (short) value.getStatus().ordinal());
+                        s.setShort(5, (short) value.getRole().ordinal());
+                        s.setString(6, value.getName());
+                        s.setString(7, value.getSurname());
+                        s.setShort(8, (short) value.getGender().ordinal());
+                        s.setString(9, value.getPhone());
+                        s.setString(10, value.getPhone());
+                        s.setDate(11, value.getBirth());
+                        s.setTimestamp(12, value.getCreatedAt());
+                        s.setTimestamp(13, value.getUpdatedAt());
+                    }, false);
+
     }
 
     @Override
     public void update(User oldValue, User newValue) {
 
+        getDataSource().update(
+                """
+                    UPDATE shop_user 
+                       SET email = ?, password = ?, status = ?, role = ?, name = ?, surname = ?, gender = ?, phone = ?, birth = ?, created_at = ?, updated_at = ?
+                     WHERE id = ?
+                    """,
+                    s -> {
+                        s.setString(1, newValue.getMail());
+                        s.setString(2, newValue.getPassword());
+                        s.setShort(3, (short) newValue.getStatus().ordinal());
+                        s.setShort(4, (short) newValue.getRole().ordinal());
+                        s.setString(5, newValue.getName());
+                        s.setString(6, newValue.getSurname());
+                        s.setShort(7, (short) newValue.getGender().ordinal());
+                        s.setString(8, newValue.getPhone());
+                        s.setString(9, newValue.getPhone());
+                        s.setDate(10, newValue.getBirth());
+                        s.setTimestamp(11, newValue.getCreatedAt());
+                        s.setTimestamp(12, newValue.getUpdatedAt());
+                        s.setLong(13, oldValue.getId());
+                    }, false);
+
     }
 
     @Override
     public void delete(User value) {
+
+        getDataSource().update("DELETE FROM shop_user WHERE id = ?",
+                s -> {
+                    s.setLong(1, value.getId());
+                }, false);
 
     }
 

@@ -52,11 +52,12 @@ public final class Transaction {
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
     private final Long orderId;
+    private final String transactionCode;
 
     private Order order;
 
 
-    public Transaction(long id, TransactionStatus status, String result, double total, TransactionType type, String courierService, String shipmentNumber, double weight, String recipient, String address, String city, String province, String zip, String phone, String additionalInfo, String invoice, Timestamp createdAt, Timestamp updatedAt, Long orderId) {
+    public Transaction(long id, TransactionStatus status, String result, double total, TransactionType type, String courierService, String shipmentNumber, double weight, String recipient, String address, String city, String province, String zip, String phone, String additionalInfo, String invoice, Timestamp createdAt, Timestamp updatedAt, Long orderId, String transactionCode) {
         this.id = id;
         this.status = status;
         this.result = result;
@@ -76,6 +77,7 @@ public final class Transaction {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.orderId = orderId;
+        this.transactionCode = transactionCode;
     }
 
     public Transaction() {
@@ -98,6 +100,7 @@ public final class Transaction {
         this.createdAt = null;
         this.updatedAt = null;
         this.orderId = null;
+        this.transactionCode = null;
     }
 
     public void setId(long id) {
@@ -180,6 +183,7 @@ public final class Transaction {
         return orderId;
     }
 
+    public String getTransactionCode() { return transactionCode; }
 
     @JsonIgnore
     public Optional<Order> getOrder(DataSource dataSource) {

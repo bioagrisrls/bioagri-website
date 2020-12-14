@@ -143,15 +143,53 @@ public class ProductDaoImpl extends ProductDao {
     @Override
     public void save(Product value) {
 
+        getDataSource().update(
+                """
+                    INSERT INTO shop_product (id, name, description, price, stock, status, updated_at, created_at)
+                                      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    s -> {
+                        s.setLong(1, value.getId());
+                        s.setString(2, value.getName());
+                        s.setString(3, value.getDescription());
+                        s.setFloat(4, value.getPrice());
+                        s.setInt(5, value.getStock());
+                        s.setShort(6, (short) value.getStatus().ordinal());
+                        s.setTimestamp(7, value.getCreatedAt());
+                        s.setTimestamp(8, value.getUpdatedAt());
+                    }, false);
+
     }
 
     @Override
     public void update(Product oldValue, Product newValue) {
 
+        getDataSource().update(
+                """
+                    UPDATE shop_product 
+                       SET name = ?, description = ?, price = ?, stock = ?, status = ?, updated_at = ?, created_at = ? 
+                     WHERE id = ?
+                    """,
+                    s -> {
+                        s.setString(1, newValue.getName());
+                        s.setString(2, newValue.getDescription());
+                        s.setFloat(3, newValue.getPrice());
+                        s.setInt(4, newValue.getStock());
+                        s.setShort(5, (short) newValue.getStatus().ordinal());
+                        s.setTimestamp(6, newValue.getCreatedAt());
+                        s.setTimestamp(7, newValue.getUpdatedAt());
+                        s.setLong(1, oldValue.getId());
+                    }, false);
+
     }
 
     @Override
     public void delete(Product value) {
+
+        getDataSource().update("DELETE FROM shop_product WHERE id = ?",
+                s -> {
+                    s.setLong(1, value.getId());
+                }, false);
 
     }
 
