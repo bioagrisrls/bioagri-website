@@ -56,14 +56,9 @@ public class TicketDaoImpl extends TicketDao {
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
                         r.getLong("user_id"),
-                        new ArrayList<>()
+                        null
                 )))
         );
-
-        // TODO: get ticket responses for a ticket
-
-//        result.get().ifPresent(r -> r.getResponses()
-//                .addAll(getDataSource().getTicketResponseRepository().findByTicketId(r.getId())));
 
         return result.get();
 
@@ -83,19 +78,9 @@ public class TicketDaoImpl extends TicketDao {
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
                         r.getLong("user_id"),
-                        new ArrayList<>()
+                        null
                 ))
         );
-
-
-        // TODO: get ticket responses for a ticket
-
-        for(var ticket : tickets) {
-
-//            ticket.getTags()
-//                    .addAll(getDataSource().getTicketResponseRepository().findByTicketId(ticket.getId()));
-
-        }
 
         return tickets;
 
@@ -147,9 +132,7 @@ public class TicketDaoImpl extends TicketDao {
     public void delete(Ticket value) {
 
         getDataSource().update("DELETE FROM shop_ticket WHERE id = ?",
-                s -> {
-                    s.setLong(1, value.getId());
-                }, false);
+                s -> s.setLong(1, value.getId()), false);
 
     }
 
@@ -157,13 +140,13 @@ public class TicketDaoImpl extends TicketDao {
     @Override
     public List<Ticket> findByUserId(Long id) {
 
-        var tickets = new ArrayList<Ticket>();
+        return new ArrayList<>() {{
 
-        getDataSource().fetch("SELECT * FROM shop_ticket WHERE shop_ticket.user_id = ?",
-                s -> s.setLong(1, id),
-                r -> findByPrimaryKey(r.getLong("id")).ifPresent(tickets::add));
+                getDataSource().fetch("SELECT * FROM shop_ticket WHERE shop_ticket.user_id = ?",
+                        s -> s.setLong(1, id),
+                        r -> findByPrimaryKey(r.getLong("id")).ifPresent(this::add));
 
-        return tickets;
+        }};
 
     }
 }

@@ -25,6 +25,7 @@
 
 package it.bioagri.persistence.dao.impl;
 
+import it.bioagri.models.Ticket;
 import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TicketResponseDao;
@@ -120,10 +121,20 @@ public class TicketResponseDaoImpl extends TicketResponseDao {
     public void delete(TicketResponse value) {
 
         getDataSource().update("DELETE FROM shop_ticket_response WHERE id = ?",
-                s -> {
-                    s.setLong(1, value.getId());
-                }, false);
+                s -> s.setLong(1, value.getId()), false);
 
+    }
+
+    @Override
+    public List<TicketResponse> findByTicketId(long id) {
+
+        return new ArrayList<>() {{
+
+                getDataSource().fetch("SELECT id FROM shop_ticket_response WHERE ticket_id = ?",
+                        s -> s.setLong(1, id),
+                        r -> findByPrimaryKey(r.getLong("id")).ifPresent(this::add));
+
+        }};
     }
 
 }

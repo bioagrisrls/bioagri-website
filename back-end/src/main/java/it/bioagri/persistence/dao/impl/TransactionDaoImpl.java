@@ -187,22 +187,21 @@ public class TransactionDaoImpl extends TransactionDao {
     public void delete(Transaction value) {
 
         getDataSource().update("DELETE FROM shop_transaction WHERE id = ?",
-                s -> {
-                    s.setLong(1, value.getId());
-                }, false);
+                s -> s.setLong(1, value.getId()), false);
 
     }
 
     @Override
     public List<Transaction> findByOrderId(Long id) {
 
-        var transactions = new ArrayList<Transaction>();
+        return new ArrayList<>() {{
 
-        getDataSource().fetch("SELECT * FROM shop_transaction WHERE shop_transaction.order_id = ?",
-                s -> s.setLong(1, id),
-                r -> findByPrimaryKey(r.getLong("id")).ifPresent(transactions::add));
+                getDataSource().fetch("SELECT * FROM shop_transaction WHERE order_id = ?",
+                        s -> s.setLong(1, id),
+                        r -> findByPrimaryKey(r.getLong("id")).ifPresent(this::add));
 
-        return transactions;
+        }};
 
     }
+
 }

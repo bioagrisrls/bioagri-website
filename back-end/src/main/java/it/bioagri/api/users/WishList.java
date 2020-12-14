@@ -65,7 +65,7 @@ public class WishList {
             return ResponseEntity.ok(dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
                     .orElseThrow(() -> new ApiResponseStatus(404))
-                    .getWishList());
+                    .getWishList(dataSource));
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -83,7 +83,7 @@ public class WishList {
             return ResponseEntity.ok(dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
                     .orElseThrow(() -> new ApiResponseStatus(404))
-                    .getWishList()
+                    .getWishList(dataSource)
                     .stream()
                     .filter(i -> id.equals(i.getId()))
                     .findFirst()
@@ -112,7 +112,7 @@ public class WishList {
                     .orElseThrow(() -> new ApiResponseStatus(404));
 
 
-            u.getWishList().add(p);
+            u.getWishList(dataSource).add(p);
             dataSource.getUserRepository().update(u, u);
 
         } catch (DataSourceSQLException e) {
@@ -140,13 +140,13 @@ public class WishList {
                     .orElseThrow(() -> new ApiResponseStatus(404));
 
 
-            u.getWishList()
+            u.getWishList(dataSource)
                 .stream()
                 .filter(i -> i.getId().equals(id))
                 .findFirst()
-                .ifPresent(u.getWishList()::remove);
+                .ifPresent(u.getWishList(dataSource)::remove);
 
-            u.getWishList().add(p);
+            u.getWishList(dataSource).add(p);
             dataSource.getUserRepository().update(u, u);
 
         } catch (DataSourceSQLException e) {
@@ -169,7 +169,7 @@ public class WishList {
                     .findByPrimaryKey(sid)
                     .orElseThrow(() -> new ApiResponseStatus(404));
 
-            u.getWishList().clear();
+            u.getWishList(dataSource).clear();
             dataSource.getUserRepository().update(u, u);
 
         } catch (DataSourceSQLException e) {
@@ -192,13 +192,13 @@ public class WishList {
                     .findByPrimaryKey(sid)
                     .orElseThrow(() -> new ApiResponseStatus(404));
 
-            var p = u.getWishList()
+            var p = u.getWishList(dataSource)
                     .stream()
                     .filter(i -> i.getId().equals(id))
                     .findFirst()
                     .orElseThrow(() -> new ApiResponseStatus(404));
 
-            u.getWishList().remove(p);
+            u.getWishList(dataSource).remove(p);
             dataSource.getUserRepository().update(u, u);
 
         } catch (DataSourceSQLException e) {

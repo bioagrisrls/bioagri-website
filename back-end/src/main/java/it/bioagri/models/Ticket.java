@@ -41,8 +41,8 @@ public final class Ticket {
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
     private final Long userId;
-    private final List<TicketResponse> responses;
 
+    private List<TicketResponse> responses;
     private User user;
 
 
@@ -115,8 +115,14 @@ public final class Ticket {
     }
 
     @JsonIgnore
-    public List<TicketResponse> getResponses() {
-        return responses;
+    public Optional<List<TicketResponse>> getResponses(DataSource dataSource) {
+
+        if(responses == null) {
+            responses = dataSource.getTicketResponseRepository()
+                    .findByTicketId(id);
+        }
+
+        return Optional.ofNullable(responses);
     }
 
 }

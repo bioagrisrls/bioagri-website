@@ -39,6 +39,7 @@ public class TicketResponse {
     private final Timestamp updatedAt;
     private final Long ticketId;
 
+    @JsonIgnore
     private Ticket ticket;
 
 
@@ -81,7 +82,6 @@ public class TicketResponse {
     public Long getTicketId() {
         return ticketId;
     }
-
 
     @JsonIgnore
     public Optional<Ticket> getTicket(DataSource dataSource) {

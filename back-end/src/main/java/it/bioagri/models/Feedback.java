@@ -42,7 +42,10 @@ public final class Feedback {
     private final Long userId;
     private final Long productId;
 
+    @JsonIgnore
     private User user;
+
+    @JsonIgnore
     private Product product;
 
 
@@ -103,8 +106,6 @@ public final class Feedback {
     public Long getProductId() {
         return productId;
     }
-
-
 
     @JsonIgnore
     public Optional<User> getUser(DataSource dataSource) {

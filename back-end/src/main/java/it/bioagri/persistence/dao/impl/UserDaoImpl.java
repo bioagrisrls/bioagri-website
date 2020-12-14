@@ -63,25 +63,13 @@ public class UserDaoImpl extends UserDao {
                         r.getDate("birth"),
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        new ArrayList<>()
+                        null,
+                        null,
+                        null
                 )))
         );
 
-
-        result.get().ifPresent(r -> r.getWishList()
-                .addAll(getDataSource().getProductRepository().findByWishUserId(r.getId())));
-
-        result.get().ifPresent(r -> r.getFeedbacks()
-                .addAll(getDataSource().getFeedbackRepository().findByUserId(r.getId())));
-
-        result.get().ifPresent(r -> r.getTickets()
-            .addAll(getDataSource().getTicketRepository().findByUserId(r.getId())));
-
-
         return result.get();
-
 
     }
 
@@ -104,25 +92,11 @@ public class UserDaoImpl extends UserDao {
                         r.getDate("birth"),
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        new ArrayList<>()
+                        null,
+                        null,
+                        null
                 ))
         );
-
-
-        for(var user : users) {
-
-            user.getWishList()
-                    .addAll(getDataSource().getProductRepository().findByWishUserId(user.getId()));
-
-            user.getFeedbacks()
-                    .addAll(getDataSource().getFeedbackRepository().findByUserId(user.getId()));
-
-            user.getTickets()
-                    .addAll(getDataSource().getTicketRepository().findByUserId(user.getId()));
-
-        }
 
         return users;
 
@@ -134,7 +108,7 @@ public class UserDaoImpl extends UserDao {
         getDataSource().update(
                 """
                     INSERT INTO shop_user (id, email, password, status, role, name, surname, gender, phone, birth, created_at, updated_at) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     s -> {
                         s.setLong(1, value.getId());
@@ -185,9 +159,7 @@ public class UserDaoImpl extends UserDao {
     public void delete(User value) {
 
         getDataSource().update("DELETE FROM shop_user WHERE id = ?",
-                s -> {
-                    s.setLong(1, value.getId());
-                }, false);
+                s -> s.setLong(1, value.getId()), false);
 
     }
 

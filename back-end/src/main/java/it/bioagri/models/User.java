@@ -26,10 +26,12 @@
 package it.bioagri.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.bioagri.persistence.DataSource;
 
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 public final class User {
 
@@ -45,9 +47,10 @@ public final class User {
     private final Date birth;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
-    private final List<Product> wishList;
-    private final List<Feedback> feedbacks;
-    private final List<Ticket> tickets;
+
+    private List<Product> wishList;
+    private List<Feedback> feedbacks;
+    private List<Ticket> tickets;
 
 
     public User(long id, String mail, String password, UserStatus status, UserRole role, String name, String surname, UserGender gender, String phone, Date birth, Timestamp createdAt, Timestamp updatedAt, List<Product> wishList, List<Feedback> feedbacks, List<Ticket> tickets) {
@@ -139,17 +142,36 @@ public final class User {
     }
 
     @JsonIgnore
-    public List<Product> getWishList() {
+    public List<Product> getWishList(DataSource dataSource) {
+
+        if(wishList == null) {
+            wishList = dataSource.getProductRepository().
+                    findByWishUserId(id);
+        }
+
         return wishList;
+
     }
 
     @JsonIgnore
-    public List<Feedback> getFeedbacks() {
+    public List<Feedback> getFeedbacks(DataSource dataSource) {
+
+        if(feedbacks == null) {
+            feedbacks = dataSource.getFeedbackRepository().
+                    findByUserId(id);
+        }
+
         return feedbacks;
     }
 
     @JsonIgnore
-    public List<Ticket> getTickets() {
+    public List<Ticket> getTickets(DataSource dataSource) {
+
+        if(tickets == null) {
+            tickets = dataSource.getTicketRepository().
+                    findByUserId(id);
+        }
+
         return tickets;
     }
 

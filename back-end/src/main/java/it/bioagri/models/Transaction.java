@@ -54,8 +54,8 @@ public final class Transaction {
     private final Long orderId;
     private final String transactionCode;
 
+    @JsonIgnore
     private Order order;
-
 
     public Transaction(long id, TransactionStatus status, String result, double total, TransactionType type, String courierService, String shipmentNumber, double weight, String recipient, String address, String city, String province, String zip, String phone, String additionalInfo, String invoice, Timestamp createdAt, Timestamp updatedAt, Long orderId, String transactionCode) {
         this.id = id;

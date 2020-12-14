@@ -65,9 +65,9 @@ public class ProductDaoImpl extends ProductDao {
                             ProductStatus.values()[r.getShort("status")],
                             r.getTimestamp("updated_at"),
                             r.getTimestamp("created_at"),
-                            getDataSource().getCategoryRepository().findByProductId(r.getLong("id")),
-                            getDataSource().getTagRepository().findByProductId(r.getLong("id")),
-                            getDataSource().getFeedbackRepository().findByProductId(r.getLong("id"))
+                            null,
+                            null,
+                            null
                     );
 
                     result.set(Optional.of(product));
@@ -75,16 +75,6 @@ public class ProductDaoImpl extends ProductDao {
                 }
 
         );
-
-
-        // TODO: fetch tags & feedbacks for product.
-
-//        result.get().ifPresent(r -> r.getTags()
-//                .addAll(getDataSource().getTagRepository().findByProductId(r.getId())));
-//
-//        result.get().ifPresent(r -> r.getFeedbacks()
-//                .addAll(getDataSource().getFeedbackRepository().findByProductId(r.getId())));
-
 
         return result.get();
 
@@ -105,25 +95,11 @@ public class ProductDaoImpl extends ProductDao {
                         ProductStatus.values()[r.getShort("status")],
                         r.getTimestamp("updated_at"),
                         r.getTimestamp("created_at"),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        new ArrayList<>()
+                        null,
+                        null,
+                        null
                 ))
         );
-
-
-        // TODO: fetch tags & feedbacks for product.
-
-//        for(var product : products) {
-//
-//            product.getTags()
-//                    .addAll(getDataSource().getTagRepository().findByProductId(product.getId()));
-//
-//            product.getFeedbacks()
-//                    .addAll(getDataSource().getFeedbackRepository().findByProductId(product.getId()));
-//
-//        }
-
 
         return products;
 
@@ -176,9 +152,7 @@ public class ProductDaoImpl extends ProductDao {
     public void delete(Product value) {
 
         getDataSource().update("DELETE FROM shop_product WHERE id = ?",
-                s -> {
-                    s.setLong(1, value.getId());
-                }, false);
+                s -> s.setLong(1, value.getId()), false);
 
     }
 
@@ -186,13 +160,13 @@ public class ProductDaoImpl extends ProductDao {
     @Override
     public List<Product> findByWishUserId(Long id) {
 
-        var products = new ArrayList<Product>();
+        return new ArrayList<>() {{
 
-        getDataSource().fetch("SELECT * FROM shop_wish WHERE shop_wish.user_id = ?",
-                s -> s.setLong(1, id),
-                r -> findByPrimaryKey(r.getLong("product_id")).ifPresent(products::add));
+                getDataSource().fetch("SELECT * FROM shop_wish WHERE shop_wish.user_id = ?",
+                        s -> s.setLong(1, id),
+                        r -> findByPrimaryKey(r.getLong("product_id")).ifPresent(this::add));
 
-        return products;
+        }};
 
     }
 
@@ -200,19 +174,19 @@ public class ProductDaoImpl extends ProductDao {
     @Override
     public Map<Product, Integer> findByOrderId(Long id) {
 
-        var products = new HashMap<Product, Integer>();
+        return new HashMap<>() {{
 
-        getDataSource().fetch("SELECT * FROM shop_order_product WHERE shop_order_product.order_id = ?",
-                s -> s.setLong(1, id),
-                r -> findByPrimaryKey(r.getLong("product_id"))
-                        .ifPresent(p -> {
-                            try {
-                                products.put(p, r.getInt("quantity"));
-                            } catch (SQLException ignored) { }
-                        })
-        );
+                getDataSource().fetch("SELECT * FROM shop_order_product WHERE shop_order_product.order_id = ?",
+                        s -> s.setLong(1, id),
+                        r -> findByPrimaryKey(r.getLong("product_id"))
+                                .ifPresent(p -> {
+                                    try {
+                                        put(p, r.getInt("quantity"));
+                                    } catch (SQLException ignored) { }
+                                })
+                );
 
-        return products;
+        }};
 
     }
 
