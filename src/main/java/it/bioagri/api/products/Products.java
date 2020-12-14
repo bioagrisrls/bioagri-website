@@ -25,9 +25,9 @@
 
 package it.bioagri.api.products;
 
-import it.bioagri.api.auth.AuthToken;
 import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionType;
+import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;

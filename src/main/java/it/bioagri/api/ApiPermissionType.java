@@ -26,7 +26,6 @@
 package it.bioagri.api;
 
 public enum ApiPermissionType {
-
     USER,
     WISHLIST,
     CATEGORIES,
@@ -37,5 +36,4 @@ public enum ApiPermissionType {
     TICKETS,
     TICKET_RESPONSES,
     TRANSACTIONS,
-
 }

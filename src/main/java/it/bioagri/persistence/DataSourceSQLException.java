@@ -26,7 +26,6 @@
 package it.bioagri.persistence;
 
 import java.sql.SQLException;
-import java.util.logging.Logger;
 
 public class DataSourceSQLException extends RuntimeException {
 

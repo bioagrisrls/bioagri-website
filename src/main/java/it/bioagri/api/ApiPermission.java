@@ -28,11 +28,14 @@ package it.bioagri.api;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.UserRole;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Objects;
 
-import static it.bioagri.api.ApiPermissionType.*;
-import static it.bioagri.api.ApiPermissionOperation.*;
 import static it.bioagri.api.ApiPermissionActor.*;
+import static it.bioagri.api.ApiPermissionOperation.*;
+import static it.bioagri.api.ApiPermissionType.*;
 
 public class ApiPermission {
 

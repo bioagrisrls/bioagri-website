@@ -25,9 +25,9 @@
 
 package it.bioagri.api.tickets;
 
-import it.bioagri.api.auth.AuthToken;
 import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionType;
+import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
