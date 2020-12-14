@@ -44,25 +44,25 @@ public class ApiPermission {
     static {
         permissions = List.of(
 
-                new ApiPermission(USER, CREATE, ADMIN),
-                new ApiPermission(USER, READ,   ADMIN, OWNER),
-                new ApiPermission(USER, UPDATE, ADMIN, OWNER),
-                new ApiPermission(USER, DELETE, ADMIN, OWNER),
+                new ApiPermission(USERS, CREATE, ADMIN),
+                new ApiPermission(USERS, READ,   ADMIN, USER),
+                new ApiPermission(USERS, UPDATE, ADMIN, USER),
+                new ApiPermission(USERS, DELETE, ADMIN, USER),
 
-                new ApiPermission(WISHLIST, CREATE, ADMIN, OWNER),
-                new ApiPermission(WISHLIST, READ,   ADMIN, OWNER),
-                new ApiPermission(WISHLIST, UPDATE, ADMIN, OWNER),
-                new ApiPermission(WISHLIST, DELETE, ADMIN, OWNER),
+                new ApiPermission(WISHLIST, CREATE, ADMIN, USER),
+                new ApiPermission(WISHLIST, READ,   ADMIN, USER),
+                new ApiPermission(WISHLIST, UPDATE, ADMIN, USER),
+                new ApiPermission(WISHLIST, DELETE, ADMIN, USER),
 
                 new ApiPermission(CATEGORIES, CREATE, ADMIN),
                 new ApiPermission(CATEGORIES, READ,   ADMIN, ALL),
                 new ApiPermission(CATEGORIES, UPDATE, ADMIN),
                 new ApiPermission(CATEGORIES, DELETE, ADMIN),
 
-                new ApiPermission(FEEDBACKS, CREATE, ADMIN, OWNER),
-                new ApiPermission(FEEDBACKS, READ,   ADMIN, OWNER),
-                new ApiPermission(FEEDBACKS, UPDATE, ADMIN, OWNER),
-                new ApiPermission(FEEDBACKS, DELETE, ADMIN, OWNER),
+                new ApiPermission(FEEDBACKS, CREATE, ADMIN, USER),
+                new ApiPermission(FEEDBACKS, READ,   ADMIN, USER),
+                new ApiPermission(FEEDBACKS, UPDATE, ADMIN, USER),
+                new ApiPermission(FEEDBACKS, DELETE, ADMIN, USER),
 
                 new ApiPermission(ORDERS, CREATE, ADMIN),
                 new ApiPermission(ORDERS, READ,   ADMIN, ALL),
@@ -79,18 +79,18 @@ public class ApiPermission {
                 new ApiPermission(TAGS, UPDATE, ADMIN),
                 new ApiPermission(TAGS, DELETE, ADMIN),
 
-                new ApiPermission(TICKETS, CREATE, ADMIN, OWNER),
-                new ApiPermission(TICKETS, READ,   ADMIN, OWNER),
-                new ApiPermission(TICKETS, UPDATE, ADMIN, OWNER),
-                new ApiPermission(TICKETS, DELETE, ADMIN, OWNER),
+                new ApiPermission(TICKETS, CREATE, ADMIN, USER),
+                new ApiPermission(TICKETS, READ,   ADMIN, USER),
+                new ApiPermission(TICKETS, UPDATE, ADMIN, USER),
+                new ApiPermission(TICKETS, DELETE, ADMIN, USER),
 
                 new ApiPermission(TICKET_RESPONSES, CREATE, ADMIN),
-                new ApiPermission(TICKET_RESPONSES, READ,   ADMIN, OWNER),
+                new ApiPermission(TICKET_RESPONSES, READ,   ADMIN, USER),
                 new ApiPermission(TICKET_RESPONSES, UPDATE, ADMIN),
                 new ApiPermission(TICKET_RESPONSES, DELETE, ADMIN),
 
-                new ApiPermission(TRANSACTIONS, CREATE, ADMIN, OWNER),
-                new ApiPermission(TRANSACTIONS, READ,   ADMIN, OWNER),
+                new ApiPermission(TRANSACTIONS, CREATE, ADMIN, USER),
+                new ApiPermission(TRANSACTIONS, READ,   ADMIN, USER),
                 new ApiPermission(TRANSACTIONS, UPDATE, ADMIN),
                 new ApiPermission(TRANSACTIONS, DELETE, ADMIN)
 
@@ -122,23 +122,21 @@ public class ApiPermission {
 
     public static boolean hasPermission(ApiPermissionType type, ApiPermissionOperation operation, AuthToken authToken, Long ownerId) {
 
-        var api = permissions
+        var api = EnumSet.copyOf(permissions
                 .stream()
                 .filter(new ApiPermission(type, operation)::equals)
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(IllegalArgumentException::new)
+                .getActors());
 
 
-        if(EnumSet.copyOf(api.getActors()).contains(ALL))
+        if(api.contains(ADMIN) && authToken.getUserRole().equals(UserRole.ADMIN))
             return true;
 
-        if(EnumSet.copyOf(api.getActors()).contains(OWNER))
-            return authToken.getUserId().equals(ownerId);
+        if(api.contains(USER) && authToken.getUserId().equals(ownerId))
+            return true;
 
-        if(EnumSet.copyOf(api.getActors()).contains(ADMIN))
-            return authToken.getUserRole().equals(UserRole.ADMIN);
-
-        return false;
+        return api.contains(ALL);
 
     }
 

@@ -26,7 +26,7 @@
 package it.bioagri.api;
 
 public enum ApiPermissionType {
-    USER,
+    USERS,
     WISHLIST,
     CATEGORIES,
     FEEDBACKS,

@@ -27,6 +27,6 @@ package it.bioagri.api;
 
 public enum ApiPermissionActor {
     ADMIN,
-    OWNER,
+    USER,
     ALL
 }
