@@ -73,7 +73,12 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
 }
 
 
-
+/**
+ * Authenticate with back-end and getting a new auth-token
+ * @param username {string}
+ * @param password {string}
+ * @returns {Promise<* | void>}
+ */
 const authenticate = async (username, password) => {
 
     return api('/auth/authenticate', 'POST', {
