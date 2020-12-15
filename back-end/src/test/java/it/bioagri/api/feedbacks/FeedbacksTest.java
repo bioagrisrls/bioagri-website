@@ -86,16 +86,16 @@ class FeedbacksTest {
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
                 .spec(AuthTest.getSpecs())
-                .get("/feedbacks/" + "4" )
+                .get("/feedbacks/" + "2" )
                 .then()
                 .statusCode(200);
 
-        RestAssured.given()
+        /*RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123"))
                 .spec(AuthTest.getSpecs())
                 .get("/feedbacks/" + "4" )
                 .then()
-                .statusCode(200);
+                .statusCode(200);*/
     }
 
     @Test
