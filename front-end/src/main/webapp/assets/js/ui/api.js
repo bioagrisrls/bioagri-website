@@ -32,7 +32,7 @@ const basePath = "/api";
  * Make a request to back-end and retrive, add, edit and delete data.
  * @param path {string}
  * @param method {string}
- * @param body {json}
+ * @param body {object}
  * @param returnJson {boolean}
  * @returns {Promise<Response>}
  */
