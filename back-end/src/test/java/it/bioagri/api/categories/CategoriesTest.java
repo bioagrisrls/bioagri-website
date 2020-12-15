@@ -55,34 +55,22 @@ public class CategoriesTest {
     }
 
 
-    @Test
-    public void create() {
-
-        createAs("user@test.com", 403);
-        createAs("admin@test.com", 201);
-
-    }
 
 
-
-    @Test
     public void findAll() {
 
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123"))
                 .spec(AuthTest.getSpecs())
-                .get("/categories")
+                .get("/categories/")
                 .then()
                 .statusCode(200);
 
     }
 
 
-    @Test
-    @AfterTestMethod("create")
-    public void findById() {
 
-        var categoryId = createAs("admin@test.com", 201).split("/")[3];
+    public void findById(String categoryId) {
 
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123"))
@@ -100,18 +88,39 @@ public class CategoriesTest {
 
     }
 
+    void update(String categoryId) {
 
-    @Test
-    @AfterTestMethod("create")
+        RestAssured.given()
+                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .spec(AuthTest.getSpecs())
+                .body(
+                        """
+                        {
+                            "id"  : "%s",
+                            "name": "testUpdate"
+    
+                        }
+                        """.formatted(categoryId)
+                )
+                .put("/categories/" + categoryId)
+                .then()
+                .statusCode(201)
+                .extract()
+                .header("Location");
+
+    }
+
+
+
+
     public void deleteAll() {
         // Just skip...
     }
 
-    @Test
-    @AfterTestMethod("findById")
-    public void delete() {
 
-        var categoryId = createAs("admin@test.com", 201).split("/")[3];
+
+    public void delete(String categoryId) {
+
 
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123"))
@@ -128,5 +137,37 @@ public class CategoriesTest {
                 .statusCode(204);
 
     }
+
+
+
+    private void launchAllMethodAs(String username, int expectedCode) {
+
+        String id = createAs(username, expectedCode);
+
+        if(id == null)
+            return;
+
+        id = id.split("/")[3];
+
+        findById(id);
+        update(id);
+        delete(id);
+
+
+    }
+
+    @Test
+    public void launchAllMethodAsAdmin() {
+        launchAllMethodAs("admin@test.com", 201);
+    }
+
+    @Test
+    public void launchAllMethodAsUser() {
+        launchAllMethodAs("user@test.com", 403);
+    }
+
+
+
+
 
 }

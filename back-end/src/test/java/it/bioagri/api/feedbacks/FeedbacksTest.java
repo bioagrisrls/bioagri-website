@@ -28,6 +28,7 @@ package it.bioagri.api.feedbacks;
 import io.restassured.RestAssured;
 import it.bioagri.api.auth.AuthTest;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.event.annotation.AfterTestMethod;
 
 class FeedbacksTest {
 
@@ -60,8 +61,9 @@ class FeedbacksTest {
     @Test
     public void createFeedback() {
 
-        createAs("user@test.com", 3,1,201);
-        createAs("admin@test.com", 3,6,201);
+
+        createAs("user@test.com", 3,4,201);
+        createAs("admin@test.com", 3,5,201);
 
     }
 
@@ -81,12 +83,14 @@ class FeedbacksTest {
     }
 
     @Test
+    @AfterTestMethod("create")
     void findById() {
+
 
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
                 .spec(AuthTest.getSpecs())
-                .get("/feedbacks/" + "2" )
+                .get("/feedbacks/3" )
                 .then()
                 .statusCode(200);
 
@@ -99,6 +103,7 @@ class FeedbacksTest {
     }
 
     @Test
+    @AfterTestMethod("create")
     void update() {
 
         RestAssured.given()
@@ -107,18 +112,18 @@ class FeedbacksTest {
                 .body(
                         """
                         {
-                            "userId"     : "1",  
+                            "userId"     : "5",  
                             "title"       : "TestFeedback",
                             "vote"        : "1",
                             "id"          : "0",
                             "description" : "descriptionTest",
                             "updatedAt"  : "2014-01-01T23:28:56.782Z",
                             "createdAt"  : "2014-01-01T23:28:56.782Z",
-                            "productId"  : "1"           
+                            "productId"  : "3"           
                         }
                         """
                 )
-                .put("/feedbacks/3")
+                .put("/feedbacks/5")
                 .then()
                 .statusCode(201)
                 .extract()
@@ -132,12 +137,13 @@ class FeedbacksTest {
     }
 
     @Test
+    @AfterTestMethod("create")
     void deleteById() {
 
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
                 .spec(AuthTest.getSpecs())
-                .delete("/feedbacks/" + "4" )
+                .delete("/feedbacks/6" )
                 .then()
                 .statusCode(204);
 
