@@ -24,51 +24,45 @@
   --%>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
+
     <head>
-        <title>Hello World!</title>
+
+        <meta charset="UTF-8" />
+        <meta name="description" content="" />  <!-- TODO! -->
+        <meta name="author" content="Antonino Natale, Matteo Perfidio, Davide Crisafulli" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0" />
+        <meta name="theme-color" content="rgb(236, 104, 81)" /> <!-- TODO! -->
+        <meta name="msapplication-navbutton-color" content="rgb(236, 104, 81)" />  <!-- TODO! -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="rgb(236, 104, 81)" />  <!-- TODO! -->
+
+        <meta property="og:title" content="Bioagri Shop" /> <!-- TODO! -->
+        <meta property="og:description" content="" />  <!-- TODO! -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.bioagrishop.it" />
+        <meta property="og:image" content="/assets/favicon.png" />
+
+        <link rel="profile" href="http://gmpg.org/xfn/11">
+        <link rel="icon" href="/assets/favicon.png">
+
+        <title>Bioagri Shop</title>
+
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="/assets/css/normalize.css">
+
+        <!-- Third-party Dependencies -->
         <script src="/assets/js/third-party/jquery-3.5.1.min.js"></script>
         <script src="/assets/js/third-party/js.cookie-2.2.1.min.js"></script>
-        <script src="/assets/js/back-end/api.js"></script>
-        <script src="/assets/js/back-end/components.js"></script>
+
+        <!-- Dependencies -->
+        <script src="/assets/js/ui/api.js"></script>
+        <script src="/assets/js/ui/components.js"></script>
+
     </head>
+
     <body>
-        <h1>Hello World!</h1>
-        UserId: <span id="userId">Loading...</span><br>
-        UserRole: <span id="userRole">Loading...</span><br>
-        Categories: <span id="categoriesCount"></span><br>
-        <div id="component"></div>
+        <jsp:include page="pages/home.jsp" />
     </body>
+
 </html>
-
-<script type="module">
-
-    authenticate('user@test.com', '123').then(response => {
-
-        document.getElementById('userId').innerHTML = response.userId;
-        document.getElementById('userRole').innerHTML = response.userRole;
-
-    }).then(response => {
-
-        api('/categories').then(response => {
-            document.getElementById('categoriesCount').innerHTML = response.length;
-        }).catch(reason => {
-            console.error(reason);
-        });
-
-
-        render('#component', {
-
-            template: `${components.categories}`,
-
-            data: api("/categories").then(json => {
-                return { categories: json };
-            })
-
-        });
-
-    });
-
-
-
-</script>
