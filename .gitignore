@@ -16,3 +16,5 @@ gradle-app.setting
 /back-end/build/
 /back-end/src/main/webapp/
 /front-end/build/
+
+/.idea/dataSources/

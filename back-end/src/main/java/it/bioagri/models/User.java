@@ -31,7 +31,6 @@ import it.bioagri.persistence.DataSource;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Optional;
 
 public final class User {
 

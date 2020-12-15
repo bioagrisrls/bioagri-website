@@ -29,12 +29,6 @@ import io.restassured.RestAssured;
 import it.bioagri.api.auth.AuthTest;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class FeedbacksTest {
 
     private String createAs(String username,  int product_id, int user_id, int expectedCode) {

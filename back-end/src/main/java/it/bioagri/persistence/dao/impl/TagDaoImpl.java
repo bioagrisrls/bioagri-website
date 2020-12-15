@@ -25,8 +25,6 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.Feedback;
-import it.bioagri.models.Product;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.TagDao;

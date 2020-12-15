@@ -30,8 +30,6 @@ import it.bioagri.api.auth.AuthTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.event.annotation.AfterTestMethod;
 
-import java.text.DateFormat;
-
 
 public class CategoriesTest {
 

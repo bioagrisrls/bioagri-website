@@ -26,7 +26,6 @@
 package it.bioagri.persistence.dao;
 
 import it.bioagri.models.Category;
-import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 
 import java.util.List;
