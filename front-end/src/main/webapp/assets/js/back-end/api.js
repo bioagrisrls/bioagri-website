@@ -28,6 +28,14 @@ const baseUri = "http://localhost:8080";
 const basePath = "/api";
 
 
+/**
+ * Make a request to back-end and retrive, add, edit and delete data.
+ * @param path {string}
+ * @param method {string}
+ * @param body {json}
+ * @param returnJson {boolean}
+ * @returns {Promise<Response>}
+ */
 const api = async (path, method = 'GET', body = {}, returnJson = true) => {
 
     return fetch(baseUri + basePath + path, {
