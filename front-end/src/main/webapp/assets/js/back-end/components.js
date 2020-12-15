@@ -42,7 +42,7 @@ const expandTemplate = (template = '', data = {}) => {
     let regexp = /<\?([^?>]+)?\?>/g;
 
 
-    output += 'let ____r = []\n';
+    output += 'let ____r = [];\n';
 
     let match;
     while ((match = regexp.exec(template)) !== null) {
@@ -63,7 +63,7 @@ const expandTemplate = (template = '', data = {}) => {
 
 
     return new Function(Object.keys(data).join(", "), output)
-        .call(null, Object.values(data));
+        .apply(null, Object.values(data));
 
 }
 
@@ -76,15 +76,15 @@ const render = (id, component) => {
     if($(id).length === 0)
         throw new Error(`invalid id/class reference: ${id}`);
 
-
-    console.log(component);
-
     $(id).html(component.init || 'Loading...');
 
+
     if(component.data.then) {
+
         component.data.then(data => {
             $(id).html(expandTemplate(component.template, data));
         })
+
     } else {
 
         $(id).html(expandTemplate(component.template, component.data));

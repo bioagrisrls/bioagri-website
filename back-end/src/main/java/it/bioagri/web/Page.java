@@ -25,15 +25,30 @@
 
 package it.bioagri.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-public class Index {
+public class Page {
+
+    private final Loader loader;
+
+    @Autowired
+    public Page(Loader loader) {
+        this.loader = loader;
+    }
 
     @GetMapping("/")
-    public String index() {
-        return "index";
+    public String index(Model model) {
+        return loader.load(model, "index");
+    }
+
+    @GetMapping("/{page}")
+    public String page(Model model, @PathVariable String page) {
+        return loader.load(model, page);
     }
 
 }

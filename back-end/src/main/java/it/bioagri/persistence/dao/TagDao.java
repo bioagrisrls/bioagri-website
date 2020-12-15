@@ -25,9 +25,7 @@
 
 package it.bioagri.persistence.dao;
 
-import it.bioagri.models.Product;
 import it.bioagri.models.Tag;
-import it.bioagri.models.Ticket;
 import it.bioagri.persistence.DataSource;
 
 import java.util.List;

@@ -59,14 +59,10 @@
 
         render('#component', {
 
-            template: `
-            <div>
-                <h1 class="title">Categories {{ message }} {{ other }} </h1>
-            </div>
-        `,
+            template: `${components.categories}`,
 
-            data: api("/categories").then(response => {
-                return { message: "Hello World", other: "Hello World" };
+            data: api("/categories").then(json => {
+                return { categories: json };
             })
 
         });

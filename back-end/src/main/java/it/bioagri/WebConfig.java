@@ -27,17 +27,22 @@ package it.bioagri;
 
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.web.Loader;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
+import java.io.CharArrayWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @Component
 public class WebConfig implements WebMvcConfigurer {
@@ -76,6 +81,71 @@ public class WebConfig implements WebMvcConfigurer {
 
         }
 
+    }
+
+
+    @Component
+    public static class Minifier implements Filter {
+
+        @Override
+        public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+            if(request instanceof HttpServletRequest) {
+
+                if(((HttpServletRequest) request).getRequestURI().startsWith("/api")) {
+                    chain.doFilter(request, response);
+                    return;
+                }
+
+            }
+
+            if(response instanceof HttpServletResponse) {
+
+                ServletResponse wrapper;
+
+                chain.doFilter(request, (wrapper = new HttpServletResponseWrapper((HttpServletResponse) response) {
+
+                    private final PrintWriter writer;
+                    private final CharArrayWriter buffer;
+
+                    {
+                        writer = new PrintWriter((buffer = new CharArrayWriter()));
+                    }
+
+                    @Override
+                    public PrintWriter getWriter() throws IOException {
+                        return writer;
+                    }
+
+                    @Override
+                    public String toString() {
+                        return buffer.toString();
+                    }
+
+                }));
+
+
+                response.getOutputStream().print(
+                        """
+                        <!--
+                        
+                            Authors:
+                                Antonino Natale   <linkedin.com/in/antonino-natale>
+                                Matteo Perfidio   <linkedin.com/in/matteo-perfidio>
+                                Davide Crisafulli <linkedin.com/in/davide-crisafulli>
+                           
+                            Copyright (c) 2021 Bioagri S.r.l.s. All Rights Reserved.
+                            
+                        -->                   
+                        """
+                );
+
+                response.getOutputStream().print(Loader.minimize(wrapper.toString()));
+
+
+            }
+
+        }
     }
 
 

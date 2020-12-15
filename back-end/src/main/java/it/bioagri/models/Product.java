@@ -30,7 +30,6 @@ import it.bioagri.persistence.DataSource;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Optional;
 
 public final class Product {
 

@@ -40,6 +40,7 @@ dependencies {
 
 }
 
+
 task run(type: Copy) {
 
     from "src/main/webapp"
