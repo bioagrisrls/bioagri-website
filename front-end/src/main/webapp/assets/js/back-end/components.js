@@ -68,6 +68,11 @@ const expandTemplate = (template = '', data = {}) => {
 }
 
 
+/**
+ * Render a UI Component
+ * @param id {string}
+ * @param component {object}
+ */
 const render = (id, component) => {
 
     if(!component.template)
