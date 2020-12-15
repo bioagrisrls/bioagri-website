@@ -70,6 +70,16 @@ class OrdersTest {
 
     @Test
     void findAll() {
+
+        RestAssured.given()
+                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .spec(AuthTest.getSpecs())
+                .get("/orders/")
+                .then()
+                .statusCode(200);
+
+
+
     }
 
     @Test
