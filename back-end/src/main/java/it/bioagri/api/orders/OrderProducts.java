@@ -44,13 +44,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
-public class Products {
+public class OrderProducts {
 
     private final AuthToken authToken;
     private final DataSource dataSource;
 
     @Autowired
-    public Products(AuthToken authToken, DataSource dataSource) {
+    public OrderProducts(AuthToken authToken, DataSource dataSource) {
         this.authToken = authToken;
         this.dataSource = dataSource;
     }
