@@ -28,8 +28,11 @@ package it.bioagri.api.feedbacks;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import it.bioagri.api.auth.AuthTest;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.event.annotation.AfterTestMethod;
+
+import java.util.Collections;
 
 class FeedbacksTest {
 
@@ -59,22 +62,31 @@ class FeedbacksTest {
 
     }
 
+    private String createAnotherFeedBackToTest() {
+
+        String userId = AuthTest.authenticate("user2@test.com", "123").getString("userId");
+        return  createAs("user2@test.com", "3", userId, 201).split("/")[3];
 
 
-    void findAll() {
+    }
+
+
+    @Test
+    private void findAll() {
 
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123"))
+                .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .get("/feedbacks/")
                 .then()
+                .body("/feedbacks/", Matchers.hasSize(Matchers.greaterThan(0)))
                 .statusCode(200);
 
     }
 
 
     @AfterTestMethod("create")
-    void findById(String feedbackId, int expectedCode) {
+    private void findById(String feedbackId, int expectedCode) {
 
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123").getString("token"))
@@ -86,7 +98,7 @@ class FeedbacksTest {
 
 
     @AfterTestMethod("create")
-    void update(String feedbackId, String username, String userId, int expextedCode) {
+    private void update(String feedbackId, String username, String userId, int expextedCode) {
 
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
@@ -114,10 +126,10 @@ class FeedbacksTest {
     }
 
 
-    void deleteAll(int expectedCode) {
+    private void deleteAll(String username, int expectedCode) {
 
         RestAssured.given()
-                .header("X-Auth-Token",  AuthTest.authenticate("admin@test.com", "123").getString("token"))
+                .header("X-Auth-Token",  AuthTest.authenticate(username, "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .delete("/feedbacks")
                 .then()
@@ -126,7 +138,7 @@ class FeedbacksTest {
 
 
     @AfterTestMethod("create")
-    void deleteById(String username, String feedbackId, int expectedCode) {
+    private void deleteById(String username, String feedbackId, int expectedCode) {
 
         RestAssured.given()
                 .header("X-Auth-Token",  AuthTest.authenticate(username, "123").getString("token"))
@@ -137,26 +149,7 @@ class FeedbacksTest {
 
     }
 
-
-
-    public void launchAllMethodsAs(String username) {
-
-        String userId = AuthTest.authenticate(username, "123").getString("userId");
-        String feedbackId = createAs(username, "3", userId, 201).split("/")[3];
-
-        if(feedbackId == null)
-            return;
-
-        findById(feedbackId,200);
-        update(feedbackId, username,userId, 201);
-        deleteById(feedbackId, username, 204);
-        deleteAll(204);
-
-
-    }
-
-
-    public void createWithNotAuthorizedUser(){
+    private void createWithNotAuthorizedUser(){
 
         String userId = AuthTest.authenticate("user@test.com", "123").getString("userId");
         createAs("user@test.com", "3", userId + 1, 403);
@@ -165,7 +158,7 @@ class FeedbacksTest {
 
 
 
-    public void updateWithNotAuthorizedUser(){
+    private void updateWithNotAuthorizedUser(){
 
         String userIdX = AuthTest.authenticate("user@test.com", "123").getString("userId");
         String userIdY = AuthTest.authenticate("user2@test.com", "123").getString("userId");
@@ -177,8 +170,8 @@ class FeedbacksTest {
 
     }
 
-    @Test
-    public void deleteWithNotAuthorizedUser(){
+
+    private void deleteByIdWithNotAuthorizedUser(){
 
         String userIdY = AuthTest.authenticate("user2@test.com", "123").getString("userId");
         String feedbackY = createAs("user2@test.com", "3", userIdY, 201).split("/")[3];
@@ -187,10 +180,51 @@ class FeedbacksTest {
     }
 
 
-    public void launchAllmethod(){
+    private void deleteAllWithNotAuthorizedUser(){
 
-        launchAllMethodsAs("admin@test.com");
-        launchAllMethodsAs("user@test.com");
+        createAnotherFeedBackToTest();
+        deleteAll("user@test.com",  204);
+        findAll();
+
+    }
+
+
+
+
+    private void launchAllCrudMethodsAs(String username) {
+
+        String userId = AuthTest.authenticate(username, "123").getString("userId");
+        String feedbackId = createAs(username, "3", userId, 201).split("/")[3];
+
+        if(feedbackId == null)
+            return;
+
+        findById(feedbackId,200);
+        findAll();
+        update(feedbackId, username,userId, 201);
+        deleteById(username, feedbackId, 204);
+        deleteAll(username, 204);
+
+
+    }
+
+
+
+    @Test
+    public void launchAllCrudMethods(){
+
+        launchAllCrudMethodsAs("admin@test.com");
+        launchAllCrudMethodsAs("user@test.com");
+
+    }
+
+    @Test
+    public void launchAllNotAuthorizedMethods(){
+
+        createWithNotAuthorizedUser();
+        deleteAllWithNotAuthorizedUser();
+        deleteByIdWithNotAuthorizedUser();
+        updateWithNotAuthorizedUser();
 
     }
 
