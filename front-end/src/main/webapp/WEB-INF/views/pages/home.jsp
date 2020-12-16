@@ -23,29 +23,29 @@
   ~
   --%>
 
-<div id="common-header"></div>
+<%--<div id="common-header"></div>--%>
 <div id="common-navbar"></div>
-<div id="common-footer"></div>
+<%--<div id="common-footer"></div>--%>
 
 
 <script>
 
-    const header = new StatelessComponent('#common-header', {
-        render: `${components.common_header}`,
-        state: {
-            address: `${locale.info_address}`,
-            phone: `${locale.info_phone}`,
-            logged: authenticated()
-        }
-    });
+    <%--const header = new StatelessComponent('#common-header', {--%>
+    <%--    render: `${components.common_header}`,--%>
+    <%--    state: {--%>
+    <%--        address: `${locale.info_address}`,--%>
+    <%--        phone: `${locale.info_phone}`,--%>
+    <%--        logged: authenticated()--%>
+    <%--    }--%>
+    <%--});--%>
 
     const navbar = new StatelessComponent('#common-navbar', {
         render: `${components.common_navbar}`
     });
 
-    const footer = new StatefulComponent('#common-footer', {
-        render: `${components.common_footer}`
-    });
+    <%--const footer = new StatefulComponent('#common-footer', {--%>
+    <%--    render: `${components.common_footer}`--%>
+    <%--});--%>
 
 
 </script>
