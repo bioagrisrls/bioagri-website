@@ -172,16 +172,16 @@ public class ProductDaoImpl extends ProductDao {
 
 
     @Override
-    public Map<Product, Integer> findByOrderId(Long id) {
+    public List<Map.Entry<Product, Integer>> findByOrderId(Long id) {
 
-        return new HashMap<>() {{
+        return new ArrayList<>() {{
 
                 getDataSource().fetch("SELECT * FROM shop_order_product WHERE shop_order_product.order_id = ?",
                         s -> s.setLong(1, id),
                         r -> findByPrimaryKey(r.getLong("product_id"))
                                 .ifPresent(p -> {
                                     try {
-                                        put(p, r.getInt("quantity"));
+                                        add(new AbstractMap.SimpleImmutableEntry<>(p, r.getInt("quantity")));
                                     } catch (SQLException ignored) { }
                                 })
                 );

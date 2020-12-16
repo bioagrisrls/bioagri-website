@@ -69,6 +69,11 @@ public class ApiPermission {
                 new ApiPermission(ORDERS, UPDATE, ADMIN, USER),
                 new ApiPermission(ORDERS, DELETE, ADMIN, USER),
 
+                new ApiPermission(ORDER_PRODUCTS, CREATE, ADMIN, USER),
+                new ApiPermission(ORDER_PRODUCTS, READ,   ADMIN, USER),
+                new ApiPermission(ORDER_PRODUCTS, UPDATE, ADMIN, USER),
+                new ApiPermission(ORDER_PRODUCTS, DELETE, ADMIN, USER),
+
                 new ApiPermission(PRODUCTS, CREATE, ADMIN),
                 new ApiPermission(PRODUCTS, READ,   ADMIN, ALL),
                 new ApiPermission(PRODUCTS, UPDATE, ADMIN),
