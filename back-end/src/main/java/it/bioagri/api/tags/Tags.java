@@ -58,7 +58,7 @@ public class Tags {
     @GetMapping("")
     public ResponseEntity<List<Tag>> findAll() {
 
-        ApiPermission.verify(ApiPermissionType.TAGS, ApiPermissionOperation.READ, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.TAGS, ApiPermissionOperation.READ, authToken);
 
         try {
             return new ResponseEntity<>(dataSource.getTagRepository().findAll(), HttpStatus.OK);
@@ -71,7 +71,7 @@ public class Tags {
     @GetMapping("/{id}")
     public ResponseEntity<Tag> findById(@PathVariable Long id) {
 
-        ApiPermission.verify(ApiPermissionType.TAGS, ApiPermissionOperation.READ, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.TAGS, ApiPermissionOperation.READ, authToken);
 
         try {
 
@@ -89,7 +89,7 @@ public class Tags {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Tag tag) {
 
-        ApiPermission.verify(ApiPermissionType.TAGS, ApiPermissionOperation.CREATE, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.TAGS, ApiPermissionOperation.CREATE, authToken);
 
 
         tag.setId(dataSource.getId("shop_tag", Long.class));
@@ -108,7 +108,7 @@ public class Tags {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Tag tag) {
 
-        ApiPermission.verify(ApiPermissionType.TAGS, ApiPermissionOperation.UPDATE, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.TAGS, ApiPermissionOperation.UPDATE, authToken);
 
         try {
 
@@ -132,7 +132,7 @@ public class Tags {
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
 
-        ApiPermission.verify(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE, authToken);
 
         try {
 
@@ -150,7 +150,7 @@ public class Tags {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
 
-        ApiPermission.verify(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE, authToken);
 
         try {
 

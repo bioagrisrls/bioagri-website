@@ -95,7 +95,7 @@ public class Orders {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Order order) {
 
-        ApiPermission.verify(ApiPermissionType.ORDERS, ApiPermissionOperation.CREATE, authToken, order.getUserId());
+        ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.CREATE, authToken, order.getUserId());
 
         try {
 
@@ -115,7 +115,7 @@ public class Orders {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Order order) {
 
-        ApiPermission.verify(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE, authToken, order.getUserId());
+        ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE, authToken, order.getUserId());
 
         try {
 
@@ -164,7 +164,7 @@ public class Orders {
                     dataSource.getOrderRepository()
                             .findByPrimaryKey(id)
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
-                            .orElseThrow(() -> new ApiResponseStatus(404)));
+                            .orElseThrow(() -> new ApiResponseStatus(403)));
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

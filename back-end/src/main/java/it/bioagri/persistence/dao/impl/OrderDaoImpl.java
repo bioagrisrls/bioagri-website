@@ -108,7 +108,7 @@ public class OrderDaoImpl extends OrderDao {
         getDataSource().update(
                 """
                     UPDATE shop_order 
-                       SET  status = ?, created_at = ?, updated_at = ?, user_id = ?
+                       SET status = ?, created_at = ?, updated_at = ?, user_id = ?
                      WHERE id = ?
                     """,
                     s -> {

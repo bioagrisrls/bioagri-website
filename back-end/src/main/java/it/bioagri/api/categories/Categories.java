@@ -59,7 +59,7 @@ public class Categories {
     @GetMapping("")
     public ResponseEntity<List<Category>> findAll() {
 
-        ApiPermission.verify(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
 
         try {
             return ResponseEntity.ok(dataSource.getCategoryRepository().findAll());
@@ -73,7 +73,7 @@ public class Categories {
     @GetMapping("/{id}")
     public ResponseEntity<Category> findById(@PathVariable Long id) {
 
-        ApiPermission.verify(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
 
         try {
 
@@ -91,7 +91,7 @@ public class Categories {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Category category) {
 
-        ApiPermission.verify(ApiPermissionType.CATEGORIES, ApiPermissionOperation.CREATE, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.CREATE, authToken);
 
         try {
 
@@ -111,7 +111,7 @@ public class Categories {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Category category) {
 
-        ApiPermission.verify(ApiPermissionType.CATEGORIES, ApiPermissionOperation.UPDATE, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.UPDATE, authToken);
 
         try {
 
@@ -135,7 +135,7 @@ public class Categories {
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
 
-        ApiPermission.verify(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE, authToken);
 
         try {
 
@@ -153,7 +153,7 @@ public class Categories {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
 
-        ApiPermission.verify(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE, authToken);
 
         try {
 

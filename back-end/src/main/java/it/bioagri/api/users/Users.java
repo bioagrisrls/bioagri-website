@@ -96,7 +96,7 @@ public class Users {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody User user) {
 
-        ApiPermission.verify(ApiPermissionType.USERS, ApiPermissionOperation.CREATE, authToken, user.getId());
+        ApiPermission.verifyOrThrow(ApiPermissionType.USERS, ApiPermissionOperation.CREATE, authToken, user.getId());
 
         try {
 
@@ -116,7 +116,7 @@ public class Users {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody User user) {
 
-        ApiPermission.verify(ApiPermissionType.USERS, ApiPermissionOperation.UPDATE, authToken, user.getId());
+        ApiPermission.verifyOrThrow(ApiPermissionType.USERS, ApiPermissionOperation.UPDATE, authToken, user.getId());
 
         try {
 

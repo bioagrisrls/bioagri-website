@@ -58,7 +58,7 @@ public class WishList {
     @GetMapping("/{sid}/wishlist")
     public ResponseEntity<List<Product>> findAll(@PathVariable Long sid) {
 
-        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
+        ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
 
         try {
 
@@ -76,7 +76,7 @@ public class WishList {
     @GetMapping("/{sid}/wishlist/{id}")
     public ResponseEntity<Product> findById(@PathVariable Long sid, @PathVariable Long id) {
 
-        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
+        ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
 
         try {
 
@@ -99,7 +99,7 @@ public class WishList {
     @PostMapping("/{sid}/wishlist")
     public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody Product product) {
 
-        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.CREATE, authToken, sid);
+        ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.CREATE, authToken, sid);
 
         try {
 
@@ -127,7 +127,7 @@ public class WishList {
     @PutMapping("/{sid}/wishlist/{id}")
     public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id, @RequestBody Product product) {
 
-        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.UPDATE, authToken, sid);
+        ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.UPDATE, authToken, sid);
 
         try {
 
@@ -161,7 +161,7 @@ public class WishList {
     @DeleteMapping("/{sid}/wishlist")
     public ResponseEntity<String> deleteAll(@PathVariable Long sid) {
 
-        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE, authToken, sid);
+        ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE, authToken, sid);
 
         try {
 
@@ -184,7 +184,7 @@ public class WishList {
     @DeleteMapping("/{sid}/wishlist/{id}")
     public ResponseEntity<String> delete(@PathVariable Long sid, @PathVariable Long id) {
 
-        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE, authToken, sid);
+        ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE, authToken, sid);
 
         try {
 

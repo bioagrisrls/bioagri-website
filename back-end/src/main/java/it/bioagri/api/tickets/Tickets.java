@@ -94,7 +94,7 @@ public class Tickets {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Ticket ticket) {
 
-        ApiPermission.verify(ApiPermissionType.TICKETS, ApiPermissionOperation.CREATE, authToken, ticket.getUserId());
+        ApiPermission.verifyOrThrow(ApiPermissionType.TICKETS, ApiPermissionOperation.CREATE, authToken, ticket.getUserId());
 
         try {
 
@@ -114,7 +114,7 @@ public class Tickets {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Ticket ticket) {
 
-        ApiPermission.verify(ApiPermissionType.TICKETS, ApiPermissionOperation.UPDATE, authToken, ticket.getUserId());
+        ApiPermission.verifyOrThrow(ApiPermissionType.TICKETS, ApiPermissionOperation.UPDATE, authToken, ticket.getUserId());
 
         try {
 
