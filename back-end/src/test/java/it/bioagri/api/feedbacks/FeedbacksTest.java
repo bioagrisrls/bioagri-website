@@ -26,27 +26,28 @@
 package it.bioagri.api.feedbacks;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import it.bioagri.api.auth.AuthTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.event.annotation.AfterTestMethod;
 
 class FeedbacksTest {
 
-    private String createAs(String username,  int productId, int userId, int expectedCode) {
+    private String createAs(String username,  String productId, String userId, int expectedCode) {
         return RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate(username, "123"))
+                .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .body(String.format(
                         """
                         {
-                            "userId"     : "%d",  
+                            "userId"     : "%s",  
                             "title"       : "TestFeedback",
                             "vote"        : "5",
                             "id"          : "0",
                             "description" : "descriptionTest",
                             "updatedAt"  : "2014-01-01T23:28:56.782Z",
                             "createdAt"  : "2014-01-01T23:28:56.782Z",
-                            "productId"  : "%d"           
+                            "productId"  : "%s"           
                         }
                         """,userId,productId)
                 )
@@ -58,20 +59,9 @@ class FeedbacksTest {
 
     }
 
-    @Test
-    public void createFeedback() {
 
 
-        createAs("user@test.com", 3,4,201);
-        createAs("admin@test.com", 3,5,201);
-
-    }
-
-
-    @Test
     void findAll() {
-
-        //var feedbackId = createAs("admin@test.com", 201).split("/")[3];
 
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123"))
@@ -82,70 +72,130 @@ class FeedbacksTest {
 
     }
 
-    @Test
-    @AfterTestMethod("create")
-    void findById() {
 
+    @AfterTestMethod("create")
+    void findById(String feedbackId, int expectedCode) {
 
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123").getString("token"))
                 .spec(AuthTest.getSpecs())
-                .get("/feedbacks/3" )
+                .get("/feedbacks/" + feedbackId )
                 .then()
-                .statusCode(200);
-
-        /*RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123"))
-                .spec(AuthTest.getSpecs())
-                .get("/feedbacks/" + "4" )
-                .then()
-                .statusCode(200);*/
+                .statusCode(expectedCode);
     }
 
-    @Test
+
     @AfterTestMethod("create")
-    void update() {
+    void update(String feedbackId, String username, String userId, int expextedCode) {
 
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .body(
                         """
                         {
-                            "userId"     : "5",  
+                            "userId"     : "%s",  
                             "title"       : "TestFeedback",
                             "vote"        : "1",
-                            "id"          : "0",
+                            "id"          : "%s",
                             "description" : "descriptionTest",
                             "updatedAt"  : "2014-01-01T23:28:56.782Z",
                             "createdAt"  : "2014-01-01T23:28:56.782Z",
                             "productId"  : "3"           
                         }
-                        """
+                        """.formatted(userId, feedbackId)
                 )
-                .put("/feedbacks/5")
+                .put("/feedbacks/" + feedbackId)
                 .then()
-                .statusCode(201)
+                .statusCode(expextedCode)
                 .extract()
                 .header("Location");
 
     }
 
-    @Test
-    void deleteAll() {
-        // Just skip...
-    }
 
-    @Test
-    @AfterTestMethod("create")
-    void deleteById() {
+    void deleteAll(int expectedCode) {
 
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .header("X-Auth-Token",  AuthTest.authenticate("admin@test.com", "123").getString("token"))
                 .spec(AuthTest.getSpecs())
-                .delete("/feedbacks/6" )
+                .delete("/feedbacks")
                 .then()
-                .statusCode(204);
+                .statusCode(expectedCode);
+    }
+
+
+    @AfterTestMethod("create")
+    void deleteById(String username, String feedbackId, int expectedCode) {
+
+        RestAssured.given()
+                .header("X-Auth-Token",  AuthTest.authenticate(username, "123").getString("token"))
+                .spec(AuthTest.getSpecs())
+                .delete("/feedbacks/" + feedbackId )
+                .then()
+                .statusCode(expectedCode);
 
     }
+
+
+
+    public void launchAllMethodsAs(String username) {
+
+        String userId = AuthTest.authenticate(username, "123").getString("userId");
+        String feedbackId = createAs(username, "3", userId, 201).split("/")[3];
+
+        if(feedbackId == null)
+            return;
+
+        findById(feedbackId,200);
+        update(feedbackId, username,userId, 201);
+        deleteById(feedbackId, username, 204);
+        deleteAll(204);
+
+
+    }
+
+
+    public void createWithNotAuthorizedUser(){
+
+        String userId = AuthTest.authenticate("user@test.com", "123").getString("userId");
+        createAs("user@test.com", "3", userId + 1, 403);
+
+    }
+
+
+
+    public void updateWithNotAuthorizedUser(){
+
+        String userIdX = AuthTest.authenticate("user@test.com", "123").getString("userId");
+        String userIdY = AuthTest.authenticate("user2@test.com", "123").getString("userId");
+
+        String feedbackY = createAs("user2@test.com", "3", userIdY, 201).split("/")[3];
+
+
+        update(feedbackY, "user@test.com", userIdX, 403);
+
+    }
+
+    @Test
+    public void deleteWithNotAuthorizedUser(){
+
+        String userIdY = AuthTest.authenticate("user2@test.com", "123").getString("userId");
+        String feedbackY = createAs("user2@test.com", "3", userIdY, 201).split("/")[3];
+        deleteById("user@test.com", feedbackY , 403);
+
+    }
+
+
+    public void launchAllmethod(){
+
+        launchAllMethodsAs("admin@test.com");
+        launchAllMethodsAs("user@test.com");
+
+    }
+
+
+
+
+
 }

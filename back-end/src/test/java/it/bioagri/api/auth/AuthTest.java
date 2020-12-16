@@ -30,6 +30,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -52,7 +53,7 @@ public class AuthTest {
                 .build();
     }
 
-    public static String authenticate(String username, String password) {
+    public static JsonPath authenticate(String username, String password) {
 
         var response = RestAssured.given()
                 .baseUri(RestAssured.DEFAULT_URI)
@@ -78,10 +79,10 @@ public class AuthTest {
 
         RestAssured.sessionId = response.sessionId();
 
+
         return response.then()
                 .extract()
-                .jsonPath()
-                .getString("token");
+                .jsonPath();
 
     }
 
@@ -89,13 +90,13 @@ public class AuthTest {
 
 
     @Test
-    public void authenticateAsUserTest() {
-        authenticate("user@test.com", "123");
+    public String authenticateAsUserTest() {
+        return authenticate("user@test.com", "123").getString("userId");
     }
 
     @Test
-    public void authenticateAsAdminTest() {
-        authenticate("admin@test.com", "123");
+    public String authenticateAsAdminTest() {
+        return authenticate("admin@test.com", "123").getString("userId");
     }
 
     @Test
@@ -109,7 +110,7 @@ public class AuthTest {
     public void disconnectAsUserTest() {
 
         RestAssured.given()
-                .header("X-Auth-Token", authenticate("user@test.com", "123"))
+                .header("X-Auth-Token", authenticate("user@test.com", "123").getString("token"))
                 .spec(getSpecs())
                 .get("/auth/disconnect")
                 .then()
@@ -121,7 +122,7 @@ public class AuthTest {
     public void disconnectAsAdminTest() {
 
         RestAssured.given()
-                .header("X-Auth-Token", authenticate("admin@test.com", "123"))
+                .header("X-Auth-Token", authenticate("admin@test.com", "123").getString("token"))
                 .spec(getSpecs())
                 .get("/auth/disconnect")
                 .then()
