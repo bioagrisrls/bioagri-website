@@ -34,6 +34,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @Component
@@ -41,12 +42,18 @@ import java.util.UUID;
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.NONE)
 public class AuthToken {
 
-
     private String token;
     private Timestamp timestamp;
     private Long userId;
     private UserRole userRole;
 
+
+    public AuthToken() {
+        this.token = null;
+        this.timestamp = null;
+        this.userId = null;
+        this.userRole = null;
+    }
 
     @JsonProperty
     public String getToken() {
@@ -86,14 +93,24 @@ public class AuthToken {
     }
 
 
-    public boolean isExpired() {
+    public boolean isValid() {
 
-        return  token == null           ||
-                timestamp == null       ||
-                token.isEmpty()         ||
-                timestamp.before(Timestamp.from(Instant.now().minus(30, ChronoUnit.MINUTES)));
+        return  token != null &&
+                userId != null &&
+                userRole != null &&
+                timestamp != null;
 
     }
+
+    public boolean isExpired() {
+
+        if(!isValid())
+            return false;
+
+        return timestamp.before(Timestamp.from(Instant.now().minus(30, ChronoUnit.MINUTES)));
+
+    }
+
 
 
     public AuthToken generateToken(Long userId, UserRole userRole) {
@@ -111,5 +128,13 @@ public class AuthToken {
         return generateToken(getUserId(), getUserRole());
     }
 
-
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", AuthToken.class.getSimpleName() + "[", "]")
+                .add("token='" + token + "'")
+                .add("timestamp=" + timestamp)
+                .add("userId=" + userId)
+                .add("userRole=" + userRole)
+                .toString();
+    }
 }

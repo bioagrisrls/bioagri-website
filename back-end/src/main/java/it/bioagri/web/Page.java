@@ -25,6 +25,8 @@
 
 package it.bioagri.web;
 
+import it.bioagri.api.auth.AuthToken;
+import it.bioagri.models.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,11 +37,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class Page {
 
     private final Loader loader;
+    private final AuthToken authToken;
 
     @Autowired
-    public Page(Loader loader) {
+    public Page(Loader loader, AuthToken authToken) {
         this.loader = loader;
+        this.authToken = authToken;
     }
+
 
     @GetMapping("/")
     public String index(Model model) {
@@ -49,6 +54,16 @@ public class Page {
     @GetMapping("/{page}")
     public String page(Model model, @PathVariable String page) {
         return loader.load(model, page);
+    }
+
+    @GetMapping("/admin/{page}")
+    public String admin(Model model, @PathVariable String page) {
+
+        if(authToken.isValid() && authToken.getUserRole().equals(UserRole.ADMIN))
+            return loader.load(model, "admin/%s".formatted(page));
+
+        return "error";
+
     }
 
 }

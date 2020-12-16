@@ -25,6 +25,8 @@
 
 package it.bioagri.api;
 
+import ch.qos.logback.classic.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -33,6 +35,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 public class ApiResponseStatus extends RuntimeException {
 
+    private final static Logger logger = (Logger) LoggerFactory.getLogger(ApiResponseStatus.class);
     private final HttpStatus status;
 
     public ApiResponseStatus(HttpStatus status) {
@@ -54,7 +57,12 @@ public class ApiResponseStatus extends RuntimeException {
         @ExceptionHandler(ApiResponseStatus.class)
         @ResponseBody
         public ResponseEntity<String> handle(ApiResponseStatus e) {
+
+            if(logger.isTraceEnabled() && !e.getStatus().is2xxSuccessful())
+                logger.trace("Got a not successful status {}", e.getStatus());
+
             return ResponseEntity.status(e.getStatus()).build();
+
         }
 
     }

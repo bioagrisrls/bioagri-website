@@ -45,7 +45,7 @@ public class Error implements ErrorController {
 
         if(status == null)
             status = HttpStatus.INTERNAL_SERVER_ERROR;
-        
+
         throw new ApiResponseStatus(status);
 
     }

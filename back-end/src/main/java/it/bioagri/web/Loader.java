@@ -25,6 +25,8 @@
 
 package it.bioagri.web;
 
+import ch.qos.logback.classic.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -42,27 +44,29 @@ import java.util.Map;
 @Scope("singleton")
 public class Loader {
 
-    private final ServletContext servletContext;
+    private final static Logger logger = (Logger) LoggerFactory.getLogger(Loader.class);
     private final Map<String, String> components;
 
     @Autowired
     public Loader(ServletContext servletContext) {
 
-        this.servletContext = servletContext;
-
         this.components = new HashMap<>() {{
 
             try {
 
-                Files.list(Path.of(servletContext.getRealPath("/components")))
+                final var componentsPath = Path.of(servletContext.getRealPath("/components"));
+
+                Files.list(componentsPath)
                         .filter(p -> p.toString().endsWith(".ui"))
-                        .peek(p -> System.err.printf("%s: Loading component %s%n", Loader.class.getSimpleName(), p.getFileName().toString()))
+                        .peek(p -> logger.info("Loading component {}", componentsPath.relativize(p).toString()))
                         .forEach(p -> {
 
                             try {
 
-                                put(p.getFileName()
+                                put(componentsPath.relativize(p)
                                                 .toString()
+                                                .replace('/', '_')
+                                                .replace('\\', '_')
                                                 .transform(s -> s.substring(0, s.lastIndexOf('.'))), minimize(Files.readString(p)));
 
                             } catch (IOException ignored) {

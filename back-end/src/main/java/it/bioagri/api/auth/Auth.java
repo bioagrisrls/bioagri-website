@@ -25,8 +25,10 @@
 
 package it.bioagri.api.auth;
 
+import ch.qos.logback.classic.Logger;
 import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +44,8 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/api/auth")
 public final class Auth {
 
+    private final static Logger logger = (Logger) LoggerFactory.getLogger(Auth.class);
+
     private final AuthToken authToken;
     private final DataSource dataSource;
 
@@ -54,6 +58,8 @@ public final class Auth {
 
     @PostMapping("authenticate")
     public ResponseEntity<AuthToken> authenticate(HttpSession session, @RequestBody AuthLogin authLogin) {
+
+        logger.trace("Authentication attempt with {}", authLogin);
 
         if(authLogin.getUsername().isEmpty())
             return ResponseEntity.badRequest().build();
@@ -73,7 +79,9 @@ public final class Auth {
     @RequestMapping("disconnect")
     public void disconnect(HttpSession session) {
 
-        authToken.setUserId(-1L);
+        logger.trace("Authentication closed from {}", authToken);
+
+        authToken.setUserId(null);
         authToken.setUserRole(null);
         authToken.setToken(null);
         authToken.setTimestamp(null);

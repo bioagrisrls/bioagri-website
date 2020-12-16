@@ -25,6 +25,8 @@
 
 package it.bioagri.api.auth;
 
+import java.util.StringJoiner;
+
 public final class AuthLogin {
 
     private final String username;
@@ -43,4 +45,11 @@ public final class AuthLogin {
         return password;
     }
 
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", AuthLogin.class.getSimpleName() + "[", "]")
+                .add("username='" + username + "'")
+                .add("password='" + password + "'")
+                .toString();
+    }
 }

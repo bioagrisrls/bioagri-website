@@ -25,11 +25,13 @@
 
 package it.bioagri.persistence;
 
+import ch.qos.logback.classic.Logger;
 import it.bioagri.api.auth.AuthLogin;
 import it.bioagri.models.User;
 import it.bioagri.persistence.dao.*;
 import it.bioagri.persistence.dao.impl.*;
 import org.intellij.lang.annotations.Language;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -44,6 +46,8 @@ import java.util.concurrent.atomic.AtomicReference;
 @Component
 @Scope("singleton")
 public class DataSource {
+
+    private final static Logger logger = (Logger) LoggerFactory.getLogger(DataSource.class);
 
     private final String uri;
     private final String username;
@@ -131,6 +135,9 @@ public class DataSource {
 
     public void fetch(@Language("SQL") String sql, DataSourcePrepareStatement prepareStatement, DataSourceFetchResult fetchResult) {
 
+        logger.trace("FETCH data with query '{}'", sql);
+
+
         try(var connection = getConnection();
             var statement = connection.prepareStatement(sql)) {
 
@@ -162,6 +169,9 @@ public class DataSource {
 
 
     public int update(@Language("SQL") String sql, DataSourcePrepareStatement prepareStatement, boolean batch) {
+
+        logger.trace("UPDATE data with query '{}'", sql);
+
 
         try(var connection = getConnection();
             var statement = connection.prepareStatement(sql)) {

@@ -25,10 +25,12 @@
 
 package it.bioagri;
 
+import ch.qos.logback.classic.Logger;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.web.Loader;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -47,6 +49,7 @@ import java.io.PrintWriter;
 @Component
 public class WebConfig implements WebMvcConfigurer {
 
+    private final static Logger logger = (Logger) LoggerFactory.getLogger(WebConfig.class);
 
     @Component
     static class Interceptor implements HandlerInterceptor {
@@ -87,14 +90,25 @@ public class WebConfig implements WebMvcConfigurer {
     @Component
     public static class Minifier implements Filter {
 
+        private final AuthToken authToken;
+
+        @Autowired
+        public Minifier(AuthToken authToken) {
+            this.authToken = authToken;
+        }
+
         @Override
         public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
             if(request instanceof HttpServletRequest) {
 
                 if(((HttpServletRequest) request).getRequestURI().startsWith("/api")) {
+
+                    logger.trace("invoked REST API {} from {}", ((HttpServletRequest) request).getRequestURI(), authToken);
+
                     chain.doFilter(request, response);
                     return;
+
                 }
 
             }
@@ -139,6 +153,7 @@ public class WebConfig implements WebMvcConfigurer {
                         -->                   
                         """
                 );
+
 
                 response.getOutputStream().print(Loader.minimize(wrapper.toString()));
 
