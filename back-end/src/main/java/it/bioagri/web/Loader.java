@@ -56,7 +56,7 @@ public class Loader {
 
                 final var componentsPath = Path.of(servletContext.getRealPath("/components"));
 
-                Files.list(componentsPath)
+                Files.walk(componentsPath)
                         .filter(p -> p.toString().endsWith(".ui"))
                         .peek(p -> logger.info("Loading component {}", componentsPath.relativize(p).toString()))
                         .forEach(p -> {
