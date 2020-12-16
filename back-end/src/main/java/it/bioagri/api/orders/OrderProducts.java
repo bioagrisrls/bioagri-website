@@ -42,6 +42,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/api/orders")
 public class OrderProducts {
@@ -55,7 +56,7 @@ public class OrderProducts {
         this.dataSource = dataSource;
     }
 
-    @GetMapping("/{sid}/products")
+    @GetMapping("/{sid}/orders")
     public ResponseEntity<List<Product>> findAll(@PathVariable Long sid) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
@@ -64,7 +65,7 @@ public class OrderProducts {
 
             return ResponseEntity.ok(dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
-                    .orElseThrow(() -> new ApiResponseStatus(404))
+                    .orElseThrow(() -> new ApiResponseStatus(400))
                     .getWishList(dataSource));
 
         } catch (DataSourceSQLException e) {
@@ -73,7 +74,7 @@ public class OrderProducts {
 
     }
 
-    @GetMapping("/{sid}/products/{id}")
+    @GetMapping("/{sid}/wishlist/{id}")
     public ResponseEntity<Product> findById(@PathVariable Long sid, @PathVariable Long id) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
@@ -82,7 +83,7 @@ public class OrderProducts {
 
             return ResponseEntity.ok(dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
-                    .orElseThrow(() -> new ApiResponseStatus(404))
+                    .orElseThrow(() -> new ApiResponseStatus(400))
                     .getWishList(dataSource)
                     .stream()
                     .filter(i -> id.equals(i.getId()))
@@ -96,19 +97,19 @@ public class OrderProducts {
     }
 
 
-    @PostMapping("/{sid}/products")
+    @PostMapping("/{sid}/wishlist")
     public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody Product product) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.CREATE, authToken, sid);
 
         try {
 
-            var p = dataSource.getProductRepository()
-                    .findByPrimaryKey(product.getId())
-                    .orElseThrow(() -> new ApiResponseStatus(404));
-
             var u = dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
+                    .orElseThrow(() -> new ApiResponseStatus(400));
+
+            var p = dataSource.getProductRepository()
+                    .findByPrimaryKey(product.getId())
                     .orElseThrow(() -> new ApiResponseStatus(404));
 
 
@@ -124,19 +125,20 @@ public class OrderProducts {
     }
 
 
-    @PutMapping("/{sid}/products/{id}")
+    @PutMapping("/{sid}/wishlist/{id}")
     public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id, @RequestBody Product product) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.UPDATE, authToken, sid);
 
         try {
 
-            var p = dataSource.getProductRepository()
-                    .findByPrimaryKey(product.getId())
-                    .orElseThrow(() -> new ApiResponseStatus(404));
 
             var u = dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
+                    .orElseThrow(() -> new ApiResponseStatus(400));
+
+            var p = dataSource.getProductRepository()
+                    .findByPrimaryKey(product.getId())
                     .orElseThrow(() -> new ApiResponseStatus(404));
 
 
@@ -158,7 +160,7 @@ public class OrderProducts {
     }
 
 
-    @DeleteMapping("/{sid}/products")
+    @DeleteMapping("/{sid}/wishlist")
     public ResponseEntity<String> deleteAll(@PathVariable Long sid) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE, authToken, sid);
@@ -167,7 +169,7 @@ public class OrderProducts {
 
             var u = dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
-                    .orElseThrow(() -> new ApiResponseStatus(404));
+                    .orElseThrow(() -> new ApiResponseStatus(400));
 
             u.getWishList(dataSource).clear();
             dataSource.getUserRepository().update(u, u);
@@ -181,7 +183,7 @@ public class OrderProducts {
     }
 
 
-    @DeleteMapping("/{sid}/products/{id}")
+    @DeleteMapping("/{sid}/wishlist/{id}")
     public ResponseEntity<String> delete(@PathVariable Long sid, @PathVariable Long id) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE, authToken, sid);
@@ -190,7 +192,7 @@ public class OrderProducts {
 
             var u = dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
-                    .orElseThrow(() -> new ApiResponseStatus(404));
+                    .orElseThrow(() -> new ApiResponseStatus(400));
 
             var p = u.getWishList(dataSource)
                     .stream()
@@ -210,3 +212,4 @@ public class OrderProducts {
     }
 
 }
+
