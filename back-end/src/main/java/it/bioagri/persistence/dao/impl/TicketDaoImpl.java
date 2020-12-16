@@ -112,14 +112,13 @@ public class TicketDaoImpl extends TicketDao {
         getDataSource().update(
                 """
                     UPDATE shop_ticket 
-                       SET title = ?, description = ?, status = ?, user_id = ?, created_at = ?, updated_at = ?
+                       SET title = ?, description = ?, status = ?, created_at = ?, updated_at = ?
                      WHERE id = ?
                     """,
                     s -> {
                         s.setString(1, newValue.getTitle());
                         s.setString(2,newValue.getDescription());
                         s.setShort(3, (short) newValue.getStatus().ordinal());
-                        s.setLong(4, newValue.getUserId());
                         s.setTimestamp(5, newValue.getCreatedAt());
                         s.setTimestamp(6, newValue.getUpdatedAt());
                         s.setLong(7, oldValue.getId());

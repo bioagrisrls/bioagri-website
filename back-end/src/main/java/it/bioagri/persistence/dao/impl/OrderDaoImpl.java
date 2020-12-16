@@ -108,14 +108,13 @@ public class OrderDaoImpl extends OrderDao {
         getDataSource().update(
                 """
                     UPDATE shop_order 
-                       SET status = ?, created_at = ?, updated_at = ?, user_id = ?
+                       SET status = ?, created_at = ?, updated_at = ?
                      WHERE id = ?
                     """,
                     s -> {
                         s.setShort(1, (short) oldValue.getStatus().ordinal());
                         s.setTimestamp(2, oldValue.getCreatedAt());
                         s.setTimestamp(3, oldValue.getUpdatedAt());
-                        s.setLong(4, oldValue.getUserId());
                         s.setLong(5, newValue.getId());
                     }, false);
 

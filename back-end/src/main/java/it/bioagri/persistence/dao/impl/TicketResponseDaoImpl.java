@@ -103,14 +103,13 @@ public class TicketResponseDaoImpl extends TicketResponseDao {
         getDataSource().update(
                 """
                     UPDATE shop_ticket_response
-                       SET response = ?, created_at = ?, updated_at = ?, ticket_id = ?
+                       SET response = ?, created_at = ?, updated_at = ?
                      WHERE id = ?
                     """,
                     s -> {
                         s.setString(1, newValue.getResponse());
                         s.setTimestamp(2, newValue.getCreatedAt());
                         s.setTimestamp(3, newValue.getUpdatedAt());
-                        s.setLong(4, newValue.getTicketId());
                         s.setLong(5, oldValue.getId());
                     }, false);
 

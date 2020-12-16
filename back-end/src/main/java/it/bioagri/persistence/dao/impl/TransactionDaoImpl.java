@@ -155,7 +155,7 @@ public class TransactionDaoImpl extends TransactionDao {
                 UPDATE shop_transaction
                    SET status = ?, created_at = ?, updated_at = ?, result = ?, total = ?, type = ?, courier_service = ?, 
                        shipment_number = ?, weight = ?, recipient = ?, address = ?, city = ?, province = ?, zip = ?, 
-                       phone = ?, additional_info = ?, invoice = ?, order_id = ?, transaction_code = ? 
+                       phone = ?, additional_info = ?, invoice = ?, transaction_code = ? 
                  WHERE id = ?
                 """,
                     s -> {
@@ -176,7 +176,6 @@ public class TransactionDaoImpl extends TransactionDao {
                         s.setString(15, newValue.getPhone());
                         s.setString(16, newValue.getAdditionalInfo());
                         s.setString(17, newValue.getInvoice());
-                        s.setLong(18, newValue.getOrderId());
                         s.setString(19, newValue.getTransactionCode());
                         s.setLong(20, oldValue.getId());
                     }, false);
