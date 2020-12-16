@@ -50,6 +50,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="/assets/css/normalize.css">
+        <link rel="stylesheet" href="/assets/css/components.css">
         <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-reboot.min.css">
         <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
         <!--<link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-grid.min.css">-->
@@ -72,7 +73,7 @@
 
     </head>
 
-    <body>
+    <body class="sidebar-collapse" >
         <jsp:include page="${reference}" />
     </body>
 
