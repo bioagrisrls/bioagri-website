@@ -41,6 +41,10 @@ dependencies {
 }
 
 
+task clean_webapp(type: Delete) {
+    delete "${project(":back-end").projectDir}/src/main/webapp"
+}
+
 task run(type: Copy) {
 
     from "src/main/webapp"
@@ -48,4 +52,5 @@ task run(type: Copy) {
 
 }
 
+run.dependsOn(project(":front-end").tasks.clean_webapp)
 run.finalizedBy(project(":back-end").tasks.bootRun)
