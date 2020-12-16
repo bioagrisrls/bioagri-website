@@ -39,11 +39,11 @@
         }
     });
 
-    const navbar = new StatefulComponent('#common-navbar', {
+    const navbar = new StatelessComponent('#common-navbar', {
         render: `${components.common_navbar}`
     });
 
-    const footer = new StatelessComponent('#common-footer', {
+    const footer = new StatefulComponent('#common-footer', {
         render: `${components.common_footer}`
     });
 
