@@ -86,7 +86,7 @@ class StatefulComponent extends Component {
 
         this.__currentState = {};
 
-        if(props.state.then) {
+        if((props.state || {}).then) {
             props.state.then(
                 (response) => this.setState(response),
                 (reason) => this.__render(this.onError(), {})
