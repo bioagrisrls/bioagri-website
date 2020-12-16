@@ -1,9 +1,8 @@
 
 spring:
   mvc:
-    #static-path-pattern: "/resources/webapp/**"
     view:
-      prefix: "/WEB-INF/jsp/"
+      prefix: "/WEB-INF/views/"
       suffix: ".jsp"
 
 
@@ -21,4 +20,5 @@ server:
 
 logging:
   level:
+    "web" : TRACE
     "it.bioagri" : TRACE
