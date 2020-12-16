@@ -99,7 +99,7 @@ const authenticate = async (username, password) => {
 
 /**
  * Check if client is currently authenticated.
- * @returns {boolean}
+ * @returns {Promise<boolean>}
  */
 const authenticated = async () => {
 
