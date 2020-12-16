@@ -82,7 +82,7 @@ public class Feedbacks {
 
             return ResponseEntity.ok(dataSource.getFeedbackRepository()
                     .findByPrimaryKey(id)
-                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                    .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken, i.getUserId()))
                     .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {

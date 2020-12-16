@@ -116,13 +116,12 @@ public class Users {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody User user) {
 
-        ApiPermission.verifyOrThrow(ApiPermissionType.USERS, ApiPermissionOperation.UPDATE, authToken, user.getId());
-
         try {
 
             user.setId(dataSource.getId("shop_user", Long.class));
 
             dataSource.getUserRepository().findByPrimaryKey(id)
+                    .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.USERS, ApiPermissionOperation.UPDATE, authToken, i.getId()))
                     .ifPresentOrElse(
                             (r) -> dataSource.getUserRepository().update(r, user),
                             ( ) -> dataSource.getUserRepository().save(user)
@@ -164,7 +163,7 @@ public class Users {
             dataSource.getUserRepository().delete(
                     dataSource.getUserRepository()
                             .findByPrimaryKey(id)
-                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.DELETE, authToken, i.getId()))
+                            .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.USERS, ApiPermissionOperation.DELETE, authToken, i.getId()))
                             .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {

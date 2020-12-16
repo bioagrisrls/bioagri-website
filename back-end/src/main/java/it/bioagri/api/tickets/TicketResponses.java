@@ -85,7 +85,7 @@ public class TicketResponses {
             return ResponseEntity.ok(dataSource.getTicketResponseRepository()
                     .findByPrimaryKey(id)
                     .filter(i -> i.getTicketId().equals(sid))
-                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.READ, authToken, i.getTicket(dataSource)
+                    .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.READ, authToken, i.getTicket(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
                     .orElseThrow(() -> new ApiResponseStatus(404)));
@@ -101,7 +101,7 @@ public class TicketResponses {
     public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody TicketResponse response) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.CREATE, authToken, response.getTicket(dataSource)
-                .orElseThrow(() -> new ApiResponseStatus(404))
+                .orElseThrow(() -> new ApiResponseStatus(400))
                 .getUserId());
 
         try {
@@ -122,15 +122,14 @@ public class TicketResponses {
     @PutMapping("/{sid}/responses/{id}")
     public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id, @RequestBody TicketResponse response) {
 
-        ApiPermission.verifyOrThrow(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.UPDATE, authToken, response.getTicket(dataSource)
-                .orElseThrow(() -> new ApiResponseStatus(404))
-                .getUserId());
-
         try {
 
             response.setId(dataSource.getId("shop_ticket_response", Long.class));
 
             dataSource.getTicketResponseRepository().findByPrimaryKey(id)
+                    .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.UPDATE, authToken, i.getTicket(dataSource)
+                            .orElseThrow(() -> new ApiResponseStatus(502))
+                            .getUserId()))
                     .ifPresentOrElse(
                             (r) -> dataSource.getTicketResponseRepository().update(r, response),
                             ( ) -> dataSource.getTicketResponseRepository().save(response)
@@ -177,7 +176,7 @@ public class TicketResponses {
                     dataSource.getTicketResponseRepository()
                             .findByPrimaryKey(id)
                             .filter(i -> i.getTicketId().equals(sid))
-                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.DELETE, authToken, i.getTicket(dataSource)
+                            .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.DELETE, authToken, i.getTicket(dataSource)
                                     .orElseThrow(() -> new ApiResponseStatus(502))
                                     .getUserId()))
                             .orElseThrow(() -> new ApiResponseStatus(404)));

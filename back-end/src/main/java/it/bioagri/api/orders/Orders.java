@@ -82,7 +82,7 @@ public class Orders {
 
             return ResponseEntity.ok(dataSource.getOrderRepository()
                     .findByPrimaryKey(id)
-                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                    .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
                     .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
@@ -115,13 +115,12 @@ public class Orders {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Order order) {
 
-        ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE, authToken, order.getUserId());
-
         try {
 
             order.setId(dataSource.getId("shop_order", Long.class));
 
             dataSource.getOrderRepository().findByPrimaryKey(id)
+                    .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE, authToken, i.getUserId()))
                     .ifPresentOrElse(
                             (r) -> dataSource.getOrderRepository().update(r, order),
                             ( ) -> dataSource.getOrderRepository().save(order)
@@ -163,8 +162,8 @@ public class Orders {
             dataSource.getOrderRepository().delete(
                     dataSource.getOrderRepository()
                             .findByPrimaryKey(id)
-                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
-                            .orElseThrow(() -> new ApiResponseStatus(403)));
+                            .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
+                            .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

@@ -85,7 +85,7 @@ public class Transactions {
             return ResponseEntity.ok(dataSource.getTransactionRepository()
                     .findByPrimaryKey(id)
                     .filter(i -> i.getOrderId().equals(sid))
-                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.READ, authToken, i.getOrder(dataSource)
+                    .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.READ, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
                     .orElseThrow(() -> new ApiResponseStatus(404)));
@@ -101,7 +101,7 @@ public class Transactions {
     public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody Transaction transaction) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.CREATE, authToken, transaction.getOrder(dataSource)
-                .orElseThrow(() -> new ApiResponseStatus(404))
+                .orElseThrow(() -> new ApiResponseStatus(400))
                 .getUserId());
 
         try {
@@ -122,15 +122,14 @@ public class Transactions {
     @PutMapping("/{sid}/transactions/{id}")
     public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id, @RequestBody Transaction transaction) {
 
-        ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.UPDATE, authToken, transaction.getOrder(dataSource)
-                .orElseThrow(() -> new ApiResponseStatus(404))
-                .getUserId());
-
         try {
 
             transaction.setId(dataSource.getId("shop_transaction", Long.class));
 
             dataSource.getTransactionRepository().findByPrimaryKey(id)
+                    .filter(i ->  ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.UPDATE, authToken, i.getOrder(dataSource)
+                            .orElseThrow(() -> new ApiResponseStatus(502))
+                            .getUserId()))
                     .ifPresentOrElse(
                             (r) -> dataSource.getTransactionRepository().update(r, transaction),
                             ( ) -> dataSource.getTransactionRepository().save(transaction)
@@ -177,10 +176,10 @@ public class Transactions {
                     dataSource.getTransactionRepository()
                             .findByPrimaryKey(id)
                             .filter(i -> i.getOrderId().equals(sid))
-                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.DELETE, authToken, i.getOrder(dataSource)
+                            .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.DELETE, authToken, i.getOrder(dataSource)
                                     .orElseThrow(() -> new ApiResponseStatus(502))
                                     .getUserId()))
-                            .orElseThrow(() -> new ApiResponseStatus(403)));
+                            .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

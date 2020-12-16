@@ -82,7 +82,7 @@ public class Tickets {
 
             return ResponseEntity.ok(dataSource.getTicketRepository()
                     .findByPrimaryKey(id)
-                    .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKETS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                    .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TICKETS, ApiPermissionOperation.READ, authToken, i.getUserId()))
                     .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {
@@ -114,13 +114,12 @@ public class Tickets {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Ticket ticket) {
 
-        ApiPermission.verifyOrThrow(ApiPermissionType.TICKETS, ApiPermissionOperation.UPDATE, authToken, ticket.getUserId());
-
         try {
 
             ticket.setId(dataSource.getId("shop_ticket", Long.class));
 
             dataSource.getTicketRepository().findByPrimaryKey(id)
+                    .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TICKETS, ApiPermissionOperation.UPDATE, authToken, i.getUserId()))
                     .ifPresentOrElse(
                             (r) -> dataSource.getTicketRepository().update(r, ticket),
                             ( ) -> dataSource.getTicketRepository().save(ticket)
@@ -162,7 +161,7 @@ public class Tickets {
             dataSource.getTicketRepository().delete(
                     dataSource.getTicketRepository()
                             .findByPrimaryKey(id)
-                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKETS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
+                            .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TICKETS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
                             .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {

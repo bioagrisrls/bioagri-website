@@ -64,7 +64,7 @@ public class WishList {
 
             return ResponseEntity.ok(dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
-                    .orElseThrow(() -> new ApiResponseStatus(404))
+                    .orElseThrow(() -> new ApiResponseStatus(400))
                     .getWishList(dataSource));
 
         } catch (DataSourceSQLException e) {
@@ -82,7 +82,7 @@ public class WishList {
 
             return ResponseEntity.ok(dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
-                    .orElseThrow(() -> new ApiResponseStatus(404))
+                    .orElseThrow(() -> new ApiResponseStatus(400))
                     .getWishList(dataSource)
                     .stream()
                     .filter(i -> id.equals(i.getId()))
@@ -103,12 +103,12 @@ public class WishList {
 
         try {
 
-            var p = dataSource.getProductRepository()
-                    .findByPrimaryKey(product.getId())
-                    .orElseThrow(() -> new ApiResponseStatus(404));
-
             var u = dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
+                    .orElseThrow(() -> new ApiResponseStatus(400));
+
+            var p = dataSource.getProductRepository()
+                    .findByPrimaryKey(product.getId())
                     .orElseThrow(() -> new ApiResponseStatus(404));
 
 
@@ -131,12 +131,13 @@ public class WishList {
 
         try {
 
-            var p = dataSource.getProductRepository()
-                    .findByPrimaryKey(product.getId())
-                    .orElseThrow(() -> new ApiResponseStatus(404));
 
             var u = dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
+                    .orElseThrow(() -> new ApiResponseStatus(400));
+
+            var p = dataSource.getProductRepository()
+                    .findByPrimaryKey(product.getId())
                     .orElseThrow(() -> new ApiResponseStatus(404));
 
 
@@ -167,7 +168,7 @@ public class WishList {
 
             var u = dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
-                    .orElseThrow(() -> new ApiResponseStatus(404));
+                    .orElseThrow(() -> new ApiResponseStatus(400));
 
             u.getWishList(dataSource).clear();
             dataSource.getUserRepository().update(u, u);
@@ -190,7 +191,7 @@ public class WishList {
 
             var u = dataSource.getUserRepository()
                     .findByPrimaryKey(sid)
-                    .orElseThrow(() -> new ApiResponseStatus(404));
+                    .orElseThrow(() -> new ApiResponseStatus(400));
 
             var p = u.getWishList(dataSource)
                     .stream()
