@@ -39,6 +39,6 @@ public abstract class ProductDao extends Dao<Product, Long> {
 
 
     public abstract List<Product> findByWishUserId(Long id);
-    public abstract Map<Product, Integer> findByOrderId(Long id);
+    public abstract List<Map.Entry<Product, Integer>> findByOrderId(Long id);
 
 }

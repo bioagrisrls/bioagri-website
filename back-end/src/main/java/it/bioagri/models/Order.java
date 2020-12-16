@@ -41,14 +41,14 @@ public final class Order {
     private final Timestamp updatedAt;
     private final Long userId;
 
-    private Map<Product, Integer> products;
+    private List<Map.Entry<Product, Integer>> products;
     private List<Transaction> transactions;
 
     @JsonIgnore
     private User user;
 
 
-    public Order(long id, OrderStatus status, Timestamp createdAt, Timestamp updatedAt, Long userId, Map<Product, Integer> products, List<Transaction> transactions) {
+    public Order(long id, OrderStatus status, Timestamp createdAt, Timestamp updatedAt, Long userId, List<Map.Entry<Product, Integer>> products, List<Transaction> transactions) {
         this.id = id;
         this.status = status;
         this.createdAt = createdAt;
@@ -106,7 +106,7 @@ public final class Order {
     }
 
     @JsonIgnore
-    public Map<Product, Integer> getProducts(DataSource dataSource) {
+    public List<Map.Entry<Product, Integer>> getProducts(DataSource dataSource) {
 
         if(products == null) {
             products = dataSource.getProductRepository()
