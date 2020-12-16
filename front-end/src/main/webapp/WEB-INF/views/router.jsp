@@ -31,7 +31,7 @@
         <meta charset="UTF-8" />
         <meta name="description" content="" />  <!-- TODO! -->
         <meta name="author" content="Antonino Natale, Matteo Perfidio, Davide Crisafulli" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" />
         <meta name="theme-color" content="rgb(236, 104, 81)" /> <!-- TODO! -->
         <meta name="msapplication-navbutton-color" content="rgb(236, 104, 81)" />  <!-- TODO! -->
         <meta name="apple-mobile-web-app-status-bar-style" content="rgb(236, 104, 81)" />  <!-- TODO! -->
@@ -50,10 +50,20 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="/assets/css/normalize.css">
+        <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-reboot.min.css">
+        <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
+        <!--<link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-grid.min.css">-->
+        <link rel="stylesheet" href="/assets/css/now-ui-kit/now-ui-kit.min.css">
 
         <!-- Third-party Dependencies -->
-        <script src="/assets/js/third-party/jquery-3.5.1.min.js"></script>
-        <script src="/assets/js/third-party/js.cookie-2.2.1.min.js"></script>
+        <script src="/assets/js/third-party/jquery.min.js"></script>
+        <script src="/assets/js/third-party/popper.min.js"></script>
+        <script src="/assets/js/third-party/js.cookie.min.js"></script>
+        <script src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
+        <script src="/assets/js/third-party/now-ui-kit/now-ui-kit.min.js"></script>
+        <script src="/assets/js/third-party/now-ui-kit/plugins/nouislider.min.js"></script>
+        <script src="/assets/js/third-party/now-ui-kit/plugins/bootstrap-datepicker.js"></script>
+        <script src="/assets/js/third-party/now-ui-kit/plugins/bootstrap-switch.js"></script>
 
         <!-- Dependencies -->
         <script src="/assets/js/ui/api.js"></script>
