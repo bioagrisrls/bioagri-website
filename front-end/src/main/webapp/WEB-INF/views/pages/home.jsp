@@ -25,7 +25,8 @@
 
 <%--<div id="common-header"></div>--%>
 <div id="common-navbar"></div>
-<%--<div id="common-footer"></div>--%>
+<div id="common-carousel"></div>
+<div id="common-footer"></div>
 
 
 <script>
@@ -43,9 +44,13 @@
         render: `${components.common_navbar}`
     });
 
-    <%--const footer = new StatefulComponent('#common-footer', {--%>
-    <%--    render: `${components.common_footer}`--%>
-    <%--});--%>
+    const carousel = new StatefulComponent('#common-carousel', {
+        render: `${components.common_carousel}`
+    });
+
+    const footer = new StatefulComponent('#common-footer', {
+        render: `${components.common_footer}`
+    });
 
 
 </script>
