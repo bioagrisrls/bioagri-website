@@ -25,7 +25,7 @@
 
 
 /**
- * UI Component type
+ * UI Component type.
  */
 class Component {
 
@@ -37,8 +37,6 @@ class Component {
 
         if(!props)
             throw new Error("props cannot be null");
-
-        props.state = props.state || {};
 
 
         this.id = id;
@@ -94,7 +92,7 @@ class StatefulComponent extends Component {
                 (reason) => this.__render(this.onError(), {})
             );
         } else
-            this.setState(props.state);
+            this.setState(props.state || {});
 
 
     }
@@ -109,7 +107,7 @@ class StatefulComponent extends Component {
     }
 
     /**
-     * Get current state of a dynamic UI component;
+     * Get current state of a dynamic UI component.
      * @returns {object}
      */
     get state() {
@@ -126,8 +124,8 @@ const __sanitizeSnippet = (snippet) => {
     return snippet
         .replace(/(")/gm, "\\\"")
         .replace(/(\r\n|\n|\r)/gm, "")
-        .replace(/{{/g, "\" + ")
-        .replace(/}}/g, " + \"");
+        .replace(/{{/gm, "\" + ")
+        .replace(/}}/gm, " + \"");
 
 }
 
@@ -135,7 +133,7 @@ const __expandTemplate = (template = '', data = {}) => {
 
     let output = '';
     let index = 0;
-    let regexp = /<\?([^?>]+)?\?>/g;
+    let regexp = /<\?(.*?)?\?>/gms;
 
 
     output += 'let ____r = [];\n';

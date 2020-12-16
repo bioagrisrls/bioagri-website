@@ -60,7 +60,7 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
         if(response.headers.has('X-Auth-Token'))
             Cookies.set('X-Auth-Token', response.headers.get('X-Auth-Token'));
 
-        if(response.status !== 200)
+        if(response.status < 200 || response.status > 299)
             throw new Error(`failed: ${response.status}`);
 
         if(returnJson)
@@ -74,7 +74,7 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
 
 
 /**
- * Authenticate with back-end and getting a new auth-token
+ * Authenticate with back-end and getting a new auth-token.
  * @param username {string}
  * @param password {string}
  * @returns {Promise<* | void>}
@@ -97,3 +97,14 @@ const authenticate = async (username, password) => {
 }
 
 
+/**
+ * Check if client is currently authenticated.
+ * @returns {boolean}
+ */
+const authenticated = async () => {
+
+    return api('/auth/verify')
+        .then(response => true)
+        .catch(reason => false);
+
+}

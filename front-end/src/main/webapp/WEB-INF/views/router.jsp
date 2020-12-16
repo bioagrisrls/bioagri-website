@@ -62,7 +62,7 @@
     </head>
 
     <body>
-        <jsp:include page="pages/home.jsp" />
+        <jsp:include page="${reference}" />
     </body>
 
 </html>

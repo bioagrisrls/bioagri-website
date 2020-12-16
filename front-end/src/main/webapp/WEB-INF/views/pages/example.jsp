@@ -1,4 +1,4 @@
-<!--
+<%--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,5 +21,46 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  -->
+  --%>
 
+<div>
+
+    <h1>Hello World!</h1>
+    UserId: <span id="userId">Loading...</span><br>
+    UserRole: <span id="userRole">Loading...</span><br>
+
+    <div id="app"></div>
+
+</div>
+
+
+<script>
+
+    authenticate('user@test.com', '123').then(response => {
+
+        $('#userId').html(response.userId);
+        $('#userRole').html(response.userRole);
+
+    }).then(response => {
+
+        api('/categories').then(response => {
+
+            let app = new StatefulComponent('#app', {
+
+                render: `${components.categories}`,
+
+                state: api('/categories').then(json => {
+                    return { categories: json };
+                })
+
+            });
+
+            $('#app').click(() => {
+                app.setState({ clicked: true });
+            });
+
+        });
+
+    });
+
+</script>

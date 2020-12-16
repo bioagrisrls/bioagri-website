@@ -1,4 +1,4 @@
-<%--
+<!--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,30 +21,28 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  --%>
+  -->
 
-<div id="common-header"></div>
-<div id="common-navbar"></div>
-<div id="common-footer"></div>
+<nav class="uk-navbar-container uk-visible@s uk-align-center uk-margin-remove" uk-navbar>
+    <div class="uk-grid h-headbar-grid">
+        <div class="uk-navbar-left uk-padding-remove">
+            <a class="uk-navbar-item uk-link-text h-headbar-item" href="?p=contact#maps">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon: location"></span>
+                {{ address }}
+            </a>
+        </div>
 
+        <div class="uk-navbar-right uk-padding-remove">
+            <a class="uk-navbar-item uk-link-text h-headbar-item" href="?p=contact">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon: phone"></span>
+                {{ phone }}
+            </a>
+        </div>
+    </div>
+    <div id="logged"></div>
+</nav>
 
-<script>
-
-    const header = new StatelessComponent('#common-header', {
-        render: `${components.common_header}`,
-        state: {
-            address: `${locale.info_address}`,
-            phone: `${locale.info_phone}`,
-            logged: authenticated()
-        }
-    });
-
-    const navbar = new StatelessComponent('#common-navbar', {
-        render: `${components.common_navbar}`
-    });
-
-    const footer = new StatelessComponent('#common-footer', {
-        render: `${components.common_footer}`
-    });
-
-</script>
+<?
+    logged
+        .then(r => $('#logged').html(r ? "TRUE" : "FALSE"))
+?>

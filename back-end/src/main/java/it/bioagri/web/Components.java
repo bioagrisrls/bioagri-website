@@ -37,24 +37,25 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
 @Scope("singleton")
-public class Loader {
+public class Components {
 
-    private final static Logger logger = (Logger) LoggerFactory.getLogger(Loader.class);
+    private final static Logger logger = (Logger) LoggerFactory.getLogger(Components.class);
     private final Map<String, String> components;
 
     @Autowired
-    public Loader(ServletContext servletContext) {
+    public Components(ServletContext servletContext) {
 
-        this.components = new HashMap<>() {{
+        this.components = Collections.unmodifiableMap(new HashMap<>() {{
 
             try {
 
-                final var componentsPath = Path.of(servletContext.getRealPath("/components"));
+                final var componentsPath = Path.of(servletContext.getRealPath("/WEB-INF/components"));
 
                 Files.walk(componentsPath)
                         .filter(p -> p.toString().endsWith(".ui"))
@@ -79,16 +80,14 @@ public class Loader {
                 throw new IllegalStateException();
             }
 
-        }};
+        }});
         
     }
 
 
-    public String load(Model model, String page) {
-        model.addAttribute("components", components);
-        return page;
+    public Map<String, String> getComponents() {
+        return components;
     }
-
 
     public static String minimize(String content) {
 

@@ -28,7 +28,7 @@ package it.bioagri;
 import ch.qos.logback.classic.Logger;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
-import it.bioagri.web.Loader;
+import it.bioagri.web.Components;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,8 +155,8 @@ public class WebConfig implements WebMvcConfigurer {
                 );
 
 
-                response.getOutputStream().print(Loader.minimize(wrapper.toString()));
-
+                //response.getOutputStream().print(Components.minimize(wrapper.toString())); // TODO: remove comment on production
+                response.getOutputStream().print(wrapper.toString());
 
             }
 

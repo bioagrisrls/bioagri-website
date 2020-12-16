@@ -30,37 +30,59 @@ import it.bioagri.models.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import javax.servlet.ServletRequest;
 
 @Controller
 public class Page {
 
-    private final Loader loader;
+    private final Locale locale;
+    private final Components components;
     private final AuthToken authToken;
 
     @Autowired
-    public Page(Loader loader, AuthToken authToken) {
-        this.loader = loader;
+    public Page(Locale locale, Components components, AuthToken authToken) {
+        this.locale = locale;
+        this.components = components;
         this.authToken = authToken;
     }
 
 
+    private String loadPage(ServletRequest request, Model model, String page) {
+
+        model.addAttribute("reference", page);
+        model.addAttribute("components", components.getComponents());
+        model.addAttribute("locale", locale.getCurrentLocale(request));
+
+        return "router";
+
+    }
+
+
     @GetMapping("/")
-    public String index(Model model) {
-        return loader.load(model, "index");
+    public String index(ServletRequest request, Model model) {
+        return loadPage(request, model, "pages/home.jsp");
     }
 
     @GetMapping("/{page}")
-    public String page(Model model, @PathVariable String page) {
-        return loader.load(model, page);
+    public String page(ServletRequest request, Model model, @PathVariable String page) {
+
+        return switch (page) {
+            case "favicon.ico" -> "/assets/favicon.ico";
+            case "favicon.png" -> "/assets/favicon.png";
+            default -> loadPage(request, model, "pages/%s.jsp".formatted(page));
+        };
+
     }
 
     @GetMapping("/admin/{page}")
-    public String admin(Model model, @PathVariable String page) {
+    public String admin(ServletRequest request, Model model, @PathVariable String page) {
 
         if(authToken.isValid() && authToken.getUserRole().equals(UserRole.ADMIN))
-            return loader.load(model, "admin/%s".formatted(page));
+            return loadPage(request, model, "admin/%s.jsp".formatted(page));
 
         return "error";
 

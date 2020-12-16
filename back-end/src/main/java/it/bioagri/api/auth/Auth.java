@@ -32,10 +32,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -57,7 +54,7 @@ public final class Auth {
 
 
     @PostMapping("authenticate")
-    public ResponseEntity<AuthToken> authenticate(HttpSession session, @RequestBody AuthLogin authLogin) {
+    public ResponseEntity<AuthToken> authenticate(@RequestBody AuthLogin authLogin) {
 
         logger.trace("Authentication attempt with {}", authLogin);
 
@@ -75,6 +72,13 @@ public final class Auth {
         return ResponseEntity.ok(authToken.generateToken(user.getId(), user.getRole()));
 
     }
+
+
+    @RequestMapping("verify")
+    public ResponseEntity<String> verify() {
+        return ResponseEntity.ok().build();
+    }
+
 
     @RequestMapping("disconnect")
     public void disconnect(HttpSession session) {
