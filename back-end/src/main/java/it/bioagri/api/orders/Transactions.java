@@ -100,7 +100,7 @@ public class Transactions {
     @PostMapping("/{sid}/transactions")
     public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody Transaction transaction) {
 
-        ApiPermission.verify(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.CREATE, authToken, transaction.getOrder(dataSource)
+        ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.CREATE, authToken, transaction.getOrder(dataSource)
                 .orElseThrow(() -> new ApiResponseStatus(404))
                 .getUserId());
 
@@ -122,7 +122,7 @@ public class Transactions {
     @PutMapping("/{sid}/transactions/{id}")
     public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id, @RequestBody Transaction transaction) {
 
-        ApiPermission.verify(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.UPDATE, authToken, transaction.getOrder(dataSource)
+        ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.UPDATE, authToken, transaction.getOrder(dataSource)
                 .orElseThrow(() -> new ApiResponseStatus(404))
                 .getUserId());
 
@@ -180,7 +180,7 @@ public class Transactions {
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.DELETE, authToken, i.getOrder(dataSource)
                                     .orElseThrow(() -> new ApiResponseStatus(502))
                                     .getUserId()))
-                            .orElseThrow(() -> new ApiResponseStatus(404)));
+                            .orElseThrow(() -> new ApiResponseStatus(403)));
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

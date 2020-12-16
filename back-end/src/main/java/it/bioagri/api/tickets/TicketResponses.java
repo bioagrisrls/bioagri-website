@@ -100,7 +100,7 @@ public class TicketResponses {
     @PostMapping("/{sid}/responses")
     public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody TicketResponse response) {
 
-        ApiPermission.verify(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.CREATE, authToken, response.getTicket(dataSource)
+        ApiPermission.verifyOrThrow(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.CREATE, authToken, response.getTicket(dataSource)
                 .orElseThrow(() -> new ApiResponseStatus(404))
                 .getUserId());
 
@@ -122,7 +122,7 @@ public class TicketResponses {
     @PutMapping("/{sid}/responses/{id}")
     public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id, @RequestBody TicketResponse response) {
 
-        ApiPermission.verify(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.UPDATE, authToken, response.getTicket(dataSource)
+        ApiPermission.verifyOrThrow(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.UPDATE, authToken, response.getTicket(dataSource)
                 .orElseThrow(() -> new ApiResponseStatus(404))
                 .getUserId());
 

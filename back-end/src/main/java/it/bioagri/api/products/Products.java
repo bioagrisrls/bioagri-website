@@ -59,7 +59,7 @@ public class Products {
     @GetMapping("")
     public ResponseEntity<List<Product>> findAll() {
 
-        ApiPermission.verify(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
 
         try {
             return ResponseEntity.ok(dataSource.getProductRepository().findAll());
@@ -72,7 +72,7 @@ public class Products {
     @GetMapping("/{id}")
     public ResponseEntity<Product> findById(@PathVariable Long id) {
 
-        ApiPermission.verify(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
 
         try {
 
@@ -90,7 +90,7 @@ public class Products {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Product product) {
 
-        ApiPermission.verify(ApiPermissionType.PRODUCTS, ApiPermissionOperation.CREATE, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.CREATE, authToken);
 
         try {
 
@@ -110,7 +110,7 @@ public class Products {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Product product) {
 
-        ApiPermission.verify(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE, authToken);
 
         try {
 
@@ -134,7 +134,7 @@ public class Products {
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
 
-        ApiPermission.verify(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE, authToken);
 
         try {
 
@@ -152,7 +152,7 @@ public class Products {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
 
-        ApiPermission.verify(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE, authToken);
 
         try {
 

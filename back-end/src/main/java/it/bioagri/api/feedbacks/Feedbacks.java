@@ -95,7 +95,7 @@ public class Feedbacks {
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Feedback feedback) {
 
-        ApiPermission.verify(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.CREATE, authToken, feedback.getUserId());
+        ApiPermission.verifyOrThrow(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.CREATE, authToken, feedback.getUserId());
 
         try {
 
@@ -115,13 +115,12 @@ public class Feedbacks {
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Feedback feedback) {
 
-        ApiPermission.verify(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.UPDATE, authToken, feedback.getUserId());
-
         try {
 
             feedback.setId(dataSource.getId("shop_feedback", Long.class));
 
             dataSource.getFeedbackRepository().findByPrimaryKey(id)
+                    .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.UPDATE, authToken, i.getUserId()))
                     .ifPresentOrElse(
                             (r) -> dataSource.getFeedbackRepository().update(r, feedback),
                             ( ) -> dataSource.getFeedbackRepository().save(feedback)
@@ -164,7 +163,7 @@ public class Feedbacks {
             dataSource.getFeedbackRepository().delete(
                     dataSource.getFeedbackRepository()
                             .findByPrimaryKey(id)
-                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
+                            .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
                             .orElseThrow(() -> new ApiResponseStatus(404)));
 
         } catch (DataSourceSQLException e) {

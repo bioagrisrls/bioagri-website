@@ -140,15 +140,18 @@ public class ApiPermission {
 
     }
 
-    public static void verify(ApiPermissionType type, ApiPermissionOperation operation, AuthToken authToken, Long ownerId) {
+
+    public static boolean verifyOrThrow(ApiPermissionType type, ApiPermissionOperation operation, AuthToken authToken, Long ownerId) {
 
         if(!hasPermission(type, operation, authToken, ownerId))
             throw new ApiResponseStatus(403);
 
+        return true;
+
     }
 
-    public static void verify(ApiPermissionType type, ApiPermissionOperation operation, AuthToken authToken) {
-        verify(type, operation, authToken, -1L);
+    public static boolean verifyOrThrow(ApiPermissionType type, ApiPermissionOperation operation, AuthToken authToken) {
+        return verifyOrThrow(type, operation, authToken, -1L);
     }
 
 

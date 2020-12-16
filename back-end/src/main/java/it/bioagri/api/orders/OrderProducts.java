@@ -55,10 +55,10 @@ public class OrderProducts {
         this.dataSource = dataSource;
     }
 
-    @GetMapping("/{sid}/wishlist")
+    @GetMapping("/{sid}/products")
     public ResponseEntity<List<Product>> findAll(@PathVariable Long sid) {
 
-        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
+        ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
 
         try {
 
@@ -73,10 +73,10 @@ public class OrderProducts {
 
     }
 
-    @GetMapping("/{sid}/wishlist/{id}")
+    @GetMapping("/{sid}/products/{id}")
     public ResponseEntity<Product> findById(@PathVariable Long sid, @PathVariable Long id) {
 
-        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
+        ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.READ, authToken, sid);
 
         try {
 
@@ -96,10 +96,10 @@ public class OrderProducts {
     }
 
 
-    @PostMapping("/{sid}/wishlist")
+    @PostMapping("/{sid}/products")
     public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody Product product) {
 
-        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.CREATE, authToken, sid);
+        ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.CREATE, authToken, sid);
 
         try {
 
@@ -124,10 +124,10 @@ public class OrderProducts {
     }
 
 
-    @PutMapping("/{sid}/wishlist/{id}")
+    @PutMapping("/{sid}/products/{id}")
     public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id, @RequestBody Product product) {
 
-        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.UPDATE, authToken, sid);
+        ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.UPDATE, authToken, sid);
 
         try {
 
@@ -158,10 +158,10 @@ public class OrderProducts {
     }
 
 
-    @DeleteMapping("/{sid}/wishlist")
+    @DeleteMapping("/{sid}/products")
     public ResponseEntity<String> deleteAll(@PathVariable Long sid) {
 
-        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE, authToken, sid);
+        ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE, authToken, sid);
 
         try {
 
@@ -181,10 +181,10 @@ public class OrderProducts {
     }
 
 
-    @DeleteMapping("/{sid}/wishlist/{id}")
+    @DeleteMapping("/{sid}/products/{id}")
     public ResponseEntity<String> delete(@PathVariable Long sid, @PathVariable Long id) {
 
-        ApiPermission.verify(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE, authToken, sid);
+        ApiPermission.verifyOrThrow(ApiPermissionType.WISHLIST, ApiPermissionOperation.DELETE, authToken, sid);
 
         try {
 
