@@ -110,7 +110,7 @@ public class TicketResponseDaoImpl extends TicketResponseDao {
                         s.setString(1, newValue.getResponse());
                         s.setTimestamp(2, newValue.getCreatedAt());
                         s.setTimestamp(3, newValue.getUpdatedAt());
-                        s.setLong(5, oldValue.getId());
+                        s.setLong(4, oldValue.getId());
                     }, false);
 
     }

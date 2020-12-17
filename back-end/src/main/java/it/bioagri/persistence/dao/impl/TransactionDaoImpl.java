@@ -176,8 +176,8 @@ public class TransactionDaoImpl extends TransactionDao {
                         s.setString(15, newValue.getPhone());
                         s.setString(16, newValue.getAdditionalInfo());
                         s.setString(17, newValue.getInvoice());
-                        s.setString(19, newValue.getTransactionCode());
-                        s.setLong(20, oldValue.getId());
+                        s.setString(18, newValue.getTransactionCode());
+                        s.setLong(19, oldValue.getId());
                     }, false);
 
     }
