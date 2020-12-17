@@ -26,6 +26,7 @@
 package it.bioagri.api.orders;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import it.bioagri.api.auth.AuthTest;
 import it.bioagri.models.OrderStatus;
 import org.junit.jupiter.api.Test;
@@ -37,19 +38,28 @@ import static org.junit.jupiter.api.Assertions.*;
 class OrdersTest {
 
 
+
+    JsonPath jsonPath;
+    String userIdOrder;
+    String adminIdOrder;
+
     private String createAs(String username, int expectedCode) {
-        return RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate(username, "123"))
+
+         jsonPath = AuthTest.authenticate(username, "123");
+
+         return RestAssured.given()
+                .header("X-Auth-Token", jsonPath.getString("token"))
                 .spec(AuthTest.getSpecs())
                 .body(
                         """
                         {
                         "id"        : "0",
+                        "userId"    : "%s",
                         "status"    : "1",
                         "createdAt" : "2014-01-01T23:28:56.782Z",
                         "updatedAt" : "2015-01-01T23:28:56.782Z"
                         }
-                        """
+                        """.formatted(jsonPath.getString("userId"))
                 )
                 .post("/orders")
                 .then()
@@ -57,13 +67,14 @@ class OrdersTest {
                 .extract()
                 .header("Location");
 
+
     }
 
     @Test
     public void createOrders() {
 
-        createAs("user@test.com",201);
-        createAs("admin@test.com",201);
+        userIdOrder =  createAs("user@test.com",201).split("/")[3];
+        adminIdOrder = createAs("admin@test.com",201).split("/")[3];
 
     }
 
@@ -72,24 +83,57 @@ class OrdersTest {
     void findAll() {
 
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .get("/orders")
                 .then()
                 .statusCode(200);
 
-
-
     }
 
     @Test
-    void findById() {
+    void findById(String username) {
+
+        String orderId = createAs("user@test.com",201).split("/")[3];
+
+        RestAssured.given()
+                .header("X-Auth-Token", jsonPath.getString("token"))
+                .spec(AuthTest.getSpecs())
+                .get("/orders/" + orderId)
+                .then()
+                .statusCode(200);
+
     }
+
 
 
     @Test
     void update() {
+
+
+        RestAssured.given()
+                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123").getString("token"))
+                .spec(AuthTest.getSpecs())
+                .body(
+                        """
+                        {
+                        "id"        : "6",
+                        "userId"    : "5",
+                        "status"    : "0",
+                        "createdAt" : "2018-01-01T23:28:56.782Z",
+                        "updatedAt" : "2015-01-01T23:28:56.782Z"
+                        }
+                        """
+                )
+                .put("/orders/6" )
+                .then()
+                .statusCode(201)
+                .extract()
+                .header("Location");
+
     }
+
+
 
     @Test
     void deleteAll() {
@@ -98,4 +142,14 @@ class OrdersTest {
     @Test
     void delete() {
     }
+
+
+    public void launchAllCrudMethods() {
+
+        createOrders();
+
+
+
+    }
+
 }
