@@ -119,9 +119,9 @@ public class TicketDaoImpl extends TicketDao {
                         s.setString(1, newValue.getTitle());
                         s.setString(2,newValue.getDescription());
                         s.setShort(3, (short) newValue.getStatus().ordinal());
-                        s.setTimestamp(5, newValue.getCreatedAt());
-                        s.setTimestamp(6, newValue.getUpdatedAt());
-                        s.setLong(7, oldValue.getId());
+                        s.setTimestamp(4, newValue.getCreatedAt());
+                        s.setTimestamp(5, newValue.getUpdatedAt());
+                        s.setLong(6, oldValue.getId());
                     }, false);
 
     }

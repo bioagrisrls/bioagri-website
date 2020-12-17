@@ -119,9 +119,9 @@ public class FeedbackDaoImpl extends FeedbackDao {
                         s.setString(1, newValue.getTitle());
                         s.setString(2, newValue.getDescription());
                         s.setFloat(3, newValue.getVote());
-                        s.setTimestamp(5, newValue.getCreatedAt());
-                        s.setTimestamp(6, newValue.getUpdatedAt());
-                        s.setLong(8, oldValue.getId());
+                        s.setTimestamp(4, newValue.getCreatedAt());
+                        s.setTimestamp(5, newValue.getUpdatedAt());
+                        s.setLong(6, oldValue.getId());
                     }, false);
 
     }
