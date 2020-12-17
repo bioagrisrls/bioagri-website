@@ -52,6 +52,7 @@
         <link rel="stylesheet" href="/assets/css/third-party/normalize.css">
         <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap-reboot.min.css">
         <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/third-party/font-awesome/all.min.css">
         <!--<link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap-grid.min.css">-->
 
         <!-- Third-party Dependencies -->
