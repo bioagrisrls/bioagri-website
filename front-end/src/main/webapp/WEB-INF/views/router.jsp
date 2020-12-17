@@ -49,12 +49,11 @@
 
 
         <!-- Styles -->
-        <link rel="stylesheet" href="/assets/css/normalize.css">
-        <link rel="stylesheet" href="/assets/css/components.css">
-        <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-reboot.min.css">
-        <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">
-        <!--<link rel="stylesheet" href="/assets/css/bootstrap/bootstrap-grid.min.css">-->
-        <link rel="stylesheet" href="/assets/css/now-ui-kit/now-ui-kit.min.css">
+        <link rel="stylesheet" href="/assets/css/third-party/normalize.css">
+        <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap-reboot.min.css">
+        <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap.min.css">
+        <!--<link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap-grid.min.css">-->
+        <link rel="stylesheet" href="/assets/css/third-party/now-ui-kit/now-ui-kit.min.css">
 
         <!-- Third-party Dependencies -->
         <script src="/assets/js/third-party/jquery.min.js"></script>

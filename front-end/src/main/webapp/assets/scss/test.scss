@@ -1,4 +1,4 @@
-/*
+/*!
  * MIT License
  *
  * Copyright (c) 2020 BioAgri S.r.l.s.
@@ -23,68 +23,8 @@
  *
  */
 
-plugins {
-    id 'idea'
-    id 'base'
+$theme-color-primary: #FFF;
+
+body {
+  background-color: $theme-color-primary;
 }
-
-group 'it.bioagri'
-version '0.0.1'
-
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-
-}
-
-
-task sass(type: Exec) {
-
-    group = 'sass'
-    description = 'Build .scss files'
-
-    workingDir 'src/main/webapp'
-    commandLine 'sass', "assets/scss:${project(":back-end").projectDir}/src/main/webapp/assets/css"
-
-}
-
-task watch(type: Exec) {
-
-    group = 'sass'
-    description = 'Watch .scss changes'
-
-    workingDir 'src/main/webapp'
-    commandLine 'sass', '--watch', "assets/scss:${project(":back-end").projectDir}/src/main/webapp/assets/css"
-}
-
-
-task prepare(type: Delete) {
-
-    group = 'webapp'
-    description = 'Clean webapp'
-
-    delete "${project(":back-end").projectDir}/src/main/webapp"
-}
-
-
-task run(type: Copy) {
-
-    group = 'webapp'
-    description = 'Run webapp'
-
-    from('src/main/webapp') {
-        exclude '**/*.scss'
-    }
-
-    includeEmptyDirs = false
-
-    into "${project(":back-end").projectDir}/src/main/webapp"
-
-}
-
-run.dependsOn(project(":front-end").tasks.prepare)
-run.dependsOn(project(":front-end").tasks.sass)
-run.finalizedBy(project(":back-end").tasks.bootRun)
