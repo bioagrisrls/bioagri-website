@@ -81,7 +81,7 @@ public class OrderDaoImpl extends OrderDao {
         );
 
         return orders;
-        
+
     }
 
     @Override
@@ -89,16 +89,16 @@ public class OrderDaoImpl extends OrderDao {
 
         getDataSource().update(
                 """
-                    INSERT INTO shop_order (id, status, created_at, updated_at, user_id) 
+                    INSERT INTO shop_order (id, status, created_at, updated_at, user_id)
                                     VALUES (?, ?, ?, ?, ?)
                     """,
-                    s -> {
-                        s.setLong(1, value.getId());
-                        s.setShort(2, (short) value.getStatus().ordinal());
-                        s.setTimestamp(3, value.getCreatedAt());
-                        s.setTimestamp(4, value.getUpdatedAt());
-                        s.setLong(5, value.getUserId());
-                    }, false);
+                s -> {
+                    s.setLong(1, value.getId());
+                    s.setShort(2, (short) value.getStatus().ordinal());
+                    s.setTimestamp(3, value.getCreatedAt());
+                    s.setTimestamp(4, value.getUpdatedAt());
+                    s.setLong(5, value.getUserId());
+                }, false);
 
     }
 
@@ -107,16 +107,16 @@ public class OrderDaoImpl extends OrderDao {
 
         getDataSource().update(
                 """
-                    UPDATE shop_order 
+                    UPDATE shop_order
                        SET status = ?, created_at = ?, updated_at = ?
                      WHERE id = ?
                     """,
-                    s -> {
-                        s.setShort(1, (short) oldValue.getStatus().ordinal());
-                        s.setTimestamp(2, oldValue.getCreatedAt());
-                        s.setTimestamp(3, oldValue.getUpdatedAt());
-                        s.setLong(5, newValue.getId());
-                    }, false);
+                s -> {
+                    s.setShort(1, (short) newValue.getStatus().ordinal());
+                    s.setTimestamp(2, newValue.getCreatedAt());
+                    s.setTimestamp(3, newValue.getUpdatedAt());
+                    s.setLong(4, oldValue.getId());
+                }, false);
 
     }
 
