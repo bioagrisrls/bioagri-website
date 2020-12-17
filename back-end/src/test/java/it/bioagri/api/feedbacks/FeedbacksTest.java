@@ -157,7 +157,6 @@ class FeedbacksTest {
     }
 
 
-
     private void updateWithNotAuthorizedUser(){
 
         String userIdX = AuthTest.authenticate("user@test.com", "123").getString("userId");
@@ -187,8 +186,6 @@ class FeedbacksTest {
         findAll();
 
     }
-
-
 
 
     private void launchAllCrudMethodsAs(String username) {
@@ -227,9 +224,5 @@ class FeedbacksTest {
         updateWithNotAuthorizedUser();
 
     }
-
-
-
-
 
 }
