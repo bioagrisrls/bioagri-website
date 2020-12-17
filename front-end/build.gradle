@@ -41,23 +41,23 @@ dependencies {
 }
 
 
-task sass(type: Exec) {
+
+task sass {
 
     group = 'sass'
     description = 'Build .scss files'
 
-    workingDir 'src/main/webapp'
-    commandLine 'sass', "assets/scss:${project(":back-end").projectDir}/src/main/webapp/assets/css"
+    Runtime.runtime.exec('npm install && npm run sass', null, rootProject.projectDir);
 
 }
 
-task watch(type: Exec) {
+task watch {
 
     group = 'sass'
     description = 'Watch .scss changes'
 
-    workingDir 'src/main/webapp'
-    commandLine 'sass', '--watch', "assets/scss:${project(":back-end").projectDir}/src/main/webapp/assets/css"
+    Runtime.runtime.exec('npm install && npm run sass-watch', null, rootProject.projectDir);
+
 }
 
 
@@ -68,7 +68,6 @@ task prepare(type: Delete) {
 
     delete "${project(":back-end").projectDir}/src/main/webapp"
 }
-
 
 task run(type: Copy) {
 

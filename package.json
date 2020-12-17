@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "sass front-end/src/main/webapp/assets/scss:back-end/src/main/webapp/assets/css"
+    "sass": "sass front-end/src/main/webapp/assets/scss:back-end/src/main/webapp/assets/css",
+    "sass-watch": "sass --watch front-end/src/main/webapp/assets/scss:back-end/src/main/webapp/assets/css"
   },
   "dependencies": {
     "sass": "^1.30.0"
