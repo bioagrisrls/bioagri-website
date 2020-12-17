@@ -1,0 +1,32 @@
+{
+  "name": "bioagri-website",
+  "version": "1.0.0",
+  "description": "Bioagri S.r.l.s. shop",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass front-end/src/main/webapp/assets/scss:back-end/src/main/webapp/assets/css"
+  },
+  "dependencies": {
+    "sass": "^1.30.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bioagrisrls/bioagri-website.git"
+  },
+  "keywords": [
+    "web",
+    "e-commerce",
+    "api",
+    "rest"
+  ],
+  "author": "Bioagri S.r.l.s.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bioagrisrls/bioagri-website/issues"
+  },
+  "homepage": "https://github.com/bioagrisrls/bioagri-website#readme"
+}
