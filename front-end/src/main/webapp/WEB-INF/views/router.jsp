@@ -53,18 +53,12 @@
         <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap-reboot.min.css">
         <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap.min.css">
         <!--<link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap-grid.min.css">-->
-        <link rel="stylesheet" href="/assets/css/third-party/now-ui-kit/now-ui-kit.min.css">
 
         <!-- Third-party Dependencies -->
         <script src="/assets/js/third-party/jquery.min.js"></script>
         <script src="/assets/js/third-party/popper.min.js"></script>
         <script src="/assets/js/third-party/js.cookie.min.js"></script>
         <script src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
-        <script src="/assets/js/third-party/now-ui-kit/plugins/bootstrap-switch.js"></script>
-        <script src="/assets/js/third-party/now-ui-kit/plugins/nouislider.min.js"></script>
-        <script src="/assets/js/third-party/now-ui-kit/plugins/bootstrap-datepicker.js"></script>
-        <script src="/assets/js/third-party/now-ui-kit/now-ui-kit.min.js"></script>
-
 
         <!-- Dependencies -->
         <script src="/assets/js/ui/api.js"></script>
