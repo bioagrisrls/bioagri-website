@@ -25,19 +25,26 @@
 #
 #
 
-git checkout dev        || exit
-git add -A              || exit
+
+die() {
+  git checkout dev
+  exit
+}
+
+
+git checkout dev        || die
+git add -A              || die
 
 if git commit -m "$1"; then
-  git checkout main       || exit
-  git pull origin main    || exit
-  git merge dev           || exit
-  git push origin main    || exit
+  git checkout main       || die
+  git pull origin main    || die
+  git merge dev           || die
+  git push origin main    || die
 else
-  git checkout main       || exit
-  git pull origin main    || exit
+  git checkout main       || die
+  git pull origin main    || die
 fi
 
-git checkout dev        || exit
-git merge main          || exit
+git checkout dev        || die
+git merge main          || die
 
