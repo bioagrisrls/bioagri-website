@@ -45,9 +45,9 @@ class OrdersTest {
 
     private String createAs(String username, int expectedCode) {
 
-         jsonPath = AuthTest.authenticate(username, "123");
+        jsonPath = AuthTest.authenticate(username, "123");
 
-         return RestAssured.given()
+        return RestAssured.given()
                 .header("X-Auth-Token", jsonPath.getString("token"))
                 .spec(AuthTest.getSpecs())
                 .body(
@@ -69,6 +69,8 @@ class OrdersTest {
 
 
     }
+
+
 
     @Test
     public void createOrders() {
@@ -108,32 +110,31 @@ class OrdersTest {
 
 
     @Test
-    void update() {
+    void update(String username) {
 
+        String idOrder = createAs(username, 201).split("/")[3];
 
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123").getString("token"))
+                .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .body(
                         """
                         {
-                        "id"        : "6",
-                        "userId"    : "5",
-                        "status"    : "0",
-                        "createdAt" : "2018-01-01T23:28:56.782Z",
+                        "id"        : "%s",
+                        "userId"    : "%s",
+                        "status"    : "1",
+                        "createdAt" : "2001-01-01T23:28:56.782Z",
                         "updatedAt" : "2015-01-01T23:28:56.782Z"
                         }
-                        """
+                        """.formatted(idOrder, jsonPath.getString("userId"))
                 )
-                .put("/orders/6" )
+                .put("/orders/" + idOrder )
                 .then()
                 .statusCode(201)
                 .extract()
                 .header("Location");
 
     }
-
-
 
     @Test
     void deleteAll() {
