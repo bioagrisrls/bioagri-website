@@ -70,8 +70,7 @@ public class Users {
         try {
 
             return ResponseEntity.ok(
-                    dataSource.getUserRepository()
-                            .findAll()
+                    dataSource.getUserRepository().findAll()
                             .stream()
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.READ, authToken, i.getId()))
                             .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
