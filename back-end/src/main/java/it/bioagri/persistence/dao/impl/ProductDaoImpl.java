@@ -49,8 +49,7 @@ public class ProductDaoImpl extends ProductDao {
 
         getDataSource().fetch(
                 """
-                        SELECT * FROM shop_product
-                        WHERE shop_product.id = ?
+                    SELECT * FROM shop_product WHERE shop_product.id = ?
                     """,
 
                 s -> s.setLong(1, id),
