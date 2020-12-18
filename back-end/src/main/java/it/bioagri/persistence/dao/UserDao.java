@@ -25,6 +25,7 @@
 
 package it.bioagri.persistence.dao;
 
+import it.bioagri.models.Product;
 import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 
@@ -33,5 +34,8 @@ public abstract class UserDao extends Dao<User, Long> {
     public UserDao(DataSource dataSource) {
         super(dataSource);
     }
+
+    public abstract void addWishList(User user, Product product);
+    public abstract void removeWishList(User user, Product product);
 
 }

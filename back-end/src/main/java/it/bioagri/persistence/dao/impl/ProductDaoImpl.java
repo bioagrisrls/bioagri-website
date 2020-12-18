@@ -31,7 +31,6 @@ import it.bioagri.models.ProductStatus;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.ProductDao;
-import it.bioagri.utils.ListUtils;
 
 import java.sql.SQLException;
 import java.util.*;

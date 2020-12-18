@@ -64,7 +64,9 @@ public class Categories {
             @ApiResponse(responseCode = "200", description = "Category resources collection"),
     })
     @GetMapping("")
-    public ResponseEntity<List<Category>> findAll() {
+    public ResponseEntity<List<Category>> findAll(
+
+    ) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
 

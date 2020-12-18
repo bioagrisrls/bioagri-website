@@ -23,32 +23,18 @@
  *
  */
 
-package it.bioagri.utils;
+package it.bioagri.models;
 
-import java.util.List;
-import java.util.stream.Collectors;
+public final class ProductQuantity implements Model {
 
-public final class ListUtils {
+    private final int quantity;
 
-    public interface ListUtilsChangesHandler<T> {
-        void change(List<T> added, List<T> removed);
+    public ProductQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-
-    private ListUtils() { }
-
-    public static <T> void differences(List<T> a, List<T> b, ListUtilsChangesHandler<T> changeHandler) {
-
-        List<T> added = b.stream()
-                .filter(i -> !a.contains(i))
-                .collect(Collectors.toUnmodifiableList());
-
-        List<T> removed = a.stream()
-                .filter(i -> !b.contains(i))
-                .collect(Collectors.toUnmodifiableList());
-
-        changeHandler.change(added, removed);
-
+    public int getQuantity() {
+        return quantity;
     }
 
 }

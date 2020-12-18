@@ -25,18 +25,15 @@
 
 package it.bioagri.persistence.dao.impl;
 
-import it.bioagri.models.User;
-import it.bioagri.models.UserGender;
-import it.bioagri.models.UserRole;
-import it.bioagri.models.UserStatus;
+import it.bioagri.models.*;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.UserDao;
-import it.bioagri.utils.ListUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
+
 
 public class UserDaoImpl extends UserDao {
 
@@ -170,39 +167,6 @@ public class UserDaoImpl extends UserDao {
                     });
 
 
-        ListUtils.differences(oldValue.getWishList(getDataSource()), newValue.getWishList(getDataSource()), (added, removed) -> {
-
-            for(var i : added) {
-
-                getDataSource().update(
-                        """
-                        INSERT INTO shop_wish (user_id, product_id) 
-                                       VALUES (?, ?)
-                        """,
-                        s -> {
-                            s.setLong(1, newValue.getId());
-                            s.setLong(2, i.getId());
-                        });
-
-            }
-
-            for(var i : removed) {
-
-                getDataSource().update(
-                        """
-                        DELETE FROM shop_wish 
-                              WHERE user_id = ?
-                                AND product_id = ?
-                        """,
-                        s -> {
-                            s.setLong(1, oldValue.getId());
-                            s.setLong(2, i.getId());
-                        });
-
-            }
-
-        });
-
     }
 
     @Override
@@ -213,4 +177,40 @@ public class UserDaoImpl extends UserDao {
 
     }
 
+    @Override
+    public void addWishList(User user, Product product) {
+
+        getDataSource().update(
+                """
+                INSERT INTO shop_wish (user_id, product_id) 
+                               VALUES (?, ?)
+                """,
+                s -> {
+                    s.setLong(1, user.getId());
+                    s.setLong(2, product.getId());
+                });
+
+
+        user.getWishList(getDataSource()).add(product);
+
+    }
+
+    @Override
+    public void removeWishList(User user, Product product) {
+
+        getDataSource().update(
+                """
+                DELETE FROM shop_wish 
+                      WHERE user_id = ?
+                        AND product_id = ?
+                """,
+                s -> {
+                    s.setLong(1, user.getId());
+                    s.setLong(2, product.getId());
+                });
+
+
+        user.getWishList(getDataSource()).remove(product);
+
+    }
 }
