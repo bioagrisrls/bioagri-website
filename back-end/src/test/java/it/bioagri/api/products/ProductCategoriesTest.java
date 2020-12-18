@@ -39,13 +39,13 @@ class ProductCategoriesTest {
 
     public static String createAs(String username,  int expectedCode) {
 
-        String productId = ProductsTest.createAs(username,201).split("/")[3];
-        String categoryId = CategoriesTest.createAs(username, 201).split("/")[3];
+        //String productId = ProductsTest.createAs(username,201).split("/")[3];
+        //String categoryId = CategoriesTest.createAs(username, 201).split("/")[3];
 
         return RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
                 .spec(AuthTest.getSpecs())
-                .put("/products/" + productId + "/categories/" + categoryId )
+                .put("/products/25/categories/28")
                 .then()
                 .statusCode(expectedCode)
                 .extract()
