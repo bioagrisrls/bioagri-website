@@ -198,7 +198,7 @@ public class DataSource {
 
         final AtomicReference<Object> result = new AtomicReference<>(null);
 
-        fetch(String.format("SELECT nextval(pg_get_serial_sequence('%s', 'id')) AS id", ref), null,
+        fetch("SELECT nextval(pg_get_serial_sequence('%s', 'id')) AS id".formatted(ref), null,
                 r -> result.set(r.getObject("id")));
 
 

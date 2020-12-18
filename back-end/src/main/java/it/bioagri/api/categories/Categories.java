@@ -103,7 +103,7 @@ public class Categories {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/categories/%d", category.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/categories/%d".formatted(category.getId()))).build();
 
     }
 
@@ -127,7 +127,7 @@ public class Categories {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/categories/%d", id))).build();
+        return ResponseEntity.created(URI.create("/api/categories/%d".formatted(id))).build();
 
     }
 

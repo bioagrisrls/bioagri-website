@@ -102,7 +102,7 @@ public class Products {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/products/%d", product.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/products/%d".formatted(product.getId()))).build();
 
     }
 
@@ -126,7 +126,7 @@ public class Products {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/products/%d", id))).build();
+        return ResponseEntity.created(URI.create("/api/products/%d".formatted(id))).build();
 
     }
 

@@ -112,7 +112,7 @@ public class Transactions {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/transactions/%d", transaction.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/transactions/%d".formatted(transaction.getId()))).build();
 
     }
 
@@ -137,7 +137,7 @@ public class Transactions {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/transactions/%d", transaction.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/transactions/%d".formatted(transaction.getId()))).build();
 
     }
 

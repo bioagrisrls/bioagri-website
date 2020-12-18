@@ -119,7 +119,7 @@ public class UserWishList {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/users/%d/wishlist/%d", sid, product.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/users/%d/wishlist/%d".formatted(sid, product.getId()))).build();
 
     }
 
@@ -154,7 +154,7 @@ public class UserWishList {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/users/%d/wishlist/%d", sid, product.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/users/%d/wishlist/%d".formatted(sid, product.getId()))).build();
 
     }
 

@@ -106,7 +106,7 @@ public class Tickets {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/tickets/%d", ticket.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/tickets/%d".formatted(ticket.getId()))).build();
 
     }
 
@@ -129,7 +129,7 @@ public class Tickets {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/tickets/%d", id))).build();
+        return ResponseEntity.created(URI.create("/api/tickets/%d".formatted(id))).build();
 
     }
 

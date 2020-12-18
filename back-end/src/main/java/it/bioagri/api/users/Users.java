@@ -108,7 +108,7 @@ public class Users {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/users/%d", user.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/users/%d".formatted(user.getId()))).build();
 
     }
 
@@ -131,7 +131,7 @@ public class Users {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/users/%d", id))).build();
+        return ResponseEntity.created(URI.create("/api/users/%d".formatted(id))).build();
 
     }
 
