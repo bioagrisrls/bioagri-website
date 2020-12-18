@@ -34,6 +34,7 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
+import it.bioagri.utils.ApiUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +42,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
@@ -59,7 +61,11 @@ public class Users {
 
 
     @GetMapping("")
-    public ResponseEntity<List<User>> findAll() {
+    public ResponseEntity<List<User>> findAll(
+            @RequestParam(required = false, defaultValue =   "0") Long skip,
+            @RequestParam(required = false, defaultValue = "999") Long limit,
+            @RequestParam(required = false) String filterBy,
+            @RequestParam(required = false) String filterValue) {
 
         try {
 
@@ -67,6 +73,9 @@ public class Users {
                     dataSource.getUserRepository()
                             .findAll()
                             .stream()
+                            .skip(skip)
+                            .limit(limit)
+                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.READ, authToken, i.getId()))
                             .collect(Collectors.toList()));
 
