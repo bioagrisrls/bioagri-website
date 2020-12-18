@@ -32,7 +32,7 @@ public final class ApiUtils {
 
     private ApiUtils() { }
 
-    public static boolean filterBy(String name, String value, Model instance) {
+    public static <T> boolean filterBy(String name, String value, T instance) {
 
         if(name == null)
             return true;
@@ -43,9 +43,10 @@ public final class ApiUtils {
 
         try {
 
+
             final var field= instance
                     .getClass()
-                    .getField(name);
+                    .getDeclaredField(name);
 
             field.setAccessible(true);
 
