@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.bioagri.persistence.DataSource;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.Optional;
 
 public final class Transaction {
@@ -198,4 +199,16 @@ public final class Transaction {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return getId() == that.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }

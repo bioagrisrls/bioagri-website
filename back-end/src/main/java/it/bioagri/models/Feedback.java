@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.bioagri.persistence.DataSource;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.Optional;
 
 public final class Feedback {
@@ -133,4 +134,16 @@ public final class Feedback {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Feedback feedback = (Feedback) o;
+        return getId() == feedback.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }

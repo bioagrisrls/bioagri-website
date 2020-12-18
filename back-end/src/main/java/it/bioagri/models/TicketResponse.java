@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.bioagri.persistence.DataSource;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 import java.util.Optional;
 
 public class TicketResponse {
@@ -96,4 +97,16 @@ public class TicketResponse {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TicketResponse that = (TicketResponse) o;
+        return getId() == that.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }

@@ -25,6 +25,8 @@
 
 package it.bioagri.models;
 
+import java.util.Objects;
+
 public final class Tag {
 
     private long id;
@@ -52,4 +54,16 @@ public final class Tag {
         return hashtag;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tag tag = (Tag) o;
+        return getId() == tag.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }

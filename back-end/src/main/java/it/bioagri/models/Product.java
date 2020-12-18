@@ -30,6 +30,7 @@ import it.bioagri.persistence.DataSource;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 public final class Product {
 
@@ -144,4 +145,16 @@ public final class Product {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return getId() == product.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }
