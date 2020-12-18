@@ -61,7 +61,7 @@ public class ProductTags {
     }
 
 
-    @GetMapping("/{sid}/feedbacks")
+    @GetMapping("/{sid}/tags")
     public ResponseEntity<List<Tag>> findAll(@PathVariable Long sid) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
