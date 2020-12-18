@@ -25,43 +25,42 @@
 
 package it.bioagri.api.orders;
 
-
 import it.bioagri.api.ApiPermission;
 import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionType;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
-import it.bioagri.models.Product;
+import it.bioagri.models.Transaction;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
-import java.util.AbstractMap;
 import java.util.List;
-import java.util.Map;
-
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/orders")
-public class OrderProducts {
+public class OrderTransactions {
 
     private final AuthToken authToken;
     private final DataSource dataSource;
 
     @Autowired
-    public OrderProducts(AuthToken authToken, DataSource dataSource) {
+    public OrderTransactions(AuthToken authToken, DataSource dataSource) {
         this.authToken = authToken;
         this.dataSource = dataSource;
     }
 
-    @GetMapping("/{sid}/products")
-    public ResponseEntity<List<Map.Entry<Product, Integer>>> findAll(@PathVariable Long sid) {
+    @GetMapping("/{sid}/feedbacks")
+    public ResponseEntity<List<Transaction>> findAll(@PathVariable Long sid) {
 
-        ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.READ, authToken);
 
         try {
 
@@ -69,7 +68,7 @@ public class OrderProducts {
                     .findByPrimaryKey(sid)
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
                     .orElseThrow(() -> new ApiResponseStatus(400))
-                    .getProducts(dataSource));
+                    .getTransactions(dataSource));
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -78,4 +77,3 @@ public class OrderProducts {
     }
 
 }
-

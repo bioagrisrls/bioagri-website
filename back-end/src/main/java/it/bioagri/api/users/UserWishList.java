@@ -44,13 +44,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
-public class WishList {
+public class UserWishList {
 
     private final AuthToken authToken;
     private final DataSource dataSource;
 
     @Autowired
-    public WishList(AuthToken authToken, DataSource dataSource) {
+    public UserWishList(AuthToken authToken, DataSource dataSource) {
         this.authToken = authToken;
         this.dataSource = dataSource;
     }

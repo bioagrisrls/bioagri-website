@@ -126,7 +126,8 @@ public class TicketResponses {
 
             response.setId(dataSource.getId("shop_ticket_response", Long.class));
 
-            dataSource.getTicketResponseRepository().findByPrimaryKey(id)
+            dataSource.getTicketResponseRepository()
+                    .findByPrimaryKey(id)
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.UPDATE, authToken, i.getTicket(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))

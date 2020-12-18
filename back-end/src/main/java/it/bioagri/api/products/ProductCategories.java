@@ -23,7 +23,7 @@
  *
  */
 
-package it.bioagri.api.orders;
+package it.bioagri.api.products;
 
 
 import it.bioagri.api.ApiPermission;
@@ -31,6 +31,7 @@ import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionType;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.models.Category;
 import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
@@ -46,30 +47,30 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/api/orders")
-public class OrderProducts {
+@RequestMapping("/api/products")
+public class ProductCategories {
 
     private final AuthToken authToken;
     private final DataSource dataSource;
 
     @Autowired
-    public OrderProducts(AuthToken authToken, DataSource dataSource) {
+    public ProductCategories(AuthToken authToken, DataSource dataSource) {
         this.authToken = authToken;
         this.dataSource = dataSource;
     }
 
-    @GetMapping("/{sid}/products")
-    public ResponseEntity<List<Map.Entry<Product, Integer>>> findAll(@PathVariable Long sid) {
+    @GetMapping("/{sid}/categories")
+    public ResponseEntity<List<Category>> findAll(@PathVariable Long sid) {
 
+        ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
 
         try {
 
-            return ResponseEntity.ok(dataSource.getOrderRepository()
+            return ResponseEntity.ok(dataSource.getProductRepository()
                     .findByPrimaryKey(sid)
-                    .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
                     .orElseThrow(() -> new ApiResponseStatus(400))
-                    .getProducts(dataSource));
+                    .getCategories(dataSource));
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

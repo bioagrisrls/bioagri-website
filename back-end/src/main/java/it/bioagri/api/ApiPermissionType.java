@@ -33,6 +33,7 @@ public enum ApiPermissionType {
     ORDERS,
     ORDER_PRODUCTS,
     PRODUCTS,
+    PRODUCT_CATEGORIES,
     TAGS,
     TICKETS,
     TICKET_RESPONSES,

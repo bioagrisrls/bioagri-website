@@ -23,7 +23,7 @@
  *
  */
 
-package it.bioagri.api.orders;
+package it.bioagri.api.transactions;
 
 import it.bioagri.api.ApiPermission;
 import it.bioagri.api.ApiPermissionOperation;
@@ -43,7 +43,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/api/transactions")
 public class Transactions {
 
 
@@ -57,15 +57,14 @@ public class Transactions {
     }
 
 
-    @GetMapping("/{sid}/transactions")
-    public ResponseEntity<List<Transaction>> findAll(@PathVariable Long sid) {
+    @GetMapping("/")
+    public ResponseEntity<List<Transaction>> findAll() {
 
         try {
 
             return ResponseEntity.ok(dataSource.getTransactionRepository()
                     .findAll()
                     .stream()
-                    .filter(i -> i.getOrderId().equals(sid))
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.READ, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
@@ -77,14 +76,13 @@ public class Transactions {
 
     }
 
-    @GetMapping("/{sid}/transactions/{id}")
-    public ResponseEntity<Transaction> findById(@PathVariable Long sid, @PathVariable Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Transaction> findById(@PathVariable Long id) {
 
         try {
 
             return ResponseEntity.ok(dataSource.getTransactionRepository()
                     .findByPrimaryKey(id)
-                    .filter(i -> i.getOrderId().equals(sid))
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.READ, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
@@ -97,8 +95,8 @@ public class Transactions {
     }
 
 
-    @PostMapping("/{sid}/transactions")
-    public ResponseEntity<String> create(@PathVariable Long sid, @RequestBody Transaction transaction) {
+    @PostMapping("/")
+    public ResponseEntity<String> create(@RequestBody Transaction transaction) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.CREATE, authToken, transaction.getOrder(dataSource)
                 .orElseThrow(() -> new ApiResponseStatus(400))
@@ -114,13 +112,13 @@ public class Transactions {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/orders/%d/transactions/%d", sid, transaction.getId()))).build();
+        return ResponseEntity.created(URI.create(String.format("/api/transactions/%d", transaction.getId()))).build();
 
     }
 
 
-    @PutMapping("/{sid}/transactions/{id}")
-    public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id, @RequestBody Transaction transaction) {
+    @PutMapping("/{id}")
+    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Transaction transaction) {
 
         try {
 
@@ -139,20 +137,19 @@ public class Transactions {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/orders/%d/transactions/%d", sid, transaction.getId()))).build();
+        return ResponseEntity.created(URI.create(String.format("/api/transactions/%d", transaction.getId()))).build();
 
     }
 
 
-    @DeleteMapping("/{sid}/transactions")
-    public ResponseEntity<String> deleteAll(@PathVariable Long sid) {
+    @DeleteMapping("/")
+    public ResponseEntity<String> deleteAll() {
 
         try {
 
             dataSource.getTransactionRepository()
                     .findAll()
                     .stream()
-                    .filter(i -> i.getOrderId().equals(sid))
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.DELETE, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
@@ -167,15 +164,14 @@ public class Transactions {
     }
 
 
-    @DeleteMapping("/{sid}/transactions/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long sid, @PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
 
         try {
 
             dataSource.getTransactionRepository().delete(
                     dataSource.getTransactionRepository()
                             .findByPrimaryKey(id)
-                            .filter(i -> i.getOrderId().equals(sid))
                             .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.DELETE, authToken, i.getOrder(dataSource)
                                     .orElseThrow(() -> new ApiResponseStatus(502))
                                     .getUserId()))

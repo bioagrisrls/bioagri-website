@@ -23,15 +23,15 @@
  *
  */
 
-package it.bioagri.api.orders;
-
+package it.bioagri.api.products;
 
 import it.bioagri.api.ApiPermission;
 import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionType;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
-import it.bioagri.models.Product;
+import it.bioagri.models.Feedback;
+import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,36 +40,39 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.AbstractMap;
 import java.util.List;
-import java.util.Map;
-
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/orders")
-public class OrderProducts {
+@RequestMapping("/api/products")
+public class ProductFeedbacks {
+
 
     private final AuthToken authToken;
     private final DataSource dataSource;
 
     @Autowired
-    public OrderProducts(AuthToken authToken, DataSource dataSource) {
+    public ProductFeedbacks(AuthToken authToken, DataSource dataSource) {
         this.authToken = authToken;
         this.dataSource = dataSource;
     }
 
-    @GetMapping("/{sid}/products")
-    public ResponseEntity<List<Map.Entry<Product, Integer>>> findAll(@PathVariable Long sid) {
+
+    @GetMapping("/{sid}/feedbacks")
+    public ResponseEntity<List<Feedback>> findAll(@PathVariable Long sid) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
 
         try {
 
-            return ResponseEntity.ok(dataSource.getOrderRepository()
-                    .findByPrimaryKey(sid)
-                    .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
-                    .orElseThrow(() -> new ApiResponseStatus(400))
-                    .getProducts(dataSource));
+            return ResponseEntity.ok(
+                    dataSource.getProductRepository()
+                            .findByPrimaryKey(sid)
+                            .orElseThrow(() -> new ApiResponseStatus(400))
+                            .getFeedbacks(dataSource)
+                            .stream()
+                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                            .collect(Collectors.toList()));
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -78,4 +81,3 @@ public class OrderProducts {
     }
 
 }
-
