@@ -125,7 +125,7 @@ public class UserDaoImpl extends UserDao {
                         s.setDate(11, value.getBirth());
                         s.setTimestamp(12, value.getCreatedAt());
                         s.setTimestamp(13, value.getUpdatedAt());
-                    }, false);
+                    });
 
 
         for(var i : value.getWishList(getDataSource())) {
@@ -138,7 +138,7 @@ public class UserDaoImpl extends UserDao {
                     s -> {
                         s.setLong(1, value.getId());
                         s.setLong(2, i.getId());
-                    }, false);
+                    });
 
         }
 
@@ -167,7 +167,7 @@ public class UserDaoImpl extends UserDao {
                         s.setTimestamp(11, newValue.getCreatedAt());
                         s.setTimestamp(12, newValue.getUpdatedAt());
                         s.setLong(13, oldValue.getId());
-                    }, false);
+                    });
 
 
         ListUtils.differences(oldValue.getWishList(getDataSource()), newValue.getWishList(getDataSource()), (added, removed) -> {
@@ -182,7 +182,7 @@ public class UserDaoImpl extends UserDao {
                         s -> {
                             s.setLong(1, newValue.getId());
                             s.setLong(2, i.getId());
-                        }, false);
+                        });
 
             }
 
@@ -197,7 +197,7 @@ public class UserDaoImpl extends UserDao {
                         s -> {
                             s.setLong(1, oldValue.getId());
                             s.setLong(2, i.getId());
-                        }, false);
+                        });
 
             }
 
@@ -209,7 +209,7 @@ public class UserDaoImpl extends UserDao {
     public void delete(User value) {
 
         getDataSource().update("DELETE FROM shop_user WHERE id = ?",
-                s -> s.setLong(1, value.getId()), false);
+                s -> s.setLong(1, value.getId()));
 
     }
 

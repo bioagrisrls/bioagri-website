@@ -102,7 +102,7 @@ public class FeedbackDaoImpl extends FeedbackDao {
                     s.setTimestamp(6, value.getCreatedAt());
                     s.setTimestamp(7, value.getUpdatedAt());
                     s.setLong(8, value.getUserId());
-                }, false);
+                });
 
     }
 
@@ -122,7 +122,7 @@ public class FeedbackDaoImpl extends FeedbackDao {
                         s.setTimestamp(4, newValue.getCreatedAt());
                         s.setTimestamp(5, newValue.getUpdatedAt());
                         s.setLong(6, oldValue.getId());
-                    }, false);
+                    });
 
     }
 
@@ -130,7 +130,7 @@ public class FeedbackDaoImpl extends FeedbackDao {
     public void delete(Feedback value) {
 
         getDataSource().update("DELETE FROM shop_feedback WHERE id = ?",
-                s -> s.setLong(1, value.getId()), false);
+                s -> s.setLong(1, value.getId()));
 
     }
 

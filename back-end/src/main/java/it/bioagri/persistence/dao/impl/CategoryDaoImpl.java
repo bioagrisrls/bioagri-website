@@ -83,7 +83,7 @@ public class CategoryDaoImpl extends CategoryDao {
                 s -> {
                     s.setLong(1, value.getId());
                     s.setString(2, value.getName());
-                }, false);
+                });
 
     }
 
@@ -95,7 +95,7 @@ public class CategoryDaoImpl extends CategoryDao {
                 s -> {
                     s.setString(1, newValue.getName());
                     s.setLong(2, oldValue.getId());
-                }, false);
+                });
 
     }
 
@@ -104,7 +104,7 @@ public class CategoryDaoImpl extends CategoryDao {
     public void delete(Category value) {
 
         getDataSource().update("DELETE FROM shop_category WHERE id = ?",
-                s -> s.setLong(1, value.getId()), false);
+                s -> s.setLong(1, value.getId()));
 
     }
 

@@ -123,7 +123,7 @@ public class ProductDaoImpl extends ProductDao {
                         s.setShort(6, (short) value.getStatus().ordinal());
                         s.setTimestamp(7, value.getCreatedAt());
                         s.setTimestamp(8, value.getUpdatedAt());
-                    }, false);
+                    });
 
 
 
@@ -137,7 +137,7 @@ public class ProductDaoImpl extends ProductDao {
                     s -> {
                         s.setLong(1, value.getId());
                         s.setLong(2, i.getId());
-                    }, false);
+                    });
 
         }
 
@@ -152,7 +152,7 @@ public class ProductDaoImpl extends ProductDao {
                     s -> {
                         s.setLong(1, value.getId());
                         s.setLong(2, i.getId());
-                    }, false);
+                    });
 
         }
 
@@ -178,7 +178,7 @@ public class ProductDaoImpl extends ProductDao {
                         s.setTimestamp(6, newValue.getCreatedAt());
                         s.setTimestamp(7, newValue.getUpdatedAt());
                         s.setLong(8, oldValue.getId());
-                    }, false);
+                    });
 
 
         ListUtils.differences(oldValue.getCategories(getDataSource()), newValue.getCategories(getDataSource()), (added, removed) -> {
@@ -193,7 +193,7 @@ public class ProductDaoImpl extends ProductDao {
                         s -> {
                             s.setLong(1, newValue.getId());
                             s.setLong(2, i.getId());
-                        }, false);
+                        });
 
             }
 
@@ -208,7 +208,7 @@ public class ProductDaoImpl extends ProductDao {
                         s -> {
                             s.setLong(1, oldValue.getId());
                             s.setLong(2, i.getId());
-                        }, false);
+                        });
 
             }
 
@@ -227,7 +227,7 @@ public class ProductDaoImpl extends ProductDao {
                         s -> {
                             s.setLong(1, newValue.getId());
                             s.setLong(2, i.getId());
-                        }, false);
+                        });
 
             }
 
@@ -242,7 +242,7 @@ public class ProductDaoImpl extends ProductDao {
                         s -> {
                             s.setLong(1, oldValue.getId());
                             s.setLong(2, i.getId());
-                        }, false);
+                        });
 
             }
 
@@ -254,7 +254,7 @@ public class ProductDaoImpl extends ProductDao {
     public void delete(Product value) {
 
         getDataSource().update("DELETE FROM shop_product WHERE id = ?",
-                s -> s.setLong(1, value.getId()), false);
+                s -> s.setLong(1, value.getId()));
 
     }
 

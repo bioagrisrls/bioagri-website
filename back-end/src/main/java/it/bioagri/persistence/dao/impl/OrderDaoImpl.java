@@ -99,7 +99,7 @@ public class OrderDaoImpl extends OrderDao {
                     s.setTimestamp(3, value.getCreatedAt());
                     s.setTimestamp(4, value.getUpdatedAt());
                     s.setLong(5, value.getUserId());
-                }, false);
+                });
 
 
         for(var i : value.getProducts(getDataSource())) {
@@ -113,7 +113,7 @@ public class OrderDaoImpl extends OrderDao {
                         s.setLong(1, value.getId());
                         s.setLong(2, i.getKey().getId());
                         s.setLong(3, i.getValue());
-                    }, false);
+                    });
 
         }
 
@@ -134,7 +134,7 @@ public class OrderDaoImpl extends OrderDao {
                     s.setTimestamp(2, newValue.getCreatedAt());
                     s.setTimestamp(3, newValue.getUpdatedAt());
                     s.setLong(4, oldValue.getId());
-                }, false);
+                });
 
 
         ListUtils.differences(oldValue.getProducts(getDataSource()), newValue.getProducts(getDataSource()), (added, removed) -> {
@@ -150,7 +150,7 @@ public class OrderDaoImpl extends OrderDao {
                             s.setLong(1, newValue.getId());
                             s.setLong(2, i.getKey().getId());
                             s.setLong(3, i.getValue());
-                        }, false);
+                        });
 
             }
 
@@ -165,7 +165,7 @@ public class OrderDaoImpl extends OrderDao {
                         s -> {
                             s.setLong(1, oldValue.getId());
                             s.setLong(2, i.getKey().getId());
-                        }, false);
+                        });
 
             }
 
@@ -177,7 +177,7 @@ public class OrderDaoImpl extends OrderDao {
     public void delete(Order value) {
 
         getDataSource().update("DELETE FROM shop_order  WHERE id = ?",
-                s -> s.setLong(1, value.getId()), false);
+                s -> s.setLong(1, value.getId()));
 
     }
 
