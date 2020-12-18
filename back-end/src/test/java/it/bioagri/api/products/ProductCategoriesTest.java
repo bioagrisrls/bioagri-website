@@ -41,9 +41,8 @@ class ProductCategoriesTest {
                 .body(
                         """
                                 {
-
-                                "productId"  :  
-                                "categoryId" :           
+                                "id"  : "3", 
+                                "id" : "4"         
                                 }
                                 """
                 )
@@ -52,6 +51,11 @@ class ProductCategoriesTest {
                 .statusCode(expectedCode)
                 .extract()
                 .header("Location");
+    }
+
+    @Test
+    public void createAsTest(){
+        createAs("admin@test.com", 201);
     }
 
 
