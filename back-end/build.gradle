@@ -58,6 +58,7 @@ dependencies {
     implementation 'org.jetbrains:annotations:19.0.0'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    developmentOnly 'org.springdoc:springdoc-openapi-ui:1.5.2'
 
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
