@@ -27,6 +27,7 @@ package it.bioagri.api.products;
 
 import io.restassured.RestAssured;
 import it.bioagri.api.auth.AuthTest;
+import it.bioagri.api.categories.CategoriesTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
@@ -34,19 +35,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductCategoriesTest {
 
+
+
     public static String createAs(String username,  int expectedCode) {
+
+        String productId = ProductsTest.createAs(username,201).split("/")[3];
+        String categoryId = CategoriesTest.createAs(username, 201).split("/")[3];
+
         return RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
                 .spec(AuthTest.getSpecs())
-                .body(
-                        """
-                                {
-                                "id"  : "3", 
-                                "id" : "4"         
-                                }
-                                """
-                )
-                .post("/products")
+                .put("/products/" + productId + "/categories/" + categoryId )
                 .then()
                 .statusCode(expectedCode)
                 .extract()

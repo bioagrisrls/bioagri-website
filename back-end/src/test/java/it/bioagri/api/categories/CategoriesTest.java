@@ -33,7 +33,7 @@ import org.springframework.test.context.event.annotation.AfterTestMethod;
 
 public class CategoriesTest {
 
-    private String createAs(String username, int expectedCode) {
+    public static String createAs(String username, int expectedCode) {
 
         return RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
