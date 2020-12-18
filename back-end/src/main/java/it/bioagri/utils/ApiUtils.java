@@ -40,13 +40,18 @@ public final class ApiUtils {
         if(value == null)
             return false;
 
+
         try {
 
-            var field= instance.getClass()
-                    .getField(name)
-                    .get(instance);
+            final var field= instance
+                    .getClass()
+                    .getField(name);
 
-            return field.toString().matches(value);
+            field.setAccessible(true);
+
+            return field.get(instance)
+                    .toString()
+                    .matches(value);
 
         } catch (IllegalAccessException | NoSuchFieldException ignored) {
             throw new ApiResponseStatus(400);
