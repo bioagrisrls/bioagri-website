@@ -71,7 +71,7 @@ class FeedbacksTest {
     }
 
 
-    @Test
+
     private void findAll() {
 
         RestAssured.given()
@@ -207,21 +207,28 @@ class FeedbacksTest {
 
 
 
-    @Test
-    public void launchAllCrudMethods(){
+    private void launchAllCrudMethods(){
 
         launchAllCrudMethodsAs("admin@test.com");
         launchAllCrudMethodsAs("user@test.com");
 
     }
 
-    @Test
-    public void launchAllNotAuthorizedMethods(){
+
+    private void launchAllNotAuthorizedMethods(){
 
         createWithNotAuthorizedUser();
         deleteAllWithNotAuthorizedUser();
         deleteByIdWithNotAuthorizedUser();
         updateWithNotAuthorizedUser();
+
+    }
+
+    @Test
+    public void testAll(){
+
+        launchAllCrudMethods();
+        launchAllNotAuthorizedMethods();
 
     }
 
