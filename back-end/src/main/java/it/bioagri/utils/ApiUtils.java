@@ -25,29 +25,32 @@
 
 package it.bioagri.utils;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import it.bioagri.api.ApiResponseStatus;
 
-public final class ListUtils {
+public final class ApiUtils {
 
-    public interface ListUtilsChangesHandler<T> {
-        void change(List<T> added, List<T> removed);
-    }
+    private ApiUtils() { }
 
+    public static boolean filterBy(String name, String value, Object instance) {
 
-    private ListUtils() { }
+        if(name == null)
+            return true;
 
-    public static <T> void differences(List<T> a, List<T> b, ListUtilsChangesHandler<T> changeHandler) {
+        if(value == null)
+            return false;
 
-        List<T> added = b.stream()
-                .filter(i -> !a.contains(i))
-                .collect(Collectors.toUnmodifiableList());
+        try {
 
-        List<T> removed = a.stream()
-                .filter(i -> !b.contains(i))
-                .collect(Collectors.toUnmodifiableList());
+            var field= instance.getClass()
+                    .getField(name)
+                    .get(instance);
 
-        changeHandler.change(added, removed);
+            if(field instanceof String)
+                return ((String) field).matches(value);
+
+        } catch (IllegalAccessException | NoSuchFieldException ignored) { }
+
+        throw new ApiResponseStatus(400);
 
     }
 
