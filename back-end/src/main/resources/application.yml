@@ -22,3 +22,11 @@ logging:
   level:
     "web" : TRACE
     "it.bioagri" : TRACE
+
+
+springdoc:
+  api-docs:
+    path: "/api/public/v3/api-docs"
+  swagger-ui:
+    path: "/api/public/v3/api-docs-ui"
+    disable-swagger-default-url: true
