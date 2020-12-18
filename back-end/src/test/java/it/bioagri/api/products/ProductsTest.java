@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductsTest {
 
-    private String createAs(String username,  int expectedCode) {
+    public static String createAs(String username,  int expectedCode) {
         return RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
                 .spec(AuthTest.getSpecs())
@@ -62,16 +62,54 @@ class ProductsTest {
 
 
     @Test
-    public void createUserAs(){
+    public void createUserAsAdmin(){
         createAs("admin@test.com",201);
     }
 
     @Test
-    void findAll() {
+    public void createUserAsUser(){
+        createAs("user@test.com",403);
     }
 
     @Test
-    void findById() {
+    void findAll(String username) {
+
+        RestAssured.given()
+                .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
+                .spec(AuthTest.getSpecs())
+                .get("/products/")
+                .then()
+                .statusCode(200);
+
+    }
+
+
+    @Test
+    public void findAllAs(){
+
+        findAll("admin@test.com");
+
+
+    }
+
+    @Test
+    private void findById(String username) {
+
+        String productId = createAs("admin@test.com", 201).split("/")[3];
+
+        RestAssured.given()
+                .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
+                .spec(AuthTest.getSpecs())
+                .get("/products/3")
+                .then()
+                .statusCode(200);
+
+    }
+
+
+    @Test
+    public void findbyIdTest(){
+        findById("user@test.com");
     }
 
 
