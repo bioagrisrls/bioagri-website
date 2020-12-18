@@ -95,7 +95,7 @@ class ProductsTest {
     @Test
     private void findById(String username) {
 
-        String productId = createAs("admin@test.com", 201).split("/")[3];
+        //String productId = createAs("admin@test.com", 201).split("/")[3];
 
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
@@ -109,7 +109,7 @@ class ProductsTest {
 
     @Test
     public void findbyIdTest(){
-        findById("user@test.com");
+        findById("admin@test.com");
     }
 
 
