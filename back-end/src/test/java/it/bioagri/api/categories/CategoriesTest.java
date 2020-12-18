@@ -36,7 +36,7 @@ public class CategoriesTest {
     private String createAs(String username, int expectedCode) {
 
         return RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate(username, "123"))
+                .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .body(
                         """
@@ -60,7 +60,7 @@ public class CategoriesTest {
     public void findAll() {
 
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123"))
+                .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .get("/categories/")
                 .then()
@@ -73,14 +73,14 @@ public class CategoriesTest {
     public void findById(String categoryId) {
 
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123"))
+                .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .get("/categories/" + categoryId)
                 .then()
                 .statusCode(200);
 
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .get("/categories/" + categoryId)
                 .then()
@@ -91,7 +91,7 @@ public class CategoriesTest {
     void update(String categoryId) {
 
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .body(
                         """
@@ -123,14 +123,14 @@ public class CategoriesTest {
 
 
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123"))
+                .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .delete("/categories/" + categoryId)
                 .then()
                 .statusCode(403);
 
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123"))
+                .header("X-Auth-Token", AuthTest.authenticate("admin@test.com", "123").getString("token"))
                 .spec(AuthTest.getSpecs())
                 .delete("/categories/" + categoryId)
                 .then()
