@@ -73,10 +73,10 @@ public class Users {
                     dataSource.getUserRepository()
                             .findAll()
                             .stream()
+                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.READ, authToken, i.getId()))
+                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
                             .skip(skip)
                             .limit(limit)
-                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
-                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.READ, authToken, i.getId()))
                             .collect(Collectors.toList()));
 
         } catch (DataSourceSQLException e) {
