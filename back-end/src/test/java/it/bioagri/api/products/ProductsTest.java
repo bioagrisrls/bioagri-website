@@ -100,7 +100,7 @@ class ProductsTest {
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
                 .spec(AuthTest.getSpecs())
-                .get("/products/17")
+                .get("/products/3")
                 .then()
                 .statusCode(200);
 
