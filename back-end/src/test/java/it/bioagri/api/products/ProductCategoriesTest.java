@@ -34,17 +34,49 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProductCategoriesTest {
 
+    public static String createAs(String username,  int expectedCode) {
+        return RestAssured.given()
+                .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
+                .spec(AuthTest.getSpecs())
+                .body(
+                        """
+                                {
+
+                                "productId"  :  
+                                "categoryId" :           
+                                }
+                                """
+                )
+                .post("/products")
+                .then()
+                .statusCode(expectedCode)
+                .extract()
+                .header("Location");
+    }
+
+
     @Test
     void findAll(String username) {
 
+        String id = ProductsTest.createAs(username,201).split("/")[3];
+        System.out.println("SONO QUI: " + id);
+
         RestAssured.given()
-                .header("X-Auth-Token", AuthTest.authenticate("user@test.com", "123").getString("token"))
+                .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
                 .spec(AuthTest.getSpecs())
-                .get("/categories")
+                .get("/products/" + id +"/categories")
                 .then()
-                .body("/categories/", Matchers.hasSize(Matchers.greaterThan(0)))
                 .statusCode(200);
 
 
     }
+
+
+    @Test
+    public void findAllTest(){
+
+        findAll("admin@test.com");
+
+    }
+
 }
