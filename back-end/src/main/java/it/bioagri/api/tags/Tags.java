@@ -33,6 +33,7 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
+import it.bioagri.utils.ApiUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/tags")
@@ -56,12 +58,25 @@ public class Tags {
 
 
     @GetMapping("")
-    public ResponseEntity<List<Tag>> findAll() {
+    public ResponseEntity<List<Tag>> findAll(
+            @RequestParam(required = false, defaultValue =   "0") Long skip,
+            @RequestParam(required = false, defaultValue = "999") Long limit,
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
+
 
         ApiPermission.verifyOrThrow(ApiPermissionType.TAGS, ApiPermissionOperation.READ, authToken);
 
         try {
-            return new ResponseEntity<>(dataSource.getTagRepository().findAll(), HttpStatus.OK);
+
+            return ResponseEntity.ok(dataSource.getTagRepository()
+                    .findAll()
+                    .stream()
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .skip(skip)
+                    .limit(limit)
+                    .collect(Collectors.toList()));
+
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -130,13 +145,18 @@ public class Tags {
 
 
     @DeleteMapping("")
-    public ResponseEntity<String> deleteAll() {
+    public ResponseEntity<String> deleteAll(
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.TAGS, ApiPermissionOperation.DELETE, authToken);
 
         try {
 
-            dataSource.getTagRepository().findAll()
+            dataSource.getTagRepository()
+                    .findAll()
+                    .stream()
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
                     .forEach(dataSource.getTagRepository()::delete);
 
         } catch (DataSourceSQLException e) {

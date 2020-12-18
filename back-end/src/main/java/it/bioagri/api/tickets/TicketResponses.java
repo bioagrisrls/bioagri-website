@@ -33,6 +33,7 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
+import it.bioagri.utils.ApiUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,7 +59,12 @@ public class TicketResponses {
 
 
     @GetMapping("/{sid}/responses")
-    public ResponseEntity<List<TicketResponse>> findAll(@PathVariable Long sid) {
+    public ResponseEntity<List<TicketResponse>> findAll(
+            @PathVariable Long sid,
+            @RequestParam(required = false, defaultValue =   "0") Long skip,
+            @RequestParam(required = false, defaultValue = "999") Long limit,
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
 
         try {
 
@@ -69,6 +75,9 @@ public class TicketResponses {
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.READ, authToken, i.getTicket(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .skip(skip)
+                    .limit(limit)
                     .collect(Collectors.toList()));
 
         } catch (DataSourceSQLException e) {
@@ -146,7 +155,11 @@ public class TicketResponses {
 
 
     @DeleteMapping("/{sid}/responses")
-    public ResponseEntity<String> deleteAll(@PathVariable Long sid) {
+    public ResponseEntity<String> deleteAll(
+            @PathVariable Long sid,
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
+
 
         try {
 
@@ -157,6 +170,7 @@ public class TicketResponses {
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.DELETE, authToken, i.getTicket(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
                     .forEach(dataSource.getTicketResponseRepository()::delete);
 
         } catch (DataSourceSQLException e) {
