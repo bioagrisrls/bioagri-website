@@ -27,10 +27,12 @@ package it.bioagri.persistence.dao.impl;
 
 import it.bioagri.models.Order;
 import it.bioagri.models.OrderStatus;
+import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.OrderDao;
 import it.bioagri.utils.ListUtils;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -101,23 +103,6 @@ public class OrderDaoImpl extends OrderDao {
                     s.setLong(5, value.getUserId());
                 });
 
-
-        for(var i : value.getProducts(getDataSource())) {
-
-            getDataSource().update(
-                    """
-                    INSERT INTO shop_order_product (order_id, product_id, quantity) 
-                                            VALUES (?, ?, ?)
-                    """,
-                    s -> {
-                        s.setLong(1, value.getId());
-                        s.setLong(2, i.getKey().getId());
-                        s.setLong(3, i.getValue());
-                    });
-
-        }
-
-
     }
 
     @Override
@@ -136,41 +121,6 @@ public class OrderDaoImpl extends OrderDao {
                     s.setLong(4, oldValue.getId());
                 });
 
-
-        ListUtils.differences(oldValue.getProducts(getDataSource()), newValue.getProducts(getDataSource()), (added, removed) -> {
-
-            for(var i : added) {
-
-                getDataSource().update(
-                        """
-                        INSERT INTO shop_order_product (order_id, product_id, quantity) 
-                                                VALUES (?, ?, ?)
-                        """,
-                        s -> {
-                            s.setLong(1, newValue.getId());
-                            s.setLong(2, i.getKey().getId());
-                            s.setLong(3, i.getValue());
-                        });
-
-            }
-
-            for(var i : removed) {
-
-                getDataSource().update(
-                        """
-                        DELETE FROM shop_order_product 
-                              WHERE order_id = ?
-                                AND product_id = ?
-                        """,
-                        s -> {
-                            s.setLong(1, oldValue.getId());
-                            s.setLong(2, i.getKey().getId());
-                        });
-
-            }
-
-        });
-
     }
 
     @Override
@@ -178,6 +128,43 @@ public class OrderDaoImpl extends OrderDao {
 
         getDataSource().update("DELETE FROM shop_order  WHERE id = ?",
                 s -> s.setLong(1, value.getId()));
+
+    }
+
+
+    @Override
+    public void addProduct(Order order, Product product, int quantity) {
+
+        getDataSource().update(
+                """
+                INSERT INTO shop_order_product (order_id, product_id, quantity) 
+                                        VALUES (?, ?, ?)
+                """,
+                s -> {
+                    s.setLong(1, order.getId());
+                    s.setLong(2, product.getId());
+                    s.setLong(3, quantity);
+                });
+
+        order.getProducts(getDataSource()).add(new AbstractMap.SimpleImmutableEntry<>(product, quantity));
+
+    }
+
+    @Override
+    public void removeProduct(Order order, Product product) {
+
+        getDataSource().update(
+                """
+                DELETE FROM shop_order_product 
+                      WHERE order_id = ?
+                        AND product_id = ?
+                """,
+                s -> {
+                    s.setLong(1, order.getId());
+                    s.setLong(2, product.getId());
+                });
+
+        order.getProducts(getDataSource()).removeIf(i -> i.getKey().equals(product));
 
     }
 

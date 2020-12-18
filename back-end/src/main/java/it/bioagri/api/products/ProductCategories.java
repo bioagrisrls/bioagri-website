@@ -36,6 +36,7 @@ import it.bioagri.models.Product;
 import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
+import it.bioagri.utils.ApiUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -60,7 +62,13 @@ public class ProductCategories {
 
 
     @GetMapping("/{sid}/categories")
-    public ResponseEntity<List<Category>> findAll(@PathVariable Long sid) {
+    public ResponseEntity<List<Category>> findAll(
+            @PathVariable Long sid,
+            @RequestParam(required = false, defaultValue =   "0") Long skip,
+            @RequestParam(required = false, defaultValue = "999") Long limit,
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
+
 
         ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
@@ -70,7 +78,12 @@ public class ProductCategories {
             return ResponseEntity.ok(dataSource.getProductRepository()
                     .findByPrimaryKey(sid)
                     .orElseThrow(() -> new ApiResponseStatus(400))
-                    .getCategories(dataSource));
+                    .getCategories(dataSource)
+                    .stream()
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .skip(skip)
+                    .limit(limit)
+                    .collect(Collectors.toList()));
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -78,7 +91,7 @@ public class ProductCategories {
 
     }
 
-    @PatchMapping("/{sid}/categories/{id}")
+    @PutMapping("/{sid}/categories/{id}")
     public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
@@ -86,13 +99,42 @@ public class ProductCategories {
 
         try {
 
-            dataSource.getProductRepository()
-                    .findByPrimaryKey(sid)
-                    .orElseThrow(() -> new ApiResponseStatus(400))
-                    .getCategories(dataSource)
-                    .add(dataSource.getCategoryRepository()
+            dataSource.getProductRepository().addCategory(
+                    dataSource.getProductRepository()
+                            .findByPrimaryKey(sid)
+                            .orElseThrow(() -> new ApiResponseStatus(400)),
+                    dataSource.getCategoryRepository()
                             .findByPrimaryKey(id)
-                            .orElseThrow(() -> new ApiResponseStatus(404)));
+                            .orElseThrow(() -> new ApiResponseStatus(404))
+            );
+
+            return ResponseEntity.ok().build();
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
+
+
+    @DeleteMapping("/{sid}/categories/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long sid, @PathVariable Long id) {
+
+        ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE, authToken);
+
+        try {
+
+
+            dataSource.getProductRepository().removeCategory(
+                    dataSource.getProductRepository()
+                        .findByPrimaryKey(sid)
+                        .orElseThrow(() -> new ApiResponseStatus(400)),
+                    dataSource.getCategoryRepository()
+                        .findByPrimaryKey(id)
+                        .orElseThrow(() -> new ApiResponseStatus(404))
+            );
+
 
             return ResponseEntity.ok().build();
 

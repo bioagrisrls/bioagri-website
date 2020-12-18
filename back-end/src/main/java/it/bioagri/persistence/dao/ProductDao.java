@@ -25,7 +25,9 @@
 
 package it.bioagri.persistence.dao;
 
+import it.bioagri.models.Category;
 import it.bioagri.models.Product;
+import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 
 import java.util.List;
@@ -40,5 +42,10 @@ public abstract class ProductDao extends Dao<Product, Long> {
 
     public abstract List<Product> findByWishUserId(Long id);
     public abstract List<Map.Entry<Product, Integer>> findByOrderId(Long id);
+
+    public abstract void addCategory(Product product, Category category);
+    public abstract void removeCategory(Product product, Category category);
+    public abstract void addTag(Product product, Tag tag);
+    public abstract void removeTag(Product product, Tag tag);
 
 }

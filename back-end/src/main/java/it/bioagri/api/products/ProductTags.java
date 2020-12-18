@@ -33,15 +33,14 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
+import it.bioagri.utils.ApiUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/products")
@@ -59,7 +58,12 @@ public class ProductTags {
 
 
     @GetMapping("/{sid}/tags")
-    public ResponseEntity<List<Tag>> findAll(@PathVariable Long sid) {
+    public ResponseEntity<List<Tag>> findAll(
+            @PathVariable Long sid,
+            @RequestParam(required = false, defaultValue =   "0") Long skip,
+            @RequestParam(required = false, defaultValue = "999") Long limit,
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
         ApiPermission.verifyOrThrow(ApiPermissionType.TAGS, ApiPermissionOperation.READ, authToken);
@@ -70,7 +74,65 @@ public class ProductTags {
                     dataSource.getProductRepository()
                             .findByPrimaryKey(sid)
                             .orElseThrow(() -> new ApiResponseStatus(400))
-                            .getTags(dataSource));
+                            .getTags(dataSource)
+                            .stream()
+                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                            .skip(skip)
+                            .limit(limit)
+                            .collect(Collectors.toList()));
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
+
+
+    @PutMapping("/{sid}/tags/{id}")
+    public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id) {
+
+        ApiPermission.verifyOrThrow(ApiPermissionType.TAGS, ApiPermissionOperation.READ, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE, authToken);
+
+        try {
+
+            dataSource.getProductRepository().addTag(
+                    dataSource.getProductRepository()
+                            .findByPrimaryKey(sid)
+                            .orElseThrow(() -> new ApiResponseStatus(400)),
+                    dataSource.getTagRepository()
+                            .findByPrimaryKey(id)
+                            .orElseThrow(() -> new ApiResponseStatus(404)));
+
+
+            return ResponseEntity.ok().build();
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
+
+
+    @DeleteMapping("/{sid}/tags/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long sid, @PathVariable Long id) {
+
+        ApiPermission.verifyOrThrow(ApiPermissionType.TAGS, ApiPermissionOperation.READ, authToken);
+        ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.UPDATE, authToken);
+
+        try {
+
+
+            dataSource.getProductRepository().removeTag(
+                    dataSource.getProductRepository()
+                            .findByPrimaryKey(sid)
+                            .orElseThrow(() -> new ApiResponseStatus(400)),
+                    dataSource.getTagRepository()
+                            .findByPrimaryKey(id)
+                            .orElseThrow(() -> new ApiResponseStatus(404)));
+
+
+            return ResponseEntity.ok().build();
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

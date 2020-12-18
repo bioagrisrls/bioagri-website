@@ -26,6 +26,7 @@
 package it.bioagri.persistence.dao;
 
 import it.bioagri.models.Order;
+import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
 
 public abstract class OrderDao extends Dao<Order, Long> {
@@ -33,5 +34,8 @@ public abstract class OrderDao extends Dao<Order, Long> {
     public OrderDao(DataSource dataSource) {
         super(dataSource);
     }
+
+    public abstract void addProduct(Order order, Product product, int quantity);
+    public abstract void removeProduct(Order order, Product product);
 
 }
