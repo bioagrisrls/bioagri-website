@@ -100,7 +100,7 @@ public class Tags {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/tags/%d", tag.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/tags/%d".formatted(tag.getId()))).build();
 
     }
 
@@ -124,7 +124,7 @@ public class Tags {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/tags/%d", id))).build();
+        return ResponseEntity.created(URI.create("/api/tags/%d".formatted(id))).build();
 
     }
 

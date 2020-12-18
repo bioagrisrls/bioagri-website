@@ -25,6 +25,9 @@
 
 package it.bioagri.api.categories;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import it.bioagri.api.ApiPermission;
 import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionType;
@@ -56,6 +59,10 @@ public class Categories {
     }
 
 
+    @Operation(description = "Retrieve all category resources")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Category resources collection"),
+    })
     @GetMapping("")
     public ResponseEntity<List<Category>> findAll() {
 
@@ -70,6 +77,11 @@ public class Categories {
     }
 
 
+    @Operation(description = "Retrieve a specific category resource")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Category resource"),
+            @ApiResponse(responseCode = "404", description = "Category id not found"),
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Category> findById(@PathVariable Long id) {
 
@@ -88,6 +100,10 @@ public class Categories {
     }
 
 
+    @Operation(description = "Create a new category resource")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Category created"),
+    })
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Category category) {
 
@@ -103,11 +119,15 @@ public class Categories {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/categories/%d", category.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/categories/%d".formatted(category.getId()))).build();
 
     }
 
 
+    @Operation(description = "Create or update a new category resource")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Category created or updated"),
+    })
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Category category) {
 
@@ -127,11 +147,15 @@ public class Categories {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/categories/%d", id))).build();
+        return ResponseEntity.created(URI.create("/api/categories/%d".formatted(id))).build();
 
     }
 
 
+    @Operation(description = "Delete all category resources")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "All category resources deleted"),
+    })
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
 
@@ -150,6 +174,12 @@ public class Categories {
 
     }
 
+
+
+    @Operation(description = "Delete a specific category resource")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Category deleted"),
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
 

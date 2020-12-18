@@ -102,7 +102,7 @@ public class TicketDaoImpl extends TicketDao {
                         s.setLong(5, value.getUserId());
                         s.setTimestamp(6, value.getCreatedAt());
                         s.setTimestamp(7, value.getUpdatedAt());
-                    }, false);
+                    });
 
     }
 
@@ -122,7 +122,7 @@ public class TicketDaoImpl extends TicketDao {
                         s.setTimestamp(4, newValue.getCreatedAt());
                         s.setTimestamp(5, newValue.getUpdatedAt());
                         s.setLong(6, oldValue.getId());
-                    }, false);
+                    });
 
     }
 
@@ -131,7 +131,7 @@ public class TicketDaoImpl extends TicketDao {
     public void delete(Ticket value) {
 
         getDataSource().update("DELETE FROM shop_ticket WHERE id = ?",
-                s -> s.setLong(1, value.getId()), false);
+                s -> s.setLong(1, value.getId()));
 
     }
 

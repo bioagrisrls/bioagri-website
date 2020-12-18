@@ -80,7 +80,7 @@ public class TagDaoImpl extends TagDao {
                 s -> {
                     s.setLong(1, value.getId());
                     s.setString(2, value.getHashtag());
-                }, false);
+                });
 
     }
 
@@ -91,7 +91,7 @@ public class TagDaoImpl extends TagDao {
                 s -> {
                     s.setString(1, newValue.getHashtag());
                     s.setLong(2, oldValue.getId());
-                }, false);
+                });
 
     }
 
@@ -99,7 +99,7 @@ public class TagDaoImpl extends TagDao {
     public void delete(Tag value) {
 
         getDataSource().update("DELETE FROM shop_tag WHERE id = ?",
-                s -> s.setLong(1, value.getId()), false);
+                s -> s.setLong(1, value.getId()));
 
     }
 

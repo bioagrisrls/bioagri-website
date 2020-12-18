@@ -107,7 +107,7 @@ public class Feedbacks {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/feedbacks/%d", feedback.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/feedbacks/%d".formatted(feedback.getId()))).build();
 
     }
 
@@ -130,7 +130,7 @@ public class Feedbacks {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/feedbacks/%d", id))).build();
+        return ResponseEntity.created(URI.create("/api/feedbacks/%d".formatted(id))).build();
 
     }
 

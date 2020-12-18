@@ -29,6 +29,7 @@ import it.bioagri.models.Order;
 import it.bioagri.models.OrderStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.OrderDao;
+import it.bioagri.utils.ListUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,7 +99,24 @@ public class OrderDaoImpl extends OrderDao {
                     s.setTimestamp(3, value.getCreatedAt());
                     s.setTimestamp(4, value.getUpdatedAt());
                     s.setLong(5, value.getUserId());
-                }, false);
+                });
+
+
+        for(var i : value.getProducts(getDataSource())) {
+
+            getDataSource().update(
+                    """
+                    INSERT INTO shop_order_product (order_id, product_id, quantity) 
+                                            VALUES (?, ?, ?)
+                    """,
+                    s -> {
+                        s.setLong(1, value.getId());
+                        s.setLong(2, i.getKey().getId());
+                        s.setLong(3, i.getValue());
+                    });
+
+        }
+
 
     }
 
@@ -116,7 +134,42 @@ public class OrderDaoImpl extends OrderDao {
                     s.setTimestamp(2, newValue.getCreatedAt());
                     s.setTimestamp(3, newValue.getUpdatedAt());
                     s.setLong(4, oldValue.getId());
-                }, false);
+                });
+
+
+        ListUtils.differences(oldValue.getProducts(getDataSource()), newValue.getProducts(getDataSource()), (added, removed) -> {
+
+            for(var i : added) {
+
+                getDataSource().update(
+                        """
+                        INSERT INTO shop_order_product (order_id, product_id, quantity) 
+                                                VALUES (?, ?, ?)
+                        """,
+                        s -> {
+                            s.setLong(1, newValue.getId());
+                            s.setLong(2, i.getKey().getId());
+                            s.setLong(3, i.getValue());
+                        });
+
+            }
+
+            for(var i : removed) {
+
+                getDataSource().update(
+                        """
+                        DELETE FROM shop_order_product 
+                              WHERE order_id = ?
+                                AND product_id = ?
+                        """,
+                        s -> {
+                            s.setLong(1, oldValue.getId());
+                            s.setLong(2, i.getKey().getId());
+                        });
+
+            }
+
+        });
 
     }
 
@@ -124,7 +177,7 @@ public class OrderDaoImpl extends OrderDao {
     public void delete(Order value) {
 
         getDataSource().update("DELETE FROM shop_order  WHERE id = ?",
-                s -> s.setLong(1, value.getId()), false);
+                s -> s.setLong(1, value.getId()));
 
     }
 

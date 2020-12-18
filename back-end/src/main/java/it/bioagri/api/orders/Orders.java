@@ -107,7 +107,7 @@ public class Orders {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/orders/%d", order.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/orders/%d".formatted(order.getId()))).build();
 
     }
 
@@ -130,7 +130,7 @@ public class Orders {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/orders/%d", id))).build();
+        return ResponseEntity.created(URI.create("/api/orders/%d".formatted(id))).build();
 
     }
 

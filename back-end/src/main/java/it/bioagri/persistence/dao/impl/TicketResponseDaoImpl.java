@@ -93,7 +93,7 @@ public class TicketResponseDaoImpl extends TicketResponseDao {
                         s.setTimestamp(3, value.getCreatedAt());
                         s.setTimestamp(4, value.getUpdatedAt());
                         s.setLong(5, value.getTicketId());
-                    }, false);
+                    });
 
     }
 
@@ -111,7 +111,7 @@ public class TicketResponseDaoImpl extends TicketResponseDao {
                         s.setTimestamp(2, newValue.getCreatedAt());
                         s.setTimestamp(3, newValue.getUpdatedAt());
                         s.setLong(4, oldValue.getId());
-                    }, false);
+                    });
 
     }
 
@@ -119,7 +119,7 @@ public class TicketResponseDaoImpl extends TicketResponseDao {
     public void delete(TicketResponse value) {
 
         getDataSource().update("DELETE FROM shop_ticket_response WHERE id = ?",
-                s -> s.setLong(1, value.getId()), false);
+                s -> s.setLong(1, value.getId()));
 
     }
 

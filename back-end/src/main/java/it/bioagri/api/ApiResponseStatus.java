@@ -29,9 +29,9 @@ import ch.qos.logback.classic.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 public class ApiResponseStatus extends RuntimeException {
 
@@ -51,8 +51,8 @@ public class ApiResponseStatus extends RuntimeException {
     }
 
 
-    @ControllerAdvice
-    static class ApiExceptionAdvice {
+    @RestControllerAdvice
+    static class ApiResponseStatusAdvice {
 
         @ExceptionHandler(ApiResponseStatus.class)
         @ResponseBody

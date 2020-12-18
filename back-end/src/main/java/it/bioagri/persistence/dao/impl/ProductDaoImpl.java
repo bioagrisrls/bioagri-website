@@ -29,6 +29,7 @@ import it.bioagri.models.Product;
 import it.bioagri.models.ProductStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.ProductDao;
+import it.bioagri.utils.ListUtils;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -122,7 +123,40 @@ public class ProductDaoImpl extends ProductDao {
                         s.setShort(6, (short) value.getStatus().ordinal());
                         s.setTimestamp(7, value.getCreatedAt());
                         s.setTimestamp(8, value.getUpdatedAt());
-                    }, false);
+                    });
+
+
+
+        for(var i : value.getCategories(getDataSource())) {
+
+            getDataSource().update(
+                    """
+                    INSERT INTO shop_product_category (product_id, category_id) 
+                                               VALUES (?, ?)
+                    """,
+                    s -> {
+                        s.setLong(1, value.getId());
+                        s.setLong(2, i.getId());
+                    });
+
+        }
+
+
+        for(var i : value.getTags(getDataSource())) {
+
+            getDataSource().update(
+                    """
+                    INSERT INTO shop_product_tag (product_id, tag_id) 
+                                          VALUES (?, ?)
+                    """,
+                    s -> {
+                        s.setLong(1, value.getId());
+                        s.setLong(2, i.getId());
+                    });
+
+        }
+
+
 
     }
 
@@ -144,7 +178,75 @@ public class ProductDaoImpl extends ProductDao {
                         s.setTimestamp(6, newValue.getCreatedAt());
                         s.setTimestamp(7, newValue.getUpdatedAt());
                         s.setLong(8, oldValue.getId());
-                    }, false);
+                    });
+
+
+        ListUtils.differences(oldValue.getCategories(getDataSource()), newValue.getCategories(getDataSource()), (added, removed) -> {
+
+            for(var i : added) {
+
+                getDataSource().update(
+                        """
+                        INSERT INTO shop_product_category (product_id, category_id) 
+                                                   VALUES (?, ?)
+                        """,
+                        s -> {
+                            s.setLong(1, newValue.getId());
+                            s.setLong(2, i.getId());
+                        });
+
+            }
+
+            for(var i : removed) {
+
+                getDataSource().update(
+                        """
+                        DELETE FROM shop_product_category 
+                              WHERE product_id = ?
+                                AND category_id = ?
+                        """,
+                        s -> {
+                            s.setLong(1, oldValue.getId());
+                            s.setLong(2, i.getId());
+                        });
+
+            }
+
+        });
+
+
+        ListUtils.differences(oldValue.getTags(getDataSource()), newValue.getTags(getDataSource()), (added, removed) -> {
+
+            for(var i : added) {
+
+                getDataSource().update(
+                        """
+                        INSERT INTO shop_product_tag (product_id, tag_id) 
+                                                   VALUES (?, ?)
+                        """,
+                        s -> {
+                            s.setLong(1, newValue.getId());
+                            s.setLong(2, i.getId());
+                        });
+
+            }
+
+            for(var i : removed) {
+
+                getDataSource().update(
+                        """
+                        DELETE FROM shop_product_tag 
+                              WHERE product_id = ?
+                                AND tag_id = ?
+                        """,
+                        s -> {
+                            s.setLong(1, oldValue.getId());
+                            s.setLong(2, i.getId());
+                        });
+
+            }
+
+        });
 
     }
 
@@ -152,7 +254,7 @@ public class ProductDaoImpl extends ProductDao {
     public void delete(Product value) {
 
         getDataSource().update("DELETE FROM shop_product WHERE id = ?",
-                s -> s.setLong(1, value.getId()), false);
+                s -> s.setLong(1, value.getId()));
 
     }
 

@@ -143,7 +143,7 @@ public class TransactionDaoImpl extends TransactionDao {
                     s.setString(18, value.getInvoice());
                     s.setLong(19, value.getOrderId());
                     s.setString(20, value.getTransactionCode());
-                }, false);
+                });
 
     }
 
@@ -178,7 +178,7 @@ public class TransactionDaoImpl extends TransactionDao {
                         s.setString(17, newValue.getInvoice());
                         s.setString(18, newValue.getTransactionCode());
                         s.setLong(19, oldValue.getId());
-                    }, false);
+                    });
 
     }
 
@@ -186,7 +186,7 @@ public class TransactionDaoImpl extends TransactionDao {
     public void delete(Transaction value) {
 
         getDataSource().update("DELETE FROM shop_transaction WHERE id = ?",
-                s -> s.setLong(1, value.getId()), false);
+                s -> s.setLong(1, value.getId()));
 
     }
 

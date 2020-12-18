@@ -168,7 +168,7 @@ public class DataSource {
     }
 
 
-    public int update(@Language("SQL") String sql, DataSourcePrepareStatement prepareStatement, boolean batch) {
+    public int update(@Language("SQL") String sql, DataSourcePrepareStatement prepareStatement) {
 
         logger.trace("UPDATE data with query '{}'", sql);
 
@@ -180,16 +180,11 @@ public class DataSource {
             if(prepareStatement != null)
                 prepareStatement.prepare(statement);
 
-            if(!batch)
-                return statement.executeUpdate();
-
-            statement.executeBatch();
+            return statement.executeUpdate();
 
         } catch (SQLException e) {
             throw new DataSourceSQLException(e);
         }
-
-        return 0;
 
     }
 
@@ -198,7 +193,7 @@ public class DataSource {
 
         final AtomicReference<Object> result = new AtomicReference<>(null);
 
-        fetch(String.format("SELECT nextval(pg_get_serial_sequence('%s', 'id')) AS id", ref), null,
+        fetch("SELECT nextval(pg_get_serial_sequence('%s', 'id')) AS id".formatted(ref), null,
                 r -> result.set(r.getObject("id")));
 
 

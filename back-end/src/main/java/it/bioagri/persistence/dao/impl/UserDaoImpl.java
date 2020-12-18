@@ -31,6 +31,7 @@ import it.bioagri.models.UserRole;
 import it.bioagri.models.UserStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.UserDao;
+import it.bioagri.utils.ListUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,7 +109,7 @@ public class UserDaoImpl extends UserDao {
         getDataSource().update(
                 """
                     INSERT INTO shop_user (id, email, password, status, role, name, surname, gender, phone, birth, created_at, updated_at) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     s -> {
                         s.setLong(1, value.getId());
@@ -124,7 +125,22 @@ public class UserDaoImpl extends UserDao {
                         s.setDate(11, value.getBirth());
                         s.setTimestamp(12, value.getCreatedAt());
                         s.setTimestamp(13, value.getUpdatedAt());
-                    }, false);
+                    });
+
+
+        for(var i : value.getWishList(getDataSource())) {
+
+            getDataSource().update(
+                    """
+                    INSERT INTO shop_wish (user_id, product_id) 
+                                   VALUES (?, ?)
+                    """,
+                    s -> {
+                        s.setLong(1, value.getId());
+                        s.setLong(2, i.getId());
+                    });
+
+        }
 
     }
 
@@ -151,7 +167,41 @@ public class UserDaoImpl extends UserDao {
                         s.setTimestamp(11, newValue.getCreatedAt());
                         s.setTimestamp(12, newValue.getUpdatedAt());
                         s.setLong(13, oldValue.getId());
-                    }, false);
+                    });
+
+
+        ListUtils.differences(oldValue.getWishList(getDataSource()), newValue.getWishList(getDataSource()), (added, removed) -> {
+
+            for(var i : added) {
+
+                getDataSource().update(
+                        """
+                        INSERT INTO shop_wish (user_id, product_id) 
+                                       VALUES (?, ?)
+                        """,
+                        s -> {
+                            s.setLong(1, newValue.getId());
+                            s.setLong(2, i.getId());
+                        });
+
+            }
+
+            for(var i : removed) {
+
+                getDataSource().update(
+                        """
+                        DELETE FROM shop_wish 
+                              WHERE user_id = ?
+                                AND product_id = ?
+                        """,
+                        s -> {
+                            s.setLong(1, oldValue.getId());
+                            s.setLong(2, i.getId());
+                        });
+
+            }
+
+        });
 
     }
 
@@ -159,7 +209,7 @@ public class UserDaoImpl extends UserDao {
     public void delete(User value) {
 
         getDataSource().update("DELETE FROM shop_user WHERE id = ?",
-                s -> s.setLong(1, value.getId()), false);
+                s -> s.setLong(1, value.getId()));
 
     }
 

@@ -114,7 +114,7 @@ public class TicketResponses {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/tickets/%d/responses/%d", sid, response.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/tickets/%d/responses/%d".formatted(sid, response.getId()))).build();
 
     }
 
@@ -140,7 +140,7 @@ public class TicketResponses {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-        return ResponseEntity.created(URI.create(String.format("/api/tickets/%d/responses/%d", sid, response.getId()))).build();
+        return ResponseEntity.created(URI.create("/api/tickets/%d/responses/%d".formatted(sid, response.getId()))).build();
 
     }
 
