@@ -27,6 +27,7 @@ package it.bioagri.api.auth;
 
 import ch.qos.logback.classic.Logger;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import it.bioagri.models.User;
@@ -59,7 +60,7 @@ public final class Auth {
     }
 
 
-    @Operation(summary = "Authenticate an user with email and password.")
+    @Operation(description = "Authenticate an user with email and password.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Authentication successful"),
         @ApiResponse(responseCode = "400", description = "Username/password empty or invalid"),
@@ -86,7 +87,7 @@ public final class Auth {
     }
 
 
-    @Operation(summary = "Check whether a user is authenticated.")
+    @Operation(description = "Check whether a user is authenticated.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User authenticated"),
             @ApiResponse(responseCode = "401", description = "User not authenticated"),
@@ -98,7 +99,7 @@ public final class Auth {
     }
 
 
-    @Operation(summary = "Log-out an authenticated user and invalidate current session.")
+    @Operation(description = "Log-out an authenticated user and invalidate current session.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User disconnected"),
     })

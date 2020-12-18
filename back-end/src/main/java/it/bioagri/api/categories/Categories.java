@@ -59,7 +59,7 @@ public class Categories {
     }
 
 
-    @Operation(summary = "Retrieve all category resources")
+    @Operation(description = "Retrieve all category resources")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Category resources collection"),
     })
@@ -77,7 +77,7 @@ public class Categories {
     }
 
 
-    @Operation(summary = "Retrieve a specific category resource")
+    @Operation(description = "Retrieve a specific category resource")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Category resource"),
             @ApiResponse(responseCode = "404", description = "Category id not found"),
@@ -100,7 +100,7 @@ public class Categories {
     }
 
 
-    @Operation(summary = "Create a new category resource")
+    @Operation(description = "Create a new category resource")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Category created"),
     })
@@ -124,7 +124,7 @@ public class Categories {
     }
 
 
-    @Operation(summary = "Create or update a new category resource")
+    @Operation(description = "Create or update a new category resource")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Category created or updated"),
     })
@@ -152,7 +152,7 @@ public class Categories {
     }
 
 
-    @Operation(summary = "Delete all category resources")
+    @Operation(description = "Delete all category resources")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "All category resources deleted"),
     })
@@ -174,7 +174,9 @@ public class Categories {
 
     }
 
-    @Operation(summary = "Delete a specific category resource")
+
+
+    @Operation(description = "Delete a specific category resource")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Category deleted"),
     })

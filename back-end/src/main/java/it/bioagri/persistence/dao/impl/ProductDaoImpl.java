@@ -29,6 +29,7 @@ import it.bioagri.models.Product;
 import it.bioagri.models.ProductStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.ProductDao;
+import it.bioagri.utils.ListUtils;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -124,6 +125,39 @@ public class ProductDaoImpl extends ProductDao {
                         s.setTimestamp(8, value.getUpdatedAt());
                     }, false);
 
+
+
+        for(var i : value.getCategories(getDataSource())) {
+
+            getDataSource().update(
+                    """
+                    INSERT INTO shop_product_category (product_id, category_id) 
+                                               VALUES (?, ?)
+                    """,
+                    s -> {
+                        s.setLong(1, value.getId());
+                        s.setLong(2, i.getId());
+                    }, false);
+
+        }
+
+
+        for(var i : value.getTags(getDataSource())) {
+
+            getDataSource().update(
+                    """
+                    INSERT INTO shop_product_tag (product_id, tag_id) 
+                                          VALUES (?, ?)
+                    """,
+                    s -> {
+                        s.setLong(1, value.getId());
+                        s.setLong(2, i.getId());
+                    }, false);
+
+        }
+
+
+
     }
 
     @Override
@@ -145,6 +179,74 @@ public class ProductDaoImpl extends ProductDao {
                         s.setTimestamp(7, newValue.getUpdatedAt());
                         s.setLong(8, oldValue.getId());
                     }, false);
+
+
+        ListUtils.differences(oldValue.getCategories(getDataSource()), newValue.getCategories(getDataSource()), (added, removed) -> {
+
+            for(var i : added) {
+
+                getDataSource().update(
+                        """
+                        INSERT INTO shop_product_category (product_id, category_id) 
+                                                   VALUES (?, ?)
+                        """,
+                        s -> {
+                            s.setLong(1, newValue.getId());
+                            s.setLong(2, i.getId());
+                        }, false);
+
+            }
+
+            for(var i : removed) {
+
+                getDataSource().update(
+                        """
+                        DELETE FROM shop_product_category 
+                              WHERE product_id = ?
+                                AND category_id = ?
+                        """,
+                        s -> {
+                            s.setLong(1, oldValue.getId());
+                            s.setLong(2, i.getId());
+                        }, false);
+
+            }
+
+        });
+
+
+        ListUtils.differences(oldValue.getTags(getDataSource()), newValue.getTags(getDataSource()), (added, removed) -> {
+
+            for(var i : added) {
+
+                getDataSource().update(
+                        """
+                        INSERT INTO shop_product_tag (product_id, tag_id) 
+                                                   VALUES (?, ?)
+                        """,
+                        s -> {
+                            s.setLong(1, newValue.getId());
+                            s.setLong(2, i.getId());
+                        }, false);
+
+            }
+
+            for(var i : removed) {
+
+                getDataSource().update(
+                        """
+                        DELETE FROM shop_product_tag 
+                              WHERE product_id = ?
+                                AND tag_id = ?
+                        """,
+                        s -> {
+                            s.setLong(1, oldValue.getId());
+                            s.setLong(2, i.getId());
+                        }, false);
+
+            }
+
+        });
 
     }
 
