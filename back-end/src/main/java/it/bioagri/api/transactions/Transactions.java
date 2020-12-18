@@ -33,6 +33,7 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Transaction;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
+import it.bioagri.utils.ApiUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,7 +59,11 @@ public class Transactions {
 
 
     @GetMapping("/")
-    public ResponseEntity<List<Transaction>> findAll() {
+    public ResponseEntity<List<Transaction>> findAll(
+            @RequestParam(required = false, defaultValue =   "0") Long skip,
+            @RequestParam(required = false, defaultValue = "999") Long limit,
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
 
         try {
 
@@ -68,6 +73,9 @@ public class Transactions {
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.READ, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .skip(skip)
+                    .limit(limit)
                     .collect(Collectors.toList()));
 
         } catch (DataSourceSQLException e) {
@@ -143,7 +151,9 @@ public class Transactions {
 
 
     @DeleteMapping("/")
-    public ResponseEntity<String> deleteAll() {
+    public ResponseEntity<String> deleteAll(
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
 
         try {
 
@@ -153,6 +163,7 @@ public class Transactions {
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.DELETE, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
                     .forEach(dataSource.getTransactionRepository()::delete);
 
         } catch (DataSourceSQLException e) {

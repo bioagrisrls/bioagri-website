@@ -33,6 +33,7 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
+import it.bioagri.utils.ApiUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/products")
@@ -57,12 +59,25 @@ public class Products {
 
 
     @GetMapping("")
-    public ResponseEntity<List<Product>> findAll() {
+    public ResponseEntity<List<Product>> findAll(
+            @RequestParam(required = false, defaultValue =   "0") Long skip,
+            @RequestParam(required = false, defaultValue = "999") Long limit,
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
+
 
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
 
         try {
-            return ResponseEntity.ok(dataSource.getProductRepository().findAll());
+
+            return ResponseEntity.ok(dataSource.getProductRepository()
+                    .findAll()
+                    .stream()
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .skip(skip)
+                    .limit(limit)
+                    .collect(Collectors.toList()));
+
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -132,14 +147,20 @@ public class Products {
 
 
     @DeleteMapping("")
-    public ResponseEntity<String> deleteAll() {
+    public ResponseEntity<String> deleteAll(
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
+
 
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.DELETE, authToken);
 
         try {
 
-            dataSource.getOrderRepository().findAll()
-                    .forEach(dataSource.getOrderRepository()::delete);
+            dataSource.getProductRepository()
+                    .findAll()
+                    .stream()
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .forEach(dataSource.getProductRepository()::delete);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

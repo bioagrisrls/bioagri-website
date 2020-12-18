@@ -34,6 +34,7 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Ticket;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
+import it.bioagri.utils.ApiUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,7 +59,11 @@ public class Tickets {
 
 
     @GetMapping("")
-    public ResponseEntity<List<Ticket>> findAll() {
+    public ResponseEntity<List<Ticket>> findAll(
+            @RequestParam(required = false, defaultValue =   "0") Long skip,
+            @RequestParam(required = false, defaultValue = "999") Long limit,
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
 
         try {
 
@@ -67,6 +72,9 @@ public class Tickets {
                             .findAll()
                             .stream()
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKETS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                            .skip(skip)
+                            .limit(limit)
                             .collect(Collectors.toList()));
 
         } catch (DataSourceSQLException e) {
@@ -135,7 +143,9 @@ public class Tickets {
 
 
     @DeleteMapping("")
-    public ResponseEntity<String> deleteAll() {
+    public ResponseEntity<String> deleteAll(
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
 
         try {
 
@@ -143,6 +153,7 @@ public class Tickets {
                     .findAll()
                     .stream()
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKETS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
                     .forEach(dataSource.getTicketRepository()::delete);
 
         } catch (DataSourceSQLException e) {

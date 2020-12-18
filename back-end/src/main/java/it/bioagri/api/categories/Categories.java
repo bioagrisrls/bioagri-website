@@ -36,6 +36,7 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Category;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
+import it.bioagri.utils.ApiUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -65,13 +67,25 @@ public class Categories {
     })
     @GetMapping("")
     public ResponseEntity<List<Category>> findAll(
+            @RequestParam(required = false, defaultValue =   "0") Long skip,
+            @RequestParam(required = false, defaultValue = "999") Long limit,
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
 
-    ) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
 
         try {
-            return ResponseEntity.ok(dataSource.getCategoryRepository().findAll());
+
+            return ResponseEntity.ok(
+                    dataSource.getCategoryRepository()
+                            .findAll()
+                            .stream()
+                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                            .skip(skip)
+                            .limit(limit)
+                            .collect(Collectors.toList()));
+
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -159,13 +173,18 @@ public class Categories {
             @ApiResponse(responseCode = "204", description = "All category resources deleted"),
     })
     @DeleteMapping("")
-    public ResponseEntity<String> deleteAll() {
+    public ResponseEntity<String> deleteAll(
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
+
 
         ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE, authToken);
 
         try {
 
             dataSource.getCategoryRepository().findAll()
+                    .stream()
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
                     .forEach(dataSource.getCategoryRepository()::delete);
 
         } catch (DataSourceSQLException e) {
