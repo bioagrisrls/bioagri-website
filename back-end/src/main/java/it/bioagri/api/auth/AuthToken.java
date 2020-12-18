@@ -26,6 +26,7 @@
 package it.bioagri.api.auth;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import it.bioagri.models.UserRole;
 import org.springframework.stereotype.Component;
@@ -93,6 +94,7 @@ public class AuthToken {
     }
 
 
+    @JsonIgnore
     public boolean isValid() {
 
         return  token != null &&
@@ -102,6 +104,7 @@ public class AuthToken {
 
     }
 
+    @JsonIgnore
     public boolean isExpired() {
 
         if(!isValid())

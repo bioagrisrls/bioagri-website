@@ -26,6 +26,9 @@
 package it.bioagri.api.auth;
 
 import ch.qos.logback.classic.Logger;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 import org.slf4j.LoggerFactory;
@@ -56,6 +59,12 @@ public final class Auth {
     }
 
 
+    @Operation(summary = "Authenticate an user with email and password.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Authentication successful"),
+        @ApiResponse(responseCode = "400", description = "Username/password empty or invalid"),
+        @ApiResponse(responseCode = "404", description = "Username/password wrong"),
+    })
     @PostMapping("authenticate")
     public ResponseEntity<AuthToken> authenticate(@RequestBody AuthLogin authLogin) {
 
@@ -77,12 +86,22 @@ public final class Auth {
     }
 
 
+    @Operation(summary = "Check whether a user is authenticated.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User authenticated"),
+            @ApiResponse(responseCode = "401", description = "User not authenticated"),
+            @ApiResponse(responseCode = "403", description = "User has invalid/expired token"),
+    })
     @RequestMapping("verify")
     public ResponseEntity<String> verify() {
         return ResponseEntity.ok().build();
     }
 
 
+    @Operation(summary = "Log-out an authenticated user and invalidate current session.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User disconnected"),
+    })
     @RequestMapping("disconnect")
     public void disconnect(HttpSession session) {
 

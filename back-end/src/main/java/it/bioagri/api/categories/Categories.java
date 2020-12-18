@@ -25,6 +25,9 @@
 
 package it.bioagri.api.categories;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import it.bioagri.api.ApiPermission;
 import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionType;
@@ -56,6 +59,10 @@ public class Categories {
     }
 
 
+    @Operation(summary = "Retrieve all category resources")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Category resources collection"),
+    })
     @GetMapping("")
     public ResponseEntity<List<Category>> findAll() {
 
@@ -70,6 +77,11 @@ public class Categories {
     }
 
 
+    @Operation(summary = "Retrieve a specific category resource")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Category resource"),
+            @ApiResponse(responseCode = "404", description = "Category id not found"),
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Category> findById(@PathVariable Long id) {
 
@@ -88,6 +100,10 @@ public class Categories {
     }
 
 
+    @Operation(summary = "Create a new category resource")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Category created"),
+    })
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Category category) {
 
@@ -108,6 +124,10 @@ public class Categories {
     }
 
 
+    @Operation(summary = "Create or update a new category resource")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Category created or updated"),
+    })
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Category category) {
 
@@ -132,6 +152,10 @@ public class Categories {
     }
 
 
+    @Operation(summary = "Delete all category resources")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "All category resources deleted"),
+    })
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll() {
 
@@ -150,6 +174,10 @@ public class Categories {
 
     }
 
+    @Operation(summary = "Delete a specific category resource")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Category deleted"),
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
 
