@@ -32,7 +32,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class Feedback {
+public final class Feedback implements Model {
 
     private long id;
     private final String title;

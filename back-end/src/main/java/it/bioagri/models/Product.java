@@ -32,7 +32,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
-public final class Product {
+public final class Product implements Model {
 
     private long id;
     private final String name;

@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class Order {
+public final class Order implements Model {
 
     private long id;
     private final OrderStatus status;

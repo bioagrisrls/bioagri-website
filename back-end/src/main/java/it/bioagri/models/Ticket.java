@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class Ticket {
+public final class Ticket implements Model {
 
     private long id;
     private final String title;

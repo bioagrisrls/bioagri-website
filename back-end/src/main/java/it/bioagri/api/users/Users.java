@@ -64,8 +64,8 @@ public class Users {
     public ResponseEntity<List<User>> findAll(
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
-            @RequestParam(required = false) String filterBy,
-            @RequestParam(required = false) String filterValue) {
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
 
         try {
 

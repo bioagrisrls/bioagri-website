@@ -26,12 +26,13 @@
 package it.bioagri.utils;
 
 import it.bioagri.api.ApiResponseStatus;
+import it.bioagri.models.Model;
 
 public final class ApiUtils {
 
     private ApiUtils() { }
 
-    public static boolean filterBy(String name, String value, Object instance) {
+    public static boolean filterBy(String name, String value, Model instance) {
 
         if(name == null)
             return true;
@@ -45,12 +46,11 @@ public final class ApiUtils {
                     .getField(name)
                     .get(instance);
 
-            if(field instanceof String)
-                return ((String) field).matches(value);
+            return field.toString().matches(value);
 
-        } catch (IllegalAccessException | NoSuchFieldException ignored) { }
-
-        throw new ApiResponseStatus(400);
+        } catch (IllegalAccessException | NoSuchFieldException ignored) {
+            throw new ApiResponseStatus(400);
+        }
 
     }
 

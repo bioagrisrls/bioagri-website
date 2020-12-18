@@ -27,7 +27,7 @@ package it.bioagri.models;
 
 import java.util.Objects;
 
-public final class Tag {
+public final class Tag implements Model {
 
     private long id;
     private final String hashtag;

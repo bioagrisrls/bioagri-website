@@ -33,7 +33,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
-public final class User {
+public final class User implements Model {
 
     private long id;
     private final String mail;

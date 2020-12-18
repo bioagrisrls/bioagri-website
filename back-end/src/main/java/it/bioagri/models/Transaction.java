@@ -32,7 +32,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class Transaction {
+public final class Transaction implements Model {
 
     private long id;
     private final TransactionStatus status;

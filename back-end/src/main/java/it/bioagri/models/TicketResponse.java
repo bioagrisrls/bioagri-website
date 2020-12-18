@@ -32,7 +32,7 @@ import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Optional;
 
-public class TicketResponse {
+public class TicketResponse implements Model {
 
     private long id;
     private final String response;
