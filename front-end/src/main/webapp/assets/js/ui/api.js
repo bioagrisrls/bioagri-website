@@ -57,8 +57,12 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
 
     }).then(response => {
 
-        if(response.headers.has('X-Auth-Token'))
-            Cookies.set('X-Auth-Token', response.headers.get('X-Auth-Token'));
+        if(response.headers.has('X-Auth-Token')) {
+            Cookies.set('X-Auth-Token', response.headers.get('X-Auth-Token'), {
+                secure: true,
+                sameSite: 'strict'
+            });
+        }
 
         if(response.status < 200 || response.status > 299)
             throw new Error(`failed: ${response.status}`);
