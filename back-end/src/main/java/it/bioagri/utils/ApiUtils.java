@@ -26,7 +26,6 @@
 package it.bioagri.utils;
 
 import it.bioagri.api.ApiResponseStatus;
-import it.bioagri.models.Model;
 
 public final class ApiUtils {
 

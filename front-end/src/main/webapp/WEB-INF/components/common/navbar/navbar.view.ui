@@ -76,15 +76,14 @@
         {{ counter }}
     </div>
 
-    <ui-button id="{{ $$.id }}-ui-button-1" ui:text="Prova Bottone 1"></ui-button>
-    <ui-button id="{{ $$.id }}-ui-button-2" ui:text="Prova Bottone 2"></ui-button>
+    <ui-button id="{{ $$.id }}-ui-button-1" ui:text="+1"></ui-button>
+    <ui-button id="{{ $$.id }}-ui-button-2" ui:text="-1"></ui-button>
 
 
     <script>
 
-        $($$.elem)
-            .find('#ev')
-            .click(() => $$.setState({ counter: {{ counter }} + 1 }));
+        $('#{{ $$.id }}-ui-button-1').click(() => $$.setState({ counter: {{ counter }} + 1 }));
+        $('#{{ $$.id }}-ui-button-2').click(() => $$.setState({ counter: {{ counter }} - 1 }));
 
     </script>
 
