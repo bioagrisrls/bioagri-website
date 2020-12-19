@@ -76,6 +76,9 @@
         {{ counter }}
     </div>
 
+    <ui-button id="{{ $$.id }}-ui-button-1" ui:text="Prova Bottone 1"></ui-button>
+    <ui-button id="{{ $$.id }}-ui-button-2" ui:text="Prova Bottone 2"></ui-button>
+
 
     <script>
 

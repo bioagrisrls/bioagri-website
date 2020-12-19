@@ -23,6 +23,53 @@
  *
  */
 
+/**
+ * Array of component instances.
+ * @type {Component[]}
+ */
+
+window.components = window.components || [];
+
+/**
+ * Array of component registered.
+ * @type {object[]}
+ */
+window.registered = window.registered || [];
+
+
+
+/**
+ * Load registered components when DOM is ready.
+ */
+$(document).ready(() => {
+
+    for(let i of window.registered) {
+
+        for (let e of document.getElementsByTagName(i.tag)) {
+
+            let props = {};
+
+            if (e.hasAttributes()) {
+                for (let attr of e.attributes) {
+                    if (attr.name.startsWith('ui:'))
+                        props[attr.name.slice(3)] = attr.value;
+                }
+            }
+
+
+            i.getinstance(e, props);
+
+            console.debug("Loading component: ", window.components[e.id].id);
+
+        }
+
+    }
+
+});
+
+
+
+
 
 /**
  * UI Component type.
@@ -30,29 +77,51 @@
 class Component {
 
     /**
-     * @param id {string}       DOM Element (#id or .class)
+     * @param elem {HTMLElement}       HTML Element
      */
-    constructor(id) {
+    constructor(elem) {
 
-        this.id = id;
+        this.elem = elem;
+        this.id = elem.id;
+        this.content = '';
 
-        this.onRender = this.onRender || function() { return "" };
-        this.onInit   = this.onInit   || function() { return "Loading..." };
-        this.onError  = this.onError  || function() { return "There was an error when creating component" };
-
-        window.components = window.components || [];
-        window.components[id] = this;
+        if(!window.components[this.id])
+            window.components[this.id] = this;
 
     }
-
 
     /**
-     * Return HTML Element of the component
-     * @returns {HTMLElement}
+     * Render a template string into HTML Element each state update.
+     * @returns {string}
      */
-    get elem() {
-        return document.getElementById(this.id);
+    onRender() {
+        return "";
     }
+
+    /**
+     * Render a template string into HTML Element before loading state.
+     * @returns {string}
+     */
+    onLoading() {
+        return "Loading...";
+    }
+
+    /**
+     * Render a template string into HTML Element on loading failure.
+     * @returns {string}
+     */
+    onError() {
+        return "There was an error when loading component";
+    }
+
+    /**
+     * Initialize component's event.
+     */
+    onInit() {
+
+    }
+
+
 
     /**
      * Register a component and attach it to their HTML Elements.
@@ -68,15 +137,40 @@ class Component {
             throw new Error("getinstance cannot be null")
 
 
-        for(let e of document.getElementsByTagName(tag))
-            getinstance(e.id)
+        window.registered.push({
+            tag: tag,
+            getinstance: getinstance
+        });
 
     }
 
 
-    __render(data, state) {
-        $(this.elem).html(__expandTemplate(this.id, data, state));
+    /**
+     * Render a component into his own HTML Element.
+     * @param instance {Component}
+     * @param data {string}
+     * @param state {object}
+     */
+    static render(instance, data, state = {}) {
+
+        $(instance.elem).html((instance.content = __expandTemplate(instance.id, data, state)));
+
+        const recursive_render = (elem) => {
+            for(let el of elem.children) {
+
+                if(window.components[el.id])
+                    $(el).html(window.components[el.id].content);
+                else
+                    recursive_render(el);
+
+            }
+        };
+
+        recursive_render(instance.elem);
+
     }
+
+
 
 }
 
@@ -87,22 +181,25 @@ class Component {
 class StatelessComponent extends Component {
 
     /**
-     * @param id {string}       DOM Element (#id or .class)
-     * @param state {object}    Component State
+     * @param elem {HTMLElement}    HTML Element
+     * @param state {object}        Component State
      */
-    constructor(id, state) {
+    constructor(elem, state) {
 
-        super(id);
-        super.__render(this.onInit(), {});
+        super(elem);
+        super.onInit();
 
+
+        Component.render(this, this.onLoading(), {});
 
         if((state || {}).then) {
             state.then(
-                (response) => this.__render(this.onRender(), response),
-                (reason) => this.__render(this.onError(), {})
+                (response) => Component.render(this, this.onRender(), response),
+                (reason) => Component.render(this, this.onError(), {})
             );
-        } else
-            this.__render(this.onRender(), state || {})
+        } else {
+            Component.render(this, this.onRender(), state || {})
+        }
 
     }
 
@@ -114,26 +211,27 @@ class StatelessComponent extends Component {
 class StatefulComponent extends Component {
 
     /**
-     * @param id {string}       DOM Element (#id or .class)
-     * @param state {object}    Component State
+     * @param elem {HTMLElement}    HTML Element
+     * @param state {object}        Component State
      */
-    constructor(id, state) {
+    constructor(elem, state) {
 
-        super(id);
-        super.__render(this.onInit(), {});
-
+        super(elem);
+        super.onInit();
 
         this.__currentState = {};
-        this.onStateChanged = this.onStateChanged || function () {};
+
+
+        Component.render(this, this.onLoading(), {});
 
         if((state || {}).then) {
             state.then(
                 (response) => this.setState(response),
-                (reason) => this.__render(this.onError(), {})
-            );
-        } else
+                (reason) => Component.render(this, this.onError(), {})
+            )
+        } else {
             this.setState(state || {});
-
+        }
 
     }
 
@@ -144,8 +242,10 @@ class StatefulComponent extends Component {
     setState(state) {
 
         this.__currentState = Object.assign(this.__currentState, state);
-        this.onStateChanged(this.__currentState);
-        this.__render(this.onRender(), this.__currentState);
+
+        this.onBeforeUpdate(this.state);
+        Component.render(this, this.onRender(), this.state);
+        this.onUpdated(this.state)
 
     }
 
@@ -155,6 +255,23 @@ class StatefulComponent extends Component {
      */
     get state() {
         return this.__currentState;
+    }
+
+
+    /**
+     * Before redraw of a component.
+     * @param state {object}
+     */
+    onBeforeUpdate(state) {
+
+    }
+
+    /**
+     * After redraw of a component.
+     * @param state {object}
+     */
+    onUpdated(state) {
+
     }
 
 }

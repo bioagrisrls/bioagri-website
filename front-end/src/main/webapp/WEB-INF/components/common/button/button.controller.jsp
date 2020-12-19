@@ -30,14 +30,17 @@
 
 <script defer>
 
-    Component.register('ui-navbar', (id, props) => new class extends StatefulComponent {
+
+    Component.register('ui-button', (id, props) => new class extends StatefulComponent {
 
         constructor() {
-            super(id, { counter: 0 });
+            super(id, {
+                text: props.text || ''
+            });
         }
 
         onRender() {
-            return `${components.common_navbar}`
+            return `${components.common_button}`
         }
 
 

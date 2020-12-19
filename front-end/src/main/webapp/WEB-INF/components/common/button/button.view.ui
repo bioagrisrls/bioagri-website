@@ -1,4 +1,4 @@
-<%--
+<!--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,27 +21,6 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  --%>
+  -->
 
-<%--@elvariable id="components" type="java.util.Map"--%>
-<%--@elvariable id="locale" type="java.util.Map"--%>
-<%--@elvariable id="reference" type="java.lang.String"--%>
-
-
-<script defer>
-
-    Component.register('ui-navbar', (id, props) => new class extends StatefulComponent {
-
-        constructor() {
-            super(id, { counter: 0 });
-        }
-
-        onRender() {
-            return `${components.common_navbar}`
-        }
-
-
-    });
-
-
-</script>
+<button>{{ text }}</button>

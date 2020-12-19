@@ -24,6 +24,7 @@
   --%>
 
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/button/button.controller.jsp" />
 
 <ui-navbar id="ui-navbar-1"></ui-navbar>
 <ui-navbar id="ui-navbar-2"></ui-navbar>
