@@ -67,7 +67,7 @@
 
     </head>
 
-    <body class="sidebar-collapse" >
+    <body>
         <jsp:include page="${reference}" />
     </body>
 

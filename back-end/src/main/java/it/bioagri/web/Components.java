@@ -29,6 +29,7 @@ import ch.qos.logback.classic.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import javax.servlet.ServletContext;
@@ -40,7 +41,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-@Controller
+@Component
 @Scope("singleton")
 public class Components {
 
@@ -67,7 +68,7 @@ public class Components {
                                                 .toString()
                                                 .replace('/', '_')
                                                 .replace('\\', '_')
-                                                .transform(s -> s.substring(0, s.lastIndexOf('.'))), minimize(Files.readString(p)));
+                                                .transform(s -> s.substring(0, s.lastIndexOf('.'))), minimize(escapize(Files.readString(p))));
 
                             } catch (IOException ignored) {
                                 throw new IllegalStateException();
@@ -99,6 +100,10 @@ public class Components {
 
         return output.toString();
 
+    }
+
+    public static String escapize(String content) {
+        return content.replace("/", "\\/");
     }
 
 }

@@ -23,34 +23,33 @@
   ~
   --%>
 
-<%--<div id="common-header"></div>--%>
-<div id="common-navbar"></div>
-<div id="common-carousel"></div>
-<div id="common-footer"></div>
+<div id="navbar"></div>
 
 
-<script>
+<script defer>
+    // <![CDATA[
+    window.counter = 0;
+    var navbar;
 
-    <%--const header = new StatelessComponent('#common-header', {--%>
-    <%--    render: `${components.common_header}`,--%>
-    <%--    state: {--%>
-    <%--        address: `${locale.info_address}`,--%>
-    <%--        phone: `${locale.info_phone}`,--%>
-    <%--        logged: authenticated()--%>
-    <%--    }--%>
-    <%--});--%>
+    authenticate('user@test.com', '123').then(response => {
 
-    const navbar = new StatelessComponent('#common-navbar', {
-        render: `${components.common_navbar}`
+        navbar = new StatefulComponent('#navbar', {
+
+            render: `${components.common_navbar}`,
+            state: { counter: 0 },
+
+            onStateChanged: (state) => {
+                //$('#ev').click(() => console.log("CLICKED!"));
+            }
+
+            <%--    api('/categories').then(response => {--%>
+            <%--    return { categories: response, message: ${locale.info_phone}, clicked: true };--%>
+            <%--})--%>
+
+        });
+
+        //$('#navbar').click(() => navbar.setState({clicked:true}));
+
     });
-
-    const carousel = new StatefulComponent('#common-carousel', {
-        render: `${components.common_carousel}`
-    });
-
-    const footer = new StatefulComponent('#common-footer', {
-        render: `${components.common_footer}`
-    });
-
-
+    // ]]>
 </script>

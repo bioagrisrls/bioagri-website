@@ -45,10 +45,13 @@ class Component {
         this.onInit   = () => props.init    || "Loading...";
         this.onError  = () => props.error   || "There was an error when creating component";
 
+        window.components = window.components || [];
+        window.components[id] = this;
+
     }
 
     __render(data, state) {
-        $(this.id).html(__expandTemplate(data, state));
+        $(this.id).html(__expandTemplate(this.id, data, state));
     }
 
 }
@@ -85,6 +88,7 @@ class StatefulComponent extends Component {
 
 
         this.__currentState = {};
+        this.onStateChanged = props.onStateChanged || {};
 
         if((props.state || {}).then) {
             props.state.then(
@@ -102,8 +106,13 @@ class StatefulComponent extends Component {
      * @param state {object}
      */
     setState(state) {
+
         this.__currentState = Object.assign(this.__currentState, state);
         this.__render(this.onRender(), this.__currentState);
+
+        if(typeof this.onStateChanged === 'function')
+            this.onStateChanged(this.__currentState);
+
     }
 
     /**
@@ -119,17 +128,18 @@ class StatefulComponent extends Component {
 
 
 
-const __sanitizeSnippet = (snippet) => {
+const __sanitizeSnippet = (id, snippet) => {
 
     return snippet
         .replace(/(")/gm, "\\\"")
         .replace(/(\r\n|\n|\r)/gm, "")
         .replace(/{{/gm, "\" + ")
-        .replace(/}}/gm, " + \"");
+        .replace(/}}/gm, " + \"")
+        .replace(/\$\$/gm, "window.components['" + id + "']");
 
 }
 
-const __expandTemplate = (template = '', data = {}) => {
+const __expandTemplate = (id, template = '', data = {}) => {
 
     let output = '';
     let index = 0;
@@ -145,18 +155,18 @@ const __expandTemplate = (template = '', data = {}) => {
             break;
 
 
-        output += `____r.push("${__sanitizeSnippet(template.slice(index, match.index))}");\n`;
+        output += `____r.push("${__sanitizeSnippet(id, template.slice(index, match.index))}");\n`;
         output += `${match[1]}\n`;
 
         index = regexp.lastIndex;
 
     }
 
-    output += `____r.push("${__sanitizeSnippet(template.slice(index, template.length - index))}");\n`;
+    output += `____r.push("${__sanitizeSnippet(id, template.slice(index, template.length - index))}");\n`;
     output += 'return ____r.join("");';
 
 
     return new Function(Object.keys(data).join(", "), output)
-        .apply(null, Object.values(data));
+       .apply(null, Object.values(data));
 
 }
