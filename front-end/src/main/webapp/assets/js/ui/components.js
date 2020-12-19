@@ -31,30 +31,55 @@ class Component {
 
     /**
      * @param id {string}       DOM Element (#id or .class)
-     * @param props {object}    Component Properties
      */
-    constructor(id, props) {
-
-        if(!props)
-            throw new Error("props cannot be null");
-
+    constructor(id) {
 
         this.id = id;
 
-        this.onRender = () => props.render  || "";
-        this.onInit   = () => props.init    || "Loading...";
-        this.onError  = () => props.error   || "There was an error when creating component";
+        this.onRender = this.onRender || function() { return "" };
+        this.onInit   = this.onInit   || function() { return "Loading..." };
+        this.onError  = this.onError  || function() { return "There was an error when creating component" };
 
         window.components = window.components || [];
         window.components[id] = this;
 
     }
 
+
+    /**
+     * Return HTML Element of the component
+     * @returns {HTMLElement}
+     */
+    get elem() {
+        return document.getElementById(this.id);
+    }
+
+    /**
+     * Register a component and attach it to their HTML Elements.
+     * @param tag {string}
+     * @param getinstance {function}
+     */
+    static register (tag, getinstance) {
+
+        if(!tag)
+            throw new Error("tag cannot be null")
+
+        if(!getinstance)
+            throw new Error("getinstance cannot be null")
+
+
+        for(let e of document.getElementsByTagName(tag))
+            getinstance(e.id)
+
+    }
+
+
     __render(data, state) {
-        $(this.id).html(__expandTemplate(this.id, data, state));
+        $(this.elem).html(__expandTemplate(this.id, data, state));
     }
 
 }
+
 
 /**
  * Static UI Component with a immutable state.
@@ -63,11 +88,22 @@ class StatelessComponent extends Component {
 
     /**
      * @param id {string}       DOM Element (#id or .class)
-     * @param props {object}    Component Properties
+     * @param state {object}    Component State
      */
-    constructor(id, props) {
-        super(id, props);
-        super.__render(this.onRender(), props.state || {});
+    constructor(id, state) {
+
+        super(id);
+        super.__render(this.onInit(), {});
+
+
+        if((state || {}).then) {
+            state.then(
+                (response) => this.__render(this.onRender(), response),
+                (reason) => this.__render(this.onError(), {})
+            );
+        } else
+            this.__render(this.onRender(), state || {})
+
     }
 
 }
@@ -79,24 +115,24 @@ class StatefulComponent extends Component {
 
     /**
      * @param id {string}       DOM Element (#id or .class)
-     * @param props {object}    Component Properties
+     * @param state {object}    Component State
      */
-    constructor(id, props) {
+    constructor(id, state) {
 
-        super(id, props);
+        super(id);
         super.__render(this.onInit(), {});
 
 
         this.__currentState = {};
-        this.onStateChanged = props.onStateChanged || {};
+        this.onStateChanged = this.onStateChanged || function () {};
 
-        if((props.state || {}).then) {
-            props.state.then(
+        if((state || {}).then) {
+            state.then(
                 (response) => this.setState(response),
                 (reason) => this.__render(this.onError(), {})
             );
         } else
-            this.setState(props.state || {});
+            this.setState(state || {});
 
 
     }
@@ -108,10 +144,8 @@ class StatefulComponent extends Component {
     setState(state) {
 
         this.__currentState = Object.assign(this.__currentState, state);
+        this.onStateChanged(this.__currentState);
         this.__render(this.onRender(), this.__currentState);
-
-        if(typeof this.onStateChanged === 'function')
-            this.onStateChanged(this.__currentState);
 
     }
 

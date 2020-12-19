@@ -23,6 +23,10 @@
   ~
   --%>
 
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
+
 <!DOCTYPE html>
 <html lang="it">
 
@@ -30,7 +34,7 @@
 
         <meta charset="UTF-8" />
         <meta name="description" content="" />  <!-- TODO! -->
-        <meta name="author" content="Antonino Natale, Matteo Perfidio, Davide Crisafulli" />
+        <meta name="author" content="Bioagri S.r.l.s." />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" />
         <meta name="theme-color" content="rgb(236, 104, 81)" /> <!-- TODO! -->
         <meta name="msapplication-navbutton-color" content="rgb(236, 104, 81)" />  <!-- TODO! -->

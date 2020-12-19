@@ -33,6 +33,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
 
 @Controller
@@ -41,12 +42,14 @@ public class Page {
     private final Locale locale;
     private final Components components;
     private final AuthToken authToken;
+    private final ServletContext servletContext;
 
     @Autowired
-    public Page(Locale locale, Components components, AuthToken authToken) {
+    public Page(Locale locale, Components components, AuthToken authToken, ServletContext servletContext) {
         this.locale = locale;
         this.components = components;
         this.authToken = authToken;
+        this.servletContext = servletContext;
     }
 
 

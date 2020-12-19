@@ -64,11 +64,24 @@ public class Components {
 
                             try {
 
-                                put(componentsPath.relativize(p)
-                                                .toString()
-                                                .replace('/', '_')
-                                                .replace('\\', '_')
-                                                .transform(s -> s.substring(0, s.lastIndexOf('.'))), minimize(escapize(Files.readString(p))));
+                                if(p.toString().endsWith(".view.ui")) {
+
+                                    put(componentsPath.relativize(p.getParent())
+                                            .toString()
+                                            .replace('\\', '_')
+                                            .replace('/', '_')
+                                            .replace('.', '_'), escapize(minimize(Files.readString(p))));
+
+                                } else {
+
+                                    put(componentsPath.relativize(p)
+                                            .toString()
+                                            .transform(s -> s.substring(0, s.lastIndexOf('.')))
+                                            .replace('\\', '_')
+                                            .replace('/', '_')
+                                            .replace('.', '_'), escapize(minimize(Files.readString(p))));
+
+                                }
 
                             } catch (IOException ignored) {
                                 throw new IllegalStateException();

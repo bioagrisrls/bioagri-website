@@ -23,13 +23,26 @@
   ~
   --%>
 
-<jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
-
-<ui-navbar id="ui-navbar-1"></ui-navbar>
-<ui-navbar id="ui-navbar-2"></ui-navbar>
-<ui-navbar id="ui-navbar-3"></ui-navbar>
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
 
 
-<script>
-    authenticate('user@test.com', '123');
+<script defer>
+
+    class Navbar extends StatefulComponent {
+
+        constructor(id) {
+            super(id, { counter: Math.floor(Math.random() * 100) });
+        }
+
+        onRender() {
+            return `${components.common_navbar}`
+        }
+
+    }
+
+
+    $(document).ready(() => Component.register('ui-navbar', (id) => new Navbar(id)));
+
 </script>

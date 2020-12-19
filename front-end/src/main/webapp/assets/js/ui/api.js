@@ -86,7 +86,10 @@ const authenticate = async (username, password) => {
         password: password
     }).then(
         response => {
-            Cookies.set('X-Auth-Token', response.token);
+            Cookies.set('X-Auth-Token', response.token, {
+                secure: true,
+                sameSite: 'strict'
+            });
             return response;
         },
         reason => {

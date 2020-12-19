@@ -76,8 +76,13 @@
         {{ counter }}
     </div>
 
+
     <script>
-        $('#ev').click(() => $$.setState({ counter: {{ counter }} + 1 }));
+
+        $($$.elem)
+            .find('#ev')
+            .click(() => $$.setState({ counter: {{ counter }} + 1 }));
+
     </script>
 
 
