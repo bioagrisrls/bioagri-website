@@ -23,19 +23,25 @@
   ~
   -->
 
+<nav class="navbar">
+    <a class="navbar-brand">
+        {{ title }}
+    </a>
+</nav>
 
-<div class="navbar navbar-fixed-top header">
-    <nav class="ui-navbar container">
-        <div class="container">
+
+<div class="navbar navbar-fixed-top">
+    <nav class="ui-navbar">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-sm">
+                <div class="col-md">
                     <div class="navbar-brand">
                         <a class="ui-navigate" href="/home">
                             Bioagri S.r.l.s.
                         </a>
                     </div>
                 </div>
-                <div class="col-sm">
+                <div class="col-md">
                     <ul class="nav">
                         <li class="navbar-nav">
                             <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'home'    ? 'active' : '') }}" title="{{ title }}" href="/home">
