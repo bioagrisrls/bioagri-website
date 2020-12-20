@@ -108,14 +108,16 @@ public class Components {
         Arrays.asList(content
                 .replaceAll("(?s)<!--.*?-->", "")
                 .split("\n"))
-                .forEach(i -> output.append(i.trim()));
+                .forEach(i -> output.append(i.trim()).append(' '));
 
         return output.toString();
 
     }
 
     public static String escapize(String content) {
-        return content.replace("/", "\\/");
+        return content
+                .replace("/", "\\/")
+                .replace("`", "\\`");
     }
 
 }

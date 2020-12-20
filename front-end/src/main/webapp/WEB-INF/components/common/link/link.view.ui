@@ -1,4 +1,4 @@
-<%--
+<!--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,10 +21,9 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  --%>
+  -->
 
-<jsp:include page="/WEB-INF/components/common/link/link.controller.jsp" />
+<a id="{{$$.id}}-a" href="{{url}}" target="{{target}}" onclick="uiLinkNavigateURL('{{output}}', '{{url}}', '{{title}}')">
+    {{ $$.innerHTML }}
+</a>
 
-<ui-link id="link-1" ui:url="/example">
-    <img src="http://blog.analytics-toolkit.com/wp-content/uploads/2019/03/2019-03-04-AB-Testing-Small-Business.jpg" />
-</ui-link>

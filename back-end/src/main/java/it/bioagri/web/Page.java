@@ -80,6 +80,7 @@ public class Page {
 
     }
 
+
     @GetMapping("/admin/{page}")
     public String admin(ServletRequest request, Model model, @PathVariable String page) {
 

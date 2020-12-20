@@ -82,8 +82,9 @@ class Component {
     constructor(elem) {
 
         this.elem = elem;
-        this.id = elem.id;
-        this.content = '';
+        this.id = `${elem.id}`;
+        this.innerHTML = `${elem.innerHTML}`;
+        this.renderedHTML = '';
 
         if(!window.components[this.id])
             window.components[this.id] = this;
@@ -153,13 +154,13 @@ class Component {
      */
     static render(instance, data, state = {}) {
 
-        $(instance.elem).html((instance.content = __expandTemplate(instance.id, data, state)));
+        $(instance.elem).html((instance.renderedHTML = __expandTemplate(instance.id, data, state)));
 
         const recursive_render = (elem) => {
             for(let el of elem.children) {
 
                 if(window.components[el.id])
-                    $(el).html(window.components[el.id].content);
+                    $(el).html(window.components[el.id].renderedHTML);
                 else
                     recursive_render(el);
 
