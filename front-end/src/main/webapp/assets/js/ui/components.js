@@ -152,7 +152,7 @@ class Component {
 
     /**
      * Initialize and load registered components into a DOM container
-     * @param container {string | HTMLElement}
+     * @param container {string | HTMLElement | Document}
      */
     static run(container) {
 

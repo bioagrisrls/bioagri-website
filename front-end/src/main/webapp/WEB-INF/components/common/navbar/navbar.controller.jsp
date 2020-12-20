@@ -35,9 +35,10 @@
         constructor() {
             super(id, {
 
-                logo: props.logo || '',
                 current: props.current || '',
 
+                title: `${locale.info_title}`,
+                logo: `${locale.nav_logo}`,
                 home: `${locale.nav_home}`,
                 catalog: `${locale.nav_catalog}`,
                 aboutus: `${locale.nav_aboutus}`,

@@ -23,12 +23,6 @@
   ~
   -->
 
-<?
-    let currentHome    = current === 'home'    ? 'aria-current="page" class="active"' : '';
-    let currentCatalog = current === 'catalog' ? 'aria-current="page" class="active"' : '';
-    let currentAbout   = current === 'about'   ? 'aria-current="page" class="active"' : '';
-    let currentSupport = current === 'support' ? 'aria-current="page" class="active"' : '';
-?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -44,10 +38,10 @@
         <center>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="ui-navigate nav-link" {{ currentHome }} href="/home">{{ home }}</a>
-                    <a class="ui-navigate nav-link" {{ currentCatalog }} href="/catalog">{{ catalog }}</a>
-                    <a class="ui-navigate nav-link" {{ currentAbout }} href="/about-us">{{ aboutus }}</a>
-                    <a class="ui-navigate nav-link" {{ currentSupport }} href="/support">{{ support }}</a>
+                    <a class="ui-navigate nav-link" {{ (current === 'home'    ? 'aria-current="page" class="active"' : '') }} title="{{title}}" href="/home">{{ home }}</a>
+                    <a class="ui-navigate nav-link" {{ (current === 'catalog' ? 'aria-current="page" class="active"' : '') }} title="{{ catalog }} &ndash; {{title}}" href="/catalog">{{ catalog }}</a>
+                    <a class="ui-navigate nav-link" {{ (current === 'about'   ? 'aria-current="page" class="active"' : '') }} title="{{ aboutus }} &ndash; {{title}}" href="/about-us">{{ aboutus }}</a>
+                    <a class="ui-navigate nav-link" {{ (current === 'support' ? 'aria-current="page" class="active"' : '') }} title="{{ support }} &ndash; {{title}}" href="/support">{{ support }}</a>
                 </div>
             </div>
         </center>

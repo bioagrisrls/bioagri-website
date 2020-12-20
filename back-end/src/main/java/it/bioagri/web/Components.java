@@ -69,7 +69,7 @@ public class Components {
                                             .toString()
                                             .replace('\\', '_')
                                             .replace('/', '_')
-                                            .replace('.', '_'), escapize(minimize(Files.readString(p))));
+                                            .replace('.', '_'), Page.escapize(Page.minimize(Files.readString(p))));
 
                                 } else {
 
@@ -78,7 +78,7 @@ public class Components {
                                             .transform(s -> s.substring(0, s.lastIndexOf('.')))
                                             .replace('\\', '_')
                                             .replace('/', '_')
-                                            .replace('.', '_'), escapize(minimize(Files.readString(p))));
+                                            .replace('.', '_'), Page.escapize(Page.minimize(Files.readString(p))));
 
                                 }
 
@@ -99,25 +99,6 @@ public class Components {
 
     public Map<String, String> getComponents() {
         return components;
-    }
-
-    public static String minimize(String content) {
-
-        var output = new StringBuilder();
-
-        Arrays.asList(content
-                .replaceAll("(?s)<!--.*?-->", "")
-                .split("\n"))
-                .forEach(i -> output.append(i.trim()).append(' '));
-
-        return output.toString();
-
-    }
-
-    public static String escapize(String content) {
-        return content
-                .replace("/", "\\/")
-                .replace("`", "\\`");
     }
 
 }

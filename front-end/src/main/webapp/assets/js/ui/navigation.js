@@ -28,9 +28,10 @@
  * Navigate through pages without reloading page.
  * @param url {string}
  * @param title {string}
- * @param output {HTMLElement || string}
+ * @param container {HTMLElement || string}
+ * @param pushState {boolean}
  */
-const uiNavigateURL = (url, title = document.title, output = document.documentElement) => {
+const uiNavigateURL = (url, title = document.title, container = document.documentElement, pushState = true) => {
 
     if(!url)
         throw new Error('URL cannot be null');
@@ -42,24 +43,27 @@ const uiNavigateURL = (url, title = document.title, output = document.documentEl
             .then((response) => response.text())
             .then((response) => {
 
-                if (output === document.documentElement)
-                    $(output).html($(response).html());
+                if (container === document.documentElement)
+                    $(container).html($(response).html());
 
                 else {
                     $.each($(response), (i, e) => {
 
-                        if ($(output).id !== $(e).id)
+                        if ($(container).id !== $(e).id)
                             return ;
 
-                        $(output).html($(e).html());
+                        $(container).html($(e).html());
 
                     });
                 }
 
-            }).then(() => Component.run(output));
+            }).then(() => Component.run(container));
 
 
-        window.history.pushState({}, title, url);
+        if(pushState)
+            window.history.pushState({}, title, url);
+
+        document.title = title;
 
     } else {
 
@@ -80,12 +84,12 @@ $(document).ready(() => {
         if (window.location === this.href)
             return;
 
-        uiNavigateURL(e.target.href, `${e.target.title || e.target.textContent} -- Bioagri Shop`, '#ui-navigation-container');
+        uiNavigateURL(e.target.href, `${e.target.title || e.target.textContent}`, '#ui-navigation-container');
 
     });
 
 });
 
 window.onpopstate = (e) => {
-    uiNavigateURL(document.location.href, document.title, '#ui-navigation-container');
+    uiNavigateURL(document.location.href, document.title, '#ui-navigation-container', false);
 }

@@ -44,6 +44,8 @@ import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 @Component
 public class WebConfig implements WebMvcConfigurer {
@@ -154,8 +156,8 @@ public class WebConfig implements WebMvcConfigurer {
                 );
 
 
-                //response.getOutputStream().print(Components.minimize(wrapper.toString())); // TODO: remove comment on production
-                response.getOutputStream().print(wrapper.toString());
+                //response.getOutputStream().write(Page.minimize(wrapper.toString().getBytes(StandardCharsets.UTF_8))); // TODO: remove comment on production
+                response.getOutputStream().write(wrapper.toString().getBytes(StandardCharsets.UTF_8));
 
             }
 

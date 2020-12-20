@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
+import java.util.Arrays;
 
 @Controller
 public class Page {
@@ -89,6 +90,26 @@ public class Page {
 
         return "error";
 
+    }
+
+
+    public static String minimize(String content) {
+
+        var output = new StringBuilder();
+
+        Arrays.asList(content
+                .replaceAll("(?s)<!--.*?-->", "")
+                .split("\n"))
+                .forEach(i -> output.append(i.trim()).append(' '));
+
+        return output.toString();
+
+    }
+
+    public static String escapize(String content) {
+        return content
+                .replace("/", "\\/")
+                .replace("`", "\\`");
     }
 
 }
