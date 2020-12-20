@@ -41,7 +41,7 @@
                 logo: `${locale.nav_logo}`,
                 home: `${locale.nav_home}`,
                 catalog: `${locale.nav_catalog}`,
-                aboutus: `${locale.nav_aboutus}`,
+                about: `${locale.nav_about}`,
                 support: `${locale.nav_support}`,
 
             });

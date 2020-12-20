@@ -24,27 +24,38 @@
   -->
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-
-        <a class="navbar-brand ui-navigate" href="/">
-            <img src="{{logo}}" />
-        </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <center>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="ui-navigate nav-link" {{ (current === 'home'    ? 'aria-current="page" class="active"' : '') }} title="{{title}}" href="/home">{{ home }}</a>
-                    <a class="ui-navigate nav-link" {{ (current === 'catalog' ? 'aria-current="page" class="active"' : '') }} title="{{ catalog }} &ndash; {{title}}" href="/catalog">{{ catalog }}</a>
-                    <a class="ui-navigate nav-link" {{ (current === 'about'   ? 'aria-current="page" class="active"' : '') }} title="{{ aboutus }} &ndash; {{title}}" href="/about-us">{{ aboutus }}</a>
-                    <a class="ui-navigate nav-link" {{ (current === 'support' ? 'aria-current="page" class="active"' : '') }} title="{{ support }} &ndash; {{title}}" href="/support">{{ support }}</a>
-                </div>
+<div class="navbar navbar-fixed-top">
+    <nav class="ui-navbar navbar-inner header">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="ui-navigate" href="/home">
+                    Bioagri S.r.l.s.
+                </a>
             </div>
-        </center>
 
-    </div>
-</nav>
+            <ul class="nav">
+                <li class="ui-navbar-button">
+                    <a class="ui-navigate nav-link" {{ (current === 'home'    ? 'active=yes' : '') }} title="{{ title }}" href="/home">
+                        {{ home }}
+                    </a>
+                </li>
+                <li class="ui-navbar-button">
+                    <a class="ui-navigate nav-link" {{ (current === 'catalog' ? 'active=yes' : '') }} title="{{ catalog }} &ndash; {{title}}" href="/catalog">
+                        {{ catalog }}
+                    </a>
+                </li>
+                <li class="ui-navbar-button">
+                    <a class="ui-navigate nav-link" {{ (current === 'about'   ? 'active=yes' : '') }} title="{{ about }} &ndash; {{title}}" href="/about">
+                        {{ about }}
+                    </a>
+                </li>
+                <li class="ui-navbar-button">
+                    <a class="ui-navigate nav-link" {{ (current === 'support' ? 'active=yes' : '') }} title="{{ support }} &ndash; {{title}}" href="/support">
+                        {{ support }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
