@@ -1,4 +1,4 @@
-<!--
+<%--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,29 +21,13 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  -->
+  --%>
 
-<nav class="uk-navbar-container uk-visible@s uk-align-center uk-margin-remove" uk-navbar>
-    <div class="uk-grid h-headbar-grid">
-        <div class="uk-navbar-left uk-padding-remove">
-            <a class="uk-navbar-item uk-link-text h-headbar-item" href="?p=contact#maps">
-                <span class="uk-icon uk-margin-small-right" uk-icon="icon: location"></span>
-                {{ address }}
-            </a>
-        </div>
-
-        <div class="uk-navbar-right uk-padding-remove">
-            <a class="uk-navbar-item uk-link-text h-headbar-item" href="?p=contact">
-                <span class="uk-icon uk-margin-small-right" uk-icon="icon: phone"></span>
-                {{ phone }}
-            </a>
-        </div>
-    </div>
-    <h4>Ciaooooo</h4>
-    <div id="logged"></div>
-</nav>
-
-<?
-    logged
-        .then(r => $('#logged').html(r ? "TRUE" : "FALSE"))
-?>
+<section id="ui-navigation-container">
+    <ui-navbar id="ui-navbar" ui:logo="http://www.centro-cuore.it/images/logo.png" ui:current="catalog"></ui-navbar>
+    <section class="ui-section">
+        <p>
+            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+        </p>
+    </section>
+</section>

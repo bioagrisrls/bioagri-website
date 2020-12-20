@@ -38,10 +38,9 @@ const uiNavigateURL = (url, title = document.title, output = document.documentEl
 
     if (window.history && window.history.pushState) {
 
-        // fetch(url)
-        //     .then((response) => response.text())
-        //     .then((response) => {
-        $.get(url, (response) => {
+        fetch(url)
+            .then((response) => response.text())
+            .then((response) => {
 
                 if (output === document.documentElement)
                     $(output).html($(response).html());
@@ -52,15 +51,12 @@ const uiNavigateURL = (url, title = document.title, output = document.documentEl
                         if ($(output).id !== $(e).id)
                             return ;
 
-                        //console.log(output);
-                        //console.log(e);
-                        console.log(e);
                         $(output).html($(e).html());
 
                     });
                 }
 
-            });
+            }).then(() => Component.run(output));
 
 
         window.history.pushState({}, title, url);

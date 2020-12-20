@@ -1,4 +1,4 @@
-<!--
+<%--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,16 +21,13 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  -->
+  --%>
 
-<div>
-    <h1>Categories: {{ categories.length }} </h1>
-
-    <? if (typeof clicked !== 'undefined') { ?>
-        <h4>Sono stato cliccato!</h4>
-    <? } else { ?>
-        <? for (let i of categories) { ?>
-        <h4> {{ i.name }} </h4>
-        <? } ?>
-    <? } ?>
-</div>
+<section id="ui-navigation-container">
+    <ui-navbar id="ui-navbar" ui:logo="http://www.centro-cuore.it/images/logo.png" ui:current="support"></ui-navbar>
+    <section class="ui-section">
+        <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+    </section>
+</section>

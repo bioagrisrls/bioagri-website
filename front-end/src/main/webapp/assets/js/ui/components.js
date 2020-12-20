@@ -42,29 +42,7 @@ window.registered = window.registered || [];
  * Load registered components when DOM is ready.
  */
 $(document).ready(() => {
-
-    for(let i of window.registered) {
-
-        for (let e of document.getElementsByTagName(i.tag)) {
-
-            let props = {};
-
-            if (e.hasAttributes()) {
-                for (let attr of e.attributes) {
-                    if (attr.name.startsWith('ui:'))
-                        props[attr.name.slice(3)] = attr.value;
-                }
-            }
-
-
-            i.getinstance(e, props);
-
-            console.debug("Loading component: ", window.components[e.id].id);
-
-        }
-
-    }
-
+    Component.run(document);
 });
 
 
@@ -171,6 +149,37 @@ class Component {
 
     }
 
+
+    /**
+     * Initialize and load registered components into a DOM container
+     * @param container {string | HTMLElement}
+     */
+    static run(container) {
+
+        for(let component of window.registered) {
+
+            $(container).find(component.tag).each((i, v) => {
+
+                let props = {};
+                let e = $(v).get(0);
+
+                if (e.hasAttributes()) {
+                    for (let attr of e.attributes) {
+                        if (attr.name.startsWith('ui:'))
+                            props[attr.name.slice(3)] = attr.value;
+                    }
+                }
+
+
+                component.getinstance(e, props);
+
+                console.debug("Loading component: ", window.components[e.id].id);
+
+            });
+
+        }
+
+    }
 
 
 }
@@ -295,8 +304,7 @@ const __expandTemplate = (id, template = '', data = {}) => {
 
     let output = '';
     let index = 0;
-    let regexp = /<\?(.*?)?\?>/gms;
-
+    let regexp = /<\?(.*?)?\?>/gs;
 
     output += 'let ____r = [];\n';
 
@@ -307,14 +315,14 @@ const __expandTemplate = (id, template = '', data = {}) => {
             break;
 
 
-        output += `____r.push("${__sanitizeSnippet(id, template.slice(index, match.index))}");\n`;
+        output += `____r.push("${__sanitizeSnippet(id, template.substr(index, match.index))}");\n`;
         output += `${match[1]}\n`;
 
         index = regexp.lastIndex;
 
     }
 
-    output += `____r.push("${__sanitizeSnippet(id, template.slice(index, template.length - index))}");\n`;
+    output += `____r.push("${__sanitizeSnippet(id, template.substr(index, template.length - index))}");\n`;
     output += 'return ____r.join("");';
 
 

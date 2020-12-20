@@ -33,7 +33,17 @@
     Component.register('ui-navbar', (id, props) => new class extends StatefulComponent {
 
         constructor() {
-            super(id, { counter: 0 });
+            super(id, {
+
+                logo: props.logo || '',
+                current: props.current || '',
+
+                home: `${locale.nav_home}`,
+                catalog: `${locale.nav_catalog}`,
+                aboutus: `${locale.nav_aboutus}`,
+                support: `${locale.nav_support}`,
+
+            });
         }
 
         onRender() {
