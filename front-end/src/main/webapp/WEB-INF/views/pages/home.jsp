@@ -23,8 +23,10 @@
   ~
   --%>
 
-<jsp:include page="/WEB-INF/components/common/link/link.controller.jsp" />
 
-<ui-link id="link-1" ui:url="/example">
-    <img src="http://blog.analytics-toolkit.com/wp-content/uploads/2019/03/2019-03-04-AB-Testing-Small-Business.jpg" />
-</ui-link>
+<section id="ui-navigation-container">
+    <a class="ui-navigate" href="/example">Example</a>
+    <section class="ui-section">
+        <img src="http://blog.analytics-toolkit.com/wp-content/uploads/2019/03/2019-03-04-AB-Testing-Small-Business.jpg" />
+    </section>
+</section>

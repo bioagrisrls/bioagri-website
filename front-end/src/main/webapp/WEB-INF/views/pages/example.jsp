@@ -23,44 +23,12 @@
   ~
   --%>
 
-<div>
-
-    <h1>Hello World!</h1>
-    UserId: <span id="userId">Loading...</span><br>
-    UserRole: <span id="userRole">Loading...</span><br>
-
-    <div id="app"></div>
-
-</div>
 
 
-<script>
-
-    authenticate('user@test.com', '123').then(response => {
-
-        $('#userId').html(response.userId);
-        $('#userRole').html(response.userRole);
-
-    }).then(response => {
-
-        api('/categories').then(response => {
-
-            let app = new StatefulComponent('#app', {
-
-                render: `${components.categories}`,
-
-                state: api('/categories').then(json => {
-                    return { categories: json };
-                })
-
-            });
-
-            $('#app').click(() => {
-                app.setState({ clicked: true });
-            });
-
-        });
-
-    });
-
-</script>
+<section id="ui-navigation-container">
+    <a class="ui-navigate" href="/home">Home</a>
+    <section class="ui-section">
+        PROVA ANIMATA!!
+        <img src="https://blog.hubstaff.com/wp-content/uploads/2015/03/Startup-Idea-01.jpg" />
+    </section>
+</section>

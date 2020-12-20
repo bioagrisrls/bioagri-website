@@ -52,12 +52,11 @@
         <title>Bioagri Shop</title>
 
 
-        <!-- Styles -->
+        <!-- Third-party Styles -->
         <link rel="stylesheet" href="/assets/css/third-party/normalize.css">
         <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap-reboot.min.css">
         <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="/assets/css/third-party/font-awesome/all.min.css">
-        <!--<link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap-grid.min.css">-->
 
         <!-- Third-party Dependencies -->
         <script src="/assets/js/third-party/jquery.min.js"></script>
@@ -65,9 +64,14 @@
         <script src="/assets/js/third-party/js.cookie.min.js"></script>
         <script src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
 
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="/assets/css/ui/ui-navigation.css">
+
         <!-- Dependencies -->
         <script src="/assets/js/ui/api.js"></script>
         <script src="/assets/js/ui/components.js"></script>
+        <script src="/assets/js/ui/navigation.js"></script>
 
     </head>
 
