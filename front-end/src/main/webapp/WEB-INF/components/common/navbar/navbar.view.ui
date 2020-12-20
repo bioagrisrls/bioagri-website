@@ -34,23 +34,23 @@
             </div>
 
             <ul class="nav">
-                <li class="ui-navbar-button">
-                    <a class="ui-navigate nav-link" {{ (current === 'home'    ? 'active=yes' : '') }} title="{{ title }}" href="/home">
+                <li>
+                    <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'home'    ? 'active' : '') }}" title="{{ title }}" href="/home">
                         {{ home }}
                     </a>
                 </li>
-                <li class="ui-navbar-button">
-                    <a class="ui-navigate nav-link" {{ (current === 'catalog' ? 'active=yes' : '') }} title="{{ catalog }} &ndash; {{title}}" href="/catalog">
+                <li>
+                    <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'catalog' ? 'active' : '') }}" title="{{ catalog }} &ndash; {{title}}" href="/catalog">
                         {{ catalog }}
                     </a>
                 </li>
-                <li class="ui-navbar-button">
-                    <a class="ui-navigate nav-link" {{ (current === 'about'   ? 'active=yes' : '') }} title="{{ about }} &ndash; {{title}}" href="/about">
+                <li>
+                    <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'about'   ? 'active' : '') }}" title="{{ about }} &ndash; {{title}}" href="/about">
                         {{ about }}
                     </a>
                 </li>
-                <li class="ui-navbar-button">
-                    <a class="ui-navigate nav-link" {{ (current === 'support' ? 'active=yes' : '') }} title="{{ support }} &ndash; {{title}}" href="/support">
+                <li>
+                    <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'support' ? 'active' : '') }}" title="{{ support }} &ndash; {{title}}" href="/support">
                         {{ support }}
                     </a>
                 </li>
