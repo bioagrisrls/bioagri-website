@@ -49,11 +49,28 @@
             });
         }
 
+
+        onInit() {
+
+            const initOffset = this.elem.offsetTop;
+
+            window.addEventListener('scroll', () => {
+
+                if(window.pageYOffset > initOffset)
+                    this.elem.classList.add('ui-navbar-sticky');
+                else
+                    this.elem.classList.remove('ui-navbar-sticky');
+
+            });
+
+        }
+
         onRender() {
             return `${components.common_navbar}`
         }
 
 
     });
+
 
 </script>

@@ -197,7 +197,7 @@ class StatelessComponent extends Component {
     constructor(elem, state) {
 
         super(elem);
-        super.onInit();
+        this.onInit();
 
 
         Component.render(this, this.onLoading(), {});
@@ -227,7 +227,7 @@ class StatefulComponent extends Component {
     constructor(elem, state) {
 
         super(elem);
-        super.onInit();
+        this.onInit();
 
         this.__currentState = {};
 
