@@ -59,21 +59,22 @@
         <link rel="stylesheet" href="/assets/css/third-party/mdb/mdb.min.css">
         <link rel="stylesheet" href="/assets/css/third-party/material-design-icons/materialdesignicons.min.css">
 
+        <!-- Styles -->
+        <link rel="stylesheet" href="/assets/css/ui.min.css">
+
+
         <!-- Third-party Dependencies -->
         <script src="/assets/js/third-party/jquery.min.js"></script>
         <script src="/assets/js/third-party/popper.min.js"></script>
         <script src="/assets/js/third-party/js.cookie.min.js"></script>
-        <script src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
-        <script src="/assets/js/third-party/mdb/mdb.min.js"></script>
-
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="/assets/css/ui.min.css">
+        <script defer src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
+        <script defer src="/assets/js/third-party/mdb/mdb.min.js"></script>
 
         <!-- Dependencies -->
         <script src="/assets/js/ui/api.js"></script>
         <script src="/assets/js/ui/components.js"></script>
-        <script src="/assets/js/ui/navigation.js"></script>
+        <script defer src="/assets/js/ui/navigation.js"></script>
+
 
     </head>
 

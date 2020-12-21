@@ -37,19 +37,6 @@
 <nav class="navbar navbar-expand-lg">
     <div class="ui-container container-fluid row">
 
-        <!-- Toggle menu -->
-        <button class="navbar-toggler"
-                type="button"
-                data-mbd-toggle="collpse"
-                data-mbd-target="#ui-navbar-links"
-                aria-controls="ui-navbar-links"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-
-            <span class="mdi mdi-menu"></span>
-
-        </button>
-
 
         <!-- Navigation Logo -->
         <a class="ui-navigate ui-navbar-brand navbar-brand nav-link col-4" href="/">
@@ -58,7 +45,7 @@
         </a>
 
 
-        <div class="collapse navbar-collapse" id="ui-navbar-links col-8">
+        <div id="ui-navbar-links" class="collapse navbar-collapse col-8">
 
             <!-- Navigation Links -->
             <ul class="ui-navbar-nav navbar-nav">
@@ -72,12 +59,25 @@
             </ul>
 
             <!-- Navigation Users -->
-            <div class="ui-navbar-user d-flex w-auto">
+            <div class="ui-navbar-user d-flex w-auto d-lg-block d-none">
                 <span class="mdi mdi-18px mdi-shopping"></span>
                 <span class="badge rounded-pill badge-notification bg-danger">1</span>
             </div>
 
         </div>
+
+
+        <button class="navbar-toggler col-1 pull-right"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#ui-navbar-links"
+                aria-controls="ui-navbar-links"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="mdi mdi-24px mdi-menu"></span>
+
+        </button>
 
     </div>
 </nav>
