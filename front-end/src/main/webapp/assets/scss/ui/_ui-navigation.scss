@@ -23,6 +23,7 @@
  *
  */
 
+@import "ui-theme";
 
 @keyframes navigate {
 
@@ -42,4 +43,13 @@
   animation-name: navigate;
   animation-duration: .4s;
   animation-fill-mode: both;
+}
+
+.ui-navigation-progress {
+  height: 3px;
+  background-color: $ui-theme-background-secondary;
+}
+
+.ui-navigation-progress #ui-navigation-progress-bar {
+  background-color: $ui-theme-secondary;
 }
