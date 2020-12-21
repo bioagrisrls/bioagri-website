@@ -34,7 +34,7 @@
 ?>
 
 <nav class="ui-navbar">
-    <div class="ui-navbar-container">
+    <div class="ui-container">
         <div class="row align-items-center">
             <div class="col col-sm-auto">
                 <a class="ui-navbar-brand">

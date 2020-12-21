@@ -23,20 +23,9 @@
  *
  */
 
+@import "ui-theme";
 
-// Colors
-
-$ui-theme-primary: orange;
-$ui-theme-secondary: green;
-
-$ui-theme-background-primary: white;
-$ui-theme-background-secondary: white;
-
-$ui-theme-background-text-variant: gray;
-
-
-// Layout
-
-$ui-theme-layout-container-width: 992px;
-
-
+.ui-header span {
+  color: $ui-theme-background-text-variant;
+  font-size: small;
+}

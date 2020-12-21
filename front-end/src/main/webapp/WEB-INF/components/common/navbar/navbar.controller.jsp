@@ -44,8 +44,6 @@
                 about: `${locale.nav_about}`,
                 support: `${locale.nav_support}`,
 
-                categories: api('/categories'),
-
             });
         }
 
