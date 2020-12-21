@@ -56,7 +56,7 @@
         <link rel="stylesheet" href="/assets/css/third-party/normalize.css">
         <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap-reboot.min.css">
         <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" href="/assets/css/third-party/font-awesome/all.min.css">
+        <link rel="stylesheet" href="/assets/css/third-party/material-design-icons/materialdesignicons.min.css">
 
         <!-- Third-party Dependencies -->
         <script src="/assets/js/third-party/jquery.min.js"></script>
