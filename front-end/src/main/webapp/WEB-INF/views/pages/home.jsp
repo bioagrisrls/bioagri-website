@@ -23,10 +23,9 @@
   ~
   --%>
 
-<jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
-<jsp:include page="/WEB-INF/components/common/image/image.controller.jsp" />
-
+<jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/footer/footer.controller.jsp" />
 
 <section id="ui-navigation-container">
 
