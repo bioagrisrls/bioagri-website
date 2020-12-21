@@ -26,12 +26,27 @@
 @import "ui-theme";
 
 
-.ui-navbar li {
-  line-height: 48px;
-  letter-spacing: 2px;
+.ui-navbar {
+  width: 100%;
 }
 
-.ui-navbar-button {
+.ui-navbar-container {
+  margin: auto;
+  width: $ui-theme-layout-container-width;
+}
+
+.ui-navbar-brand {
+  padding: 0 128px 0 0;
+}
+
+.ui-navbar-nav li {
+
+  line-height: 48px;
+  letter-spacing: 2px;
+
+}
+
+.ui-navbar-nav li a {
 
   border-top: 4px solid $ui-theme-background-primary;
   padding: 0 32px 0 32px;

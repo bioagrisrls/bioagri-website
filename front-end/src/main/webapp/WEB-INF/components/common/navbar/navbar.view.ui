@@ -23,50 +23,83 @@
   ~
   -->
 
-<nav class="navbar">
-    <a class="navbar-brand">
-        {{ title }}
-    </a>
+<nav class="ui-navbar">
+    <div class="ui-navbar-container">
+        <div class="row align-items-center">
+            <div class="col col-sm-auto">
+                <a class="ui-navbar-brand">
+                    {{ title }}
+                </a>
+            </div>
+            <div class="col col-md">
+                <ul class="ui-navbar-nav nav">
+                    <li class="nav-item">
+                        <a class="ui-navigate nav-link {{ (current === 'home'    ? 'active' : '') }}" title="{{ title }}" href="/home">
+                            {{ home }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="ui-navigate nav-link {{ (current === 'catalog' ? 'active' : '') }}" title="{{ catalog }} &ndash; {{title}}" href="/catalog">
+                            {{ catalog }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="ui-navigate nav-link {{ (current === 'about'   ? 'active' : '') }}" title="{{ about }} &ndash; {{title}}" href="/about">
+                            {{ about }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="ui-navigate nav-link {{ (current === 'support' ? 'active' : '') }}" title="{{ support }} &ndash; {{title}}" href="/support">
+                            {{ support }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-sm-auto">
+                <i class="fa-shopping-bag fa-2x"></i>
+            </div>
+        </div>
+    </div>
 </nav>
 
 
-<div class="navbar navbar-fixed-top">
-    <nav class="ui-navbar">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md">
-                    <div class="navbar-brand">
-                        <a class="ui-navigate" href="/home">
-                            Bioagri S.r.l.s.
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <ul class="nav">
-                        <li class="navbar-nav">
-                            <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'home'    ? 'active' : '') }}" title="{{ title }}" href="/home">
-                                {{ home }}
-                            </a>
-                        </li>
-                        <li class="navbar-nav">
-                            <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'catalog' ? 'active' : '') }}" title="{{ catalog }} &ndash; {{title}}" href="/catalog">
-                                {{ catalog }}
-                            </a>
-                        </li>
-                        <li class="navbar-nav">
-                            <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'about'   ? 'active' : '') }}" title="{{ about }} &ndash; {{title}}" href="/about">
-                                {{ about }}
-                            </a>
-                        </li>
-                        <li class="navbar-nav">
-                            <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'support' ? 'active' : '') }}" title="{{ support }} &ndash; {{title}}" href="/support">
-                                {{ support }}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
-</div>
+<!--<div class="navbar navbar-fixed-top">-->
+<!--    <nav class="ui-navbar">-->
+<!--        <div class="container-fluid">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md">-->
+<!--                    <div class="navbar-brand">-->
+<!--                        <a class="ui-navigate" href="/home">-->
+<!--                            Bioagri S.r.l.s.-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md">-->
+<!--                    <ul class="nav">-->
+<!--                        <li class="navbar-nav">-->
+<!--                            <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'home'    ? 'active' : '') }}" title="{{ title }}" href="/home">-->
+<!--                                {{ home }}-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li class="navbar-nav">-->
+<!--                            <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'catalog' ? 'active' : '') }}" title="{{ catalog }} &ndash; {{title}}" href="/catalog">-->
+<!--                                {{ catalog }}-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li class="navbar-nav">-->
+<!--                            <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'about'   ? 'active' : '') }}" title="{{ about }} &ndash; {{title}}" href="/about">-->
+<!--                                {{ about }}-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li class="navbar-nav">-->
+<!--                            <a class="ui-navigate ui-navbar-button nav-link {{ (current === 'support' ? 'active' : '') }}" title="{{ support }} &ndash; {{title}}" href="/support">-->
+<!--                                {{ support }}-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </nav>-->
+<!--</div>-->
 
