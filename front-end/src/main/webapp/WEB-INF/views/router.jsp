@@ -66,8 +66,7 @@
 
 
         <!-- Styles -->
-        <link rel="stylesheet" href="/assets/css/ui-base.css">
-        <link rel="stylesheet" href="/assets/css/ui/ui-navigation.css">
+        <link rel="stylesheet" href="/assets/css/ui.min.css">
 
         <!-- Dependencies -->
         <script src="/assets/js/ui/api.js"></script>

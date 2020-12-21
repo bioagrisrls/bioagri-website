@@ -1,4 +1,4 @@
-/*!
+/*
  * MIT License
  *
  * Copyright (c) 2020 BioAgri S.r.l.s.
@@ -24,17 +24,22 @@
  */
 
 
-// Colors
+@keyframes navigate {
 
-$ui-theme-primary: orange;
-$ui-theme-secondary: green;
+  from {
+    transform: translate3d(0, 10px, 0);
+    opacity: 0;
+  }
 
-$ui-theme-background-primary: white;
-$ui-theme-background-secondary: white;
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
 
+}
 
-// Layout
-
-$ui-theme-layout-container-width: 992px;
-
-
+.ui-section {
+  animation-name: navigate;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+}
