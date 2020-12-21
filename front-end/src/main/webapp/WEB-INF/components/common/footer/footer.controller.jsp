@@ -29,7 +29,7 @@
 
 <script defer>
 
-    Component.register('ui-footer', (id, props) => new class extends StatefulComponent {
+    Component.register('ui-footer', (id) => new class extends StatefulComponent {
 
         constructor() {
             super(id, {
