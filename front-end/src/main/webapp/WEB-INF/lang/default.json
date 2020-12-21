@@ -15,5 +15,6 @@
   "foo_catalog" : "Catalogo",
   "foo_about" : "Chi siamo",
   "foo_support" : "Contatti",
-  "foo_shipping_info" : "Informazioni di Spedizione",
+  "foo_shipping_info" : "Informazioni di Spedizione"
+
 }
