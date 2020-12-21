@@ -33,15 +33,16 @@
     ];
 ?>
 
-<nav class="ui-navbar navbar-expand-lg">
-    <div class="ui-container">
+
+<nav class="navbar navbar-expand-lg">
+    <div class="ui-container container-fluid">
 
         <!-- Toggle menu -->
         <button class="navbar-toggler"
                 type="button"
                 data-mbd-toggle="collpse"
-                data-mbd-target="#ui-navbar-toggler"
-                aria-controls="ui-navbar-toggler"
+                data-mbd-target="#ui-navbar-links"
+                aria-controls="ui-navbar-links"
                 aria-expanded="false"
                 aria-label="Toggle navigation">
 
@@ -50,36 +51,33 @@
         </button>
 
 
-        <div class="row align-items-center">
+        <!-- Navigation Logo -->
+        <a class="ui-navigate ui-navbar-brand navbar-brand nav-link w-100" href="/">
+            <img src="{{logo}}" width="48" height="48" />
+            <span>{{ title }}</span>
+        </a>
 
-            <!-- Navigation Logo -->
-            <div class="col col-lg-3">
-                <a class="ui-navigate ui-navbar-brand navbar-brand nav-link" href="/">
-                    <img src="{{logo}}" width="48" height="48" />
-                    <span>{{ title }}</span>
-                </a>
-            </div>
+
+        <div class="collapse navbar-collapse" id="ui-navbar-links">
 
             <!-- Navigation Links -->
-            <div class="col col-lg-8">
-                <ul class="ui-navbar-nav nav">
-                    <? for (let nav of navs) { ?>
-                        <li class="nav-item">
-                            <a class="ui-navigate nav-link {{ (current === nav.key ? 'active' : '') }}" title="{{ nav.value }}" href="/{{nav.key}}">
-                                {{ nav.name }}
-                            </a>
-                        </li>
-                    <? } ?>
-                </ul>
-            </div>
-
+            <ul class="ui-navbar-nav navbar-nav">
+                <? for (let nav of navs) { ?>
+                    <li class="nav-item">
+                        <a class="ui-navigate nav-link {{ (current === nav.key ? 'active' : '') }}" title="{{ nav.value }}" href="/{{nav.key}}">
+                            {{ nav.name }}
+                        </a>
+                    </li>
+                <? } ?>
+            </ul>
 
             <!-- Navigation Users -->
-            <div class="col col-lg-1">
+            <div class="ui-navbar-user d-flex w-auto">
                 <span class="mdi mdi-shopping"></span>
                 <span class="badge rounded-pill badge-notification bg-danger">1</span>
             </div>
 
         </div>
+
     </div>
 </nav>
