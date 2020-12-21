@@ -27,7 +27,7 @@
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/carousel/carousel.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/footer/footer.controller.jsp" />
-<jsp:include page="/WEB-INF/components/common/body/body.controller.jsp" />
+<jsp:include page="/WEB-INF/components/home/section_1/section_1.controller.jsp" />
 
 
 <section id="ui-navigation-container">
@@ -47,7 +47,7 @@
     </section>
 
 
-    <ui-body id = "ui-body"> </ui-body>
+    <ui-section_1 id = "ui-section_1"> </ui-section_1>
 
 
 
