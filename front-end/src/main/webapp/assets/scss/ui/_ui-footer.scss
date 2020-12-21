@@ -25,19 +25,66 @@
 
 @import "ui-theme";
 
-
 .ui-footer {
   width: 100%;
+  background-color: $ui-theme-primary-variant;
+  color: $ui-theme-primary-text;
+
+  ul, li, span, a {
+    color: $ui-theme-primary-text;
+    list-style-type: none;
+  }
+
+  hr {
+    height: 4px;
+    width: 48px;
+    border-width: 0;
+    color: $ui-theme-primary;
+    background-color: $ui-theme-primary;
+  }
+
 }
 
 .ui-footer-header {
-  background: $ui-theme-secondary;
+  background-color: $ui-theme-secondary;
+  padding: 8px 0 0 0;
 }
 
-.ui-footer-header span {
-  color: $ui-theme-background-text;
+.ui-footer-advise-connected {
+  padding: 8px 0 0 0;
+}
+
+.ui-footer-social {
+  color: $ui-theme-primary-text;
+  padding: 0 24px 0 24px;
+  transition: 0.3s;
+
+  &:hover {
+    color: $ui-theme-secondary-text;
+    transform: translate(0, -10px);
+  }
+
 }
 
 .ui-footer-body {
-  background: $ui-theme-primary;
+  p {
+    font-size: medium;
+  }
+}
+
+.ui-footer-brand span {
+  text-transform: uppercase;
+  color: $ui-theme-secondary-text;
+}
+
+.ui-footer-brand img {
+  height: 48px;
+}
+
+.ui-footer-bottom {
+  background-color: $ui-theme-primary;
+}
+
+.ui-footer-icon {
+  color: $ui-theme-primary-text;
 }
