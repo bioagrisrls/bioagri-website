@@ -55,8 +55,8 @@ task sass {
         Process p1, p2;
 
         if(Os.isFamily(Os.FAMILY_WINDOWS)) {
-            p1 = Runtime.runtime.exec('cmd.exe npm install', null, rootProject.projectDir);
-            p2 = Runtime.runtime.exec('cmd.exe npm run sass', null, rootProject.projectDir);
+            p1 = Runtime.runtime.exec('cmd.exe /C npm install', null, rootProject.projectDir);
+            p2 = Runtime.runtime.exec('cmd.exe /C npm run sass', null, rootProject.projectDir);
         } else {
             p1 = Runtime.runtime.exec('npm install', null, rootProject.projectDir);
             p2 = Runtime.runtime.exec('npm run sass', null, rootProject.projectDir);
