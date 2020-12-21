@@ -45,8 +45,9 @@
         </p>
     </section>
 
-
+    <section class="ui-section">
     <ui-carousel id="ui-carousel"> </ui-carousel>
+    <section>
     <ui-footer id="ui-footer" ui:current="home"> </ui-footer>
 
 </section>
