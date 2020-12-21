@@ -49,6 +49,13 @@
                 support: `${locale.foo_body_support}`,
 
                 util: `${locale.foo_body_util}`,
+                contact: `${locale.foo_body_contact}`,
+                address: `${locale.info_address}`,
+                phone: `${locale.info_phone}`,
+                mail: `${locale.info_email}`,
+
+                site: `${locale.info_site}`,
+                site_text: `${locale.info_site_text}`,
 
             });
         }

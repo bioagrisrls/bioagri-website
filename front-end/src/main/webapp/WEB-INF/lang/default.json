@@ -4,6 +4,8 @@
   "info_address" : "Rosarno, Via delle livare, 100 100",
   "info_phone" : "0966-543210",
   "info_email" : "info@bioagri.com",
+  "info_site" : "http://localhost:8080/",
+  "info_site_text" : "bioagrishop.it",
 
   "nav_logo" : "/assets/img/logo/logo-navbar.jpg",
   "nav_home" : "Home",
@@ -14,13 +16,14 @@
   "foo_header_connected" : "Seguici sui nostri social network per rimanere connesso!",
 
   "foo_body_logo" : "/assets/img/logo/logo-navbar.jpg",
-  "foo_body_description" : "BioAgri S.r.l.s. è un azienda che opera nel settore agrario distribuendo ed erogando servizi di consulenza e prodotti per il giardinaggio, coltura, e strumenti per l’agronomia",
+  "foo_body_description" : "BioAgri S.r.l.s. è un azienda che opera nel settore agrario distribuendo ed erogando servizi di consulenza e prodotti per il giardinaggio, coltura, e strumenti per l’agronomia.",
   "foo_body_menu" : "Menu",
   "foo_body_home" : "Home",
   "foo_body_catalog" : "Catalogo",
   "foo_body_about" : "Chi siamo",
   "foo_body_support" : "Contatti",
 
-  "foo_body_util" : "Link Utili"
+  "foo_body_util" : "Link Utili",
+  "foo_body_contact" : "Contatti"
 
 }
