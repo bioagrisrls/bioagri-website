@@ -47,9 +47,11 @@
     </section>
 
 
-    <ui-body id = "ui-body"> </ui-body>
+    <ui-body id = "ui-body" ui:current="home"> </ui-body>
 
 
+    <!-- Header -->
+    <ui-footer id = "ui-footer"> </ui-footer>
 
 </section>
 
