@@ -39,6 +39,12 @@ const uiNavigateURL = (url, title = document.title, container = document.documen
 
     if (window.history && window.history.pushState) {
 
+
+        let prog = $('#ui-navigation-progress-bar').show()
+            .css('width', '33%')
+            .attr('aria-valuenow', '33');
+
+
         fetch(url)
             .then((response) => response.text())
             .then((response) => {
@@ -50,14 +56,19 @@ const uiNavigateURL = (url, title = document.title, container = document.documen
                     $.each($(response), (i, e) => {
 
                         if ($(container).id !== $(e).id)
-                            return ;
+                            return;
 
                         $(container).html($(e).html());
 
                     });
                 }
 
-            }).then(() => Component.run(container));
+                prog.css('width', '66%')
+                    .attr('aria-valuenow', '66');
+
+
+            }).then(() => Component.run(container))
+              .then(() => prog.hide());
 
 
         if(pushState)
@@ -87,6 +98,12 @@ $(document).ready(() => {
         uiNavigateURL(e.currentTarget.href, `${e.currentTarget.title || e.currentTarget.textContent}`, '#ui-navigation-container');
 
     });
+
+    $('body').append(`
+        <div class="ui-navigation-progress progress fixed-top">
+            <div id="ui-navigation-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    `);
 
 });
 
