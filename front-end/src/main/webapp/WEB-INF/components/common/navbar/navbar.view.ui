@@ -54,7 +54,7 @@
                 </ul>
             </div>
             <div class="col col-auto">
-                <span class="mdi mdi-shopping"></span>
+                <img src="/assets/svgs/font-awesome/solid/shopping-basket.svg">
             </div>
         </div>
     </div>
