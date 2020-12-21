@@ -24,6 +24,7 @@
   --%>
 
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/footer/footer.controller.jsp" />
 
 <section id="ui-navigation-container">
     <ui-navbar id="ui-navbar" ui:current="home"></ui-navbar>

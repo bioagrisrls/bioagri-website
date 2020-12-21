@@ -23,6 +23,14 @@
 ~
 --%>
 
-<%--@elvariable id="components" type="java.util.Map"--%>
-<%--@elvariable id="locale" type="java.util.Map"--%>
-<%--@elvariable id="reference" type="java.lang.String"--%>
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col">
+
+        </div>
+
+    </div>
+
+</div>

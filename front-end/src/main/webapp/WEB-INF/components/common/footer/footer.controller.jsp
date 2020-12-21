@@ -26,3 +26,26 @@
 <%--@elvariable id="components" type="java.util.Map"--%>
 <%--@elvariable id="locale" type="java.util.Map"--%>
 <%--@elvariable id="reference" type="java.lang.String"--%>
+
+<script defer>
+
+    Component.register('ui-footer', (id, props) => new class extends StatefulComponent {
+
+        constructor() {
+            super(id, {
+
+                current: props.current || '',
+
+
+            });
+        }
+
+        onRender() {
+            return `${components.common_footer}`
+        }
+
+
+    });
+
+
+</script>
