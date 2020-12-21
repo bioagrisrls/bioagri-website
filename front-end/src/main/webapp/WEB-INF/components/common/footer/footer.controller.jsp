@@ -29,12 +29,24 @@
 
 <script defer>
 
-    Component.register('ui-footer', (id) => new class extends StatefulComponent {
+    Component.register('ui-footer', (id, props) => new class extends StatefulComponent {
 
         constructor() {
             super(id, {
 
+                current: props.current || '',
 
+                connected: `${foo_header_connected}`,
+
+                logo: `${foo_body_logo}`,
+                description: `${foo_body_description}`,
+                menu: `${foo_body_menu}`,
+                home: `${foo_body_home}`,
+                catalog: `${foo_body_catalog}`,
+                about: `${foo_body_about}`,
+                support: `${foo_body_support}`,
+
+                util: `${foo_body_util}`,
 
             });
         }
