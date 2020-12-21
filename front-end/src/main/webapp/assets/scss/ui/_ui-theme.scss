@@ -26,16 +26,19 @@
 
 // Colors
 
-$ui-theme-primary: orange;
-$ui-theme-secondary: green;
+$ui-theme-primary: #F57C00;
+$ui-theme-primary-variant: #FFB74D;
 
-$ui-theme-background-primary: white;
-$ui-theme-background-secondary: white;
+$ui-theme-secondary: #8BC34A;
+$ui-theme-secondary-variant: #AED581;
 
-$ui-theme-background-variant: rgb(245, 245, 245);
+$ui-theme-primary-text: #212121;
+$ui-theme-secondary-text: #757575;
 
-$ui-theme-background-text: black;
-$ui-theme-background-text-variant: gray;
+$ui-theme-background-primary: #FAFAFA;
+$ui-theme-background-secondary: #FAFAFA;
+
+$ui-theme-divider-color: #BDBDBD;
 
 
 // Layout

@@ -36,13 +36,13 @@
 <nav class="ui-navbar">
     <div class="ui-container">
         <div class="row align-items-center">
-            <div class="col col-sm-auto">
+            <div class="col col-lg-3">
                 <a class="ui-navigate ui-navbar-brand nav-link" href="/">
                     <img src="{{logo}}" width="48" height="48" />
                     <span>{{ title }}</span>
                 </a>
             </div>
-            <div class="col col-md">
+            <div class="col col-lg-8">
                 <ul class="ui-navbar-nav nav">
                     <? for (let nav of navs) { ?>
                         <li class="nav-item">
@@ -53,8 +53,8 @@
                     <? } ?>
                 </ul>
             </div>
-            <div class="col col-auto">
-                <img src="/assets/svgs/font-awesome/solid/shopping-basket.svg">
+            <div class="col col-lg-1">
+                <span class="mdi mdi-shopping"></span>
             </div>
         </div>
     </div>

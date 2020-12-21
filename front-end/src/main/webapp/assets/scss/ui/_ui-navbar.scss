@@ -31,17 +31,13 @@
 }
 
 
-.ui-navbar-brand {
-  padding: 0 128px 0 0;
-}
-
 .ui-navbar-brand img {
   height: 48px;
 }
 
 .ui-navbar-brand span {
   text-transform: uppercase;
-  color: $ui-theme-background-text;
+  color: $ui-theme-primary-text;
 }
 
 .ui-navbar-nav li {
@@ -54,17 +50,18 @@
 
 .ui-navbar-nav li a {
 
+  color: $ui-theme-primary-text;
   border-top: 4px solid $ui-theme-background-primary;
   padding: 0 32px 0 32px;
   transition: border-top .3s;
 
 
   &.active {
-    border-top: 4px solid $ui-theme-primary;
+    border-top: 4px solid $ui-theme-primary-variant;
   }
 
   &:hover {
-    border-top: 4px solid $ui-theme-primary;
+    border-top: 4px solid $ui-theme-primary-variant;
   }
 
 }

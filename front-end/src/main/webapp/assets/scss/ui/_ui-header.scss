@@ -26,11 +26,11 @@
 @import "ui-theme";
 
 .ui-header {
-  background-color: $ui-theme-background-variant;
+  background-color: $ui-theme-background-secondary;
 }
 
 .ui-header span {
-  color: $ui-theme-background-text-variant;
+  color: $ui-theme-secondary-text;
   font-size: small;
   vertical-align: baseline;
 }
