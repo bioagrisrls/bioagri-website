@@ -8,6 +8,12 @@
   "nav_home" : "Home",
   "nav_catalog" : "Catalogo",
   "nav_about" : "Chi siamo",
-  "nav_support" : "Contatti"
+  "nav_support" : "Contatti",
 
+  "foo_logo" : "http://www.centro-cuore.it/images/logo.png",
+  "foo_home" : "Home",
+  "foo_catalog" : "Catalogo",
+  "foo_about" : "Chi siamo",
+  "foo_support" : "Contatti",
+  "foo_shipping_info" : "Informazioni di Spedizione",
 }
