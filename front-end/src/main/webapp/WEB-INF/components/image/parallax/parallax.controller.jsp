@@ -49,8 +49,8 @@
             }));
         }
 
-        onInit() {
-            return `<div class="spinner-border" role="status"></div>`;
+        onLoading() {
+            return `<center><div class="spinner-border" role="status"></div></center>`;
         }
 
         onRender() {

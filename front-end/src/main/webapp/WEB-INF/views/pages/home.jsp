@@ -72,6 +72,9 @@
             </code></pre>
         </article>
 
+
+        <ui-parallax id="ui-parallax-2" ui:src="/assets/img/home/parallax02.jpg" ui:height="1080"></ui-parallax>
+
         <article class="ui-container">
             <h1>HTML Ipsum Presents</h1>
 
