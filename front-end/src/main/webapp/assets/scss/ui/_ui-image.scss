@@ -25,7 +25,21 @@
 
 @import "ui-theme";
 
-[data-src]::before {
-  content: '';
-  display: block;
+
+@keyframes image {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+img {
+  animation-name: image;
+  animation-duration: .4s;
+  animation-fill-mode: both;
 }
