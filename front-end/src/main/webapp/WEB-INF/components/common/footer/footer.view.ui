@@ -22,3 +22,32 @@
   ~ SOFTWARE.
   ~
   -->
+
+<div class="container-fluid">
+
+    <!-- Top Footer -->
+    <div class="row">
+
+        <div class="col-3">
+            <ul class="ui-navbar-nav nav">
+                <li class="nav-item">
+                    <img src="{{logo}}" width="48" height="48"/>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-3">
+
+        </div>
+
+        <div class="col-3">
+
+        </div>
+
+        <div class="col-3">
+
+        </div>
+
+    </div>
+
+</div>
