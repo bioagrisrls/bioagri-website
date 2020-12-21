@@ -23,25 +23,32 @@
   ~
   -->
 
-<div class="container-fluid">
+<div class="ui-footer container-fluid">
 
     <!-- Footer Header -->
-    <div class="row">
+    <div class="row ui-footer-header">
 
         <div class="col-sm-6">
-            <span>
-
+            <span class="ui-footer-header">
+                {{connected-description}}
             </span>
         </div>
 
         <div class="col-sm-6">
-
+            <div class="row">
+                <a href=""><span class="mdi mdi-facebook"></span></a>
+                <a href=""><span class="mdi mdi-twitter"></span></a>
+                <a href=""><span class="mdi mdi-google-plus"></span></a>
+                <a href=""><span class="mdi mdi-linkedin"></span></a>
+                <a href=""><span class="mdi mdi-instagram"></span></a>
+                <a href=""><span class="mdi mdi-pinterest"></span></a>
+            </div>
         </div>
 
     </div>
 
     <!-- Footer Body -->
-    <div class="row">
+    <div class="row ui-footer-body">
 
         <div class="col-sm-3">
             <ul class="ui-navbar-nav nav">

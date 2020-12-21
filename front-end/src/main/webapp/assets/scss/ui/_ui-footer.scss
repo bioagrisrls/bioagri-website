@@ -22,3 +22,22 @@
  * SOFTWARE.
  *
  */
+
+@import "ui-theme";
+
+
+.ui-footer {
+  width: 100%;
+}
+
+.ui-footer-header {
+  background: $ui-theme-secondary;
+}
+
+.ui-footer-header span {
+  color: $ui-theme-background-text;
+}
+
+.ui-footer-body {
+  background: $ui-theme-primary;
+}
