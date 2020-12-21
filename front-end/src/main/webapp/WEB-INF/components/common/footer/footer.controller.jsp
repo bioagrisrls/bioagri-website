@@ -36,17 +36,19 @@
 
                 current: props.current || '',
 
-                connected: `${foo_header_connected}`,
+                connected: `${locale.foo_header_connected}`,
 
-                logo: `${foo_body_logo}`,
-                description: `${foo_body_description}`,
-                menu: `${foo_body_menu}`,
-                home: `${foo_body_home}`,
-                catalog: `${foo_body_catalog}`,
-                about: `${foo_body_about}`,
-                support: `${foo_body_support}`,
+                logo: `${locale.foo_body_logo}`,
+                description: `${locale.foo_body_description}`,
 
-                util: `${foo_body_util}`,
+                title: `${locale.info_title}`,
+                menu: `${locale.foo_body_menu}`,
+                home: `${locale.foo_body_home}`,
+                catalog: `${locale.foo_body_catalog}`,
+                about: `${locale.foo_body_about}`,
+                support: `${locale.foo_body_support}`,
+
+                util: `${locale.foo_body_util}`,
 
             });
         }

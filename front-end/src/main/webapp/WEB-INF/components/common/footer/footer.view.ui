@@ -24,7 +24,7 @@
   -->
 
 <?
-    let navs = [
+    let pages = [
         { key: 'home',      name: home,     value: title                         },
         { key: 'catalog',   name: catalog,  value: catalog + ' &ndash; ' + title },
         { key: 'about',     name: about,    value: about   + ' &ndash; ' + title },
@@ -32,14 +32,14 @@
     ];
 ?>
 
-<div class="ui-footer container-fluid">
+<footer class="bg-primary text-white text-center text-lg-start">
 
     <!-- Footer Header -->
-    <div class="row ui-footer-header">
+    <div class="row" style="background-color: rgba(0, 0, 0, 0.2)">
 
         <div class="col-sm-6">
             <span class="ui-footer-header">
-                {{connected-description}}
+                {{connected}}
             </span>
         </div>
 
@@ -57,39 +57,71 @@
     </div>
 
     <!-- Footer Body -->
-    <div class="row ui-footer-body">
+    <div class="container p-4">
 
-        <div class="col-sm-3">
-            <ul class="ui-navbar-nav nav">
-                <li class="nav-item">
-                    <img src="{{logo}}" width="48" height="48"/>
-                    <p>
-                        {{description}}
-                    </p>
-                </li>
-            </ul>
-        </div>
+        <div class="row">
 
-        <div class="col-sm-3">
-            <ul class="">
-                <? for (let nav of navs) { ?>
-                <li class="nav-item">
-                    <a class="ui-navigate nav-link {{ (current === nav.key ? 'active' : '') }}" title="{{ nav.value }}" href="/{{nav.key}}">
-                        {{ nav.name }}
-                    </a>
-                </li>
-                <? } ?>
-            </ul>
-        </div>
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <ul class="ui-navbar-nav nav">
+                    <li class="nav-item">
+                        <img src="{{logo}}" width="48" height="48"/>
+                        <p>
+                            {{description}}
+                        </p>
+                    </li>
+                </ul>
+            </div>
 
-        <div class="col-sm-3">
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
 
-        </div>
+                <h5 class="text-uppercase mb-0">
+                    {{menu}}
+                </h5>
 
-        <div class="col-sm-3">
+                <ul class="list-unstyled mb-0">
+                    <? for (let page of pages) { ?>
+                    <li class="nav-item" class="text-white">
+                        <a class="ui-navigate nav-link {{ (current === page.key ? 'active' : '') }}" title="{{ page.value }}" href="/{{page.key}}">
+                            {{ nav.name }}
+                        </a>
+                    </li>
+                    <? } ?>
+                </ul>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+
+                <h5 class="text-uppercase mb-0">
+                    {{util}}
+                </h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!" class="text-white">Link 1</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white">Link 2</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white">Link 3</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-white">Link 4</a>
+                    </li>
+                </ul>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2020 Copyright:
+        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
