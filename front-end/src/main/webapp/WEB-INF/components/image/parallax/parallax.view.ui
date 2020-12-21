@@ -23,8 +23,8 @@
   ~
   -->
 
-<section class="ui-section">
-    <div class="ui-parallax-image" style="background-image: url('{{src}}'); min-height: {{height}}px;">
-        {{ $$.innerHTML }}
+<div class="ui-section">
+    <div class="ui-parallax-image" style="background-image: url('{{src}}'); min-height: {{reserve}}px;">
+        {{ this.innerHTML }}
     </div>
-</section>
+</div>

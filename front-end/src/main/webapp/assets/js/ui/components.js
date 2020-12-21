@@ -295,8 +295,8 @@ const __sanitizeSnippet = (id, snippet) => {
         .replace(/(")/gm, "\\\"")
         .replace(/(\r\n|\n|\r)/gm, "")
         .replace(/{{/gm, "\" + ")
-        .replace(/}}/gm, " + \"")
-        .replace(/\$\$/gm, "window.components['" + id + "']");
+        .replace(/}}/gm, " + \"");
+        //.replace(/\$\$/gm, "window.components['" + id + "']");
 
 }
 
@@ -326,7 +326,7 @@ const __expandTemplate = (id, template = '', data = {}) => {
     output += 'return ____r.join("");';
 
     return new Function(Object.keys(data).join(", "), output)
-       .apply(null, Object.values(data));
+       .apply(window.components[id], Object.values(data));
 
 }
 
