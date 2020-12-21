@@ -11,11 +11,17 @@
   "nav_about" : "Chi siamo",
   "nav_support" : "Contatti",
 
-  "foo_logo" : "http://www.centro-cuore.it/images/logo.png",
-  "foo_home" : "Home",
-  "foo_catalog" : "Catalogo",
-  "foo_about" : "Chi siamo",
-  "foo_support" : "Contatti",
-  "foo_shipping_info" : "Informazioni di Spedizione"
+  "foo_header_connected" : "Seguici sui nostri social network per rimanere connesso!",
+
+  "foo_body_logo" : "/assets/img/logo/logo-navbar.jpg",
+  "foo_body_description" : "BioAgri S.r.l.s. è un azienda che opera nel settore agrario distribuendo ed erogando servizi di consulenza e prodotti per il giardinaggio, coltura, e strumenti per l’agronomia",
+  "foo_body_menu" : "Menu",
+  "foo_body_home" : "Home",
+  "foo_body_catalog" : "Catalogo",
+  "foo_body_about" : "Chi siamo",
+  "foo_body_support" : "Contatti",
+  "foo_body_shipping_info" : "Informazioni di Spedizione",
+
+  "foo_body_util" : "Link Utili"
 
 }
