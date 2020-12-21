@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/common/navbar/navbar.view.ui" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/common/navbar" />
+        <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages/about.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages" />
       </map>
     </option>
   </component>

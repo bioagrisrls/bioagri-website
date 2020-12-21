@@ -84,7 +84,7 @@ $(document).ready(() => {
         if (window.location === this.href)
             return;
 
-        uiNavigateURL(e.target.href, `${e.target.title || e.target.textContent}`, '#ui-navigation-container');
+        uiNavigateURL(e.currentTarget.href, `${e.currentTarget.title || e.currentTarget.textContent}`, '#ui-navigation-container');
 
     });
 

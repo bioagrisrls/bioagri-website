@@ -50,11 +50,26 @@ task sass {
     group = 'sass'
     description = 'Build .scss files'
 
-    if(Os.isFamily(Os.FAMILY_WINDOWS)) {
-        Runtime.runtime.exec('cmd.exe npm install', null, rootProject.projectDir);
-        Runtime.runtime.exec('cmd.exe npm run sass', null, rootProject.projectDir);
-    } else {
-        Runtime.runtime.exec('npm install && npm run sass', null, rootProject.projectDir);
+    doLast {
+
+        Process p1, p2;
+
+        if(Os.isFamily(Os.FAMILY_WINDOWS)) {
+            p1 = Runtime.runtime.exec('cmd.exe npm install', null, rootProject.projectDir);
+            p2 = Runtime.runtime.exec('cmd.exe npm run sass', null, rootProject.projectDir);
+        } else {
+            p1 = Runtime.runtime.exec('npm install', null, rootProject.projectDir);
+            p2 = Runtime.runtime.exec('npm run sass', null, rootProject.projectDir);
+        }
+
+        new BufferedReader(new InputStreamReader(p1.getErrorStream()))
+                .readLines()
+                .forEach({ i -> System.err.println(i) });
+
+        new BufferedReader(new InputStreamReader(p2.getErrorStream()))
+                .readLines()
+                .forEach({ i -> System.err.println(i) });
+
     }
 
     outputs.upToDateWhen { false }
@@ -66,11 +81,26 @@ task watch {
     group = 'sass'
     description = 'Watch .scss changes'
 
-    if(Os.isFamily(Os.FAMILY_WINDOWS)) {
-        Runtime.runtime.exec('cmd.exe npm install', null, rootProject.projectDir);
-        Runtime.runtime.exec('cmd.exe npm run sass', null, rootProject.projectDir);
-    } else {
-        Runtime.runtime.exec('npm install && npm run sass', null, rootProject.projectDir);
+    doLast {
+
+        Process p1, p2;
+
+        if(Os.isFamily(Os.FAMILY_WINDOWS)) {
+            p1 = Runtime.runtime.exec('cmd.exe npm install', null, rootProject.projectDir);
+            p2 = Runtime.runtime.exec('cmd.exe npm run sass-watch', null, rootProject.projectDir);
+        } else {
+            p1 = Runtime.runtime.exec('npm install', null, rootProject.projectDir);
+            p2 = Runtime.runtime.exec('npm run sass-watch', null, rootProject.projectDir);
+        }
+
+        new BufferedReader(new InputStreamReader(p1.getErrorStream()))
+                .readLines()
+                .forEach({ i -> System.err.println(i) });
+
+        new BufferedReader(new InputStreamReader(p2.getErrorStream()))
+                .readLines()
+                .forEach({ i -> System.err.println(i) });
+
     }
 
     outputs.upToDateWhen { false }
@@ -78,30 +108,22 @@ task watch {
 }
 
 
-task prepare(type: Delete) {
 
-    group = 'webapp'
-    description = 'Clean webapp'
-
-    delete "${project(":back-end").projectDir}/src/main/webapp"
-}
-
-task run(type: Copy) {
+task run(type: Sync) {
 
     group = 'webapp'
     description = 'Run webapp'
+
+
+    includeEmptyDirs = false
 
     from('src/main/webapp') {
         exclude '**/*.scss'
     }
 
-    includeEmptyDirs = false
-
     into "${project(":back-end").projectDir}/src/main/webapp"
 
 }
 
-
-run.dependsOn(project(":front-end").tasks.prepare)
-run.dependsOn(project(":front-end").tasks.sass)
+run.finalizedBy(project(":front-end").tasks.sass)
 run.finalizedBy(project(":back-end").tasks.bootRun)

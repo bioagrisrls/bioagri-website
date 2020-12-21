@@ -1,4 +1,4 @@
-/*!
+/*
  * MIT License
  *
  * Copyright (c) 2020 BioAgri S.r.l.s.
@@ -23,25 +23,21 @@
  *
  */
 
-@import "ui-theme";
 
-.ui-navbar li {
-  line-height: 48px;
-  letter-spacing: 2px;
-}
+// Colors
 
-.ui-navbar-button {
+$ui-theme-primary: orange;
+$ui-theme-secondary: green;
 
-  border-top: 4px solid $ui-theme-background-primary;
-  transition: border-top .3s;
+$ui-theme-background-primary: white;
+$ui-theme-background-secondary: white;
+
+$ui-theme-background-text: black;
+$ui-theme-background-text-variant: gray;
 
 
-  &.active {
-    border-top: 4px solid $ui-theme-primary;
-  }
+// Layout
 
-  &:hover {
-    border-top: 4px solid $ui-theme-primary;
-  }
+$ui-theme-layout-container-width: 992px;
 
-}
+

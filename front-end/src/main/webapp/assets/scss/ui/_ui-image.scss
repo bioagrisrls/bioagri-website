@@ -1,4 +1,4 @@
-/*!
+/*
  * MIT License
  *
  * Copyright (c) 2020 BioAgri S.r.l.s.
@@ -23,23 +23,23 @@
  *
  */
 
+@import "ui-theme";
 
-@keyframes navigate {
+
+@keyframes image {
 
   from {
-    transform: translate3d(0, 10px, 0);
     opacity: 0;
   }
 
   to {
-    transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 
 }
 
-.ui-section {
-  animation-name: navigate;
+img[anim] {
+  animation-name: image;
   animation-duration: .4s;
   animation-fill-mode: both;
 }

@@ -315,7 +315,7 @@ const __expandTemplate = (id, template = '', data = {}) => {
             break;
 
 
-        output += `____r.push("${__sanitizeSnippet(id, template.substr(index, match.index))}");\n`;
+        output += `____r.push("${__sanitizeSnippet(id, template.substr(index, match.index - index))}");\n`;
         output += `${match[1]}\n`;
 
         index = regexp.lastIndex;
@@ -325,8 +325,8 @@ const __expandTemplate = (id, template = '', data = {}) => {
     output += `____r.push("${__sanitizeSnippet(id, template.substr(index, template.length - index))}");\n`;
     output += 'return ____r.join("");';
 
-
     return new Function(Object.keys(data).join(", "), output)
        .apply(null, Object.values(data));
 
 }
+
