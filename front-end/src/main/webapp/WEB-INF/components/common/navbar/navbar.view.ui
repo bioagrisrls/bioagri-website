@@ -35,7 +35,7 @@
 
 
 <nav class="navbar navbar-expand-lg">
-    <div class="ui-container container-fluid">
+    <div class="ui-container container-fluid row">
 
         <!-- Toggle menu -->
         <button class="navbar-toggler"
@@ -52,13 +52,13 @@
 
 
         <!-- Navigation Logo -->
-        <a class="ui-navigate ui-navbar-brand navbar-brand nav-link w-100" href="/">
+        <a class="ui-navigate ui-navbar-brand navbar-brand nav-link col-4" href="/">
             <img src="{{logo}}" width="48" height="48" />
             <span>{{ title }}</span>
         </a>
 
 
-        <div class="collapse navbar-collapse" id="ui-navbar-links">
+        <div class="collapse navbar-collapse" id="ui-navbar-links col-8">
 
             <!-- Navigation Links -->
             <ul class="ui-navbar-nav navbar-nav">
@@ -73,7 +73,7 @@
 
             <!-- Navigation Users -->
             <div class="ui-navbar-user d-flex w-auto">
-                <span class="mdi mdi-shopping"></span>
+                <span class="mdi mdi-18px mdi-shopping"></span>
                 <span class="badge rounded-pill badge-notification bg-danger">1</span>
             </div>
 
