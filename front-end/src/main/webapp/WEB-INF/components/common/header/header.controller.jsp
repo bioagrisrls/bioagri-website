@@ -35,6 +35,7 @@
         constructor() {
             super(id, {
                 address: `${locale.info_address}`,
+                email: `${locale.info_email}`,
                 phone: `${locale.info_phone}`,
             });
         }

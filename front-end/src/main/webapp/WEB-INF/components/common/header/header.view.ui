@@ -28,11 +28,19 @@
         <div class="row">
             <div class="col">
                 <a class="ui-navigate nav-link" href="/support#maps">
+                    <img src="/assets/img/svgs/font-awesome/regular/map.svg">
                     <span>{{ address }}</span>
                 </a>
             </div>
-            <div class="col col-auto">
+            <div class="col col-sm">
                 <a class="ui-navigate nav-link" href="/support#contacts">
+                    <img src="/assets/img/svgs/font-awesome/regular/envelope.svg">
+                    <span>{{ email }}</span>
+                </a>
+            </div>
+            <div class="col col-sm">
+                <a class="ui-navigate nav-link" href="/support#contacts">
+                    <img src="/assets/img/svgs/font-awesome/solid/phone.svg">
                     <span>{{ phone }}</span>
                 </a>
             </div>
