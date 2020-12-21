@@ -46,8 +46,8 @@
     </section>
 
 
-    <ui-carousel id = "ui-carousel"> </ui-carousel>
-    <ui-footer id = "ui-footer"> </ui-footer>
+    <ui-carousel id="ui-carousel"> </ui-carousel>
+    <ui-footer id="ui-footer" ui:current="home"> </ui-footer>
 
 </section>
 

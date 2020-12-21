@@ -23,6 +23,15 @@
   ~
   -->
 
+<?
+    let navs = [
+        { key: 'home',      name: home,     value: title                         },
+        { key: 'catalog',   name: catalog,  value: catalog + ' &ndash; ' + title },
+        { key: 'about',     name: about,    value: about   + ' &ndash; ' + title },
+        { key: 'support',   name: support,  value: support + ' &ndash; ' + title },
+    ];
+?>
+
 <div class="ui-footer container-fluid">
 
     <!-- Footer Header -->
@@ -62,7 +71,15 @@
         </div>
 
         <div class="col-sm-3">
-
+            <ul class="">
+                <? for (let nav of navs) { ?>
+                <li class="nav-item">
+                    <a class="ui-navigate nav-link {{ (current === nav.key ? 'active' : '') }}" title="{{ nav.value }}" href="/{{nav.key}}">
+                        {{ nav.name }}
+                    </a>
+                </li>
+                <? } ?>
+            </ul>
         </div>
 
         <div class="col-sm-3">
