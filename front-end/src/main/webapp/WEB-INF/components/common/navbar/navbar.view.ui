@@ -60,8 +60,20 @@
 
             <!-- Navigation Users -->
             <div class="ui-navbar-user d-flex w-auto d-lg-block d-none">
-                <span class="mdi mdi-18px mdi-shopping"></span>
-                <span class="badge rounded-pill badge-notification bg-danger">1</span>
+
+                <!-- Search -->
+                <span class="mdi mdi-24px mdi-find-replace"></span>
+
+                <!-- Shopping -->
+                <span class="mdi mdi-24px mdi-shopping"></span>
+
+
+                <? if (notifications > 0) { ?>
+                    <span class="badge rounded-pill badge-notification bg-danger">
+                        {{ notifications }}
+                    </span>
+                <? } ?>
+
             </div>
 
         </div>

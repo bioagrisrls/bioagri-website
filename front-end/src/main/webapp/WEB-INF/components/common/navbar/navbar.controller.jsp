@@ -44,6 +44,8 @@
                 about: `${locale.nav_about}`,
                 support: `${locale.nav_support}`,
 
+                notifications: 0,
+
             });
         }
 
