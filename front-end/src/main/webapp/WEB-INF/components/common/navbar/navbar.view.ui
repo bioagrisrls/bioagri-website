@@ -38,7 +38,7 @@
         <div class="row align-items-center">
             <div class="col col-sm-auto">
                 <a class="ui-navigate ui-navbar-brand nav-link" href="/">
-                    <ui-image ui:src="{{logo}}" ui:width="48" ui:height="48"></ui-image>
+                    <img src="{{logo}}" width="48" height="48" />
                     <span>{{ title }}</span>
                 </a>
             </div>
