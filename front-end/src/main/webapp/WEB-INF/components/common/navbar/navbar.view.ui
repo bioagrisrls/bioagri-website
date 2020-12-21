@@ -43,7 +43,7 @@
                 </a>
             </div>
             <div class="col col-lg-8">
-                <ul class="ui-navbar-nav nav">
+                <ul class="ui-navbar-nav nav d-none d-lg-flex">
                     <? for (let nav of navs) { ?>
                         <li class="nav-item">
                             <a class="ui-navigate nav-link {{ (current === nav.key ? 'active' : '') }}" title="{{ nav.value }}" href="/{{nav.key}}">
@@ -53,7 +53,7 @@
                     <? } ?>
                 </ul>
             </div>
-            <div class="col col-lg-1">
+            <div class="col col-lg-1 d-none d-lg-flex">
                 <span class="mdi mdi-shopping"></span>
             </div>
         </div>
