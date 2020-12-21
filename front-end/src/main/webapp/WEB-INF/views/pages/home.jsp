@@ -46,9 +46,9 @@
     </section>
 
 
+    <ui-carousel id = "ui-carousel"> </ui-carousel>
+    <ui-footer id = "ui-footer"> </ui-footer>
+
 </section>
 
-<ui-carousel id = "ui-carousel"> </ui-carousel>
-
-<ui-footer id = "ui-footer"> </ui-footer>
 

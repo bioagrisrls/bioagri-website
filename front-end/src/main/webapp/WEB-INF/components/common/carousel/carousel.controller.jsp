@@ -30,7 +30,6 @@
         constructor() {
             super(id, {
 
-
             });
         }
 
