@@ -30,27 +30,13 @@
 
 <script defer>
 
-    Component.register('ui-parallax', (id, props) => new class extends StatefulComponent {
+    Component.register('ui-parallax', (id, props) => new class extends StatelessComponent {
 
         constructor() {
-            super(id, new Promise((resolve, reject) => {
-
-                const img = new Image();
-
-                img.addEventListener('load', () => resolve({
-                    src: img.src,
-                    height: props.height || 480
-                }));
-
-                img.addEventListener('error', (e) => reject(e));
-
-                img.src = props.src || '';
-
-            }));
-        }
-
-        onLoading() {
-            return `<center><div class="spinner-border" role="status"></div></center>`;
+            super(id, {
+                src: props.src || '',
+                reserve: props.reserve || 512
+            });
         }
 
         onRender() {
