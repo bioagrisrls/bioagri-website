@@ -142,5 +142,11 @@
         </div>
     </div>
 
+    <div class="ui-footer-copy">
+        <div class="text-center">
+            {{ copyright }}
+        </div>
+    </div>
+
 </footer>
 
