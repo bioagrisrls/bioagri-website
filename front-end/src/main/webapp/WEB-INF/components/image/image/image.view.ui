@@ -25,8 +25,8 @@
 
 
 <? if (!loaded) { ?>
-    <div style="width: {{width}}px; height: {{height}}px">
-        <div class="spinner-border ui-spinner ui-spinner-center" role="status">
+    <div class="ui-spinner" style="width: {{width}}px; height: {{height}}px">
+        <div class="spinner-border ui-spinner-center" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
     </div>
