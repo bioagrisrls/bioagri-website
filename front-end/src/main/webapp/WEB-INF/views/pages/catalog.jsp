@@ -45,7 +45,7 @@
     </section>
 
     <section class="ui-section">
-        <ui-section_1 id = "ui-section_1"> </ui-section_1>
+        <ui-section_1 id="ui-section_1"></ui-section_1>
     </section>
 
 </section>

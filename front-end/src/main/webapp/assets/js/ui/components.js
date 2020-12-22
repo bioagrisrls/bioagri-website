@@ -110,16 +110,28 @@ class Component {
     static register (tag, getinstance) {
 
         if(!tag)
-            throw new Error("tag cannot be null")
+            throw new Error("tag cannot be null");
 
         if(!getinstance)
-            throw new Error("getinstance cannot be null")
+            throw new Error("getinstance cannot be null");
 
+
+        for(let i of window.registered) {
+
+            if (i.tag !== tag)
+                continue;
+
+            console.debug("Skipping component, already registered: ", tag);
+            return;
+
+        }
 
         window.registered.push({
             tag: tag,
             getinstance: getinstance
         });
+
+        console.debug("Registered component: ", tag);
 
     }
 

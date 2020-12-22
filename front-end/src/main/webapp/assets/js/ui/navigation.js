@@ -49,11 +49,16 @@ const uiNavigateURL = (url, title = document.title, container = document.documen
             .then((response) => response.text())
             .then((response) => {
 
-                if (container === document.documentElement)
+                if (container === document.documentElement) {
+
                     $(container).html($(response).html());
 
-                else {
+                }else {
+
                     $.each($(response), (i, e) => {
+
+                        if($(e).is('script'))
+                            eval($(e).html());
 
                         if ($(container).id !== $(e).id)
                             return;
@@ -61,6 +66,8 @@ const uiNavigateURL = (url, title = document.title, container = document.documen
                         $(container).html($(e).html());
 
                     });
+
+
                 }
 
                 prog.css('width', '66%')
