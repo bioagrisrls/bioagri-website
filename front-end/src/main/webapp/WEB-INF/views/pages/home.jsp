@@ -81,8 +81,6 @@
 
     </div>
 
-    <ui-section_1 id = "ui-section_1"> </ui-section_1>
-
     <!-- Footer -->
     <ui-footer id="ui-footer" ui:current="home"> </ui-footer>
 
