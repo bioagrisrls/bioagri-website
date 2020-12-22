@@ -11,35 +11,35 @@
 
 <div class="col-12 col-sm-4 col-lg">
 <div class="text-center">
-<img src="../../../assets/img/home/1.png" alt="">
+<img class = "set-padding" src="../../../assets/img/home/1.png" alt="">
 <h5>Best Services</h5>
 </div>
 </div>
 
 <div class="col-12 col-sm-4 col-lg">
 <div class="text-center">
-<img src="../../../assets/img/home/2.png" alt="">
+<img class = "set-padding" src="../../../assets/img/home/2.png" alt="">
 <h5>Farm Experiences</h5>
 </div>
 </div>
 
 <div class="col-12 col-sm-4 col-lg">
 <div class="text-center">
-<img src="../../../assets/img/home/3.png" alt="">
+<img class = "set-padding" src="../../../assets/img/home/3.png" alt="">
 <h5>100% Natural</h5>
 </div>
 </div>
 
 <div class="col-12 col-sm-4 col-lg col-mb-2">
 <div class="text-center">
-<img src="../../../assets/img/home/4.png" alt="">
+<img class = "set-padding" src="../../../assets/img/home/4.png" alt="">
 <h5>Farm Equipment</h5>
 </div>
 </div>
 
 <div class="col-12 col-sm-4 col-lg">
 <div class="text-center">
-<img src="../../../assets/img/home/5.png" alt="">
+<img class = "set-padding" src="../../../assets/img/home/5.png" alt="">
 <h5>Organic food</h5>
 </div>
 </div>
