@@ -47,14 +47,10 @@
                 </div>
 
                 <div class="col-md text-center">
-                    <ul>
-                        <li>
-                            <a class="ui-footer-social" href="#"><span class="mdi mdi-facebook mdi-24px"></span></a>
-                            <a class="ui-footer-social" href="#"><span class="mdi mdi-twitter mdi-24px"></span></a>
-                            <a class="ui-footer-social" href="#"><span class="mdi mdi-linkedin mdi-24px"></span></a>
-                            <a class="ui-footer-social" href="#"><span class="mdi mdi-instagram mdi-24px"></span></a>
-                        </li>
-                    </ul>
+                    <a class="ui-footer-social" href="#"><span class="mdi mdi-facebook mdi-24px"></span></a>
+                    <a class="ui-footer-social" href="#"><span class="mdi mdi-twitter mdi-24px"></span></a>
+                    <a class="ui-footer-social" href="#"><span class="mdi mdi-linkedin mdi-24px"></span></a>
+                    <a class="ui-footer-social" href="#"><span class="mdi mdi-instagram mdi-24px"></span></a>
                 </div>
 
             </div>
