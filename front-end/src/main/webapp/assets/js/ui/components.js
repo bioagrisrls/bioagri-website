@@ -279,6 +279,15 @@ class StatefulComponent extends Component {
         return this.$currentState;
     }
 
+    /**
+     * Change state of component and redraw it.
+     * @param state {object}
+     * @see setState
+     */
+    set state(state) {
+        this.setState(state);
+    }
+
 
     /**
      * Before redraw of a component.
