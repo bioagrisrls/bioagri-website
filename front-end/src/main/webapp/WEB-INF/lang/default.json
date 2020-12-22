@@ -4,8 +4,7 @@
   "info_address" : "Rosarno, Via delle livare, 100 100",
   "info_phone" : "0966-543210",
   "info_email" : "info@bioagri.com",
-  "info_site" : "http://localhost:8080/",
-  "info_site_text" : "bioagrishop.it",
+  "info_copy" : "Copyright &copy; 2021 Bioagri S.r.l.s. All rights reserved.",
 
   "nav_logo" : "/assets/img/logo/logo-navbar.jpg",
   "nav_home" : "Home",

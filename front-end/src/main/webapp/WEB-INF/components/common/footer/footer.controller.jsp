@@ -54,8 +54,7 @@
                 phone: `${locale.info_phone}`,
                 mail: `${locale.info_email}`,
 
-                site: `${locale.info_site}`,
-                site_text: `${locale.info_site_text}`,
+                copyright: `${locale.info_copy}`
 
             });
         }

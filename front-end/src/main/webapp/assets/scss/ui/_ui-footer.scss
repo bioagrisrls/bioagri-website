@@ -113,6 +113,17 @@
 
 }
 
+.ui-footer-copy {
+
+  height: auto;
+  padding: 16px;
+  vertical-align: center;
+
+  color: $ui-theme-secondary-text;
+  background-color: $ui-theme-secondary;
+
+}
+
 
 .ui-footer-social {
 
@@ -127,25 +138,6 @@
     transform: rotate(30deg);
   }
 
-}
-
-.ui-footer-body {
-  p {
-    font-size: medium;
-  }
-}
-
-.ui-footer-brand span {
-  text-transform: uppercase;
-  color: $ui-theme-secondary-text;
-}
-
-.ui-footer-brand img {
-  height: 48px;
-}
-
-.ui-footer-bottom {
-  background-color: $ui-theme-primary;
 }
 
 .ui-footer-icon {
