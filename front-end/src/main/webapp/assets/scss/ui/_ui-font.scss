@@ -1,4 +1,4 @@
-/*!
+/*
  * MIT License
  *
  * Copyright (c) 2020 BioAgri S.r.l.s.
@@ -24,59 +24,59 @@
  */
 
 @font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), local('Roboto-Regular'), url('/assets/fonts/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
   font-family: 'Roboto';
-  src: local('Roboto'), local('Roboto-Regular'), url('front-end/src/main/webapp/assets/fonts/Roboto-Regular.ttf') format('truetype');
-  font-weight: normal;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('/assets/fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-font-family: 'Roboto';
-src: local('Roboto Bold'), local('Roboto-Bold'), url('front-end/src/main/webapp/assets/fonts/Roboto-Bold.ttf') format('truetype');
-font-weight: bold;
-font-style: normal;
+  font-family: 'Roboto';
+  src: local('Roboto Italic'), local('Roboto-Italic'), url('/assets/fonts/Roboto-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
 }
 
 @font-face {
-font-family: 'Roboto';
-src: local('Roboto Italic'), local('Roboto-Italic'), url('front-end/src/main/webapp/assets/fonts/Roboto-Italic.ttf') format('truetype');
-font-weight: normal;
-font-style: italic;
+  font-family: 'Roboto';
+  src: local('Roboto BoldItalic'), local('Roboto-BoldItalic'), url('/assets/fonts/Roboto-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
 }
 
 @font-face {
-font-family: 'Roboto';
-src: local('Roboto BoldItalic'), local('Roboto-BoldItalic'), url('front-end/src/main/webapp/assets/fonts/Roboto-BoldItalic.ttf') format('truetype');
-font-weight: bold;
-font-style: italic;
+  font-family: 'Roboto';
+  src: local('Roboto Light'), local('Roboto-Light'), url('/assets/fonts/Roboto-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
 }
 
 @font-face {
-font-family: 'Roboto';
-src: local('Roboto Light'), local('Roboto-Light'), url('front-end/src/main/webapp/assets/fonts/Roboto-Light.ttf') format('truetype');
-font-weight: 300;
-font-style: normal;
+  font-family: 'Roboto';
+  src: local('Roboto LightItalic'), local('Roboto-LightItalic'), url('/assets/fonts/Roboto-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
 }
 
 @font-face {
-font-family: 'Roboto';
-src: local('Roboto LightItalic'), local('Roboto-LightItalic'), url('front-end/src/main/webapp/assets/fonts/Roboto-LightItalic.ttf') format('truetype');
-font-weight: 300;
-font-style: italic;
+  font-family: 'Roboto';
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('/assets/fonts/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
-font-family: 'Roboto';
-src: local('Roboto Medium'), local('Roboto-Medium'), url('front-end/src/main/webapp/assets/fonts/Roboto-Medium.ttf') format('truetype');
-font-weight: 500;
-font-style: normal;
-}
-
-@font-face {
-font-family: 'Roboto';
-src: local('Roboto MediumItalic'), local('Roboto-MediumItalic'), url('front-end/src/main/webapp/assets/fonts/Roboto-MediumItalic.ttf') format('truetype');
-font-weight: 500;
-font-style: italic;
+  font-family: 'Roboto';
+  src: local('Roboto MediumItalic'), local('Roboto-MediumItalic'), url('/assets/fonts/Roboto-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
 }
 
 /* Roboto-Regular.ttf       400 */
@@ -87,3 +87,7 @@ font-style: italic;
 /* Roboto-MediumItalic.ttf  500 */
 /* Roboto-Light.ttf         300 */
 /* Roboto-LightItalic.ttf   300 */
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
