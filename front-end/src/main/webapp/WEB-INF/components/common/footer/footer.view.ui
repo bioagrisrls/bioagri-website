@@ -69,7 +69,7 @@
 
             <div class="row align-items-center">
 
-                <div class="col-md-4 text-center-md">
+                <div class="col-md-5 text-center text-md-start">
                     <ul>
                         <li>
                             <a class="ui-navigate" href="/">
@@ -83,7 +83,7 @@
                     </ul>
                 </div>
 
-                <div class="col-md-2 text-center">
+                <div class="col-md-2 text-center text-md-start">
 
                     <header>{{ menu }}</header>
 
@@ -99,7 +99,7 @@
 
                 </div>
 
-                <div class="col-md-2 text-center">
+                <div class="col-md-2 text-center text-md-start">
 
                     <header>{{ util }}</header>
 
@@ -115,7 +115,7 @@
 
                 </div>
 
-                <div class="col-md-4 text-center">
+                <div class="col-md-3 text-center text-md-start">
 
                     <header>{{ contact }}</header>
 
