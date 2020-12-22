@@ -60,7 +60,7 @@
         }
 
         onRender() {
-            return `${components.common_footer}`
+            return `${components.common_footer}`;
         }
 
 

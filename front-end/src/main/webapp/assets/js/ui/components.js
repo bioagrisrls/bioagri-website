@@ -24,14 +24,14 @@
  */
 
 /**
- * Array of component instances.
+ * Collection of component instances.
  * @type {Component[]}
  */
 
 window.components = window.components || [];
 
 /**
- * Array of component registered.
+ * Collection of registered components.
  * @type {object[]}
  */
 window.registered = window.registered || [];
@@ -139,12 +139,12 @@ class Component {
     /**
      * Render a component into his own HTML Element.
      * @param instance {Component}
-     * @param data {string}
+     * @param template {string}
      * @param state {object}
      */
-    static render(instance, data, state = {}) {
+    static render(instance, template, state = {}) {
 
-        $(instance.elem).html((instance.renderedHTML = __expandTemplate(instance.id, data, state)));
+        $(instance.elem).html((instance.renderedHTML = $renderTemplate(instance, template, state)));
 
         const recursive_render = (elem) => {
             for(let el of elem.children) {
@@ -241,7 +241,7 @@ class StatefulComponent extends Component {
         super(elem);
         this.onInit();
 
-        this.__currentState = {};
+        this.$currentState = {};
 
 
         Component.render(this, this.onLoading(), {});
@@ -263,7 +263,7 @@ class StatefulComponent extends Component {
      */
     setState(state) {
 
-        this.__currentState = Object.assign(this.__currentState, state);
+        this.$currentState = Object.assign(this.$currentState, state);
 
         this.onBeforeUpdate(this.state);
         Component.render(this, this.onRender(), this.state);
@@ -276,7 +276,7 @@ class StatefulComponent extends Component {
      * @returns {object}
      */
     get state() {
-        return this.__currentState;
+        return this.$currentState;
     }
 
 
@@ -299,46 +299,54 @@ class StatefulComponent extends Component {
 }
 
 
+/**
+ * Render a template string in HTML.
+ * @param instance {Component}
+ * @param template {string}
+ * @param state {object}
+ * @returns {string}
+ */
+const $renderTemplate = (instance, template = '', state = {}) => {
+
+    /**
+     * @param snippet {string}
+     * @returns {string}
+     */
+    const sanitize = (snippet) => {
+        return snippet
+            .replace(/(")/gm, "\\\"")
+            .replace(/(\r\n|\n|\r)/gm, "")
+            .replace(/{{/gm, "\" + ")
+            .replace(/}}/gm, " + \"");
+    }
 
 
-const __sanitizeSnippet = (id, snippet) => {
-
-    return snippet
-        .replace(/(")/gm, "\\\"")
-        .replace(/(\r\n|\n|\r)/gm, "")
-        .replace(/{{/gm, "\" + ")
-        .replace(/}}/gm, " + \"");
-        //.replace(/\$\$/gm, "window.components['" + id + "']");
-
-}
-
-const __expandTemplate = (id, template = '', data = {}) => {
-
-    let output = '';
     let index = 0;
+    let output = '';
     let regexp = /<\?(.*?)?\?>/gs;
 
-    output += 'let ____r = [];\n';
+
+    output += 'let $$$$ = [];\n';
 
     let match;
-    while ((match = regexp.exec(template)) !== null) {
+    while ((match = regexp.exec(template))) {
 
         if(match[0] === undefined)
             break;
 
 
-        output += `____r.push("${__sanitizeSnippet(id, template.substr(index, match.index - index))}");\n`;
+        output += `$$$$.push("${sanitize(template.substr(index, match.index - index))}");\n`;
         output += `${match[1]}\n`;
 
         index = regexp.lastIndex;
 
     }
 
-    output += `____r.push("${__sanitizeSnippet(id, template.substr(index, template.length - index))}");\n`;
-    output += 'return ____r.join("");';
+    output += `$$$$.push("${sanitize(template.substr(index, template.length - index))}");\n`;
+    output += 'return $$$$.join("");';
 
-    return new Function(Object.keys(data).join(", "), output)
-       .apply(window.components[id], Object.values(data));
+    return new Function(Object.keys(state).join(", "), output)
+       .apply(instance, Object.values(state));
 
 }
 
