@@ -23,11 +23,12 @@
  *
  */
 
+
+
 /**
  * Collection of component instances.
  * @type {Component[]}
  */
-
 window.components = window.components || [];
 
 /**
@@ -212,7 +213,7 @@ class StatelessComponent extends Component {
         this.onInit();
 
 
-        Component.render(this, this.onLoading(), {});
+        Component.render(this, this.onLoading(), state || {});
 
         if((state || {}).then) {
             state.then(
@@ -244,7 +245,7 @@ class StatefulComponent extends Component {
         this.$currentState = {};
 
 
-        Component.render(this, this.onLoading(), {});
+        Component.render(this, this.onLoading(), state || {});
 
         if((state || {}).then) {
             state.then(

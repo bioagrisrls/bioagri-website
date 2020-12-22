@@ -39,7 +39,7 @@
     <ui-navbar id="ui-navbar" ui:current="home"></ui-navbar>
 
 
-    <div class="ui-section">
+    <div ui-animated>
 
         <ui-parallax id="ui-parallax-1" ui:src="/assets/img/home/parallax01.jpg" ui:reserve="1080"></ui-parallax>
 

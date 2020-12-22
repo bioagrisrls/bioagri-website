@@ -1,4 +1,4 @@
-<!--
+<%--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,9 +21,31 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  -->
+  --%>
+
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
 
 
-<div class="ui-parallax-image" style="background-image: url('{{src}}'); min-height: {{reserve}}px;" ui-animated>
-    {{ this.innerHTML }}
-</div>
+<script defer>
+
+    Component.register('ui-image', (id, props) => new class extends StatefulComponent {
+
+        constructor() {
+            super(id, {
+                src: props.src || '',
+                alt: props.alt || '',
+                width: props.width || props.height || 'auto',
+                height: props.height || props.width || 'auto',
+                loaded: false
+            });
+        }
+
+        onRender() {
+            return `${components.image_image}`
+        }
+
+    });
+
+</script>

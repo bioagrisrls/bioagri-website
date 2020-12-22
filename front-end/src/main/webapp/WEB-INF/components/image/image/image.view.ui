@@ -24,6 +24,33 @@
   -->
 
 
-<div class="ui-parallax-image" style="background-image: url('{{src}}'); min-height: {{reserve}}px;" ui-animated>
-    {{ this.innerHTML }}
-</div>
+<? if (!loaded) { ?>
+    <div style="width: {{width}}px; height: {{height}}px">
+        <div class="spinner-border ui-spinner ui-spinner-center" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+<? } else { ?>
+    <img src="{{src}}" width="{{width}}" height="{{height}}" alt="{{alt}}" ui-animated />
+<? } ?>
+
+
+<?
+    if(!loaded) {
+
+        new Promise((resolve, reject) => {
+
+            const img = new Image();
+            img.addEventListener('load',  (e) => setTimeout(() => resolve(img), 4000));
+            img.addEventListener('error', (e) => reject(e));
+            img.src = src;
+
+        }).then((response) => this.setState({
+
+            src: response.src,
+            loaded: true
+
+        }));
+
+    }
+?>
