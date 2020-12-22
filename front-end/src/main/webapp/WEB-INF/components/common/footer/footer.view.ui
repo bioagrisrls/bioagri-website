@@ -40,25 +40,95 @@
     <div class="ui-footer-header">
         <div class="ui-container">
 
-            <div class="row">
+            <div class="row align-items-center">
 
-                <div class="col-md">
-                    <center>
-                        <span>{{ connected }}</span>
-                    </center>
+                <div class="col-md text-center">
+                    <span>{{ connected }}</span>
                 </div>
 
-                <div class="col-md">
-                    <center>
-                        <ul>
+                <div class="col-md text-center">
+                    <ul>
+                        <li>
+                            <a class="ui-footer-social" href="#"><span class="mdi mdi-facebook mdi-24px"></span></a>
+                            <a class="ui-footer-social" href="#"><span class="mdi mdi-twitter mdi-24px"></span></a>
+                            <a class="ui-footer-social" href="#"><span class="mdi mdi-linkedin mdi-24px"></span></a>
+                            <a class="ui-footer-social" href="#"><span class="mdi mdi-instagram mdi-24px"></span></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Footer Body -->
+    <div class="ui-footer-body">
+        <div class="ui-container">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-4 text-center-md">
+                    <ul>
+                        <li>
+                            <a class="ui-navigate" href="/">
+                                <img src="{{ logo }}" width="48" height="48" />
+                                <span> {{ title }} </span>
+                            </a>
+                            <p>
+                                {{ description }}
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-2 text-center">
+
+                    <header>{{ menu }}</header>
+
+                    <ul>
+                        <? for (let page of pages) { ?>
                             <li>
-                                <a class="ui-footer-social" href="#"><span class="mdi mdi-facebook mdi-24px"></span></a>
-                                <a class="ui-footer-social" href="#"><span class="mdi mdi-twitter mdi-24px"></span></a>
-                                <a class="ui-footer-social" href="#"><span class="mdi mdi-linkedin mdi-24px"></span></a>
-                                <a class="ui-footer-social" href="#"><span class="mdi mdi-instagram mdi-24px"></span></a>
+                                <a class="ui-navigate {{ (current === page.key ? 'active' : '') }}" title="{{ page.value }}" href="/{{page.key}}">
+                                    {{ page.name }}
+                                </a>
                             </li>
-                        </ul>
-                    </center>
+                        <? } ?>
+                    </ul>
+
+                </div>
+
+                <div class="col-md-2 text-center">
+
+                    <header>{{ util }}</header>
+
+                    <ul>
+                        <? for (let page of pages) { ?>
+                        <li>
+                            <a class="ui-navigate {{ (current === page.key ? 'active' : '') }}" title="{{ page.value }}" href="/{{page.key}}">
+                                {{ page.name }}
+                            </a>
+                        </li>
+                        <? } ?>
+                    </ul>
+
+                </div>
+
+                <div class="col-md-4 text-center">
+
+                    <header>{{ contact }}</header>
+
+                    <ul>
+                        <? for (let page of pages) { ?>
+                        <li>
+                            <a class="ui-navigate {{ (current === page.key ? 'active' : '') }}" title="{{ page.value }}" href="/{{page.key}}">
+                                {{ page.name }}
+                            </a>
+                        </li>
+                        <? } ?>
+                    </ul>
+
                 </div>
 
             </div>

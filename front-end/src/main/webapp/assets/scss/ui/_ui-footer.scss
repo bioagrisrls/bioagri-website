@@ -61,8 +61,34 @@
 
 
 .ui-footer-header {
+
+  height: auto;
+  vertical-align: center;
+
   color: lighten($ui-theme-secondary-text, 90%);
   background-color: darken($ui-theme-secondary, 10%);
+
+  div {
+
+    padding: 8px;
+
+    ul {
+      list-style-type: none;
+    }
+  }
+
+}
+
+.ui-footer-body {
+
+  height: auto;
+  vertical-align: center;
+
+  color: $ui-theme-secondary-text;
+  background-color: $ui-theme-secondary;
+
+
+
 }
 
 .ui-footer-advise-connected {
