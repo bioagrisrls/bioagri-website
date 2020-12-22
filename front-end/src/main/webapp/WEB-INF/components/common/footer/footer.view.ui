@@ -72,14 +72,15 @@
                                 <img src="{{ logo }}" width="48" height="48" />
                                 <span> {{ title }} </span>
                             </a>
-                            <p>
-                                {{ description }}
-                            </p>
+
+                            <br>
+                            <span>{{ description }}</span>
+
                         </li>
                     </ul>
                 </div>
 
-                <div class="col-md-2 text-center text-md-start">
+                <div class="col-md-2 text-center text-md-start d-none d-md-block">
 
                     <header>{{ menu }}</header>
 
@@ -95,18 +96,15 @@
 
                 </div>
 
-                <div class="col-md-2 text-center text-md-start">
+                <div class="col-md-2 text-center text-md-start d-none d-md-block">
 
                     <header>{{ util }}</header>
 
                     <ul>
-                        <? for (let page of pages) { ?>
-                        <li>
-                            <a class="ui-navigate {{ (current === page.key ? 'active' : '') }}" title="{{ page.value }}" href="/{{page.key}}">
-                                {{ page.name }}
-                            </a>
-                        </li>
-                        <? } ?>
+                        <li><a href="">Link 1</a></li>
+                        <li><a href="">Link 2</a></li>
+                        <li><a href="">Link 3</a></li>
+                        <li><a href="">Link 4</a></li>
                     </ul>
 
                 </div>
@@ -116,13 +114,25 @@
                     <header>{{ contact }}</header>
 
                     <ul>
-                        <? for (let page of pages) { ?>
                         <li>
-                            <a class="ui-navigate {{ (current === page.key ? 'active' : '') }}" title="{{ page.value }}" href="/{{page.key}}">
-                                {{ page.name }}
+                            <a class="ui-footer-icon">
+                                <span class="mdi mdi-home mdi"></span>
+                                {{ address }}
                             </a>
                         </li>
-                        <? } ?>
+
+                        <li>
+                            <a class="ui-footer-icon">
+                                <span class="mdi mdi-mail mdi"></span>
+                                {{ mail }}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui-footer-icon">
+                                <span class="mdi mdi-phone mdi"></span>
+                                {{ phone }}
+                            </a>
+                        </li>
                     </ul>
 
                 </div>
