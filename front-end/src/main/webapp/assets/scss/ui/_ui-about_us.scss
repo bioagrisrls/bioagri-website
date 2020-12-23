@@ -46,6 +46,7 @@
 }
 
 #about-us-section-header > span {
+
   color: #77b122;
   font-size:140%;
 
@@ -76,7 +77,6 @@
 
 #about_us_img_rounded {
 
-
     border-radius: 50%;
     height: auto;
     max-width: 100%;
@@ -84,10 +84,7 @@
     max-width: 100%;
     vertical-align: middle;
     border-style: none;
-
-  position: relative;
-  z-index: 1;
-
-
+    position: relative;
+    z-index: 1;
 
 }
