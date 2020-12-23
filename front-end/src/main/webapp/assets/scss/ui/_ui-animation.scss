@@ -23,10 +23,16 @@
  *
  */
 
-@import "ui-theme";
 
-.ui-container {
-  margin: auto;
-  padding: 0 1em 0 1em;
-  max-width: $ui-theme-layout-container-width;
+
+*[ui-animated] {
+  animation-name: fadeIn;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+*[ui-animated-hover]:hover {
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }

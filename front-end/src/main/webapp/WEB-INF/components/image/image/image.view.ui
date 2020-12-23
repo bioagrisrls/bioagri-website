@@ -31,7 +31,7 @@
         </div>
     </div>
 <? } else { ?>
-    <img src="{{src}}" width="{{width}}" height="{{height}}" alt="{{alt}}" ui-animated />
+    <img src="{{src}}" width="{{width}}" height="{{height}}" alt="{{alt}}" class="{{rounded ? 'rounded' : ''}}" ui-animated />
 <? } ?>
 
 

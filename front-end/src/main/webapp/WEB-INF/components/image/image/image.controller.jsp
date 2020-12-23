@@ -38,6 +38,7 @@
                 alt: props.alt || '',
                 width: props.width || props.height || 'auto',
                 height: props.height || props.width || 'auto',
+                rounded: props.rounded || false,
                 loaded: false
             });
         }
