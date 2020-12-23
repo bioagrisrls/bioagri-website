@@ -26,7 +26,7 @@
 $(document).ready(() => {
 
     const animated = $('*[ui-animated-scroll]');
-    console.log(animated);
+
 
     window.addEventListener('scroll', () => animated.each((i, e) => {
 
@@ -34,6 +34,10 @@ $(document).ready(() => {
 
             e.classList.add('animate__animated');
             e.classList.add('animate__backInUp');
+
+            e.addEventListener('animationend', () => {
+                e.classList.remove('animate__backInUp');
+            })
 
             animated.splice(i, 1);
 
