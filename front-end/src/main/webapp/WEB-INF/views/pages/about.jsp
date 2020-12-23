@@ -23,9 +23,13 @@
   ~
   --%>
 
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
+
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
-<jsp:include page="/WEB-INF/components/about_us/about_us.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/footer/footer.controller.jsp" />
 
 <section id="ui-navigation-container">
 
@@ -35,15 +39,36 @@
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ui:current="about"></ui-navbar>
 
-
+    <!-- About -->
     <section ui-animated>
-        <p>
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)
-        </p>
+
+        <div class="ui-container about">
+
+            <!-- About Header -->
+            <div class="row align-items-center">
+
+                <div class="col-md">
+                    <ul>
+                        <li>
+                            <h6 class="about_header_title"> ${ locale.about_header_title } </h6>
+                            <h1 class="about_header_subtitle"><span > ${ locale.about_header_subtitle_start } </span><b> ${ locale.about_header_subtitle_end } </b></h1>
+                            <img class="about_leaf" src="/assets/img/about/decor.jpg">
+                            <p> ${ locale.about_header_body } </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md text-center">
+                    <img class="rounded_image" src="/assets/img/about/img_rounded.jpg">
+                </div>
+
+            </div>
+
+        </div>
+
     </section>
 
-    <section ui-animated>
-        <ui-about_us id="ui-about_us"></ui-about_us>
-    </section>
+    <!-- Footer -->
+    <ui-footer id="ui-footer" ui:current="home"> </ui-footer>
 
 </section>
