@@ -44,22 +44,27 @@
 
         <div class="ui-container ui-about">
 
+            <br>
+            <br>
+            <br>
+            <br>
+
             <!-- About Header -->
             <div class="row align-items-center">
 
                 <div class="col-md">
                     <ul>
                         <li>
-                            <h6 class="ui-about_header_title"> ${ locale.about_header_title } </h6>
-                            <h1 class="ui-about_header_subtitle"><span > ${ locale.about_header_subtitle_start } </span><b> ${ locale.about_header_subtitle_end } </b></h1>
-                            <img class="ui-about_leaf" src="/assets/img/about/decor.jpg">
+                            <h6 class="ui-about-header-title"> ${ locale.about_header_title } </h6>
+                            <h1 class="ui-about-header-subtitle"><span > ${ locale.about_header_subtitle_start } </span><b> ${ locale.about_header_subtitle_end } </b></h1>
+                            <img class="ui-about-leaf" src="/assets/img/about/decor.jpg">
                             <p> ${ locale.about_header_body } </p>
                         </li>
                     </ul>
                 </div>
 
                 <div class="col-md text-center">
-                    <img class="ui-rounded_image" src="/assets/img/about/img_rounded.jpg">
+                    <img class="ui-rounded-image" src="/assets/img/about/img_rounded.jpg">
                 </div>
 
             </div>
@@ -68,28 +73,54 @@
             <br>
 
             <!-- About History -->
-            <div class="row align-items-center text-center ui-history">
+            <div class="row align-items-center justify-content-center ui-history">
 
-                <div class="ui-history-header">
+                <div class="col-md text-center ui-history-header">
 
                     <header>${ locale.history_subtitle }</header>
-                    <h1>${ locale.history_title }</h1>
+                    <h1 >${ locale.history_title }</h1>
 
                     <br>
-                    <br>
 
-                    <img class="ui-history-image" src="/assets/img/about/history.jpg">
-                    <div class="ui-history-divider"></div>
+                    <img class="ui-history-image" src="/assets/img/about/img_rounded.jpg">
+                    <div class="ui-history-divider align-items-center justify-content-center"></div>
 
                 </div>
 
 
+                <div class="ui-history-grid">
 
+                    <div class="row">
 
+                        <article class="ui-parallax-caption-center">
 
+                            <div class="ui-history-left">
+                                <div class="ui-history-title-left">
+                                    <h1 class="animate__animated animate__backInDown">2006</h1>
+                                </div>
 
-            </div>
+                                <p class="animate__animated animate__backInDown">Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                            </div>
+                            <br>
 
+                            <div class="ui-history-right">
+                                <div class="ui-history-title-right">
+                                    <h1  class="animate__animated animate__backInDown">2018</h1>
+                                </div>
+
+                                <p class="animate__animated animate__backInDown">Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                    <br><br>
+                    <br><br>
+                    <br><br>
+                    <br><br>
+
+                </div>
 
         </div>
 
