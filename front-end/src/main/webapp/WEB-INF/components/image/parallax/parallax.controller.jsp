@@ -35,7 +35,7 @@
         constructor() {
             super(id, {
                 src: props.src || '',
-                reserve: props.reserve || 512
+                reserve: props.reserve || '100%'
             });
         }
 
