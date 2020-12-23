@@ -42,14 +42,24 @@
     <!-- About -->
     <section ui-animated>
 
+        <!-- About Header -->
+        <div class="ui-block-container">
+            <div class="row ui-block-container-fixed">
+                <div class="ui-container">
+                    <h2>${ locale.about_title }</h2>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
         <div class="ui-container ui-about">
 
-            <br>
-            <br>
-            <br>
-            <br>
 
-            <!-- About Header -->
+            <!-- About Presentation -->
             <div class="row align-items-center">
 
                 <div class="col-md">
@@ -69,13 +79,17 @@
 
             </div>
 
+
             <br>
             <br>
+            <br>
+            <br>
+
 
             <!-- About History -->
-            <div class="row align-items-center justify-content-center ui-history">
 
-                <div class="col-md text-center ui-history-header">
+            <div class="row align-items-center text-center justify-content-center ui-history">
+                <div class="col-md ui-history-header">
 
                     <header>${ locale.history_subtitle }</header>
                     <h1 >${ locale.history_title }</h1>
@@ -83,47 +97,45 @@
                     <br>
 
                     <img class="ui-history-image" src="/assets/img/about/img_rounded.jpg">
-                    <div class="ui-history-divider align-items-center justify-content-center"></div>
 
                 </div>
+            </div>
 
+            <div class="row align-items-center justify-content-center ui-history">
 
-                <div class="ui-history-grid">
+                <div class="col col-5 ">
 
-                    <div class="row">
+                    <div>
+                        <div>
+                            <h1 class="ui-history-title-left">2018</h1>
+                            <header class="ui-history-separator-left"></header>
+                        </div>
 
-                        <article class="ui-parallax-caption-center">
-
-                            <div class="ui-history-left">
-                                <div class="ui-history-title-left">
-                                    <h1 class="animate__animated animate__backInDown">2006</h1>
-                                </div>
-
-                                <p class="animate__animated animate__backInDown">Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
-                            </div>
-                            <br>
-
-                            <div class="ui-history-right">
-                                <div class="ui-history-title-right">
-                                    <h1  class="animate__animated animate__backInDown">2018</h1>
-                                </div>
-
-                                <p class="animate__animated animate__backInDown">Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
-                            </div>
-
-                        </article>
-
+                        <p class="ui-history-body-left">Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
                     </div>
 
-                    <br><br>
-                    <br><br>
-                    <br><br>
-                    <br><br>
+                </div>
+
+                <div class="col col-2 ui-history-center">
+                    <div class="ui-history-divider"></div>
+                </div>
+
+                <div class="col col-5">
+
+                    <div>
+                        <div>
+                            <h1 class="ui-history-title-right">2018</h1>
+                            <header class="ui-history-separator-right"></header>
+                        </div>
+
+                        <p class="ui-history-body-right">Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                    </div>
 
                 </div>
 
-        </div>
+            </div>
 
+        </div>
 
     </section>
 

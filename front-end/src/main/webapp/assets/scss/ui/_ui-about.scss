@@ -25,6 +25,22 @@
 
 @import "ui-theme";
 
+.ui-block-container {
+  background-color: $ui-theme-primary;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+}
+
+.ui-block-container-fixed {
+  margin: 0 auto;
+
+  h2 {
+    color: $ui-theme-primary-text;
+  }
+
+}
+
 .ui-about {
   ul {
     list-style-type: none;
@@ -93,6 +109,7 @@
 }
 
 .ui-history-divider {
+  margin: 0 auto;
   border: 3.75px solid #77b122;
   border-radius: 0 0 10px 10px;
   width: 1px !important;
@@ -100,50 +117,63 @@
   z-index: 1;
 }
 
-.ui-history-grid {
-  position: relative;
-  margin-top: -1230px;
+.ui-history-center {
+  width: 30px;
 }
 
-.ui-history-right {
-  position: absolute;
-  right: 0px;
+.ui-history-separator-left {
+  border-right: 10px solid #77b122;
+  border-radius: 10px;
+  margin-right: -35px;
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  padding-top: 36px;
+  z-index: -1;
+
+  header {
+    font-size: 36px;
+    line-height: 32px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid $ui-theme-secondary;
+  }
+
 }
 
 .ui-history-title-left {
-  border-right: 10px solid #77b122;
+  padding-right: 24px;
+  font-size: 38px;
+  float: right;
+}
+
+.ui-history-body-left {
+  padding-right: 24px;
+  text-align: end;
+}
+
+.ui-history-separator-right {
+  border-left: 10px solid #77b122;
   border-radius: 10px;
-  margin-right: -7.5px;
+  margin-left: -35px;
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  padding-top: 36px;
   z-index: -1;
+
+  header {
+    font-size: 36px;
+    line-height: 32px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid $ui-theme-secondary;
+  }
+
 }
 
 .ui-history-title-right {
-  border-left: 10px solid #77b122;
-  border-radius: 10px;
-  margin-left: -8px;
-  z-index: -1;
+  padding-left: 24px;
+  font-size: 38px;
+  float: left;
 }
 
-.ui-history-title-left h1 {
-  color: $ui-theme-background-text;
-  padding-left: 30px !important;
-  padding-right: 30px !important;
-  margin-bottom: 0 !important;
-  z-index: -1 !important;
-}
-
-.ui-history-left p {
-  color: $ui-theme-background-text;
-}
-
-.ui-history-title-right h1 {
-  color: $ui-theme-background-text;
-  padding-left: 30px !important;
-  padding-right: 30px !important;
-  margin-bottom: 0 !important;
-  z-index: -1 !important;
-}
-
-.ui-history-right p {
-  color: $ui-theme-background-text;
+.ui-history-body-right {
+  padding-left: 24px;
 }
