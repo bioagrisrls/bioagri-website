@@ -319,15 +319,17 @@ class StatefulComponent extends Component {
 const $renderTemplate = (instance, template = '', state = {}) => {
 
     /**
+     * @param id {string}
      * @param snippet {string}
      * @returns {string}
      */
-    const sanitize = (snippet) => {
+    const sanitize = (id, snippet) => {
         return snippet
             .replace(/(")/gm, "\\\"")
             .replace(/(\r\n|\n|\r)/gm, "")
             .replace(/{{/gm, "\" + ")
-            .replace(/}}/gm, " + \"");
+            .replace(/}}/gm, " + \"")
+            .replace(/\$\$/gm, "window.components['" + id + "']");
     }
 
 
@@ -345,14 +347,14 @@ const $renderTemplate = (instance, template = '', state = {}) => {
             break;
 
 
-        output += `$$$$.push("${sanitize(template.substr(index, match.index - index))}");\n`;
+        output += `$$$$.push("${sanitize(instance.id, template.substr(index, match.index - index))}");\n`;
         output += `${match[1]}\n`;
 
         index = regexp.lastIndex;
 
     }
 
-    output += `$$$$.push("${sanitize(template.substr(index, template.length - index))}");\n`;
+    output += `$$$$.push("${sanitize(instance.id, template.substr(index, template.length - index))}");\n`;
     output += 'return $$$$.join("");';
 
     return new Function(Object.keys(state).join(", "), output)

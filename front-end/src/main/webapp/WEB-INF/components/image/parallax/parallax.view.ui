@@ -24,6 +24,30 @@
   -->
 
 
-<div class="ui-parallax-image" style="background-image: url('{{src}}'); min-height: {{reserve}};" ui-animated>
-    {{ this.innerHTML }}
-</div>
+
+
+
+
+<? if(items.length > 0) { ?>
+
+
+    <div class="ui-parallax-image" style="background-image: linear-gradient(gray, gray), url('{{src}}/{{items[current]}}'); height: {{reserve}};">
+        {{ this.innerHTML }}
+    </div>
+
+
+    <script>
+        window.setTimeout(() => $$.state = {
+            previous: {{ current }},
+            current: {{ (current + 1 < items.length ? current + 1 : 0) }}
+        }, {{ delay }});
+    </script>
+
+<? } else { ?>
+
+    <div class="ui-parallax-image" style="background-image: linear-gradient(gray, gray), url('{{src}}'); height: {{reserve}};" ui-animated>
+        {{ this.innerHTML }}
+    </div>
+
+<? } ?>
+
