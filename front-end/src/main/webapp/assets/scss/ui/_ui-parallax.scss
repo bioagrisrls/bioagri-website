@@ -40,5 +40,11 @@
 }
 
 .ui-parallax-caption {
+  display: grid;
+  align-content: center;
   color: $ui-theme-light-text;
+}
+
+.ui-parallax-caption-item {
+  display: none;
 }

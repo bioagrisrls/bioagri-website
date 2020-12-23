@@ -41,17 +41,45 @@
 
     <section ui-animated>
 
-        <ui-parallax id="ui-parallax-1" ui:src="/assets/img/home" ui:items="parallax01.jpg,parallax02.jpg">
+        <ui-parallax id="ui-parallax-1" ui:src="/assets/img/home" ui:items="parallax01.jpg,parallax02.jpg" ui:delay="5">
 
-<%--            <h1 class="animate__animated animate__backInDown">--%>
-<%--                The Hearth Of The Farm Is The True Center Of Our Universe.--%>
-<%--            </h1>--%>
-<%--            <p class="animate__animated animate__backInUp">--%>
-<%--                Mauris vestibulum dolor nec lacinia facilisis. Fusce interdum sagittis volutpat. Praesent eget varius ligula, malesuada eleifend purus. Aenean euismod est at mauris mollis ultricies.--%>
-<%--                Morbi arcu mi, dictum eu luala, dapibus--%>
-<%--                interdum mollis.--%>
-<%--            </p>--%>
-<%--            <button type="button" class="btn btn-primary animate__animated animate__backInUp">Contact us</button>--%>
+            <div class="ui-container">
+
+                <div class="ui-parallax-caption-item">
+
+                    <h1 class="animate__animated animate__backInDown">
+                        The Hearth Of The Farm Is The True Center Of Our Universe.
+                    </h1>
+
+                    <p class="animate__animated animate__backInUp">
+                        Mauris vestibulum dolor nec lacinia facilisis. Fusce interdum sagittis volutpat. Praesent eget varius ligula, malesuada eleifend purus. Aenean euismod est at mauris mollis ultricies.
+                        Morbi arcu mi, dictum eu luala, dapibus
+                        interdum mollis.
+                    </p>
+
+                    <button type="button" class="btn btn-primary animate__animated animate__backInUp">Contact us</button>
+
+                </div>
+
+                <div class="ui-parallax-caption-item">
+
+                    <h1 class="animate__animated animate__backInDown">
+                        Animate.css v4 brought some breaking changes.
+                    </h1>
+
+                    <p class="animate__animated animate__backInUp">
+                        Animate.css is a library of ready-to-use, cross-browser animations for use in your web projects.
+                        Great for emphasis, home pages, sliders, and attention-guiding hints.
+                    </p>
+
+                    <button type="button" class="btn btn-primary animate__animated animate__backInUp">Reent T-MAX</button>
+
+                </div>
+
+
+
+            </div>
+
 
         </ui-parallax>
 

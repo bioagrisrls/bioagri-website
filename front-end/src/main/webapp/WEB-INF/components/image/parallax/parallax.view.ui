@@ -34,7 +34,7 @@
     <? } ?>
 
 
-    <div class="ui-parallax-caption">
+    <div id="ui-parallax-caption-content" class="ui-parallax-caption">
         {{ this.innerHTML }}
     </div>
 

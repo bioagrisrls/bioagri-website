@@ -68,7 +68,6 @@
                 $(this.elem).find('#ui-parallax-image-current').css({
                     backgroundImage: 'linear-gradient(gray, gray), url(' + state.src + '/' + state.items[state.current] + ')',
                     height: state.reserve,
-                    opacity: 1,
                 })
                     .toggleClass('animate__animated')
                     .toggleClass('animate__fadeIn');
@@ -80,10 +79,26 @@
                     position: 'relative',
                     top: '-' + state.reserve,
                     marginBottom: '-' + state.reserve,
-                    opacity: 1,
                 })
                     .toggleClass('animate__animated')
                     .toggleClass('animate__fadeOut');
+
+
+                $(this.elem).find('#ui-parallax-caption-content').css({
+                    height: state.reserve,
+                    position: 'relative',
+                    top: '-' + state.reserve,
+                    marginBottom: '-' + state.reserve,
+                })
+
+
+                $(this.elem).find('.ui-parallax-caption-item').each((i, e) => {
+
+                    i === state.current
+                        ? $(e).show()
+                        : $(e).hide();
+
+                })
 
 
                 window.setTimeout(() => {
