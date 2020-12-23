@@ -78,7 +78,7 @@
                     <br>
                     <br>
 
-                    <img class="ui-history-image" data-src="images/aboutus/history.jpg">
+                    <img class="ui-history-image" src="/assets/img/about/history.jpg">
                     <div class="ui-history-divider"></div>
 
                 </div>

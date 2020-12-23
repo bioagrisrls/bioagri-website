@@ -87,15 +87,26 @@
 
 
 .ui-history-image {
+  border-radius: 50%;
+  max-width: 100%;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
   width: 280px;
   height: 280px;
-  border: 7.5px solid $ui-theme-secondary;
+  border: 7.5px solid #77b122;
 }
 
 .ui-history-divider {
-  border: 3.75px solid $ui-theme-secondary;
+  margin: 0 0 0 228px;
+  border: 3.75px solid #77b122;
   border-radius: 0 0 10px 10px;
   width: 1px !important;
   height: 1230px;
   z-index: 1;
+}
+
+.ui-history-grid {
+  position: relative;
+  margin-top: -1230px;
 }
