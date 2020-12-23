@@ -25,24 +25,45 @@
 
 
 // Colors
+$ui-theme-primary: #BC5D2E;
+$ui-theme-primary-variant: darken($ui-theme-primary, 15%);
 
-$ui-theme-primary: #F57C00;
-$ui-theme-primary-variant: #FFB74D;
+$ui-theme-secondary: #888580;
+$ui-theme-secondary-variant: darken($ui-theme-secondary, 15%);
 
-$ui-theme-secondary: #8BC34A;
-$ui-theme-secondary-variant: #AED581;
+$ui-theme-primary-text: #FFFFFF;
+$ui-theme-secondary-text: #FFFFFF;
+$ui-theme-background-text: #212529;
 
-$ui-theme-primary-text: #212121;
-$ui-theme-secondary-text: #757575;
-
-$ui-theme-background-primary: #FAFAFA;
-$ui-theme-background-secondary: #FAFAFA;
+$ui-theme-background: #F8F9FA;
+$ui-theme-background-variant: darken($ui-theme-background, 5%);
 
 $ui-theme-divider-color: #BDBDBD;
 
-
 // Layout
+$ui-theme-layout-container-width: 960px;
 
-$ui-theme-layout-container-width: 992px;
+
+
+html, body {
+  overflow-x: hidden;
+}
+
+a {
+
+  color: $ui-theme-primary;
+  text-decoration: none;
+
+  &:hover {
+    color: $ui-theme-primary-variant;
+    text-decoration: none;
+  }
+
+  &:active {
+    color: $ui-theme-primary;
+    text-decoration: none;
+  }
+
+}
 
 

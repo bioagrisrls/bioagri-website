@@ -28,7 +28,7 @@
 
 .ui-navbar {
   width: 100%;
-  background-color: $ui-theme-background-primary;
+  background-color: $ui-theme-background;
   filter: drop-shadow(0 1px 1px $ui-theme-divider-color);
 }
 
@@ -39,7 +39,7 @@
 
 .ui-navbar-brand span {
   text-transform: uppercase;
-  color: $ui-theme-primary-text;
+  color: $ui-theme-background-text;
 }
 
 .ui-navbar-nav li {
@@ -53,18 +53,18 @@
 
 .ui-navbar-nav li a {
 
-  color: $ui-theme-primary-text;
-  border-top: 4px solid $ui-theme-background-primary;
+  color: $ui-theme-background-text;
+  border-top: 4px solid $ui-theme-background;
   padding: 0 32px 0 32px;
   transition: border-top .3s;
 
 
   &.active {
-    border-top: 4px solid $ui-theme-primary-variant;
+    border-top: 4px solid $ui-theme-primary;
   }
 
   &:hover {
-    border-top: 4px solid $ui-theme-primary-variant;
+    border-top: 4px solid $ui-theme-primary;
   }
 
 }
