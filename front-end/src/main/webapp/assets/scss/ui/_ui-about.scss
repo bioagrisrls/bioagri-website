@@ -1,4 +1,4 @@
-/*!
+/*
  * MIT License
  *
  * Copyright (c) 2020 BioAgri S.r.l.s.
@@ -23,70 +23,44 @@
  *
  */
 
-#read-more-button {
+.about {
+  ul {
+    list-style-type: none;
+  }
+}
 
-  background-color: #77b122;
-  -webkit-transition-duration: 500ms;
-  -o-transition-duration: 500ms;
-  transition-duration: 500ms;
+.rounded_image {
+
+  border-radius: 50%;
+  height: 256px;
+  max-width: 100%;
+  vertical-align: middle;
+  border-style: none;
+
   position: relative;
   z-index: 1;
-  display: inline-block;
-  min-width: 160px;
-  height: 50px;
-  color: #ffffff;
-  border-radius: 0;
-  padding: 0 30px;
-  font-size: 16px;
-  line-height: 48px;
-  font-weight: 700;
+
+}
+
+.about_header_title {
   text-transform: uppercase;
-
-
 }
 
-#about-us-section-header > span {
-  color: #77b122;
-  font-size:140%;
-}
-
-#about-us-section-header > b {
-  font-size:140%;
-}
-
-#paragraph {
-  padding-bottom: 40px;
-}
-
-#about-us-section-header {
+.about_header_subtitle {
   font-weight: bold;
-}
 
-#text-section {
- padding-bottom:80px;
-}
+  span {
+    font-size:100%;
+    color: #77b122;
+  }
 
-.container {
-
-  padding-bottom:30px;
-  padding-top: 50px;
-
-}
-
-#about_us_img_rounded {
-
-
-    border-radius: 50%;
-    height: auto;
-    max-width: 100%;
-    height: auto;
-    max-width: 100%;
-    vertical-align: middle;
-    border-style: none;
-
-  position: relative;
-  z-index: 1;
-
-
+  b {
+    font-size:100%;
+  }
 
 }
+
+.about_leaf {
+  padding: 0 0 32px 0;
+}
+
