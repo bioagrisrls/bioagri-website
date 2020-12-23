@@ -1,4 +1,4 @@
-/*!
+/*
  * MIT License
  *
  * Copyright (c) 2020 BioAgri S.r.l.s.
@@ -23,16 +23,6 @@
  *
  */
 
-@use "ui/ui-theme";
-@use "ui/ui-bootstrap-override";
-@use 'ui/ui-font';
-@use 'ui/ui-text-align';
-@use "ui/ui-container";
-@use 'ui/ui-spinner';
-@use "ui/ui-header";
-@use 'ui/ui-navbar';
-@use 'ui/ui-parallax';
-@use 'ui/ui-footer';
-@use 'ui/ui-navigation';
-@use 'ui/ui-section_1';
-@use 'ui/ui-about_us';
+.navbar-toggler:focus {
+  box-shadow: none;
+}

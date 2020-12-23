@@ -45,7 +45,18 @@
         </a>
 
 
-        <div id="ui-navbar-links" class="collapse navbar-collapse col-8">
+        <button class="navbar-toggler col-1 pull-right"
+                type="button"
+                onclick="$('#ui-navbar-links').collapse('toggle')"
+                aria-controls="ui-navbar-links"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <span class="mdi mdi-24px mdi-menu"></span>
+
+        </button>
+
+        <div id="ui-navbar-links" class="navbar-collapse collapse col-8">
 
             <!-- Navigation Links -->
             <ul class="ui-navbar-nav navbar-nav">
@@ -79,17 +90,7 @@
         </div>
 
 
-        <button class="navbar-toggler col-1 pull-right"
-                type="button"
-                data-toggle="collapse"
-                data-target="#ui-navbar-links"
-                aria-controls="ui-navbar-links"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
 
-            <span class="mdi mdi-24px mdi-menu"></span>
-
-        </button>
 
     </div>
 </nav>
