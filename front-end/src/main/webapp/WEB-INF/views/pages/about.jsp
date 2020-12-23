@@ -65,10 +65,10 @@
                 <div class="col-md">
                     <ul>
                         <li>
-                            <h6 class="ui-about-header-title"> ${ locale.about_header_title } </h6>
-                            <h1 class="ui-about-header-subtitle"><span > ${ locale.about_header_subtitle_start } </span><b> ${ locale.about_header_subtitle_end } </b></h1>
+                            <h6 class="ui-about-presentation-title"> ${ locale.about_presentation_title } </h6>
+                            <h1 class="ui-about-presentation-subtitle"><span > ${ locale.about_presentation_subtitle_start } </span><b> ${ locale.about_presentation_subtitle_end } </b></h1>
                             <img class="ui-about-leaf" src="/assets/img/about/decor.jpg">
-                            <p> ${ locale.about_header_body } </p>
+                            <p> ${ locale.about_presentation_body } </p>
                         </li>
                     </ul>
                 </div>
@@ -80,6 +80,7 @@
             </div>
 
 
+            <br>
             <br>
             <br>
             <br>
