@@ -1,0 +1,23 @@
+<div class="container">
+<div class="row align-items-center">
+
+<div id = "text-section" class="col-12 col-md-8">
+<div id = "about-us-section-heading">
+<h6> ABOUT US </h6>
+<h1 id = "about-us-section-header"><span>Let Us</span> <b> Tell You Our Story </b> </h1>
+<img src="/assets/img/about-us/decor.jpg" alt="">
+</div>
+<p id = "paragraph">Lorem ipsum dolor sit amet, consectetu adipiscing elit. Etiam nunc elit, pretium atlanta urna veloci, fermentum malesuda mina. Donec auctor nislec neque sagittis, sit amet dapibus pellentesque donal feugiat. Nulla mollis magna non
+sanaliquet, volutpat do zutum, ultrices consectetur, ultrices at purus.</p>
+<a  id = "read-more-button" href="#" class="btn famie-btn mt-30">Read More</a>
+</div>
+
+<div class="col-12 col-md-4">
+<div class="famie-video-play mb-100">
+<img id = "about_us_img_rounded" src="/assets/img/about-us/img_rounded.jpg" alt="">
+
+<a href="https://www.youtube.com/watch?v=7HKoqNJtMTQ" class="play-icon"><i class="fa fa-play"></i></a>
+</div>
+</div>
+</div>
+</div>
