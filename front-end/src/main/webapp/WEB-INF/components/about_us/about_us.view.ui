@@ -1,7 +1,7 @@
-<div class="container">
+<div class="ui-container container">
 <div class="row align-items-center">
 
-<div id = "text-section" class="col-12 col-md-8">
+<div id="text-section" class="col-12 col-md-8">
 <div id = "about-us-section-heading">
 <h6> ABOUT US </h6>
 <h1 id = "about-us-section-header"><span>Let Us</span> <b> Tell You Our Story </b> </h1>

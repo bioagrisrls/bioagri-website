@@ -81,8 +81,8 @@
 
         <button class="navbar-toggler col-1 pull-right"
                 type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#ui-navbar-links"
+                data-toggle="collapse"
+                data-target="#ui-navbar-links"
                 aria-controls="ui-navbar-links"
                 aria-expanded="false"
                 aria-label="Toggle navigation">

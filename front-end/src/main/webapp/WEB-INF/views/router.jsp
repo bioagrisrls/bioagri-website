@@ -53,10 +53,10 @@
 
 
         <!-- Third-party Styles -->
-        <link rel="stylesheet" href="/assets/css/third-party/normalize.css">
+        <!--<link rel="stylesheet" href="/assets/css/third-party/normalize.css">-->
         <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap-reboot.min.css">
         <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" href="/assets/css/third-party/mdb/mdb.min.css">
+        <!--<link rel="stylesheet" href="/assets/css/third-party/mdb/mdb.min.css">-->
         <link rel="stylesheet" href="/assets/css/third-party/material-design-icons/materialdesignicons.min.css">
 
         <!-- Styles -->
@@ -67,8 +67,8 @@
         <script src="/assets/js/third-party/jquery.min.js"></script>
         <script src="/assets/js/third-party/popper.min.js"></script>
         <script src="/assets/js/third-party/js.cookie.min.js"></script>
-        <script defer src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
-        <script defer src="/assets/js/third-party/mdb/mdb.min.js"></script>
+        <script src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
+        <!--<script defer src="/assets/js/third-party/mdb/mdb.min.js"></script>-->
 
         <!-- Dependencies -->
         <script src="/assets/js/ui/api.js"></script>
