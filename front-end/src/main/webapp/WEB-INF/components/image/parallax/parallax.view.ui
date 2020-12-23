@@ -24,6 +24,6 @@
   -->
 
 
-<div class="ui-parallax-image" style="background-image: url('{{src}}'); min-height: {{reserve}}px;" ui-animated>
+<div class="ui-parallax-image" style="background-image: url('{{src}}'); min-height: {{reserve}};" ui-animated>
     {{ this.innerHTML }}
 </div>

@@ -41,16 +41,20 @@
 
     <section ui-animated>
 
-        <ui-parallax id="ui-parallax-1" ui:src="/assets/img/home/parallax01.jpg" ui:reserve="1080">
+        <ui-parallax id="ui-parallax-1" ui:src="/assets/img/home/parallax01.jpg">
             <section class="ui-container">
-                <article class="ui-parallax-slider-caption">
-                    <h2>The Hearth Of The Farm Is The True Center Of Our Universe.</h2>
-                    <p>
+
+                <article class="ui-parallax-caption-center">
+                    <h1 class="animate__animated animate__backInDown">
+                        The Hearth Of The Farm Is The True Center Of Our Universe.
+                    </h1>
+                    <p class="animate__animated animate__backInUp">
                         Mauris vestibulum dolor nec lacinia facilisis. Fusce interdum sagittis volutpat. Praesent eget varius ligula, malesuada eleifend purus. Aenean euismod est at mauris mollis ultricies.
                         Morbi arcu mi, dictum eu luala, dapibus
                         interdum mollis.
                     </p>
                 </article>
+
             </section>
         </ui-parallax>
 
