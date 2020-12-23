@@ -28,6 +28,7 @@
 <jsp:include page="/WEB-INF/components/common/carousel/carousel.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/footer/footer.controller.jsp" />
 <jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp" />
+<jsp:include page="/WEB-INF/components/image/image/image.controller.jsp" />
 
 
 <section id="ui-navigation-container">
@@ -41,9 +42,10 @@
 
     <section ui-animated>
 
+        <!-- Slide show -->
         <ui-parallax id="ui-parallax-1" ui:src="/assets/img/home" ui:items="parallax01.jpg,parallax02.jpg" ui:delay="5">
 
-            <div class="ui-container">
+            <div class="ui-container p-4">
 
                 <div class="ui-parallax-caption-item">
 
@@ -76,30 +78,34 @@
 
                 </div>
 
-
-
             </div>
-
 
         </ui-parallax>
 
 
 
-        <article class="ui-container">
-            <h1>HTML Ipsum Presents</h1>
-            <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-            <h2>Header Level 2</h2>
-            <ol>
-                <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                <li>Aliquam tincidunt mauris eu risus.</li>
-            </ol>
-            <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>
-            <h3>Header Level 3</h3>
-            <ul>
-                <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                <li>Aliquam tincidunt mauris eu risus.</li>
-            </ul>
-        </article>
+        <div class="ui-container">
+
+            <section class="pt-5 pb-5">
+
+                <!-- Banner -->
+                <div class="pt-5 pb-5">
+                    <ui-image id="ui-image-services-banner" ui:src="/assets/img/home/services-banner.jpg" ui:width="100%" ui:rounded></ui-image>
+                </div>
+
+                <!-- Services -->
+                <div class="row">
+                    <div class="col-md text-center" ui-animated-hover ui-animated-scroll><ui-image id="ui-image-services-01" class="d-block p-3" ui:src="/assets/img/home/1.png"></ui-image><h5>Best Services</h5></div>
+                    <div class="col-md text-center" ui-animated-hover ui-animated-scroll><ui-image id="ui-image-services-02" class="d-block p-3" ui:src="/assets/img/home/2.png"></ui-image><h5>Farm Experiences</h5></div>
+                    <div class="col-md text-center" ui-animated-hover ui-animated-scroll><ui-image id="ui-image-services-03" class="d-block p-3" ui:src="/assets/img/home/3.png"></ui-image><h5>100% Natural</h5></div>
+                    <div class="col-md text-center" ui-animated-hover ui-animated-scroll><ui-image id="ui-image-services-04" class="d-block p-3" ui:src="/assets/img/home/4.png"></ui-image><h5>Farm Equipment</h5></div>
+                    <div class="col-md text-center" ui-animated-hover ui-animated-scroll><ui-image id="ui-image-services-05" class="d-block p-3" ui:src="/assets/img/home/5.png"></ui-image><h5>Organic food</h5></div>
+                </div>
+
+
+            </section>
+
+        </div>
 
         <ui-parallax id="ui-parallax-2" ui:src="/assets/img/home/parallax02.jpg" ui:reserve="400px"></ui-parallax>
 

@@ -75,6 +75,7 @@
         <script src="/assets/js/ui/api.js"></script>
         <script src="/assets/js/ui/components.js"></script>
         <script defer src="/assets/js/ui/navigation.js"></script>
+        <script defer src="/assets/js/ui/animation.js"></script>
 
 
     </head>

@@ -23,10 +23,22 @@
  *
  */
 
-@import "ui-theme";
+$(document).ready(() => {
 
-.ui-container {
-  margin: auto;
-  padding: 0 1em 0 1em;
-  max-width: $ui-theme-layout-container-width;
-}
+    const animated = $('*[ui-animated-scroll]');
+    console.log(animated);
+
+    window.addEventListener('scroll', () => animated.each((i, e) => {
+
+        if((window.scrollY + window.innerHeight) > e.offsetTop) {
+
+            e.classList.add('animate__animated');
+            e.classList.add('animate__backInUp');
+
+            animated.splice(i, 1);
+
+        }
+
+    }));
+
+});

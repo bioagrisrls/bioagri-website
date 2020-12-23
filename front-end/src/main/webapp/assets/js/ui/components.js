@@ -179,10 +179,9 @@ class Component {
                 if (e.hasAttributes()) {
                     for (let attr of e.attributes) {
                         if (attr.name.startsWith('ui:'))
-                            props[attr.name.slice(3)] = attr.value;
+                            props[attr.name.slice(3)] = attr.value || true;
                     }
                 }
-
 
                 component.getinstance(e, props);
 
@@ -327,8 +326,8 @@ const $renderTemplate = (instance, template = '', state = {}) => {
         return snippet
             .replace(/(")/gm, "\\\"")
             .replace(/(\r\n|\n|\r)/gm, "")
-            .replace(/{{/gm, "\" + ")
-            .replace(/}}/gm, " + \"")
+            .replace(/{{/gm, "\" + (")
+            .replace(/}}/gm, ") + \"")
             .replace(/\$\$/gm, "window.components['" + id + "']");
     }
 
