@@ -39,8 +39,8 @@
                 reserve: props.reserve || '100vh',
                 delay: (props.delay * 1000) || 3000,
 
-                items: props.items && (props.items.split(',') || []),
-                previous: props.items && (props.items.split(',').length - 1 || 0),
+                items: (props.items && props.items.split(',')) || [],
+                previous: (props.items && props.items.split(',').length - 1) || 0,
                 current: 0,
 
             });
@@ -58,14 +58,14 @@
 
             if(state.items.length === 0) {
 
-                $(this.elem).find('#ui-parallax-image-visible').css({
+                $(this.elem).find('#ui-parallax-image-current').css({
                     backgroundImage: 'linear-gradient(gray, gray), url(' + state.src + ')',
                     height: state.reserve
                 })
 
             } else {
 
-                $(this.elem).find('#ui-parallax-image-visible').css({
+                $(this.elem).find('#ui-parallax-image-current').css({
                     backgroundImage: 'linear-gradient(gray, gray), url(' + state.src + '/' + state.items[state.current] + ')',
                     height: state.reserve,
                     opacity: 1,
@@ -74,7 +74,7 @@
                     .toggleClass('animate__fadeIn');
 
 
-                $(this.elem).find('#ui-parallax-image-hidden').css({
+                $(this.elem).find('#ui-parallax-image-previous').css({
                     backgroundImage: 'linear-gradient(gray, gray), url(' + state.src + '/' + state.items[state.previous] + ')',
                     height: state.reserve,
                     position: 'relative',

@@ -27,15 +27,10 @@
 
 <div class="ui-parallax">
 
+    <div id="ui-parallax-image-current" class="ui-parallax-image"></div>
+
     <? if(items.length > 0) { ?>
-
-        <div id="ui-parallax-image-visible" class="ui-parallax-image show"></div>
-        <div id="ui-parallax-image-hidden" class="ui-parallax-image"></div>
-
-    <? } else { ?>
-
-        <div class="ui-parallax-image"></div>
-
+        <div id="ui-parallax-image-previous" class="ui-parallax-image"></div>
     <? } ?>
 
 
