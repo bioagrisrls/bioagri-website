@@ -30,12 +30,19 @@
 
 <script defer>
 
-    Component.register('ui-parallax', (id, props) => new class extends StatelessComponent {
+    Component.register('ui-parallax', (id, props) => new class extends StatefulComponent {
 
         constructor() {
             super(id, {
+
                 src: props.src || '',
-                reserve: props.reserve || '100%'
+                reserve: props.reserve || '100vh',
+                delay: (props.delay * 1000) || 3000,
+
+                items: props.items && props.items.split(',') || [],
+                previous: props.items && props.items.length - 1 || 0,
+                current: 0,
+
             });
         }
 
