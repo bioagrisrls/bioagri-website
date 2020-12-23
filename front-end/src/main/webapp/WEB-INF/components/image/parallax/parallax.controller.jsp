@@ -39,8 +39,8 @@
                 reserve: props.reserve || '100vh',
                 delay: (props.delay * 1000) || 3000,
 
-                items: props.items && props.items.split(',') || [],
-                previous: props.items && props.items.length - 1 || 0,
+                items: props.items && (props.items.split(',') || []),
+                previous: props.items && (props.items.split(',').length - 1 || 0),
                 current: 0,
 
             });
@@ -50,6 +50,53 @@
             return `${components.image_parallax}`
         }
 
+
+        onUpdated(state) {
+
+            if(!state.items)
+                throw new Error("items cannot be null");
+
+            if(state.items.length === 0) {
+
+                $(this.elem).find('#ui-parallax-image-visible').css({
+                    backgroundImage: 'linear-gradient(gray, gray), url(' + state.src + ')',
+                    height: state.reserve
+                })
+
+            } else {
+
+                $(this.elem).find('#ui-parallax-image-visible').css({
+                    backgroundImage: 'linear-gradient(gray, gray), url(' + state.src + '/' + state.items[state.current] + ')',
+                    height: state.reserve,
+                    opacity: 1,
+                })
+                    .toggleClass('animate__animated')
+                    .toggleClass('animate__fadeIn');
+
+
+                $(this.elem).find('#ui-parallax-image-hidden').css({
+                    backgroundImage: 'linear-gradient(gray, gray), url(' + state.src + '/' + state.items[state.previous] + ')',
+                    height: state.reserve,
+                    position: 'relative',
+                    top: '-' + state.reserve,
+                    marginBottom: '-' + state.reserve,
+                    opacity: 1,
+                })
+                    .toggleClass('animate__animated')
+                    .toggleClass('animate__fadeOut');
+
+
+                window.setTimeout(() => {
+                    this.state = {
+                        previous: state.current,
+                        current: (state.current + 1) % state.items.length
+                    }
+                }, state.delay);
+
+            }
+        }
+
     });
+
 
 </script>

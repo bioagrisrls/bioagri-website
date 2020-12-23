@@ -25,18 +25,20 @@
 
 @import "ui-theme";
 
+
+.ui-parallax {
+  overflow: hidden;
+}
+
 .ui-parallax-image {
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-blend-mode: multiply;
-  background-color: transparent;
-  position: relative;
-  z-index: -1;
+  overflow: hidden;
 }
 
-
-.ui-parallax-caption-center {
+.ui-parallax-caption {
   color: $ui-theme-light-text;
 }

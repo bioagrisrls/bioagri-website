@@ -43,23 +43,15 @@
 
         <ui-parallax id="ui-parallax-1" ui:src="/assets/img/home" ui:items="parallax01.jpg,parallax02.jpg">
 
-            <div class="ui-container row h-100 align-items-center">
-
-                <div class="col-12 col-lg-10">
-                    <article class="ui-parallax-caption-center">
-                        <h1 class="animate__animated animate__backInDown">
-                            The Hearth Of The Farm Is The True Center Of Our Universe.
-                        </h1>
-                        <p class="animate__animated animate__backInUp">
-                            Mauris vestibulum dolor nec lacinia facilisis. Fusce interdum sagittis volutpat. Praesent eget varius ligula, malesuada eleifend purus. Aenean euismod est at mauris mollis ultricies.
-                            Morbi arcu mi, dictum eu luala, dapibus
-                            interdum mollis.
-                        </p>
-                        <button type="button" class="btn btn-primary animate__animated animate__backInUp">Contact us</button>
-                    </article>
-                </div>
-
-            </div>
+<%--            <h1 class="animate__animated animate__backInDown">--%>
+<%--                The Hearth Of The Farm Is The True Center Of Our Universe.--%>
+<%--            </h1>--%>
+<%--            <p class="animate__animated animate__backInUp">--%>
+<%--                Mauris vestibulum dolor nec lacinia facilisis. Fusce interdum sagittis volutpat. Praesent eget varius ligula, malesuada eleifend purus. Aenean euismod est at mauris mollis ultricies.--%>
+<%--                Morbi arcu mi, dictum eu luala, dapibus--%>
+<%--                interdum mollis.--%>
+<%--            </p>--%>
+<%--            <button type="button" class="btn btn-primary animate__animated animate__backInUp">Contact us</button>--%>
 
         </ui-parallax>
 
