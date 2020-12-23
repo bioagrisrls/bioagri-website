@@ -42,7 +42,7 @@
     <!-- About -->
     <section ui-animated>
 
-        <div class="ui-container about">
+        <div class="ui-container ui-about">
 
             <!-- About Header -->
             <div class="row align-items-center">
@@ -50,21 +50,49 @@
                 <div class="col-md">
                     <ul>
                         <li>
-                            <h6 class="about_header_title"> ${ locale.about_header_title } </h6>
-                            <h1 class="about_header_subtitle"><span > ${ locale.about_header_subtitle_start } </span><b> ${ locale.about_header_subtitle_end } </b></h1>
-                            <img class="about_leaf" src="/assets/img/about/decor.jpg">
+                            <h6 class="ui-about_header_title"> ${ locale.about_header_title } </h6>
+                            <h1 class="ui-about_header_subtitle"><span > ${ locale.about_header_subtitle_start } </span><b> ${ locale.about_header_subtitle_end } </b></h1>
+                            <img class="ui-about_leaf" src="/assets/img/about/decor.jpg">
                             <p> ${ locale.about_header_body } </p>
                         </li>
                     </ul>
                 </div>
 
                 <div class="col-md text-center">
-                    <img class="rounded_image" src="/assets/img/about/img_rounded.jpg">
+                    <img class="ui-rounded_image" src="/assets/img/about/img_rounded.jpg">
                 </div>
 
             </div>
 
+            <br>
+            <br>
+
+            <!-- About History -->
+            <div class="row align-items-center text-center ui-history">
+
+                <div class="ui-history-header">
+
+                    <header>${ locale.history_subtitle }</header>
+                    <h1>${ locale.history_title }</h1>
+
+                    <br>
+                    <br>
+
+                    <img class="ui-history-image" data-src="images/aboutus/history.jpg">
+                    <div class="ui-history-divider"></div>
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+
         </div>
+
 
     </section>
 

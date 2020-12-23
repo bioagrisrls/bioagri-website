@@ -23,13 +23,15 @@
  *
  */
 
-.about {
+@import "ui-theme";
+
+.ui-about {
   ul {
     list-style-type: none;
   }
 }
 
-.rounded_image {
+.ui-rounded_image {
 
   border-radius: 50%;
   height: 256px;
@@ -42,25 +44,58 @@
 
 }
 
-.about_header_title {
+.ui-about_header_title {
   text-transform: uppercase;
 }
 
-.about_header_subtitle {
+.ui-about_header_subtitle {
   font-weight: bold;
 
   span {
-    font-size:100%;
+    font-size:38px;
     color: #77b122;
   }
 
   b {
-    font-size:100%;
+    font-size: 38px;
   }
 
 }
 
-.about_leaf {
+.ui-about_leaf {
   padding: 0 0 32px 0;
 }
 
+.ui-history {
+
+  header {
+    font-size: 22px;
+    line-height: 32px;
+    border-bottom: 3px solid $ui-theme-secondary;
+  }
+
+  h1 {
+    color: #77b122;
+    font-size: 46px;
+  }
+
+}
+
+.ui-history-header {
+  padding: 0 256px 0 256px;
+}
+
+
+.ui-history-image {
+  width: 280px;
+  height: 280px;
+  border: 7.5px solid $ui-theme-secondary;
+}
+
+.ui-history-divider {
+  border: 3.75px solid $ui-theme-secondary;
+  border-radius: 0 0 10px 10px;
+  width: 1px !important;
+  height: 1230px;
+  z-index: 1;
+}

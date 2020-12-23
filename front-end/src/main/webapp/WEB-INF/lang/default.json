@@ -28,5 +28,9 @@
   "about_header_title" : "Su di noi",
   "about_header_subtitle_start" : "Lascia che",
   "about_header_subtitle_end" : " ti raccontiamo la nostra storia",
-  "about_header_body" : "La nostra è una ditta a conduzione familiare nata nel 1908, è stata da sempre attiva nel settore agricolo, e si è espansa con il passare degli anni arrivando ad avere clienti in tutta la regione."
+  "about_header_body" : "La nostra è una ditta a conduzione familiare nata nel 1908, è stata da sempre attiva nel settore agricolo, e si è espansa con il passare degli anni arrivando ad avere clienti in tutta la regione.",
+
+  "history_title" : "BioAgri",
+  "history_subtitle" : "Su di noi"
+
 }
