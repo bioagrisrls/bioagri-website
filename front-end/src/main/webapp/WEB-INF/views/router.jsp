@@ -58,6 +58,7 @@
         <link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap.min.css">
         <!--<link rel="stylesheet" href="/assets/css/third-party/mdb/mdb.min.css">-->
         <link rel="stylesheet" href="/assets/css/third-party/material-design-icons/materialdesignicons.min.css">
+        <link rel="stylesheet" href="/assets/css/third-party/animate/animate.min.css">
 
         <!-- Styles -->
         <link rel="stylesheet" href="/assets/css/ui.min.css">
