@@ -30,6 +30,7 @@
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/footer/footer.controller.jsp" />
+<jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp"/>
 
 <section id="ui-navigation-container">
 
@@ -43,17 +44,12 @@
     <section ui-animated>
 
         <!-- About Header -->
-        <ui-parallax id="ui-parallax-3" ui:src="/assets/img/home/parallax02.jpg" ui:reserve="400px"></ui-parallax>
-        <div class="ui-block-container">
-            <div class="row ui-block-container-fixed">
-                <div class="ui-container">
-                    <h2>${ locale.about_title }</h2>
-                </div>
+        <ui-parallax id="ui-parallax-3" ui:src="/assets/img/about/header.jpg" ui:reserve="300px">
+            <div class="ui-about-header">
+                <h2>${ locale.about_title }</h2>
             </div>
-        </div>
+        </ui-parallax>
 
-        <br>
-        <br>
         <br>
         <br>
 
@@ -68,14 +64,14 @@
                         <li>
                             <h6 class="ui-about-presentation-title"> ${ locale.about_presentation_title } </h6>
                             <h1 class="ui-about-presentation-subtitle"><span > ${ locale.about_presentation_subtitle_start } </span><b> ${ locale.about_presentation_subtitle_end } </b></h1>
-                            <img class="ui-about-leaf" src="/assets/img/about/decor.jpg">
+                            <img class="ui-about-leaf" src="/assets/img/about/decorator.jpg">
                             <p> ${ locale.about_presentation_body } </p>
                         </li>
                     </ul>
                 </div>
 
                 <div class="col-md text-center">
-                    <img class="ui-rounded-image" src="/assets/img/about/img_rounded.jpg">
+                    <img class="ui-rounded-image" src="/assets/img/about/field.jpg">
                 </div>
 
             </div>
@@ -98,7 +94,7 @@
 
                     <br>
 
-                    <img class="ui-history-image" src="/assets/img/about/img_rounded.jpg">
+                    <img class="ui-history-image" src="/assets/img/about/field.jpg">
 
                 </div>
             </div>
