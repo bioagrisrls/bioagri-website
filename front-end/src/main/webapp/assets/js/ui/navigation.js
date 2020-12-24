@@ -75,7 +75,8 @@ const uiNavigateURL = (url, title = document.title, container = document.documen
 
 
             }).then(() => Component.run(container))
-              .then(() => prog.hide());
+              .then(() => prog.hide())
+              .then(() => $(document).trigger('ui-ready'));
 
 
         if(pushState)
@@ -111,6 +112,9 @@ $(document).ready(() => {
             <div id="ui-navigation-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     `);
+
+
+    $(document).trigger('ui-ready');
 
 });
 

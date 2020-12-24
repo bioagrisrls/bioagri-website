@@ -23,10 +23,9 @@
  *
  */
 
-$(document).ready(() => {
+$(document).on('ui-ready', () => {
 
     const animated = $('*[ui-animated-scroll]');
-
 
     window.addEventListener('scroll', () => animated.each((i, e) => {
 
@@ -45,4 +44,4 @@ $(document).ready(() => {
 
     }));
 
-});
+})
