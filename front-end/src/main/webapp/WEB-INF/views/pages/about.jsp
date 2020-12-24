@@ -58,13 +58,8 @@
             <!-- Breadcrumb -->
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li>
-                        <a>
-                            <span class="mdi mdi-home mdi"></span>
-                        </a>
-                    </li>
                     <li class="breadcrumb-item">
-                        <a class="ui-navigate" title="${ locale.info_title }" href="/home">${ locale.breadcrumb_home }</a>
+                        <a class="ui-navigate" title="${ locale.info_title }" href="/home"><span class="mdi mdi-home mdi"></span>${ locale.breadcrumb_home }</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">${ locale.breadcrumb_about }</li>
                 </ol>

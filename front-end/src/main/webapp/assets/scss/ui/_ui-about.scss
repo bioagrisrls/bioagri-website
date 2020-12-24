@@ -57,7 +57,7 @@
 
   span {
     font-size:38px;
-    color: #77b122;
+    color: $ui-theme-primary;
   }
 
   b {
@@ -86,7 +86,7 @@
 
 .ui-history-header h1 {
 
-  color: #77b122;
+  color: $ui-theme-primary;
   font-size: 46px;
 
 }
@@ -97,12 +97,12 @@
   max-width: 100%;
   position: relative;
   z-index: 1;
-  border: 7.5px solid #77b122;
+  border: 7.5px solid $ui-theme-primary;
 }
 
 .ui-history-divider {
   margin: 0 auto;
-  border: 3.75px solid #77b122;
+  border: 3.75px solid $ui-theme-primary;
   border-radius: 0 0 10px 10px;
   width: 1px !important;
   height: 1230px;
@@ -114,7 +114,7 @@
 }
 
 .ui-history-separator-left {
-  border-right: 10px solid #77b122;
+  border-right: 10px solid $ui-theme-primary;
   border-radius: 10px;
   margin-right: -35px;
   margin-bottom: 20px;
@@ -143,7 +143,7 @@
 }
 
 .ui-history-separator-right {
-  border-left: 10px solid #77b122;
+  border-left: 10px solid $ui-theme-primary;
   border-radius: 10px;
   margin-left: -35px;
   margin-bottom: 20px;
