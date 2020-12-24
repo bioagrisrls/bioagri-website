@@ -23,15 +23,17 @@
   ~
   --%>
 
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
+
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
 <jsp:include page="/WEB-INF/components/home/section_1/section_1.controller.jsp" />
 <jsp:include page="/WEB-INF/components/product/product.controller.jsp" />
 
 
-
-
-<section id="ui-navigation-container">
+<section id="ui-navigation-container" ui-title="${locale.page_catalog} &ndash; ${locale.info_title}">
 
     <!-- Header -->
     <ui-header id="ui-header"></ui-header>

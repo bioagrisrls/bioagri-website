@@ -26,10 +26,10 @@
 
 <?
     let navs = [
-        { key: 'home',      name: home,     value: title                         },
-        { key: 'catalog',   name: catalog,  value: catalog + ' &ndash; ' + title },
-        { key: 'about',     name: about,    value: about   + ' &ndash; ' + title },
-        { key: 'support',   name: support,  value: support + ' &ndash; ' + title },
+        { key: 'home',      name: home    },
+        { key: 'catalog',   name: catalog },
+        { key: 'about',     name: about   },
+        { key: 'support',   name: support },
     ];
 ?>
 
@@ -62,7 +62,7 @@
             <ul class="ui-navbar-nav navbar-nav">
                 <? for (let nav of navs) { ?>
                     <li class="nav-item">
-                        <a class="ui-navigate nav-link {{ (current === nav.key ? 'active' : '') }}" title="{{ nav.value }}" href="/{{nav.key}}">
+                        <a class="ui-navigate nav-link {{ (current === nav.key ? 'active' : '') }}" href="/{{nav.key}}">
                             {{ nav.name }}
                         </a>
                     </li>
