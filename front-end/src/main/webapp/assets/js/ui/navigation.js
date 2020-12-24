@@ -82,8 +82,8 @@ const uiNavigateURL = (url, title = document.title, container = document.documen
 
                 console.error(reason);
 
-                $('body').append(`
-                    <div id="ui-navigation-error" class="alert alert-danger alert-dismissible fixed-bottom fade show" role="alert">
+                $(container).append(`
+                    <div id="ui-navigation-error" class="alert alert-danger alert-dismissible fixed-bottom fade show mx-5" role="alert">
                         <strong>Ops!</strong> Seems there is no internet connection here :(
                         <button type="button" class="btn-close" onclick="$('#ui-navigation-error').alert('close')" aria-label="Close"></button>
                     </div>
