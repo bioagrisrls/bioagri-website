@@ -1,39 +1,25 @@
-<section class="text-center">
+
 
   <!-- Grid row -->
   <div class="row">
 
     <!-- Grid column -->
-    <div class="col-md-6 col-lg-3 mb-5">
+    <div class="col-md-6 col-lg-3 mb-5 text-center">
 
-      <!-- Card -->
-      <div class="">
-
-        <div class="view zoom overlay z-depth-2 rounded">
-          <img class="img-fluid w-100"
+        <div class="card">
+          <img class="img-fluid w-100 rounded "
             src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
-          <a href="#!">
-            <div class="mask">
-              <img class="img-fluid w-100"
-                src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg">
-              <div class="mask rgba-black-slight"></div>
-            </div>
-          </a>
+            <img class="img-fluid w-100 rounded img-top"
+             src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" alt="Sample">
         </div>
 
         <div class="pt-4">
-
           <h5>Fantasy T-shirt</h5>
           <h6>12.99 $</h6>
         </div>
-
-      </div>
-      <!-- Card -->
 
     </div>
     <!-- Grid column -->
   </div>
   <!-- Grid row -->
 
-</section>
-<!--Section: Block Content-->

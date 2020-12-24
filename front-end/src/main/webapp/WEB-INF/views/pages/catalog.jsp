@@ -51,8 +51,9 @@
     </section>
 
 
-
-
+    <section ui-animated>
+        <ui-product-box id = "ui-product-box"> </ui-product-box>
+    </section>
 
 
 
