@@ -97,12 +97,12 @@
   max-width: 100%;
   position: relative;
   z-index: 1;
-  border: 7.5px solid $ui-theme-primary;
+  border: 7.5px solid $ui-theme-secondary;
 }
 
 .ui-history-divider {
   margin: 0 auto;
-  border: 3.75px solid $ui-theme-primary;
+  border: 3.75px solid $ui-theme-secondary;
   border-radius: 0 0 10px 10px;
   width: 1px !important;
   height: 1230px;
@@ -114,7 +114,7 @@
 }
 
 .ui-history-separator-left {
-  border-right: 10px solid $ui-theme-primary;
+  border-right: 10px solid $ui-theme-secondary;
   border-radius: 10px;
   margin-right: -35px;
   margin-bottom: 20px;
@@ -143,7 +143,7 @@
 }
 
 .ui-history-separator-right {
-  border-left: 10px solid $ui-theme-primary;
+  border-left: 10px solid $ui-theme-secondary;
   border-radius: 10px;
   margin-left: -35px;
   margin-bottom: 20px;
