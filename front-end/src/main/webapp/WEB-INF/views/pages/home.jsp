@@ -23,15 +23,19 @@
   ~
   --%>
 
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
+
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
-<jsp:include page="/WEB-INF/components/common/carousel/carousel.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/footer/footer.controller.jsp" />
 <jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp" />
 <jsp:include page="/WEB-INF/components/image/image/image.controller.jsp" />
 
 
-<section id="ui-navigation-container">
+
+<section id="ui-navigation-container" ui-title="${locale.info_title}">
 
     <!-- Header -->
     <ui-header id="ui-header"></ui-header>

@@ -25,6 +25,7 @@
 
 package it.bioagri.web;
 
+import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 @Controller
 public class Page {
@@ -73,6 +76,9 @@ public class Page {
     @GetMapping("/{page}")
     public String page(ServletRequest request, Model model, @PathVariable String page) {
 
+        if(page.startsWith("{{")) // FIXME
+            throw new ApiResponseStatus(204);
+
         return switch (page) {
             case "favicon.ico" -> "/assets/favicon.ico";
             case "favicon.png" -> "/assets/favicon.png";
@@ -93,14 +99,16 @@ public class Page {
     }
 
 
-    public static String minimize(String content) {
+    public static String minimize(String content, boolean replaceNewLines) {
 
         var output = new StringBuilder();
 
-        Arrays.asList(content
+        Arrays.stream(content
                 .replaceAll("(?s)<!--.*?-->", "")
                 .split("\n"))
-                .forEach(i -> output.append(i.trim()).append(' '));
+                .filter(Predicate.not(String::isEmpty))
+                .filter(Predicate.not(String::isBlank))
+                .forEach(i -> output.append(i.trim()).append(replaceNewLines ? ' ' : '\n'));
 
         return output.toString();
 

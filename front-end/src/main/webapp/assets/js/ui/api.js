@@ -1,3 +1,5 @@
+"use strict";
+
 /*
  * MIT License
  *

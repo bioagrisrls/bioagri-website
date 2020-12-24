@@ -1,3 +1,5 @@
+"use strict";
+
 /*
  * MIT License
  *
@@ -27,11 +29,10 @@
 /**
  * Navigate through pages without reloading page.
  * @param url {string}
- * @param title {string}
  * @param container {HTMLElement || string}
  * @param pushState {boolean}
  */
-const uiNavigateURL = (url, title = document.title, container = document.documentElement, pushState = true) => {
+const uiNavigateURL = (url, container = document.documentElement, pushState = true) => {
 
     if(!url)
         throw new Error('URL cannot be null');
@@ -53,7 +54,7 @@ const uiNavigateURL = (url, title = document.title, container = document.documen
 
                     $(container).html($(response).html());
 
-                }else {
+                } else {
 
                     $.each($(response), (i, e) => {
 
@@ -64,11 +65,21 @@ const uiNavigateURL = (url, title = document.title, container = document.documen
                             return;
 
                         $(container).html($(e).html());
+                        $(container).attr('ui-title', $(e).attr('ui-title'));
 
                     });
 
 
                 }
+
+
+                const title = $(container).attr('ui-title') || document.title;
+
+                if(pushState)
+                    window.history.replaceState({}, title, url);
+
+                document.title = title;
+
 
                 prog.css('width', '66%')
                     .attr('aria-valuenow', '66');
@@ -93,9 +104,8 @@ const uiNavigateURL = (url, title = document.title, container = document.documen
 
 
         if(pushState)
-            window.history.pushState({}, title, url);
+            window.history.pushState({}, document.title, url);
 
-        document.title = title;
 
     } else {
 
@@ -116,7 +126,7 @@ $(document).ready(() => {
         if (window.location === this.href)
             return;
 
-        uiNavigateURL(e.currentTarget.href, `${e.currentTarget.title || e.currentTarget.textContent}`, '#ui-navigation-container');
+        uiNavigateURL(e.currentTarget.href, '#ui-navigation-container');
 
     });
 
@@ -133,5 +143,5 @@ $(document).ready(() => {
 
 
 window.onpopstate = (e) => {
-    uiNavigateURL(document.location.href, document.title, '#ui-navigation-container', false);
+    uiNavigateURL(document.location.href, '#ui-navigation-container', false);
 }

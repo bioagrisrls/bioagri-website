@@ -69,7 +69,7 @@ public class Components {
                                             .toString()
                                             .replace('\\', '_')
                                             .replace('/', '_')
-                                            .replace('.', '_'), Page.escapize(Page.minimize(Files.readString(p))));
+                                            .replace('.', '_'), Page.escapize(Page.minimize(Files.readString(p), true)));
 
                                 } else {
 
@@ -78,7 +78,7 @@ public class Components {
                                             .transform(s -> s.substring(0, s.lastIndexOf('.')))
                                             .replace('\\', '_')
                                             .replace('/', '_')
-                                            .replace('.', '_'), Page.escapize(Page.minimize(Files.readString(p))));
+                                            .replace('.', '_'), Page.escapize(Page.minimize(Files.readString(p), true)));
 
                                 }
 
