@@ -43,6 +43,7 @@
     <section ui-animated>
 
         <!-- About Header -->
+        <ui-parallax id="ui-parallax-3" ui:src="/assets/img/home/parallax02.jpg" ui:reserve="400px"></ui-parallax>
         <div class="ui-block-container">
             <div class="row ui-block-container-fixed">
                 <div class="ui-container">
