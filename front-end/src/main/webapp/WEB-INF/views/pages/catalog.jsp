@@ -26,7 +26,7 @@
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
 <jsp:include page="/WEB-INF/components/home/section_1/section_1.controller.jsp" />
-<jsp:include page="/WEB-INF/components/product/product.controller.jsp" />
+<jsp:include page="/WEB-INF/components/products/box/box.controller.jsp" />
 
 
 
@@ -50,9 +50,11 @@
         <ui-section_1 id="ui-section_1"></ui-section_1>
     </section>
 
-    <section ui-animated>
-        <product id="ui-product"></product>
-    </section>
+
+
+
+
+
 
 
 

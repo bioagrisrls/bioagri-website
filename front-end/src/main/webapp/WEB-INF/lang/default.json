@@ -1,5 +1,8 @@
 {
 
+
+
+
   "info_title" : "Bioagri Shop",
   "info_address" : "Rosarno, Via delle livare, 100 100",
   "info_phone" : "0966-543210",
@@ -33,6 +36,8 @@
   "about_presentation_body" : "La nostra è una ditta a conduzione familiare nata nel 1908, è stata da sempre attiva nel settore agricolo, e si è espansa con il passare degli anni arrivando ad avere clienti in tutta la regione.",
 
   "history_title" : "BioAgri",
-  "history_subtitle" : "La nostra storia"
+  "history_subtitle" : "La nostra storia",
+
+
 
 }
