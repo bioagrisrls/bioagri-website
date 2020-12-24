@@ -45,7 +45,7 @@
 
         <!-- About Header -->
         <ui-parallax id="ui-parallax-3" ui:src="/assets/img/about/header.jpg" ui:reserve="300px">
-            <div class="ui-about-header">
+            <div class="ui-container ui-about-header float-start">
                 <h2>${ locale.about_title }</h2>
             </div>
         </ui-parallax>
@@ -65,7 +65,7 @@
                             <h6 class="ui-about-presentation-title"> ${ locale.about_presentation_title } </h6>
                             <h1 class="ui-about-presentation-subtitle"><span > ${ locale.about_presentation_subtitle_start } </span><b> ${ locale.about_presentation_subtitle_end } </b></h1>
                             <img class="ui-about-leaf" src="/assets/img/about/decorator.jpg">
-                            <p> ${ locale.about_presentation_body } </p>
+                            <p class="ui-about-presentation-body"> ${ locale.about_presentation_body } </p>
                         </li>
                     </ul>
                 </div>
