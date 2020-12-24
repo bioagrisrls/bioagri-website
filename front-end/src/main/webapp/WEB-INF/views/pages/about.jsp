@@ -53,6 +53,28 @@
         <br>
         <br>
 
+        <div class="ui-container">
+
+            <!-- Breadcrumb -->
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li>
+                        <a>
+                            <span class="mdi mdi-home mdi"></span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="ui-navigate" title="${ locale.info_title }" href="/home">${ locale.breadcrumb_home }</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">${ locale.breadcrumb_about }</li>
+                </ol>
+            </nav>
+
+        </div>
+
+        <br>
+        <br>
+
         <div class="ui-container ui-about">
 
 
@@ -85,7 +107,6 @@
 
 
             <!-- About History -->
-
             <div class="row align-items-center text-center justify-content-center ui-history">
                 <div class="col-md ui-history-header">
 
@@ -132,6 +153,13 @@
                 </div>
 
             </div>
+
+
+            <!-- About Cards -->
+            <div class="row align-items-center">
+
+            </div>
+
 
         </div>
 
