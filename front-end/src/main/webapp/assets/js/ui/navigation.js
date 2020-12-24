@@ -81,6 +81,7 @@ const uiNavigateURL = (url, container = document.documentElement, pushState = tr
                 document.title = title;
 
 
+
                 prog.css('width', '66%')
                     .attr('aria-valuenow', '66');
 
@@ -119,7 +120,13 @@ const uiNavigateURL = (url, container = document.documentElement, pushState = tr
 
 $(document).ready(() => {
 
-    $('#ui-navigation-container').on('click', '.ui-navigate',{}, (e) => {
+    const container = $('#ui-navigation-container');
+
+    if(!container)
+        throw new Error("#ui-navigation-container cannot be null");
+
+
+    container.on('click', '.ui-navigate',{}, (e) => {
 
         e.preventDefault();
 
@@ -136,6 +143,9 @@ $(document).ready(() => {
         </div>
     `);
 
+
+    if(container.attr('ui-title'))
+        document.title = container.attr('ui-title');
 
     $(document).trigger('ui-ready');
 

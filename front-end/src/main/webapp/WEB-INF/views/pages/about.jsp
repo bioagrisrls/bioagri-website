@@ -33,7 +33,8 @@
 <jsp:include page="/WEB-INF/components/common/breadcrumb/breadcrumb.controller.jsp"/>
 <jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp"/>
 
-<section id="ui-navigation-container">
+
+<section id="ui-navigation-container" ui-title="${locale.page_about} &ndash; ${locale.info_title}">
 
     <!-- Header -->
     <ui-header id="ui-header"></ui-header>

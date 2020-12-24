@@ -25,10 +25,10 @@
 
 <?
     let pages = [
-        { key: 'home',      name: home,     value: title                         },
-        { key: 'catalog',   name: catalog,  value: catalog + ' &ndash; ' + title },
-        { key: 'about',     name: about,    value: about   + ' &ndash; ' + title },
-        { key: 'support',   name: support,  value: support + ' &ndash; ' + title },
+        { key: 'home',      name: home    },
+        { key: 'catalog',   name: catalog },
+        { key: 'about',     name: about   },
+        { key: 'support',   name: support },
     ];
 ?>
 
@@ -87,7 +87,7 @@
                     <ul>
                         <? for (let page of pages) { ?>
                             <li>
-                                <a class="ui-navigate {{ (current === page.key ? 'active' : '') }}" title="{{ page.value }}" href="/{{page.key}}">
+                                <a class="ui-navigate {{ (current === page.key ? 'active' : '') }}" href="/{{page.key}}">
                                     {{ page.name }}
                                 </a>
                             </li>
