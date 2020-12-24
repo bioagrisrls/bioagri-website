@@ -29,6 +29,9 @@ $(document).on('ui-ready', () => {
 
     window.addEventListener('scroll', () => animated.each((i, e) => {
 
+        if(!e.hasAttribute('ui-animated-scroll'))
+            return;
+
         if((window.scrollY + window.innerHeight) > e.offsetTop) {
 
             e.classList.add('animate__animated');
@@ -38,7 +41,7 @@ $(document).on('ui-ready', () => {
                 e.classList.remove('animate__backInUp');
             })
 
-            animated.splice(i, 1);
+            e.removeAttribute('ui-animated-scroll');
 
         }
 
