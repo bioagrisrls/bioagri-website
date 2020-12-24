@@ -131,6 +131,7 @@ $(document).ready(() => {
 
 });
 
+
 window.onpopstate = (e) => {
     uiNavigateURL(document.location.href, document.title, '#ui-navigation-container', false);
 }

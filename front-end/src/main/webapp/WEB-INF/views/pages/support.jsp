@@ -37,15 +37,15 @@
     <ui-navbar id="ui-navbar" ui:current="support"></ui-navbar>
 
 
-    <ui-image id="ui-image-1" ui:src="/assets/img/test/image/test01.jpg" ui:width="400" ui:height="400"></ui-image>
-    <ui-image id="ui-image-2" ui:src="/assets/img/test/image/test01.jpg" ui:width="400" ui:height="400"></ui-image>
-    <ui-image id="ui-image-3" ui:src="/assets/img/test/image/test01.jpg" ui:width="400" ui:height="400"></ui-image>
-    <ui-image id="ui-image-4" ui:src="/assets/img/test/image/test01.jpg" ui:width="400" ui:height="400"></ui-image>
-    <ui-image id="ui-image-5" ui:src="/assets/img/test/image/test01.jpg" ui:width="400" ui:height="400"></ui-image>
-    <ui-image id="ui-image-6" ui:src="/assets/img/test/image/test01.jpg" ui:width="400" ui:height="400"></ui-image>
-    <ui-image id="ui-image-7" ui:src="/assets/img/test/image/test01.jpg" ui:width="400" ui:height="400"></ui-image>
-    <ui-image id="ui-image-8" ui:src="/assets/img/test/image/test01.jpg" ui:width="400" ui:height="400"></ui-image>
-    <ui-image id="ui-image-9" ui:src="/assets/img/test/image/test01.jpg" ui:width="400" ui:height="400"></ui-image>
+    <ui-image id="ui-image-1" ui:src="/assets/img/test/image/test01.jpg" ui:width="400px" ui:height="400px"></ui-image>
+    <ui-image id="ui-image-2" ui:src="/assets/img/test/image/test01.jpg" ui:width="400px" ui:height="400px"></ui-image>
+    <ui-image id="ui-image-3" ui:src="/assets/img/test/image/test01.jpg" ui:width="400px" ui:height="400px"></ui-image>
+    <ui-image id="ui-image-4" ui:src="/assets/img/test/image/test01.jpg" ui:width="400px" ui:height="400px"></ui-image>
+    <ui-image id="ui-image-5" ui:src="/assets/img/test/image/test01.jpg" ui:width="400px" ui:height="400px"></ui-image>
+    <ui-image id="ui-image-6" ui:src="/assets/img/test/image/test01.jpg" ui:width="400px" ui:height="400px"></ui-image>
+    <ui-image id="ui-image-7" ui:src="/assets/img/test/image/test01.jpg" ui:width="400px" ui:height="400px"></ui-image>
+    <ui-image id="ui-image-8" ui:src="/assets/img/test/image/test01.jpg" ui:width="400px" ui:height="400px"></ui-image>
+    <ui-image id="ui-image-9" ui:src="/assets/img/test/image/test01.jpg" ui:width="400px" ui:height="400px"></ui-image>
 
     <section ui-animated>
         <p style = "width:100%;">

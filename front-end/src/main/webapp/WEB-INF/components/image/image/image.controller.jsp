@@ -39,12 +39,28 @@
                 width: props.width || props.height || 'auto',
                 height: props.height || props.width || 'auto',
                 rounded: props.rounded || false,
-                loaded: false
+                ready: false
             });
         }
 
         onRender() {
             return `${components.image_image}`
+        }
+
+        onReady(state) {
+
+            new Promise((resolve, reject) => {
+
+                const img = new Image();
+                img.addEventListener('load',  (e) => resolve(img));
+                img.addEventListener('error', (e) => reject(e));
+                img.src = state.src;
+
+            }).then((response) => this.state = {
+                src: response.src,
+                ready: true
+            });
+
         }
 
     });

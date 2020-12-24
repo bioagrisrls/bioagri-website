@@ -242,6 +242,7 @@ class StatefulComponent extends Component {
         this.onInit();
 
         this.$currentState = {};
+        this.$isReady = false;
 
 
         Component.render(this, this.onLoading(), state || {});
@@ -264,6 +265,12 @@ class StatefulComponent extends Component {
     setState(state) {
 
         this.$currentState = Object.assign(this.$currentState, state);
+
+
+        if(!this.$isReady) {
+            this.$isReady = true;
+            this.onReady(this.state);
+        }
 
         this.onBeforeUpdate(this.state);
         Component.render(this, this.onRender(), this.state);
@@ -302,6 +309,14 @@ class StatefulComponent extends Component {
      * @param state {object}
      */
     onUpdated(state) {
+
+    }
+
+    /**
+     * When a first state is available
+     * @param state {object}
+     */
+    onReady(state) {
 
     }
 
