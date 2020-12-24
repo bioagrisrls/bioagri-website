@@ -6,10 +6,10 @@
   "info_email" : "info@bioagri.com",
   "info_copy" : "Copyright &copy; 2021 Bioagri S.r.l.s. All rights reserved.",
 
-  "breadcrumb_home" : "Home",
-  "breadcrumb_catalog" : "Catalogo",
-  "breadcrumb_about" : "Chi siamo",
-  "breadcrumb_support" : "Contatti",
+  "page_home" : "Home",
+  "page_catalog" : "Catalogo",
+  "page_about" : "Chi siamo",
+  "page_support" : "Contatti",
 
   "nav_logo" : "/assets/img/logo/logo-navbar.jpg",
   "nav_home" : "Home",

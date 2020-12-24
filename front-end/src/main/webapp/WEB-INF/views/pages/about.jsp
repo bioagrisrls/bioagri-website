@@ -30,6 +30,7 @@
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/footer/footer.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/breadcrumb/breadcrumb.controller.jsp"/>
 <jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp"/>
 
 <section id="ui-navigation-container">
@@ -56,14 +57,7 @@
         <div class="ui-container">
 
             <!-- Breadcrumb -->
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a class="ui-navigate" title="${ locale.info_title }" href="/home"><span class="mdi mdi-home mdi"></span>${ locale.breadcrumb_home }</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">${ locale.breadcrumb_about }</li>
-                </ol>
-            </nav>
+            <ui-breadcrumb id="ui-breadcrumb-1" ui:current="${locale.page_about}"></ui-breadcrumb>
 
         </div>
 
