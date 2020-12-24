@@ -28,6 +28,7 @@ package it.bioagri;
 import ch.qos.logback.classic.Logger;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.web.Page;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,6 +113,13 @@ public class WebConfig implements WebMvcConfigurer {
 
                 }
 
+                if(((HttpServletRequest) request).getRequestURI().startsWith("/assets")) {
+
+                    chain.doFilter(request, response);
+                    return;
+
+                }
+
             }
 
             if(response instanceof HttpServletResponse) {
@@ -143,7 +151,7 @@ public class WebConfig implements WebMvcConfigurer {
                 response.getOutputStream().print(
                         """
                         <!--
-                        
+                                                
                             Authors:
                                 Antonino Natale   <linkedin.com/in/antonino-natale>
                                 Matteo Perfidio   <linkedin.com/in/matteo-perfidio>
@@ -156,8 +164,7 @@ public class WebConfig implements WebMvcConfigurer {
                 );
 
 
-                //response.getOutputStream().write(Page.minimize(wrapper.toString().getBytes(StandardCharsets.UTF_8))); // TODO: remove comment on production
-                response.getOutputStream().write(wrapper.toString().getBytes(StandardCharsets.UTF_8));
+                response.getOutputStream().write(Page.minimize(wrapper.toString(), false).getBytes(StandardCharsets.UTF_8));
 
             }
 
