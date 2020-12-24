@@ -25,14 +25,18 @@
 
 <script defer>
 
-    Component.register('ui-product', (id, props) => new class extends StatefulComponent {
+    Component.register('ui-product-box', (id, props) => new class extends StatefulComponent {
 
         constructor() {
-            super(id, {});
+            super(id, {
+
+
+
+            });
         }
 
         onRender() {
-            return `${components.product}`
+            return `${components.products_box}`
         }
 
 
