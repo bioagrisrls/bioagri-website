@@ -24,33 +24,16 @@
   -->
 
 
-<? if (!loaded) { ?>
-    <div class="ui-spinner" style="width: {{width}}px; height: {{height}}px">
-        <div class="spinner-border ui-spinner-center" role="status">
-            <span class="visually-hidden">Loading...</span>
+<? if (!ready) { ?>
+
+    <div class="d-inline-block" style="width: {{width}}; height: {{height}}" ui-animated>
+        <div class="d-grid align-items-center h-100">
+            <div class="spinner-border m-auto" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </div>
     </div>
+
 <? } else { ?>
     <img src="{{src}}" width="{{width}}" height="{{height}}" alt="{{alt}}" class="{{rounded ? 'rounded' : ''}}" ui-animated />
 <? } ?>
-
-
-<?
-    if(!loaded) {
-
-        new Promise((resolve, reject) => {
-
-            const img = new Image();
-            img.addEventListener('load',  (e) => resolve(img));
-            img.addEventListener('error', (e) => reject(e));
-            img.src = src;
-
-        }).then((response) => this.setState({
-
-            src: response.src,
-            loaded: true
-
-        }));
-
-    }
-?>
