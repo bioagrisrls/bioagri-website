@@ -82,12 +82,12 @@ const uiNavigateURL = (url, title = document.title, container = document.documen
 
                 console.error(reason);
 
-                // $('body').append(`
-                //     <div id="ui-navigation-error" class="alert alert-error alert-dismissible fixed-bottom fade show" role="alert">
-                //         <strong>Ops!</strong> Seems to be no internet connection :(
-                //         <button type="button" class="close" onclick="$('#ui-navigation-error'"
-                //     </div>
-                // `)
+                $('body').append(`
+                    <div id="ui-navigation-error" class="alert alert-danger alert-dismissible fixed-bottom fade show" role="alert">
+                        <strong>Ops!</strong> Seems there is no internet connection here :(
+                        <button type="button" class="btn-close" onclick="$('#ui-navigation-error').alert('close')" aria-label="Close"></button>
+                    </div>
+                `);
 
             })
 
