@@ -107,7 +107,9 @@
 
         </div>
 
-        <ui-parallax id="ui-parallax-2" ui:src="/assets/img/home/parallax02.jpg" ui:reserve="400px"></ui-parallax>
+        <ui-parallax id="ui-parallax-2" ui:src="/assets/img/home/parallax02.jpg" ui:reserve="400px">
+            <h2>Hello World!</h2>
+        </ui-parallax>
 
     </section>
 

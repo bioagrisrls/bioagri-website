@@ -76,7 +76,20 @@ const uiNavigateURL = (url, title = document.title, container = document.documen
 
             }).then(() => Component.run(container))
               .then(() => prog.hide())
-              .then(() => $(document).trigger('ui-ready'));
+              .then(() => $(document).trigger('ui-ready'))
+
+            .catch(reason => {
+
+                console.error(reason);
+
+                // $('body').append(`
+                //     <div id="ui-navigation-error" class="alert alert-error alert-dismissible fixed-bottom fade show" role="alert">
+                //         <strong>Ops!</strong> Seems to be no internet connection :(
+                //         <button type="button" class="close" onclick="$('#ui-navigation-error'"
+                //     </div>
+                // `)
+
+            })
 
 
         if(pushState)

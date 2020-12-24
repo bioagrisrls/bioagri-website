@@ -84,14 +84,6 @@
                     .toggleClass('animate__fadeOut');
 
 
-                $(this.elem).find('#ui-parallax-caption-content').css({
-                    height: state.reserve,
-                    position: 'relative',
-                    top: '-' + state.reserve,
-                    marginBottom: '-' + state.reserve,
-                })
-
-
                 $(this.elem).find('.ui-parallax-caption-item').each((i, e) => {
 
                     i === state.current
@@ -109,6 +101,15 @@
                 }, state.delay);
 
             }
+
+
+            $(this.elem).find('#ui-parallax-caption-content').css({
+                height: state.reserve,
+                position: 'relative',
+                top: '-' + state.reserve,
+                marginBottom: '-' + state.reserve,
+            })
+
         }
 
     });
