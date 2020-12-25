@@ -35,13 +35,11 @@
             super(id, {
 
                 home: `${locale.page_home}` || '',
-                home_title: '${ locale.info_title }' || '',
                 home_url: '/home' || '',
 
                 current: props.current || '',
 
                 path: (props.path && props.path.split('/')) || [],
-                titles: (props.path && props.path.split(',')) || [],
                 urls: (props.path && props.path.split(',')) || [],
 
             });

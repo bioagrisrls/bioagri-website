@@ -30,7 +30,7 @@
         </li>
         <? for (i = 0; i < path.length; ++i) { ?>
             <li class="breadcrumb-item">
-                <a class="ui-navigate" title="{{ titles[i] }}" href="/{{ urls[i] }}">{{ path[i] }}</a>
+                <a class="ui-navigate" href="{{ urls[i] }}">{{ path[i] }}</a>
             </li>
         <? } ?>
         <li class="breadcrumb-item active" aria-current="page">{{ current }}</li>
