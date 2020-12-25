@@ -47,8 +47,10 @@
 
         <!-- About Header -->
         <ui-parallax id="ui-parallax-3" ui:src="/assets/img/about/header.jpg" ui:reserve="300px">
-            <div class="ui-container ui-about-header float-start">
-                <h1>${ locale.about_title }</h1>
+            <div class="ui-container">
+                <div class="ui-text-block ui-about-header ui-about-shadow">
+                    <h1>${ locale.about_title }</h1>
+                </div>
             </div>
         </ui-parallax>
 
