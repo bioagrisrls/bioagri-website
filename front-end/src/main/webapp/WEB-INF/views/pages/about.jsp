@@ -51,9 +51,9 @@
 
                 <div class="row">
 
-                        <div class="col-auto ui-text-block ui-about-header ui-about-shadow">
-                            <h1 class="display-6 pt-3">${ locale.about_title }</h1>
-                        </div>
+                    <div class="col-12 ui-about-header">
+                        <h1 class="display-6 pt-3">${ locale.about_title }</h1>
+                    </div>
 
                 </div>
 
@@ -211,7 +211,7 @@
 
                 <div class="col-md mb-5">
 
-                    <div class="ui-about-card-container text-white" ui-animated-hover>
+                    <div class="ui-about-card-container text-white">
                         <img class="ui-about-shadow img-fluid w-100" src="/assets/img/about/field.jpg">
                         <div class="ui-about-card-overlay p-3">
                             <p>Last updated 3 mins ago.</p>
