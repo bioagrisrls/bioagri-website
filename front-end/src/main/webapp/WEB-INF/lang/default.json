@@ -31,6 +31,7 @@
   "foo_body_contact" : "Contatti",
 
   "about_title" : "Chi siamo?",
+  "support_title" : "Contatti",
 
   "about_presentation_title" : "Su di noi",
   "about_presentation_subtitle_start" : "Lascia che",
@@ -38,8 +39,9 @@
   "about_presentation_body" : "La nostra è una ditta a conduzione familiare nata nel 1908, è stata da sempre attiva nel settore agricolo, e si è espansa con il passare degli anni arrivando ad avere clienti in tutta la regione.",
 
   "history_title" : "BioAgri",
-  "history_subtitle" : "Un po' di storia"
+  "history_subtitle" : "Un po' di storia",
 
-
-
+  "support_contact_info_title" : "Informazioni di Contatto",
+  "support_contact_info_subtitle_start" : "Il modo migliore",
+  "support_contact_info_subtitle_end" : "di contattarci per chiedere aiuto"
 }
