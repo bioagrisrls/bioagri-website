@@ -75,7 +75,7 @@
                     <ul class="list-unstyled">
                         <li>
                             <h6> ${ locale.about_presentation_title } </h6>
-                            <h1><span > ${ locale.about_presentation_subtitle_start } </span><b> ${ locale.about_presentation_subtitle_end } </b></h1>
+                            <h1><span> ${ locale.about_presentation_subtitle_start } </span><b> ${ locale.about_presentation_subtitle_end } </b></h1>
                             <img class="mt-3" src="/assets/img/about/decorator.jpg">
                             <p class="mt-3"> ${ locale.about_presentation_body } </p>
                         </li>
@@ -205,7 +205,7 @@
 
                     <div class="ui-about-card-container text-white">
                         <img class="ui-about-shadow img-fluid w-100" src="/assets/img/about/field.jpg">
-                        <div class="ui-about-card-overlay">
+                        <div class="ui-about-card-overlay p-3">
                             <p>Last updated 3 mins ago.</p>
                             <h3>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h3>
                         </div>

@@ -45,7 +45,7 @@
         </a>
 
 
-        <button class="navbar-toggler col-1 pull-right"
+        <button class="navbar-toggler col-2 pull-right"
                 type="button"
                 onclick="$('#ui-navbar-links').collapse('toggle')"
                 aria-controls="ui-navbar-links"
@@ -56,7 +56,7 @@
 
         </button>
 
-        <div id="ui-navbar-links" class="navbar-collapse collapse col-8">
+        <div id="ui-navbar-links" class="navbar-collapse collapse col-6 col-md">
 
             <!-- Navigation Links -->
             <ul class="ui-navbar-nav navbar-nav">
@@ -88,9 +88,6 @@
             </div>
 
         </div>
-
-
-
 
     </div>
 </nav>

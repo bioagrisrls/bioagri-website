@@ -46,26 +46,3 @@ $ui-theme-divider-color: #BDBDBD;
 $ui-theme-layout-container-width: 960px;
 
 
-
-html, body {
-  overflow-x: hidden;
-}
-
-a {
-
-  color: $ui-theme-primary;
-  text-decoration: none;
-
-  &:hover {
-    color: $ui-theme-primary-variant;
-    text-decoration: none;
-  }
-
-  &:active {
-    color: $ui-theme-primary;
-    text-decoration: none;
-  }
-
-}
-
-

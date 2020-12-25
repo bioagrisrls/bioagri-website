@@ -28,6 +28,9 @@
 
 .ui-navbar {
   width: 100%;
+  z-index: 1;
+  top: 0;
+  position: sticky;
   background-color: $ui-theme-background;
   filter: drop-shadow(0 1px 1px $ui-theme-divider-color);
 }
@@ -73,10 +76,3 @@
   padding: 0 0 0 64px;
 }
 
-
-.ui-navbar-sticky {
-  width: 100%;
-  top: 0;
-  z-index: 1;
-  position: fixed;
-}

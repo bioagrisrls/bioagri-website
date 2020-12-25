@@ -35,7 +35,7 @@
 }
 
 .ui-about-presentation h1 {
-  font-weight: bold;
+  font-weight: bold; // FIXME
 }
 
 .ui-about-presentation span {
@@ -55,10 +55,10 @@
 
 .ui-about-history-header h1 {
   color: $ui-theme-primary;
-  font-size: xxx-large;
+  font-size: xxx-large; // FIXME
 }
 
-.ui-about-history-header img {
+.ui-about-history-header img { // FIXME
   border-radius: 50%;
   height: 256px;
   max-width: 100%;
@@ -140,8 +140,7 @@
 .ui-about-card-overlay {
   text-align: initial;
   position: absolute;
-  bottom: 8px;
-  left: 16px;
+  bottom: 0;
 }
 
 .ui-about-shadow {

@@ -23,6 +23,27 @@
  *
  */
 
+@import "ui-theme";
+
+a {
+
+  color: $ui-theme-primary;
+  text-decoration: none;
+
+  &:hover {
+    color: $ui-theme-primary-variant;
+    text-decoration: none;
+  }
+
+  &:active {
+    color: $ui-theme-primary;
+    text-decoration: none;
+  }
+
+}
+
+
 .navbar-toggler:focus {
   box-shadow: none;
 }
+
