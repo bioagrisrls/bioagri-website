@@ -35,8 +35,8 @@
 }
 
 .ui-support-contact-info span {
-  font-size: revert;
   color: $ui-theme-primary;
+  font-size: revert;
 }
 
 .ui-support-contact-info b {
@@ -51,8 +51,11 @@
   font-size: large;
   line-height: 70px;
   margin: 0 auto 30px;
-  color: $ui-theme-primary-text;
   background-color: $ui-theme-primary;
+}
+
+.ui-support-contact-info-icon a {
+  color: $ui-theme-primary-text;
 }
 
 .ui-support-shadow {
@@ -72,9 +75,16 @@
   font-size: revert;
 }
 
-.ui-support-maps header {
-  font-size: xx-large;
-  line-height: 32px;
-  border-bottom: 3px solid $ui-theme-secondary;
+.ui-support-maps h6 {
+  text-transform: uppercase;
+}
+
+.ui-support-maps span {
+  font-size: revert;
+  color: $ui-theme-primary;
+}
+
+.ui-support-maps b {
+  font-size: revert;
 }
 
