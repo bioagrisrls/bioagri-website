@@ -34,10 +34,6 @@
   text-transform: uppercase;
 }
 
-.ui-about-presentation h1 {
-  font-weight: bold; // FIXME
-}
-
 .ui-about-presentation span {
   font-size: revert;
   color: $ui-theme-primary;
@@ -58,12 +54,7 @@
   font-size: xxx-large; // FIXME
 }
 
-.ui-about-history-header img { // FIXME
-  border-radius: 50%;
-  height: 256px;
-  max-width: 100%;
-  position: relative;
-  z-index: 1;
+.ui-about-history-header img {
   border: 7.5px solid $ui-theme-secondary;
 }
 
@@ -158,5 +149,11 @@
 }
 
 .ui-text-block {
-  background-color: black;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.ui-text-block h1 {
+  letter-spacing: -1px;
+  color: $ui-theme-primary-text;
 }

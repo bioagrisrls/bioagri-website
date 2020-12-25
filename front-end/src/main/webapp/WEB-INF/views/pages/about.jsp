@@ -48,9 +48,15 @@
         <!-- About Header -->
         <ui-parallax id="ui-parallax-3" ui:src="/assets/img/about/header.jpg" ui:reserve="300px">
             <div class="ui-container">
-                <div class="ui-text-block ui-about-header ui-about-shadow">
-                    <h1>${ locale.about_title }</h1>
+
+                <div class="row">
+
+                        <div class="col-auto ui-text-block ui-about-header ui-about-shadow">
+                            <h1 class="pt-3">${ locale.about_title }</h1>
+                        </div>
+
                 </div>
+
             </div>
         </ui-parallax>
 
@@ -85,7 +91,7 @@
                 </div>
 
                 <div class="col-md text-center">
-                    <img class="ui-about-rounded-image ui-about-shadow" src="/assets/img/about/field.jpg">
+                    <img class="rounded-circle ui-about-shadow w-75" src="/assets/img/about/field.jpg">
                 </div>
 
             </div>
@@ -109,7 +115,7 @@
 
                     <br>
 
-                    <img class="ui-about-shadow" src="/assets/img/about/field.jpg">
+                    <img class="rounded-circle ui-about-shadow w-25" src="/assets/img/about/field.jpg">
 
                 </div>
             </div>
@@ -205,7 +211,7 @@
 
                 <div class="col-md mb-5">
 
-                    <div class="ui-about-card-container text-white">
+                    <div class="ui-about-card-container text-white" ui-animated-hover>
                         <img class="ui-about-shadow img-fluid w-100" src="/assets/img/about/field.jpg">
                         <div class="ui-about-card-overlay p-3">
                             <p>Last updated 3 mins ago.</p>

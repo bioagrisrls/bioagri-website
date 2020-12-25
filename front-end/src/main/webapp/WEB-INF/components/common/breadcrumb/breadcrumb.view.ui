@@ -26,7 +26,7 @@
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a class="ui-navigate" title="{{ home_title }}" href="{{ home_url }}"><span class="mdi mdi-home mdi"></span>{{ home }}</a>
+            <a class="ui-navigate" href="{{ home_url }}"><span class="mdi mdi-home mdi"></span>{{ home }}</a>
         </li>
         <? for (i = 0; i < path.length; ++i) { ?>
             <li class="breadcrumb-item">
