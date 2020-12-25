@@ -77,24 +77,26 @@
 
 
             <!-- About Presentation -->
-            <div class="row align-items-center">
+            <section>
+                <div class="row align-items-center">
 
-                <div class="col-md ui-about-presentation ">
-                    <ul class="list-unstyled">
-                        <li>
-                            <h6 class="display-8"> ${ locale.about_presentation_title } </h6>
-                            <h1 class="display-5" ><span> ${ locale.about_presentation_subtitle_start } </span><b> ${ locale.about_presentation_subtitle_end } </b></h1>
-                            <img class="mt-3" src="/assets/img/about/decorator.jpg">
-                            <p class="mt-3"> ${ locale.about_presentation_body } </p>
-                        </li>
-                    </ul>
+                    <div class="col-md ui-about-presentation ">
+                        <ul class="list-unstyled">
+                            <li>
+                                <h6 class="display-8"> ${ locale.about_presentation_title } </h6>
+                                <h1 class="display-5" ><span> ${ locale.about_presentation_subtitle_start } </span><b> ${ locale.about_presentation_subtitle_end } </b></h1>
+                                <img class="mt-3" src="/assets/img/about/decorator.jpg">
+                                <p class="mt-3"> ${ locale.about_presentation_body } </p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md text-center">
+                        <img class="rounded-circle ui-about-shadow w-75" src="/assets/img/about/field.jpg">
+                    </div>
+
                 </div>
-
-                <div class="col-md text-center">
-                    <img class="rounded-circle ui-about-shadow w-75" src="/assets/img/about/field.jpg">
-                </div>
-
-            </div>
+            </section>
 
 
             <br>
@@ -105,99 +107,101 @@
 
 
             <!-- About History -->
+            <section>
 
-            <!-- History Head -->
-            <div class="row align-items-center text-center justify-content-center">
-                <div class="col-md ui-about-history-header">
+                <!-- History Head -->
+                <div class="row align-items-center text-center justify-content-center">
+                    <div class="col-md ui-about-history-header">
 
-                    <header>${ locale.history_subtitle }</header>
-                    <h1 class="display-4" >${ locale.history_title }</h1>
+                        <header>${ locale.history_subtitle }</header>
+                        <h1 class="display-4" >${ locale.history_title }</h1>
 
-                    <br>
+                        <br>
 
-                    <img class="rounded-circle ui-about-shadow w-25" src="/assets/img/about/field.jpg">
+                        <img class="rounded-circle ui-about-shadow w-25" src="/assets/img/about/field.jpg">
 
-                </div>
-            </div>
-
-
-            <!-- History Body -->
-            <div class="row align-items-center justify-content-center">
-
-
-                <!-- Left -->
-                <div class="col col-5 ">
-
-                    <div class="ui-about-history-mb ui-about-history-left" ui-animated-hover ui-animated-scroll>
-                        <div>
-                            <h1 class="display-5" >2018</h1>
-                            <header></header>
-                        </div>
-
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
                     </div>
-
-                    <div class="ui-about-history-mb ui-about-history-left" ui-animated-hover ui-animated-scroll>
-                        <div>
-                            <h1 class="display-5">2018</h1>
-                            <header></header>
-                        </div>
-
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
-                    </div>
-
-                    <div class="ui-about-history-mb ui-about-history-left" ui-animated-hover ui-animated-scroll>
-                        <div>
-                            <h1 class="display-5">2018</h1>
-                            <header></header>
-                        </div>
-
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
-                    </div>
-
                 </div>
 
 
-                <!-- Center -->
-                <div class="col col-2 ui-about-history-center">
-                    <div class="ui-about-history-divider"></div>
+                <!-- History Body -->
+                <div class="row align-items-center justify-content-center">
+
+
+                    <!-- Left -->
+                    <div class="col col-5 ">
+
+                        <div class="ui-about-history-mb ui-about-history-left" ui-animated-hover ui-animated-scroll>
+                            <div>
+                                <h1 class="display-5" >2018</h1>
+                                <header></header>
+                            </div>
+
+                            <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                        </div>
+
+                        <div class="ui-about-history-mb ui-about-history-left" ui-animated-hover ui-animated-scroll>
+                            <div>
+                                <h1 class="display-5">2018</h1>
+                                <header></header>
+                            </div>
+
+                            <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                        </div>
+
+                        <div class="ui-about-history-mb ui-about-history-left" ui-animated-hover ui-animated-scroll>
+                            <div>
+                                <h1 class="display-5">2018</h1>
+                                <header></header>
+                            </div>
+
+                            <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Center -->
+                    <div class="col col-2 ui-about-history-center">
+                        <div class="ui-about-history-divider"></div>
+                    </div>
+
+
+                    <!-- Right -->
+                    <div class="col col-5">
+
+                        <div class="ui-about-history-mb ui-about-history-mt ui-about-history-right" ui-animated-hover ui-animated-scroll>
+                            <div>
+                                <h1 class="display-5">2018</h1>
+                                <header></header>
+                            </div>
+
+                            <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                        </div>
+
+                        <div class="ui-about-history-mb ui-about-history-right" ui-animated-hover ui-animated-scroll>
+                            <div>
+                                <h1 class="display-5">2018</h1>
+                                <header></header>
+                            </div>
+
+                            <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                        </div>
+
+                        <div class="ui-about-history-right" ui-animated-hover ui-animated-scroll>
+                            <div>
+                                <h1 class="display-5">2018</h1>
+                                <header></header>
+                            </div>
+
+                            <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                        </div>
+
+                    </div>
+
                 </div>
 
-
-                <!-- Right -->
-                <div class="col col-5">
-
-                    <div class="ui-about-history-mb ui-about-history-mt ui-about-history-right" ui-animated-hover ui-animated-scroll>
-                        <div>
-                            <h1 class="display-5">2018</h1>
-                            <header></header>
-                        </div>
-
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
-                    </div>
-
-                    <div class="ui-about-history-mb ui-about-history-right" ui-animated-hover ui-animated-scroll>
-                        <div>
-                            <h1 class="display-5">2018</h1>
-                            <header></header>
-                        </div>
-
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
-                    </div>
-
-                    <div class="ui-about-history-right" ui-animated-hover ui-animated-scroll>
-                        <div>
-                            <h1 class="display-5">2018</h1>
-                            <header></header>
-                        </div>
-
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
-                    </div>
-
-                </div>
-
-            </div>
-
+            </section>
 
             <br>
             <br>
@@ -207,52 +211,54 @@
 
 
             <!-- About Cards -->
-            <div class="row">
+            <section>
+                <div class="row">
 
-                <div class="col-md mb-5">
+                    <div class="col-md mb-5">
 
-                    <div class="ui-about-card-container text-white">
-                        <img class="ui-about-shadow img-fluid w-100" src="/assets/img/about/field.jpg">
-                        <div class="ui-about-card-overlay p-3">
-                            <p>Last updated 3 mins ago.</p>
-                            <h3>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h3>
+                        <div class="ui-about-card-container text-white">
+                            <img class="ui-about-shadow img-fluid w-100" src="/assets/img/about/field.jpg">
+                            <div class="ui-about-card-overlay p-3">
+                                <p>Last updated 3 mins ago.</p>
+                                <h3>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h3>
+                            </div>
                         </div>
+
+                    </div>
+
+                    <div class="col-md">
+
+                        <div class="card mt-0 mb-5 mx-auto" ui-animated-hover>
+                            <div class="card-body ui-about-shadow">
+                                <h5 class="card-title">Card title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+
+                        <div class="card mt-0 mb-5 mx-auto" ui-animated-hover>
+                            <div class="card-body ui-about-shadow">
+                                <h5 class="card-title">Card title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+
+                        <div class="card mt-0 mb-0 mx-auto" ui-animated-hover>
+                            <div class="card-body ui-about-shadow">
+                                <h5 class="card-title">Card title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
 
-                <div class="col-md">
-
-                    <div class="card mt-0 mb-5 mx-auto" ui-animated-hover>
-                        <div class="card-body ui-about-shadow">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-
-                    <div class="card mt-0 mb-5 mx-auto" ui-animated-hover>
-                        <div class="card-body ui-about-shadow">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-
-                    <div class="card mt-0 mb-0 mx-auto" ui-animated-hover>
-                        <div class="card-body ui-about-shadow">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
+            </section>
 
         </div>
-
     </section>
 
     <br>
