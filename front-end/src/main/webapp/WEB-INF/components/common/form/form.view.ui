@@ -43,7 +43,7 @@
 
 
     <div class="col-auto">
-        <button type="submit" class="btn btn-primary mb-3">{{submit}}</button>
+        <button type="submit" class="btn btn-primary mb-3" onclick="$$.$submit()">{{submit}}</button>
     </div>
 
 </form>

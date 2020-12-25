@@ -49,13 +49,20 @@
 
         }
 
-        $submit(data) {
+        $submit() {
+
+            const data = {};
+
+            for(let k of Object.keys(this.state))
+                data[k] = $(this.elem).find('#' + k).text();
+
 
             for(let k of Object.keys(data)) {
 
                 if(k in this.state) {
 
-                    const s = this.state[k] || throw new Error("Data has invalid key: " + k);
+
+                    const s = this.state[k];
 
                     const check = s.check || undefined;
                     const min = s.min || -1;
