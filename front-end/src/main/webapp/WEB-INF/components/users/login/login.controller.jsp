@@ -53,20 +53,12 @@
             });
         }
 
-        onReady(state) {
+        onSubmit(data) {
+            console.debug("DATA: ", data);
+        }
 
-            new Promise((resolve, reject) => {
-
-                const img = new Image();
-                img.addEventListener('load',  (e) => resolve(img));
-                img.addEventListener('error', (e) => reject(e));
-                img.src = state.src;
-
-            }).then((response) => this.state = {
-                src: response.src,
-                ready: true
-            });
-
+        onInvalid(row) {
+            console.debug("FORM HAS INVALID ROW: ", row);
         }
 
     });
