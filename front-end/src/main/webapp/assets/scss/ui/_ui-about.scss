@@ -27,6 +27,7 @@
 
 .ui-about-header h1 {
   color: $ui-theme-primary-text;
+  text-transform: uppercase;
 }
 
 .ui-about-presentation h6 {
@@ -102,7 +103,7 @@
 .ui-about-history-right header {
   border-left: 10px solid $ui-theme-secondary;
   border-radius: 10px;
-  margin-left: -35px;
+  margin-left: -32px;
   margin-bottom: 20px;
   padding-bottom: 18px;
   padding-top: 36px;
@@ -134,13 +135,4 @@
 
 .ui-about-shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.ui-text-block {
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.ui-text-block h1 {
-  color: $ui-theme-primary-text;
 }

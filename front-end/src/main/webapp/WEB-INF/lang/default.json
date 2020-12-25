@@ -43,5 +43,23 @@
 
   "support_contact_info_title" : "Informazioni di Contatto",
   "support_contact_info_subtitle_start" : "Il modo migliore",
-  "support_contact_info_subtitle_end" : "di contattarci per chiedere aiuto"
+  "support_contact_info_subtitle_end" : "di contattarci per chiedere aiuto",
+  "support_contact_info_address" : "Indirizzo",
+  "support_contact_info_phone" : "Telefono",
+  "support_contact_info_email" : "E-mail",
+
+  "support_form_title" : "Contattaci ora",
+  "support_form_subtitle_start" : "Mettiti in contatto",
+  "support_form_subtitle_end" : "con noi",
+
+  "support_form_name" : "Nome",
+  "support_form_surname" : "Cognome",
+  "support_form_email" : "E-mail",
+  "support_form_phone" : "Telefono",
+  "support_form_subject" : "Oggetto",
+  "support_form_message" : "Inserisci qui il tuo messaggio",
+  "support_form_submit" : "Invia messaggio",
+
+  "support_maps" : "Dove siamo?"
+
 }

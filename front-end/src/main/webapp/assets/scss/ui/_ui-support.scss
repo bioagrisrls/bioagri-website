@@ -27,6 +27,7 @@
 
 .ui-support-header h1 {
   color: $ui-theme-primary-text;
+  text-transform: uppercase;
 }
 
 .ui-support-contact-info h6 {
@@ -43,10 +44,37 @@
 }
 
 .ui-support-contact-info-icon {
-
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: large;
+  line-height: 70px;
+  margin: 0 auto 30px;
+  color: $ui-theme-primary-text;
+  background-color: $ui-theme-primary;
 }
 
 .ui-support-shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.ui-support-form-header h6 {
+  text-transform: uppercase;
+}
+
+.ui-support-form-header span {
+  font-size: revert;
+  color: $ui-theme-primary;
+}
+
+.ui-support-form-header b {
+  font-size: revert;
+}
+
+.ui-support-maps header {
+  font-size: xx-large;
+  line-height: 32px;
+  border-bottom: 3px solid $ui-theme-secondary;
 }
 
