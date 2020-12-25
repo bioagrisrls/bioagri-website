@@ -27,7 +27,6 @@
 
 .ui-about-header h1 {
   color: $ui-theme-primary-text;
-  text-transform: uppercase;
 }
 
 .ui-about-presentation h6 {
@@ -51,7 +50,6 @@
 
 .ui-about-history-header h1 {
   color: $ui-theme-primary;
-  font-size: xxx-large; // FIXME
 }
 
 .ui-about-history-header img {
@@ -154,6 +152,5 @@
 }
 
 .ui-text-block h1 {
-  letter-spacing: -1px;
   color: $ui-theme-primary-text;
 }

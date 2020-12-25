@@ -52,7 +52,7 @@
                 <div class="row">
 
                         <div class="col-auto ui-text-block ui-about-header ui-about-shadow">
-                            <h1 class="pt-3">${ locale.about_title }</h1>
+                            <h1 class="display-6 pt-3">${ locale.about_title }</h1>
                         </div>
 
                 </div>
@@ -79,11 +79,11 @@
             <!-- About Presentation -->
             <div class="row align-items-center">
 
-                <div class="col-md ui-about-presentation">
+                <div class="col-md ui-about-presentation ">
                     <ul class="list-unstyled">
                         <li>
-                            <h6> ${ locale.about_presentation_title } </h6>
-                            <h1><span> ${ locale.about_presentation_subtitle_start } </span><b> ${ locale.about_presentation_subtitle_end } </b></h1>
+                            <h6 class="display-8"> ${ locale.about_presentation_title } </h6>
+                            <h1 class="display-5" ><span> ${ locale.about_presentation_subtitle_start } </span><b> ${ locale.about_presentation_subtitle_end } </b></h1>
                             <img class="mt-3" src="/assets/img/about/decorator.jpg">
                             <p class="mt-3"> ${ locale.about_presentation_body } </p>
                         </li>
@@ -111,7 +111,7 @@
                 <div class="col-md ui-about-history-header">
 
                     <header>${ locale.history_subtitle }</header>
-                    <h1 >${ locale.history_title }</h1>
+                    <h1 class="display-4" >${ locale.history_title }</h1>
 
                     <br>
 
@@ -130,7 +130,7 @@
 
                     <div class="ui-about-history-mb ui-about-history-left" ui-animated-hover ui-animated-scroll>
                         <div>
-                            <h1>2018</h1>
+                            <h1 class="display-5" >2018</h1>
                             <header></header>
                         </div>
 
@@ -139,7 +139,7 @@
 
                     <div class="ui-about-history-mb ui-about-history-left" ui-animated-hover ui-animated-scroll>
                         <div>
-                            <h1>2018</h1>
+                            <h1 class="display-5">2018</h1>
                             <header></header>
                         </div>
 
@@ -148,7 +148,7 @@
 
                     <div class="ui-about-history-mb ui-about-history-left" ui-animated-hover ui-animated-scroll>
                         <div>
-                            <h1>2018</h1>
+                            <h1 class="display-5">2018</h1>
                             <header></header>
                         </div>
 
@@ -169,7 +169,7 @@
 
                     <div class="ui-about-history-mb ui-about-history-mt ui-about-history-right" ui-animated-hover ui-animated-scroll>
                         <div>
-                            <h1>2018</h1>
+                            <h1 class="display-5">2018</h1>
                             <header></header>
                         </div>
 
@@ -178,7 +178,7 @@
 
                     <div class="ui-about-history-mb ui-about-history-right" ui-animated-hover ui-animated-scroll>
                         <div>
-                            <h1>2018</h1>
+                            <h1 class="display-5">2018</h1>
                             <header></header>
                         </div>
 
@@ -187,7 +187,7 @@
 
                     <div class="ui-about-history-right" ui-animated-hover ui-animated-scroll>
                         <div>
-                            <h1>2018</h1>
+                            <h1 class="display-5">2018</h1>
                             <header></header>
                         </div>
 
