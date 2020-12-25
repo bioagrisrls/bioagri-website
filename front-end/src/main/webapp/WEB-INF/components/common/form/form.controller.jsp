@@ -33,7 +33,7 @@
 
     class FormComponent extends StatefulComponent {
 
-        constructor(state) {
+        constructor(id, state) {
             super(id, state);
         }
 
@@ -45,7 +45,7 @@
 
         }
 
-        onInvalid(row) {
+        onInvalid(row, value) {
 
         }
 
@@ -53,8 +53,12 @@
 
             const data = {};
 
-            for(let k of Object.keys(this.state))
-                data[k] = $(this.elem).find('#' + k).text();
+            for(let k of Object.keys(this.state)) {
+
+                data[k] = $(this.elem).find('#' + k).val() ||
+                          $(this.elem).find('#' + k).text();
+
+            }
 
 
             for(let k of Object.keys(data)) {
@@ -71,32 +75,44 @@
 
                     if(check) {
 
-                        if(typeof check === 'string' && check.test && !check.test(data[k]))
-                            return this.onInvalid(k);
+                        if(check instanceof RegExp && !check.test(data[k]))
+                            return this.onInvalid(k, data[k]);
 
-                        else if(typeof check === 'function' && !check(data[k]))
-                            return this.onInvalid(k);
+                        if(check instanceof Object && check.source && !check.test(data[k]))
+                            return this.onInvalid(k, data[k]);
+
+                        if(check instanceof String && !new RegExp(check).test(data[k]))
+                            return this.onInvalid(k, data[k]);
+
+                        else if(check instanceof Function && !check(data[k]))
+                            return this.onInvalid(k, data[k]);
 
                         else
-                            throw new Error("check must be regex or function");
+                            console.error(check);
 
                     }
 
                     if(max !== -1 && data[k] > max)
-                        return this.onInvalid(k);
+                        return this.onInvalid(k, data[k]);
 
                     if(min !== -1 && data[k] < min)
-                        return this.onInvalid(k);
+                        return this.onInvalid(k, data[k]);
 
 
                 }
 
             }
 
+
+            $(this.elem).find('.needs-validation').each((i, e) => {
+                $(e).addClass('was-validated');
+            });
+
             return this.onSubmit(data);
 
         }
 
     }
+
 
 </script>

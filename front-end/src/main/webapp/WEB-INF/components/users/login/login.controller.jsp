@@ -57,8 +57,8 @@
             console.debug("DATA: ", data);
         }
 
-        onInvalid(row) {
-            console.debug("FORM HAS INVALID ROW: ", row);
+        onInvalid(row, value) {
+            console.debug("FORM HAS INVALID ROW:", row, value);
         }
 
     });

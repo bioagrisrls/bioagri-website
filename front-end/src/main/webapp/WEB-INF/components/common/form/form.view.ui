@@ -24,15 +24,16 @@
   -->
 
 
-<form>
+<form class="needs-validation" novalidate>
 
     <?
-        for(let k of Object.keys(this.state) {
+        for(let k of Object.keys(this.state)) {
 
             const v = this.state[k];
+            console.log(k);
 
     ?>
-            <div class="form-floating mb-3">
+            <div class="form-floating has-validation mb-3 ">
                 <input type="{{v.type || 'text'}}" class="form-control" id="{{k}}" placeholder="{{v.placeholder || ''}}">
                 <label for="{{k}}">{{v.placeholder || ''}}</label>
             </div>
@@ -43,7 +44,7 @@
 
 
     <div class="col-auto">
-        <button type="submit" class="btn btn-primary mb-3" onclick="$$.$submit()">{{submit}}</button>
+        <button type="button" class="btn btn-primary mb-3" onclick="$$.$submit()">{{submit}}</button>
     </div>
 
 </form>
