@@ -29,6 +29,14 @@ $(document).on('ui-ready', () => {
 
     const animated = $('*[ui-animated-scroll]');
 
+    animated.each((i, e) => {
+
+        if((window.scrollY + window.innerHeight) > e.offsetTop)
+            e.removeAttribute('ui-animated-scroll');
+
+    });
+
+
     window.addEventListener('scroll', () => animated.each((i, e) => {
 
         if(!e.hasAttribute('ui-animated-scroll'))
@@ -36,11 +44,13 @@ $(document).on('ui-ready', () => {
 
         if((window.scrollY + window.innerHeight) > e.offsetTop) {
 
+            const anim = $(e).attr('ui-animated-scroll') || 'backInUp';
+
             e.classList.add('animate__animated');
-            e.classList.add('animate__backInUp');
+            e.classList.add('animate__' + anim);
 
             e.addEventListener('animationend', () => {
-                e.classList.remove('animate__backInUp');
+                e.classList.remove('animate__' + anim);
             })
 
             e.removeAttribute('ui-animated-scroll');
