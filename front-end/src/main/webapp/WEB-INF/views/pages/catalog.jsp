@@ -30,6 +30,7 @@
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
 <jsp:include page="/WEB-INF/components/products/card/card.controller.jsp" />
+<jsp:include page="/WEB-INF/components/products/catalog/catalog.controller.jsp" />
 
 
 <section id="ui-navigation-container" ui-title="${locale.page_catalog} &ndash; ${locale.info_title}">
@@ -40,7 +41,15 @@
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ui:current="catalog"></ui-navbar>
 
-    <ui-card id="ui-card" ui:id="1"></ui-card>
+    <section ui-animated>
+
+        <div class="ui-container">
+
+            <ui-catalog id="ui-catalog"></ui-catalog>
+
+        </div>
+
+    </section>
 
 
 
