@@ -110,5 +110,5 @@ const authenticate = async (username, password) => {
  * Check if client is currently authenticated.
  * @returns {Promise<boolean>}
  */
-const authenticated = async () => api('/auth/verify')
+const authenticated = async () => api('/auth/verify', 'GET', {}, false)
 

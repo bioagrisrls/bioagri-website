@@ -55,7 +55,10 @@
 
             authenticated()
                 .then(() => this.setState({ $state: 'ok' }))
-                .catch(() => this.setState({ $state: 'need-login' }));
+                .catch(() => {
+                    console.log("NEED LOGIN WITH TOKEN", Cookies.get('X-Auth-Token'));
+                    this.setState({ $state: 'need-login' })
+                } );
 
         }
 
@@ -73,6 +76,7 @@
 
         $submit() {
 
+            console.log(this.elem);
             const data = {};
 
             for(let k of Object.keys(this.state)) {
