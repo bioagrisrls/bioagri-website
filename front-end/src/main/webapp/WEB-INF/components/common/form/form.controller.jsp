@@ -48,7 +48,15 @@
          * }
          */
         constructor(id, state) {
-            super(id, Object.assign(state, { $state: 'ready' }));
+            super(id, Object.assign(state, { $state: 'working' }));
+        }
+
+        onReady(state) {
+
+            authenticated()
+                .then(() => this.setState({ $state: 'ok' }))
+                .catch(() => this.setState({ $state: 'ready' }));
+
         }
 
         onRender() {
