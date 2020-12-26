@@ -26,53 +26,33 @@
 @import "ui-theme";
 
 
-.ui-navbar {
-  width: 100%;
-  z-index: 1;
-  top: 0;
-  position: sticky;
-  background-color: $ui-theme-background;
-  filter: drop-shadow(0 1px 1px $ui-theme-divider-color);
-}
-
-
-.ui-navbar-brand img {
-  height: 48px;
-}
-
-.ui-navbar-brand span {
-  text-transform: uppercase;
-  color: $ui-theme-background-text;
-}
-
 .ui-navbar-nav li {
-
   vertical-align: center;
-  text-transform: uppercase;
   line-height: 48px;
   letter-spacing: 2px;
-
 }
 
 .ui-navbar-nav li a {
 
-  color: $ui-theme-background-text;
-  border-top: 4px solid $ui-theme-background;
-  padding: 0 32px 0 32px;
+  @extend .border-top;
+  @extend .border-light;
+  @extend .border-4;
+
   transition: border-top .3s;
 
-
   &.active {
-    border-top: 4px solid $ui-theme-primary;
+    @extend .border-top;
+    @extend .border-primary;
+    @extend .border-4;
   }
 
   &:hover {
-    border-top: 4px solid $ui-theme-primary;
+    @extend .border-top;
+    @extend .border-primary;
+    @extend .border-4;
   }
 
 }
 
-.ui-navbar-user {
-  padding: 0 0 0 64px;
-}
+
 

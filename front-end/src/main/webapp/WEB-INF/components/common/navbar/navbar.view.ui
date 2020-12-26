@@ -34,14 +34,14 @@
 ?>
 
 
-<nav class="ui-navbar navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg w-100 sticky-top shadow-sm bg-light">
     <div class="ui-container container-fluid row">
 
 
         <!-- Navigation Logo -->
-        <a class="ui-navigate ui-navbar-brand navbar-brand nav-link col-4" href="/">
+        <a class="ui-navigate navbar-brand nav-link col-4" href="/">
             <img src="{{logo}}" width="48" height="48" />
-            <span>{{ title }}</span>
+            <span class="text-uppercase">{{ title }} (FIXME)</span>
         </a>
 
 
@@ -60,30 +60,31 @@
 
             <!-- Navigation Links -->
             <ul class="ui-navbar-nav navbar-nav">
+                <? let i = 0; ?>
                 <? for (let nav of navs) { ?>
                     <li class="nav-item">
-                        <a class="ui-navigate nav-link {{ (current === nav.key ? 'active' : '') }}" href="/{{nav.key}}">
-                            {{ nav.name }}
+                        <a tabindex="{{i++}}" class="ui-navigate nav-link link-dark text-nowrap {{ (current === nav.key ? 'active' : '') }}" href="/{{nav.key}}">
+                            <span class="text-uppercase">{{ nav.name }}</span>
                         </a>
                     </li>
                 <? } ?>
             </ul>
 
             <!-- Navigation Users -->
-            <div class="ui-navbar-user d-flex w-auto d-lg-block d-none">
+            <div class="mx-5 d-flex w-auto d-lg-block d-none">
 
                 <!-- User Account -->
-                <button class="btn btn-outline-primary mx-1">
+                <button class="btn btn-outline-primary rounded-circle mx-1" role="button" data-bs-toggle="user-popover" data-bs-trigger="focus" data-bs-content="<strong>Hello</strong> World">
                     <span class="mdi mdi-24px mdi-account"></span>
                 </button>
 
                 <!-- Shopping -->
-                <button class="btn mx-1">
+                <button class="btn btn-outline-primary rounded-circle mx-1 position-relative">
 
                     <span class="mdi mdi-24px mdi-shopping"></span>
 
                     <? if (notifications > 0) { ?>
-                        <span class="badge rounded-pill badge-notification bg-danger">
+                        <span class="badge rounded-pill bg-danger position-absolute">
                             {{ notifications }}
                         </span>
                     <? } ?>
