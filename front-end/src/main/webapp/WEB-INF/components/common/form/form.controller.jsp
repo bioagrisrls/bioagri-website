@@ -38,7 +38,7 @@
          * @param state {
          *  data[]: {
          *     type: string,
-         *     placeholder: string,
+         *     label: string,
          *     required: boolean,
          *     check: object | RegExp | string,
          *     min: number,
@@ -55,10 +55,7 @@
 
             authenticated()
                 .then(() => this.setState({ $state: 'ok' }))
-                .catch(() => {
-                    console.log("NEED LOGIN WITH TOKEN", Cookies.get('X-Auth-Token'));
-                    this.setState({ $state: 'need-login' })
-                } );
+                .catch(() => this.setState({ $state: 'need-login' }));
 
         }
 
@@ -74,9 +71,12 @@
 
         }
 
-        $submit() {
+        $submit(event) {
 
-            console.log(this.elem);
+            event.preventDefault();
+            event.stopPropagation();
+
+
             const data = {};
 
             for(let k of Object.keys(this.state)) {
@@ -84,8 +84,10 @@
                 if(k.startsWith('$'))
                     continue;
 
-                data[k] = $(this.elem).find('#' + k).val() ||
-                          $(this.elem).find('#' + k).text();
+                data[k] = $(this.elem).find('#' + k).val()  ||
+                          $(this.elem).find('#' + k).text() ||
+                          $(this.elem).find('#' + k).prop('checked');
+
 
             }
 

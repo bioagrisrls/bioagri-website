@@ -38,14 +38,21 @@
                 username: {
                     type: 'email',
                     check: /[\w-]+@([\w-]+\.)+[\w-]+/,
-                    placeholder: "Indirizzo email" // FIXME
+                    label: "Indirizzo email", // FIXME
+                    required: true
                 },
 
                 password: {
                     type: 'password',
                     min: 8,
                     //check: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-                    placeholder: "Password" // FIXME
+                    label: "Password", // FIXME
+                    required: true
+                },
+
+                stayConnected: {
+                    type: 'checkbox',
+                    label: "Resta connesso" // FIXME
                 },
 
                 $submit: 'Login',
@@ -59,11 +66,9 @@
                 .digest("SHA-512", new TextEncoder().encode(str))
                 .then(buf => Array.prototype.map.call(new Uint8Array(buf), i => ('00' + i.toString()).slice(-2)).join(''));
 
-            if (!data.password)
-                throw new Error("Invalid login form: no password!");
 
             hash(data.password)
-                .then((encryptedPassword) => authenticate(data.username, data.password) // FIXME: encryptedPassword
+                .then((encryptedPassword) => authenticate(data.username, data.password, data.store) // FIXME: encryptedPassword
                     .then((response) => this.setState({$state: 'ok'}))
                     .catch((reason) => this.setState({$state: 'error', $reason: reason}))
                 );
@@ -71,7 +76,7 @@
         }
 
         onInvalid(row, value) {
-            console.debug("FORM HAS INVALID ROW:", row, value);
+            console.debug("FORM HAS INVALID ROW:", row, value); // TODO...
         }
 
     });

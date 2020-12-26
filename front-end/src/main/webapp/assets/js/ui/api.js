@@ -79,17 +79,25 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
  * Authenticate with back-end and getting a new auth-token.
  * @param username {string}
  * @param password {string}
+ * @param store {boolean}
  * @returns {Promise<* | void>}
  */
-const authenticate = async (username, password) => {
+const authenticate = async (username, password, store = false) => {
 
     return api('/auth/authenticate', 'POST', {
         username: username,
         password: password
     }).then(
         response => {
+
+            if(store) {
+                localStorage.setItem('X-Auth-Username', username);
+                localStorage.setItem('X-Auth-Password', password);
+            }
+
             sessionStorage.setItem('X-Auth-Token', response.token);
             return response;
+
         },
         reason => {
             throw reason;
@@ -107,6 +115,7 @@ const disconnect = async () => {
     return api('/auth/disconnect', 'POST', {}, false).then(
         response => {
             sessionStorage.clear();
+            localStorage.clear();
             return response;
         },
         reason => {
@@ -118,7 +127,20 @@ const disconnect = async () => {
 
 /**
  * Check if client is currently authenticated.
- * @returns {Promise<boolean>}
+ * @returns {Promise<* | void>}
  */
-const authenticated = async () => api('/auth/verify', 'GET', {}, false)
+const authenticated = async () => api('/auth/verify', 'GET', {}, false).catch(reason => {
+
+    if(localStorage.getItem('X-Auth-Username')) {
+
+        return authenticate(
+            localStorage.getItem('X-Auth-Username'),
+            localStorage.getItem('X-Auth-Password'),
+        );
+
+    }
+
+    throw reason;
+
+});
 
