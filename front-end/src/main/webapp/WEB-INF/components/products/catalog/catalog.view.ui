@@ -23,11 +23,11 @@
   ~
   -->
 
-<div class="row" style="width: 18rem;">
+<div class="d-flex flex-row align-items-start" style="width: 18rem;">
 
     <? let i = 0; ?>
     <? for (let product of products) { ?>
-        <div class="col-auto">
+        <div class="p-2 flex-fill bd-highlight">
             <ui-card id="ui-card-{{ i++ }}" ui:id="{{ product.id }}"></ui-card>
         </div>
     <? } ?>
