@@ -41,12 +41,23 @@
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ui:current="catalog"></ui-navbar>
 
+    <br>
+    <br>
+
+    <div class="ui-container">
+
+        <!-- Breadcrumb -->
+        <ui-breadcrumb id="ui-breadcrumb-3" ui:current="${locale.page_catalog}"></ui-breadcrumb>
+
+    </div>
+
+    <br>
+    <br>
+
     <section ui-animated>
 
         <div class="ui-container">
-
             <ui-catalog id="ui-catalog"></ui-catalog>
-
         </div>
 
     </section>
