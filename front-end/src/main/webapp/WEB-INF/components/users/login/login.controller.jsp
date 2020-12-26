@@ -50,7 +50,7 @@
                     required: true
                 },
 
-                stayConnected: {
+                store: {
                     type: 'checkbox',
                     label: "Resta connesso" // FIXME
                 },
