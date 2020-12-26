@@ -63,24 +63,15 @@ public class Components {
 
                             try {
 
-                                if(p.toString().endsWith(".view.ui")) {
 
-                                    put(componentsPath.relativize(p.getParent())
-                                            .toString()
-                                            .replace('\\', '_')
-                                            .replace('/', '_')
-                                            .replace('.', '_'), Page.escapize(Page.minimize(Files.readString(p), true)));
+                                put(componentsPath.relativize(p.getParent())
+                                        .toString()
+                                        .transform(s -> p.toString().endsWith(".error.ui") ? "%s_error".formatted(s) : s)
+                                        .transform(s -> p.toString().endsWith(".loading.ui") ? "%s_loading".formatted(s) : s)
+                                        .replace('\\', '_')
+                                        .replace('/', '_')
+                                        .replace('.', '_'), Page.escapize(Page.minimize(Files.readString(p), true)));
 
-                                } else {
-
-                                    put(componentsPath.relativize(p)
-                                            .toString()
-                                            .transform(s -> s.substring(0, s.lastIndexOf('.')))
-                                            .replace('\\', '_')
-                                            .replace('/', '_')
-                                            .replace('.', '_'), Page.escapize(Page.minimize(Files.readString(p), true)));
-
-                                }
 
                             } catch (IOException ignored) {
                                 throw new IllegalStateException();

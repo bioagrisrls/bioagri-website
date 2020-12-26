@@ -33,8 +33,22 @@
 
     class FormComponent extends StatefulComponent {
 
+        /**
+         * @param id {HTMLElement}
+         * @param state {
+         *  data[]: {
+         *     type: string,
+         *     placeholder: string,
+         *     required: boolean,
+         *     check: object | RegExp | string,
+         *     min: number,
+         *     max: number
+         *  },
+         *  submit: string,
+         * }
+         */
         constructor(id, state) {
-            super(id, state);
+            super(id, Object.assign(state, { $state: 'ready' }));
         }
 
         onRender() {
@@ -55,6 +69,9 @@
 
             for(let k of Object.keys(this.state)) {
 
+                if(k.startsWith('$'))
+                    continue;
+
                 data[k] = $(this.elem).find('#' + k).val() ||
                           $(this.elem).find('#' + k).text();
 
@@ -71,24 +88,25 @@
                     const check = s.check || undefined;
                     const min = s.min || -1;
                     const max = s.max || -1;
+                    const required = s.required || false;
 
+
+                    if(required && data[k] === '')
+                        return this.onInvalid(k, data[k]);
 
                     if(check) {
 
                         if(check instanceof RegExp && !check.test(data[k]))
                             return this.onInvalid(k, data[k]);
 
-                        if(check instanceof Object && check.source && !check.test(data[k]))
+                        if(check instanceof Object && !check.test(data[k]))
                             return this.onInvalid(k, data[k]);
 
                         if(check instanceof String && !new RegExp(check).test(data[k]))
                             return this.onInvalid(k, data[k]);
 
-                        else if(check instanceof Function && !check(data[k]))
+                        if(check instanceof Function && !check(data[k]))
                             return this.onInvalid(k, data[k]);
-
-                        else
-                            console.error(check);
 
                     }
 
@@ -107,6 +125,9 @@
             $(this.elem).find('.needs-validation').each((i, e) => {
                 $(e).addClass('was-validated');
             });
+
+
+            this.setState({ $state: 'working' });
 
             return this.onSubmit(data);
 
