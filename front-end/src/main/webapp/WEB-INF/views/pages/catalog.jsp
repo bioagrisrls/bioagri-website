@@ -40,7 +40,7 @@
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ui:current="catalog"></ui-navbar>
 
-    <card id="ui-card" ui:product_id="1"></card>
+    <ui-card id="ui-card" ui:id="1"></ui-card>
 
 
 
