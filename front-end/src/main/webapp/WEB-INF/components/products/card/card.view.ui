@@ -27,7 +27,7 @@
 
     <div class="card-body p-4">
 
-        <img src="https://res.cloudinary.com/mhmd/image/upload/v1556485076/shoes-1_gthops.jpg" alt="" class="img-fluid d-block mx-auto mb-3">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/A1r9RF2t%2BoL._AC_SL1500_.jpg" alt="" class="img-fluid d-block mx-auto mb-3">
 
         <h5><a href="#" class="text-dark">{{ name }}</a></h5>
         <p class="small text-muted">{{ price }}</p>
