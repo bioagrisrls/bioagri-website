@@ -44,17 +44,30 @@
                 password: {
                     type: 'password',
                     min: 8,
-                    check: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+                    //check: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
                     placeholder: "Password" // FIXME
                 },
 
-                submit: 'Login'
+                $submit: 'Login',
 
             });
         }
 
         onSubmit(data) {
-            console.debug("DATA: ", data);
+
+            const hash = (str) => crypto.subtle
+                .digest("SHA-512", new TextEncoder().encode(str))
+                .then(buf => Array.prototype.map.call(new Uint8Array(buf), i => ('00' + i.toString()).slice(-2)).join(''));
+
+            if (!data.password)
+                throw new Error("Invalid login form: no password!");
+
+            hash(data.password)
+                .then((encryptedPassword) => authenticate(data.username, data.password) // FIXME: encryptedPassword
+                    .then((response) => this.setState({$state: 'ok'}))
+                    .catch((reason) => this.setState({$state: 'error'}))
+                );
+
         }
 
         onInvalid(row, value) {
