@@ -26,27 +26,45 @@
 @import "ui-theme";
 
 
-:root {
-  --bs-primary: $ui-theme-primary;
-  --bs-secondary: $ui-theme-secondary;
-}
+//
+// Features
+//
+$enable-shadows: true;
 
-a {
 
-  color: $ui-theme-primary;
-  text-decoration: none;
+//
+// Colors
+//
+$primary:       $ui-theme-primary;
+$secondary:     $ui-theme-secondary;
 
-  &:hover {
-    color: $ui-theme-primary-variant;
-    text-decoration: none;
-  }
 
-  &:active {
-    color: $ui-theme-primary;
-    text-decoration: none;
-  }
+//
+// Spacing
+//
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer / 4,
+  2: $spacer / 2,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 4.5,
+  7: $spacer * 6,
+  8: $spacer * 7.5,
+  9: $spacer * 9,
+);
 
-}
+
+//
+// Links
+//
+$link-decoration: none;
+
+
+@import "../bootstrap/bootstrap-reboot";
+@import "../bootstrap/bootstrap";
 
 
 .navbar-toggler:focus {
