@@ -29,12 +29,15 @@ import it.bioagri.models.Product;
 import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 
+import java.util.Optional;
+
 public abstract class UserDao extends Dao<User, Long> {
 
     public UserDao(DataSource dataSource) {
         super(dataSource);
     }
 
+    public abstract Optional<User> findByMail(String mail);
     public abstract void addWishList(User user, Product product);
     public abstract void removeWishList(User user, Product product);
 

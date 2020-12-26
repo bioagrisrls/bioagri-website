@@ -177,6 +177,24 @@ public class UserDaoImpl extends UserDao {
 
     }
 
+
+    @Override
+    public Optional<User> findByMail(String email) {
+
+        final AtomicReference<Long> result = new AtomicReference<>(null);
+
+        getDataSource().fetch("SELECT id FROM shop_user WHERE shop_user.email = ?",
+                s -> s.setString(1, email),
+                r -> result.set(r.getLong(1))
+        );
+
+        if(result.get() == null)
+            return Optional.empty();
+
+        return findByPrimaryKey(result.get());
+
+    }
+
     @Override
     public void addWishList(User user, Product product) {
 

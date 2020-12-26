@@ -27,11 +27,11 @@
 
     <? if ($state === 'ok') { ?>
 
-        <h2>Login success (FIXME)</h2>
+        {{ this.innerHTML }}
 
     <? } else if($state === 'error') { ?>
 
-        <h2>Si è verificato un errore (FIXME)</h2>
+        <h2>Si è verificato un errore {{$reason.statusCode}}</h2>
 
     <? } else if($state === 'working') { ?>
 

@@ -65,7 +65,7 @@
             hash(data.password)
                 .then((encryptedPassword) => authenticate(data.username, data.password) // FIXME: encryptedPassword
                     .then((response) => this.setState({$state: 'ok'}))
-                    .catch((reason) => this.setState({$state: 'error'}))
+                    .catch((reason) => this.setState({$state: 'error', $reason: reason}))
                 );
 
         }
