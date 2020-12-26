@@ -1,4 +1,4 @@
-<!--
+<%--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,24 +21,34 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  -->
+  --%>
 
-<div class="card rounded shadow-sm border-0" style="width: 18rem;">
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
 
-    <div class="card-body p-4">
+<script defer>
 
-        <img class="img-fluid d-block mx-auto mb-3" src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png">
-        <h5><a href="#" class="text-dark">{{ name }}</a></h5>
-        <p class="small text-muted">{{ price }} €</p>
+    Component.register('ui-catalog', (id, props) => new class extends StatefulComponent {
 
-        <ul class="list-inline small">
-            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-        </ul>
+        constructor() {
+            super(id, {
+                products: api("/products"),
+            });
+        }
 
-    </div>
+        onRender() {
+            return `${components.products_catalog}`
+        }
 
-</div>
+        onLoading() {
+            return `${components.products_catalog_loading}`
+        }
+
+        onError() {
+            return `${components.products_catalog_error}`
+        }
+
+    });
+
+</script>
