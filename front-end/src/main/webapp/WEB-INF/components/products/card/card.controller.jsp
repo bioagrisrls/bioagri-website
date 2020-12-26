@@ -29,10 +29,10 @@
 
 <script defer>
 
-    Component.register('ui-product-card', (id, props) => new class extends StatelessComponent {
+    Component.register('ui-card', (id, props) => new class extends StatelessComponent {
 
         constructor() {
-            super(id, api("/products/" + props.product_id));
+            super(id, api("/products/" + props.id));
         }
 
         onRender() {
