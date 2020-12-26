@@ -26,8 +26,9 @@
  */
 
 
-const baseUri = "http://localhost:8080";
-const basePath = "/api";
+const $baseUri = 'http://localhost:8080';
+const $basePath = '/api';
+
 
 
 /**
@@ -40,7 +41,7 @@ const basePath = "/api";
  */
 const api = async (path, method = 'GET', body = {}, returnJson = true) => {
 
-    return fetch(baseUri + basePath + path, {
+    return fetch($baseUri + $basePath + path, {
 
         method: method,
         mode: 'cors',
@@ -50,7 +51,7 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
         referrerPolicy: 'no-referrer',
 
         headers: {
-            'X-Auth-Token': Cookies.get('X-Auth-Token'),
+            'X-Auth-Token': localStorage.getItem('X-Auth-Token'),
             'Content-Type': 'application/json',
             'Accept'      : 'application/json',
         },
@@ -59,12 +60,8 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
 
     }).then(response => {
 
-        if(response.headers.has('X-Auth-Token')) {
-            Cookies.set('X-Auth-Token', response.headers.get('X-Auth-Token'), {
-                secure: true,
-                sameSite: 'lax'
-            });
-        }
+        if(response.headers.has('X-Auth-Token'))
+            localStorage.setItem('X-Auth-Token', response.headers.get('X-Auth-Token'));
 
         if(response.status < 200 || response.status > 299)
             throw new Error(`failed: ${response.status}`);
@@ -92,10 +89,7 @@ const authenticate = async (username, password) => {
         password: password
     }).then(
         response => {
-            Cookies.set('X-Auth-Token', response.token, {
-                secure: true,
-                sameSite: 'lax',
-            });
+            localStorage.setItem('X-Auth-Token', response.token);
             return response;
         },
         reason => {
