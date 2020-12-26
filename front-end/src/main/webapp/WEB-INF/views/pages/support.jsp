@@ -82,9 +82,9 @@
                     <!-- Contact Info Head-->
                     <div class="row">
 
-                        <div class="col-12 ui-support-contact-info">
+                        <div class="col-12">
 
-                            <div class="text-center">
+                            <div class="text-center ui-support-title">
                                 <h6 class="display-8"> ${ locale.support_contact_info_title } </h6>
                                 <h1 class="display-5"><span> ${ locale.support_contact_info_subtitle_start } </span><b> ${ locale.support_contact_info_subtitle_end } </b></h1>
                                 <img class="mt-3" src="/assets/img/support/decorator.jpg">
@@ -154,7 +154,7 @@
                 <div class="row">
                     <div class="col-md">
 
-                        <div class="ui-support-form-header">
+                        <div class="ui-support-title">
                             <h6 class="display-8"> ${ locale.support_form_title } </h6>
                             <h1 class="display-5"><span> ${ locale.support_form_subtitle_start } </span><b> ${ locale.support_form_subtitle_end } </b></h1>
                             <img class="mt-3" src="/assets/img/support/decorator2.jpg">
@@ -191,7 +191,7 @@
                                     </div>
 
                                     <div class="col-12 mt-3">
-                                        <button type="submit">${ locale.support_form_submit }</button>
+                                        <button type="submit" class="btn btn-primary">${ locale.support_form_submit }</button>
                                     </div>
 
                                 </div>
@@ -208,7 +208,7 @@
 
             <!-- Google Maps -->
             <section>
-                <div class="row ui-support-maps">
+                <div class="row ui-support-title">
 
                     <div>
                         <h6 class="display-8"> ${ locale.support_maps_title } </h6>

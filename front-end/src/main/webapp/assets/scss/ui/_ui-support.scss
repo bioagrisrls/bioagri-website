@@ -30,16 +30,16 @@
   text-transform: uppercase;
 }
 
-.ui-support-contact-info h6 {
+.ui-support-title h6 {
   text-transform: uppercase;
 }
 
-.ui-support-contact-info span {
+.ui-support-title span {
   color: $ui-theme-primary;
   font-size: revert;
 }
 
-.ui-support-contact-info b {
+.ui-support-title b {
   font-size: revert;
 }
 
@@ -56,35 +56,5 @@
 
 .ui-support-contact-info-icon a {
   color: $ui-theme-primary-text;
-}
-
-.ui-support-shadow {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.ui-support-form-header h6 {
-  text-transform: uppercase;
-}
-
-.ui-support-form-header span {
-  font-size: revert;
-  color: $ui-theme-primary;
-}
-
-.ui-support-form-header b {
-  font-size: revert;
-}
-
-.ui-support-maps h6 {
-  text-transform: uppercase;
-}
-
-.ui-support-maps span {
-  font-size: revert;
-  color: $ui-theme-primary;
-}
-
-.ui-support-maps b {
-  font-size: revert;
 }
 
