@@ -96,7 +96,9 @@
 
             <section class="pt-5 pb-5">
 
-                <ui-login id="ui-login"></ui-login>
+                <ui-login id="ui-login">
+                    <h2>Login success!</h2>
+                </ui-login>
 
                 <!-- Banner -->
                 <div class="pt-5 pb-5">

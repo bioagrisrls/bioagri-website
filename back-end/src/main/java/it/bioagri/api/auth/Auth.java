@@ -76,6 +76,9 @@ public final class Auth {
         if(authLogin.getPassword().isEmpty())
             return ResponseEntity.badRequest().build();
 
+        if(dataSource.getUserRepository().findByMail(authLogin.getUsername()).isEmpty())
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
         User user;
         if((user = dataSource.authenticate(authLogin)) == null)
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
