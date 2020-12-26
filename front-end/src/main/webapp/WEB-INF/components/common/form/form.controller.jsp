@@ -55,7 +55,7 @@
 
             authenticated()
                 .then(() => this.setState({ $state: 'ok' }))
-                .catch(() => this.setState({ $state: 'ready' }));
+                .catch(() => this.setState({ $state: 'need-login' }));
 
         }
 

@@ -35,7 +35,7 @@ window.components = window.components || [];
 
 /**
  * Collection of registered components.
- * @type {object[]}
+ * @type {function}
  */
 window.registered = window.registered || [];
 
@@ -108,31 +108,18 @@ class Component {
     /**
      * Register a component and attach it to their HTML Elements.
      * @param tag {string}
-     * @param getinstance {function}
+     * @param getInstance {function}
      */
-    static register (tag, getinstance) {
+    static register (tag, getInstance) {
 
         if(!tag)
             throw new Error("tag cannot be null");
 
-        if(!getinstance)
+        if(!getInstance)
             throw new Error("getinstance cannot be null");
 
 
-        for(let i of window.registered) {
-
-            if (i.tag !== tag)
-                continue;
-
-            console.debug("Skipping component, already registered: ", tag);
-            return;
-
-        }
-
-        window.registered.push({
-            tag: tag,
-            getinstance: getinstance
-        });
+        window.registered[tag] = getInstance;
 
         console.debug("Registered component: ", tag);
 
@@ -171,9 +158,9 @@ class Component {
      */
     static run(container) {
 
-        for(let component of window.registered) {
+        for(let component of Object.keys(window.registered)) {
 
-            $(container).find(component.tag).each((i, v) => {
+            $(container).find(component).each((i, v) => {
 
                 let props = {};
                 let e = $(v).get(0);
@@ -185,7 +172,7 @@ class Component {
                     }
                 }
 
-                component.getinstance(e, props);
+                window.registered[component](e, props);
 
                 console.debug("Loading component: ", window.components[e.id].id);
 
