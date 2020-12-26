@@ -23,24 +23,23 @@
   ~
   -->
 
-<a class="ui-navigate" href=""> <!-- TO DO.. -->
-    <div class="card rounded shadow-sm border-0" style="width: 18rem;">
 
-        <div class="card-body p-4">
+<div class="card rounded shadow-sm border-0" style="width: 18rem;">
 
-            <img class="img-fluid d-block mx-auto mb-3" src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png">
-            <h5><a href="#" class="text-dark">{{ name }}</a></h5>
-            <p class="small text-muted">{{ price }} €</p>
+    <div class="card-body p-4">
 
-            <ul class="list-inline small"> <!-- TO DO.. -->
-                <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-                <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-                <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-                <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-                <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-            </ul>
+        <img class="img-fluid d-block mx-auto mb-3" src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" />
+        <h5><a href="#" class="text-dark">{{ name }}</a></h5>
+        <p class="small text-muted">{{ price }}</p>
 
-        </div>
+        <ul class="list-inline small">
+            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
+            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
+            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
+            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
+            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
+        </ul>
 
     </div>
-</a>
+
+</div>

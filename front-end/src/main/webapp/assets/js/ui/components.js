@@ -159,9 +159,9 @@ class Component {
     /**
      * Initialize and load registered components into a DOM container.
      * @param element {string | HTMLElement | Document}
-     * @param isContainer {boolean}
+     * @param runChildren {boolean}
      */
-    static run(element, isContainer = true) {
+    static run(element, runChildren = true) {
 
         /**
          * @param e {HTMLElement}
@@ -183,7 +183,7 @@ class Component {
 
         }
 
-        if(isContainer) {
+        if(runChildren) {
 
             for (let component of Object.keys(window.registered))
                 $(element).find(component).each((i, v) => $init($(v).get(0)));
@@ -373,8 +373,8 @@ const $renderTemplate = (instance, template = '', state = {}) => {
     output += `$$$$.push("${sanitize(instance.id, template.substr(index, template.length - index))}");\n`;
     output += 'return $$$$.join("");';
 
+
     return new Function(Object.keys(state).join(", "), output)
        .apply(instance, Object.values(state));
 
 }
-
