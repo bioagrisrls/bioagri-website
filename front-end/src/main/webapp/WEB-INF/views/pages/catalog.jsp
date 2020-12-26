@@ -29,8 +29,8 @@
 
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
-<jsp:include page="/WEB-INF/components/products/card/card.controller.jsp" />
 <jsp:include page="/WEB-INF/components/products/catalog/catalog.controller.jsp" />
+<jsp:include page="/WEB-INF/components/products/card/card.controller.jsp" />
 
 
 <section id="ui-navigation-container" ui-title="${locale.page_catalog} &ndash; ${locale.info_title}">
