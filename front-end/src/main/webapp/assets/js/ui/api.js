@@ -62,7 +62,7 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
         if(response.headers.has('X-Auth-Token')) {
             Cookies.set('X-Auth-Token', response.headers.get('X-Auth-Token'), {
                 secure: true,
-                sameSite: 'strict'
+                sameSite: 'lax'
             });
         }
 
@@ -94,7 +94,7 @@ const authenticate = async (username, password) => {
         response => {
             Cookies.set('X-Auth-Token', response.token, {
                 secure: true,
-                sameSite: 'strict'
+                sameSite: 'lax',
             });
             return response;
         },
