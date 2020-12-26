@@ -140,6 +140,10 @@ class Component {
 
                 if(window.components[el.id])
                     $(el).html(window.components[el.id].renderedHTML);
+
+                else if(window.registered[el.localName])
+                    Component.run(el, false);
+
                 else
                     recursive_render(el);
 
@@ -151,35 +155,44 @@ class Component {
     }
 
 
+
     /**
-     * Initialize and load registered components into a DOM container
-     * @param container {string | HTMLElement | Document}
+     * Initialize and load registered components into a DOM container.
+     * @param element {string | HTMLElement | Document}
+     * @param isContainer {boolean}
      */
-    static run(container) {
+    static run(element, isContainer = true) {
 
-        for(let component of Object.keys(window.registered)) {
+        /**
+         * @param e {HTMLElement}
+         */
+        const $init = (e) => {
 
-            $(container).find(component).each((i, v) => {
+            let props = {};
 
-                let props = {};
-                let e = $(v).get(0);
-
-                if (e.hasAttributes()) {
-                    for (let attr of e.attributes) {
-                        if (attr.name.startsWith('ui:'))
-                            props[attr.name.slice(3)] = attr.value || true;
-                    }
+            if(e.hasAttributes()) {
+                for (let attr of e.attributes) {
+                    if (attr.name.startsWith('ui:'))
+                        props[attr.name.slice(3)] = attr.value || true;
                 }
+            }
 
-                console.log(e);
-                window.registered[component](e, props);
+            window.registered[e.localName](e, props);
 
-                console.debug("Loading component: ", window.components[e.id].id);
-
-            });
+            console.debug("Loading component: ", window.components[e.id].id);
 
         }
 
+        if(isContainer) {
+
+            for (let component of Object.keys(window.registered))
+                $(element).find(component).each((i, v) => $init($(v).get(0)));
+
+        } else {
+
+            $init($(element).get(0));
+
+        }
     }
 
 

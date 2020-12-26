@@ -72,18 +72,23 @@
             <!-- Navigation Users -->
             <div class="ui-navbar-user d-flex w-auto d-lg-block d-none">
 
-                <!-- Search -->
-                <span class="mdi mdi-24px mdi-find-replace"></span>
+                <!-- User Account -->
+                <button class="btn btn-outline-primary mx-1">
+                    <span class="mdi mdi-24px mdi-account"></span>
+                </button>
 
                 <!-- Shopping -->
-                <span class="mdi mdi-24px mdi-shopping"></span>
+                <button class="btn mx-1">
 
+                    <span class="mdi mdi-24px mdi-shopping"></span>
 
-                <? if (notifications > 0) { ?>
-                    <span class="badge rounded-pill badge-notification bg-danger">
-                        {{ notifications }}
-                    </span>
-                <? } ?>
+                    <? if (notifications > 0) { ?>
+                        <span class="badge rounded-pill badge-notification bg-danger">
+                            {{ notifications }}
+                        </span>
+                    <? } ?>
+
+                </button>
 
             </div>
 

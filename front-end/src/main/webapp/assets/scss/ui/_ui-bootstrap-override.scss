@@ -25,6 +25,12 @@
 
 @import "ui-theme";
 
+
+:root {
+  --bs-primary: $ui-theme-primary;
+  --bs-secondary: $ui-theme-secondary;
+}
+
 a {
 
   color: $ui-theme-primary;
