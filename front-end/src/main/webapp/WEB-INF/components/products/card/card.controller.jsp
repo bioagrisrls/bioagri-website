@@ -23,3 +23,30 @@
   ~
   --%>
 
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
+
+<script defer>
+
+    Component.register('ui-product-card', (id, props) => new class extends StatelessComponent {
+
+        constructor() {
+            super(id, api("/products/" + props.product_id));
+        }
+
+        onRender() {
+            return `${components.products_card}`
+        }
+
+        onLoading() {
+            return `${components.products_card_loading}`
+        }
+
+        onError() {
+            return `${components.products_card_error}`
+        }
+
+    });
+
+</script>
