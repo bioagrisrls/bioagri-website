@@ -30,7 +30,6 @@ const $baseUri = 'http://localhost:8080';
 const $basePath = '/api';
 
 
-
 /**
  * Make a request to back-end and retrive, add, edit and delete data.
  * @param path {string}
@@ -51,7 +50,7 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
         referrerPolicy: 'no-referrer',
 
         headers: {
-            'X-Auth-Token': localStorage.getItem('X-Auth-Token'),
+            'X-Auth-Token': sessionStorage.getItem('X-Auth-Token'),
             'Content-Type': 'application/json',
             'Accept'      : 'application/json',
         },
@@ -61,7 +60,7 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
     }).then(response => {
 
         if(response.headers.has('X-Auth-Token'))
-            localStorage.setItem('X-Auth-Token', response.headers.get('X-Auth-Token'));
+            sessionStorage.setItem('X-Auth-Token', response.headers.get('X-Auth-Token'));
 
         if(response.status < 200 || response.status > 299)
             throw new Error(`failed: ${response.status}`);
@@ -89,7 +88,7 @@ const authenticate = async (username, password) => {
         password: password
     }).then(
         response => {
-            localStorage.setItem('X-Auth-Token', response.token);
+            sessionStorage.setItem('X-Auth-Token', response.token);
             return response;
         },
         reason => {
@@ -99,6 +98,23 @@ const authenticate = async (username, password) => {
 
 }
 
+/**
+ * Disconnect from back-end and clear all authentication data.
+ * @returns {Promise<* | void>}
+ */
+const disconnect = async () => {
+
+    return api('/auth/disconnect', 'POST', {}, false).then(
+        response => {
+            sessionStorage.clear();
+            return response;
+        },
+        reason => {
+            throw reason;
+        }
+    )
+
+}
 
 /**
  * Check if client is currently authenticated.
