@@ -28,13 +28,11 @@
 <%--@elvariable id="reference" type="java.lang.String"--%>
 
 <script defer>
-    authenticate("admin@test.com","123").then(() => console.log("noooo"));
-    authenticate("admin@test.com","123").then(() => api("/products/" + 1).then(() => console.log("okkkk")));
 
     Component.register('ui-card', (id, props) => new class extends StatelessComponent {
 
         constructor() {
-            super(id, authenticate("admin@test.com","123").then(() => api("/products/" + props.id)));
+            super(id, api("/products/" + props.id));
         }
 
         onRender() {
