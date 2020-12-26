@@ -67,8 +67,7 @@ class Component {
         this.innerHTML = `${elem.innerHTML}`;
         this.renderedHTML = '';
 
-        if(!window.components[this.id])
-            window.components[this.id] = this;
+        window.components[this.id] = this;
 
     }
 
@@ -172,6 +171,7 @@ class Component {
                     }
                 }
 
+                console.log(e);
                 window.registered[component](e, props);
 
                 console.debug("Loading component: ", window.components[e.id].id);
