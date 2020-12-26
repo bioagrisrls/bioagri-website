@@ -1,4 +1,4 @@
-/*!
+/*
  * MIT License
  *
  * Copyright (c) 2020 BioAgri S.r.l.s.
@@ -22,39 +22,5 @@
  * SOFTWARE.
  *
  */
-/*.zoom {
-
-  position: relative;
-  display: inline-block;
-    width:350px;
-    height:350px;
-    padding: 50px;
-    transition: transform .2s;
-    margin: 0 auto;
-  }
-
-  .zoom:hover {
-    -ms-transform: scale(1.5);  IE 9
-    -webkit-transform: scale(1.5);  Safari 3-8
-    transform: scale(1.5);
-    padding-bottom:20px;
-  }*/
-
-.card {
 
 
-  position: relative;
-  display: inline-block;
-  margin: 50px;
-}
-.card .img-top {
-
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 99;
-}
-.card:hover .img-top {
-  display: inline;
-}

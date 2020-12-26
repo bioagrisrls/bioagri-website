@@ -1,4 +1,4 @@
-<%--
+<!--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,21 +21,5 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  --%>
+  -->
 
-<script defer>
-
-    Component.register('ui-section_1', (id, props) => new class extends StatefulComponent {
-
-        constructor() {
-            super(id, {});
-        }
-
-        onRender() {
-            return `${components.home_section_1}`
-        }
-
-
-    });
-
-</script>
