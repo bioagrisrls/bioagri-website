@@ -32,12 +32,17 @@
     Component.register('ui-catalog', (id, props) => new class extends StatefulComponent {
 
         constructor() {
-            super(id, api("/products").then( (json) => {
+            super( id,
+
+                api("/products").then( (r1) => api("/categories").then( (r2) =>  {
+
                     return {
-                        products: json
+                        products: r1,
+                        categories: r2,
                     }
-                }),
-            );
+
+                }))
+            )
         }
 
         onRender() {
