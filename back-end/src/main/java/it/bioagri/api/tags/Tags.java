@@ -25,10 +25,7 @@
 
 package it.bioagri.api.tags;
 
-import it.bioagri.api.ApiPermission;
-import it.bioagri.api.ApiPermissionOperation;
-import it.bioagri.api.ApiPermissionType;
-import it.bioagri.api.ApiResponseStatus;
+import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
@@ -58,6 +55,7 @@ public class Tags {
 
 
     @GetMapping("")
+    @ApiPermissionPublic
     public ResponseEntity<List<Tag>> findAll(
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
@@ -84,6 +82,7 @@ public class Tags {
     }
 
     @GetMapping("/{id}")
+    @ApiPermissionPublic
     public ResponseEntity<Tag> findById(@PathVariable Long id) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.TAGS, ApiPermissionOperation.READ, authToken);

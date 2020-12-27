@@ -25,10 +25,7 @@
 
 package it.bioagri.api.products;
 
-import it.bioagri.api.ApiPermission;
-import it.bioagri.api.ApiPermissionOperation;
-import it.bioagri.api.ApiPermissionType;
-import it.bioagri.api.ApiResponseStatus;
+import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
@@ -58,7 +55,10 @@ public class Products {
     }
 
 
+
+
     @GetMapping("")
+    @ApiPermissionPublic
     public ResponseEntity<List<Product>> findAll(
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
@@ -85,6 +85,7 @@ public class Products {
     }
 
     @GetMapping("/{id}")
+    @ApiPermissionPublic
     public ResponseEntity<Product> findById(@PathVariable Long id) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
@@ -94,6 +95,34 @@ public class Products {
             return ResponseEntity.ok(dataSource.getProductRepository()
                     .findByPrimaryKey(id)
                     .orElseThrow(() -> new ApiResponseStatus(404)));
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
+
+
+    @GetMapping("count")
+    @ApiPermissionPublic
+    public ResponseEntity<Long> count(
+            @RequestParam(required = false, defaultValue =   "0") Long skip,
+            @RequestParam(required = false, defaultValue = "999") Long limit,
+            @RequestParam(required = false, value =  "filter-by") String filterBy,
+            @RequestParam(required = false, value = "filter-val") String filterValue) {
+
+
+        ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
+
+        try {
+
+            return ResponseEntity.ok(dataSource.getProductRepository()
+                    .findAll()
+                    .stream()
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .skip(skip)
+                    .limit(limit)
+                    .count());
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

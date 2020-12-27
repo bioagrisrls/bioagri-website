@@ -42,6 +42,7 @@ public class ApiPermission {
     private final static List<ApiPermission> permissions;
 
     static {
+
         permissions = List.of(
 
                 new ApiPermission(USERS, CREATE, ADMIN),
@@ -55,12 +56,12 @@ public class ApiPermission {
                 new ApiPermission(WISHLIST, DELETE, ADMIN, USER),
 
                 new ApiPermission(CATEGORIES, CREATE, ADMIN),
-                new ApiPermission(CATEGORIES, READ,   ADMIN, ALL),
+                new ApiPermission(CATEGORIES, READ,   ADMIN, ALL, PUBLIC),
                 new ApiPermission(CATEGORIES, UPDATE, ADMIN),
                 new ApiPermission(CATEGORIES, DELETE, ADMIN),
 
                 new ApiPermission(FEEDBACKS, CREATE, ADMIN, USER),
-                new ApiPermission(FEEDBACKS, READ,   ADMIN, USER, ALL),
+                new ApiPermission(FEEDBACKS, READ,   ADMIN, USER, ALL, PUBLIC),
                 new ApiPermission(FEEDBACKS, UPDATE, ADMIN, USER),
                 new ApiPermission(FEEDBACKS, DELETE, ADMIN, USER),
 
@@ -70,12 +71,12 @@ public class ApiPermission {
                 new ApiPermission(ORDERS, DELETE, ADMIN, USER),
 
                 new ApiPermission(PRODUCTS, CREATE, ADMIN),
-                new ApiPermission(PRODUCTS, READ,   ADMIN, ALL),
+                new ApiPermission(PRODUCTS, READ,   ADMIN, ALL, PUBLIC),
                 new ApiPermission(PRODUCTS, UPDATE, ADMIN),
                 new ApiPermission(PRODUCTS, DELETE, ADMIN),
 
                 new ApiPermission(TAGS, CREATE, ADMIN),
-                new ApiPermission(TAGS, READ,   ADMIN, ALL),
+                new ApiPermission(TAGS, READ,   ADMIN, ALL, PUBLIC),
                 new ApiPermission(TAGS, UPDATE, ADMIN),
                 new ApiPermission(TAGS, DELETE, ADMIN),
 
@@ -95,6 +96,7 @@ public class ApiPermission {
                 new ApiPermission(TRANSACTIONS, DELETE, ADMIN)
 
         );
+
     }
 
     private final ApiPermissionType type;
@@ -130,13 +132,17 @@ public class ApiPermission {
                 .getActors());
 
 
+
         if(api.contains(ADMIN) && authToken.getUserRole().equals(UserRole.ADMIN))
             return true;
 
         if(api.contains(USER) && authToken.getUserId().equals(ownerId))
             return true;
 
-        return api.contains(ALL);
+        if(api.contains(ALL) && authToken.isLoggedIn())
+            return true;
+
+        return api.contains(PUBLIC);
 
     }
 
