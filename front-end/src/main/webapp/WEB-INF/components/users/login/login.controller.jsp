@@ -51,7 +51,7 @@
                 },
 
                 store: {
-                    type: 'checkbox',
+                    type: 'switch',
                     label: "Resta connesso" // FIXME
                 },
 

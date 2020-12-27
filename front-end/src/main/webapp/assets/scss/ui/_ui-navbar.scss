@@ -66,8 +66,9 @@
   @extend .h-auto;
 
   top: 125%;
-  right: -160px;
-  width: 320px;
+  max-height: 75vh;
+  max-width: 75vw;
+  overflow-y: auto;
 
   &.show {
     @extend .visible;
@@ -75,6 +76,19 @@
     animation-duration: .4s;
   }
 
+  &.ui-navbar-cart-popover {
+    right: -80px;
+    width: 720px;
+  }
+
+  &.ui-navbar-user-popover {
+    right: -160px;
+    width: 320px;
+  }
+
 }
+
+
+
 
 

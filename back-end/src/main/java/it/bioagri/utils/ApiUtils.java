@@ -42,7 +42,6 @@ public final class ApiUtils {
 
         try {
 
-
             final var field= instance
                     .getClass()
                     .getDeclaredField(name);

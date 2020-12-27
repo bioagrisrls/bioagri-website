@@ -74,7 +74,7 @@
         </button>
 
 
-        <div id="ui-navbar-links" class="navbar-collapse collapse col-6 col-md">
+        <div id="ui-navbar-links" class="navbar-collapse collapse col-6">
 
             <!-- Navigation Links -->
             <ul class="ui-navbar-nav navbar-nav">
@@ -98,7 +98,7 @@
                         <span class="mdi mdi-24px mdi-account"></span>
                     </button>
 
-                    <div id="ui-navbar-user-popover" class="ui-navbar-popover bg-light animate__animated">
+                    <div id="ui-navbar-user-popover" class="ui-navbar-popover ui-navbar-user-popover bg-light animate__animated">
                         <ui-login id="ui-navbar-login" ui:bind="#ui-navbar-user-greetings:$userInfo.name">
 
                             <h4>Ciao <span id="ui-navbar-user-greetings"></span></h4>
@@ -130,7 +130,7 @@
 
                     </button>
 
-                    <div id="ui-navbar-cart-popover" class="ui-navbar-popover bg-light animate__animated">
+                    <div id="ui-navbar-cart-popover" class="ui-navbar-popover ui-navbar-cart-popover bg-light animate__animated">
 
                         <h4>Carrello (FIXME)</h4>
 
