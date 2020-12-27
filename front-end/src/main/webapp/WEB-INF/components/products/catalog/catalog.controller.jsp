@@ -52,6 +52,28 @@
             return `${components.products_catalog_error}`
         }
 
+        onUpdated(state) {
+
+            $('#dropdownMenuOrder').click( (e) => {
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                $('#dropdownToggleOrder').text($(e.target).text());
+
+            });
+
+            $('#dropdownMenuView').click( (e) => {
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                $('#dropdownToggleView').html($(e.target).text());
+            });
+
+
+        }
+
     });
 
 </script>

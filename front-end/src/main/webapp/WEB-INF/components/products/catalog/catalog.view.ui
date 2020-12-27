@@ -23,14 +23,62 @@
   ~
   -->
 
-<div class="d-flex flex-row align-items-start" style="width: 18rem;">
+<div class="ui-container">
 
-    <? let i = 0; ?>
-    <? for (let product of products) { ?>
+    <div class="row">
+
+        <div class="col-md">
+            <h5>4 risultati</h5>
+        </div>
+
+        <div class="col-md">
+
+            <ul class="list-inline float-end">
+
+                <li class="list-inline-item mr-2"><h5>Ordina per:</h5></li>
+
+                <li class="list-inline-item mr-4">
+                    <div class="dropdown">
+                        <button id="dropdownToggleOrder" class="dropdown-toggle btn btn-primary m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Rilevanza
+                        </button>
+                        <ul id="dropdownMenuOrder" class="dropdown-menu" aria-labelledby="dropdownToggleOrder">
+                            <li><button class="active dropdown-item m-0" >Rilevanza</button></li>
+                            <li><button class="dropdown-item m-0" >Prezzo Basso</button></li>
+                            <li><button class="dropdown-item m-0" >Prezzo Alto</button></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="list-inline-item mr-2"><h5>Visualizza :</h5></li>
+                <li class="list-inline-item m-0">
+                    <div class="dropdown">
+                        <button id="dropdownToggleView" class="dropdown-toggle btn btn-primary m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="mdi mdi-grid mdi-18px"></span>
+                        </button>
+                        <ul id="dropdownMenuView" class="dropdown-menu" aria-labelledby="dropdownToggleView">
+                            <li><button class="active dropdown-item m-0" ><span class="mdi mdi-grid mdi-18px"></span></button></li>
+                            <li><button class="dropdown-item m-0" ><span class="mdi mdi-view-list mdi-18px"></span></button></li>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="d-flex flex-row align-items-start" style="width: 18rem;">
+
+        <? let i = 0; ?>
+        <? for (let product of products) { ?>
         <div class="p-2 flex-fill bd-highlight">
             <ui-card id="ui-card-{{ i++ }}" ui:id="{{ product.id }}"></ui-card>
         </div>
-    <? } ?>
+        <? } ?>
+
+    </div>
 
 </div>
 
