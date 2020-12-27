@@ -23,7 +23,7 @@
  *
  */
 
-.zoom {
+.ui-zoom {
 
   & img {
 
@@ -41,6 +41,37 @@
     }
 
   }
+
+}
+
+.mdi-heart {
+
+   color:red;
+
+}
+
+
+.mdi-heart-outline:hover {
+
+    transform: scale(1.5);
+    transition: all .4s ease-in-out;
+    color:red;
+
+}
+
+.mdi-cart-outline:hover{
+
+    transform: scale(1.5);
+    transition: all .4s ease-in-out;
+    color:green;
+
+}
+
+.mdi-information-outline:hover {
+
+    transform: scale(1.5);
+    transition: all .4s ease-in-out;
+    color:grey;
 
 }
 
