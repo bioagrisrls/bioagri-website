@@ -28,13 +28,13 @@
     <div class="row">
 
         <!--Left Menù -->
-        <div class="col col-2">
+        <div class="col col-lg-2 d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block">
 
             <h5>Categorie</h5>
 
             <ul class="list-unstyled">
                 <? for (let category of categories) { ?>
-                    <li><p>{{ category.name }}</p></li>
+                <li><p>{{ category.name }}</p></li>
                 <? } ?>
             </ul>
 
@@ -42,17 +42,16 @@
 
 
         <!-- Catalog -->
-        <div class="col col-10 d-flex flex-wrap align-items-start" >
+        <div class="col col-md-12 col-sm-12 col-lg-10 w-sm-100 w-md-100" >
 
             <!-- Catalog Header-->
-            <div class="row">
+            <div class="row w-100">
 
-                <div class="col">
+                <div class="col col-5">
                     <p>4 risultati</p>
                 </div>
 
-                <div class="col">
-
+                <div class="col col-4">
                     <ul class="list-inline float-end">
 
                         <li class="list-inline-item mr-2"><p>Ordina per:</p></li>
@@ -71,25 +70,44 @@
                         </li>
 
                     </ul>
-
                 </div>
 
-                <!-- Products -->
-                <div class="d-flex flex-wrap align-items-start" >
+                <div class="col col-3">
+                    <ul class="list-inline float-end">
 
-                    <? let i = 0; ?>
-                    <? for (let product of products) { ?>
-                    <div class="p-2 flex-fill bd-highlight mw-50">
+                        <li class="list-inline-item mr-2"><p>Visualizza:</p></li>
+
+                        <li class="list-inline-item mr-4">
+                            <div class="dropdown">
+                                <button id="dropdownToggleView" class="dropdown-toggle btn-xs btn-secondary m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="mdi mdi-menu"></span>
+                                </button>
+                                <ul id="dropdownMenuView" class="dropdown-menu" aria-labelledby="dropdownToggleSort">
+                                    <li><button class="active dropdown-item-view dropdown-item btn-xs btn-secondary m-0" ><span class="mdi mdi-grid"></span></button></li>
+                                    <li><button class="dropdown-item-view dropdown-item btn-xs btn-secondary m-0" ><span class="mdi mdi-table-row"></span></button></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Products -->
+            <div class="d-flex flex-wrap align-items-start" >
+
+                <? let i = 0; ?>
+                <? for (let product of products) { ?>
+                    <div class="p-2 flex-fill bd-highlight mw-33 mw-sm-100 mw-md-50">
                         <ui-card id="ui-card-{{ i++ }}" ui:id="{{ product.id }}"></ui-card>
                     </div>
-                    <? } ?>
+                <? } ?>
 
-                </div>
+            </div>
 
         </div>
 
     </div>
 
-
 </div>
-

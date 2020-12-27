@@ -1,0 +1,116 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2020 BioAgri S.r.l.s.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ */
+
+$screen-xs-max: 767px;
+$screen-sm-min: 768px;
+$screen-sm-max: 991px;
+$screen-md-min: 992px;
+$screen-md-max: 1199px;
+$screen-lg-min: 1200px;
+
+//
+// 100%
+//
+
+@media (max-width: $screen-xs-max) {
+  .mw-xs-100 { max-width: 100% !important; }
+}
+
+@media (max-width: $screen-sm-min) {
+  .mw-sm-100 { max-width: 100% !important; }
+}
+
+@media (max-width: $screen-sm-max) {
+  .mw-sm-100 { max-width: 100% !important; }
+}
+
+@media (max-width: $screen-md-min) {
+  .mw-md-100 { max-width: 100% !important; }
+}
+
+@media (max-width: $screen-md-max) {
+  .mw-md-100 { max-width: 100% !important; }
+}
+
+@media (max-width: $screen-lg-min) {
+  .mw-lg-100 { max-width: 100% !important; }
+}
+
+
+//
+// 50%
+//
+
+@media (max-width: $screen-xs-max) {
+  .mw-xs-50 { max-width: 50% !important; }
+}
+
+@media (max-width: $screen-sm-min) {
+  .mw-sm-50 { max-width: 50% !important; }
+}
+
+@media (max-width: $screen-sm-max) {
+  .mw-sm-50 { max-width: 50% !important; }
+}
+
+@media (max-width: $screen-md-min) {
+  .mw-md-50 { max-width: 50% !important; }
+}
+
+@media (max-width: $screen-md-max) {
+  .mw-md-50 { max-width: 50% !important; }
+}
+
+@media (max-width: $screen-lg-min) {
+  .mw-lg-50 { max-width: 50% !important; }
+}
+
+//
+// 100% WIDTH ON XS,SM,MD,LG
+//
+
+@media (width: $screen-xs-max) {
+  .w-xs-100 { width: 100% !important; }
+}
+
+@media (width: $screen-sm-min) {
+  .w-sm-100 { width: 100% !important; }
+}
+
+@media (width: $screen-sm-max) {
+  .w-sm-100 { width: 100% !important; }
+}
+
+@media (width: $screen-md-min) {
+  .w-md-100 { width: 100% !important; }
+}
+
+@media (width: $screen-md-max) {
+  .w-md-100 { width: 100% !important; }
+}
+
+@media (width: $screen-lg-min) {
+  .w-lg-100 { width: 100% !important; }
+}
