@@ -54,22 +54,31 @@
 
         onUpdated(state) {
 
-            $('#dropdownMenuOrder').click( (e) => {
+            $('.dropdown-item-sort').click( (event) => {
 
-                e.preventDefault();
-                e.stopPropagation();
+                event.preventDefault();
+                event.stopPropagation();
 
+                $('.dropdown-item-sort').each( (i, e) =>
+                    $(e).removeClass('active')
+                );
 
-                $('#dropdownToggleOrder').text($(e.currentTarget).text());
+                $('#dropdownToggleSort').text($(event.currentTarget).text());
+                $(event.currentTarget).addClass('active');
 
             });
 
-            $('#dropdownMenuView').click( (e) => {
+            $('.dropdown-item-view').click( (event) => {
 
-                e.preventDefault();
-                e.stopPropagation();
+                event.preventDefault();
+                event.stopPropagation();
 
-                $('#dropdownToggleView').html($(e.currentTarget).html());
+                $('.dropdown-item-view').each( (i, e) =>
+                    $(e).removeClass('active')
+                );
+
+                $('#dropdownToggleView').html($(event.currentTarget).html());
+                $(event.currentTarget).addClass('active');
 
             });
 

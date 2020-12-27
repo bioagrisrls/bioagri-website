@@ -39,13 +39,13 @@
 
                 <li class="list-inline-item mr-4">
                     <div class="dropdown">
-                        <button id="dropdownToggleOrder" class="dropdown-toggle btn btn-primary m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button id="dropdownToggleSort" class="dropdown-toggle btn btn-secondary m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Rilevanza
                         </button>
-                        <ul id="dropdownMenuOrder" class="dropdown-menu" aria-labelledby="dropdownToggleOrder">
-                            <li><button class="active dropdown-item m-0" >Rilevanza</button></li>
-                            <li><button class="dropdown-item m-0" >Prezzo Basso</button></li>
-                            <li><button class="dropdown-item m-0" >Prezzo Alto</button></li>
+                        <ul id="dropdownMenuSort" class="dropdown-menu" aria-labelledby="dropdownToggleSort">
+                            <li><button class="active dropdown-item-sort dropdown-item btn-secondary m-0" >Rilevanza</button></li>
+                            <li><button class="dropdown-item-sort dropdown-item btn-secondary m-0" >Prezzo Basso</button></li>
+                            <li><button class="dropdown-item-sort dropdown-item btn-secondary m-0" >Prezzo Alto</button></li>
                         </ul>
                     </div>
                 </li>
@@ -53,12 +53,12 @@
                 <li class="list-inline-item mr-2"><h5>Visualizza :</h5></li>
                 <li class="list-inline-item m-0">
                     <div class="dropdown">
-                        <button id="dropdownToggleView" class="dropdown-toggle btn btn-primary m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button id="dropdownToggleView" class="dropdown-toggle btn btn-secondary m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="mdi mdi-grid mdi-18px"></span>
                         </button>
                         <ul id="dropdownMenuView" class="dropdown-menu" aria-labelledby="dropdownToggleView">
-                            <li><button class="active dropdown-item m-0" ><span class="mdi mdi-grid mdi-18px"></span></button></li>
-                            <li><button class="dropdown-item m-0" ><span class="mdi mdi-view-list mdi-18px"></span></button></li>
+                            <li><button class="active dropdown-item-view dropdown-item btn-secondary m-0" ><span class="mdi mdi-grid mdi-18px"></span></button></li>
+                            <li><button class="dropdown-item-view dropdown-item btn-secondary m-0" ><span class="mdi mdi-view-list mdi-18px"></span></button></li>
                         </ul>
                     </div>
                 </li>
