@@ -70,4 +70,33 @@
     });
 
 
+    const updateShoppingCart = (instance, updated) => {
+
+        const cache = localStorage.getItem('X-Shopping-Cart');
+        const items = (cache && JSON.parse(cache)) || [];
+
+        for(const i of items) {
+
+            if(i.id === updated.id)
+                i.quantity = updated.quantity;
+
+        }
+
+        localStorage.setItem('X-Shopping-Cart', JSON.stringify(items.filter(i => i.quantity > 0)));
+
+        instance.setState({});
+
+    };
+
+
+    // localStorage.setItem('X-Shopping-Cart', JSON.stringify(
+    //     [
+    //         { id: 1, quantity: 1 },
+    //         { id: 2, quantity: 5 },
+    //         { id: 3, quantity: 3 },
+    //         { id: 4, quantity: 6 },
+    //     ]
+    // ));
+
+
 </script>
