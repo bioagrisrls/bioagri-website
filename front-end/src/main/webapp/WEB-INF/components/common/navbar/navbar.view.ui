@@ -145,7 +145,7 @@
 
                                 for(const item of items) {
                                 ?>
-                                    <ui-card id="{{this.id}}-card-{{item.id}}" ui:id="{{item.id}}" ui:view="tiny"></ui-card>
+                                    <ui-card id="{{this.id}}-card-{{item.id}}" ui:id="{{item.id}}" ui:quantity="{{item.quantity}}" ui:view="tiny" ui:on-updated="console.log(this)"></ui-card>
                                 <?
                                 }
 

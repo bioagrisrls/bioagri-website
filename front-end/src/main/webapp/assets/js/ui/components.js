@@ -91,7 +91,12 @@ class Component {
          */
         this.binds = [];
 
-        $()
+        /**
+         * Collection of external event
+         * @type {string[]}
+         */
+        this.events = [];
+
 
         for(const attr of elem.attributes) {
 
@@ -104,6 +109,14 @@ class Component {
 
         }
 
+        for(const attr of elem.attributes) {
+
+            if(!attr.name.startsWith('ui:on-'))
+                continue;
+
+            this.events[attr.name.slice(6)] = attr.value;
+
+        }
 
         window.components[this.id] = this;
 
@@ -137,9 +150,24 @@ class Component {
      * Initialize component's event.
      */
     onInit() {
-
+        this.raise('init');
     }
 
+
+    /**
+     * Raise external event
+     * @param event {string}
+     * @return {boolean | object | null | void}
+     * @example ui:on-init="console.log(this)"
+     */
+    raise(event) {
+
+        if(event in this.events)
+            return new Function(this.events[event]).apply(this);
+
+        return false;
+
+    }
 
 
     /**
@@ -365,7 +393,7 @@ class StatefulComponent extends Component {
      * @param state {object}
      */
     onBeforeUpdate(state) {
-
+        this.raise('before-updated');
     }
 
     /**
@@ -373,7 +401,7 @@ class StatefulComponent extends Component {
      * @param state {object}
      */
     onUpdated(state) {
-
+        this.raise('updated');
     }
 
     /**
@@ -381,7 +409,7 @@ class StatefulComponent extends Component {
      * @param state {object}
      */
     onReady(state) {
-
+        this.raise('ready');
     }
 
 }

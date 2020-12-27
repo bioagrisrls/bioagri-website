@@ -33,12 +33,31 @@
             </div>
             <div class="col-md-10">
                 <div class="card-body">
-                    <a href="#" class="ui-navigate stretched-link"><h5 class="card-title">{{ name }}</h5></a>
-                    <p class="card-text float-end"><small class="text-muted">Prezzo (FIXME)</small></p>
-                    <hr class="clearfix">
+
+                    <a href="#" class="ui-navigate float-start">
+                        <h5 class="card-title mb-1">
+                            {{ name }}
+                        </h5>
+                    </a>
+
+                    <p class="card-text float-end mb-1">
+                        <small class="text-muted">Prezzo (FIXME)</small>
+                    </p>
+
+                    <hr class="clear-end my-3">
                     <h5 class="float-end">{{ price }} &euro;</h5>
                     <p class="card-text text-truncate">{{description}}</p>
-                    <p class="card-text"><small class="text-muted">Aggiunto il {{createdAt}} (FIXME)</small></p>
+
+                    <p class="card-text float-start">
+                        <small class="text-muted">Aggiunto il {{createdAt}} (FIXME)</small>
+                    </p>
+
+                    <select class="form-select form-select-sm float-end w-auto" onchange="$$.setState({ quantity: this.value })">
+                        <? for(let i = 0; i < 99; i++) { ?>
+                            <option value="{{i}}" {{ i == quantity ? 'selected' : '' }}>{{i}}</option>
+                        <? } ?>
+                    </select>
+
                 </div>
             </div>
         </div>
