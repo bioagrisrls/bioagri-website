@@ -33,16 +33,6 @@
         { key: 'support',   name: support },
     ];
 
-
-    localStorage.setItem('X-Shopping-Cart', JSON.stringify(
-        [
-            { id: 1, quantity: 1 },
-            { id: 2, quantity: 5 },
-            { id: 3, quantity: 3 },
-            { id: 4, quantity: 6 },
-        ]
-    ));
-
     const cache = localStorage.getItem('X-Shopping-Cart');
     const items = (cache && JSON.parse(cache)) || [];
 
@@ -145,7 +135,7 @@
 
                                 for(const item of items) {
                                 ?>
-                                    <ui-card id="{{this.id}}-card-{{item.id}}" ui:id="{{item.id}}" ui:quantity="{{item.quantity}}" ui:view="tiny" ui:on-updated="console.log(this)"></ui-card>
+                                    <ui-card id="{{this.id}}-card-{{item.id}}" ui:id="{{item.id}}" ui:quantity="{{item.quantity}}" ui:view="tiny" ui:on-updated="updateShoppingCart($$, this.state)"></ui-card>
                                 <?
                                 }
 

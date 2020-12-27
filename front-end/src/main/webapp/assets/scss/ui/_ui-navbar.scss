@@ -60,7 +60,7 @@
   @extend .invisible;
   @extend .position-absolute;
   @extend .p-4;
-  @extend .rounded;
+  @extend .rounded-3;
   @extend .border;
   @extend .shadow;
   @extend .h-auto;
@@ -78,7 +78,7 @@
 
   &.ui-navbar-cart-popover {
     right: -80px;
-    width: 720px;
+    width: 480px;
   }
 
   &.ui-navbar-user-popover {
