@@ -65,7 +65,7 @@
 
             authenticated()
                 .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id'))
-                    .then(response => this.state = { $state: 'ok', $userInfo: response })
+                    .then(response => { console.log(response); this.state = { $state: 'ok', $userInfo: response }})
                 )
                 .catch(() => this.state = { $state: 'need-login' });
 
