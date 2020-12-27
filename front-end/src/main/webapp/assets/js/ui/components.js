@@ -51,7 +51,6 @@ $(document).ready(() => {
 
 
 
-
 /**
  * UI Component type.
  */

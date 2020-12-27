@@ -24,6 +24,15 @@
  */
 
 
+/**
+ * Auth.js
+ *
+ * Events:
+ *  - auth-connection-occurred: when a user is authenticating;
+ *  - auth-disconnection-occurred: when a user is logging out.
+ *
+ */
+
 
 /**
  * Authenticate with back-end and getting a new auth-token.
@@ -49,6 +58,9 @@ const authenticate = async (username, password, store = false) => {
             sessionStorage.setItem('X-Auth-UserInfo-Id', response.userId);
             sessionStorage.setItem('X-Auth-UserInfo-Role', response.userRole);
 
+
+            $(document).trigger('auth-connection-occurred');
+
             return response;
 
         },
@@ -61,15 +73,26 @@ const authenticate = async (username, password, store = false) => {
 
 /**
  * Disconnect from back-end and clear all authentication data.
+ * @param redirectToHome {boolean}
  * @returns {Promise<* | void>}
  */
-const disconnect = async () => {
+const disconnect = async (redirectToHome= true) => {
 
     return api('/auth/disconnect', 'POST', {}, false).then(
         response => {
+
             sessionStorage.clear();
             localStorage.clear();
+
+
+            if(redirectToHome)
+                uiNavigateURL('/');
+
+            $(document).trigger('auth-disconnection-occurred');
+
+
             return response;
+
         },
         reason => {
             throw reason;

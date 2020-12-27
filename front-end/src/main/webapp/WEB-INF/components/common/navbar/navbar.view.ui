@@ -92,7 +92,7 @@
                             <a href="#" class="ui-navigate list-group-item list-group-item-action">I miei ordini (FIXME)</a>
                             <a href="#" class="ui-navigate list-group-item list-group-item-action">La mia lista desideri (FIXME)</a>
                             <a href="#" class="ui-navigate list-group-item list-group-item-action">Impostazioni (FIXME)</a>
-                            <a href="#" class="list-group-item list-group-item-action" onclick="disconnect().then(() => uiNavigateURL('/'))">Esci (FIXME)</a>
+                            <a href="#" class="list-group-item list-group-item-action" onclick="disconnect()">Esci (FIXME)</a>
 
                         </ui-login>
                     </div>
