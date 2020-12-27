@@ -1,5 +1,3 @@
-"use strict";
-
 /*
  * MIT License
  *
@@ -25,6 +23,7 @@
  *
  */
 
+"use strict";
 
 
 /**
@@ -61,10 +60,50 @@ class Component {
      */
     constructor(elem) {
 
+        /**
+         * HTML Element of a Component.
+         * @type {HTMLElement}
+         */
         this.elem = elem;
+
+        /**
+         * Unique HTML ID of a Component.
+         * @type {string}
+         */
         this.id = `${elem.id}`;
+
+        /**
+         * User external innerHTML of a Component.
+         * @type {string}
+         */
         this.innerHTML = `${elem.innerHTML}`;
+
+        /**
+         * Rendered HTML of a Component
+         * @type {string}
+         */
         this.renderedHTML = '';
+
+        /**
+         * Collection map of binds state value in a HTMLElement.
+         * @type {{selector: string, value:string}[]}
+         * @example ui:bind="#app:appInfo.name"
+         */
+        this.binds = [];
+
+        $()
+
+        for(const attr of elem.attributes) {
+
+            if(attr.name !== 'ui:bind')
+                continue;
+
+            ((i) =>
+                this.binds.push(Object.create({ selector: i[0], value: i[1] }))
+            ) (attr.value.split(':'));
+
+        }
+
 
         window.components[this.id] = this;
 
@@ -133,6 +172,16 @@ class Component {
     static render(instance, template, state = {}) {
 
         $(instance.elem).html((instance.renderedHTML = $renderTemplate(instance, template, state)));
+
+        for(const bind of instance.binds) {
+
+            $(bind.selector).html(bind.value
+                .split(/[.\[\]'"]/)
+                .filter(i => i)
+                .reduce((p, v) => p ? p[v] : '', state));
+
+        }
+
 
         const recursive_render = (elem) => {
             for(let el of elem.children) {
@@ -226,7 +275,6 @@ class StatelessComponent extends Component {
 
         super(elem);
         this.onInit();
-
 
         Component.render(this, this.onLoading(), state || {});
 

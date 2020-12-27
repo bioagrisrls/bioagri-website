@@ -99,9 +99,9 @@
                     </button>
 
                     <div id="ui-navbar-user-popover" class="ui-navbar-popover bg-light animate__animated">
-                        <ui-login id="ui-navbar-login">
+                        <ui-login id="ui-navbar-login" ui:bind="#ui-navbar-user-greetings:$userInfo.name">
 
-                            <h4>Ciao {{ window.components['ui-navbar-login'] && window.components['ui-navbar-login'].state.$userInfo.name }}</h4>
+                            <h4>Ciao <span id="ui-navbar-user-greetings"></span></h4>
                             <hr>
                             <a href="#" class="ui-navigate list-group-item list-group-item-action">Il mio account (FIXME)</a>
                             <a href="#" class="ui-navigate list-group-item list-group-item-action">I miei ordini (FIXME)</a>
