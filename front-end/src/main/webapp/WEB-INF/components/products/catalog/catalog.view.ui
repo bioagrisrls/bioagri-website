@@ -69,11 +69,11 @@
 
     </div>
 
-    <div class="d-flex flex-row align-items-start" style="width: 18rem;">
+    <div class="d-flex flex-wrap align-items-start" >
 
         <? let i = 0; ?>
         <? for (let product of products) { ?>
-        <div class="p-2 flex-fill bd-highlight">
+        <div class="p-2 flex-fill bd-highlight mw-mv-25">
             <ui-card id="ui-card-{{ i++ }}" ui:id="{{ product.id }}"></ui-card>
         </div>
         <? } ?>
