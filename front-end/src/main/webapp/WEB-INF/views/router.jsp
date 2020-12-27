@@ -57,6 +57,7 @@
         <!--<link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap.min.css">-->
         <link rel="stylesheet" href="/assets/css/third-party/material-design-icons/materialdesignicons.min.css">
         <link rel="stylesheet" href="/assets/css/third-party/animate/animate.min.css">
+        <link rel="stylesheet" href="/assets/css/third-party/tippy/tippy.min.css">
 
         <!-- Styles -->
         <link rel="stylesheet" href="/assets/css/ui-bootstrap.min.css">
@@ -65,11 +66,13 @@
         <!-- Third-party Dependencies -->
         <script src="/assets/js/third-party/jquery.min.js"></script>
         <script src="/assets/js/third-party/popper.min.js"></script>
+        <script src="/assets/js/third-party/tippy.umd.min.js"></script>
         <script src="/assets/js/third-party/js.cookie.min.js"></script>
         <script src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
 
         <!-- Dependencies -->
         <script src="/assets/js/ui/api.js"></script>
+        <script src="/assets/js/ui/auth.js"></script>
         <script src="/assets/js/ui/components.js"></script>
         <script defer src="/assets/js/ui/navigation.js"></script>
         <script defer src="/assets/js/ui/animation.js"></script>

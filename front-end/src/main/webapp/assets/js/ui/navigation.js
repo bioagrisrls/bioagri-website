@@ -32,7 +32,7 @@
  * @param container {HTMLElement || string}
  * @param pushState {boolean}
  */
-const uiNavigateURL = (url, container = document.documentElement, pushState = true) => {
+const uiNavigateURL = (url, container = '#ui-navigation-container', pushState = true) => {
 
     if(!url)
         throw new Error('URL cannot be null');
@@ -86,7 +86,9 @@ const uiNavigateURL = (url, container = document.documentElement, pushState = tr
                     .attr('aria-valuenow', '66');
 
 
-            }).then(() => Component.run(container))
+            })
+              .then(() => Component.destroy())
+              .then(() => Component.run(container))
               .then(() => prog.hide())
               .then(() => $(document).trigger('ui-ready'))
 
@@ -133,7 +135,7 @@ $(document).ready(() => {
         if (window.location === this.href)
             return;
 
-        uiNavigateURL(e.currentTarget.href, '#ui-navigation-container');
+        uiNavigateURL(e.currentTarget.href);
 
     });
 

@@ -35,6 +35,7 @@
 
 
 <nav class="navbar navbar-expand-lg w-100 sticky-top shadow-sm bg-light">
+
     <div class="ui-container container-fluid row">
 
 
@@ -45,6 +46,7 @@
         </a>
 
 
+        <!-- Toggle Menu -->
         <button class="navbar-toggler col-2 pull-right"
                 type="button"
                 onclick="$('#ui-navbar-links').collapse('toggle')"
@@ -55,6 +57,7 @@
             <span class="mdi mdi-24px mdi-menu"></span>
 
         </button>
+
 
         <div id="ui-navbar-links" class="navbar-collapse collapse col-6 col-md">
 
@@ -74,26 +77,47 @@
             <div class="mx-5 d-flex w-auto d-lg-block d-none">
 
                 <!-- User Account -->
-                <button class="btn btn-outline-primary rounded-circle mx-1" role="button" data-bs-toggle="user-popover" data-bs-trigger="focus" data-bs-content="<strong>Hello</strong> World">
-                    <span class="mdi mdi-24px mdi-account"></span>
-                </button>
+                <div id="ui-navbar-user" class="position-relative d-inline-block">
+
+                    <button class="btn btn-outline-primary rounded-circle mx-1" onclick="$('#ui-navbar-user-popover').toggleClass('show')">
+                        <span class="mdi mdi-24px mdi-account"></span>
+                    </button>
+
+                    <div id="ui-navbar-user-popover" class="ui-navbar-popover bg-light animate__animated">
+                        <ui-login id="ui-navbar-login">
+
+                            <h4>Ciao {{ window.components['ui-navbar-login'] && window.components['ui-navbar-login'].state.$userInfo.name }}</h4>
+                            <hr>
+                            <a href="#" class="ui-navigate list-group-item list-group-item-action">Il mio account (FIXME)</a>
+                            <a href="#" class="ui-navigate list-group-item list-group-item-action">I miei ordini (FIXME)</a>
+                            <a href="#" class="ui-navigate list-group-item list-group-item-action">La mia lista desideri (FIXME)</a>
+                            <a href="#" class="ui-navigate list-group-item list-group-item-action">Impostazioni (FIXME)</a>
+                            <a href="#" class="list-group-item list-group-item-action" onclick="disconnect().then(() => uiNavigateURL('/'))">Esci (FIXME)</a>
+
+                        </ui-login>
+                    </div>
+
+                </div>
 
                 <!-- Shopping -->
-                <button class="btn btn-outline-primary rounded-circle mx-1 position-relative">
+                <div class="position-relative d-inline-block">
+                    <button class="btn btn-outline-primary rounded-circle mx-1">
 
-                    <span class="mdi mdi-24px mdi-shopping"></span>
+                        <span class="mdi mdi-24px mdi-shopping"></span>
 
-                    <? if (notifications > 0) { ?>
-                        <span class="badge rounded-pill bg-danger position-absolute">
-                            {{ notifications }}
-                        </span>
-                    <? } ?>
+                        <? if (notifications > 0) { ?>
+                            <span class="badge rounded-pill bg-danger position-absolute">
+                                {{ notifications }}
+                            </span>
+                        <? } ?>
 
-                </button>
+                    </button>
+                </div>
 
             </div>
 
         </div>
 
     </div>
+
 </nav>

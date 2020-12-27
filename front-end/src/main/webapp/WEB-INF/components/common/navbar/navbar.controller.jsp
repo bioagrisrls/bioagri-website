@@ -69,7 +69,6 @@
             return `${components.common_navbar}`
         }
 
-
     });
 
 

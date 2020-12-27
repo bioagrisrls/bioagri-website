@@ -51,14 +51,6 @@
             super(id, Object.assign(state, { $state: 'working' }));
         }
 
-        onReady(state) {
-
-            authenticated()
-                .then(() => this.setState({ $state: 'ok' }))
-                .catch(() => this.setState({ $state: 'need-login' }));
-
-        }
-
         onRender() {
             return `${components.common_form}`;
         }

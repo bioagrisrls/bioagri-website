@@ -168,18 +168,26 @@ class Component {
          */
         const $init = (e) => {
 
-            let props = {};
+            if(window.components[e.id]) {
 
-            if(e.hasAttributes()) {
-                for (let attr of e.attributes) {
-                    if (attr.name.startsWith('ui:'))
-                        props[attr.name.slice(3)] = attr.value || true;
+                console.debug("Skipping component, already loaded: ", window.components[e.id].id);
+
+            } else {
+
+                let props = {};
+
+                if (e.hasAttributes()) {
+                    for (let attr of e.attributes) {
+                        if (attr.name.startsWith('ui:'))
+                            props[attr.name.slice(3)] = attr.value || true;
+                    }
                 }
+
+                window.registered[e.localName](e, props);
+
+                console.debug("Loading component: ", window.components[e.id].id);
+
             }
-
-            window.registered[e.localName](e, props);
-
-            console.debug("Loading component: ", window.components[e.id].id);
 
         }
 
@@ -193,6 +201,13 @@ class Component {
             $init($(element).get(0));
 
         }
+    }
+
+    /**
+     * Unload all components.
+     */
+    static destroy() {
+        window.components = [];
     }
 
 

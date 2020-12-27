@@ -55,4 +55,26 @@
 }
 
 
+.ui-navbar-popover {
+
+  @extend .invisible;
+  @extend .position-absolute;
+  @extend .p-4;
+  @extend .rounded;
+  @extend .border;
+  @extend .shadow;
+  @extend .h-auto;
+
+  top: 125%;
+  right: -160px;
+  width: 320px;
+
+  &.show {
+    @extend .visible;
+    animation-name: fadeInUp;
+    animation-duration: .4s;
+  }
+
+}
+
 

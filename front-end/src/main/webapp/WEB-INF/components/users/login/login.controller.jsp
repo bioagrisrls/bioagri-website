@@ -60,18 +60,31 @@
             });
         }
 
+
+        onReady(state) {
+
+            authenticated()
+                .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id'))
+                    .then(response => this.state = { $state: 'ok', $userInfo: response })
+                )
+                .catch(() => this.state = { $state: 'need-login' });
+
+        }
+
         onSubmit(data) {
 
             const hash = (str) => crypto.subtle
                 .digest("SHA-512", new TextEncoder().encode(str))
                 .then(buf => Array.prototype.map.call(new Uint8Array(buf), i => ('00' + i.toString()).slice(-2)).join(''));
 
-
             hash(data.password)
-                .then((encryptedPassword) => authenticate(data.username, data.password, data.store) // FIXME: encryptedPassword
-                    .then((response) => this.setState({$state: 'ok'}))
-                    .catch((reason) => this.setState({$state: 'error', $reason: reason}))
-                );
+                .then(response => authenticate(data.username, data.password, data.store)
+                    .then(response => api('/users/' + response.userId)
+                        .then(response => this.state = { $state: 'ok', $userInfo: response })
+                    )
+                )
+                .catch(reason => this.state = { $state: 'error', $reason: reason });
+
 
         }
 
