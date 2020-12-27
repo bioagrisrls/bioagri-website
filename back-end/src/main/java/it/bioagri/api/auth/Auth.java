@@ -29,6 +29,7 @@ import ch.qos.logback.classic.Logger;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import it.bioagri.api.ApiPermissionPublic;
 import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 import org.slf4j.LoggerFactory;
@@ -66,6 +67,7 @@ public final class Auth {
         @ApiResponse(responseCode = "404", description = "Username/password wrong"),
     })
     @PostMapping("authenticate")
+    @ApiPermissionPublic
     public ResponseEntity<AuthToken> authenticate(@RequestBody AuthLogin authLogin) {
 
         logger.trace("Authentication attempt with {}", authLogin);

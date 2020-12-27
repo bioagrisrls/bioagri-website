@@ -26,6 +26,7 @@
 package it.bioagri;
 
 import ch.qos.logback.classic.Logger;
+import it.bioagri.api.ApiPermissionPublic;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.web.Page;
@@ -33,6 +34,7 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -45,7 +47,6 @@ import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 @Component
@@ -65,7 +66,10 @@ public class WebConfig implements WebMvcConfigurer {
 
 
         @Override
-        public boolean preHandle(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) throws Exception {
+        public boolean preHandle(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) throws Exception {
+
+            if(handler instanceof HandlerMethod && ((HandlerMethod) handler).hasMethodAnnotation(ApiPermissionPublic.class))
+                 return true;
 
             if(request.getHeader("X-Auth-Token") == null)
                 throw new ApiResponseStatus(401);
@@ -85,6 +89,7 @@ public class WebConfig implements WebMvcConfigurer {
                 response.addHeader("X-Auth-Token", authToken.generateToken().getToken());
 
         }
+
 
     }
 
@@ -184,8 +189,7 @@ public class WebConfig implements WebMvcConfigurer {
 
         registry.addInterceptor(interceptor)
                 .addPathPatterns("/api/**")
-                .excludePathPatterns("/api/public/**")
-                .excludePathPatterns("/api/auth/authenticate");
+                .excludePathPatterns("/api/public/**");
 
     }
 

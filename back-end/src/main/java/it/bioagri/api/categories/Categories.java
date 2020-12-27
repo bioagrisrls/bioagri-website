@@ -28,10 +28,7 @@ package it.bioagri.api.categories;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import it.bioagri.api.ApiPermission;
-import it.bioagri.api.ApiPermissionOperation;
-import it.bioagri.api.ApiPermissionType;
-import it.bioagri.api.ApiResponseStatus;
+import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Category;
 import it.bioagri.persistence.DataSource;
@@ -66,6 +63,7 @@ public class Categories {
             @ApiResponse(responseCode = "200", description = "Category resources collection"),
     })
     @GetMapping("")
+    @ApiPermissionPublic
     public ResponseEntity<List<Category>> findAll(
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
@@ -99,6 +97,7 @@ public class Categories {
             @ApiResponse(responseCode = "404", description = "Category id not found"),
     })
     @GetMapping("/{id}")
+    @ApiPermissionPublic
     public ResponseEntity<Category> findById(@PathVariable Long id) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);

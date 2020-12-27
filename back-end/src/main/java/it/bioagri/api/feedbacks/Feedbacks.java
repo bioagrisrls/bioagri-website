@@ -25,10 +25,7 @@
 
 package it.bioagri.api.feedbacks;
 
-import it.bioagri.api.ApiPermission;
-import it.bioagri.api.ApiPermissionOperation;
-import it.bioagri.api.ApiPermissionType;
-import it.bioagri.api.ApiResponseStatus;
+import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Feedback;
 import it.bioagri.persistence.DataSource;
@@ -58,6 +55,7 @@ public class Feedbacks {
 
 
     @GetMapping("")
+    @ApiPermissionPublic
     public ResponseEntity<List<Feedback>> findAll(
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
@@ -84,6 +82,7 @@ public class Feedbacks {
 
 
     @GetMapping("/{id}")
+    @ApiPermissionPublic
     public ResponseEntity<Feedback> findById(@PathVariable Long id) {
 
         try {

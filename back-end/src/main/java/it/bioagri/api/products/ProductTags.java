@@ -25,10 +25,7 @@
 
 package it.bioagri.api.products;
 
-import it.bioagri.api.ApiPermission;
-import it.bioagri.api.ApiPermissionOperation;
-import it.bioagri.api.ApiPermissionType;
-import it.bioagri.api.ApiResponseStatus;
+import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
@@ -58,6 +55,7 @@ public class ProductTags {
 
 
     @GetMapping("/{sid}/tags")
+    @ApiPermissionPublic
     public ResponseEntity<List<Tag>> findAll(
             @PathVariable Long sid,
             @RequestParam(required = false, defaultValue =   "0") Long skip,

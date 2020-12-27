@@ -23,11 +23,22 @@
  *
  */
 
-package it.bioagri.api;
+package it.bioagri.models;
 
-public enum ApiPermissionActor {
-    ADMIN,
-    USER,
-    ALL,
-    PUBLIC,
+public final class ProductImage implements Model {
+
+    private final String path;
+
+    public ProductImage(String path) {
+        this.path = path;
+    }
+
+    public ProductImage() {
+        this.path = "";
+    }
+
+    public String getPath() {
+        return path;
+    }
+
 }

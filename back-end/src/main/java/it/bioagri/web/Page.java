@@ -33,7 +33,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
@@ -91,7 +90,7 @@ public class Page {
     @GetMapping("/admin/{page}")
     public String admin(ServletRequest request, Model model, @PathVariable String page) {
 
-        if(authToken.isValid() && authToken.getUserRole().equals(UserRole.ADMIN))
+        if(authToken.getUserRole().equals(UserRole.ADMIN))
             return loadPage(request, model, "admin/%s.jsp".formatted(page));
 
         return "error";
@@ -105,10 +104,14 @@ public class Page {
 
         Arrays.stream(content
                 .replaceAll("(?s)<!--.*?-->", "")
+                .replaceAll("(?s)/\\*.*?\\*/", "")
+                .replaceAll("\s+", " ")
                 .split("\n"))
                 .filter(Predicate.not(String::isEmpty))
                 .filter(Predicate.not(String::isBlank))
                 .forEach(i -> output.append(i.trim()).append(replaceNewLines ? ' ' : '\n'));
+
+
 
         return output.toString();
 

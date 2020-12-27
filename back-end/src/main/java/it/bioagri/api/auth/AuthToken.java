@@ -52,8 +52,8 @@ public class AuthToken {
     public AuthToken() {
         this.token = null;
         this.timestamp = null;
-        this.userId = null;
-        this.userRole = null;
+        this.userId = 0L;
+        this.userRole = UserRole.CUSTOMER;
     }
 
     @JsonProperty
@@ -95,19 +95,15 @@ public class AuthToken {
 
 
     @JsonIgnore
-    public boolean isValid() {
-
-        return  token != null &&
-                userId != null &&
-                userRole != null &&
-                timestamp != null;
-
+    public boolean isLoggedIn() {
+        return !userId.equals(0L);
     }
+
 
     @JsonIgnore
     public boolean isExpired() {
 
-        if(!isValid())
+        if(!isLoggedIn())
             return false;
 
         return timestamp.before(Timestamp.from(Instant.now().minus(30, ChronoUnit.MINUTES)));
