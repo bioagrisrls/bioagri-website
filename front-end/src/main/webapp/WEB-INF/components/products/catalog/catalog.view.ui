@@ -28,9 +28,11 @@
     <div class="row">
 
         <!--Left Menù -->
-        <div class="col col-lg-2 d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block">
+        <div class="col col-lg-2 d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block pt-3">
 
             <h5>Categorie</h5>
+
+            <div class="border-bottom border-dark border-2 h-1 mb-3"></div>
 
             <ul class="list-unstyled">
                 <? for (let category of categories) { ?>
@@ -38,14 +40,15 @@
                 <? } ?>
             </ul>
 
+
         </div>
 
 
         <!-- Catalog -->
-        <div class="col col-md-12 col-sm-12 col-lg-10 w-sm-100 w-md-100" >
+        <div class="col col-md-12 col-sm-12 col-lg-10 w-sm-100 w-md-100 border pt-3 pb-5" >
 
             <!-- Catalog Header-->
-            <div class="row w-100">
+            <div class="row border-bottom">
 
                 <div class="col col-5">
                     <p>4 risultati</p>
