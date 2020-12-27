@@ -99,19 +99,59 @@
 
                 </div>
 
-                <!-- Shopping -->
-                <div class="position-relative d-inline-block">
-                    <button class="btn btn-outline-primary rounded-circle mx-1">
+
+                <!-- Shopping Cart -->
+                <div id="ui-navbar-cart" class="position-relative d-inline-block">
+
+                    <button class="btn btn-outline-primary rounded-circle mx-1" onclick="$('#ui-navbar-cart-popover').toggleClass('show')">
 
                         <span class="mdi mdi-24px mdi-shopping"></span>
 
                         <? if (notifications > 0) { ?>
-                            <span class="badge rounded-pill bg-danger position-absolute">
+                        <span class="badge rounded-pill bg-danger position-absolute">
                                 {{ notifications }}
                             </span>
                         <? } ?>
 
                     </button>
+
+                    <div id="ui-navbar-cart-popover" class="ui-navbar-popover bg-light animate__animated">
+
+                        <h4>Carrello (FIXME)</h4>
+
+                        <?
+
+                            localStorage.setItem('X-Shopping-Cart', JSON.stringify(
+                                [
+                                    { id: 1, quantity: 1 },
+                                    { id: 2, quantity: 5 },
+                                    { id: 3, quantity: 3 },
+                                    { id: 4, quantity: 6 },
+                                ]
+                            ));
+
+                            const cache = localStorage.getItem('X-Shopping-Cart');
+                            const items = (cache && JSON.parse(cache)) || [];
+
+                            if(items.length == 0) {
+                            ?>
+                                <span>Il tuo carrello è vuoto (FIXME)</span>
+                            <?
+                            } else {
+
+                                for(const item of items) {
+                                ?>
+                                    <ui-card id="{{this.id}}-card-{{item.id}}" ui:id="{{item.id}}" ui:view="tiny"></ui-card>
+                                <?
+                                }
+
+                            }
+
+
+                        ?>
+
+                    </div>
+
                 </div>
 
             </div>

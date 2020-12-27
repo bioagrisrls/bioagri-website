@@ -31,10 +31,10 @@
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/footer/footer.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/form/form.controller.jsp" />
-
 <jsp:include page="/WEB-INF/components/users/login/login.controller.jsp" />
 <jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp" />
 <jsp:include page="/WEB-INF/components/image/image/image.controller.jsp" />
+<jsp:include page="/WEB-INF/components/products/card/card.controller.jsp" />
 
 
 
