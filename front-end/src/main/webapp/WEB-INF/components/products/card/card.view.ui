@@ -23,23 +23,44 @@
   ~
   -->
 
+<? if($view === 'tiny') { ?>
 
-<div class="card rounded shadow-sm border-0" style="width: 18rem;">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-4">
+                <!--<img src="/assets/uploads/img/products/{{id}}/preview.png" class="card-img">-->
+                <img src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" class="card-img" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ name }}</h5>
+                    <p class="card-text text-truncate">{{description}}</p>
+                    <p class="card-text"><small class="text-muted">Aggiunto il {{createdAt}} (FIXME)</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div class="card-body p-4">
+<? } else { ?>
 
-        <img class="img-fluid d-block mx-auto mb-3" src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" />
-        <h5><a href="#" class="text-dark">{{ name }}</a></h5>
-        <p class="small text-muted">{{ price }}</p>
+    <div class="card rounded shadow-sm border-0" style="width: 18rem;">
 
-        <ul class="list-inline small">
-            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-            <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
-        </ul>
+        <div class="card-body p-4">
+
+            <img class="img-fluid d-block mx-auto mb-3" src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" />
+            <h5><a href="#" class="text-dark">{{ name }}</a></h5>
+            <p class="small text-muted">{{ price }}</p>
+
+            <ul class="list-inline small">
+                <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
+                <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
+                <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
+                <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
+                <li class="list-inline-item m-0"><i class="mdi mdi-star mdi"></i></li>
+            </ul>
+
+        </div>
 
     </div>
 
-</div>
+<? } ?>

@@ -32,7 +32,11 @@
     Component.register('ui-card', (id, props) => new class extends StatelessComponent {
 
         constructor() {
-            super(id, api("/products/" + props.id));
+            super(id, api("/products/" + props.id).then(response => {
+                return Object.assign(response, {
+                    $view: props.view || 'default'
+                });
+            }));
         }
 
         onRender() {
