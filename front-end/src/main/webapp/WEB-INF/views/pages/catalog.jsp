@@ -27,8 +27,12 @@
 <%--@elvariable id="locale" type="java.util.Map"--%>
 <%--@elvariable id="reference" type="java.lang.String"--%>
 
+
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/footer/footer.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/breadcrumb/breadcrumb.controller.jsp"/>
+<jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp"/>
 <jsp:include page="/WEB-INF/components/products/catalog/catalog.controller.jsp" />
 <jsp:include page="/WEB-INF/components/products/card/card.controller.jsp" />
 
@@ -55,13 +59,16 @@
     <br>
 
     <section ui-animated>
-
-        <div class="ui-container">
-            <ui-catalog id="ui-catalog"></ui-catalog>
-        </div>
-
+        <ui-catalog id="ui-catalog"></ui-catalog>
     </section>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
+    <!-- Footer -->
+    <ui-footer id="ui-footer" ui:current="home"> </ui-footer>
 
 </section>
