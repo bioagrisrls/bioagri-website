@@ -29,12 +29,13 @@
 
 <script defer>
 
-    Component.register('ui-card', (id, props) => new class extends StatelessComponent {
+    Component.register('ui-card', (id, props) => new class extends StatefulComponent {
 
         constructor() {
-            super(id, api("/products/" + props.id).then(response => {
+            super(id, api("/products/" + (props.id || 0)).then(response => {
                 return Object.assign(response, {
-                    $view: props.view || 'default'
+                    $view: props.view || 'default',
+                    quantity: props.quantity || 0,
                 });
             }));
         }

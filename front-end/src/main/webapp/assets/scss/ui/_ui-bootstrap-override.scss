@@ -196,3 +196,16 @@ $screen-lg-min: 1200px;
 .h-1 {
   height: 1px !important;
 }
+
+
+//
+// Clearfix
+//
+
+.clear-start {
+  clear: left;
+}
+
+.clear-end {
+  clear: right;
+}
