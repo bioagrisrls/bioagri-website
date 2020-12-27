@@ -27,58 +27,69 @@
 
     <div class="row">
 
-        <div class="col-md">
-            <h5>4 risultati</h5>
-        </div>
+        <!--Left Menù -->
+        <div class="col col-2">
 
-        <div class="col-md">
+            <h5>Categorie</h5>
 
-            <ul class="list-inline float-end">
-
-                <li class="list-inline-item mr-2"><h5>Ordina per:</h5></li>
-
-                <li class="list-inline-item mr-4">
-                    <div class="dropdown">
-                        <button id="dropdownToggleSort" class="dropdown-toggle btn btn-secondary m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Rilevanza
-                        </button>
-                        <ul id="dropdownMenuSort" class="dropdown-menu" aria-labelledby="dropdownToggleSort">
-                            <li><button class="active dropdown-item-sort dropdown-item btn-secondary m-0" >Rilevanza</button></li>
-                            <li><button class="dropdown-item-sort dropdown-item btn-secondary m-0" >Prezzo Basso</button></li>
-                            <li><button class="dropdown-item-sort dropdown-item btn-secondary m-0" >Prezzo Alto</button></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="list-inline-item mr-2"><h5>Visualizza :</h5></li>
-                <li class="list-inline-item m-0">
-                    <div class="dropdown">
-                        <button id="dropdownToggleView" class="dropdown-toggle btn btn-secondary m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="mdi mdi-grid mdi-18px"></span>
-                        </button>
-                        <ul id="dropdownMenuView" class="dropdown-menu" aria-labelledby="dropdownToggleView">
-                            <li><button class="active dropdown-item-view dropdown-item btn-secondary m-0" ><span class="mdi mdi-grid mdi-18px"></span></button></li>
-                            <li><button class="dropdown-item-view dropdown-item btn-secondary m-0" ><span class="mdi mdi-view-list mdi-18px"></span></button></li>
-                        </ul>
-                    </div>
-                </li>
-
+            <ul class="list-unstyled">
+                <? for (let category of categories) { ?>
+                    <li><p>{{ category.name }}</p></li>
+                <? } ?>
             </ul>
 
         </div>
 
-    </div>
 
-    <div class="d-flex flex-wrap align-items-start" >
+        <!-- Catalog -->
+        <div class="col col-10 d-flex flex-wrap align-items-start" >
 
-        <? let i = 0; ?>
-        <? for (let product of products) { ?>
-        <div class="p-2 flex-fill bd-highlight mw-mv-25">
-            <ui-card id="ui-card-{{ i++ }}" ui:id="{{ product.id }}"></ui-card>
+            <!-- Catalog Header-->
+            <div class="row">
+
+                <div class="col">
+                    <p>4 risultati</p>
+                </div>
+
+                <div class="col">
+
+                    <ul class="list-inline float-end">
+
+                        <li class="list-inline-item mr-2"><p>Ordina per:</p></li>
+
+                        <li class="list-inline-item mr-4">
+                            <div class="dropdown">
+                                <button id="dropdownToggleSort" class="dropdown-toggle btn-sm btn-secondary m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Rilevanza
+                                </button>
+                                <ul id="dropdownMenuSort" class="dropdown-menu" aria-labelledby="dropdownToggleSort">
+                                    <li><button class="active dropdown-item-sort dropdown-item btn-sm btn-secondary m-0" >Rilevanza</button></li>
+                                    <li><button class="dropdown-item-sort dropdown-item btn-sm btn-secondary m-0" >Prezzo Basso</button></li>
+                                    <li><button class="dropdown-item-sort dropdown-item btn-sm btn-secondary m-0" >Prezzo Alto</button></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <!-- Products -->
+                <div class="d-flex flex-wrap align-items-start" >
+
+                    <? let i = 0; ?>
+                    <? for (let product of products) { ?>
+                    <div class="p-2 flex-fill bd-highlight mw-50">
+                        <ui-card id="ui-card-{{ i++ }}" ui:id="{{ product.id }}"></ui-card>
+                    </div>
+                    <? } ?>
+
+                </div>
+
         </div>
-        <? } ?>
 
     </div>
+
 
 </div>
 

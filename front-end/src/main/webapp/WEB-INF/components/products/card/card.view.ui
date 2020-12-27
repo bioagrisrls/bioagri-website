@@ -43,7 +43,7 @@
 
 <? } else if($view === 'row') {?>
 
-    <div class="card rounded shadow-sm border-0" style="width: 18rem;">
+    <div class="card rounded shadow-sm border-0">
 
         <div class="card-body p-4">
 
@@ -65,7 +65,7 @@
 
 <? } else { ?>
 
-<div class="card rounded shadow-sm border-0" style="width: 18rem;">
+<div class="card rounded shadow-sm border-0">
 
     <div class="card-body p-4">
 
