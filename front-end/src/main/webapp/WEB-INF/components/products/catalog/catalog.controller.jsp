@@ -39,10 +39,6 @@
                     return {
                         products: r1,
                         categories: r2,
-                        sortText : 'Rilevanza',
-                        sort : 'relevance',
-                        viewHtml : '<span class="mdi mdi-grid"></span>',
-                        view : 'relevance',
                     }
 
                 }))
