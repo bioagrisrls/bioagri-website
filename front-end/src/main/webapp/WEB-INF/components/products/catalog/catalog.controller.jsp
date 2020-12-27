@@ -60,7 +60,7 @@
                 e.stopPropagation();
 
 
-                $('#dropdownToggleOrder').text($(e.target).text());
+                $('#dropdownToggleOrder').text($(e.currentTarget).text());
 
             });
 
@@ -69,7 +69,7 @@
                 e.preventDefault();
                 e.stopPropagation();
 
-                $('#dropdownToggleView').html($(e.target).html());
+                $('#dropdownToggleView').html($(e.currentTarget).html());
 
             });
 
