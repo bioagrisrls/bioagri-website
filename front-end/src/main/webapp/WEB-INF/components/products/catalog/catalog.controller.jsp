@@ -34,14 +34,17 @@
         constructor() {
             super( id,
 
-                api("/products").then( (r1) => api("/categories").then( (r2) =>  {
+                api("/products").then( (r1) => api("/categories")
+                                .then( (r2) => api("/tags")
+                                .then( (r3) =>  {
 
-                    return {
-                        products: r1,
-                        categories: r2,
-                    }
+                                    return {
+                                        products: r1,
+                                        categories: r2,
+                                        tags: r3,
+                                    }
 
-                }))
+                                })))
             )
         }
 

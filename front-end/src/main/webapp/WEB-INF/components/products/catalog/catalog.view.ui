@@ -30,13 +30,23 @@
         <!--Left Menù -->
         <div class="col col-lg-2 d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block pt-3">
 
-            <h5>Categorie</h5>
-
-            <div class="border-bottom border-dark border-2 h-1 mb-3"></div>
+            <h4>Categorie</h4>
+            <hr>
 
             <ul class="list-unstyled">
                 <? for (let category of categories) { ?>
-                <li><p class="text-truncate">{{ category.name }}</p></li>
+                    <li><a href="#" class="list-group-item list-group-item-action">{{ category.name }}</a></li>
+                <? } ?>
+            </ul>
+
+            <br>
+
+            <h4>Tags</h4>
+            <hr>
+
+            <ul class="list-unstyled">
+                <? for (let tag of tags) { ?>
+                <li><a href="#" class="list-group-item list-group-item-action">{{ tag.hashtag }}</a></li>
                 <? } ?>
             </ul>
 
