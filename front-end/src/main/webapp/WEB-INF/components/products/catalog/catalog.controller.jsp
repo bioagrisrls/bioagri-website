@@ -39,6 +39,10 @@
                     return {
                         products: r1,
                         categories: r2,
+                        sortText : 'Rilevanza',
+                        sort : 'relevance',
+                        viewHtml : '<span class="mdi mdi-grid"></span>',
+                        view : 'relevance',
                     }
 
                 }))
@@ -64,12 +68,11 @@
                 event.preventDefault();
                 event.stopPropagation();
 
-                $('.dropdown-item-sort').each( (i, e) =>
-                    $(e).removeClass('active')
-                );
+                this.setState({
+                    sortText: $(event.currentTarget).text(),
+                    sort: $(event.currentTarget).attr('id')
 
-                $('#dropdownToggleSort').text($(event.currentTarget).text());
-                $(event.currentTarget).addClass('active');
+                })
 
             });
 
@@ -78,12 +81,10 @@
                 event.preventDefault();
                 event.stopPropagation();
 
-                $('.dropdown-item-view').each( (i, e) =>
-                    $(e).removeClass('active')
-                );
-
-                $('#dropdownToggleView').html($(event.currentTarget).html());
-                $(event.currentTarget).addClass('active');
+                $(this).setState(
+                    {sortText : $(event.currentTarget).html()},
+                    {sort : $(event.currentTarget).attr('id')},
+                )
 
             });
 

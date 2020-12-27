@@ -45,7 +45,7 @@
 
 
         <!-- Catalog -->
-        <div class="col col-md-12 col-sm-12 col-lg-10 w-sm-100 w-md-100 border pt-3 pb-5" >
+        <div class="col col-md-12 col-sm-12 col-lg-10 w-sm-100 w-md-100 border pt-3 pb-5 rounded" >
 
             <!-- Catalog Header-->
             <div class="row border-bottom">
@@ -62,12 +62,12 @@
                         <li class="list-inline-item mr-4">
                             <div class="dropdown">
                                 <button id="dropdownToggleSort" class="dropdown-toggle btn-sm btn-secondary m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Rilevanza
+                                    {{ sortText }}
                                 </button>
                                 <ul id="dropdownMenuSort" class="dropdown-menu" aria-labelledby="dropdownToggleSort">
-                                    <li><button class="active dropdown-item-sort dropdown-item btn-sm btn-secondary m-0" >Rilevanza</button></li>
-                                    <li><button class="dropdown-item-sort dropdown-item btn-sm btn-secondary m-0" >Prezzo Basso</button></li>
-                                    <li><button class="dropdown-item-sort dropdown-item btn-sm btn-secondary m-0" >Prezzo Alto</button></li>
+                                    <li><a id="relevance" class="{{ (sort === 'relevance' ? 'active' : '') }} dropdown-item-sort dropdown-item m-0" >Rilevanza</a></li>
+                                    <li><a id="lowPrice" class="{{ (sort === 'lowPrice' ? 'active' : '') }} dropdown-item-sort dropdown-item m-0" >Prezzo Basso</a></li>
+                                    <li><a id="highPrice" class="{{ (sort === 'highPrice' ? 'active' : '') }} dropdown-item-sort dropdown-item m-0" >Prezzo Alto</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -83,11 +83,11 @@
                         <li class="list-inline-item mr-4">
                             <div class="dropdown">
                                 <button id="dropdownToggleView" class="dropdown-toggle btn-xs btn-secondary m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="mdi mdi-menu"></span>
+                                    {{ viewHtml }}
                                 </button>
                                 <ul id="dropdownMenuView" class="dropdown-menu" aria-labelledby="dropdownToggleSort">
-                                    <li><button class="active dropdown-item-view dropdown-item btn-xs btn-secondary m-0" ><span class="mdi mdi-grid"></span></button></li>
-                                    <li><button class="dropdown-item-view dropdown-item btn-xs btn-secondary m-0" ><span class="mdi mdi-table-row"></span></button></li>
+                                    <li><a id="cards" class="{{ (view === 'cards' ? 'active' : '') }} dropdown-item-view dropdown-item m-0" ><span class="mdi mdi-grid"></span></a></li>
+                                    <li><a id="row" class="{{ (view === 'row' ? 'active' : '') }} dropdown-item-view dropdown-item m-0" ><span class="mdi mdi-table-row"></span></a></li>
                                 </ul>
                             </div>
                         </li>
