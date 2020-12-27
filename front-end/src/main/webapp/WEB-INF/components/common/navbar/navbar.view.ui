@@ -25,12 +25,27 @@
 
 
 <?
+
     let navs = [
         { key: 'home',      name: home    },
         { key: 'catalog',   name: catalog },
         { key: 'about',     name: about   },
         { key: 'support',   name: support },
     ];
+
+
+    localStorage.setItem('X-Shopping-Cart', JSON.stringify(
+        [
+            { id: 1, quantity: 1 },
+            { id: 2, quantity: 5 },
+            { id: 3, quantity: 3 },
+            { id: 4, quantity: 6 },
+        ]
+    ));
+
+    const cache = localStorage.getItem('X-Shopping-Cart');
+    const items = (cache && JSON.parse(cache)) || [];
+
 ?>
 
 
@@ -107,9 +122,9 @@
 
                         <span class="mdi mdi-24px mdi-shopping"></span>
 
-                        <? if (notifications > 0) { ?>
-                        <span class="badge rounded-pill bg-danger position-absolute">
-                                {{ notifications }}
+                        <? if (items.length > 0) { ?>
+                            <span class="badge rounded-pill bg-danger position-absolute">
+                                {{ items.length }}
                             </span>
                         <? } ?>
 
@@ -121,17 +136,6 @@
 
                         <?
 
-                            localStorage.setItem('X-Shopping-Cart', JSON.stringify(
-                                [
-                                    { id: 1, quantity: 1 },
-                                    { id: 2, quantity: 5 },
-                                    { id: 3, quantity: 3 },
-                                    { id: 4, quantity: 6 },
-                                ]
-                            ));
-
-                            const cache = localStorage.getItem('X-Shopping-Cart');
-                            const items = (cache && JSON.parse(cache)) || [];
 
                             if(items.length == 0) {
                             ?>
