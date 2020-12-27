@@ -59,6 +59,7 @@
                 e.preventDefault();
                 e.stopPropagation();
 
+
                 $('#dropdownToggleOrder').text($(e.target).text());
 
             });
@@ -68,7 +69,8 @@
                 e.preventDefault();
                 e.stopPropagation();
 
-                $('#dropdownToggleView').html($(e.target).text());
+                $('#dropdownToggleView').html($(e.target).html());
+
             });
 
 
