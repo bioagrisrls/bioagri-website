@@ -109,14 +109,14 @@
             <!-- Products -->
             <div class="d-flex flex-wrap align-items-start" >
                 <? for (let product of products) { ?>
-                    <?
+<!--                    <?-->
 
-                    if( category === 'noneCategory' && tag === 'noneTag' ||
-                        category !== 'noneCategory' && category === r1 ||
-                        tag !== 'noneTag' && tag === r2
-                      ) {
+<!--                    if( category === 'noneCategory' && tag === 'noneTag' ||-->
+<!--                        category !== 'noneCategory' && category === r1 ||-->
+<!--                        tag !== 'noneTag' && tag === r2-->
+<!--                      ) {-->
 
-                    ?>
+<!--                    ?>-->
 
                         <div class="p-2 flex-fill bd-highlight {{ selectedView ===  'card' ? 'mw-33 mw-sm-100 mw-md-50' : 'w-100' }}">
 
@@ -127,7 +127,7 @@
 
                         </div>
 
-                    <? } ?>
+<!--                    <? } ?>-->
 
                 <? } ?>
             </div>
@@ -135,5 +135,7 @@
         </div>
 
     </div>
+
+    <button id="more-item" type="button" class="btn btn-info">Di Piu'</button>
 
 </div>

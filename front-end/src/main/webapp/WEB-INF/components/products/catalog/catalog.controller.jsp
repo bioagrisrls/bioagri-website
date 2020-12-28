@@ -35,23 +35,25 @@
             super( id,
 
                 api('/products?limit=9').then( (r1) => api('/categories')
-                                .then( (r2) => api('/tags')
-                                .then( (r3) =>  {
+                                        .then( (r2) => api('/tags')
+                                        .then( (r3) => api('/products/count?limit=9', 'GET', {}, false).then( (r) => r.text() )
+                                        .then( (r4) =>  {
 
-                                    return {
-                                        products: r1,
-                                        categories: r2,
-                                        tags: r3,
-                                        selectedSort : 'recentProduct',
-                                        selectedView : 'card',
-                                        category : 'noneCategory',
-                                        tag : 'noneTag',
-                                        search : 'noneSearch',
-                                        productsCategories : new Map(),
-                                        productsTags : new Map(),
-                                    }
+                                            return {
+                                                products: r1,
+                                                categories: r2,
+                                                tags: r3,
+                                                count: r4,
+                                                selectedSort : 'recentProduct',
+                                                selectedView : 'card',
+                                                category : 'noneCategory',
+                                                tag : 'noneTag',
+                                                search : 'noneSearch',
+                                                productsCategories : new Map(),
+                                                productsTags : new Map(),
+                                            }
 
-                                })))
+                                        }))))
             )
         }
 
@@ -89,7 +91,7 @@
             const instance = this;
 
 
-            $( "#toggle-group-sort" ).on('change', function() {
+            $( '#toggle-group-sort' ).on('change', function() {
 
                 instance.setState({selectedSort : this.value});
 
@@ -119,26 +121,58 @@
 
             });
 
-            $( "#toggle-group-view" ).on('change', function() {
+
+            $( '#toggle-group-view' ).on('change', function() {
 
                 instance.setState({selectedView  : this.value });
 
             });
 
-            $( ".category-item" ).click( function() {
+
+            $( '.category-item' ).click( function() {
 
                 instance.setState({category  : this.id });
 
             });
 
-            $( ".tag-item" ).click( function() {
+
+            $( '.tag-item' ).click( function() {
 
                 instance.setState({tag : this.id });
 
             });
 
+
+            $( '#more-item' ).click( function() {
+
+                if(instance.state.count === '9') {
+
+                    api('/products?skip=' + instance.state.count + '&limit=' + (+instance.state.count + 9) ).then((r1) => {
+
+                        r1.forEach( (e) => {
+
+                            instance.state.products.push(e);
+
+                            api('/products/' + e.id + '/categories').then((r2) =>
+
+                                api('/products/' + e.id + '/tags').then((r3) => {
+                                    instance.setState({productsCategories: instance.state.productsCategories.set(e.id, r2)});
+                                    instance.setState({productsTags: instance.state.productsTags.set(e.id, r3)});
+                                })
+
+                            )
+
+                        });
+
+                        instance.state.count = instance.state.products.length;
+
+                    })
+                }
+            });
+
         }
 
     });
+
 
 </script>
