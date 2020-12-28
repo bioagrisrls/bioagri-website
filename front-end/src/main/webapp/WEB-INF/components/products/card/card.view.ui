@@ -53,7 +53,8 @@
                     </p>
 
                     <select class="form-select form-select-sm float-end w-auto" onchange="$$.setState({ quantity: this.value })">
-                        <? for(let i = 0; i < 99; i++) { ?>
+                        <option value="0">Rimuovi</option>
+                        <? for(let i = 1; i < 99; i++) { ?>
                             <option value="{{i}}" {{ i == quantity ? 'selected' : '' }}>{{i}}</option>
                         <? } ?>
                     </select>

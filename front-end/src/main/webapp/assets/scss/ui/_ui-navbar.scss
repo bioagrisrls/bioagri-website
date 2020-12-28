@@ -88,6 +88,15 @@
 
 }
 
+.ui-navbar-cart-popover-items {
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+
+.ui-navbar-cart-badge:empty {
+  @extend .d-none;
+}
+
 
 
 

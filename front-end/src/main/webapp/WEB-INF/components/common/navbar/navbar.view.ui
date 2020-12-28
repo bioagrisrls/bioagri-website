@@ -33,9 +33,6 @@
         { key: 'support',   name: support },
     ];
 
-    const cache = localStorage.getItem('X-Shopping-Cart');
-    const items = (cache && JSON.parse(cache)) || [];
-
 ?>
 
 
@@ -112,38 +109,14 @@
 
                         <span class="mdi mdi-24px mdi-shopping"></span>
 
-                        <? if (items.length > 0) { ?>
-                            <span class="badge rounded-pill bg-danger position-absolute">
-                                {{ items.length }}
-                            </span>
-                        <? } ?>
+                        <span id="ui-navbar-cart-count" class="ui-navbar-cart-badge badge rounded-pill bg-danger position-absolute">
+                            {{ shopping_cart_count() }}
+                        </span>
 
                     </button>
 
                     <div id="ui-navbar-cart-popover" class="ui-navbar-popover ui-navbar-cart-popover bg-light animate__animated">
-
-                        <h4>Carrello (FIXME)</h4>
-
-                        <?
-
-
-                            if(items.length == 0) {
-                            ?>
-                                <span>Il tuo carrello è vuoto (FIXME)</span>
-                            <?
-                            } else {
-
-                                for(const item of items) {
-                                ?>
-                                    <ui-card id="{{this.id}}-card-{{item.id}}" ui:id="{{item.id}}" ui:quantity="{{item.quantity}}" ui:view="tiny" ui:on-updated="updateShoppingCart($$, this.state)"></ui-card>
-                                <?
-                                }
-
-                            }
-
-
-                        ?>
-
+                        <ui-shopping-cart id="ui-navbar-cart-popover-component" ui:bind="#ui-navbar-cart-count:count"></ui-shopping-cart>
                     </div>
 
                 </div>
