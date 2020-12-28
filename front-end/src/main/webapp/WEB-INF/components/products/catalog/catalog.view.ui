@@ -134,8 +134,7 @@
 
         </div>
 
+        <button id="more-item" type="button" class="btn btn-info">Di Piu'</button>
     </div>
-
-    <button id="more-item" type="button" class="btn btn-info">Di Piu'</button>
 
 </div>

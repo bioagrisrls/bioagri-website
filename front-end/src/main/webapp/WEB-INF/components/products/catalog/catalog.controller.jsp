@@ -145,29 +145,26 @@
 
             $( '#more-item' ).click( function() {
 
-                if(instance.state.count === '9') {
+                api('/products?skip=' + instance.state.count + '&limit=' + (+instance.state.count + 9) ).then((r1) => {
 
-                    api('/products?skip=' + instance.state.count + '&limit=' + (+instance.state.count + 9) ).then((r1) => {
+                    r1.forEach( (e) => {
 
-                        r1.forEach( (e) => {
+                        instance.state.products.push(e);
 
-                            instance.state.products.push(e);
+                        api('/products/' + e.id + '/categories').then((r2) =>
 
-                            api('/products/' + e.id + '/categories').then((r2) =>
+                            api('/products/' + e.id + '/tags').then((r3) => {
+                                instance.setState({productsCategories: instance.state.productsCategories.set(e.id, r2)});
+                                instance.setState({productsTags: instance.state.productsTags.set(e.id, r3)});
+                            })
 
-                                api('/products/' + e.id + '/tags').then((r3) => {
-                                    instance.setState({productsCategories: instance.state.productsCategories.set(e.id, r2)});
-                                    instance.setState({productsTags: instance.state.productsTags.set(e.id, r3)});
-                                })
+                        )
 
-                            )
+                    });
 
-                        });
+                    instance.state.count = instance.state.products.length;
 
-                        instance.state.count = instance.state.products.length;
-
-                    })
-                }
+                })
             });
 
         }
