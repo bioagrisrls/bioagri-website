@@ -65,7 +65,7 @@ const shopping_cart_add = (id, quantity, raiseEvent = true) => {
  * @param id {number}
  * @param raiseEvent {boolean}
  */
-const shopping_cart_remove = (id, raiseEvent= true) => {
+const shopping_cart_remove = (id, raiseEvent = true) => {
     shopping_cart_add(id, 0, raiseEvent);
 }
 
