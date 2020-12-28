@@ -48,7 +48,7 @@
          * }
          */
         constructor(id, state) {
-            super(id, Object.assign(state, { $state: 'working' }));
+            super(id, Object.assign(state, { $state: 'working', $reason: undefined }));
         }
 
         onRender() {
@@ -63,10 +63,13 @@
 
         }
 
-        $submit(event) {
+        $submit(form, event) {
 
             event.preventDefault();
             event.stopPropagation();
+
+            if(!form.checkValidity())
+                return false;
 
 
             const data = {};
@@ -83,58 +86,30 @@
             }
 
 
-            for(let k of Object.keys(data)) {
+            this.setState({ $state: 'working' });
+            this.onSubmit(data);
 
-                if(k in this.state) {
+            return false;
 
-
-                    const s = this.state[k];
-
-                    const check = s.check || undefined;
-                    const min = s.min || -1;
-                    const max = s.max || -1;
-                    const required = s.required || false;
+        }
 
 
-                    if(required && data[k] === '')
-                        return this.onInvalid(k, data[k]);
+        $check(input) {
 
-                    if(check) {
+            if(input.validity.valid) {
 
-                        if(check instanceof RegExp && !check.test(data[k]))
-                            return this.onInvalid(k, data[k]);
+                input.classList.add('is-valid');
+                input.classList.remove('is-invalid');
 
-                        if(check instanceof Object && !check.test(data[k]))
-                            return this.onInvalid(k, data[k]);
+            } else {
 
-                        if(check instanceof String && !new RegExp(check).test(data[k]))
-                            return this.onInvalid(k, data[k]);
-
-                        if(check instanceof Function && !check(data[k]))
-                            return this.onInvalid(k, data[k]);
-
-                    }
-
-                    if(max !== -1 && data[k] > max)
-                        return this.onInvalid(k, data[k]);
-
-                    if(min !== -1 && data[k] < min)
-                        return this.onInvalid(k, data[k]);
-
-
-                }
+                input.classList.add('is-invalid');
+                input.classList.remove('is-valid');
 
             }
 
-
-            $(this.elem).find('.needs-validation').each((i, e) => {
-                $(e).addClass('was-validated');
-            });
-
-
-            this.setState({ $state: 'working' });
-
-            return this.onSubmit(data);
+            $('#' + this.id + '-form-submit')
+                .attr('disabled', !document.forms[this.id + '-form'].checkValidity());
 
         }
 

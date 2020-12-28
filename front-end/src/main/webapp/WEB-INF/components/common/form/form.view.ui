@@ -23,6 +23,57 @@
   ~
   -->
 
+
+<?
+
+    const getprops = (v) => {
+
+        const output = [];
+
+        if(v.required)
+            output.push('required');
+
+        if(v.minlength)
+            output.push('minlength=' + v.minlength);
+
+        if(v.maxlength)
+            output.push('maxlength=' + v.maxlength);
+
+        if(v.min)
+            output.push('min=' + v.min);
+
+        if(v.max)
+            output.push('max=' + v.max);
+
+        if(v.pattern)
+            output.push('pattern="' + v.pattern.toString().slice(1, -1) + '"');
+
+        if(v.placeholder)
+            output.push('placeholder="' + v.placeholder + '"');
+
+        if(v.size)
+            output.push('size=' + v.size);
+
+        return output.join(' ');
+
+    };
+
+    const wrong = (k) => {
+
+        if($state !== 'wrong')
+            return '';
+
+        if($reason === undefined)
+            return '';
+
+        return $reason.includes(k)
+            ? 'is-invalid'
+            : '';
+
+    }
+
+?>
+
 <div>
 
     <? if ($state === 'ok') { ?>
@@ -31,7 +82,7 @@
 
     <? } else if($state === 'error') { ?>
 
-        <h2>Si è verificato un errore {{$reason.statusCode}}</h2>
+        <h2>Si è verificato un errore {{$reason}}</h2>
 
     <? } else if($state === 'working') { ?>
 
@@ -45,44 +96,55 @@
 
     <? } else { ?>
 
-        <form class="needs-validation" novalidate>
+        <form id="{{this.id}}-form" name="{{this.id}}-form">
 
             <?
+
                 for(let k of Object.keys(this.state)) {
 
                     if(k.startsWith('$'))
                         continue;
 
                     const v = this.state[k];
-                    const r = v.required ? 'required' : '';
-
 
                     switch(v.type) {
 
                         case 'text':
+                        case 'tel':
                         case 'email':
                         case 'password':
 
-            ?>
-                            <div class="form-floating has-validation mb-3">
-                                <input type="{{v.type}}" class="form-control" id="{{k}}" placeholder="{{v.label || ''}}" {{r}} >
-                                <label for="{{k}}">
-                                    {{v.label || ''}}
-                                </label>
-                            </div>
-            <?
+                        ?>
+
+                             <div>
+                                 <label for="{{k}}" class="form-label">{{v.label || ''}}</label>
+                                 <input type="{{v.type || 'text'}}" class="form-control {{wrong(k)}}" id="{{k}}" {{getprops(v)}} oninput="$$.$check(this)">
+                                 <? if(wrong(k)) { ?>
+                                 <?     if(v.wrong) { ?> <div class="invalid-feedback">{{v.wrong}}</div><? } ?>
+                                 <? } else { ?>
+                                 <?     if(v.ok)    { ?> <div class="valid-feedback">{{v.ok}}</div>     <? } ?>
+                                 <?     if(v.error) { ?> <div class="invalid-feedback">{{v.error}}</div><? } ?>
+                                 <? } ?>
+                             </div>
+
+                        <?
 
                             break;
 
                         case 'checkbox':
                         case 'switch':
+                        case 'radio':
 
             ?>
-                            <div class="form-check mb-3 {{v.type === 'switch' ? 'form-switch' : ''}}">
-                                <input class="form-check-input" type="checkbox" value="" id="{{k}}">
-                                <label class="form-check-label" for="{{k}}">
-                                    {{v.label || ''}}
-                                </label>
+                            <div class="form-check {{v.type === 'switch' ? 'form-switch' : ''}}">
+                                <input type="{{v.type === 'radio' ? 'radio' : 'checkbox'}}" class="form-check-input {{wrong(k)}}" value="" id="{{k}}" {{getprops(v)}} oninput="$$.$check(this)">
+                                <label class="form-check-label" for="{{k}}">{{v.label || ''}}</label>
+                                <? if(wrong(k)) { ?>
+                                <?     if(v.wrong) { ?> <div class="invalid-feedback">{{v.wrong}}</div><? } ?>
+                                <? } else { ?>
+                                <?     if(v.ok)    { ?> <div class="valid-feedback">{{v.ok}}</div>     <? } ?>
+                                <?     if(v.error) { ?> <div class="invalid-feedback">{{v.error}}</div><? } ?>
+                                <? } ?>
                             </div>
             <?
 
@@ -99,7 +161,7 @@
 
 
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3" onclick="$$.$submit(event)">{{$submit}}</button>
+                <button id="{{this.id}}-form-submit" type="submit" class="btn btn-primary mb-3" onclick="$$.$submit(this, event)" disabled>{{$submit}}</button>
             </div>
 
         </form>

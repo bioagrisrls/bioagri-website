@@ -37,17 +37,21 @@
 
                 username: {
                     type: 'email',
-                    //check: /[\w-]+@([\w-]+\.)+[\w-]+/,
                     label: "Indirizzo email", // FIXME
-                    required: true
+                    pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                    required: true,
+                    size: 128, // FIXME
+                    wrong: "Username wrong! (FIXME)"
                 },
 
                 password: {
                     type: 'password',
-                    //min: 8,
-                    //check: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
                     label: "Password", // FIXME
-                    required: true
+                    minlength: 8,
+                    pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+                    required: true,
+                    size: 128,
+                    wrong: "Password wrong! (FIXME)"
                 },
 
                 store: {
@@ -55,7 +59,7 @@
                     label: "Resta connesso" // FIXME
                 },
 
-                $submit: 'Login',
+                $submit: 'Login', // FIXME
 
             });
         }
@@ -75,21 +79,27 @@
 
             const hash = (str) => crypto.subtle
                 .digest("SHA-512", new TextEncoder().encode(str))
-                .then(buf => Array.prototype.map.call(new Uint8Array(buf), i => ('00' + i.toString()).slice(-2)).join(''));
+                .then(buf => Array.prototype.map.call(new Uint8Array(buf), i => ('00' + i.toString(16)).slice(-2)).join(''));
 
             hash(data.password)
-                .then(response => authenticate(data.username, data.password, data.store)
+                .then(encryptedPassword => authenticate(data.username, encryptedPassword, data.store)
                     .then(response => api('/users/' + response.userId)
                         .then(response => this.state = { $state: 'ok', $userInfo: response })
                     )
                 )
-                .catch(reason => this.state = { $state: 'error', $reason: reason });
+                .catch(reason => {
 
+                    switch(reason) {
+                        case 401:
+                            return this.state = { $state: 'wrong', $reason: [ 'username' ] };
+                        case 403:
+                            return this.state = { $state: 'wrong', $reason: [ 'password' ] };
+                        default:
+                            return this.state = { $state: 'error', $reason: reason };
+                    }
 
-        }
+                });
 
-        onInvalid(row, value) {
-            console.debug("FORM HAS INVALID ROW:", row, value); // TODO...
         }
 
     });

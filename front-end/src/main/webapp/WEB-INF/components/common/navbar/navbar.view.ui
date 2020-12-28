@@ -81,7 +81,7 @@
                 <!-- User Account -->
                 <div id="ui-navbar-user" class="position-relative d-inline-block">
 
-                    <button class="btn btn-outline-primary rounded-circle mx-1" onclick="$('#ui-navbar-user-popover').toggleClass('show')">
+                    <button class="btn btn-outline-primary rounded-circle mx-1" onclick="$('#ui-navbar-user-popover').toggleClass('show'); $('#ui-navbar-cart-popover').removeClass('show')">
                         <span class="mdi mdi-24px mdi-account"></span>
                     </button>
 
@@ -105,7 +105,7 @@
                 <!-- Shopping Cart -->
                 <div id="ui-navbar-cart" class="position-relative d-inline-block">
 
-                    <button class="btn btn-outline-primary rounded-circle mx-1" onclick="$('#ui-navbar-cart-popover').toggleClass('show')">
+                    <button class="btn btn-outline-primary rounded-circle mx-1" onclick="$('#ui-navbar-cart-popover').toggleClass('show'); $('#ui-navbar-user-popover').removeClass('show')">
 
                         <span class="mdi mdi-24px mdi-shopping"></span>
 
