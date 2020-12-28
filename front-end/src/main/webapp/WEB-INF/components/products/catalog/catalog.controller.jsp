@@ -105,7 +105,6 @@
 
             $( "#toggle-group-view" ).on('change', function() {
 
-                console.log(this.value);
                 instance.setState({selectedView  : this.value });
 
             });
