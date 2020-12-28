@@ -81,9 +81,11 @@
                         <div class="form-group">
                             <label for="toggle-group-sort">Ordina per:</label>
                             <select id="toggle-group-sort" class="custom-select" required>
-                                <option value="relevance" selected>Rilevanza</option>
-                                <option value="lowPrice">Prezzo Basso</option>
-                                <option value="highPrice">Prezzo Alto</option>
+                                <option value="recentProduct" {{ selectedSort ===  'recentProduct' ? 'selected' : '' }} >Recenti</option>
+                                <option value="lowPrice" {{ selectedSort ===  'lowPrice' ? 'selected' : '' }} > Prezzo Basso</option>
+                                <option value="highPrice" {{ selectedSort ===  'highPrice' ? 'selected' : '' }} >Prezzo Alto</option>
+                                <option value="alphabeticalOrder1" {{ selectedSort ===  'alphabeticalOrder1' ? 'selected' : '' }} >Alfabetico(a-Z)</option>
+                                <option value="alphabeticalOrder2" {{ selectedSort ===  'alphabeticalOrder2' ? 'selected' : '' }}>Alfabetico(A-z)</option>
                             </select>
                         </div>
 
@@ -94,8 +96,8 @@
                         <div class="form-group">
                             <label for="toggle-group-view">Visualizza:</label>
                             <select id="toggle-group-view" class="custom-select" required>
-                                <option value="relevance" selected>Griglia</option>
-                                <option value="lowPrice">Riga</option>
+                                <option value="card" {{ selectedView ===  'card' ? 'selected' : '' }} >Griglia</option>
+                                <option value="row" {{ selectedView ===  'row' ? 'selected' : '' }} >Riga</option>
                             </select>
                         </div>
                 </div>
@@ -105,10 +107,9 @@
             <!-- Products -->
             <div class="d-flex flex-wrap align-items-start" >
 
-                <? let i = 0; ?>
                 <? for (let product of products) { ?>
                     <div class="p-2 flex-fill bd-highlight mw-33 mw-sm-100 mw-md-50">
-                        <ui-card id="ui-card-{{ i++ }}" ui:id="{{ product.id }}"></ui-card>
+                        <ui-card id="ui-card-{{ product.id }}" ui:id="{{ product.id }}"></ui-card>
                     </div>
                 <? } ?>
 

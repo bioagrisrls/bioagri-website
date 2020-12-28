@@ -42,6 +42,8 @@
                                         products: r1,
                                         categories: r2,
                                         tags: r3,
+                                        selectedSort : 'recentProduct',
+                                        selectedView : 'row'
                                     }
 
                                 })))
@@ -62,31 +64,44 @@
 
         onUpdated(state) {
 
-            $('.dropdown-item-sort').click( (event) => {
+            const instance = this;
 
-                event.preventDefault();
-                event.stopPropagation();
 
-                this.setState({
-                    sortText: $(event.currentTarget).text(),
-                    sort: $(event.currentTarget).attr('id')
+            $( "#toggle-group-sort" ).on('change', function() {
 
-                })
+                instance.setState({selectedSort : this.value});
+                let p = []
+
+                switch (this.value) {
+
+                    case 'recentProduct':
+                        p = instance.state.products.sort( function(a, b){ return a.createdAt - b.createdAt });
+                        instance.setState({products : p });
+                        break;
+
+                    case 'lowPrice':
+                        p = instance.state.products.sort( function(a, b){ return a.price - b.price });
+                        instance.setState({products : p });
+                        break;
+
+                    case 'highPrice':
+                        p = instance.state.products.sort( function(a, b){ return b.price - a.price });
+                        instance.setState({products : p });
+                        break;
+
+                    case 'alphabeticalOrder1':
+                        p = instance.state.products.sort( function(a, b){ return a.name.localeCompare(b.name)});
+                        instance.setState({products : p });
+                        break;
+
+                    case 'alphabeticalOrder2':
+                        p = instance.state.products.sort( function(a, b){ return b.name.localeCompare(a.name)});
+                        instance.setState({products : p });
+                        break;
+
+                }
 
             });
-
-            $('.dropdown-item-view').click( (event) => {
-
-                event.preventDefault();
-                event.stopPropagation();
-
-                $(this).setState(
-                    {sortText : $(event.currentTarget).html()},
-                    {sort : $(event.currentTarget).attr('id')},
-                )
-
-            });
-
 
         }
 
