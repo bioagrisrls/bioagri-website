@@ -51,6 +51,7 @@
                                                 search : 'noneSearch',
                                                 productsCategories : new Map(),
                                                 productsTags : new Map(),
+                                                moreProduct : true,
                                             }
 
                                         }))))
@@ -145,26 +146,36 @@
 
             $( '#more-item' ).click( function() {
 
-                api('/products?skip=' + instance.state.count + '&limit=' + (+instance.state.count + 9) ).then((r1) => {
+                if(instance.state.moreProduct) {
 
-                    r1.forEach( (e) => {
+                    api('/products?skip=' + instance.state.count + '&limit=' + (+instance.state.count + 9) ).then((r1) => {
 
-                        instance.state.products.push(e);
+                        r1.forEach( (e) => {
 
-                        api('/products/' + e.id + '/categories').then((r2) =>
+                            instance.state.products.push(e);
 
-                            api('/products/' + e.id + '/tags').then((r3) => {
-                                instance.setState({productsCategories: instance.state.productsCategories.set(e.id, r2)});
-                                instance.setState({productsTags: instance.state.productsTags.set(e.id, r3)});
-                            })
+                            api('/products/' + e.id + '/categories').then((r2) =>
 
-                        )
+                                api('/products/' + e.id + '/tags').then((r3) => {
+                                    instance.setState({productsCategories: instance.state.productsCategories.set(e.id, r2)});
+                                    instance.setState({productsTags: instance.state.productsTags.set(e.id, r3)});
+                                })
 
-                    });
+                            )
 
-                    instance.state.count = instance.state.products.length;
+                        });
 
-                })
+
+                        if(instance.state.products.length < instance.state.count + 9 ) {
+                            instance.state.moreProduct = false;
+                        }
+
+                        instance.state.count = instance.state.products.length;
+
+                    })
+
+                }
+
             });
 
         }
