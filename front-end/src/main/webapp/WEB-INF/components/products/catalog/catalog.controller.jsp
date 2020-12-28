@@ -70,33 +70,27 @@
             $( "#toggle-group-sort" ).on('change', function() {
 
                 instance.setState({selectedSort : this.value});
-                let p = []
 
                 switch (this.value) {
 
                     case 'recentProduct':
-                        p = instance.state.products.sort( function(a, b){ return a.createdAt - b.createdAt });
-                        instance.setState({products : p });
+                        instance.setState( {products : instance.state.products.sort( (a, b) => { return a.createdAt - b.createdAt } )});
                         break;
 
                     case 'lowPrice':
-                        p = instance.state.products.sort( function(a, b){ return a.price - b.price });
-                        instance.setState({products : p });
+                        instance.setState( {products : instance.state.products.sort( (a, b) => { return a.price - b.price } )});
                         break;
 
                     case 'highPrice':
-                        p = instance.state.products.sort( function(a, b){ return b.price - a.price });
-                        instance.setState({products : p });
+                        instance.setState( {products : instance.state.products.sort( (a, b) => { return b.price - a.price } )});
                         break;
 
                     case 'alphabeticalOrder1':
-                        p = instance.state.products.sort( function(a, b){ return a.name.localeCompare(b.name)});
-                        instance.setState({products : p });
+                        instance.setState( {products : instance.state.products.sort( (a, b) => { return a.name.localeCompare(b.name) } )});
                         break;
 
                     case 'alphabeticalOrder2':
-                        p = instance.state.products.sort( function(a, b){ return b.name.localeCompare(a.name)});
-                        instance.setState({products : p });
+                        instance.setState( {products : instance.state.products.sort( (a, b) => { return b.name.localeCompare(a.name) } )});
                         break;
 
                 }
