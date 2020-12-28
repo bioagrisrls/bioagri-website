@@ -1,5 +1,3 @@
-"use strict";
-
 /*
  * MIT License
  *
@@ -24,6 +22,8 @@
  * SOFTWARE.
  *
  */
+
+"use strict";
 
 
 const $baseUri = 'http://localhost:8080';

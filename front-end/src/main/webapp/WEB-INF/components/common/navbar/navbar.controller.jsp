@@ -49,22 +49,30 @@
 
 
         onInit() {
+            super.onInit();
 
-            const initOffset = this.elem.offsetTop;
+            $(document).on('shopping-cart-has-changed', this, (e) => {
 
-            window.addEventListener('scroll', () => {
+                $(e.data.elem).find('#ui-navbar-cart-count').each((i, e) => {
 
-                if(window.pageYOffset > initOffset)
-                    this.elem.classList.add('ui-navbar-sticky');
-                else
-                    this.elem.classList.remove('ui-navbar-sticky');
+                    if(shopping_cart_empty())
+                        $(e).addClass('d-none');
+
+                    $(e).text(shopping_cart_count());
+
+                })
 
             });
+
 
         }
 
         onRender() {
             return `${components.common_navbar}`
+        }
+
+        onUpdated(state) {
+            super.onUpdated(state);
         }
 
     });

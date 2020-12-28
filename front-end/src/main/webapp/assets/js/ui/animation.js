@@ -1,5 +1,3 @@
-"use strict";
-
 /*
  * MIT License
  *
@@ -24,6 +22,9 @@
  * SOFTWARE.
  *
  */
+
+"use strict";
+
 
 $(document).on('ui-ready', () => {
 

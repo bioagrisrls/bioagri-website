@@ -23,6 +23,16 @@
  *
  */
 
+"use strict";
+
+
+/**
+ * Shopping.js
+ *
+ * Events:
+ *  - shopping-cart-has-changed: when a user change shopping cart items.
+ *
+ */
 
 /**
  * Add item to shopping cart.
@@ -31,8 +41,6 @@
  * @param raiseEvent {boolean}
  */
 const shopping_cart_add = (id, quantity, raiseEvent = true) => {
-
-    console.log(id, quantity, raiseEvent);
 
     const cache = localStorage.getItem('X-Shopping-Cart');
     const items = (cache && JSON.parse(cache)) || [];
@@ -48,7 +56,7 @@ const shopping_cart_add = (id, quantity, raiseEvent = true) => {
     localStorage.setItem('X-Shopping-Cart', JSON.stringify(items.filter(i => i.quantity > 0)));
 
     if(raiseEvent)
-        $(document).trigger('ui-shopping-cart-has-changed');
+        $(document).trigger('shopping-cart-has-changed');
 
 }
 
@@ -57,7 +65,7 @@ const shopping_cart_add = (id, quantity, raiseEvent = true) => {
  * @param id {number}
  * @param raiseEvent {boolean}
  */
-const shopping_cart_remove = (id, raiseEvent= true) => {
+const shopping_cart_remove = (id, raiseEvent = true) => {
     shopping_cart_add(id, 0, raiseEvent);
 }
 
@@ -70,7 +78,7 @@ const shopping_cart_clear = (raiseEvent = true) => {
     localStorage.setItem('X-Shopping-Cart', JSON.stringify([]));
 
     if(raiseEvent)
-        $(document).trigger('ui-shopping-cart-has-changed');
+        $(document).trigger('shopping-cart-has-changed');
 
 }
 
@@ -98,7 +106,7 @@ const shopping_cart_count = () => {
     const cache = localStorage.getItem('X-Shopping-Cart');
     const items = (cache && JSON.parse(cache)) || [];
 
-    return items.length;
+    return Object.values(items).reduce((i, v) => i + (+v.quantity), 0);
 
 }
 

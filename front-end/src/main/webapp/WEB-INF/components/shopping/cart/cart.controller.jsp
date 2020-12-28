@@ -34,13 +34,13 @@
 
         constructor() {
             super(id, {
-                price: 0,
+                items: {},
                 count: 0,
             });
         }
 
         onInit() {
-            $(document).on('ui-shopping-cart-has-changed', this, (e) => e.data.state = { count: shopping_cart_count() });
+            $(document).on('shopping-cart-has-changed', this, (e) => e.data.state = { count: shopping_cart_count() });
         }
 
         onRender() {
@@ -49,6 +49,7 @@
 
     });
 
+    /* TODO: Remove this */
     shopping_cart_add(1, 2, false);
     shopping_cart_add(2, 2, false);
     shopping_cart_add(3, 2, false);
