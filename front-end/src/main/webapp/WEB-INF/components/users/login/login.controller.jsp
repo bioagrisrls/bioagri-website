@@ -37,14 +37,14 @@
 
                 username: {
                     type: 'email',
-                    check: /[\w-]+@([\w-]+\.)+[\w-]+/,
+                    //check: /[\w-]+@([\w-]+\.)+[\w-]+/,
                     label: "Indirizzo email", // FIXME
                     required: true
                 },
 
                 password: {
                     type: 'password',
-                    min: 8,
+                    //min: 8,
                     //check: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
                     label: "Password", // FIXME
                     required: true
@@ -65,7 +65,7 @@
 
             authenticated()
                 .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id'))
-                    .then(response => { console.log(response); this.state = { $state: 'ok', $userInfo: response }})
+                    .then(response => this.state = { $state: 'ok', $userInfo: response })
                 )
                 .catch(() => this.state = { $state: 'need-login' });
 

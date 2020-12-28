@@ -30,45 +30,28 @@
 
 <script defer>
 
-    Component.register('ui-navbar', (id, props) => new class extends StatefulComponent {
+    Component.register('ui-shopping-cart', (id, props) => new class extends StatefulComponent {
 
         constructor() {
             super(id, {
-
-                current: props.current || '',
-
-                title: `${locale.info_title}`,
-                logo: `${locale.nav_logo}`,
-                home: `${locale.nav_home}`,
-                catalog: `${locale.nav_catalog}`,
-                about: `${locale.nav_about}`,
-                support: `${locale.nav_support}`,
-
+                price: 0,
+                count: 0,
             });
         }
 
-
         onInit() {
-
-            const initOffset = this.elem.offsetTop;
-
-            window.addEventListener('scroll', () => {
-
-                if(window.pageYOffset > initOffset)
-                    this.elem.classList.add('ui-navbar-sticky');
-                else
-                    this.elem.classList.remove('ui-navbar-sticky');
-
-            });
-
+            $(document).on('ui-shopping-cart-has-changed', this, (e) => e.data.state = { count: shopping_cart_count() });
         }
 
         onRender() {
-            return `${components.common_navbar}`
+            return `${components.shopping_cart}`
         }
 
     });
 
-
+    shopping_cart_add(1, 2, false);
+    shopping_cart_add(2, 2, false);
+    shopping_cart_add(3, 2, false);
+    shopping_cart_add(4, 2, false);
 
 </script>

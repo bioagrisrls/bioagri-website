@@ -80,7 +80,6 @@
                           $(this.elem).find('#' + k).text() ||
                           $(this.elem).find('#' + k).prop('checked');
 
-
             }
 
 

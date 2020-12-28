@@ -1,0 +1,68 @@
+<!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2020 BioAgri S.r.l.s.
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  ~
+  -->
+
+
+<div>
+
+    <h4>Carrello (FIXME)</h4>
+
+    <?
+
+        if(shopping_cart_empty()) {
+            ?> <span>Il tuo carrello è vuoto (FIXME)</span> <?
+        } else {
+
+            ?> <div class="ui-navbar-cart-popover-items"> <?
+
+                shopping_cart_each((item) => {
+                    ?> <ui-card id="{{this.id}}-card-{{item.id}}"
+                                ui:id="{{item.id}}"
+                                ui:quantity="{{item.quantity}}"
+                                ui:view="tiny"
+                                ui:on-ready="$$.state = { price: $$.state.price + (this.state.price * this.state.quantity) }"
+                                ui:on-updated="shopping_cart_add(this.state.id, this.state.quantity)"></ui-card>
+                    <?
+                });
+
+            ?> </div> <?
+
+
+            ?> <div class="w-100 p-4"><h5 class="text-end">Totale ({{ count }} articoli): {{ price.toFixed(2) }} &euro;</h5></div> <?
+
+
+        }
+    ?>
+
+
+
+    <div class="row mb-4">
+        <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col" onclick="shopping_cart_clear()">Svuota carrello (FIXME)</button>
+        <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col">Vai alla cassa (FIXME)</button>
+    </div>
+
+</div>
+
+
+

@@ -61,12 +61,6 @@ class Component {
     constructor(elem) {
 
         /**
-         * HTML Element of a Component.
-         * @type {HTMLElement}
-         */
-        this.elem = elem;
-
-        /**
          * Unique HTML ID of a Component.
          * @type {string}
          */
@@ -120,6 +114,15 @@ class Component {
 
         window.components[this.id] = this;
 
+    }
+
+
+    /**
+     * Return HTML Element of a Component.
+     * @return {HTMLElement | Element | null}
+     */
+    get elem() {
+        return document.querySelector('#' + this.id);
     }
 
     /**
@@ -393,7 +396,7 @@ class StatefulComponent extends Component {
      * @param state {object}
      */
     onBeforeUpdate(state) {
-        this.raise('before-updated');
+        this.raise('before-update');
     }
 
     /**
