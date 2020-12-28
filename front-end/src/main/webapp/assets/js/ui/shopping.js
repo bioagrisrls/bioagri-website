@@ -23,6 +23,16 @@
  *
  */
 
+"use strict";
+
+
+/**
+ * Shopping.js
+ *
+ * Events:
+ *  - shopping-cart-has-changed: when a user change shopping cart items.
+ *
+ */
 
 /**
  * Add item to shopping cart.
@@ -46,7 +56,7 @@ const shopping_cart_add = (id, quantity, raiseEvent = true) => {
     localStorage.setItem('X-Shopping-Cart', JSON.stringify(items.filter(i => i.quantity > 0)));
 
     if(raiseEvent)
-        $(document).trigger('ui-shopping-cart-has-changed');
+        $(document).trigger('shopping-cart-has-changed');
 
 }
 
@@ -68,7 +78,7 @@ const shopping_cart_clear = (raiseEvent = true) => {
     localStorage.setItem('X-Shopping-Cart', JSON.stringify([]));
 
     if(raiseEvent)
-        $(document).trigger('ui-shopping-cart-has-changed');
+        $(document).trigger('shopping-cart-has-changed');
 
 }
 

@@ -40,7 +40,7 @@
         }
 
         onInit() {
-            $(document).on('ui-shopping-cart-has-changed', this, (e) => e.data.state = { count: shopping_cart_count() });
+            $(document).on('shopping-cart-has-changed', this, (e) => e.data.state = { count: shopping_cart_count() });
         }
 
         onRender() {

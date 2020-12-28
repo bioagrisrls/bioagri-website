@@ -23,6 +23,8 @@
  *
  */
 
+"use strict";
+
 
 /**
  * Auth.js

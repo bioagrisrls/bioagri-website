@@ -51,7 +51,7 @@
         onInit() {
             super.onInit();
 
-            $(document).on('ui-shopping-cart-has-changed', this, (e) => {
+            $(document).on('shopping-cart-has-changed', this, (e) => {
 
                 $(e.data.elem).find('#ui-navbar-cart-count').each((i, e) => {
 
