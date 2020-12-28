@@ -23,7 +23,7 @@
  *
  */
 
-"use strict";
+'use strict';
 
 
 $(document).on('ui-ready', () => {

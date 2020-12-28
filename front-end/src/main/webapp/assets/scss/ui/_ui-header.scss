@@ -25,12 +25,7 @@
 
 @import "ui-theme";
 
-.ui-header {
-  background-color: $ui-theme-background-variant;
-}
-
 .ui-header span {
-  color: $ui-theme-background-text;
   font-size: small;
   vertical-align: baseline;
 }
