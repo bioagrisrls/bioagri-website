@@ -100,7 +100,7 @@
            </div>
        </div>
 
-<? } else { ?>
+<? } else if($view === 'card') {?>
 
 <div class="card rounded shadow-sm border-0">
 

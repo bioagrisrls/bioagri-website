@@ -43,7 +43,7 @@
                                         categories: r2,
                                         tags: r3,
                                         selectedSort : 'recentProduct',
-                                        selectedView : 'row'
+                                        selectedView : 'card'
                                     }
 
                                 })))
@@ -100,6 +100,13 @@
                         break;
 
                 }
+
+            });
+
+            $( "#toggle-group-view" ).on('change', function() {
+
+                console.log(this.value);
+                instance.setState({selectedView  : this.value });
 
             });
 

@@ -109,7 +109,8 @@
 
                 <? for (let product of products) { ?>
                     <div class="p-2 flex-fill bd-highlight mw-33 mw-sm-100 mw-md-50">
-                        <ui-card id="ui-card-{{ product.id }}" ui:id="{{ product.id }}"></ui-card>
+                        <? console.log(selectedView); ?>
+                        <ui-card id="ui-card-{{ product.id + '-' + selectedView }}" ui:id="{{ product.id }}" ui:view="{{ selectedView }}"></ui-card>
                     </div>
                 <? } ?>
 
