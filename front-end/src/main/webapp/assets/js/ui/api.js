@@ -23,7 +23,7 @@
  *
  */
 
-"use strict";
+'use strict';
 
 
 const $baseUri = 'http://localhost:8080';
