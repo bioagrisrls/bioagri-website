@@ -34,8 +34,8 @@
         constructor() {
             super( id,
 
-                api("/products").then( (r1) => api("/categories")
-                                .then( (r2) => api("/tags")
+                api('/products?limit=9').then( (r1) => api('/categories')
+                                .then( (r2) => api('/tags')
                                 .then( (r3) =>  {
 
                                     return {
@@ -43,7 +43,12 @@
                                         categories: r2,
                                         tags: r3,
                                         selectedSort : 'recentProduct',
-                                        selectedView : 'card'
+                                        selectedView : 'card',
+                                        category : 'noneCategory',
+                                        tag : 'noneTag',
+                                        search : 'noneSearch',
+                                        productsCategories : new Map(),
+                                        productsTags : new Map(),
                                     }
 
                                 })))
@@ -60,6 +65,23 @@
 
         onError() {
             return `${components.products_catalog_error}`
+        }
+
+        onReady(state) {
+
+            const instance = this;
+
+            this.state.products.forEach( (e) => {
+
+                api('/products/' + e.id + '/categories').then( (r1) =>
+
+                    api('/products/' + e.id + '/tags').then( (r2) => {
+                        instance.setState({productsCategories: instance.state.productsCategories.set(e.id, r1)});
+                        instance.setState({productsTags: instance.state.productsTags.set(e.id, r2)});
+                    })
+                )
+            });
+
         }
 
         onUpdated(state) {
@@ -100,6 +122,18 @@
             $( "#toggle-group-view" ).on('change', function() {
 
                 instance.setState({selectedView  : this.value });
+
+            });
+
+            $( ".category-item" ).click( function() {
+
+                instance.setState({category  : this.id });
+
+            });
+
+            $( ".tag-item" ).click( function() {
+
+                instance.setState({tag : this.id });
 
             });
 
