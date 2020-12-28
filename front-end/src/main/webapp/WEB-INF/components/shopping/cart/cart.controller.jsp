@@ -49,6 +49,7 @@
 
     });
 
+    /* TODO: Remove this */
     shopping_cart_add(1, 2, false);
     shopping_cart_add(2, 2, false);
     shopping_cart_add(3, 2, false);
