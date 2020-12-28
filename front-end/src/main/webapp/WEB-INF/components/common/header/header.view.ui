@@ -23,25 +23,25 @@
   ~
   -->
 
-<header class="ui-header d-none d-lg-block">
+<header class="bg-light d-none d-lg-block">
     <div class="ui-container">
         <div class="row">
             <div class="col col-6">
                 <a class="ui-navigate nav-link" href="/support#maps">
-                    <span><span class="mdi mdi-map"></span> {{ address }}</span>
+                    <span class="text-muted"><span class="mdi mdi-map"></span> {{ address }}</span>
                 </a>
             </div>
             <div class="col col-3">
                 <div align="right">
                     <a class="ui-navigate nav-link" href="/support#contacts">
-                        <span><span class="mdi mdi-email"></span> {{ email }}</span>
+                        <span class="text-muted"><span class="mdi mdi-email"></span> {{ email }}</span>
                     </a>
                 </div>
             </div>
             <div class="col col-3">
                 <div align="right">
                     <a class="ui-navigate nav-link" href="/support#contacts">
-                        <span><span class="mdi mdi-phone"></span> {{ phone }}</span>
+                        <span class="text-muted"><span class="mdi mdi-phone"></span> {{ phone }}</span>
                     </a>
                 </div>
             </div>

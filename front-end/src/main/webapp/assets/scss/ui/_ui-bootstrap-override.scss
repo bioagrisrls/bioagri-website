@@ -71,6 +71,31 @@ $link-decoration: none;
   box-shadow: none;
 }
 
+.btn-primary {
+  color: $gray-100;
+  &:hover {
+    color: $gray-100;
+  }
+}
+
+.btn-secondary {
+  color: $gray-100;
+  &:hover {
+    color: $gray-100;
+  }
+}
+
+.btn-outline-primary {
+  &:hover {
+    color: $gray-100;
+  }
+}
+
+.btn-outline-secondary {
+  &:hover {
+    color: $gray-100;
+  }
+}
 
 //
 // Max-Width

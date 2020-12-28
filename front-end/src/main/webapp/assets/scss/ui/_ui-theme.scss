@@ -46,3 +46,6 @@ $ui-theme-divider-color: #BDBDBD;
 $ui-theme-layout-container-width: 960px;
 
 
+body {
+  text-rendering: optimizeLegibility !important;
+}
