@@ -32,8 +32,6 @@
  */
 const shopping_cart_add = (id, quantity, raiseEvent = true) => {
 
-    console.log(id, quantity, raiseEvent);
-
     const cache = localStorage.getItem('X-Shopping-Cart');
     const items = (cache && JSON.parse(cache)) || [];
 
@@ -98,7 +96,7 @@ const shopping_cart_count = () => {
     const cache = localStorage.getItem('X-Shopping-Cart');
     const items = (cache && JSON.parse(cache)) || [];
 
-    return items.length;
+    return Object.values(items).reduce((i, v) => i + (+v.quantity), 0);
 
 }
 

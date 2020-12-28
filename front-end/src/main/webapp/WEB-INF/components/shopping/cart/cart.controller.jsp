@@ -34,7 +34,7 @@
 
         constructor() {
             super(id, {
-                price: 0,
+                items: {},
                 count: 0,
             });
         }

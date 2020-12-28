@@ -31,7 +31,7 @@
     <?
 
         if(shopping_cart_empty()) {
-            ?> <span>Il tuo carrello è vuoto (FIXME)</span> <?
+            ?> <p class="text-muted">Il tuo carrello è vuoto (FIXME)</p> <?
         } else {
 
             ?> <div class="ui-navbar-cart-popover-items"> <?
@@ -41,15 +41,16 @@
                                 ui:id="{{item.id}}"
                                 ui:quantity="{{item.quantity}}"
                                 ui:view="tiny"
-                                ui:on-ready="$$.state = { price: $$.state.price + (this.state.price * this.state.quantity) }"
+                                ui:on-before-update="$$.state.items[this.state.id] = ({ price: this.state.price, quantity: this.state.quantity }); $$.state = { items: $$.state.items }"
                                 ui:on-updated="shopping_cart_add(this.state.id, this.state.quantity)"></ui-card>
                     <?
+
                 });
 
             ?> </div> <?
 
 
-            ?> <div class="w-100 p-4"><h5 class="text-end">Totale ({{ count }} articoli): {{ price.toFixed(2) }} &euro;</h5></div> <?
+            ?> <div class="w-100 p-4"><h5 class="text-end">Totale ({{ count }} articoli): {{ Object.values(items).reduce((i, v) => i + v.price * v.quantity, 0).toFixed(2) }} &euro;</h5></div> <?
 
 
         }

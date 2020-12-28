@@ -116,7 +116,7 @@
                     </button>
 
                     <div id="ui-navbar-cart-popover" class="ui-navbar-popover ui-navbar-cart-popover bg-light animate__animated">
-                        <ui-shopping-cart id="ui-navbar-cart-popover-component" ui:bind="#ui-navbar-cart-count:count"></ui-shopping-cart>
+                        <ui-shopping-cart id="ui-navbar-cart-popover-component"></ui-shopping-cart>
                     </div>
 
                 </div>
