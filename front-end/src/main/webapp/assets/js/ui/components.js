@@ -161,7 +161,7 @@ class Component {
      * Raise external event
      * @param event {string}
      * @return {boolean | object | null | void}
-     * @example ui:on-init="console.log(this)"
+     * @example ui:on-init="console.debug(this)"
      */
     raise(event) {
 
