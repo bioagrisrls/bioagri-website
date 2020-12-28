@@ -6,6 +6,7 @@
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/common/footer/footer.view.ui" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/common/footer" />
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/common/navbar/navbar.view.ui" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/common/navbar" />
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages/about.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages" />
+        <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages/catalog.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages" />
       </map>
     </option>
   </component>
