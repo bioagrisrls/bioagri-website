@@ -38,6 +38,8 @@ const uiNavigateURL = (url, data = {}, container = '#ui-navigation-container', p
     if(!url)
         throw new Error('URL cannot be null');
 
+    url += $.param(data);
+
 
     if (window.history && window.history.pushState) {
 
