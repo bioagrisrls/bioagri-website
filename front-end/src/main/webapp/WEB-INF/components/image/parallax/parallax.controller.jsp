@@ -94,9 +94,11 @@
 
 
                 window.setTimeout(() => {
-                    this.state = {
-                        previous: state.current,
-                        current: (state.current + 1) % state.items.length
+                    if(this.elem) {
+                        this.state = {
+                            previous: state.current,
+                            current: (state.current + 1) % state.items.length
+                        }
                     }
                 }, state.delay);
 
