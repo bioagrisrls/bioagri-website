@@ -108,7 +108,7 @@ public final class Transaction implements Model {
         this.id = id;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -120,7 +120,7 @@ public final class Transaction implements Model {
         return result;
     }
 
-    public double getTotal() {
+    public Double getTotal() {
         return total;
     }
 
@@ -136,7 +136,7 @@ public final class Transaction implements Model {
         return shipmentNumber;
     }
 
-    public double getWeight() {
+    public Double getWeight() {
         return weight;
     }
 

@@ -37,7 +37,7 @@ public final class ProductQuantity implements Model {
         this.quantity = 0;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
