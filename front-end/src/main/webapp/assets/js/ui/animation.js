@@ -26,38 +26,51 @@
 'use strict';
 
 
+
 $(document).on('ui-ready', () => {
 
-    const animated = $('*[ui-animated-scroll]');
+    const animate = (attribute, fallback = 'fadeIn', event = undefined, condition = undefined) => {
 
-    animated.each((i, e) => {
+        const $animated = $('*[' + attribute +']');
 
-        if((window.scrollY + window.innerHeight) > e.offsetTop)
-            e.removeAttribute('ui-animated-scroll');
+        $animated.each((i, e) => {
 
-    });
+            if((window.scrollY + window.innerHeight) > e.offsetTop)
+                e.removeAttribute(attribute);
+
+        });
 
 
-    window.addEventListener('scroll', () => animated.each((i, e) => {
+        if(event) {
 
-        if(!e.hasAttribute('ui-animated-scroll'))
-            return;
+            window.addEventListener(event, () => $animated.each((i, e) => {
 
-        if((window.scrollY + window.innerHeight) > e.offsetTop) {
+                if (!e.hasAttribute(attribute))
+                    return;
 
-            const anim = $(e).attr('ui-animated-scroll') || 'backInUp';
+                if((condition && condition(e)) || (!condition)) {
 
-            e.classList.add('animate__animated');
-            e.classList.add('animate__' + anim);
+                    const anim = $(e).attr(attribute) || fallback;
 
-            e.addEventListener('animationend', () => {
-                e.classList.remove('animate__' + anim);
-            })
+                    e.classList.add('animate__animated');
+                    e.classList.add('animate__' + anim);
 
-            e.removeAttribute('ui-animated-scroll');
+                    e.addEventListener('animationend', () => {
+                        e.classList.remove('animate__' + anim);
+                    })
+
+                    e.removeAttribute(attribute);
+
+                }
+
+            }));
 
         }
 
-    }));
+    }
+
+    animate('ui-animated', 'fadeIn');
+    animate('ui-animated-hover', 'bounce', 'hover');
+    animate('ui-animated-scroll', 'scroll',  'scroll', (e) => ((window.scrollY + window.innerHeight) > e.offsetTop));
 
 })

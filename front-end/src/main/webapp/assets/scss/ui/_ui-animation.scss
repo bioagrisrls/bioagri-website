@@ -25,26 +25,12 @@
 
 
 
-*[ui-animated=""] {
-  animation-name: fadeIn;
+*[ui-animated] {
   animation-duration: .5s;
   animation-fill-mode: both;
 }
 
-*[ui-animated]:not([ui-animated=""]) {
-  animation-name: attr(ui-animated);
-  animation-duration: .5s;
-  animation-fill-mode: both;
-}
-
-*[ui-animated-hover=""]:hover {
-  animation-name: bounce;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-}
-
-*[ui-animated-hover]:not([ui-animated-hover=""]):hover {
-  animation-name: attr(ui-animated-hover);
+*[ui-animated-hover]:hover {
   animation-duration: 1s;
   animation-fill-mode: both;
 }

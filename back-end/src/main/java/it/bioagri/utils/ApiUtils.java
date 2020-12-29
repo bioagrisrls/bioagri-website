@@ -183,6 +183,9 @@ public final class ApiUtils {
             if (method.getReturnType().equals(Double.class))
                 return Double.compare((double) returnA, (double) returnB);
 
+            if (method.getReturnType().equals(Float.class))
+                return Float.compare((float) returnA, (float) returnB);
+
             if (method.getReturnType().equals(Long.class))
                 return Long.compare((long) returnA, (long) returnB);
 
