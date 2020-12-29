@@ -106,8 +106,9 @@
 
                 let p1 = '/products?skip=' + (this.state.count) + '&limit=' + ( +this.state.count + 9) ;
 
+
                 if(this.state.search !== 'noneSearch'){
-                    p1 = p1 + '&filter-by=name&filter-val=' + this.state.search + '(.)*';
+                    p1 = p1 + '&filter-by=name&filter-val=' + '(?i)(.)*(' + this.state.search + '(.)*)';
                 }
 
                 if(this.state.category !== 'noneCategory'){
@@ -121,14 +122,12 @@
 
                 api(p1 + '&sorted-by=' + this.state.selectedSort).then(r => {
 
-                    r.forEach(e => {
-                        response.push(e.id);
-                    });
+                    r.forEach(e => response.push(e.id));
 
                     this.setState({products : response});
 
                     if (response.length < this.state.count + 9) {
-                        this.state.hasMoreProducts = false;
+                        this.setState({hasMoreProducts : false});
                     }
 
                     this.setState({count : response.length});
@@ -163,11 +162,37 @@
 
         }
 
+        $search() {
+
+            this.setState({
+                products : [],
+                count : 0,
+                hasMoreProducts : true,
+                search : $('#searchText').val(),
+            })
+
+            this.fetchNextGroup();
+        }
+
+        $searchKey(event) {
+
+            const key = event.keyCode || event.which;
+
+            if (key === 13) {
+
+                this.setState({
+                    products : [],
+                    count : 0,
+                    hasMoreProducts : true,
+                    search : $('#searchText').val(),
+                })
+
+                this.fetchNextGroup();
+
+            }
+        }
 
         $more(event) {
-
-            event.preventDefault();
-            event.stopPropagation();
 
             this.fetchNextGroup();
         }
