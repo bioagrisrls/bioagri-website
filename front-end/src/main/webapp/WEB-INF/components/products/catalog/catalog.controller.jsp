@@ -96,7 +96,9 @@
 
                     r.forEach(e => response.push(e.id));
 
-                    this.setState({products : response});
+                    this.setState({
+                        products : response
+                    });
 
                     if (response.length < this.state.count + 9) {
                         this.setState({hasMoreProducts : false});
