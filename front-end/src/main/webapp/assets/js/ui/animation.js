@@ -29,48 +29,62 @@
 
 $(document).on('ui-ready', () => {
 
-    const animate = (attribute, fallback = 'fadeIn', event = undefined, condition = undefined) => {
+    const animate = (attribute, fallback = 'fadeIn', event = undefined, once = false, actor = undefined, condition = undefined) => {
 
         const $animated = $('*[' + attribute +']');
 
+
         $animated.each((i, e) => {
 
-            if((window.scrollY + window.innerHeight) > e.offsetTop)
-                e.removeAttribute(attribute);
+            if(event) {
+
+                (actor || e).addEventListener(event, () => {
+
+                    if (!e.hasAttribute(attribute))
+                        return;
+
+                    if ((condition && condition(e)) || (!condition)) {
+
+                        const anim = $(e).attr(attribute) || fallback;
+
+                        e.classList.add('animate__animated');
+                        e.classList.add('animate__' + anim);
+
+                        e.addEventListener('animationend', () => {
+                            e.classList.remove('animate__animated');
+                            e.classList.remove('animate__' + anim);
+                        })
+
+                        if (once) {
+                            e.removeAttribute(attribute);
+                        }
+
+                    }
+
+                });
+
+            } else {
+
+                e.classList.add('animate__animated');
+                e.classList.add('animate__' + ($(e).attr(attribute) || fallback));
+
+            }
 
         });
 
 
-        if(event) {
-
-            window.addEventListener(event, () => $animated.each((i, e) => {
-
-                if (!e.hasAttribute(attribute))
-                    return;
-
-                if((condition && condition(e)) || (!condition)) {
-
-                    const anim = $(e).attr(attribute) || fallback;
-
-                    e.classList.add('animate__animated');
-                    e.classList.add('animate__' + anim);
-
-                    e.addEventListener('animationend', () => {
-                        e.classList.remove('animate__' + anim);
-                    })
-
-                    e.removeAttribute(attribute);
-
-                }
-
-            }));
-
-        }
-
     }
 
+
+    $('*[ui-animated-scroll]').each((i, e) => {
+
+        if ((window.scrollY + window.innerHeight) > e.offsetTop)
+            e.removeAttribute('ui-animated-scroll');
+
+    });
+
     animate('ui-animated', 'fadeIn');
-    animate('ui-animated-hover', 'bounce', 'hover');
-    animate('ui-animated-scroll', 'scroll',  'scroll', (e) => ((window.scrollY + window.innerHeight) > e.offsetTop));
+    animate('ui-animated-hover', 'bounce', 'mouseenter');
+    animate('ui-animated-scroll', 'backInUp',  'scroll', true, window, (e) => ((window.scrollY + window.innerHeight) > e.offsetTop));
 
 })
