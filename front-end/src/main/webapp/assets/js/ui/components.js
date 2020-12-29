@@ -215,6 +215,10 @@ class Component {
 
 
         const recursive_render = (elem) => {
+
+            if(!elem)
+                throw new Error('elem cannot be null for ' + instance.id);
+
             for(let el of elem.children) {
 
                 if(window.components[el.id])
