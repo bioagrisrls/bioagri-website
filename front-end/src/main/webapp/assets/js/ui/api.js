@@ -40,7 +40,7 @@ const $basePath = '/api';
  */
 const api = async (path, method = 'GET', body = {}, returnJson = true) => {
 
-    return fetch($baseUri + $basePath + path, {
+    return fetch($baseUri + $basePath + encodeURI(path), {
 
         method: method,
         mode: 'cors',
