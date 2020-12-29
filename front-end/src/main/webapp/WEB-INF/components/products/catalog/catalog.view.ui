@@ -83,7 +83,7 @@
 
 
         <!-- Catalog -->
-        <div class="col col-md-12 col-sm-12 col-lg-10 w-sm-100 w-md-100 border pt-3 pb-5 rounded" >
+        <div class="col col-lg-10 col-md-12 col-sm-12 border rounded w-sm-100 w-md-100 pt-3 pb-5" >
 
             <!-- Search-->
             <div class="row">
@@ -91,10 +91,20 @@
                 <div class="input-group input-group-sm mb-3">
 
                     <div class="input-group-prepend">
-                        <button class="btn btn-sm" type="button"><span class="mdi mdi-magnify mdi-24px"></span></button>
+
+                        <button class="btn btn-sm"
+                                onclick="$$.$search()"
+                                type="button">
+                            <span class="mdi mdi-magnify mdi-24px"></span>
+                        </button>
+
                     </div>
 
-                    <input type="text" class="form-control round mt-2" placeholder="Cerca">
+                    <input id ="searchText"
+                           onkeypress="$$.$searchKey(event)"
+                           type="text"
+                           class="form-control round mt-2"
+                           placeholder="Cerca">
 
                 </div>
 
