@@ -82,7 +82,7 @@ public class Categories {
                             .findAll()
                             .stream()
                             .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
-                    .sorted((a, b) -> ApiUtils.sortedBy(sortedBy, order, a, b))
+                            .sorted((a, b) -> ApiUtils.sortedBy(sortedBy, order, a, b))
                             .skip(skip)
                             .limit(limit)
                             .collect(Collectors.toList()));
