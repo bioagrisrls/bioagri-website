@@ -37,6 +37,7 @@
 <jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp" />
 <jsp:include page="/WEB-INF/components/image/image/image.controller.jsp" />
 <jsp:include page="/WEB-INF/components/products/card/card.controller.jsp" />
+<jsp:include page="/WEB-INF/components/signin/google/google.controller.jsp" />
 
 
 
@@ -72,7 +73,14 @@
             <div class="bg-light shadow border w-100 w-md-75 w-lg-50 mx-auto my-5" ui-animated="backInUp">
                 <div class="my-5">
                     <h5 class="text-center">BLABLABLABLA...</h5>
-                    <div id="button-signin-google"></div>
+
+                    <div class="row">
+                        <ui-signin-google id="ui-signin-google"   class="col"></ui-signin-google>
+                        <ui-signin-google id="ui-signin-facebook" class="col"></ui-signin-google>
+                        <ui-signin-google id="ui-signin-twitter"  class="col"></ui-signin-google>
+                    </div>
+
+
                     <div class="p-5">
                         <ui-registration id="ui-registration"></ui-registration>
                     </div>

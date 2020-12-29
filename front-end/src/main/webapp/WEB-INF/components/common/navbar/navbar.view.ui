@@ -62,7 +62,7 @@
         </button>
 
 
-        <div id="ui-navbar-links" class="navbar-collapse collapse w-lg-auto col-6 w-100">
+        <div id="ui-navbar-links" class="navbar-collapse collapse w-lg-100 col-6 w-auto">
 
             <!-- Navigation Links -->
             <ul class="ui-navbar-nav navbar-nav">

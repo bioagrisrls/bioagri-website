@@ -26,44 +26,6 @@
 'use strict';
 
 
-$(document).on('ui-ready', () => {
-
-    gapi.load('auth2', () => {
-
-        gapi.auth2.init({
-            client_id: '270526632051-gbkhsqrar19bl94hvmau64nhoi5bobhm.apps.googleusercontent.com'
-        }).then(
-            (success) => {
-
-                console.log(success);
-
-                const auth2 = gapi.auth2.getAuthInstance();
-
-                gapi.auth2.getAuthInstance().attachClickHandler('button-signin-google', {},
-
-                    (user) => {
-                        console.log(user);
-                        console.log(user.getBasicProfile());
-                    }, (error) => {
-                        console.log(error);
-                    }
-
-                );
-
-            },
-            (error) => {
-
-                console.log("ERROR!!", error);
-
-            }
-        )
-
-
-
-
-    });
-
-});
 
 /**
  * On google sign-in access.
