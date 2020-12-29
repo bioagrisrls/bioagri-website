@@ -89,9 +89,9 @@
                        <p class="card-text text-truncate">{{description}}</p>
 
                        <div class = "row text-center">
-                           <span class="col-4 mdi mdi-24px mdi-heart-outline"> </span>
-                           <span class="col-4 mdi mdi-24px mdi-cart-outline"> </span>
-                           <span class="col-4 mdi mdi-24px mdi-information-outline"> </span>
+                           <span class="col-4 mdi mdi-24px mdi-heart-outline ui-heart-icon-scale-color"> </span>
+                           <span class="col-4 mdi mdi-24px mdi-cart-outline ui-cart-icon-scale-color"> </span>
+                           <span class="col-4 mdi mdi-24px mdi-information-outline ui-information-icon-scale-color"> </span>
                        </div>
 
                    </div>
@@ -107,14 +107,14 @@
     <div class="card-body p-4 ui-zoom">
 
         <img class="img-fluid d-block mx-auto mb-3" src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" />
-        <h5><a href="#" class="text-dark">{{ name }}</a></h5>
+        <h5><a href="/details/{{id}}" class="text-dark">{{ name }}</a></h5>
         <p class="small text-muted">{{ price }}</p>
 
         <div class = "row text-center">
 
-        <span class="col-4 mdi mdi-24px mdi-heart-outline"> </span>
-        <span class="col-4 mdi mdi-24px mdi-cart-outline"> </span>
-        <span class="col-4 mdi mdi-24px mdi-information-outline"> </span>
+            <span class="col-4 mdi mdi-24px mdi-heart-outline ui-heart-icon-scale-color"> </span>
+            <span class="col-4 mdi mdi-24px mdi-cart-outline ui-cart-icon-scale-color"> </span>
+            <span class="col-4 mdi mdi-24px mdi-information-outline ui-information-icon-scale-color"> </span>
 
         </div>
 

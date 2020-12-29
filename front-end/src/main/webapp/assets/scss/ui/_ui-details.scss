@@ -23,13 +23,29 @@
  *
  */
 
+.ui-zoom-button {
+
+    transition: all .4s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+}
 
 
+.ui-star-icon-scale-color:hover{
+
+  transform: scale(1.5);
+  transition: all .4s ease-in-out;
+  color:yellow;
+
+}
 
 .ui-active:hover {
 
-  border-bottom:3px
-  darkorange;
+  border-bottom-style:solid;
+  border-color: $ui-theme-primary;
 
 }
 
