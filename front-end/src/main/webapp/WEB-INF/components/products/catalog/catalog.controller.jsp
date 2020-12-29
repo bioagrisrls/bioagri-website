@@ -34,22 +34,28 @@
         constructor() {
             super( id,
 
-                api('/products?limit=9').then( (r1) => api('/categories')
-                                        .then( (r2) => api('/tags')
-                                        .then( (r3) => api('/products/count?limit=9', 'GET', {}, false).then( (r) => r.text() )
-                                        .then( (r4) =>  {
+                api('/categories').then( r1 => api('/tags')
+                                  .then( r2 =>  {
 
-                                            return {
-                                                products: r1,
-                                                categories: r2,
-                                                tags: r3,
-                                                count: r4,
-                                                selectedSort : 'recentProduct',
-                                                selectedView : 'card',
-                                            }
+                                    return {
+                                        products: [],
+                                        categories: r1,
+                                        tags: r2,
+                                        count: 0,
+                                        selectedSort : 'createdAt',
+                                        selectedView : 'card',
+                                        category : 'noneCategory',
+                                        tag : 'noneTag',
+                                        search : 'noneSearch',
+                                        filterByAttribute : false,
+                                        hasMoreProducts : true,
+                                    }
 
-                                        }))))
-            )
+                                })));
+        }
+
+        onReady(state) {
+            this.fetchNextGroup();
         }
 
         onRender() {
@@ -70,7 +76,18 @@
 
 
             $( '#toggle-group-sort' ).on('change', function() {
-                instance.setState({selectedSort : this.value});
+
+                instance.setState({
+
+                    selectedSort : this.value,
+                    products : [],
+                    count : 0,
+                    hasMoreProducts : true,
+
+                });
+
+                instance.fetchNextGroup();
+
             });
 
 
@@ -78,6 +95,81 @@
                 instance.setState({selectedView  : this.value });
             });
 
+
+        }
+
+        fetchNextGroup() {
+
+            if(this.state.hasMoreProducts) {
+
+                let response = this.state.products;
+
+                let p1 = '/products?skip=' + (this.state.count) + '&limit=' + ( +this.state.count + 9) ;
+
+                if(this.state.search !== 'noneSearch'){
+                    p1 = p1 + '&filter-by=name&filter-val=' + this.state.search + '(.)*';
+                }
+
+                if(this.state.category !== 'noneCategory'){
+                    p1 = p1 + '&filter-by=categories.id&filter-val=' + this.state.category;
+                }
+
+                if(this.state.tag !== 'noneTag'){
+                    p1 = p1 + '&filter-by=tags.id&filter-val=' + this.state.tag;
+                }
+
+
+                api(p1 + '&sorted-by=' + this.state.selectedSort).then(r => {
+
+                    r.forEach(e => {
+                        response.push(e.id);
+                    });
+
+                    this.setState({products : response});
+
+                    if (response.length < this.state.count + 9) {
+                        this.state.hasMoreProducts = false;
+                    }
+
+                    this.setState({count : response.length});
+
+                });
+            }
+        }
+
+        $selectCategory(button) {
+
+            this.setState({
+                category  : button.value,
+                products : [],
+                count : 0,
+                hasMoreProducts : true
+            });
+
+            this.fetchNextGroup();
+
+        }
+
+        $selectTag(button) {
+
+            this.setState({
+                tag  : button.value,
+                products : [],
+                count : 0,
+                hasMoreProducts : true
+            });
+
+            this.fetchNextGroup();
+
+        }
+
+
+        $more(event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            this.fetchNextGroup();
         }
 
     });
