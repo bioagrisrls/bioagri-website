@@ -33,9 +33,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
-public final class ApiFilter {
+public final class ApiUtils {
 
-    private ApiFilter() { }
+    private ApiUtils() { }
 
 
     private static <T> boolean doFilter(String name, String value, T instance, DataSource dataSource) {
@@ -117,34 +117,86 @@ public final class ApiFilter {
     }
 
 
-    public static <T> boolean filterBy(String queryNames, String queryValues, T instance, DataSource dataSource) {
+    public static <T> boolean filterBy(List<String> names, List<String> values, T instance, DataSource dataSource) {
 
-        if(queryNames == null)
+        if(names == null || names.isEmpty())
             return true;
 
-        if(queryValues == null)
-            return false;
+        if(values == null || values.isEmpty())
+            throw new ApiResponseStatus(400);
 
-
-        final var names = queryNames.split("@");
-        final var values = queryValues.split("@");
-
-        if(names.length != values.length)
+        if(names.size() != values.size())
             throw new ApiResponseStatus(400);
 
 
-        for(int i = 0; i < names.length; i++) {
+        final var i = names.iterator();
+        final var j = values.iterator();
 
-            if (!doFilter(names[i], values[i], instance, dataSource))
+        while(i.hasNext() && j.hasNext()) {
+
+            if (!doFilter(i.next(), j.next(), instance, dataSource))
                 return false;
 
         }
-
 
         return true;
 
     }
 
 
+    public static <T> int sortedBy(String name, String order, T a, T b) {
+
+        if(name == null)
+            return 0;
+
+        if(order == null)
+            throw new ApiResponseStatus(400);
+
+        try {
+
+
+            Method method = a
+                    .getClass()
+                    .getDeclaredMethod("get%s%s".formatted(Character.toUpperCase(name.charAt(0)), name.substring(1)));
+
+            method.setAccessible(true);
+
+
+            Object returnA;
+            Object returnB;
+
+            if(order.equalsIgnoreCase("asc")) {
+                returnA = method.invoke(a);
+                returnB = method.invoke(b);
+
+            } else if(order.equalsIgnoreCase("desc")) {
+                returnA = method.invoke(b);
+                returnB = method.invoke(a);
+
+            } else {
+                throw new ApiResponseStatus(400);
+            }
+
+
+
+            if (method.getReturnType().equals(Double.class))
+                return Double.compare((double) returnA, (double) returnB);
+
+            if (method.getReturnType().equals(Long.class))
+                return Long.compare((long) returnA, (long) returnB);
+
+            if (method.getReturnType().equals(Integer.class))
+                return Long.compare((int) returnA, (int) returnB);
+
+
+            return returnA.toString().compareTo(returnB.toString());
+
+
+
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException ignored) {
+            throw new ApiResponseStatus(400);
+        }
+
+    }
 
 }

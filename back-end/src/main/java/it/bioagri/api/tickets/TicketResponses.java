@@ -33,7 +33,7 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.TicketResponse;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
-import it.bioagri.utils.ApiFilter;
+import it.bioagri.utils.ApiUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -63,8 +63,10 @@ public class TicketResponses {
             @PathVariable Long sid,
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
-            @RequestParam(required = false, value =  "filter-by") String filterBy,
-            @RequestParam(required = false, value = "filter-val") String filterValue) {
+            @RequestParam(required = false, value =  "filter-by") List<String> filterBy,
+            @RequestParam(required = false, value = "filter-val") List<String> filterValue,
+            @RequestParam(required = false, defaultValue = "asc") String order,
+            @RequestParam(required = false, value =  "sorted-by") String sortedBy) {
 
         try {
 
@@ -75,7 +77,8 @@ public class TicketResponses {
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.READ, authToken, i.getTicket(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
-                    .filter(i -> ApiFilter.filterBy(filterBy, filterValue, i, dataSource))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
+                    .sorted((a, b) -> ApiUtils.sortedBy(sortedBy, order, a, b))
                     .skip(skip)
                     .limit(limit)
                     .collect(Collectors.toList()));
@@ -157,8 +160,8 @@ public class TicketResponses {
     @DeleteMapping("/{sid}/responses")
     public ResponseEntity<String> deleteAll(
             @PathVariable Long sid,
-            @RequestParam(required = false, value =  "filter-by") String filterBy,
-            @RequestParam(required = false, value = "filter-val") String filterValue) {
+            @RequestParam(required = false, value =  "filter-by") List<String> filterBy,
+            @RequestParam(required = false, value = "filter-val") List<String> filterValue) {
 
 
         try {
@@ -170,7 +173,7 @@ public class TicketResponses {
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.DELETE, authToken, i.getTicket(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
-                    .filter(i -> ApiFilter.filterBy(filterBy, filterValue, i, dataSource))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
                     .forEach(dataSource.getTicketResponseRepository()::delete);
 
         } catch (DataSourceSQLException e) {

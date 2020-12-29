@@ -98,29 +98,3 @@ const googleSignInRender = () => {
 
 }
 
-
-
-
-function fetchNextOne(start, end, index, filter, ...) {
-
-
-    api(path).then((r) => api("categpries" + r.id) => api("tag" + r.id) => {
-
-        if(VA BENE) {
-            $($$.elem).find('#container').append('<ui-card ui:id=' + id + ...);
-        }
-
-        end++;
-
-        if((end - start) < 9 && end < MAX)
-            fetchNextOne(start + 1, end +1, index +1);
-
-        if(arrivato a 9)
-            setState({ indiceAttuale: ...})
-
-    }
-
-}
-
-<? functionNextOne(indiceAttuale, {{filterBy}}); ?>
-

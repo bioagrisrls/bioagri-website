@@ -35,7 +35,7 @@ import it.bioagri.models.Product;
 import it.bioagri.models.ProductQuantity;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
-import it.bioagri.utils.ApiFilter;
+import it.bioagri.utils.ApiUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,8 +64,8 @@ public class OrderProducts {
             @PathVariable Long sid,
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
-            @RequestParam(required = false, value =  "filter-by") String filterBy,
-            @RequestParam(required = false, value = "filter-val") String filterValue) {
+            @RequestParam(required = false, value =  "filter-by") List<String> filterBy,
+            @RequestParam(required = false, value = "filter-val") List<String> filterValue) {
 
 
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
@@ -78,7 +78,7 @@ public class OrderProducts {
                     .orElseThrow(() -> new ApiResponseStatus(400))
                     .getProducts(dataSource)
                     .stream()
-                    .filter(i -> ApiFilter.filterBy(filterBy, filterValue, i.getKey(), dataSource))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i.getKey(), dataSource))
                     .skip(skip)
                     .limit(limit)
                     .collect(Collectors.toList()));
