@@ -44,9 +44,9 @@
                                         count: 0,
                                         selectedSort : 'createdAt',
                                         selectedView : 'card',
-                                        category : 'noneCategory',
-                                        tag : 'noneTag',
-                                        search : 'noneSearch',
+                                        category : '',
+                                        tag : '',
+                                        search : '',
                                         filterByAttribute : false,
                                         hasMoreProducts : true,
                                     }
@@ -70,36 +70,6 @@
             return `${components.products_catalog_error}`
         }
 
-        onUpdated(state) {
-
-
-
-            const instance = this;
-
-
-            $( '#toggle-group-sort' ).on('change', function() {
-
-                instance.setState({
-
-                    selectedSort : this.value,
-                    products : [],
-                    count : 0,
-                    hasMoreProducts : true,
-
-                });
-
-                instance.fetchNextGroup();
-
-            });
-
-
-            $( '#toggle-group-view' ).on('change', function() {
-                instance.setState({selectedView  : this.value });
-            });
-
-
-        }
-
         fetchNextGroup() {
 
             if(this.state.hasMoreProducts) {
@@ -109,15 +79,15 @@
                 let p1 = '/products?skip=' + (this.state.count) + '&limit=' + ( +this.state.count + 9) ;
 
 
-                if(this.state.search !== 'noneSearch'){
+                if(this.state.search !== ''){
                     p1 = p1 + '&filter-by=name&filter-val=' + '(?i)(.)*(' + this.state.search + '(.)*)';
                 }
 
-                if(this.state.category !== 'noneCategory'){
+                if(this.state.category !== ''){
                     p1 = p1 + '&filter-by=categories.id&filter-val=' + this.state.category;
                 }
 
-                if(this.state.tag !== 'noneTag'){
+                if(this.state.tag !== ''){
                     p1 = p1 + '&filter-by=tags.id&filter-val=' + this.state.tag;
                 }
 
@@ -166,6 +136,7 @@
 
         $search() {
 
+
             this.setState({
                 products : [],
                 count : 0,
@@ -192,6 +163,24 @@
                 this.fetchNextGroup();
 
             }
+        }
+
+        $changeSort(button) {
+
+            this.setState({
+
+                selectedSort : button.value,
+                products : [],
+                count : 0,
+                hasMoreProducts : true,
+
+            });
+
+            this.fetchNextGroup();
+        }
+
+        $changeView(button) {
+            this.setState({selectedView  : button.value });
         }
 
         $more(event) {

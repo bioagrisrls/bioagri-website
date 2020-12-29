@@ -76,7 +76,7 @@ public final class Feedback implements Model {
         this.id = id;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -88,7 +88,7 @@ public final class Feedback implements Model {
         return description;
     }
 
-    public float getVote() {
+    public Float getVote() {
         return vote;
     }
 

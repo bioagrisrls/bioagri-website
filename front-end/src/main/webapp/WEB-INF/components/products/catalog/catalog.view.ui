@@ -35,9 +35,9 @@
 
             <ul class="list-unstyled">
 
-                <li><button value="noneCategory"
+                <li><button value=""
                             onclick="$$.$selectCategory(this)"
-                            class="list-group-item list-group-item-action {{ category === 'noneCategory' ? 'active' : 'text-dark'}}">
+                            class="list-group-item list-group-item-action {{ category === '' ? 'active' : 'text-dark'}}">
                     Tutte le Categorie
                 </button></li>
 
@@ -60,9 +60,9 @@
 
             <ul class="list-unstyled">
 
-                <li><button value="noneTag"
+                <li><button value=""
                             onclick="$$.$selectTag(this)"
-                            class="list-group-item list-group-item-action {{ tag === 'noneTag' ? 'active' : 'text-dark'}}">
+                            class="list-group-item list-group-item-action {{ tag === '' ? 'active' : 'text-dark'}}">
                     Tutte le Categorie
                 </button></li>
 
@@ -102,9 +102,10 @@
 
                     <input id ="searchText"
                            onkeypress="$$.$searchKey(event)"
-                           type="text"
+                           type="search"
                            class="form-control round mt-2"
-                           placeholder="Cerca">
+                           placeholder="Cerca"
+                           value="{{ search === '' ? '' : search }}">
 
                 </div>
 
@@ -114,7 +115,7 @@
             <div class="row border-bottom pt-3 px-3">
 
                 <div class="col col-5">
-                    <p>4 risultati</p>
+                    <p>{{ count }} risultati</p>
                 </div>
 
                 <div class="col col-4 float-end">
@@ -123,7 +124,10 @@
 
                             <label for="toggle-group-sort">Ordina per:</label>
 
-                            <select id="toggle-group-sort" class="custom-select" required>
+                            <select id="toggle-group-sort"
+                                    class="custom-select"
+                                    onchange="$$.$changeSort(this)"
+                                    required>
 
                                 <option value="createdAt&order=asc"
                                         {{ selectedSort ===  'createdAt&order=asc' ? 'selected' : '' }} >
@@ -161,7 +165,10 @@
 
                             <label for="toggle-group-view">Visualizza:</label>
 
-                            <select id="toggle-group-view" class="custom-select" required>
+                            <select id="toggle-group-view"
+                                    class="custom-select"
+                                    onchange="$$.$changeView(this)"
+                                    required>
 
                                 <option value="card"
                                         {{ selectedView ===  'card' ? 'selected' : '' }} >
