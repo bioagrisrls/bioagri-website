@@ -36,9 +36,7 @@
     Component.register('ui-details', (id, props) => new class extends StatefulComponent {
 
         constructor() {
-            super( id,
-
-            )
+            super(id, api("/products/" + props.id))
         }
 
         onRender() {

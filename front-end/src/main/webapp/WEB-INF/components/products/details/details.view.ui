@@ -1,63 +1,70 @@
+<div class="container ui-container">
+        <div class="row">
+            <div class="col-md-6 d-grid align-items-center">
+                <img src="https://agribiositaliana.it/wp-content/uploads/2017/07/Solfato-Ferroso.png" class="img-fluid h-auto" alt="Responsive image">
+            </div>
+            <div class="col-md-6 pt-3" >
 
-      <div class="container ui-container">
-          <div class="row">
-              <div class="col-8 item-photo">
-                  <img  src="https://agribiositaliana.it/wp-content/uploads/2017/07/Solfato-Ferroso.png" />
-              </div>
-              <div class="col-4" >
-                  <!-- Datos del vendedor y titulo del producto -->
-                  <h3>Samsung Galaxy S4 I337 16GB 4G LTE Unlocked GSM Android Cell Phone</h3>
-                  <h5 >vendido por <a href="#">Samsung</a> · <small>(5054 ventas)</small></h5>
+                <h3 class="pb-3">{{ name }}</h3>
 
-                  <!-- Precios -->
-                  <h6 class="title-price"><small>PRECIO OFERTA</small></h6>
-                  <h3>U$S 399</h3>
+                <div class = "d-flex flex-row pb-3">
+                    <span class = "mdi mdi-24px mdi-star-outline ui-star-icon-scale-color"> </span>
+                    <span class = "mdi mdi-24px mdi-star-outline ui-star-icon-scale-color"> </span>
+                    <span class = "mdi mdi-24px mdi-star-outline ui-star-icon-scale-color"> </span>
+                    <span class = "mdi mdi-24px mdi-star-outline ui-star-icon-scale-color"> </span>
+                    <span class = "mdi mdi-24px mdi-star-outline ui-star-icon-scale-color"> </span>
+                </div>
 
-                  <!-- Detalles especificos del producto -->
-                  <div class="section">
-                      <h6 class="title-attr" style="margin-top:15px;" ><small>COLOR</small></h6>
-                      <div>
-                          <div class="attr" ></div>
-                          <div class="attr" ></div>
-                      </div>
-                  </div>
-                  <div class="section">
-                      <h6 class="title-attr"><small>CAPACIDAD</small></h6>
-                      <div>
-                          <div class="attr2">16 GB</div>
-                          <div class="attr2">32 GB</div>
-                      </div>
-                  </div>
-                  <div class="section">
-                      <h6 class="title-attr"><small>CANTIDAD</small></h6>
-                      <div>
-                          <div class="btn-minus"><span class="glyphicon glyphicon-minus"></span></div>
-                          <input value="1" />
-                          <div class="btn-plus"><span class="glyphicon glyphicon-plus"></span></div>
-                      </div>
-                  </div>
+                <div class = "d-flex flex-row">
 
-                  <!-- Botones de compra -->
-                  <div class="section">
-                      <button class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar al carro</button>
-                      <h6><a href="#"><span class="glyphicon glyphicon-heart-empty" ></span> Agregar a lista de deseos</a></h6>
-                  </div>
-              </div>
-          </div>
+                    <h4><small>prezzo :</small></h4>
+                    <h4> 120 &euro;</h4>
 
-          <div class = "row text-center pt-5">
+                </div>
 
-                  <div class="col-4">
-                      <a class="ui-active">dettagli prodotto</a>
-                  </div>
+                <h6 class="pb-4"> <small> breve descrizione del dio cane per fare la prova se funziona sta merda di scheda dettagli</small></h6>
 
-                  <div class="col-4">
-                      <a class="ui-active">recensioni</a>
-                  </div>
+                <div class="input-group mt-3 mb-3 w-50">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">KG</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option value="1">5</option>
+                        <option value="2">10</option>
+                        <option value="3">25</option>
+                    </select>
+                </div>
 
-                  <div class="col-4">
-                      <a class="ui-active">spedizione</a>
-                  </div>
-          </div>
+                <div>
+                    <div class="w-50 mt-3 mb-3">
 
-      </div>
+                        <h6><small class = "font-weight-bold" >QUANTITA'</small></h6>
+
+                        <span class="input-number">
+                            <input type="number" id="inputNumber1" name="inputNumber1" value="1">
+                        </span>
+
+                    </div>
+                </div>
+                <div class="row pt-5 gx-1 pt-4">
+                    <div class="col-md-10">
+                        <button class="btn btn-outline-success w-100 ui-zoom-button"><span class="mdi mdi-24px mdi-cart-outline align-middle" aria-hidden="true"></span> Aggiungi al carrello </button>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-outline-danger w-100 px-0 ui-zoom-button"><span  class="mdi mdi-24px mdi-heart-outline " aria-hidden="true"></span>  </button>
+                    </div>
+                </div>
+            </div>
+            <div class = "row text-center pt-5">
+                <div class="col-4">
+                    <a class="ui-active">dettagli prodotto</a>
+                </div>
+                <div class="col-4">
+                    <a class="ui-active">recensioni</a>
+                </div>
+                <div class="col-4">
+                    <a class="ui-active">spedizione</a>
+                </div>
+            </div>
+        </div>
+    </div>
