@@ -133,7 +133,7 @@ $screen-lg-min: 1200px;
 // Max-Width, Width
 //
 
-@media (max-width: $screen-xs-max) {
+@media only screen and (max-width: $screen-xs-max) {
   .mw-xs-100  { max-width: 100% !important; }
   .mw-xs-75   { max-width:  75% !important; }
   .mw-xs-50   { max-width:  50% !important; }
@@ -182,6 +182,17 @@ $screen-lg-min: 1200px;
 }
 
 
+@media only screen and (max-width: 960px) {
+  .navbar-resp {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .navbar-resp {
+    width: auto !important;
+  }
+}
 
 //
 // 1% Height
