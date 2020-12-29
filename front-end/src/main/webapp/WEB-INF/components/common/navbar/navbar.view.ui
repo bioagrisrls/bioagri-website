@@ -39,11 +39,11 @@
 <nav class="navbar navbar-expand-lg w-100 sticky-top shadow-sm bg-white">
 
 
-    <div class="ui-container container-fluid overflow-visible row">
+    <div class="ui-container container-fluid overflow-visible row gx-0">
 
 
         <!-- Navigation Logo -->
-        <a ui-navigate class="navbar-brand nav-link col-4" href="/">
+        <a ui-navigate class="navbar-brand nav-link col-auto" href="/">
             <img src="{{logo}}" width="48" height="48" />
             <span class="text-uppercase">{{ title }} (FIXME)</span>
         </a>
@@ -62,7 +62,7 @@
         </button>
 
 
-        <div id="ui-navbar-links" class="navbar-collapse collapse col-md-6 w-auto w-md-100">
+        <div id="ui-navbar-links" class="navbar-collapse collapse w-lg-auto col-6 w-100">
 
             <!-- Navigation Links -->
             <ul class="ui-navbar-nav navbar-nav">
@@ -77,7 +77,7 @@
             </ul>
 
             <!-- Navigation Users -->
-            <div class="mx-5 d-flex w-auto d-lg-block d-none">
+            <div class="mx-5 w-auto d-lg-block d-none">
 
                 <!-- User Account -->
                 <div id="ui-navbar-user" class="position-relative d-inline-block">

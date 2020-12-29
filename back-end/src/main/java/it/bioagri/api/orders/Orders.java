@@ -75,7 +75,7 @@ public class Orders {
                             .stream()
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
                             .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
-                    .sorted((a, b) -> ApiUtils.sortedBy(sortedBy, order, a, b))
+                            .sorted((a, b) -> ApiUtils.sortedBy(sortedBy, order, a, b))
                             .skip(skip)
                             .limit(limit)
                             .collect(Collectors.toList()));
