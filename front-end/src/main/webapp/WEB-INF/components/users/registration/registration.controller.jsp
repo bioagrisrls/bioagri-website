@@ -62,7 +62,7 @@
 
                 surname: {
                     type: 'text',
-                    label: 'Nome', // FIXME,
+                    label: 'Cognome', // FIXME,
                     required: true,
                     maxlength: 32
                 },

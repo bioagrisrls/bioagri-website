@@ -34,7 +34,7 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Ticket;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
-import it.bioagri.utils.ApiUtils;
+import it.bioagri.utils.ApiFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -72,7 +72,7 @@ public class Tickets {
                             .findAll()
                             .stream()
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKETS, ApiPermissionOperation.READ, authToken, i.getUserId()))
-                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                            .filter(i -> ApiFilter.filterBy(filterBy, filterValue, i, dataSource))
                             .skip(skip)
                             .limit(limit)
                             .collect(Collectors.toList()));
@@ -153,7 +153,7 @@ public class Tickets {
                     .findAll()
                     .stream()
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TICKETS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
-                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .filter(i -> ApiFilter.filterBy(filterBy, filterValue, i, dataSource))
                     .forEach(dataSource.getTicketRepository()::delete);
 
         } catch (DataSourceSQLException e) {

@@ -30,7 +30,7 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Tag;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
-import it.bioagri.utils.ApiUtils;
+import it.bioagri.utils.ApiFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -74,7 +74,7 @@ public class ProductTags {
                             .orElseThrow(() -> new ApiResponseStatus(400))
                             .getTags(dataSource)
                             .stream()
-                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                            .filter(i -> ApiFilter.filterBy(filterBy, filterValue, i, dataSource))
                             .skip(skip)
                             .limit(limit)
                             .collect(Collectors.toList()));

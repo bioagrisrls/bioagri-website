@@ -33,7 +33,7 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Transaction;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
-import it.bioagri.utils.ApiUtils;
+import it.bioagri.utils.ApiFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -73,7 +73,7 @@ public class Transactions {
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.READ, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
-                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .filter(i -> ApiFilter.filterBy(filterBy, filterValue, i, dataSource))
                     .skip(skip)
                     .limit(limit)
                     .collect(Collectors.toList()));
@@ -163,7 +163,7 @@ public class Transactions {
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.DELETE, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
-                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .filter(i -> ApiFilter.filterBy(filterBy, filterValue, i, dataSource))
                     .forEach(dataSource.getTransactionRepository()::delete);
 
         } catch (DataSourceSQLException e) {
