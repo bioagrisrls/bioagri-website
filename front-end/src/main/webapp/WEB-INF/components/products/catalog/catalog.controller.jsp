@@ -46,12 +46,6 @@
                                                 count: r4,
                                                 selectedSort : 'recentProduct',
                                                 selectedView : 'card',
-                                                category : 'noneCategory',
-                                                tag : 'noneTag',
-                                                search : 'noneSearch',
-                                                productsCategories : new Map(),
-                                                productsTags : new Map(),
-                                                moreProduct : true,
                                             }
 
                                         }))))
@@ -70,112 +64,18 @@
             return `${components.products_catalog_error}`
         }
 
-        onReady(state) {
-
-            const instance = this;
-
-            this.state.products.forEach( (e) => {
-
-                api('/products/' + e.id + '/categories').then( (r1) =>
-
-                    api('/products/' + e.id + '/tags').then( (r2) => {
-                        instance.setState({productsCategories: instance.state.productsCategories.set(e.id, r1)});
-                        instance.setState({productsTags: instance.state.productsTags.set(e.id, r2)});
-                    })
-                )
-            });
-
-        }
-
         onUpdated(state) {
 
             const instance = this;
 
 
             $( '#toggle-group-sort' ).on('change', function() {
-
                 instance.setState({selectedSort : this.value});
-
-                switch (this.value) {
-
-                    case 'recentProduct':
-                        instance.setState( {products : instance.state.products.sort( (a, b) => { return a.createdAt - b.createdAt } )});
-                        break;
-
-                    case 'lowPrice':
-                        instance.setState( {products : instance.state.products.sort( (a, b) => { return a.price - b.price } )});
-                        break;
-
-                    case 'highPrice':
-                        instance.setState( {products : instance.state.products.sort( (a, b) => { return b.price - a.price } )});
-                        break;
-
-                    case 'alphabeticalOrder1':
-                        instance.setState( {products : instance.state.products.sort( (a, b) => { return a.name.localeCompare(b.name) } )});
-                        break;
-
-                    case 'alphabeticalOrder2':
-                        instance.setState( {products : instance.state.products.sort( (a, b) => { return b.name.localeCompare(a.name) } )});
-                        break;
-
-                }
-
             });
 
 
             $( '#toggle-group-view' ).on('change', function() {
-
                 instance.setState({selectedView  : this.value });
-
-            });
-
-
-            $( '.category-item' ).click( function() {
-
-                instance.setState({category  : this.id });
-
-            });
-
-
-            $( '.tag-item' ).click( function() {
-
-                instance.setState({tag : this.id });
-
-            });
-
-
-            $( '#more-item' ).click( function() {
-
-                if(instance.state.moreProduct) {
-
-                    api('/products?skip=' + instance.state.count + '&limit=' + (+instance.state.count + 9) ).then((r1) => {
-
-                        r1.forEach( (e) => {
-
-                            instance.state.products.push(e);
-
-                            api('/products/' + e.id + '/categories').then((r2) =>
-
-                                api('/products/' + e.id + '/tags').then((r3) => {
-                                    instance.setState({productsCategories: instance.state.productsCategories.set(e.id, r2)});
-                                    instance.setState({productsTags: instance.state.productsTags.set(e.id, r3)});
-                                })
-
-                            )
-
-                        });
-
-
-                        if(instance.state.products.length < instance.state.count + 9 ) {
-                            instance.state.moreProduct = false;
-                        }
-
-                        instance.state.count = instance.state.products.length;
-
-                    })
-
-                }
-
             });
 
         }
