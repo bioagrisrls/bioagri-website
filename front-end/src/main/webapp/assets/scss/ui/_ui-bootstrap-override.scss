@@ -86,6 +86,7 @@ $link-decoration: none;
 
   &.active {
     @extend .bg-primary;
+    @extend .shadow;
   }
 
 }

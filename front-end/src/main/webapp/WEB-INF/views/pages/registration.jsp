@@ -70,7 +70,7 @@
         <br>
 
         <div class="ui-container">
-            <div class="bg-light shadow border w-100 w-md-75 w-lg-50 mx-auto my-5" ui-animated="backInUp">
+            <div class="bg-light shadow border w-50 w-lg-100 mx-auto my-5" ui-animated="backInUp">
                 <div class="my-5">
                     <h5 class="text-center">BLABLABLABLA...</h5>
 

@@ -47,10 +47,10 @@
                 </div>
 
                 <div class="col-md text-center">
-                    <a class="ui-footer-social" href="#"><span class="mdi mdi-facebook mdi-24px"></span></a>
-                    <a class="ui-footer-social" href="#"><span class="mdi mdi-twitter mdi-24px"></span></a>
-                    <a class="ui-footer-social" href="#"><span class="mdi mdi-linkedin mdi-24px"></span></a>
-                    <a class="ui-footer-social" href="#"><span class="mdi mdi-instagram mdi-24px"></span></a>
+                    <a class="ui-footer-social" href="#" ui-animated-hover><span class="mdi mdi-facebook mdi-24px"></span></a>
+                    <a class="ui-footer-social" href="#" ui-animated-hover><span class="mdi mdi-twitter mdi-24px"></span></a>
+                    <a class="ui-footer-social" href="#" ui-animated-hover><span class="mdi mdi-linkedin mdi-24px"></span></a>
+                    <a class="ui-footer-social" href="#" ui-animated-hover><span class="mdi mdi-instagram mdi-24px"></span></a>
                 </div>
 
             </div>
@@ -120,7 +120,6 @@
                                 {{ address }}
                             </a>
                         </li>
-
                         <li>
                             <a class="ui-footer-icon">
                                 <span class="mdi mdi-mail mdi"></span>
