@@ -76,7 +76,7 @@
 
                 let response = this.state.products;
 
-                let p1 = '/products?skip=' + (this.state.count) + '&limit=' + ( +this.state.count + 9) ;
+                let p1 = '/products?skip=' + (this.state.count + 9) + '&limit=' + this.state.count ;
 
 
                 if(this.state.search !== ''){
