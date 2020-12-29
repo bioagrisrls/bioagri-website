@@ -46,6 +46,10 @@
         <meta property="og:url" content="https://www.bioagrishop.it" />
         <meta property="og:image" content="/assets/favicon.png" />
 
+        <!-- Google API -->
+        <meta name="google-signin-client_id" content="270526632051-gbkhsqrar19bl94hvmau64nhoi5bobhm.apps.googleusercontent.com">
+
+
         <link rel="profile" href="http://gmpg.org/xfn/11">
         <link rel="icon" href="/assets/favicon.png">
 
@@ -69,8 +73,11 @@
         <script src="/assets/js/third-party/tippy.umd.min.js"></script>
         <script src="/assets/js/third-party/js.cookie.min.js"></script>
         <script src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
+        <script src="https://apis.google.com/js/platform.js"></script>
+
 
         <!-- Dependencies -->
+        <script src="/assets/js/api/google.js"></script>
         <script src="/assets/js/ui/api.js"></script>
         <script src="/assets/js/ui/auth.js"></script>
         <script src="/assets/js/ui/components.js"></script>

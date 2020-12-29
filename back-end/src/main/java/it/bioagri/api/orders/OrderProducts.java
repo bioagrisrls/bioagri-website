@@ -64,8 +64,8 @@ public class OrderProducts {
             @PathVariable Long sid,
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
-            @RequestParam(required = false, value =  "filter-by") String filterBy,
-            @RequestParam(required = false, value = "filter-val") String filterValue) {
+            @RequestParam(required = false, value =  "filter-by") List<String> filterBy,
+            @RequestParam(required = false, value = "filter-val") List<String> filterValue) {
 
 
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
@@ -78,7 +78,7 @@ public class OrderProducts {
                     .orElseThrow(() -> new ApiResponseStatus(400))
                     .getProducts(dataSource)
                     .stream()
-                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i.getKey()))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i.getKey(), dataSource))
                     .skip(skip)
                     .limit(limit)
                     .collect(Collectors.toList()));

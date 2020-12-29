@@ -30,7 +30,7 @@
 
 <script defer>
 
-    Component.register('ui-login', (id, props) => new class extends FormComponent {
+    Component.register('ui-registration', (id, props) => new class extends FormComponent {
 
         constructor() {
             super(id, {
@@ -51,54 +51,63 @@
                     pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
                     required: true,
                     size: 128,
-                    wrong: "Password wrong! (FIXME)"
                 },
 
-                store: {
+                name: {
+                    type: 'text',
+                    label: 'Nome', // FIXME,
+                    required: true,
+                    maxlength: 32
+                },
+
+                surname: {
+                    type: 'text',
+                    label: 'Cognome', // FIXME,
+                    required: true,
+                    maxlength: 32
+                },
+
+                gender: {
+                    type: 'select',
+                    label: 'Sesso', // FIXME,
+                    required: true,
+                    options: [
+                        'male',
+                        'female',
+                        'other',
+                        'undefined'
+                    ]
+                },
+
+                birth: {
+                    type: 'date',
+                    label: 'Data di nascita', // FIXME
+                    required: true,
+                },
+
+                phone: {
+                    type: 'tel',
+                    label: 'Recapito telefonico', // FIXME
+                    required: true,
+                    size: 16,
+                },
+
+                legals: {
                     type: 'switch',
-                    label: "Resta connesso" // FIXME
+                    label: 'Accetto i termini legali, blabla...',
+                    required: true
                 },
 
-                $submit: 'Login', // FIXME
+                $submit: 'Registrati', // FIXME
 
             });
         }
 
-
         onReady(state) {
-
-            authenticated()
-                .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id'))
-                    .then(response => this.state = { $state: 'ok', $userInfo: response })
-                )
-                .catch(() => this.state = { $state: 'need-login' });
-
+            this.state = { $state: 'need-registration' };
         }
 
         onSubmit(data) {
-
-            const hash = (str) => crypto.subtle
-                .digest("SHA-512", new TextEncoder().encode(str))
-                .then(buf => Array.prototype.map.call(new Uint8Array(buf), i => ('00' + i.toString(16)).slice(-2)).join(''));
-
-            hash(data.password)
-                .then(encryptedPassword => authenticate(data.username, encryptedPassword, data.store)
-                    .then(response => api('/users/' + response.userId)
-                        .then(response => this.state = { $state: 'ok', $userInfo: response })
-                    )
-                )
-                .catch(reason => {
-
-                    switch(reason) {
-                        case 401:
-                            return this.state = { $state: 'wrong', $reason: [ 'username' ] };
-                        case 403:
-                            return this.state = { $state: 'wrong', $reason: [ 'password' ] };
-                        default:
-                            return this.state = { $state: 'error', $reason: reason };
-                    }
-
-                });
 
         }
 

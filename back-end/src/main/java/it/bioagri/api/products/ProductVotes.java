@@ -36,6 +36,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 
 
@@ -60,8 +61,8 @@ public class ProductVotes {
             @PathVariable Long sid,
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
-            @RequestParam(required = false, value =  "filter-by") String filterBy,
-            @RequestParam(required = false, value = "filter-val") String filterValue) {
+            @RequestParam(required = false, value =  "filter-by") List<String> filterBy,
+            @RequestParam(required = false, value = "filter-val") List<String> filterValue) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken);
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
@@ -73,7 +74,7 @@ public class ProductVotes {
                     .orElseThrow(() -> new ApiResponseStatus(400))
                     .getFeedbacks(dataSource)
                     .stream()
-                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
                     .skip(skip)
                     .limit(limit)
                     .mapToDouble(Feedback::getVote)
@@ -93,8 +94,8 @@ public class ProductVotes {
             @PathVariable Long sid,
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
-            @RequestParam(required = false, value =  "filter-by") String filterBy,
-            @RequestParam(required = false, value = "filter-val") String filterValue) {
+            @RequestParam(required = false, value =  "filter-by") List<String> filterBy,
+            @RequestParam(required = false, value = "filter-val") List<String> filterValue) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken);
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
@@ -106,7 +107,7 @@ public class ProductVotes {
                     .orElseThrow(() -> new ApiResponseStatus(400))
                     .getFeedbacks(dataSource)
                     .stream()
-                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
                     .skip(skip)
                     .limit(limit)
                     .mapToDouble(Feedback::getVote)
@@ -126,8 +127,8 @@ public class ProductVotes {
             @PathVariable Long sid,
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
-            @RequestParam(required = false, value =  "filter-by") String filterBy,
-            @RequestParam(required = false, value = "filter-val") String filterValue) {
+            @RequestParam(required = false, value =  "filter-by") List<String> filterBy,
+            @RequestParam(required = false, value = "filter-val") List<String> filterValue) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken);
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
@@ -139,7 +140,7 @@ public class ProductVotes {
                     .orElseThrow(() -> new ApiResponseStatus(400))
                     .getFeedbacks(dataSource)
                     .stream()
-                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
                     .skip(skip)
                     .limit(limit)
                     .mapToDouble(Feedback::getVote)

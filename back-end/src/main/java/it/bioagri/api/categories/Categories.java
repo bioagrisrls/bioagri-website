@@ -67,8 +67,10 @@ public class Categories {
     public ResponseEntity<List<Category>> findAll(
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
-            @RequestParam(required = false, value =  "filter-by") String filterBy,
-            @RequestParam(required = false, value = "filter-val") String filterValue) {
+            @RequestParam(required = false, value =  "filter-by") List<String> filterBy,
+            @RequestParam(required = false, value = "filter-val") List<String> filterValue,
+            @RequestParam(required = false, defaultValue = "asc") String order,
+            @RequestParam(required = false, value =  "sorted-by") String sortedBy) {
 
 
         ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.READ, authToken);
@@ -79,7 +81,8 @@ public class Categories {
                     dataSource.getCategoryRepository()
                             .findAll()
                             .stream()
-                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
+                    .sorted((a, b) -> ApiUtils.sortedBy(sortedBy, order, a, b))
                             .skip(skip)
                             .limit(limit)
                             .collect(Collectors.toList()));
@@ -173,8 +176,8 @@ public class Categories {
     })
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll(
-            @RequestParam(required = false, value =  "filter-by") String filterBy,
-            @RequestParam(required = false, value = "filter-val") String filterValue) {
+            @RequestParam(required = false, value =  "filter-by") List<String> filterBy,
+            @RequestParam(required = false, value = "filter-val") List<String> filterValue) {
 
 
         ApiPermission.verifyOrThrow(ApiPermissionType.CATEGORIES, ApiPermissionOperation.DELETE, authToken);
@@ -183,7 +186,7 @@ public class Categories {
 
             dataSource.getCategoryRepository().findAll()
                     .stream()
-                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
                     .forEach(dataSource.getCategoryRepository()::delete);
 
         } catch (DataSourceSQLException e) {
