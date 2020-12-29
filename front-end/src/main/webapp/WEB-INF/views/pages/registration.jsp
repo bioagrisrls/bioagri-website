@@ -72,6 +72,7 @@
             <div class="bg-light shadow border w-50 mx-auto my-5" ui-animated="backInUp">
                 <div class="m-5">
                     <h5 class="text-center">BLABLABLABLA...</h5>
+                    <div id="button-signin-google"></div>
                     <div class="p-5">
                         <ui-registration id="ui-registration"></ui-registration>
                     </div>

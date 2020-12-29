@@ -43,9 +43,15 @@ public final class Product implements Model {
     private final Timestamp updatedAt;
     private final Timestamp createdAt;
 
+    @JsonIgnore
     private List<Category> categories;
+
+    @JsonIgnore
     private List<Tag> tags;
+
+    @JsonIgnore
     private List<Feedback> feedbacks;
+
 
     public Product(long id, String name, String description, float price, int stock, ProductStatus status, Timestamp updatedAt, Timestamp createdAt, List<Category> categories, List<Tag> tags, List<Feedback> feedbacks) {
         this.id = id;

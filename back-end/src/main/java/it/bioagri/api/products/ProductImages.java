@@ -31,7 +31,8 @@ import it.bioagri.api.ApiPermissionPublic;
 import it.bioagri.api.ApiPermissionType;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.ProductImage;
-import it.bioagri.utils.ApiUtils;
+import it.bioagri.persistence.DataSource;
+import it.bioagri.utils.ApiFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,11 +51,13 @@ public class ProductImages {
 
 
     private final AuthToken authToken;
+    private final DataSource dataSource;
     private final ServletContext servletContext;
 
     @Autowired
-    public ProductImages(AuthToken authToken, ServletContext servletContext) {
+    public ProductImages(AuthToken authToken, DataSource dataSource, ServletContext servletContext) {
         this.authToken = authToken;
+        this.dataSource = dataSource;
         this.servletContext = servletContext;
     }
 
@@ -83,7 +86,7 @@ public class ProductImages {
                     Files.walk(imagesPath)
                             .filter(i -> !i.equals(imagesPath))
                             .map(i -> new ProductImage(rootPath.relativize(i).toString()))
-                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i))
+                            .filter(i -> ApiFilter.filterBy(filterBy, filterValue, i, dataSource))
                             .skip(skip)
                             .limit(limit)
                             .collect(Collectors.toList()));
