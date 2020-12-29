@@ -34,10 +34,23 @@
             <hr>
 
             <ul class="list-unstyled">
-                <li><button id="noneCategory" class="btn btn-primary category-item list-group-item list-group-item-action">Tutte le Categorie</button></li>
-                <? for (let category of categories) { ?>
-                    <li><button id="{{ category.id }}" class="btn btn-primary category-item list-group-item list-group-item-action">{{ category.name }}</button></li>
+
+                <li><button value="noneCategory"
+                            onclick="$$.$selectCategory(this)"
+                            class="list-group-item list-group-item-action {{ category === 'noneCategory' ? 'active' : 'text-dark'}}">
+                    Tutte le Categorie
+                </button></li>
+
+                <? for (let c of categories) { ?>
+
+                    <li><button value="{{ c.id }}"
+                                onclick="$$.$selectCategory(this)"
+                                class="list-group-item list-group-item-action {{ category == c.id ? 'active' : 'text-dark'}}">
+                        {{ c.name }}
+                    </button></li>
+
                 <? } ?>
+
             </ul>
 
             <br>
@@ -46,10 +59,23 @@
             <hr>
 
             <ul class="list-unstyled">
-                <li><button id="noneTag" class="btn btn-primary category-item list-group-item list-group-item-action">Tutti i Tag</button></li>
-                <? for (let tag of tags) { ?>
-                    <li><button id="{{ tag.id }}" class="btn btn-primary tag-item list-group-item list-group-item-action">{{ tag.hashtag }}</button></li>
+
+                <li><button value="noneTag"
+                            onclick="$$.$selectTag(this)"
+                            class="list-group-item list-group-item-action {{ tag === 'noneTag' ? 'active' : 'text-dark'}}">
+                    Tutte le Categorie
+                </button></li>
+
+                <? for (let t of tags) { ?>
+
+                <li><button value="{{ t.id }}"
+                            onclick="$$.$selectTag(this)"
+                            class="list-group-item list-group-item-action {{ tag == t.id ? 'active' : 'text-dark'}}">
+                    {{ t.hashtag }}
+                </button></li>
+
                 <? } ?>
+
             </ul>
 
 
@@ -63,10 +89,13 @@
             <div class="row">
 
                 <div class="input-group input-group-sm mb-3">
+
                     <div class="input-group-prepend">
                         <button class="btn btn-sm" type="button"><span class="mdi mdi-magnify mdi-24px"></span></button>
                     </div>
+
                     <input type="text" class="form-control round mt-2" placeholder="Cerca">
+
                 </div>
 
             </div>
@@ -81,13 +110,36 @@
                 <div class="col col-4 float-end">
 
                         <div class="form-group">
+
                             <label for="toggle-group-sort">Ordina per:</label>
+
                             <select id="toggle-group-sort" class="custom-select" required>
-                                <option value="recentProduct" {{ selectedSort ===  'recentProduct' ? 'selected' : '' }} >Recenti</option>
-                                <option value="lowPrice" {{ selectedSort ===  'lowPrice' ? 'selected' : '' }} > Prezzo Basso</option>
-                                <option value="highPrice" {{ selectedSort ===  'highPrice' ? 'selected' : '' }} >Prezzo Alto</option>
-                                <option value="alphabeticalOrder1" {{ selectedSort ===  'alphabeticalOrder1' ? 'selected' : '' }} >Alfabetico(a-Z)</option>
-                                <option value="alphabeticalOrder2" {{ selectedSort ===  'alphabeticalOrder2' ? 'selected' : '' }}>Alfabetico(A-z)</option>
+
+                                <option value="createdAt&order=asc"
+                                        {{ selectedSort ===  'createdAt&order=asc' ? 'selected' : '' }} >
+                                Recenti
+                                </option>
+
+                                <option value="price&order=asc"
+                                        {{ selectedSort ===  'price&order=asc' ? 'selected' : '' }} >
+                                Prezzo Basso
+                                </option>
+
+                                <option value="price&order=desc"
+                                        {{ selectedSort ===  'price&order=desc' ? 'selected' : '' }} >
+                                Prezzo Alto
+                                </option>
+
+                                <option value="name&order=asc"
+                                        {{ selectedSort ===  'name&order=asc' ? 'selected' : '' }} >
+                                Alfabetico(a-Z)
+                                </option>
+
+                                <option value="name&order=desc"
+                                        {{ selectedSort ===  'name&order=desc' ? 'selected' : '' }}>
+                                Alfabetico(A-z)
+                                </option>
+
                             </select>
                         </div>
 
@@ -96,10 +148,21 @@
                 <div class="col col-3 float-end">
 
                         <div class="form-group">
+
                             <label for="toggle-group-view">Visualizza:</label>
+
                             <select id="toggle-group-view" class="custom-select" required>
-                                <option value="card" {{ selectedView ===  'card' ? 'selected' : '' }} >Griglia</option>
-                                <option value="row" {{ selectedView ===  'row' ? 'selected' : '' }} >Riga</option>
+
+                                <option value="card"
+                                        {{ selectedView ===  'card' ? 'selected' : '' }} >
+                                Griglia
+                                </option>
+
+                                <option value="row"
+                                        {{ selectedView ===  'row' ? 'selected' : '' }} >
+                                Riga
+                                </option>
+
                             </select>
                         </div>
                 </div>
@@ -109,11 +172,10 @@
             <!-- Products -->
             <div class="d-flex flex-wrap align-items-start" >
                 <? for (let product of products) { ?>
-
                     <div class="p-2 flex-fill bd-highlight {{ selectedView ===  'card' ? 'mw-33 mw-sm-100 mw-md-50' : 'w-100' }}">
 
-                        <ui-card id="ui-card-{{ product.id + '-' + selectedView + '-' + category + '-' + tag}}"
-                                 ui:id="{{ product.id }}"
+                        <ui-card id="ui-card-{{ product + '-' + selectedView }}"
+                                 ui:id="{{ product }}"
                                  ui:view="{{ selectedView }}">
                         </ui-card>
 
@@ -124,7 +186,8 @@
 
         </div>
 
-        <button id="more-item" type="button" class="btn btn-info">Di Piu'</button>
     </div>
+
+    <button id="more-item" onclick="$$.$more(event)" type="button" class="btn btn-info">Di Piu'</button>
 
 </div>
