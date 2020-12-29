@@ -31,6 +31,7 @@ import it.bioagri.persistence.DataSource;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.sql.Timestamp;
 import java.util.List;
 
 public final class ApiUtils {
@@ -182,11 +183,20 @@ public final class ApiUtils {
             if (method.getReturnType().equals(Double.class))
                 return Double.compare((double) returnA, (double) returnB);
 
+            if (method.getReturnType().equals(Float.class))
+                return Float.compare((float) returnA, (float) returnB);
+
             if (method.getReturnType().equals(Long.class))
                 return Long.compare((long) returnA, (long) returnB);
 
             if (method.getReturnType().equals(Integer.class))
-                return Long.compare((int) returnA, (int) returnB);
+                return Integer.compare((int) returnA, (int) returnB);
+
+            if (method.getReturnType().equals(Short.class))
+                return Short.compare((short) returnA, (short) returnB);
+
+            if(method.getReturnType().equals(Timestamp.class))
+                return ((Timestamp) returnA).compareTo((Timestamp) returnB);
 
 
             return returnA.toString().compareTo(returnB.toString());

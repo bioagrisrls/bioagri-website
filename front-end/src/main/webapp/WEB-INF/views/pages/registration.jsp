@@ -69,8 +69,8 @@
         <br>
 
         <div class="ui-container">
-            <div class="bg-light shadow border w-50 mx-auto my-5" ui-animated="backInUp">
-                <div class="m-5">
+            <div class="bg-light shadow border w-100 w-md-75 w-lg-50 mx-auto my-5" ui-animated="backInUp">
+                <div class="my-5">
                     <h5 class="text-center">BLABLABLABLA...</h5>
                     <div id="button-signin-google"></div>
                     <div class="p-5">

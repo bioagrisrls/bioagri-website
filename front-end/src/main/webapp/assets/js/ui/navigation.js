@@ -29,13 +29,18 @@
 /**
  * Navigate through pages without reloading page.
  * @param url {string}
+ * @param data {object}
  * @param container {HTMLElement || string}
  * @param pushState {boolean}
  */
-const uiNavigateURL = (url, container = '#ui-navigation-container', pushState = true) => {
+const uiNavigateURL = (url, data = undefined, container = '#ui-navigation-container', pushState = true) => {
 
     if(!url)
         throw new Error('URL cannot be null');
+
+    console.log(data);
+    if(data)
+        url += '?' + $.param(data);
 
 
     if (window.history && window.history.pushState) {
@@ -76,7 +81,7 @@ const uiNavigateURL = (url, container = '#ui-navigation-container', pushState = 
                 const title = $(container).attr('ui-title') || document.title;
 
                 if(pushState)
-                    window.history.replaceState({}, title, url);
+                    window.history.replaceState(data, title, url);
 
                 document.title = title;
 
@@ -107,7 +112,7 @@ const uiNavigateURL = (url, container = '#ui-navigation-container', pushState = 
 
 
         if(pushState)
-            window.history.pushState({}, document.title, url);
+            window.history.pushState(data, document.title, url);
 
 
     } else {
@@ -128,14 +133,18 @@ $(document).ready(() => {
         throw new Error("#ui-navigation-container cannot be null");
 
 
-    container.on('click', '.ui-navigate',{}, (e) => {
+    container.on('click', '[ui-navigate]', {}, (e) => {
 
         e.preventDefault();
+        e.stopPropagation();
 
         if (window.location === this.href)
             return;
 
-        uiNavigateURL(e.currentTarget.href);
+        if(e.currentTarget.hasAttribute('ui-data'))
+            uiNavigateURL(e.currentTarget.href, eval('(() => { return ' + e.currentTarget.attributes['ui-data'].value + '})()'));
+        else
+            uiNavigateURL(e.currentTarget.href);
 
     });
 
@@ -155,5 +164,5 @@ $(document).ready(() => {
 
 
 window.onpopstate = (e) => {
-    uiNavigateURL(document.location.href, '#ui-navigation-container', false);
+    uiNavigateURL(document.location.href, e.state,'#ui-navigation-container', false);
 }

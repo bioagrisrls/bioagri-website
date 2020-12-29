@@ -26,11 +26,11 @@
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a class="ui-navigate" href="{{ home_url }}"><span class="mdi mdi-home mdi"></span>{{ home }}</a>
+            <a ui-navigate href="{{ home_url }}"><span class="mdi mdi-home mdi"></span>{{ home }}</a>
         </li>
         <? for (i = 0; i < path.length; ++i) { ?>
             <li class="breadcrumb-item">
-                <a class="ui-navigate" href="{{ urls[i] }}">{{ path[i] }}</a>
+                <a ui-navigate href="{{ urls[i] }}">{{ path[i] }}</a>
             </li>
         <? } ?>
         <li class="breadcrumb-item active" aria-current="page">{{ current }}</li>

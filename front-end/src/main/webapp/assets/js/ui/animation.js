@@ -26,38 +26,65 @@
 'use strict';
 
 
+
 $(document).on('ui-ready', () => {
 
-    const animated = $('*[ui-animated-scroll]');
+    const animate = (attribute, fallback = 'fadeIn', event = undefined, once = false, actor = undefined, condition = undefined) => {
 
-    animated.each((i, e) => {
+        const $animated = $('*[' + attribute +']');
 
-        if((window.scrollY + window.innerHeight) > e.offsetTop)
+
+        $animated.each((i, e) => {
+
+            if(event) {
+
+                (actor || e).addEventListener(event, () => {
+
+                    if (!e.hasAttribute(attribute))
+                        return;
+
+                    if ((condition && condition(e)) || (!condition)) {
+
+                        const anim = $(e).attr(attribute) || fallback;
+
+                        e.classList.add('animate__animated');
+                        e.classList.add('animate__' + anim);
+
+                        e.addEventListener('animationend', () => {
+                            e.classList.remove('animate__animated');
+                            e.classList.remove('animate__' + anim);
+                        })
+
+                        if (once) {
+                            e.removeAttribute(attribute);
+                        }
+
+                    }
+
+                });
+
+            } else {
+
+                e.classList.add('animate__animated');
+                e.classList.add('animate__' + ($(e).attr(attribute) || fallback));
+
+            }
+
+        });
+
+
+    }
+
+
+    $('*[ui-animated-scroll]').each((i, e) => {
+
+        if ((window.scrollY + window.innerHeight) > e.offsetTop)
             e.removeAttribute('ui-animated-scroll');
 
     });
 
-
-    window.addEventListener('scroll', () => animated.each((i, e) => {
-
-        if(!e.hasAttribute('ui-animated-scroll'))
-            return;
-
-        if((window.scrollY + window.innerHeight) > e.offsetTop) {
-
-            const anim = $(e).attr('ui-animated-scroll') || 'backInUp';
-
-            e.classList.add('animate__animated');
-            e.classList.add('animate__' + anim);
-
-            e.addEventListener('animationend', () => {
-                e.classList.remove('animate__' + anim);
-            })
-
-            e.removeAttribute('ui-animated-scroll');
-
-        }
-
-    }));
+    animate('ui-animated', 'fadeIn');
+    animate('ui-animated-hover', 'bounce', 'mouseenter');
+    animate('ui-animated-scroll', 'backInUp',  'scroll', true, window, (e) => ((window.scrollY + window.innerHeight) > e.offsetTop));
 
 })

@@ -24,5 +24,7 @@
    --%>
 <jsp:include page="/WEB-INF/components/products/details/details.controller.jsp" />
 <section id="ui-navigation-container" ui-title="${locale.info_title}">
-    <ui-details id = "ui-details"> </ui-details>
+
+    <ui-details id="ui-details" ui:id="${param.id}"> </ui-details>
+
 </section>

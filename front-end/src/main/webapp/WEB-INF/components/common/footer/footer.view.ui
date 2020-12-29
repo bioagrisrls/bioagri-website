@@ -68,7 +68,7 @@
                 <div class="col-md-5 text-center text-md-start">
                     <ul>
                         <li>
-                            <a class="ui-navigate" href="/">
+                            <a ui-navigate href="/">
                                 <img src="{{ logo }}" width="48" height="48" />
                                 <span> {{ title }} </span>
                             </a>
@@ -87,7 +87,7 @@
                     <ul>
                         <? for (let page of pages) { ?>
                             <li>
-                                <a class="ui-navigate {{ (current === page.key ? 'active' : '') }}" href="/{{page.key}}">
+                                <a ui-navigate class="{{ (current === page.key ? 'active' : '') }}" href="/{{page.key}}">
                                     {{ page.name }}
                                 </a>
                             </li>
