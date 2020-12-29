@@ -129,15 +129,16 @@ $(document).ready(() => {
         throw new Error("#ui-navigation-container cannot be null");
 
 
-    container.on('click', '.ui-navigate',{}, (e) => {
+    container.on('click', '[ui-navigate]', {}, (e) => {
 
         e.preventDefault();
+        e.stopPropagation();
 
         if (window.location === this.href)
             return;
 
-        if(e.currentTarget.hasAttribute('ui:data'))
-            uiNavigateURL(e.currentTarget.href, eval(e.currentTarget.attributes['ui:data'].value));
+        if(e.currentTarget.hasAttribute('ui-data'))
+            uiNavigateURL(e.currentTarget.href, eval(e.currentTarget.attributes['ui-data'].value));
         else
             uiNavigateURL(e.currentTarget.href);
 

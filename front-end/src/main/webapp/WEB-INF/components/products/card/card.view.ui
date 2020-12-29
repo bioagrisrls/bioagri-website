@@ -34,7 +34,7 @@
             <div class="col-md-10">
                 <div class="card-body">
 
-                    <a href="#" class="ui-navigate float-start">
+                    <a href="#" ui-navigate class="float-start">
                         <h5 class="card-title mb-1">
                             {{ name }}
                         </h5>
@@ -74,7 +74,7 @@
                </div>
                <div class="col-md-10">
                    <div class="card-body">
-                       <a href="#" class="ui-navigate float-start">
+                       <a href="#" ui-navigate class="float-start">
                            <h5 class="card-title mb-1">
                                {{ name }}
                            </h5>

@@ -42,7 +42,7 @@
 
 
         <!-- Navigation Logo -->
-        <a class="ui-navigate navbar-brand nav-link col-4" href="/">
+        <a ui-navigate class="navbar-brand nav-link col-4" href="/">
             <img src="{{logo}}" width="48" height="48" />
             <span class="text-uppercase">{{ title }} (FIXME)</span>
         </a>
@@ -68,7 +68,7 @@
                 <? let i = 0; ?>
                 <? for (let nav of navs) { ?>
                     <li class="nav-item">
-                        <a tabindex="{{i++}}" class="ui-navigate nav-link link-dark text-nowrap {{ (current === nav.key ? 'active' : '') }}" href="/{{nav.key}}">
+                        <a tabindex="{{i++}}" ui-navigate class="nav-link link-dark text-nowrap {{ (current === nav.key ? 'active' : '') }}" href="/{{nav.key}}">
                             <span class="text-uppercase">{{ nav.name }}</span>
                         </a>
                     </li>
@@ -90,10 +90,10 @@
 
                             <h4>Ciao <span id="ui-navbar-user-greetings"></span></h4>
                             <hr>
-                            <a href="#" class="ui-navigate list-group-item list-group-item-action">Il mio account (FIXME)</a>
-                            <a href="#" class="ui-navigate list-group-item list-group-item-action">I miei ordini (FIXME)</a>
-                            <a href="#" class="ui-navigate list-group-item list-group-item-action">La mia lista desideri (FIXME)</a>
-                            <a href="#" class="ui-navigate list-group-item list-group-item-action">Impostazioni (FIXME)</a>
+                            <a href="#" ui-navigate class="list-group-item list-group-item-action">Il mio account (FIXME)</a>
+                            <a href="#" ui-navigate class="list-group-item list-group-item-action">I miei ordini (FIXME)</a>
+                            <a href="#" ui-navigate class="list-group-item list-group-item-action">La mia lista desideri (FIXME)</a>
+                            <a href="#" ui-navigate class="list-group-item list-group-item-action">Impostazioni (FIXME)</a>
                             <a href="#" class="list-group-item list-group-item-action" onclick="disconnect()">Esci (FIXME)</a>
 
                         </ui-login>
