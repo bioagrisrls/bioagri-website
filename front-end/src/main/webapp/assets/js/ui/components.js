@@ -311,13 +311,21 @@ class StatelessComponent extends Component {
 
         if((state || {}).then) {
             state.then(
-                (response) => Component.render(this, this.onRender(), response),
+                (response) => {
+                    Component.render(this, this.onRender(), response);
+                    this.onReady(response);
+                },
                 (reason) => Component.render(this, this.onError(), {})
             );
         } else {
-            Component.render(this, this.onRender(), state || {})
+            Component.render(this, this.onRender(), state || {});
+            this.onReady(state || {});
         }
 
+    }
+
+    onReady() {
+        this.raise('ready');
     }
 
 }
@@ -361,15 +369,15 @@ class StatefulComponent extends Component {
 
         this.$currentState = Object.assign(this.$currentState, state);
 
+        this.onBeforeUpdate(this.state);
+        Component.render(this, this.onRender(), this.state);
+        this.onUpdated(this.state);
+
 
         if(!this.$isReady) {
             this.$isReady = true;
             this.onReady(this.state);
         }
-
-        this.onBeforeUpdate(this.state);
-        Component.render(this, this.onRender(), this.state);
-        this.onUpdated(this.state)
 
     }
 

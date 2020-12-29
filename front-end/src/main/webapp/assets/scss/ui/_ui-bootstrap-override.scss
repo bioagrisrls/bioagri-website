@@ -72,10 +72,18 @@ $link-decoration: none;
 }
 
 .btn-primary {
-  color: $gray-100;
+
+  @extend .bg-light;
+  @extend .shadow-sm;
+  @extend .rounded-0;
+  @extend .text-dark;
+  @extend .border;
+
   &:hover {
-    color: $gray-100;
+    @extend .text-dark;
+    @extend .shadow;
   }
+
 }
 
 .btn-secondary {
@@ -123,7 +131,7 @@ $link-decoration: none;
 
 
 
-@include media-breakpoint-up(sm) {
+@include media-breakpoint-down(sm) {
   .mw-sm-100  { max-width: 100% !important; }
   .mw-sm-75   { max-width:  75% !important; }
   .mw-sm-50   { max-width:  50% !important; }
@@ -139,7 +147,7 @@ $link-decoration: none;
   .text-sm-justify  { text-align: justify; }
 }
 
-@include media-breakpoint-up(md) {
+@include media-breakpoint-down(md) {
   .mw-md-100  { max-width: 100% !important; }
   .mw-md-75   { max-width:  75% !important; }
   .mw-md-50   { max-width:  50% !important; }
@@ -155,7 +163,7 @@ $link-decoration: none;
   .text-md-justify  { text-align: justify; }
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-down(lg) {
   .mw-lg-100  { max-width: 100% !important; }
   .mw-lg-75   { max-width:  75% !important; }
   .mw-lg-50   { max-width:  50% !important; }

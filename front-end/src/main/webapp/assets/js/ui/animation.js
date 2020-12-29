@@ -84,7 +84,7 @@ $(document).on('ui-ready', () => {
     });
 
     animate('ui-animated', 'fadeIn');
-    animate('ui-animated-hover', 'bounce', 'mouseenter');
+    animate('ui-animated-hover', 'headShake', 'mouseenter');
     animate('ui-animated-scroll', 'backInUp',  'scroll', true, window, (e) => ((window.scrollY + window.innerHeight) > e.offsetTop));
 
 })
