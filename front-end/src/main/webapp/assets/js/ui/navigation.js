@@ -33,12 +33,14 @@
  * @param container {HTMLElement || string}
  * @param pushState {boolean}
  */
-const uiNavigateURL = (url, data = {}, container = '#ui-navigation-container', pushState = true) => {
+const uiNavigateURL = (url, data = undefined, container = '#ui-navigation-container', pushState = true) => {
 
     if(!url)
         throw new Error('URL cannot be null');
 
-    url += $.param(data);
+    console.log(data);
+    if(data)
+        url += '?' + $.param(data);
 
 
     if (window.history && window.history.pushState) {
@@ -140,7 +142,7 @@ $(document).ready(() => {
             return;
 
         if(e.currentTarget.hasAttribute('ui-data'))
-            uiNavigateURL(e.currentTarget.href, eval(e.currentTarget.attributes['ui-data'].value));
+            uiNavigateURL(e.currentTarget.href, eval('(() => { return ' + e.currentTarget.attributes['ui-data'].value + '})()'));
         else
             uiNavigateURL(e.currentTarget.href);
 
