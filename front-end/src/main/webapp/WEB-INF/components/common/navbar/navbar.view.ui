@@ -35,8 +35,9 @@
 
 ?>
 
-
+<div>
 <nav class="navbar navbar-expand-lg w-100 sticky-top shadow-sm bg-white">
+
 
     <div class="ui-container container-fluid overflow-visible row">
 
@@ -61,7 +62,7 @@
         </button>
 
 
-        <div id="ui-navbar-links" class="navbar-collapse collapse col-6">
+        <div id="ui-navbar-links" class="navbar-collapse collapse col-md-6 w-auto w-md-100">
 
             <!-- Navigation Links -->
             <ul class="ui-navbar-nav navbar-nav">
@@ -128,3 +129,4 @@
     </div>
 
 </nav>
+</div>

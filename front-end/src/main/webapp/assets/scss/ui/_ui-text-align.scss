@@ -45,7 +45,7 @@ $screen-lg-min: 1200px;
   .text-sm-justify { text-align: justify; }
 }
 
-@media (min-width: $screen-md-min)  and (max-width: $screen-md-max) {
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
   .text-md-left { text-align: left; }
   .text-md-right { text-align: right; }
   .text-md-center { text-align: center; }
