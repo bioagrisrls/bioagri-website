@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--
   ~ MIT License
   ~
@@ -124,3 +125,136 @@
 </div>
 
 <? } ?>
+=======
+<!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2020 BioAgri S.r.l.s.
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  ~
+  -->
+
+<? if($view === 'tiny') { ?>
+
+    <div class="card shadow-sm my-2 rounded-0">
+        <div class="row align-items-center gx-2 mx-2">
+            <div class="col-md-2">
+                <!--<img src="/assets/uploads/img/products/{{id}}/preview.png" class="card-img">-->
+                <img src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" class="card-img" />
+            </div>
+            <div class="col-md-10">
+                <div class="card-body">
+
+                    <a href="#" ui-navigate class="float-start">
+                        <h5 class="card-title mb-1">
+                            {{ name }}
+                        </h5>
+                    </a>
+
+                    <p class="card-text float-end mb-1">
+                        <small class="text-muted">Prezzo (FIXME)</small>
+                    </p>
+
+                    <hr class="clear-end my-3">
+                    <h5 class="float-end">{{ price }} &euro;</h5>
+                    <p class="card-text text-truncate">{{description}}</p>
+
+                    <p class="card-text float-start">
+                        <small class="text-muted">Aggiunto il {{createdAt}} (FIXME)</small>
+                    </p>
+
+                    <select class="form-select form-select-sm float-end w-auto" onchange="$$.setState({ quantity: this.value })">
+                        <option value="0">Rimuovi</option>
+                        <? for(let i = 1; i < 99; i++) { ?>
+                            <option value="{{i}}" {{ i == quantity ? 'selected' : '' }}>{{i}}</option>
+                        <? } ?>
+                    </select>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<? } else if($view === 'row') {?>
+
+    <div class="card ui-container ui-zoom">
+           <div class="row align-items-center gx-2 mx-2">
+               <div class="col-md-2">
+                   <!--<img src="/assets/uploads/img/products/{{id}}/preview.png" class="card-img">-->
+                   <img src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" class="card-img" />
+               </div>
+               <div class="col-md-10">
+                   <div class="card-body">
+                       <a href="#" ui-navigate class="float-start">
+                           <h5 class="card-title mb-1">
+                               {{ name }}
+                           </h5>
+                       </a>
+
+                       <p class="card-text float-end mb-1">
+                           <small class="text-muted">Prezzo</small>
+                       </p>
+
+                       <hr class="clear-end my-3">
+                       <h5 class="float-end">{{ price }} &euro;</h5>
+                       <p class="card-text text-truncate">{{description}}</p>
+
+                       <div class = "row text-center">
+
+                           <span onclick = "$$.onClickAddToWishList(this);" class="col-4 mdi mdi-24px mdi-heart-outline ui-heart-icon-scale-color"> </span>
+                           <span class="col-4 mdi mdi-24px mdi-cart-outline ui-cart-icon-scale-color"> </span>
+                           <span class="col-4 mdi mdi-24px mdi-information-outline ui-information-icon-scale-color"> </span>
+                       </div>
+
+                   </div>
+
+               </div>
+           </div>
+       </div>
+
+<? } else if($view === 'card') {?>
+
+<div class="card rounded shadow-sm border-0">
+
+    <div class="card-body p-4 ui-zoom">
+
+        <img class="img-fluid d-block mx-auto mb-3" src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" />
+        <h5><a href="/details" class="text-dark" ui-navigate ui-data="{ id: {{id}} }">{{ name }}</a></h5>
+        <p class="small text-muted">{{ price }}</p>
+
+        <div class = "row text-center">
+            <?
+            if(wishlist){ ?>
+                <span id = "{{this.id}}-heart-{{i}}" onclick = "$$.onClickAddToWishList(this);" class="col-4 mdi mdi-24px mdi-heart ui-heart-icon-scale-color"> </span>
+            <?}
+            else{ ?>
+                <span id = "{{this.id}}-heart-{{i}}" onclick = "$$.onClickAddToWishList(this);" class="col-4 mdi mdi-24px mdi-heart-outline ui-heart-icon-scale-color"> </span>
+            <?}?>
+            <span class="col-4 mdi mdi-24px mdi-cart-outline ui-cart-icon-scale-color"> </span>
+            <span class="col-4 mdi mdi-24px mdi-information-outline ui-information-icon-scale-color"> </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<? } ?>
+>>>>>>> dev

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="ExternalSystem" externalSystem="GRADLE" externalSystemModuleGroup="it.bioagri" externalSystemModuleType="sourceSet" externalSystemModuleVersion="0.0.1" linkedProjectId=":back-end:test" linkedProjectPath="$MODULE_DIR$/../../../back-end" rootProjectPath="$MODULE_DIR$/../../.." />
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
+    <facet type="web" name="Web">
+      <configuration>
+        <webroots />
+        <sourceRoots />
+      </configuration>
+    </facet>
+  </component>
+</module>
