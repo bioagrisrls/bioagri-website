@@ -112,13 +112,9 @@
         <p class="small text-muted">{{ price }}</p>
 
         <div class = "row text-center">
-            <?
-            if(wishlist){ ?>
-                <span id = "{{this.id}}-heart-{{i}}" onclick = "$$.onClickAddToWishList(this);" class="col-4 mdi mdi-24px mdi-heart ui-heart-icon-scale-color"> </span>
-            <?}
-            else{ ?>
-                <span id = "{{this.id}}-heart-{{i}}" onclick = "$$.onClickAddToWishList(this);" class="col-4 mdi mdi-24px mdi-heart-outline ui-heart-icon-scale-color"> </span>
-            <?}?>
+
+            <span id = "{{this.id}}-heart-{{i}}" onclick = "$$.onClickAddToWishList(this);" class="col-4 mdi mdi-24px mdi-heart ui-heart-icon-scale-color"> </span>
+            <span id = "{{this.id}}-heart-{{i}}" onclick = "$$.onClickAddToWishList(this);" class="col-4 mdi mdi-24px mdi-heart-outline ui-heart-icon-scale-color"> </span>
             <span class="col-4 mdi mdi-24px mdi-cart-outline ui-cart-icon-scale-color"> </span>
             <span class="col-4 mdi mdi-24px mdi-information-outline ui-information-icon-scale-color"> </span>
 
