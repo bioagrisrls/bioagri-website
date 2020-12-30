@@ -34,6 +34,9 @@
         constructor() {
             super(id, {
                 current: 'order',
+                orderText: `${tab_title_order}`,
+                paymentText: `${tab_title_payment}`,
+                summaryText: `${tab_title_summary}`,
             });
         }
 

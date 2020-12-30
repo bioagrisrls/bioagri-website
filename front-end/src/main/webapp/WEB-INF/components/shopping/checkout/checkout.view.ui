@@ -27,35 +27,39 @@
 <div class="mx-auto">
     <div class="d-flex justify-content-center">
 
+        <!-- Tab List -->
         <ul class="nav nav-tabs" id="tab" role="tablist">
 
+            <!-- Order -->
             <li class="nav-item">
                 <a class="nav-link {{ current === 'order' ? 'active' : '' }}" id="tabOrder" role="tab" tabindex="0">
 
                     <ul class="list-inline">
-                        <li class="list-inline-item"><h5>Ordine</h5></li>
+                        <li class="list-inline-item"><h5>{{ orderText }}</h5></li>
                         <li class="list-inline-item"><span class="mdi {{ (current === 'payment' || current === 'summary') ? 'mdi-check-decagram' : 'mdi-shopping' }} mdi-24px"></span></li>
                     </ul>
 
                 </a>
             </li>
 
+            <!-- Payment -->
             <li class="nav-item">
                 <a class="nav-link {{ current === 'payment' ? 'active' : '' }} {{ (current === 'summary' && current !== 'payment') ? '' : 'disabled' }}" id="tabPayment" role="tab" tabindex="1">
 
                     <ul class="list-inline">
-                        <li class="list-inline-item"><h5>Pagamento</h5></li>
+                        <li class="list-inline-item"><h5>{{ paymentText }}</h5></li>
                         <li class="list-inline-item"><span class="mdi {{ current === 'summary' ? 'mdi-check-decagram' : 'mdi-credit-card ' }} mdi-24px"></span></li>
                     </ul>
 
                 </a>
             </li>
 
+            <!-- Summary -->
             <li class="nav-item">
                 <a class="nav-link {{ current === 'summary' ? 'active' : 'disabled' }}" id="tabSummary" role="tab" tabindex="2">
 
                     <ul class="list-inline">
-                        <li class="list-inline-item"><h5>Riepilogo</h5></li>
+                        <li class="list-inline-item"><h5>{{ summaryText }}</h5></li>
                         <li class="list-inline-item"><span class="mdi mdi-beaker mdi-24px"></span></li>
                     </ul>
 
@@ -67,8 +71,10 @@
     </div>
 </div>
 
+<!-- Tab Content -->
 <div class="tab-content" id="tabContent">
 
+    <!-- Order -->
     <div class="tab-pane p-4 fade {{ current === 'order' ? 'show active' : '' }}" id="order" role="tabpanel">
 
         <div class="row">
@@ -91,11 +97,13 @@
 
     </div>
 
+    <!-- Payment -->
     <div class="tab-pane p-4 fade {{ current === 'payment' ? 'show active' : '' }}" id="payment" role="tabpanel">
         <button onclick="$$.goToOrder()">INDIETRO</button>
         <button onclick="$$.goToSummary()">AVANTI</button>
     </div>
 
+    <!-- Summary -->
     <div class="tab-pane p-4 fade {{ current === 'summary' ? 'show active' : '' }}" id="summary" role="tabpanel">
         Contenuto 3 (non raggiungibile, il tab relativo è disabilitato)
     </div>
