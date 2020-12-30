@@ -23,6 +23,11 @@
   ~
   -->
 
+<?
+    const getPrice = (items) {
+        return Object.values(items).reduce((i, v) => i + v.price * v.quantity, 0).toFixed(2);
+    }
+?>
 
 <div>
 
@@ -41,7 +46,7 @@
                                 ui:id="{{item.id}}"
                                 ui:quantity="{{item.quantity}}"
                                 ui:view="tiny"
-                                ui:on-before-update="$$.state.items[this.state.id] = ({ price: this.state.price, quantity: this.state.quantity }); $$.state = { items: $$.state.items }"
+                                ui:on-before-update="$$.state.items[this.state.id] = ({ price: this.state.price, quantity: this.state.quantity }); $$.state = { items: $$.state.items, price: getPrice($$.state.items) }"
                                 ui:on-updated="shopping_cart_add(this.state.id, this.state.quantity)" ui-animated></ui-card>
                     <?
 
@@ -50,8 +55,7 @@
             ?> </div> <?
 
 
-            ?> <div class="w-100 p-4"><h5 class="text-end">Totale ({{ count }} articoli): {{ Object.values(items).reduce((i, v) => i + v.price * v.quantity, 0).toFixed(2) }} &euro;</h5></div> <?
-
+            ?> <div class="w-100 p-4"><h5 class="text-end">Totale ({{ count }} articoli): {{ price }} &euro;</h5></div> <?
 
         }
     ?>
