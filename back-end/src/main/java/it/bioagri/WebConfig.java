@@ -26,20 +26,73 @@
 package it.bioagri;
 
 import ch.qos.logback.classic.Logger;
+import it.bioagri.api.ApiPermissionPublic;
+import it.bioagri.api.ApiResponseStatus;
+import it.bioagri.api.auth.AuthToken;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @Component
 public class WebConfig implements WebMvcConfigurer {
 
     private final static Logger logger = (Logger) LoggerFactory.getLogger(WebConfig.class);
+
+
+    @Component
+    static class Interceptor implements HandlerInterceptor {
+
+        private final AuthToken authToken;
+
+        @Autowired
+        public Interceptor(AuthToken authToken) {
+            this.authToken = authToken;
+        }
+
+
+        @Override
+        public boolean preHandle(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) throws Exception {
+
+            if(Objects.equals(request.getAttribute("John"), "Doe"))
+                return true;
+
+            if(handler instanceof HandlerMethod && ((HandlerMethod) handler).hasMethodAnnotation(ApiPermissionPublic.class))
+                return true;
+
+            if(request.getHeader("X-Auth-Token") == null)
+                throw new ApiResponseStatus(401);
+
+            if(!request.getHeader("X-Auth-Token").equals(authToken.getToken()))
+                throw new ApiResponseStatus(403);
+
+            return true;
+
+        }
+
+
+        @Override
+        public void postHandle(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler, ModelAndView modelAndView) throws Exception {
+
+            if(authToken.isExpired())
+                response.addHeader("X-Auth-Token", authToken.generateToken().getToken());
+
+        }
+
+
+    }
 
 
     private final Interceptor interceptor;

@@ -23,9 +23,11 @@
  *
  */
 
-package it.bioagri;
+package it.bioagri.web;
 
+import ch.qos.logback.classic.Logger;
 import it.bioagri.api.auth.AuthToken;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,8 +42,9 @@ import java.util.Optional;
 
 
 @Component
-public class AccessFilter implements Filter {
+public class Access implements Filter {
 
+    private final static Logger logger = (Logger) LoggerFactory.getLogger(Access.class);
     private final static Map<String, Map.Entry<String, Boolean>> accessWithAuthentication;
 
 
@@ -58,7 +61,7 @@ public class AccessFilter implements Filter {
     private final AuthToken authToken;
 
     @Autowired
-    public AccessFilter(AuthToken authToken) {
+    public Access(AuthToken authToken) {
         this.authToken = authToken;
     }
 
@@ -72,6 +75,8 @@ public class AccessFilter implements Filter {
                     .ofNullable(request.getHeader("Referer"))
                     .orElse(accessWithAuthentication.get(URI).getKey())
             );
+
+            logger.trace("Access denied for URI {} by {}", URI, authToken);
 
         }
 
