@@ -81,7 +81,7 @@ class Component {
         /**
          * Collection map of binds state value in a HTMLElement.
          * @type {{selector: string, value:string}[]}
-         * @example ui:bind="#app:appInfo.name"
+         * @example ui:bind-*="#app:appInfo.name"
          */
         this.binds = [];
 
@@ -94,7 +94,7 @@ class Component {
 
         for(const attr of elem.attributes) {
 
-            if(attr.name !== 'ui:bind')
+            if(!attr.name.startsWith('ui:bind-'))
                 continue;
 
             ((i) =>

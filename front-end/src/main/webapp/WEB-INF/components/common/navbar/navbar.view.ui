@@ -87,7 +87,7 @@
                     </button>
 
                     <div id="ui-navbar-user-popover" class="ui-navbar-popover ui-navbar-user-popover bg-white animate__animated">
-                        <ui-login id="ui-navbar-login" ui:bind="#ui-navbar-user-greetings:$userInfo.name">
+                        <ui-login id="ui-navbar-login" ui:bind-1="#ui-navbar-user-greetings:$userInfo.name">
 
                             <h4>Ciao <span id="ui-navbar-user-greetings"></span></h4>
                             <hr>
