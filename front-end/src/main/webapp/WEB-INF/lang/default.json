@@ -11,6 +11,7 @@
   "page_about" : "Chi siamo",
   "page_support" : "Contatti",
   "page_registration" : "Registrazione",
+  "page_checkout" : "Checkout",
 
   "nav_logo" : "/assets/img/logo/logo-navbar.jpg",
   "nav_home" : "Home",
@@ -70,5 +71,6 @@
   "registration_button" : "Registrati via e-mail",
   "registration_body" : "Oppure",
   "registration_legal" : "Continuando, accetti i Termini di servizio, le Norme sulla privacy e le Norme sull'utilizzo del Data Storage di BioAgri Shop"
+
 
 }
