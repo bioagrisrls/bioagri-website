@@ -34,6 +34,7 @@
 <jsp:include page="/WEB-INF/components/common/form/form.controller.jsp" />
 <jsp:include page="/WEB-INF/components/users/login/login.controller.jsp" />
 <jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp"/>
+<jsp:include page="/WEB-INF/components/emailservice/emailservice.controller.jsp"/>
 
 
 <section id="ui-navigation-container" ui-title="${locale.page_support} &ndash; ${locale.info_title}">
@@ -165,39 +166,7 @@
                         <br>
 
                         <div>
-                            <form action="#" method="post">
-                                <div class="row">
-
-                                    <div class="col-lg-6 mt-3">
-                                        <input type="text" class="form-control" name="name" placeholder="${ locale.support_form_name }">
-                                    </div>
-
-                                    <div class="col-lg-6 mt-3">
-                                        <input type="text" class="form-control" name="surname" placeholder="${ locale.support_form_surname }">
-                                    </div>
-
-                                    <div class="col-lg-6 mt-3">
-                                        <input type="email" class="form-control" name="email" placeholder="${ locale.support_form_email }">
-                                    </div>
-
-                                    <div class="col-lg-6 mt-3">
-                                        <input type="tel" class="form-control" name="phone" placeholder="${ locale.support_form_phone }">
-                                    </div>
-
-                                    <div class="col-12 mt-3">
-                                        <input type="text" class="form-control" name="subject" placeholder="${ locale.support_form_subject }">
-                                    </div>
-
-                                    <div class="col-12 mt-3">
-                                        <textarea name="message" class="form-control" cols="30" rows="8" placeholder="${ locale.support_form_message }"></textarea>
-                                    </div>
-
-                                    <div class="col-12 mt-3">
-                                        <button type="submit" class="btn btn-primary">${ locale.support_form_submit }</button>
-                                    </div>
-
-                                </div>
-                            </form>
+                            <ui-contact-us id = "ui-contact-us"></ui-contact-us>
                         </div>
 
                     </div>

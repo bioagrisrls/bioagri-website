@@ -5,12 +5,14 @@
       <map>
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/common/footer/footer.view.ui" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/common/footer" />
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/common/navbar/navbar.view.ui" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/common/navbar" />
+        <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/emailservice/emailservice.controller.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/emailservice" />
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/products/card/card.controller.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/products/card" />
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/products/catalog/catalog.controller.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/products/catalog" />
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/products/details/details.controller.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/components/products/details" />
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages/about.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages" />
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages/catalog.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages" />
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages/details.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages" />
+        <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages/registration.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages" />
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/router.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views" />
       </map>
     </option>

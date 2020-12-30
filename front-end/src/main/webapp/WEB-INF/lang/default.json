@@ -66,6 +66,8 @@
   "support_maps_subtitle_start" : "Vieni a trovarci",
   "support_maps_subtitle_end" : "in sede",
 
+  "support_contact_us_by_email_button" : "invia",
+
   "registration_slogan_title" : "Registrati per acquistare i nostri prodotti",
   "registration_slogan_subtitle" : "La scoperta inizia qui",
   "registration_button" : "Registrati via e-mail",
@@ -75,4 +77,6 @@
   "tab_title_order" : "Ordine",
   "tab_title_payment" : "Pagamento",
   "tab_title_summary" : "Riepilogo"
+
+
 }
