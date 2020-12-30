@@ -86,7 +86,7 @@
                         <span class="mdi mdi-24px mdi-account"></span>
                     </button>
 
-                    <div id="ui-navbar-user-popover" class="ui-navbar-popover ui-navbar-user-popover bg-light animate__animated">
+                    <div id="ui-navbar-user-popover" class="ui-navbar-popover ui-navbar-user-popover bg-white animate__animated">
                         <ui-login id="ui-navbar-login" ui:bind="#ui-navbar-user-greetings:$userInfo.name">
 
                             <h4>Ciao <span id="ui-navbar-user-greetings"></span></h4>
@@ -116,7 +116,7 @@
 
                     </button>
 
-                    <div id="ui-navbar-cart-popover" class="ui-navbar-popover ui-navbar-cart-popover bg-light animate__animated">
+                    <div id="ui-navbar-cart-popover" class="ui-navbar-popover ui-navbar-cart-popover bg-white animate__animated">
                         <ui-shopping-cart id="ui-navbar-cart-popover-component"></ui-shopping-cart>
                     </div>
 

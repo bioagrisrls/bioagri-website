@@ -60,11 +60,11 @@
   @extend .invisible;
   @extend .position-absolute;
   @extend .p-4;
-  @extend .rounded-3;
+  @extend .rounded-0;
   @extend .border;
   @extend .shadow;
   @extend .h-auto;
-  @extend .bg-light;
+  @extend .bg-white;
 
   top: 125%;
   max-height: 75vh;

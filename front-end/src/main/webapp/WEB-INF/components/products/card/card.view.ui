@@ -25,7 +25,7 @@
 
 <? if($view === 'tiny') { ?>
 
-    <div class="card">
+    <div class="card shadow-sm my-2 rounded-0">
         <div class="row align-items-center gx-2 mx-2">
             <div class="col-md-2">
                 <!--<img src="/assets/uploads/img/products/{{id}}/preview.png" class="card-img">-->
