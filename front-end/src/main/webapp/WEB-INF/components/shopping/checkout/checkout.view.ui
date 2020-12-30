@@ -34,18 +34,18 @@
 
                     <ul class="list-inline">
                         <li class="list-inline-item"><h5>Ordine</h5></li>
-                        <li class="list-inline-item"><span class="mdi mdi-shopping mdi-24px"></span></li>
+                        <li class="list-inline-item"><span class="mdi {{ (current === 'payment' || current === 'summary') ? 'mdi-check-decagram' : 'mdi-shopping' }} mdi-24px"></span></li>
                     </ul>
 
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ current === 'payment' ? 'active' : 'disabled' }}" id="tabPayment" role="tab" tabindex="1">
+                <a class="nav-link {{ current === 'payment' ? 'active' : '' }} {{ (current === 'summary' && current !== 'payment') ? '' : 'disabled' }}" id="tabPayment" role="tab" tabindex="1">
 
                     <ul class="list-inline">
                         <li class="list-inline-item"><h5>Pagamento</h5></li>
-                        <li class="list-inline-item"><span class="mdi mdi-credit-card mdi-24px"></span></li>
+                        <li class="list-inline-item"><span class="mdi {{ current === 'summary' ? 'mdi-check-decagram' : 'mdi-credit-card ' }} mdi-24px"></span></li>
                     </ul>
 
                 </a>
@@ -70,7 +70,25 @@
 <div class="tab-content" id="tabContent">
 
     <div class="tab-pane p-4 fade {{ current === 'order' ? 'show active' : '' }}" id="order" role="tabpanel">
+
+        <div class="row">
+
+            <div class="col col-8">
+                <ui-shopping-cart id="shoppingCart"></ui-shopping-cart>
+                <div class="row mb-4">
+                    <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col" onclick="shopping_cart_clear()">Svuota carrello (FIXME)</button>
+                    <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col">Vai alla cassa (FIXME)</button>
+                </div>
+            </div>
+
+            <div class="col col-4">
+
+            </div>
+
+        </div>
+
         <button onclick="$$.goToPayment()">AVANTI</button>
+
     </div>
 
     <div class="tab-pane p-4 fade {{ current === 'payment' ? 'show active' : '' }}" id="payment" role="tabpanel">

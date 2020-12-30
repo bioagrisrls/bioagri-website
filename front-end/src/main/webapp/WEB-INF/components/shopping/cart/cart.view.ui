@@ -57,12 +57,6 @@
     ?>
 
 
-
-    <div class="row mb-4">
-        <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col" onclick="shopping_cart_clear()">Svuota carrello (FIXME)</button>
-        <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col">Vai alla cassa (FIXME)</button>
-    </div>
-
 </div>
 
 

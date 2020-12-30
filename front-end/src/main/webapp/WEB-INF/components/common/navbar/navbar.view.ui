@@ -117,7 +117,14 @@
                     </button>
 
                     <div id="ui-navbar-cart-popover" class="ui-navbar-popover ui-navbar-cart-popover bg-white animate__animated">
+
                         <ui-shopping-cart id="ui-navbar-cart-popover-component"></ui-shopping-cart>
+
+                        <div class="row mb-4">
+                            <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col" onclick="shopping_cart_clear()">Svuota carrello (FIXME)</button>
+                            <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col">Vai alla cassa (FIXME)</button>
+                        </div>
+
                     </div>
 
                 </div>
