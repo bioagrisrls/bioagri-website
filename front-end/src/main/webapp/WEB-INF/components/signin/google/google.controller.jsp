@@ -53,10 +53,12 @@
 
                         gapi.signin2.render(this.id + '-button', {
                             'scope': 'profile email',
-                            'width': 50,
-                            'height': 50,
+                            'width': 230,
+                            'height': 45,
                             'longtitle': false,
                             'theme': 'light',
+                            'class': 'g-signin2',
+                            'data-longtitle' : 'true',
                             'onsuccess': (s) => console.log("Success", s, s.getBasicProfile()),
                             'onfailure': (e) => console.log("Error", e),
                         });

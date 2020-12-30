@@ -72,18 +72,38 @@
         <div class="ui-container">
             <div class="bg-light shadow border w-50 w-lg-100 mx-auto my-5" ui-animated="backInUp">
                 <div class="my-5">
-                    <h5 class="text-center">BLABLABLABLA...</h5>
 
-                    <div class="row">
-                        <ui-signin-google id="ui-signin-google"   class="col"></ui-signin-google>
-                        <ui-signin-google id="ui-signin-facebook" class="col"></ui-signin-google>
-                        <ui-signin-google id="ui-signin-twitter"  class="col"></ui-signin-google>
+                    <!-- Registration Logo -->
+                    <div class="d-flex justify-content-center">
+                        <img src="${ locale.nav_logo }" width="64" height="64" />
                     </div>
 
+                    <!-- Registration Slogan -->
+                    <h4 class="text-center display-6">${ locale.registration_slogan_title }</h4>
+                    <p class="text-center display-7">${ locale.registration_slogan_subtitle }</p>
 
                     <div class="p-5">
+
+                        <!-- Registration Form -->
                         <ui-registration id="ui-registration"></ui-registration>
+
+                        <!-- Other Access -->
+                        <div class="d-flex justify-content-center">
+                            <ul class="list-unstyled">
+
+                                <li><h6 class="text-center display-8 pb-3">${ locale.registration_body }</h6></li>
+
+                                <!-- Google -->
+                                <li><ui-signin-google id="ui-signin-google"></ui-signin-google></li>
+
+                                <!-- Facebook -->
+
+                                <!-- Instagram -->
+
+                            </ul>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

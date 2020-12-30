@@ -63,5 +63,12 @@
 
   "support_maps_title" : "Dove siamo?",
   "support_maps_subtitle_start" : "Vieni a trovarci",
-  "support_maps_subtitle_end" : "in sede"
+  "support_maps_subtitle_end" : "in sede",
+
+  "registration_slogan_title" : "Registrati per acquistare i nostri prodotti",
+  "registration_slogan_subtitle" : "La scoperta inizia qui",
+  "registration_button" : "Registrati via e-mail",
+  "registration_body" : "Oppure",
+  "registration_legal" : "Continuando, accetti i Termini di servizio, le Norme sulla privacy e le Norme sull'utilizzo del Data Storage di BioAgri Shop"
+
 }

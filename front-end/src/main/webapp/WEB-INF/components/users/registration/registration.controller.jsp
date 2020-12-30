@@ -94,11 +94,13 @@
 
                 legals: {
                     type: 'switch',
-                    label: 'Accetto i termini legali, blabla...',
+                    label: `${locale.registration_legal}`,
                     required: true
                 },
 
-                $submit: 'Registrati', // FIXME
+                submitPosition: 'center',
+
+                $submit: `${locale.registration_button}`,
 
             });
         }
