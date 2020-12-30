@@ -43,7 +43,11 @@
         }
 
         onInit() {
-            $(document).on('shopping-cart-has-changed', this, (e) => e.data.state = { count: shopping_cart_count() });
+            $(document).on('shopping-cart-has-changed', this, (e) => {
+                if(e.data.running) {
+                    e.data.state = { count: shopping_cart_count() };
+                }
+            });
         }
 
         onRender() {

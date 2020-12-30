@@ -126,6 +126,14 @@ class Component {
     }
 
     /**
+     * Check weather a component is still running.
+     * @return {boolean}
+     */
+    get running() {
+        return !!(this.elem);
+    }
+
+    /**
      * Render a template string into HTML Element each state update.
      * @returns {string}
      */
@@ -154,6 +162,13 @@ class Component {
      */
     onInit() {
         this.raise('init');
+    }
+
+    /**
+     * Destroy component's event.
+     */
+    onDestroy() {
+        this.raise('destroy');
     }
 
 
@@ -240,11 +255,10 @@ class Component {
 
 
     /**
-     * Initialize and load registered components into a DOM container.
+     * Initialize and load all registered components or a single component.
      * @param element {string | HTMLElement | Document}
-     * @param runChildren {boolean}
      */
-    static run(element, runChildren = true) {
+    static run(element) {
 
         /**
          * @param e {HTMLElement}
@@ -290,7 +304,12 @@ class Component {
      * Unload all components.
      */
     static destroy() {
+
+        for(const component of window.components)
+            component.onDestroy();
+
         window.components = [];
+
     }
 
 
