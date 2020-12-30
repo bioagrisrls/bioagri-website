@@ -31,8 +31,6 @@
 
 <div>
 
-    <h4>Carrello (FIXME)</h4>
-
     <?
 
         if(shopping_cart_empty()) {
