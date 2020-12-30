@@ -112,7 +112,15 @@
                         case 'text':
                         case 'tel':
                         case 'email':
+                        case 'number':
                         case 'password':
+                        case 'date':
+                        case 'datetime-local':
+                        case 'month':
+                        case 'search':
+                        case 'time':
+                        case 'url':
+                        case 'week':
 
                         ?>
 
@@ -135,7 +143,7 @@
                         case 'switch':
                         case 'radio':
 
-            ?>
+                        ?>
                             <div class="form-check {{v.type === 'switch' ? 'form-switch' : ''}}">
                                 <input type="{{v.type === 'radio' ? 'radio' : 'checkbox'}}" class="form-check-input {{wrong(k)}}" value="" id="{{k}}" {{getprops(v)}} oninput="$$.$check(this)">
                                 <label class="form-check-label" for="{{k}}">{{v.label || ''}}</label>
@@ -146,10 +154,27 @@
                                 <?     if(v.error) { ?> <div class="invalid-feedback">{{v.error}}</div><? } ?>
                                 <? } ?>
                             </div>
-            <?
+                        <?
 
                             break;
 
+
+                        case 'textarea':
+
+                        ?>
+
+                            <div>
+                                <label for="{{k}}" class="form-label">{{v.label || ''}}</label>
+                                <textarea class="form-control {{wrong(k)}}" id="{{k}}" {{getprops(v)}} oninput="$$.$check(this)"></textarea>
+                                <? if(wrong(k)) { ?>
+                                <?     if(v.wrong) { ?> <div class="invalid-feedback">{{v.wrong}}</div><? } ?>
+                                <? } else { ?>
+                                <?     if(v.ok)    { ?> <div class="valid-feedback">{{v.ok}}</div>     <? } ?>
+                                <?     if(v.error) { ?> <div class="invalid-feedback">{{v.error}}</div><? } ?>
+                                <? } ?>
+                            </div>
+
+                        <?
 
                         default:
                             break;
