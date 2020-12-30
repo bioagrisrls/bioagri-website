@@ -56,7 +56,26 @@
         }
 
         onReady(state) {
+
             this.fetchNextGroup();
+
+
+            $(window).one('scroll', this, function handler(e) {
+
+                const wy = window.pageYOffset + window.innerHeight;
+                const ty = e.data.elem.offsetTop + e.data.elem.offsetHeight;
+
+                if (e.data.state.hasMoreProducts && (wy > ty)) {
+
+                    e.data.fetchNextGroup().then(
+                        () => $(window).one('scroll', e.data, handler));
+
+                } else {
+                    $(window).one('scroll', e.data, handler);
+                }
+
+            });
+
         }
 
         onRender() {
@@ -70,6 +89,8 @@
         onError() {
             return `${components.products_catalog_error}`
         }
+
+
 
         fetchNextGroup() {
 
@@ -98,7 +119,7 @@
                 query.push('sorted-by=' + this.state.selectedSort);
 
 
-                api('/products/count?' + query.join('&'), 'GET', {}, false)
+                return api('/products/count?' + query.join('&'), 'GET', {}, false)
                     .then(check => check.text())
                     .then(count => {
 
@@ -133,6 +154,8 @@
 
 
             }
+
+
         }
 
         $selectCategory(button) {
@@ -213,10 +236,6 @@
 
         $changeView(button) {
             this.setState({ selectedView: button.value });
-        }
-
-        $more(event) {
-            this.fetchNextGroup();
         }
 
     });

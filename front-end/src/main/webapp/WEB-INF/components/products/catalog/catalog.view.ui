@@ -205,6 +205,4 @@
 
     </div>
 
-    <button id="more-item" onclick="$$.$more(event)" type="button" class="btn btn-info">Di Piu'</button>
-
 </div>
