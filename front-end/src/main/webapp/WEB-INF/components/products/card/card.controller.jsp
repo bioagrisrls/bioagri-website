@@ -32,13 +32,14 @@
     Component.register('ui-card', (id, props) => new class extends StatefulComponent {
 
         constructor() {
-            super(id, api("/products/" + (props.id || 0)).then(response => {
-                return Object.assign(response, {
-                    $view: props.view || 'card',
-                    quantity: props.quantity || 0,
-                });
-            }));
-        }
+            super(id,
+                api("/products/" + (props.id || 0)).then(response => {
+                    return Object.assign(response, {
+                           $view: props.view || 'card',
+                           quantity: props.quantity || 0,
+                    })}))
+            }
+
 
         onRender() {
             return `${components.products_card}`
@@ -50,6 +51,16 @@
 
         onError() {
             return `${components.products_card_error}`
+        }
+
+        getUserWishList(){
+
+            api("/" +  sessionStorage.getItem('X-Auth-UserInfo-Id') + "/wishlist/")
+        }
+
+        onClickAddToWishList(element){
+
+                element.toggleClass('mdi-heart-outline').toggleClass('mdi-heart');
         }
 
     });
