@@ -6,7 +6,7 @@ if (clickable === "false") {
 
     for (let i = feedbackavg; i < 5; i++) {
         ?>
-        <span id = "{{this.id}}-star-{{i}}"class = "mdi mdi-24px mdi-star-outline ui-star-icon-scale-color"> </span>
+        <span id = "{{this.id}}-star-{{i}}"class = "mdi mdi-24px mdi-star-outline"> </span>
         <?
     }
 }
