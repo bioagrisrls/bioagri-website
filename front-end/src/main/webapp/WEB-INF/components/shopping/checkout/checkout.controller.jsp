@@ -37,7 +37,11 @@
                 orderText: `${locale.checkout_tab_title_order}`,
                 paymentText: `${locale.checkout_tab_title_payment}`,
                 summaryText: `${locale.checkout_tab_title_summary}`,
-                ventText: `${locale.checkout_vent_cart}`,
+                totalTextTop: `${locale.checkout_total_top}`,
+                subTotalText: `${locale.checkout_subtotal}`,
+                shipmentText: `${locale.checkout_shipment}`,
+                totalTextBottom: `${locale.checkout_total_bottom}`,
+                confirmOrderButton: `${locale.checkout_confirm}`,
             });
         }
 
