@@ -11,6 +11,7 @@
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages/about.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages" />
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages/catalog.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages" />
         <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages/details.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/pages" />
+        <entry key="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views/router.jsp" value="file://$PROJECT_DIR$/front-end/src/main/webapp/WEB-INF/views" />
       </map>
     </option>
   </component>
