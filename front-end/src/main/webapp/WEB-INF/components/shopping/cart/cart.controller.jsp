@@ -50,6 +50,10 @@
             return `${components.shopping_cart}`
         }
 
+        getPrice(items, addend = 0) {
+            return Object.values(items).reduce((i, v) => i + v.price * v.quantity, addend).toFixed(2);
+        }
+
     });
 
     /* TODO: Remove this */
