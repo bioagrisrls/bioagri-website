@@ -34,9 +34,10 @@
         constructor() {
             super(id, {
                 current: 'order',
-                orderText: `${locale.tab_title_order}`,
-                paymentText: `${locale.tab_title_payment}`,
-                summaryText: `${locale.tab_title_summary}`,
+                orderText: `${locale.checkout_tab_title_order}`,
+                paymentText: `${locale.checkout_tab_title_payment}`,
+                summaryText: `${locale.checkout_tab_title_summary}`,
+                ventText: `${locale.checkout_vent_cart}`,
             });
         }
 
