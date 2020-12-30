@@ -72,7 +72,8 @@
   "registration_body" : "Oppure",
   "registration_legal" : "Continuando, accetti i Termini di servizio, le Norme sulla privacy e le Norme sull'utilizzo del Data Storage di BioAgri Shop",
 
-  "tab_title_order" : "Ordine",
-  "tab_title_payment" : "Pagamento",
-  "tab_title_summary" : "Riepilogo"
+  "checkout_tab_title_order" : "Ordine",
+  "checkout_tab_title_payment" : "Pagamento",
+  "checkout_tab_title_summary" : "Riepilogo",
+  "checkout_vent_cart" : "Svuota Carrello"
 }
