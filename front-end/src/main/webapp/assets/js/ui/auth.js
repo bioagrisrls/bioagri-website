@@ -89,7 +89,7 @@ const disconnect = async (redirectToHome= true) => {
             localStorage.removeItem('X-Auth-Password');
 
             if(redirectToHome)
-                uiNavigateURL('/');
+                navigate('/');
 
 
             $(document).trigger('auth-disconnection-occurred');
