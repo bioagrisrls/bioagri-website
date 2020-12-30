@@ -26,6 +26,8 @@
 
 <div>
 
+    <h4>Carrello (FIX ME)</h4>
+
     <?
 
         if(shopping_cart_empty()) {
