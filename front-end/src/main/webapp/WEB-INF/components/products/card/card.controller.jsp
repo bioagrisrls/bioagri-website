@@ -34,7 +34,7 @@
         constructor() {
             super(id,
                 api("/products/" + (props.id || 0))
-                        .then(r => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist?filter-by=id&filter-value='+props.id+'')
+                        .then(r => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist?filter-by=id&filter-value='+props.id)
                         .then(r2 => {
                             return Object.assign(r,r2, {
                                 $view: props.view || 'card',
