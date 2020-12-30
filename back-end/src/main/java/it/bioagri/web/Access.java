@@ -36,6 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -50,10 +51,10 @@ public class Access implements Filter {
 
     static {
 
-        accessWithAuthentication = new HashMap<>() {{
-            put("/checkout", Map.entry("/catalog", true));
-            put("/registration", Map.entry("/catalog", false));
-        }};
+        accessWithAuthentication = Map.of (
+            "/checkout",     Map.entry("/catalog", true),
+            "/registration", Map.entry("/home", false)
+        );
 
     }
 
