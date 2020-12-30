@@ -118,10 +118,9 @@ public class UserDaoImpl extends UserDao {
                         s.setString(7, value.getSurname());
                         s.setShort(8, (short) value.getGender().ordinal());
                         s.setString(9, value.getPhone());
-                        s.setString(10, value.getPhone());
-                        s.setDate(11, value.getBirth());
-                        s.setTimestamp(12, value.getCreatedAt());
-                        s.setTimestamp(13, value.getUpdatedAt());
+                        s.setDate(10, value.getBirth());
+                        s.setTimestamp(11, value.getCreatedAt());
+                        s.setTimestamp(12, value.getUpdatedAt());
                     });
 
 
@@ -159,11 +158,10 @@ public class UserDaoImpl extends UserDao {
                         s.setString(6, newValue.getSurname());
                         s.setShort(7, (short) newValue.getGender().ordinal());
                         s.setString(8, newValue.getPhone());
-                        s.setString(9, newValue.getPhone());
-                        s.setDate(10, newValue.getBirth());
-                        s.setTimestamp(11, newValue.getCreatedAt());
-                        s.setTimestamp(12, newValue.getUpdatedAt());
-                        s.setLong(13, oldValue.getId());
+                        s.setDate(9, newValue.getBirth());
+                        s.setTimestamp(10, newValue.getCreatedAt());
+                        s.setTimestamp(11, newValue.getUpdatedAt());
+                        s.setLong(12, oldValue.getId());
                     });
 
 

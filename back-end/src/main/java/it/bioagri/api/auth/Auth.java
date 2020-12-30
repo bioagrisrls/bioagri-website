@@ -30,18 +30,26 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import it.bioagri.api.ApiPermissionPublic;
+import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.models.User;
+import it.bioagri.models.UserRole;
+import it.bioagri.models.UserStatus;
 import it.bioagri.persistence.DataSource;
+import it.bioagri.persistence.DataSourceSQLException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.net.URI;
 
 
 @RestController
@@ -52,11 +60,13 @@ public final class Auth {
 
     private final AuthToken authToken;
     private final DataSource dataSource;
+    private final ServletContext servletContext;
 
     @Autowired
-    public Auth(AuthToken authToken, DataSource dataSource) {
+    public Auth(AuthToken authToken, DataSource dataSource, ServletContext servletContext) {
         this.authToken = authToken;
         this.dataSource = dataSource;
+        this.servletContext = servletContext;
     }
 
 
@@ -91,13 +101,13 @@ public final class Auth {
     }
 
 
-    @Operation(description = "Check whether a user is authenticated.")
+    @Operation(description = "Check wheather a user is authenticated.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User authenticated"),
             @ApiResponse(responseCode = "401", description = "User not authenticated"),
             @ApiResponse(responseCode = "403", description = "User has invalid/expired token"),
     })
-    @RequestMapping("verify")
+    @GetMapping("verify")
     public ResponseEntity<String> verify() {
         return ResponseEntity.ok().build();
     }
@@ -107,7 +117,7 @@ public final class Auth {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User disconnected"),
     })
-    @RequestMapping("disconnect")
+    @GetMapping("disconnect")
     public void disconnect(HttpSession session) {
 
         logger.trace("Authentication closed from {}", authToken);
@@ -118,6 +128,62 @@ public final class Auth {
         authToken.setTimestamp(null);
 
         session.invalidate();
+
+    }
+
+
+    @Operation(description = "Register a new user from a user client.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "User created"),
+            @ApiResponse(responseCode = "400", description = "User has invalid or empty required data"),
+            @ApiResponse(responseCode = "403", description = "User has invalid role/status"),
+            @ApiResponse(responseCode = "406", description = "User mail already registered"),
+    })
+    @PostMapping("signup")
+    @ApiPermissionPublic
+    public void register(HttpServletRequest request, HttpServletResponse response, @RequestBody User user) {
+
+        logger.trace("Registration attempt from {} {} <{}>", user.getName(), user.getSurname(), user.getMail());
+
+
+//        if (user.getName().isBlank())
+//            throw new ApiResponseStatus(400);
+//
+//        if (user.getSurname().isBlank())
+//            throw new ApiResponseStatus(400);
+//
+//        if (user.getMail().isBlank())
+//            throw new ApiResponseStatus(400);
+//
+//        if (user.getPassword().isBlank() || user.getPassword().length() != 128) // SHA-512
+//            throw new ApiResponseStatus(400);
+//
+//        if (user.getPhone().isBlank())
+//            throw new ApiResponseStatus(400);
+//
+//
+//        if (!user.getRole().equals(UserRole.CUSTOMER))
+//            throw new ApiResponseStatus(403);
+//
+//        if (!user.getStatus().equals(UserStatus.WAIT_FOR_MAIL))
+//            throw new ApiResponseStatus(403);
+//
+//        if (dataSource.getUserRepository().findByMail(user.getMail()).isPresent())
+//            throw new ApiResponseStatus(406);
+
+
+        try {
+
+            request.setAttribute("John", "Doe");
+
+            servletContext.getRequestDispatcher("/api/users")
+                    .forward(request, response);
+
+        } catch (IOException | ServletException e) {
+            logger.error(e.getMessage(), e);
+            throw new ApiResponseStatus(500);
+        }
+
 
     }
 

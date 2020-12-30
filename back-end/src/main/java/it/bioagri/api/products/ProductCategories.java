@@ -31,7 +31,7 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Category;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
-import it.bioagri.utils.ApiUtils;
+import it.bioagri.utils.ApiRequestQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -77,8 +77,8 @@ public class ProductCategories {
                     .orElseThrow(() -> new ApiResponseStatus(400))
                     .getCategories(dataSource)
                     .stream()
-                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
-                    .sorted((a, b) -> ApiUtils.sortedBy(sortedBy, order, a, b))
+                    .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
+                    .sorted((a, b) -> ApiRequestQuery.sortedBy(sortedBy, order, a, b))
                     .skip(skip)
                     .limit(limit)
                     .collect(Collectors.toList()));

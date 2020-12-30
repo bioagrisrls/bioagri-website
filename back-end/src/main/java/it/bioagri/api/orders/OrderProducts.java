@@ -35,7 +35,7 @@ import it.bioagri.models.Product;
 import it.bioagri.models.ProductQuantity;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
-import it.bioagri.utils.ApiUtils;
+import it.bioagri.utils.ApiRequestQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -78,7 +78,7 @@ public class OrderProducts {
                     .orElseThrow(() -> new ApiResponseStatus(400))
                     .getProducts(dataSource)
                     .stream()
-                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i.getKey(), dataSource))
+                    .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i.getKey(), dataSource))
                     .skip(skip)
                     .limit(limit)
                     .collect(Collectors.toList()));

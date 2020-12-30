@@ -32,7 +32,7 @@ import it.bioagri.api.ApiPermissionType;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.ProductImage;
 import it.bioagri.persistence.DataSource;
-import it.bioagri.utils.ApiUtils;
+import it.bioagri.utils.ApiRequestQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -88,8 +88,8 @@ public class ProductImages {
                     Files.walk(imagesPath)
                             .filter(i -> !i.equals(imagesPath))
                             .map(i -> new ProductImage(rootPath.relativize(i).toString()))
-                            .filter(i -> ApiUtils.filterBy(filterBy, filterValue, i, dataSource))
-                            .sorted((a, b) -> ApiUtils.sortedBy(sortedBy, order, a, b))
+                            .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
+                            .sorted((a, b) -> ApiRequestQuery.sortedBy(sortedBy, order, a, b))
                             .skip(skip)
                             .limit(limit)
                             .collect(Collectors.toList()));
