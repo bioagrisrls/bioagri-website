@@ -35,6 +35,9 @@
         constructor() {
             super(id, {
                 items: {},
+                price: 0,
+                shipment: 10, // FIXME
+                total: 0,
                 count: 0,
             });
         }

@@ -80,20 +80,64 @@
         <div class="row">
 
             <div class="col col-8">
-                <ui-shopping-cart id="shoppingCart"></ui-shopping-cart>
-                <div class="row mb-4">
-                    <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col" onclick="shopping_cart_clear()">Svuota carrello (FIXME)</button>
-                    <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col">Vai alla cassa (FIXME)</button>
-                </div>
+
+                <!-- Shopping Cart -->
+                <ui-shopping-cart
+                        id="shoppingCart"
+                        ui:bind="#{{ this.id }}-info-price:price"
+                        ui:bind="#{{ this.id }}-info-shipment:shipment"
+                        ui:bind="#{{ this.id }}-info-total:total">
+                </ui-shopping-cart>
+
             </div>
 
+            <!-- Order Info Box -->
             <div class="col col-4">
+
+                <div class="row">
+
+                    <ul class="list-unstyled">
+
+                        <li><h4 class="py-4">{{ totalTextTop }}</h4></li>
+
+                        <li>
+                            <p class="text-left">
+                                {{ subTotalText }}
+                                <span class="text-right">
+                                    <span id="{{ this.id }}-info-price"></span>
+                                </span>
+                            </p>
+                        </li>
+
+                        <li>
+                            <p class="text-left">
+                                {{ shipmentText }}
+                                <span class="text-right">
+                                    <span id="{{ this.id }}-info-shipment"></span>
+                                </span>
+                            </p>
+                        </li>
+
+                        <li>
+                            <p class="text-left">
+                                {{ totalTextBottom }}
+                                <span class="text-right">
+                                    <span id="{{ this.id }}-info-total"></span>
+                                </span>
+                            </p>
+                        </li>
+
+                        <li>
+                            <button class="btn btn-primary btn-sm" onclick="$$.goToPayment()">{{ confirmOrderButton }}</button>
+                        </li>
+
+                    </ul>
+
+                </div>
 
             </div>
 
         </div>
-
-        <button onclick="$$.goToPayment()">AVANTI</button>
 
     </div>
 

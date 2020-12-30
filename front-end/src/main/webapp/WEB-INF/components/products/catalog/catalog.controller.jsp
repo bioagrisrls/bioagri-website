@@ -59,16 +59,21 @@
 
             this.fetchNextGroup();
 
-
             $(window).one('scroll', this, function handler(e) {
 
-                const wy = window.pageYOffset + window.innerHeight;
-                const ty = e.data.elem.offsetTop + e.data.elem.offsetHeight;
+                if(!e.data.elem) {
 
-                if (e.data.state.hasMoreProducts && (wy > ty)) {
+                    const wy = window.pageYOffset + window.innerHeight;
+                    const ty = e.data.elem.offsetTop + e.data.elem.offsetHeight;
 
-                    e.data.fetchNextGroup().then(
-                        () => $(window).one('scroll', e.data, handler));
+                    if (e.data.state.hasMoreProducts && (wy > ty)) {
+
+                        e.data.fetchNextGroup().then(
+                            () => $(window).one('scroll', e.data, handler));
+
+                    } else {
+                        $(window).one('scroll', e.data, handler);
+                    }
 
                 } else {
                     $(window).one('scroll', e.data, handler);

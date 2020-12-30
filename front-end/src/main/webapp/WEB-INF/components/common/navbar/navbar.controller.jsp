@@ -53,6 +53,9 @@
 
             $(document).on('shopping-cart-has-changed', this, (e) => {
 
+                if(!e.data.elem)
+                    return;
+
                 $(e.data.elem).find('#ui-navbar-cart-count').each((i, e) => {
 
                     if(shopping_cart_empty())

@@ -66,17 +66,18 @@
   "support_maps_subtitle_start" : "Vieni a trovarci",
   "support_maps_subtitle_end" : "in sede",
 
-  "support_contact_us_by_email_button" : "invia",
-
   "registration_slogan_title" : "Registrati per acquistare i nostri prodotti",
   "registration_slogan_subtitle" : "La scoperta inizia qui",
   "registration_button" : "Registrati via e-mail",
   "registration_body" : "Oppure",
   "registration_legal" : "Continuando, accetti i Termini di servizio, le Norme sulla privacy e le Norme sull'utilizzo del Data Storage di BioAgri Shop",
 
-  "tab_title_order" : "Ordine",
-  "tab_title_payment" : "Pagamento",
-  "tab_title_summary" : "Riepilogo"
-
-
+  "checkout_tab_title_order" : "Ordine",
+  "checkout_tab_title_payment" : "Pagamento",
+  "checkout_tab_title_summary" : "Riepilogo",
+  "checkout_total_top" : "Totale",
+  "checkout_subtotal" : "Subtotale",
+  "checkout_shipment" : "Spedizione",
+  "checkout_total_bottom" : "Totale(IVA incluse)",
+  "checkout_confirm" : "Procedi"
 }
