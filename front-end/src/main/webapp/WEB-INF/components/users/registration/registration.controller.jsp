@@ -141,7 +141,7 @@
                                 if(window.history.length)
                                     window.history.back();
                                 else
-                                    uiNavigateURL('/home');
+                                    navigate('/home');
 
                             })
                         )
