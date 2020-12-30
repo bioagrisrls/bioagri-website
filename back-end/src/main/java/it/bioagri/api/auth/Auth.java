@@ -117,7 +117,7 @@ public final class Auth {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User disconnected"),
     })
-    @GetMapping("disconnect")
+    @PostMapping("disconnect")
     public void disconnect(HttpSession session) {
 
         logger.trace("Authentication closed from {}", authToken);
@@ -146,30 +146,30 @@ public final class Auth {
         logger.trace("Registration attempt from {} {} <{}>", user.getName(), user.getSurname(), user.getMail());
 
 
-//        if (user.getName().isBlank())
-//            throw new ApiResponseStatus(400);
-//
-//        if (user.getSurname().isBlank())
-//            throw new ApiResponseStatus(400);
-//
-//        if (user.getMail().isBlank())
-//            throw new ApiResponseStatus(400);
-//
-//        if (user.getPassword().isBlank() || user.getPassword().length() != 128) // SHA-512
-//            throw new ApiResponseStatus(400);
-//
-//        if (user.getPhone().isBlank())
-//            throw new ApiResponseStatus(400);
-//
-//
-//        if (!user.getRole().equals(UserRole.CUSTOMER))
-//            throw new ApiResponseStatus(403);
-//
-//        if (!user.getStatus().equals(UserStatus.WAIT_FOR_MAIL))
-//            throw new ApiResponseStatus(403);
-//
-//        if (dataSource.getUserRepository().findByMail(user.getMail()).isPresent())
-//            throw new ApiResponseStatus(406);
+        if (user.getName().isBlank())
+            throw new ApiResponseStatus(400);
+
+        if (user.getSurname().isBlank())
+            throw new ApiResponseStatus(400);
+
+        if (user.getMail().isBlank())
+            throw new ApiResponseStatus(400);
+
+        if (user.getPassword().isBlank() || user.getPassword().length() != 128) // SHA-512
+            throw new ApiResponseStatus(400);
+
+        if (user.getPhone().isBlank())
+            throw new ApiResponseStatus(400);
+
+
+        if (!user.getRole().equals(UserRole.CUSTOMER))
+            throw new ApiResponseStatus(403);
+
+        if (!user.getStatus().equals(UserStatus.WAIT_FOR_MAIL))
+            throw new ApiResponseStatus(403);
+
+        if (dataSource.getUserRepository().findByMail(user.getMail()).isPresent())
+            throw new ApiResponseStatus(406);
 
 
         try {
