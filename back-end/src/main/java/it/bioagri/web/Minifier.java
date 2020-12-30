@@ -63,6 +63,7 @@ public class Minifier implements Filter {
 
             if (((HttpServletRequest) request).getRequestURI().startsWith("/assets")) {
 
+
                 chain.doFilter(request, response);
                 return;
 
@@ -123,10 +124,6 @@ public class Minifier implements Filter {
                 response.getOutputStream().write(Page.minimize(wrapper.toString(), false).getBytes(StandardCharsets.UTF_8));
 
             }
-
-        } else {
-
-            chain.doFilter(request, response);
 
         }
 

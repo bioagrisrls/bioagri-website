@@ -24,7 +24,7 @@
   -->
 
 <?
-    const getPrice = (items) {
+    const getPrice = (items) => {
         return Object.values(items).reduce((i, v) => i + v.price * v.quantity, 0).toFixed(2);
     }
 ?>
