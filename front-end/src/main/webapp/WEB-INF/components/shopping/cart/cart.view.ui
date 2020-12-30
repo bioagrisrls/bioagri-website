@@ -46,7 +46,7 @@
                                 ui:id="{{item.id}}"
                                 ui:quantity="{{item.quantity}}"
                                 ui:view="tiny"
-                                ui:on-before-update="$$.state.items[this.state.id] = ({ price: this.state.price, quantity: this.state.quantity }); $$.state = { items: $$.state.items, price: getPrice($$.state.items) }"
+                                ui:on-before-update="$$.state.items[this.state.id] = ({ price: this.state.price, quantity: this.state.quantity }); $$.state = { items: $$.state.items, price: getPrice($$.state.items), total: getPrice($$.state.items) + $$.state.shipment }"
                                 ui:on-updated="shopping_cart_add(this.state.id, this.state.quantity)" ui-animated></ui-card>
                     <?
 
