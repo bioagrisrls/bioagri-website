@@ -44,7 +44,7 @@ window.registered = window.registered || [];
  * Load registered components when DOM is ready.
  */
 $(document).ready(() => {
-    Component.run(document);
+    Component.run();
 });
 
 
@@ -258,12 +258,12 @@ class Component {
      * Initialize and load all registered components or a single component.
      * @param element {string | HTMLElement | Document}
      */
-    static run(element) {
+    static run(element = undefined) {
 
         /**
          * @param e {HTMLElement}
          */
-        const $init = (e) => {
+        const init = (e) => {
 
             if(window.components[e.id]) {
 
@@ -288,22 +288,25 @@ class Component {
 
         }
 
-        if(runChildren) {
+        if(element !== undefined) {
 
-            for (let component of Object.keys(window.registered))
-                $(element).find(component).each((i, v) => $init($(v).get(0)));
+            init($(element).get(0));
 
         } else {
 
-            $init($(element).get(0));
+            for (let component of Object.keys(window.registered))
+                $(component).each((i, v) => init($(v).get(0)));
 
         }
+
     }
 
     /**
      * Unload all components.
      */
     static destroy() {
+
+        console.debug("Unloading all components");
 
         for(const component of window.components)
             component.onDestroy();
