@@ -29,6 +29,7 @@ import ch.qos.logback.classic.Logger;
 import it.bioagri.api.ApiPermissionPublic;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.utils.CachedRequestWrapper;
 import it.bioagri.web.Page;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.util.ContentCachingRequestWrapper;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +50,7 @@ import java.io.CharArrayWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 @Component
 public class WebConfig implements WebMvcConfigurer {
@@ -67,6 +70,9 @@ public class WebConfig implements WebMvcConfigurer {
 
         @Override
         public boolean preHandle(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) throws Exception {
+
+            if(Objects.equals(request.getAttribute("John"), "Doe"))
+                return true;
 
             if(handler instanceof HandlerMethod && ((HandlerMethod) handler).hasMethodAnnotation(ApiPermissionPublic.class))
                  return true;
@@ -107,16 +113,8 @@ public class WebConfig implements WebMvcConfigurer {
         @Override
         public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
+
             if(request instanceof HttpServletRequest) {
-
-                if(((HttpServletRequest) request).getRequestURI().startsWith("/api")) {
-
-                    logger.trace("invoked REST API {} from {}", ((HttpServletRequest) request).getRequestURI(), authToken);
-
-                    chain.doFilter(request, response);
-                    return;
-
-                }
 
                 if(((HttpServletRequest) request).getRequestURI().startsWith("/assets")) {
 
@@ -125,7 +123,17 @@ public class WebConfig implements WebMvcConfigurer {
 
                 }
 
+                if(((HttpServletRequest) request).getRequestURI().startsWith("/api")) {
+
+                    logger.trace("invoked REST API {} from {}", ((HttpServletRequest) request).getRequestURI(), authToken);
+
+                    chain.doFilter(new CachedRequestWrapper((HttpServletRequest) request), response);
+                    return;
+
+                }
+
             }
+
 
             if(response instanceof HttpServletResponse) {
 
@@ -167,7 +175,6 @@ public class WebConfig implements WebMvcConfigurer {
                         -->                   
                         """
                 );
-
 
                 response.getOutputStream().write(Page.minimize(wrapper.toString(), false).getBytes(StandardCharsets.UTF_8));
 

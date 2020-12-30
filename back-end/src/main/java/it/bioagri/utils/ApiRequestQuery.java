@@ -34,9 +34,9 @@ import java.lang.reflect.Method;
 import java.sql.Timestamp;
 import java.util.List;
 
-public final class ApiUtils {
+public final class ApiRequestQuery {
 
-    private ApiUtils() { }
+    private ApiRequestQuery() { }
 
 
     private static <T> boolean doFilter(String name, String value, T instance, DataSource dataSource) {
