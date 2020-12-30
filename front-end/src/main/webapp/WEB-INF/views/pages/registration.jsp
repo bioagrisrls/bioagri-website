@@ -74,7 +74,7 @@
                 <div class="my-5">
 
                     <!-- Registration Logo -->
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center pt-4">
                         <img src="${ locale.nav_logo }" width="64" height="64" />
                     </div>
 
