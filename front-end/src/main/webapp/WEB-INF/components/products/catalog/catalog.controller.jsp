@@ -41,7 +41,6 @@
                                         products: [],
                                         categories: r1,
                                         tags: r2,
-                                        skip: 0,
                                         count: 0,
                                         selectedSort : 'createdAt',
                                         selectedView : 'card',
@@ -73,76 +72,51 @@
 
         fetchNextGroup() {
 
-            const fetchSize = 9;
-            const products = this.state.products;
-
             if(this.state.hasMoreProducts) {
 
-                const query = [];
+                let response = this.state.products;
 
-                if(this.state.search) {
-                    query.push('filter-by=name');
-                    query.push('filter-val=' + '(?i)(.)*(' + this.state.search + '(.)*)');
+                let p1 = '/products?skip=' + (+this.state.count + 9) + '&limit=9' ;
+
+
+                if(this.state.search !== ''){
+                    p1 = p1 + '&filter-by=name&filter-val=' + '(?i)(.)*(' + this.state.search + '(.)*)';
                 }
 
-                if(this.state.category) {
-                    query.push('filter-by=categories.id');
-                    query.push('filter-val=' + this.state.category);
+                if(this.state.category !== ''){
+                    p1 = p1 + '&filter-by=categories.id&filter-val=' + this.state.category;
                 }
 
-                if(this.state.tag) {
-                    query.push('filter-by=tags.id');
-                    query.push('filter-val=' + this.state.tag);
+                if(this.state.tag !== ''){
+                    p1 = p1 + '&filter-by=tags.id&filter-val=' + this.state.tag;
                 }
 
-                query.push('sorted-by=' + this.state.selectedSort);
 
+                api(p1 + '&sorted-by=' + this.state.selectedSort).then(r => {
 
-                api('/products/count?' + query.join('&'), 'GET', {}, false)
-                    .then(check => check.text())
-                    .then(count => {
+                    r.forEach(e => response.push(e.id));
 
-                        if(+count === 0) {
-
-                            this.state = {
-                                hasMoreProducts: false
-                            };
-
-                        } else {
-
-                            query.push('skip=' + this.state.skip);
-                            query.push('limit=' + fetchSize);
-
-                            api('/products?' + query.join('&'))
-                                .then(response => {
-
-                                    (response || []).forEach(e => products.push(e.id));
-
-                                    this.state = {
-                                        products: products,
-                                        skip: this.state.skip + (response || []).length,
-                                        count: count,
-                                        hasMoreProducts: (response || []).length === fetchSize
-                                    };
-
-                                });
-
-                        }
-
+                    this.setState({
+                        products : response
                     });
 
+                    if (response.length < this.state.count + 9) {
+                        this.setState({hasMoreProducts : false});
+                    }
 
+                    this.setState({count : response.length});
+
+                });
             }
         }
 
         $selectCategory(button) {
 
             this.setState({
-                category: button.value,
-                products: [],
-                skip: 0,
-                count: 0,
-                hasMoreProducts: true
+                category  : button.value,
+                products : [],
+                count : 0,
+                hasMoreProducts : true
             });
 
             this.fetchNextGroup();
@@ -152,11 +126,10 @@
         $selectTag(button) {
 
             this.setState({
-                tag: button.value,
-                products: [],
-                skip: 0,
-                count: 0,
-                hasMoreProducts: true
+                tag  : button.value,
+                products : [],
+                count : 0,
+                hasMoreProducts : true
             });
 
             this.fetchNextGroup();
@@ -167,11 +140,10 @@
 
 
             this.setState({
-                products: [],
-                skip: 0,
-                count: 0,
-                hasMoreProducts: true,
-                search: $('#searchText').val(),
+                products : [],
+                count : 0,
+                hasMoreProducts : true,
+                search : $('#searchText').val(),
             })
 
             this.fetchNextGroup();
@@ -184,11 +156,10 @@
             if (key === 13) {
 
                 this.setState({
-                    products: [],
-                    skip: 0,
-                    count: 0,
-                    hasMoreProducts: true,
-                    search: $('#searchText').val(),
+                    products : [],
+                    count : 0,
+                    hasMoreProducts : true,
+                    search : $('#searchText').val(),
                 })
 
                 this.fetchNextGroup();
@@ -200,10 +171,9 @@
 
             this.setState({
 
-                selectedSort: button.value,
-                products: [],
-                skip: 0,
-                count: 0,
+                selectedSort : button.value,
+                products : [],
+                count : 0,
                 hasMoreProducts : true,
 
             });
@@ -212,10 +182,11 @@
         }
 
         $changeView(button) {
-            this.setState({ selectedView: button.value });
+            this.setState({selectedView  : button.value });
         }
 
         $more(event) {
+
             this.fetchNextGroup();
         }
 
