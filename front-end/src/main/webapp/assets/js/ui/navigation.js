@@ -55,6 +55,8 @@ const uiNavigateURL = (url, data = undefined, container = '#ui-navigation-contai
             .then((response) => response.text())
             .then((response) => {
 
+                Component.destroy();
+
                 if (container === document.documentElement) {
 
                     $(container).html($(response).html());
@@ -92,8 +94,7 @@ const uiNavigateURL = (url, data = undefined, container = '#ui-navigation-contai
 
 
             })
-              .then(() => Component.destroy())
-              .then(() => Component.run(container))
+              .then(() => Component.run())
               .then(() => prog.hide())
               .then(() => $(document).trigger('ui-ready'))
 
