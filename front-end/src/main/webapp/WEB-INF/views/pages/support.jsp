@@ -208,14 +208,13 @@
             <br>
             <br>
 
-            <!-- Google Maps -->
+            <!-- Find us (Bastoncini) -->
             <section>
                 <div class="row ui-support-title">
 
                     <div>
                         <h6 class="display-8"> ${ locale.support_maps_title } </h6>
                         <h1 class="display-5"><span> ${ locale.support_maps_subtitle_start } </span><b> ${ locale.support_maps_subtitle_end } </b></h1>
-                        <img class="mt-3" src="/assets/img/support/decorator2.jpg">
                     </div>
 
                 </div>
@@ -223,23 +222,18 @@
                 <br>
                 <br>
 
-                <div class="row">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24985.75860010016!2d15.953050639445964!3d38.482569241046406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x131512757249aded%3A0x4896d3bba66df8d0!2sFarmacia%20Agricola%20S.R.L.!5e0!3m2!1sit!2sit!4v1608935378305!5m2!1sit!2sit" width="960" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                </div>
-
             </section>
 
         </div>
 
     </section>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
+    <!-- Google Maps -->
+    <iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24985.75860010016!2d15.953050639445964!3d38.482569241046406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x131512757249aded%3A0x4896d3bba66df8d0!2sFarmacia%20Agricola%20S.R.L.!5e0!3m2!1sit!2sit!4v1608935378305!5m2!1sit!2sit" width="960" height="320" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
 
     <!-- Footer -->
-    <ui-footer id="ui-footer" ui:current="home"> </ui-footer>
+    <ui-footer id="ui-footer" ui:current="home"></ui-footer>
 
 </section>

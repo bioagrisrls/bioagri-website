@@ -73,41 +73,74 @@ $link-decoration: none;
 
 .btn-primary {
 
-  @extend .bg-white;
+  background-color: $primary;
+  color: $white;
+
   @extend .shadow-sm;
   @extend .rounded-pill;
-  @extend .text-dark;
   @extend .border;
+  @extend .px-4;
 
-  &:hover {
-    @extend .text-dark;
+  &:hover, &:active, &.active {
     @extend .shadow;
-  }
-
-  &.active {
-    @extend .bg-primary;
-    @extend .shadow;
+    color: $light;
+    background-color: darken($primary, 15%);
   }
 
 }
 
 .btn-secondary {
-  color: $gray-100;
-  &:hover {
-    color: $gray-100;
+
+  background-color: $secondary;
+  color: $light;
+
+  @extend .shadow-sm;
+  @extend .rounded-pill;
+  @extend .border;
+  @extend .px-4;
+
+  &:hover, &:active, &.active {
+    @extend .shadow;
+    color: $light;
+    background-color: darken($secondary, 20%);
   }
+
 }
 
 .btn-outline-primary {
-  &:hover {
-    color: $gray-100;
+
+  background-color: $white;
+  color: $dark;
+
+  @extend .shadow-sm;
+  @extend .rounded-pill;
+  @extend .border;
+  @extend .px-4;
+
+  &:hover, &:active, &.active {
+    @extend .shadow;
+    color: $light;
+    background-color: $primary;
   }
+
 }
 
 .btn-outline-secondary {
-  &:hover {
-    color: $gray-100;
+
+  background-color: $white;
+  color: $dark;
+
+  @extend .shadow-sm;
+  @extend .rounded-pill;
+  @extend .border;
+  @extend .px-4;
+
+  &:hover, &:active, &.active {
+    @extend .shadow;
+    color: $light;
+    background-color: $secondary;
   }
+
 }
 
 
@@ -131,6 +164,23 @@ input[type=tel] {
   }
 
 }
+
+
+textarea {
+
+  @extend .bg-white;
+  @extend .border;
+  @extend .shadow-sm;
+  @extend .rounded-3;
+  @extend .p-3;
+
+  &:hover, &:focus, &:active {
+    @extend .border-primary;
+    @extend .border-bottom;
+  }
+
+}
+
 
 
 
