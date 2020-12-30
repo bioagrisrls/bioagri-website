@@ -28,11 +28,14 @@ package it.bioagri.persistence.dao.impl;
 import it.bioagri.models.Category;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.CategoryDao;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
+
 
 public class CategoryDaoImpl extends CategoryDao {
 

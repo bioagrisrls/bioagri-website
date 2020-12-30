@@ -1,4 +1,4 @@
-<%--
+<%@ page import="it.bioagri.api.auth.AuthToken" %><%--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -30,11 +30,13 @@
 
 
 <%
-    //session.getAttributeNames().asIterator().forEachRemaining(System.err::println);
-    application.getAttributeNames().asIterator().forEachRemaining(System.err::println);
-    //    request.getAttributeNames().asIterator().forEachRemaining(System.err::println);
-//    pageContext.getAttributeNamesInScope(PageContext.PAGE_SCOPE).asIterator().forEachRemaining(System.err::println);
-//    pageContext.getAttributeNamesInScope(PageContext.REQUEST_SCOPE).asIterator().forEachRemaining(System.err::println);
+
+    AuthToken authToken = (AuthToken) request.getAttribute("authToken");
+
+    if(authToken != null && authToken.isLoggedIn()) {
+        response.sendRedirect("/home");
+        return;
+    }
 
 %>
 
