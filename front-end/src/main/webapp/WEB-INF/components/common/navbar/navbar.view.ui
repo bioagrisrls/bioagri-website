@@ -118,12 +118,21 @@
 
                     <div id="ui-navbar-cart-popover" class="ui-navbar-popover ui-navbar-cart-popover bg-white animate__animated">
 
-                        <ui-shopping-cart id="ui-navbar-cart-popover-component"></ui-shopping-cart>
+                        <h4>Carrello (FIX ME)</h4>
+
+                        <ui-shopping-cart id="ui-navbar-cart-popover-component"
+                                          ui:bind-1="#{{this.id}}-info-total:total"
+                                          ui:bind-2="#{{this.id}}-info-price:price"
+                                          ui:bind-3="#{{this.id}}-info-shipment:shipment"
+                                          ui:bind-4="#{{this.id}}-info-count:count"
+                        ></ui-shopping-cart>
 
                         <div class="row mb-4">
                             <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col" onclick="shopping_cart_clear()">Svuota carrello (FIXME)</button>
                             <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col">Vai alla cassa (FIXME)</button>
                         </div>
+
+                        <div class="w-100 p-4"><h5 class="text-end">Totale ({{this.id}}-info-count articoli): {{this.id}}-info-price &euro;</h5></div>
 
                     </div>
 

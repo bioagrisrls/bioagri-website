@@ -26,8 +26,6 @@
 
 <div>
 
-    <h4>Carrello (FIX ME)</h4>
-
     <?
 
         if(shopping_cart_empty()) {
@@ -48,9 +46,6 @@
                 });
 
             ?> </div> <?
-
-
-            ?> <div class="w-100 p-4"><h5 class="text-end">Totale ({{ count }} articoli): {{ price }} &euro;</h5></div> <?
 
         }
     ?>
