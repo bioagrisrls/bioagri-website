@@ -73,9 +73,9 @@ $link-decoration: none;
 
 .btn-primary {
 
-  @extend .bg-light;
+  @extend .bg-white;
   @extend .shadow-sm;
-  @extend .rounded-0;
+  @extend .rounded-pill;
   @extend .text-dark;
   @extend .border;
 
@@ -109,6 +109,30 @@ $link-decoration: none;
     color: $gray-100;
   }
 }
+
+
+
+input[type=text],
+input[type=search],
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=tel] {
+
+  @extend .bg-white;
+  @extend .border;
+  @extend .shadow-sm;
+  @extend .rounded-pill;
+  @extend .px-3;
+
+  &:hover, &:focus, &:active {
+    @extend .border-primary;
+    @extend .border-bottom;
+  }
+
+}
+
+
 
 //
 // Max-Width
