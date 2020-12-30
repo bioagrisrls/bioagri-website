@@ -59,7 +59,10 @@
                     label: "Resta connesso" // FIXME
                 },
 
-                $submit: 'Login', // FIXME
+                $submit: {
+                    value: `Login`,
+                    align: 'center'
+                }, // FIXME
 
             });
         }

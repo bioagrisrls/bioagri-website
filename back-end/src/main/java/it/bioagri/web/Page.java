@@ -31,6 +31,7 @@ import it.bioagri.models.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -56,11 +57,12 @@ public class Page {
     }
 
 
-    private String loadPage(ServletRequest request, Model model, String page) {
+    private String loadPage(ServletRequest request, ModelMap model, String page) {
 
         model.addAttribute("reference", page);
         model.addAttribute("components", components.getComponents());
         model.addAttribute("locale", locale.getCurrentLocale(request));
+        model.addAttribute("authToken", authToken);
 
         return "router";
 
@@ -68,12 +70,12 @@ public class Page {
 
 
     @GetMapping("/")
-    public String index(ServletRequest request, Model model) {
+    public String index(ServletRequest request, ModelMap model) {
         return loadPage(request, model, "pages/home.jsp");
     }
 
     @GetMapping("/{page}")
-    public String page(ServletRequest request, Model model, @PathVariable String page) {
+    public String page(ServletRequest request, ModelMap model, @PathVariable String page) {
 
         if(page.startsWith("{{")) // FIXME
             throw new ApiResponseStatus(204);
@@ -88,7 +90,7 @@ public class Page {
 
 
     @GetMapping("/admin/{page}")
-    public String admin(ServletRequest request, Model model, @PathVariable String page) {
+    public String admin(ServletRequest request, ModelMap model, @PathVariable String page) {
 
         if(authToken.getUserRole().equals(UserRole.ADMIN))
             return loadPage(request, model, "admin/%s.jsp".formatted(page));

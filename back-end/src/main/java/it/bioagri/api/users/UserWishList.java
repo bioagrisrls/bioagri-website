@@ -115,7 +115,7 @@ public class UserWishList {
     }
 
 
-    @DeleteMapping("/{sid}/categories/{id}")
+    @DeleteMapping("/{sid}/wishlist/{id}")
     public ResponseEntity<String> delete(@PathVariable Long sid, @PathVariable Long id) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);

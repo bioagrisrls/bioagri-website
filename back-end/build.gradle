@@ -24,9 +24,9 @@
  */
 
 plugins {
-    id 'java'
     id 'war'
     id 'idea'
+    id 'java'
     id 'org.springframework.boot' version '2.4.0'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 }
@@ -57,6 +57,8 @@ dependencies {
     implementation 'org.postgresql:postgresql:42.2.18'
     implementation 'org.jetbrains:annotations:19.0.0'
     implementation 'io.swagger.core.v3:swagger-annotations:2.1.6'
+
+    providedCompile group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.3'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     developmentOnly 'org.springdoc:springdoc-openapi-ui:1.5.2'

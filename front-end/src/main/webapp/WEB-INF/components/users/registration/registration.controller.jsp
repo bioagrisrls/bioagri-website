@@ -72,10 +72,10 @@
                     label: 'Sesso', // FIXME,
                     required: true,
                     options: [
-                        'male',
-                        'female',
-                        'other',
-                        'undefined'
+                        { key: 'male',      value: 'MALE'       },
+                        { key: 'female',    value: 'FEMALE'     },
+                        { key: 'other',     value: 'OTHER'      },
+                        { key: 'undefined', value: 'UNDEFINED'  },
                     ]
                 },
 
@@ -98,9 +98,11 @@
                     required: true
                 },
 
-                submitPosition: 'center',
 
-                $submit: `${locale.registration_button}`,
+                $submit: {
+                    value: `${locale.registration_button}`,
+                    align: 'center'
+                },
 
             });
         }
@@ -117,9 +119,7 @@
                 .then(buf => Array.prototype.map.call(new Uint8Array(buf), i => ('00' + i.toString(16)).slice(-2)).join(''));
 
             hash(data.password)
-                .then(encryptedPassword =>
-
-                    api('/auth/signup', 'POST', {
+                .then(encryptedPassword => api('/auth/signup', 'POST', {
 
                         id: 0,
                         mail: data.username,
@@ -128,30 +128,35 @@
                         role: 'CUSTOMER',
                         name: data.name,
                         surname: data.surname,
-                        gender: 'MALE',
+                        gender: 'MALE',                         // TODO
                         phone: data.phone,
-                        birth: '2020-12-30T05:32:32.893Z',
-                        createdAt: '2020-12-30T05:32:32.893Z',
-                        updatedAt: '2020-12-30T05:32:32.893Z',
+                        birth: '2020-12-30T05:32:32.893Z',      // TODO
+                        createdAt: '2020-12-30T05:32:32.893Z',  // TODO
+                        updatedAt: '2020-12-30T05:32:32.893Z',  // TODO
 
                     }, false)
                         .then(response => authenticate(data.username, encryptedPassword, false)
-                        .then(response => api('/users/' + response.userId)
-                        .then(response => this.state = { $state: 'ok', $userInfo: response }))
+                            .then(response => {
+                                
+                                if(window.history.length)
+                                    window.history.back();
+                                else
+                                    uiNavigateURL('/home');
 
-                ))
+                            })
+                        )
+                    )
                 .catch(reason => {
 
                     switch(reason) {
 
                         case 400:
-                            return this.state = { $state: 'wrong', $reason: [ 'username', 'password', 'name', 'surname', 'phone' ] };
-                        case 403:
-                            return this.state = { $state: 'error', $reason: reason };
+                            return this.state = { $state: 'wrong', $reason: [ 'name', 'surname', 'phone' ] };
                         case 406:
                             return this.state = { $state: 'wrong', $reason: [ 'username' ] };
                         default:
                             return this.state = { $state: 'error', $reason: reason };
+
                     }
 
                 });

@@ -26,6 +26,18 @@
 <%--@elvariable id="components" type="java.util.Map"--%>
 <%--@elvariable id="locale" type="java.util.Map"--%>
 <%--@elvariable id="reference" type="java.lang.String"--%>
+<%--@elvariable id="authToken" type="it.bioagri.api.auth.authToken"--%>
+
+
+<%
+    //session.getAttributeNames().asIterator().forEachRemaining(System.err::println);
+    application.getAttributeNames().asIterator().forEachRemaining(System.err::println);
+    //    request.getAttributeNames().asIterator().forEachRemaining(System.err::println);
+//    pageContext.getAttributeNamesInScope(PageContext.PAGE_SCOPE).asIterator().forEachRemaining(System.err::println);
+//    pageContext.getAttributeNamesInScope(PageContext.REQUEST_SCOPE).asIterator().forEachRemaining(System.err::println);
+
+%>
+
 
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />

@@ -160,8 +160,8 @@
             ?>
 
 
-            <div class="{{ submitPosition === 'center' ? 'd-flex justify-content-center' : '' }}">
-                <button id="{{this.id}}-form-submit" type="submit" class="btn btn-primary mb-3" onclick="$$.$submit(this, event)" disabled>{{$submit}}</button>
+            <div class="d-flex justify-content-{{ $submit.align || 'left' }} ">
+                <button id="{{this.id}}-form-submit" type="submit" class="btn btn-primary mb-3" onclick="$$.$submit(this, event)" disabled>{{ $submit.value || 'OK' }}</button>
             </div>
 
         </form>
