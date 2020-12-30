@@ -109,7 +109,51 @@
             this.state = { $state: 'need-registration' };
         }
 
+
         onSubmit(data) {
+
+            const hash = (str) => crypto.subtle
+                .digest("SHA-512", new TextEncoder().encode(str))
+                .then(buf => Array.prototype.map.call(new Uint8Array(buf), i => ('00' + i.toString(16)).slice(-2)).join(''));
+
+            hash(data.password)
+                .then(encryptedPassword =>
+
+                    api('/auth/signup', 'POST', {
+
+                        id: 0,
+                        mail: data.username,
+                        password: encryptedPassword,
+                        status: 'WAIT_FOR_MAIL',
+                        role: 'CUSTOMER',
+                        name: data.name,
+                        surname: data.surname,
+                        gender: 'MALE',
+                        phone: data.phone,
+                        birth: '2020-12-30T05:32:32.893Z',
+                        createdAt: '2020-12-30T05:32:32.893Z',
+                        updatedAt: '2020-12-30T05:32:32.893Z',
+
+                    }, false)
+                        .then(response => authenticate(data.username, encryptedPassword, false)
+                        .then(response => api('/users/' + response.userId)
+                        .then(response => this.state = { $state: 'ok', $userInfo: response }))
+
+                ))
+                .catch(reason => {
+
+                    switch(reason) {
+                        case 400:
+                            return this.state = { $state: 'wrong', $reason: [ 'username', 'password', 'name', 'surname', 'phone' ] };
+                        case 403:
+                            return this.state = { $state: 'error', $reason: reason };
+                        case 406:
+                            return this.state = { $state: 'wrong', $reason: [ 'username' ] };
+                        default:
+                            return this.state = { $state: 'error', $reason: reason };
+                    }
+
+                });
 
         }
 
