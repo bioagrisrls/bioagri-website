@@ -84,14 +84,15 @@ const disconnect = async (redirectToHome= true) => {
         response => {
 
             sessionStorage.clear();
-            localStorage.clear();
 
+            localStorage.removeItem('X-Auth-Username');
+            localStorage.removeItem('X-Auth-Password');
 
             if(redirectToHome)
                 uiNavigateURL('/');
 
-            $(document).trigger('auth-disconnection-occurred');
 
+            $(document).trigger('auth-disconnection-occurred');
 
             return response;
 
@@ -112,9 +113,25 @@ const authenticated = async () => api('/auth/verify', 'GET', {}, false).catch(re
     if(localStorage.getItem('X-Auth-Username')) {
 
         return authenticate(
+
             localStorage.getItem('X-Auth-Username'),
             localStorage.getItem('X-Auth-Password'),
-        );
+
+        ).catch(reason => {
+
+            switch (reason) {
+
+                case 404:
+                case 400:
+
+                    localStorage.removeItem('X-Auth-Username');
+                    localStorage.removeItem('X-Auth-Password');
+
+            }
+
+            throw reason;
+
+        })
 
     }
 

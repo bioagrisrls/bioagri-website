@@ -63,7 +63,6 @@ public class Minifier implements Filter {
 
             if (((HttpServletRequest) request).getRequestURI().startsWith("/assets")) {
 
-
                 chain.doFilter(request, response);
                 return;
 
