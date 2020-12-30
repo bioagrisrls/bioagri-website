@@ -75,5 +75,9 @@
   "checkout_tab_title_order" : "Ordine",
   "checkout_tab_title_payment" : "Pagamento",
   "checkout_tab_title_summary" : "Riepilogo",
-  "checkout_vent_cart" : "Svuota Carrello"
+  "checkout_total_top" : "Totale",
+  "checkout_subtotal" : "Subtotale",
+  "checkout_shipment" : "Spedizione",
+  "checkout_total_bottom" : "Totale(IVA incluse)",
+  "checkout_confirm" : "Procedi"
 }
