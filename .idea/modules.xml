@@ -3,10 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/bioagri-website.iml" filepath="$PROJECT_DIR$/.idea/bioagri-website.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/back-end/bioagri-website.back-end.iml" filepath="$PROJECT_DIR$/.idea/modules/back-end/bioagri-website.back-end.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/back-end/bioagri-website.back-end.main.iml" filepath="$PROJECT_DIR$/.idea/modules/back-end/bioagri-website.back-end.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/back-end/bioagri-website.back-end.test.iml" filepath="$PROJECT_DIR$/.idea/modules/back-end/bioagri-website.back-end.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/front-end/bioagri-website.front-end.iml" filepath="$PROJECT_DIR$/.idea/modules/front-end/bioagri-website.front-end.iml" />
     </modules>
   </component>
 </project>
