@@ -143,6 +143,7 @@
                 .catch(reason => {
 
                     switch(reason) {
+
                         case 400:
                             return this.state = { $state: 'wrong', $reason: [ 'username', 'password', 'name', 'surname', 'phone' ] };
                         case 403:
