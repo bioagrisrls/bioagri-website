@@ -26,25 +26,45 @@
 <%--
   Created by IntelliJ IDEA.
   User: Davide
-  Date: 28/12/2020
-  Time: 04:30
+  Date: 29/12/2020
+  Time: 19:51
   To change this template use File | Settings | File Templates.
 --%>
 
 <script defer>
 
-    Component.register('ui-details', (id, props) => new class extends StatefulComponent {
+    Component.register('ui-feedback-stars', (id, props) => new class extends StatefulComponent {
 
         constructor() {
-            super(id, api("/products/" + props.id))
-        }
+
+            super(id, api("/products/"+(props.id || 0) +"/votes/avg").then(response => {
+                    return {
+                        feedbackavg:response,
+                        clickable:props.clickable || "false",
+                    };
+                }));
+            }
 
         onRender() {
-            return `${components.products_details}`
+            return `${components.common_feedbackStars}`
+        }
+
+        onStarClicked(star, index) {
+
+                for (let i = 1; i <= index; i++) {
+                    document.querySelector("#" + this.id + "-star-" + i).classList.remove('mdi-star-outline');
+                    document.querySelector("#" + this.id + "-star-" + i).classList.add('mdi-star');
+                }
+
+
+                for (let i = index + 1; i <= 5; i++) {
+                    document.querySelector("#" + this.id + "-star-" + i).classList.remove('mdi-star');
+                    document.querySelector("#" + this.id + "-star-" + i).classList.add('mdi-star-outline');
+                }
+
         }
 
     });
 
 
 </script>
-

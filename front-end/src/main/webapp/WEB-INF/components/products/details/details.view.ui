@@ -8,11 +8,9 @@
                 <h3 class="pb-3">{{ name }}</h3>
 
                 <div class = "d-flex flex-row py-3">
-                    <span class = "mdi mdi-24px mdi-star-outline ui-star-icon-scale-color"> </span>
-                    <span class = "mdi mdi-24px mdi-star-outline ui-star-icon-scale-color"> </span>
-                    <span class = "mdi mdi-24px mdi-star-outline ui-star-icon-scale-color"> </span>
-                    <span class = "mdi mdi-24px mdi-star-outline ui-star-icon-scale-color"> </span>
-                    <span class = "mdi mdi-24px mdi-star-outline ui-star-icon-scale-color"> </span>
+
+                <ui-feedback-stars id = "feedback-stars-avg" ui:id="{{id}}" ui:clickable="{{false}}" "> </ui-feedback-stars>
+
                 </div>
 
                 <div class = "d-flex flex-row py-3">
