@@ -33,7 +33,9 @@
 
         constructor() {
             super(id, {
+
                 current: 'order',
+
                 orderText: `${locale.checkout_tab_title_order}`,
                 paymentText: `${locale.checkout_tab_title_payment}`,
                 summaryText: `${locale.checkout_tab_title_summary}`,
@@ -42,6 +44,16 @@
                 shipmentText: `${locale.checkout_shipment}`,
                 totalTextBottom: `${locale.checkout_total_bottom}`,
                 confirmOrderButton: `${locale.checkout_confirm}`,
+                returnToShopping: `${locale.checkout_continue}`,
+                cartText: `${locale.checkout_cart}`,
+                cartProductsText: `${locale.checkout_cart_products}`,
+                remindHeaderText: `${locale.checkout_remind_header}`,
+                remindTopText: `${locale.checkout_remind_top}`,
+                remindBottomText: `${locale.checkout_remind_bottom}`,
+                orderHint: `${locale.checkout_order_hint}`,
+                shipmentHint: `${locale.checkout_shipment_hint}`,
+                paymentHint: `${locale.checkout_payment_hint}`,
+
             });
         }
 

@@ -80,6 +80,15 @@
   "checkout_total_top" : "Totale",
   "checkout_subtotal" : "Subtotale",
   "checkout_shipment" : "Spedizione",
-  "checkout_total_bottom" : "Totale(IVA incluse)",
-  "checkout_confirm" : "Procedi"
+  "checkout_total_bottom" : "Totale(IVA inclusa)",
+  "checkout_confirm" : "Procedi",
+  "checkout_continue" : "<  Continua lo Shopping",
+  "checkout_cart" : "Carrello",
+  "checkout_cart_products" : "articolo/i",
+  "checkout_remind_header" : "Rivolgiti a noi!",
+  "checkout_remind_top": "Se vuoi avere delle informazioni o ti serve aiuto per effettuare un ordine guarda le nostre FAQ, oppure contattaci sui nostri Social Network.",
+  "checkout_remind_bottom": "Ricorda di lasciarci una recensione! ",
+  "checkout_order_hint": "Ritira comodamente in sede",
+  "checkout_shipment_hint": "Spedizioni in tutta Italia",
+  "checkout_payment_hint": "Paga in tutta sicurezza con PayPal"
 }

@@ -52,7 +52,7 @@
     <div class="ui-container">
 
         <!-- Breadcrumb -->
-        <ui-breadcrumb id="ui-breadcrumb-3" ui:current="${locale.page_checkout}" ></ui-breadcrumb>
+        <ui-breadcrumb id="ui-breadcrumb-6" ui:current="${locale.page_checkout}" ></ui-breadcrumb>
 
     </div>
 
