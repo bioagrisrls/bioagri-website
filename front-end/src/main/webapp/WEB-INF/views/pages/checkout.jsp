@@ -27,26 +27,25 @@
 <%--@elvariable id="locale" type="java.util.Map"--%>
 <%--@elvariable id="reference" type="java.lang.String"--%>
 
-
-<jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/footer/footer.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/breadcrumb/breadcrumb.controller.jsp"/>
 <jsp:include page="/WEB-INF/components/common/form/form.controller.jsp" />
-<jsp:include page="/WEB-INF/components/common/stars/stars.controller.jsp" />
-<jsp:include page="/WEB-INF/components/common/gallery/gallery.controller.jsp" />
 <jsp:include page="/WEB-INF/components/users/login/login.controller.jsp" />
-<jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp"/>
-<jsp:include page="/WEB-INF/components/products/catalog/catalog.controller.jsp" />
+<jsp:include page="/WEB-INF/components/shopping/cart/cart.controller.jsp" />
+<jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp" />
+<jsp:include page="/WEB-INF/components/image/image/image.controller.jsp" />
 <jsp:include page="/WEB-INF/components/products/card/card.controller.jsp" />
+<jsp:include page="/WEB-INF/components/shopping/checkout/checkout.controller.jsp" />
 
-<section id="ui-navigation-container" ui-title="{{param.name}} &ndash; ${locale.page_details} &ndash; ${locale.info_title}">
+<section id="ui-navigation-container" ui-title="${locale.page_checkout} &ndash; ${locale.info_title}">
 
     <!-- Header -->
     <ui-header id="ui-header"></ui-header>
 
     <!-- Navigation Bar -->
-    <ui-navbar id="ui-navbar" ></ui-navbar>
+    <ui-navbar id="ui-navbar"></ui-navbar>
 
     <br>
     <br>
@@ -54,7 +53,7 @@
     <div class="ui-container">
 
         <!-- Breadcrumb -->
-        <ui-breadcrumb id="ui-breadcrumb-8" ui:current="${locale.page_details}"></ui-breadcrumb>
+        <ui-breadcrumb id="ui-breadcrumb-6" ui:current="${locale.page_checkout}" ></ui-breadcrumb>
 
     </div>
 
@@ -63,8 +62,12 @@
 
     <section ui-animated>
 
-        <!-- Product Info -->
-        <ui-product-info id="ui-product-info" ui:id="param.id"></ui-product-info>
+        <div class="ui-container">
+
+            <!-- Checkout Tabs -->
+            <ui-checkout id="ui-checkout-1"></ui-checkout>
+
+        </div>
 
     </section>
 
