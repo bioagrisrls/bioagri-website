@@ -111,14 +111,15 @@ public class WebConfig implements WebMvcConfigurer {
 
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
-        registry.addResourceHandler("/assets/**")
-                .addResourceLocations("/assets/")
-                .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
-
-    }
+// FIXME: Remove comment on production.
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//
+//        registry.addResourceHandler("/assets/**")
+//                .addResourceLocations("/assets/")
+//                .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
+//
+//    }
 
 
 }

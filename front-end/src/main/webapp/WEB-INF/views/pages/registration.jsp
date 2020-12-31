@@ -99,7 +99,7 @@
 
                                 <!-- Google -->
                                 <li>
-                                    <button type="button" class="btn btn-primary" onclick="googleAuthenticate()">Accedi con Google</button>
+                                    <button type="button" class="btn btn-primary" onclick="googleAuthenticate('ui-registration')">Accedi con Google</button>
                                 </li>
 
                                 <!-- Facebook -->

@@ -171,9 +171,6 @@ public final class Auth {
         if (user.getPassword().isBlank())
             throw new ApiResponseStatus(400);
 
-        if (user.getPhone().isBlank())
-            throw new ApiResponseStatus(400);
-
 
         if (!user.getRole().equals(UserRole.CUSTOMER))
             throw new ApiResponseStatus(403);

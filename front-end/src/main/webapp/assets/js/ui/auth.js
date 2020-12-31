@@ -50,8 +50,8 @@ const authenticate = async (username, password, store = false, externalService =
 
         username    : username,
         password    : password,
-        service     : externalService || '',
-        type        : externalService ? 'AUTH_SERVICE_EXTERNAL' : 'AUTH_SERVICE_INTERNAL',
+        service     : externalService !== undefined ? externalService : '',
+        type        : externalService !== undefined ? 'AUTH_SERVICE_EXTERNAL' : 'AUTH_SERVICE_INTERNAL',
 
     }).then(
         response => {

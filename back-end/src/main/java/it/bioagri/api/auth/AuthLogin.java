@@ -42,13 +42,6 @@ public final class AuthLogin {
         this.type = null;
     }
 
-    public String getService() {
-        return service;
-    }
-
-    public AuthServiceType getType() {
-        return type;
-    }
 
     public String getUsername() {
         return username;
@@ -57,6 +50,15 @@ public final class AuthLogin {
     public String getPassword() {
         return password;
     }
+
+    public String getService() {
+        return service;
+    }
+
+    public AuthServiceType getType() {
+        return type;
+    }
+
 
     @Override
     public String toString() {
@@ -67,4 +69,5 @@ public final class AuthLogin {
                 .add("type='" + type + "'")
                 .toString();
     }
+
 }
