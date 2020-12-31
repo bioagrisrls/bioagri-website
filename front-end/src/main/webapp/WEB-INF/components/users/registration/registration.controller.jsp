@@ -40,7 +40,7 @@
                     value: 'AUTH_SERVICE_INTERNAL'
                 },
 
-                service: {
+                token: {
                     type: 'hidden'
                 },
 
@@ -130,7 +130,7 @@
 
             return (data.auth === 'AUTH_SERVICE_INTERNAL'
                     ? hash(data.password)
-                    : new Promise(resolve => resolve(data.service))
+                    : new Promise(resolve => resolve(data.password))
             ).then(password => api('/auth/signup', 'POST', {
 
                     id          : 0,
@@ -143,11 +143,12 @@
                     gender      : (data.gender || 'PREFER_NOT_SAID').toUpperCase(),
                     phone       : data.phone || '',
                     birth       : data.birth || '',
+                    auth        : data.auth,
                     createdAt   : new Date().toISOString(),
                     updatedAt   : new Date().toISOString(),
 
                 }, false)
-                    .then(response => authenticate(data.username, password, false)
+                    .then(response => authenticate(data.username, password, false, data.token)
                         .then(response => {
 
                             if (window.history.length)

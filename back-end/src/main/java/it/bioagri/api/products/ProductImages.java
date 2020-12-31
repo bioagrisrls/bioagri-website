@@ -30,7 +30,6 @@ import it.bioagri.api.ApiPermissionOperation;
 import it.bioagri.api.ApiPermissionPublic;
 import it.bioagri.api.ApiPermissionType;
 import it.bioagri.api.auth.AuthToken;
-import it.bioagri.models.ProductImage;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.utils.ApiRequestQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +63,7 @@ public class ProductImages {
 
     @GetMapping("/{sid}/images")
     @ApiPermissionPublic
-    public ResponseEntity<List<ProductImage>> findAll(
+    public ResponseEntity<List<String>> findAll(
             @PathVariable Long sid,
             @RequestParam(required = false, defaultValue =   "0") Long skip,
             @RequestParam(required = false, defaultValue = "999") Long limit,
@@ -87,7 +86,7 @@ public class ProductImages {
             return ResponseEntity.ok(
                     Files.walk(imagesPath)
                             .filter(i -> !i.equals(imagesPath))
-                            .map(i -> new ProductImage(rootPath.relativize(i).toString()))
+                            .map(i -> rootPath.relativize(i).toString())
                             .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
                             .sorted((a, b) -> ApiRequestQuery.sortedBy(sortedBy, order, a, b))
                             .skip(skip)

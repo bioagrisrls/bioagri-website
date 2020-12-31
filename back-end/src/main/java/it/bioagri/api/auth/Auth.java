@@ -92,21 +92,11 @@ public final class Auth {
 
 
         User user;
+        if ((user = dataSource.authenticate(authLogin.getUsername(), authLogin.getPassword())) == null)
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 
-        if(authLogin.getType().equals(AuthServiceType.AUTH_SERVICE_INTERNAL)) {
-
-            if ((user = dataSource.authenticate(authLogin.getUsername(), authLogin.getPassword())) == null)
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-
-        } else {
-
-            if ((user = dataSource.authenticate(authLogin.getUsername(), authLogin.getService())) == null)
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-
-            if(!authService.verify(authLogin))
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-
-        }
+        if(user.getAuth().equals(AuthServiceType.AUTH_SERVICE_EXTERNAL) && !authService.verify(authLogin))
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
 
         return ResponseEntity.ok(authToken.generateToken(user.getId(), user.getRole()));

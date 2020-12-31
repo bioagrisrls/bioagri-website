@@ -34,7 +34,7 @@ public class TwitterAuth implements AuthExternalService {
     }
 
     @Override
-    public boolean verify(String username, String password) {
+    public boolean verify(String username, String token) {
         return false;
     }
 

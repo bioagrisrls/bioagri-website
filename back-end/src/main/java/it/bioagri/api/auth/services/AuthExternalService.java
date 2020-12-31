@@ -26,5 +26,5 @@
 package it.bioagri.api.auth.services;
 
 public interface AuthExternalService {
-    boolean verify(String username, String password);
+    boolean verify(String username, String token);
 }

@@ -30,7 +30,6 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import it.bioagri.api.auth.AuthLogin;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
@@ -49,7 +48,7 @@ public class GoogleAuth implements AuthExternalService {
     }
 
     @Override
-    public boolean verify(String username, String password) {
+    public boolean verify(String username, String token) {
 
         GoogleIdTokenVerifier idTokenVerifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
                 .setAudience(Collections.singletonList(clientId))
@@ -57,8 +56,8 @@ public class GoogleAuth implements AuthExternalService {
 
         try {
 
-            GoogleIdToken token = idTokenVerifier.verify(password);
-            GoogleIdToken.Payload payload = token.getPayload();
+            GoogleIdToken idToken = idTokenVerifier.verify(token);
+            GoogleIdToken.Payload payload = idToken.getPayload();
 
             logger.trace("External Authentication <{}> attempt from {} <{}> (verified: {})",
                     GoogleAuth.class.getSimpleName(),
