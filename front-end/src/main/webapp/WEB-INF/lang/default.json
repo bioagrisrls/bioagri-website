@@ -62,6 +62,8 @@
   "support_form_message" : "Inserisci qui il tuo messaggio",
   "support_form_submit" : "Invia messaggio",
 
+  "support_contact_us_by_email_button" : "invia",
+
   "support_maps_title" : "Dove siamo?",
   "support_maps_subtitle_start" : "Vieni a trovarci",
   "support_maps_subtitle_end" : "in sede",
