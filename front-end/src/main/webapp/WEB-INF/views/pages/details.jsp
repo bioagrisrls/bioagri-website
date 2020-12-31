@@ -23,9 +23,45 @@
    ~
    --%>
 
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
 
-<section id="ui-navigation-container" ui-title="${locale.info_title}">
+<section id="ui-navigation-container" ui-title="{{param.name}} &ndash; ${locale.page_details} &ndash; ${locale.info_title}">
 
-    <ui-details id="ui-details" ui:id="${param.id}"> </ui-details>
+    <!-- Header -->
+    <ui-header id="ui-header"></ui-header>
+
+    <!-- Navigation Bar -->
+    <ui-navbar id="ui-navbar" ></ui-navbar>
+
+    <br>
+    <br>
+
+    <div class="ui-container">
+
+        <!-- Breadcrumb -->
+        <ui-breadcrumb id="ui-breadcrumb-8" ui:current="${locale.page_details}"></ui-breadcrumb>
+
+    </div>
+
+    <br>
+    <br>
+
+    <section ui-animated>
+
+        <!-- Product Info -->
+        <ui-product-info id="ui-product-info" ui:id="param.id"></ui-product-info>
+
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- Footer -->
+    <ui-footer id="ui-footer" ui:current="home"> </ui-footer>
 
 </section>
