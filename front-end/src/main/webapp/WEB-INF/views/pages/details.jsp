@@ -40,6 +40,7 @@
 <jsp:include page="/WEB-INF/components/products/catalog/catalog.controller.jsp" />
 <jsp:include page="/WEB-INF/components/products/card/card.controller.jsp" />
 
+
 <section id="ui-navigation-container" ui-title="{{param.name}} &ndash; ${locale.page_details} &ndash; ${locale.info_title}">
 
     <!-- Header -->
