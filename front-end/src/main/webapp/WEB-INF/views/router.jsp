@@ -74,6 +74,7 @@
         <script src="/assets/js/third-party/js.cookie.min.js"></script>
         <script src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
         <script src="https://apis.google.com/js/platform.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
 
 
         <!-- Dependencies -->
@@ -84,6 +85,7 @@
         <script src="/assets/js/ui/shopping.js"></script>
         <script defer src="/assets/js/ui/navigation.js"></script>
         <script defer src="/assets/js/ui/animation.js"></script>
+
 
 
     </head>
