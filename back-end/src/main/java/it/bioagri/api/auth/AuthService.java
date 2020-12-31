@@ -59,25 +59,12 @@ public class AuthService {
     }
 
 
-    public boolean needExternalVerification(String password) {
-
-        for(var service : services.keySet()) {
-
-            if(password.startsWith(service))
-                return true;
-
-        }
-
-        return false;
-
-    }
-
 
     public boolean verify(AuthLogin authLogin) {
 
         for(var service : services.keySet()) {
 
-            if(authLogin.getService().equals(service) && services.get(service).verify(authLogin.getUsername(), authLogin.getPassword()))
+            if(authLogin.getPassword().equals(service) && services.get(service).verify(authLogin.getUsername(), authLogin.getToken()))
                 return true;
 
         }

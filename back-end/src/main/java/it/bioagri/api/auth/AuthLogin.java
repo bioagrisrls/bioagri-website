@@ -31,15 +31,13 @@ public final class AuthLogin {
 
     private final String username;
     private final String password;
-    private final String service;
-    private final AuthServiceType type;
+    private final String token;
 
 
     public AuthLogin() {
         this.username = null;
         this.password = null;
-        this.service = null;
-        this.type = null;
+        this.token = null;
     }
 
 
@@ -51,22 +49,16 @@ public final class AuthLogin {
         return password;
     }
 
-    public String getService() {
-        return service;
+    public String getToken() {
+        return token;
     }
-
-    public AuthServiceType getType() {
-        return type;
-    }
-
 
     @Override
     public String toString() {
         return new StringJoiner(", ", AuthLogin.class.getSimpleName() + "[", "]")
                 .add("username='" + username + "'")
                 .add("password='" + password + "'")
-                .add("service='" + service + "'")
-                .add("type='" + type + "'")
+                .add("token='" + token + "'")
                 .toString();
     }
 

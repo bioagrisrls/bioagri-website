@@ -26,8 +26,6 @@
 package it.bioagri.persistence;
 
 import ch.qos.logback.classic.Logger;
-import it.bioagri.api.auth.Auth;
-import it.bioagri.api.auth.AuthLogin;
 import it.bioagri.models.User;
 import it.bioagri.persistence.dao.*;
 import it.bioagri.persistence.dao.impl.*;

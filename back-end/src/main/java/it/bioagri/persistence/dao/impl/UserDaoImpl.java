@@ -25,6 +25,7 @@
 
 package it.bioagri.persistence.dao.impl;
 
+import it.bioagri.api.auth.AuthServiceType;
 import it.bioagri.models.*;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.UserDao;
@@ -59,6 +60,7 @@ public class UserDaoImpl extends UserDao {
                         UserGender.values()[r.getShort("gender")],
                         r.getString("phone"),
                         r.getDate("birth"),
+                        AuthServiceType.values()[r.getShort("auth")],
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
                         null,
@@ -88,6 +90,7 @@ public class UserDaoImpl extends UserDao {
                         UserGender.values()[r.getShort("gender")],
                         r.getString("phone"),
                         r.getDate("birth"),
+                        AuthServiceType.values()[r.getShort("auth")],
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
                         null,
@@ -105,8 +108,8 @@ public class UserDaoImpl extends UserDao {
 
         getDataSource().update(
                 """
-                    INSERT INTO shop_user (id, email, password, status, role, name, surname, gender, phone, birth, created_at, updated_at) 
-                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    INSERT INTO shop_user (id, email, password, status, role, name, surname, gender, phone, birth, auth, created_at, updated_at) 
+                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     s -> {
                         s.setLong(1, value.getId());
@@ -119,8 +122,9 @@ public class UserDaoImpl extends UserDao {
                         s.setShort(8, (short) value.getGender().ordinal());
                         s.setString(9, value.getPhone());
                         s.setDate(10, value.getBirth());
-                        s.setTimestamp(11, value.getCreatedAt());
-                        s.setTimestamp(12, value.getUpdatedAt());
+                        s.setShort(11, (short) value.getAuth().ordinal());
+                        s.setTimestamp(12, value.getCreatedAt());
+                        s.setTimestamp(13, value.getUpdatedAt());
                     });
 
 
@@ -146,7 +150,7 @@ public class UserDaoImpl extends UserDao {
         getDataSource().update(
                 """
                     UPDATE shop_user 
-                       SET email = ?, password = ?, status = ?, role = ?, name = ?, surname = ?, gender = ?, phone = ?, birth = ?, created_at = ?, updated_at = ?
+                       SET email = ?, password = ?, status = ?, role = ?, name = ?, surname = ?, gender = ?, phone = ?, birth = ?, auth = ?, created_at = ?, updated_at = ?
                      WHERE id = ?
                     """,
                     s -> {
@@ -159,9 +163,10 @@ public class UserDaoImpl extends UserDao {
                         s.setShort(7, (short) newValue.getGender().ordinal());
                         s.setString(8, newValue.getPhone());
                         s.setDate(9, newValue.getBirth());
-                        s.setTimestamp(10, newValue.getCreatedAt());
-                        s.setTimestamp(11, newValue.getUpdatedAt());
-                        s.setLong(12, oldValue.getId());
+                        s.setShort(10, (short) newValue.getAuth().ordinal());
+                        s.setTimestamp(11, newValue.getCreatedAt());
+                        s.setTimestamp(12, newValue.getUpdatedAt());
+                        s.setLong(13, oldValue.getId());
                     });
 
 

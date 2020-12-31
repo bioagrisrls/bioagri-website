@@ -80,7 +80,7 @@ public class Users {
                             .stream()
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.READ, authToken, i.getId()))
                             .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
-                    .sorted((a, b) -> ApiRequestQuery.sortedBy(sortedBy, order, a, b))
+                            .sorted((a, b) -> ApiRequestQuery.sortedBy(sortedBy, order, a, b))
                             .skip(skip)
                             .limit(limit)
                             .collect(Collectors.toList()));

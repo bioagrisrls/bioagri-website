@@ -93,14 +93,14 @@ const googleAuthenticate = (form = undefined) => {
                                         window.components[form].onSubmit({
 
                                             auth        : 'AUTH_SERVICE_EXTERNAL',
-                                            service     : '<<AUTH_TYPE_GOOGLE>>',
+                                            token       : token,
                                             username    : profile.getEmail(),
-                                            password    : token,
+                                            password    : '<<AUTH_TYPE_GOOGLE>>',
                                             name        : profile.getGivenName(),
                                             surname     : profile.getFamilyName(),
                                             gender      : result.genders    && extractValue(result.genders.filter (i => i.metadata.primary)[0]),
-                                            phone       : result.phones     && extractValue(result.phones.filter (i => i.metadata.primary)[0]),
-                                            birth       : result.birthdays  && extractDate(result.birthdays.filter (i => i.metadata.source.type === 'ACCOUNT')[0]),
+                                            phone       : result.phones     && extractValue(result.phones.filter  (i => i.metadata.primary)[0]),
+                                            birth       : result.birthdays  && extractDate(result.birthdays.filter(i => i.metadata.source.type === 'ACCOUNT')[0]),
                                             legals      : true,
 
                                         });

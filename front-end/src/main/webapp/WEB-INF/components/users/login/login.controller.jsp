@@ -37,10 +37,10 @@
 
                 auth: {
                     type: 'hidden',
-                    value: 'AUTH_SERVICE_INTERNAL',
+                    value: 'AUTH_SERVICE_INTERNAL'
                 },
 
-                service: {
+                token: {
                     type: 'hidden'
                 },
 
@@ -89,28 +89,30 @@
 
         onSubmit(data) {
 
+            console.log(data);
+
             const hash = (str) => crypto.subtle
                 .digest("SHA-512", new TextEncoder().encode(str))
                 .then(buf => Array.prototype.map.call(new Uint8Array(buf), i => ('00' + i.toString(16)).slice(-2)).join(''));
 
-            hash(data.password)
-                .then(encryptedPassword => authenticate(data.username, encryptedPassword, data.store)
+            return (data.auth === 'AUTH_SERVICE_INTERNAL'
+                    ? hash(data.password)
+                    : new Promise(resolve => resolve(data.password))
+            ).then(password => authenticate(data.username, password, data.store, data.token)
                     .then(response => api('/users/' + response.userId)
-                        .then(response => this.state = { $state: 'ok', $userInfo: response })
-                    )
-                )
-                .catch(reason => {
+                    .then(response => this.state = { $state: 'ok', $userInfo: response }))
+            ).catch(reason => {
 
-                    switch(reason) {
-                        case 401:
-                            return this.state = { $state: 'wrong', $reason: [ 'username' ] };
-                        case 403:
-                            return this.state = { $state: 'wrong', $reason: [ 'password' ] };
-                        default:
-                            return this.state = { $state: 'error', $reason: reason };
-                    }
+                switch(reason) {
+                    case 401:
+                        return this.state = { $state: 'wrong', $reason: [ 'username' ] };
+                    case 403:
+                        return this.state = { $state: 'wrong', $reason: [ 'password' ] };
+                    default:
+                        return this.state = { $state: 'error', $reason: reason };
+                }
 
-                });
+            });
 
         }
 

@@ -26,9 +26,9 @@
 package it.bioagri.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.bioagri.api.auth.AuthServiceType;
 import it.bioagri.persistence.DataSource;
 
-import javax.servlet.jsp.PageContext;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
@@ -46,6 +46,7 @@ public final class User implements Model {
     private final UserGender gender;
     private final String phone;
     private final Date birth;
+    private final AuthServiceType auth;
     private final Timestamp createdAt;
     private final Timestamp updatedAt;
 
@@ -54,7 +55,7 @@ public final class User implements Model {
     private List<Ticket> tickets;
 
 
-    public User(long id, String mail, String password, UserStatus status, UserRole role, String name, String surname, UserGender gender, String phone, Date birth, Timestamp createdAt, Timestamp updatedAt, List<Product> wishList, List<Feedback> feedbacks, List<Ticket> tickets) {
+    public User(long id, String mail, String password, UserStatus status, UserRole role, String name, String surname, UserGender gender, String phone, Date birth, AuthServiceType auth, Timestamp createdAt, Timestamp updatedAt, List<Product> wishList, List<Feedback> feedbacks, List<Ticket> tickets) {
         this.id = id;
         this.mail = mail;
         this.password = password;
@@ -65,6 +66,7 @@ public final class User implements Model {
         this.gender = gender;
         this.phone = phone;
         this.birth = birth;
+        this.auth = auth;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.wishList = wishList;
@@ -83,6 +85,7 @@ public final class User implements Model {
         this.gender = null;
         this.phone = null;
         this.birth = null;
+        this.auth = null;
         this.createdAt = null;
         this.updatedAt = null;
         this.wishList = null;
@@ -132,6 +135,10 @@ public final class User implements Model {
 
     public Date getBirth() {
         return birth;
+    }
+
+    public AuthServiceType getAuth() {
+        return auth;
     }
 
     public Timestamp getCreatedAt() {
