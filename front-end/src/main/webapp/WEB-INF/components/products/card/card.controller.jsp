@@ -35,7 +35,7 @@
             super(id,
                 api("/products/" + (props.id || 0)).then(response => {
                             return Object.assign(response, {
-                                $view: props.view || 'card',
+                                view: props.view || 'card',
                                 quantity: props.quantity || 0
                             }
                         )}

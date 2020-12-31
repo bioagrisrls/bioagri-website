@@ -217,6 +217,7 @@ class Component {
      */
     static render(instance, template, state = {}) {
 
+
         $(instance.elem).html((instance.renderedHTML = $renderTemplate(instance, template, state)));
 
         for(const bind of instance.binds) {
@@ -237,10 +238,10 @@ class Component {
             for(let el of elem.children) {
 
                 if(window.components[el.id])
-                    $(el).html(window.components[el.id].renderedHTML);
+                    Component.render(window.components[el.id], window.components[el.id].renderedHTML, window.components[el.id].state);
 
                 else if(window.registered[el.localName])
-                    Component.run(el, false);
+                    Component.run(el);
 
                 else
                     recursive_render(el);

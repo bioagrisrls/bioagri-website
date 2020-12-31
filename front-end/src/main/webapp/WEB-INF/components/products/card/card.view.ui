@@ -23,7 +23,7 @@
   ~
   -->
 
-<? if($view === 'tiny') { ?>
+<? if(view === 'tiny') { ?>
 
     <div class="card shadow-sm my-2 rounded-0">
         <div class="row align-items-center gx-2 mx-2">
@@ -64,7 +64,7 @@
         </div>
     </div>
 
-<? } else if($view === 'row') {?>
+<? } else if(view === 'row') {?>
 
     <div class="card ui-container ui-zoom">
            <div class="row align-items-center gx-2 mx-2">
@@ -101,7 +101,7 @@
            </div>
        </div>
 
-<? } else if($view === 'card') {?>
+<? } else if(view === 'card') {?>
 
 <div class="card rounded shadow-sm border-0">
 
