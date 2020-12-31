@@ -22,8 +22,7 @@
    ~ SOFTWARE.
    ~
    --%>
-<jsp:include page="/WEB-INF/components/products/details/details.controller.jsp" />
-<jsp:include page="/WEB-INF/components/common/feedbackStars/feedbackStars.controller.jsp"/>
+
 
 <section id="ui-navigation-container" ui-title="${locale.info_title}">
 

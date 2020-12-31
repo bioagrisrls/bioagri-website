@@ -25,14 +25,18 @@
 
 package it.bioagri.web;
 
+import ch.qos.logback.classic.Logger;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.UserRole;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -44,6 +48,9 @@ import java.util.function.Predicate;
 
 @Controller
 public class Page {
+
+    private final static Logger logger = (Logger) LoggerFactory.getLogger(Page.class);
+
 
     private final Locale locale;
     private final Components components;
@@ -59,7 +66,7 @@ public class Page {
     }
 
 
-    private String loadPage(ServletRequest request, ModelMap model, String page) {
+    private String loadPage(ServletRequest request, ServletResponse response, ModelMap model, String page) {
 
         model.addAttribute("reference", page);
         model.addAttribute("components", components.getComponents());
@@ -72,12 +79,12 @@ public class Page {
 
 
     @GetMapping("/")
-    public String index(ServletRequest request, ModelMap model) {
-        return loadPage(request, model, "pages/home.jsp");
+    public String index(ServletRequest request, ServletResponse response, ModelMap model) {
+        return loadPage(request, response, model, "pages/home.jsp");
     }
 
     @GetMapping("/{page}")
-    public String page(ServletRequest request, ModelMap model, @PathVariable String page) {
+    public String page(ServletRequest request, ServletResponse response, ModelMap model, @PathVariable String page) {
 
         if(page.startsWith("{{")) // FIXME
             throw new ApiResponseStatus(204);
@@ -85,7 +92,7 @@ public class Page {
         return switch (page) {
             case "favicon.ico" -> "/assets/favicon.ico";
             case "favicon.png" -> "/assets/favicon.png";
-            default -> loadPage(request, model, "pages/%s.jsp".formatted(page));
+            default -> loadPage(request, response, model, "pages/%s.jsp".formatted(page));
         };
 
     }
@@ -94,12 +101,10 @@ public class Page {
     @GetMapping("/admin/{page}")
     public String admin(ServletRequest request, ServletResponse response, ModelMap model, @PathVariable String page) throws ServletException, IOException {
 
-        request.getRequestDispatcher("/home").include(request, response);
-
         if(authToken.getUserRole().equals(UserRole.ADMIN))
-            return loadPage(request, model, "admin/%s.jsp".formatted(page));
+            return loadPage(request, response, model, "admin/%s.jsp".formatted(page));
 
-        return "prova";
+        return "error";
 
     }
 
@@ -116,7 +121,6 @@ public class Page {
                 .filter(Predicate.not(String::isEmpty))
                 .filter(Predicate.not(String::isBlank))
                 .forEach(i -> output.append(i.trim()).append(replaceNewLines ? ' ' : '\n'));
-
 
 
         return output.toString();
