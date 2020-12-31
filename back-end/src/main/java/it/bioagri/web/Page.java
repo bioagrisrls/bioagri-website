@@ -35,7 +35,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
@@ -89,7 +92,9 @@ public class Page {
 
 
     @GetMapping("/admin/{page}")
-    public String admin(ServletRequest request, ModelMap model, @PathVariable String page) {
+    public String admin(ServletRequest request, ServletResponse response, ModelMap model, @PathVariable String page) throws ServletException, IOException {
+
+        request.getRequestDispatcher("/home").include(request, response);
 
         if(authToken.getUserRole().equals(UserRole.ADMIN))
             return loadPage(request, model, "admin/%s.jsp".formatted(page));
