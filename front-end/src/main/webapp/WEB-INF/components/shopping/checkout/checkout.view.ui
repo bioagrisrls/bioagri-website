@@ -23,6 +23,27 @@
   ~
   -->
 
+<!-- Checkout Remind -->
+<div class="row border border-3 bg-light mb-6">
+
+    <ul class="list-unstyled">
+        <li>
+            <ul class="list-inline">
+                <li class="list-inline-item"><span class="mdi mdi-information mdi-24px"></span></li>
+                <li class="list-inline-item"><h4>{{ remindHeaderText }}</h4></li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="ml-4">
+        <p>{{ remindTopText }}</p>
+    </div>
+
+    <div class="ml-4">
+        <p>{{ remindBottomText }}</p>
+    </div>
+
+</div>
 
 <div class="mx-auto">
     <div class="d-flex justify-content-center">
@@ -32,7 +53,7 @@
 
             <!-- Order -->
             <li class="nav-item">
-                <a class="nav-link {{ current === 'order' ? 'active' : '' }}" id="tabOrder" role="tab" tabindex="0">
+                <a class="nav-link {{ current === 'order' ? 'active' : '' }}" id="tabOrder" role="tab">
 
                     <ul class="list-inline">
                         <li class="list-inline-item"><h5>{{ orderText }}</h5></li>
@@ -44,7 +65,7 @@
 
             <!-- Payment -->
             <li class="nav-item">
-                <a class="nav-link {{ current === 'payment' ? 'active' : '' }} {{ (current === 'summary' && current !== 'payment') ? '' : 'disabled' }}" id="tabPayment" role="tab" tabindex="1">
+                <a class="nav-link {{ current === 'payment' ? 'active' : '' }} {{ (current === 'summary' && current !== 'payment') ? '' : 'disabled' }}" id="tabPayment" role="tab">
 
                     <ul class="list-inline">
                         <li class="list-inline-item"><h5>{{ paymentText }}</h5></li>
@@ -56,7 +77,7 @@
 
             <!-- Summary -->
             <li class="nav-item">
-                <a class="nav-link {{ current === 'summary' ? 'active' : 'disabled' }}" id="tabSummary" role="tab" tabindex="2">
+                <a class="nav-link {{ current === 'summary' ? 'active' : 'disabled' }}" id="tabSummary" role="tab">
 
                     <ul class="list-inline">
                         <li class="list-inline-item"><h5>{{ summaryText }}</h5></li>
@@ -72,14 +93,20 @@
 </div>
 
 <!-- Tab Content -->
-<div class="tab-content" id="tabContent">
+<div class="tab-content bg-light " id="tabContent">
 
     <!-- Order -->
-    <div class="tab-pane p-4 fade {{ current === 'order' ? 'show active' : '' }}" id="order" role="tabpanel">
+    <div class="tab-pane mb-4 p-4 fade {{ current === 'order' ? 'show active' : '' }}" id="order" role="tabpanel">
 
         <div class="row">
 
-            <div class="col col-8">
+            <div class="col col-lg-8 bg-white shadow mb-5">
+
+                <div class="display-4 my-3">
+                    <h2 class="d-inline p-0">{{ cartText }} (</h2>
+                    <h2 class="d-inline p-0" id="{{this.id}}-info-count"></h2>
+                    <h2 class="d-inline p-0">{{ cartProductsText }})</h2>
+                </div>
 
                 <!-- Shopping Cart -->
                 <ui-shopping-cart id="shoppingCart"
@@ -89,50 +116,94 @@
                         ui:bind-4="#{{this.id}}-info-count:count">
                 </ui-shopping-cart>
 
+                <button class="btn btn-primary my-4" onclick="location.href='/catalog'" >{{ returnToShopping }}</button>
+
             </div>
 
             <!-- Order Info Box -->
-            <div class="col col-4">
+            <div class="col col-lg-4 ">
 
-                <div class="row">
+                <!-- Order Summary -->
+                <div class="container bg-white shadow">
+                    <div class="row">
 
-                    <ul class="list-unstyled">
+                        <div class="display-4"><h2 class="py-4">{{ totalTextTop }}</h2></div>
 
-                        <li><h4 class="py-4">{{ totalTextTop }}</h4></li>
-
-                        <li>
-                            <p class="text-left">
+                        <div class="row pb-3">
+                            <div class="col col-auto text-start">
                                 {{ subTotalText }}
-                                <span class="text-right">
-                                    <span id="{{this.id}}-info-price"></span>&euro;
-                                </span>
-                            </p>
-                        </li>
+                            </div>
 
-                        <li>
-                            <p class="text-left">
+                            <div class="col col-auto text-end">
+                                <span><span id="{{this.id}}-info-price"></span> &euro;</span>
+                            </div>
+                        </div>
+
+                        <div class="row pb-2">
+
+                            <div class="col col-auto text-start">
                                 {{ shipmentText }}
-                                <span class="text-right">
-                                    <span id="{{this.id}}-info-shipment"></span>&euro;
-                                </span>
-                            </p>
-                        </li>
+                            </div>
 
-                        <li>
-                            <p class="text-left">
+                            <div class="col col-auto text-end">
+                                <span><span id="{{this.id}}-info-shipment"></span> &euro;</span>
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div class="row pb-4">
+
+                            <div class="col col-auto text-start">
                                 {{ totalTextBottom }}
-                                <span class="text-right">
-                                    <span id="{{this.id}}-info-total"></span>&euro;
-                                </span>
-                            </p>
-                        </li>
+                            </div>
 
-                        <li>
-                            <button class="btn btn-primary btn-sm" onclick="$$.goToOrder()">{{ confirmOrderButton }}</button>
-                        </li>
+                            <div class="col col-auto text-end">
+                                <span><span id="{{this.id}}-info-total"></span> &euro;</span>
+                            </div>
 
-                    </ul>
+                        </div>
 
+                        <div class="row p-3">
+                            <div class="col col-auto">
+                                 <button class="btn btn-primary" onclick="$$.goToPayment()">{{ confirmOrderButton }}</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Order Reminder -->
+                <div class="container pt-5">
+                    <div class="row">
+
+                        <ul class="list-unstyled">
+
+                            <li>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"><span class="mdi mdi-home mdi-18px"></span></li>
+                                    <li class="list-inline-item"><p>{{ orderHint }}</p></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"><span class="mdi mdi-truck mdi-18px"></span></li>
+                                    <li class="list-inline-item"><p>{{ shipmentHint }}</p></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"><span class="mdi mdi-lock-check mdi-18px"></span></li>
+                                    <li class="list-inline-item"><p>{{ paymentHint }}</p></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </div>
                 </div>
 
             </div>
