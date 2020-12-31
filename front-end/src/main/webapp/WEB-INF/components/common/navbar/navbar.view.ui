@@ -69,7 +69,7 @@
                 <? let i = 0; ?>
                 <? for (let nav of navs) { ?>
                     <li class="nav-item">
-                        <a tabindex="{{i++}}" ui-navigate class="nav-link link-dark text-nowrap {{ (current === nav.key ? 'active' : '') }}" href="/{{nav.key}}">
+                        <a ui-navigate class="nav-link link-dark text-nowrap {{ (current === nav.key ? 'active' : '') }}" href="/{{nav.key}}">
                             <span class="text-uppercase">{{ nav.name }}</span>
                         </a>
                     </li>
