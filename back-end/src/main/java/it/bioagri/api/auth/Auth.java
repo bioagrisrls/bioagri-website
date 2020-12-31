@@ -35,10 +35,8 @@ import it.bioagri.models.User;
 import it.bioagri.models.UserRole;
 import it.bioagri.models.UserStatus;
 import it.bioagri.persistence.DataSource;
-import it.bioagri.persistence.DataSourceSQLException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +47,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.net.URI;
 
 
 @RestController
@@ -59,12 +56,14 @@ public final class Auth {
     private final static Logger logger = (Logger) LoggerFactory.getLogger(Auth.class);
 
     private final AuthToken authToken;
+    private final AuthService authService;
     private final DataSource dataSource;
     private final ServletContext servletContext;
 
     @Autowired
-    public Auth(AuthToken authToken, DataSource dataSource, ServletContext servletContext) {
+    public Auth(AuthToken authToken, AuthService authService, DataSource dataSource, ServletContext servletContext) {
         this.authToken = authToken;
+        this.authService= authService;
         this.dataSource = dataSource;
         this.servletContext = servletContext;
     }
@@ -91,9 +90,23 @@ public final class Auth {
         if(dataSource.getUserRepository().findByMail(authLogin.getUsername()).isEmpty())
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
+
         User user;
-        if((user = dataSource.authenticate(authLogin)) == null)
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+
+        if(authLogin.getType().equals(AuthServiceType.AUTH_SERVICE_INTERNAL)) {
+
+            if ((user = dataSource.authenticate(authLogin.getUsername(), authLogin.getPassword())) == null)
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+
+        } else {
+
+            if ((user = dataSource.authenticate(authLogin.getUsername(), authLogin.getService())) == null)
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+
+            if(!authService.verify(authLogin))
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+        }
 
 
         return ResponseEntity.ok(authToken.generateToken(user.getId(), user.getRole()));
@@ -155,7 +168,7 @@ public final class Auth {
         if (user.getMail().isBlank())
             throw new ApiResponseStatus(400);
 
-        if (user.getPassword().isBlank() || user.getPassword().length() != 128) // SHA-512
+        if (user.getPassword().isBlank())
             throw new ApiResponseStatus(400);
 
         if (user.getPhone().isBlank())

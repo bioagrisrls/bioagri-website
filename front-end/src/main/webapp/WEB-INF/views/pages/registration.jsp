@@ -29,17 +29,6 @@
 <%--@elvariable id="authToken" type="it.bioagri.api.auth.authToken"--%>
 
 
-<%
-
-    AuthToken authToken = (AuthToken) request.getAttribute("authToken");
-
-    if(authToken != null && authToken.isLoggedIn()) {
-        response.sendRedirect("/home");
-        return;
-    }
-
-%>
-
 
 <jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
 <jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
@@ -51,7 +40,6 @@
 <jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp" />
 <jsp:include page="/WEB-INF/components/image/image/image.controller.jsp" />
 <jsp:include page="/WEB-INF/components/products/card/card.controller.jsp" />
-<jsp:include page="/WEB-INF/components/signin/google/google.controller.jsp" />
 
 
 
@@ -105,10 +93,14 @@
                         <div class="d-flex justify-content-center">
                             <ul class="list-unstyled">
 
-                                <li><h6 class="text-center display-8 pb-3">${ locale.registration_body }</h6></li>
+                                <li>
+                                    <h6 class="text-center display-8 pb-3">${ locale.registration_body }</h6>
+                                </li>
 
                                 <!-- Google -->
-                                <li><ui-signin-google id="ui-signin-google"></ui-signin-google></li>
+                                <li>
+                                    <button type="button" class="btn btn-primary" onclick="googleAuthenticate()">Accedi con Google</button>
+                                </li>
 
                                 <!-- Facebook -->
 

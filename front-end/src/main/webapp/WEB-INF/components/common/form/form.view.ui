@@ -176,6 +176,16 @@
 
                         <?
 
+                        case 'hidden':
+
+                        ?>
+
+                            <div>
+                                <input id="{{k}}" type="hidden" value="{{ v.value || '' }}">
+                            </div>
+
+                        <?
+
                         default:
                             break;
 

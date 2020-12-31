@@ -23,48 +23,8 @@
  *
  */
 
-package it.bioagri.api.auth;
+package it.bioagri.api.auth.services;
 
-import java.util.StringJoiner;
-
-public final class AuthLogin {
-
-    private final String username;
-    private final String password;
-    private final String service;
-    private final AuthServiceType type;
-
-
-    public AuthLogin() {
-        this.username = null;
-        this.password = null;
-        this.service = null;
-        this.type = null;
-    }
-
-    public String getService() {
-        return service;
-    }
-
-    public AuthServiceType getType() {
-        return type;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", AuthLogin.class.getSimpleName() + "[", "]")
-                .add("username='" + username + "'")
-                .add("password='" + password + "'")
-                .add("service='" + service + "'")
-                .add("type='" + type + "'")
-                .toString();
-    }
+public interface AuthExternalService {
+    boolean verify(String username, String password);
 }
