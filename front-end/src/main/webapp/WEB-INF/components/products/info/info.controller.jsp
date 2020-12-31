@@ -30,10 +30,10 @@
         constructor() {
             super(id,
 
-                api("/products/" + (props.id || ''))
-                .then(r1 => api("/feedbacks?filter-by=product.id&filter-val=" + (props.id || ''))
-                .then(r2 => api("/products/" + props.id + "/categories")
-                .then(r3 => api("/products/" + props.id + "/tags")
+                api('/products/' + (props.id || ''))
+                .then(r1 => api('/feedbacks?filter-by=product.id&filter-val=' + (props.id || ''))
+                .then(r2 => api('/products/' + props.id + '/categories')
+                .then(r3 => api('/products/' + props.id + '/tags')
                 .then(r4 => {
 
                     return {

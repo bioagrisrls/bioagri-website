@@ -1,4 +1,4 @@
-<%--
+<!--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,37 +21,5 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  --%>
+  -->
 
-<%--@elvariable id="components" type="java.util.Map"--%>
-<%--@elvariable id="locale" type="java.util.Map"--%>
-<%--@elvariable id="reference" type="java.lang.String"--%>
-
-
-<script defer>
-
-    Component.register('ui-gallery', (id, props) => new class extends StatefulComponent {
-
-        constructor() {
-            super(id, api('/products/' + (props.id || '') + 'images')
-            );
-        }
-
-
-        onRender() {
-            return `${components.common_gallery}`
-        }
-
-        onLoading() {
-            return `${components.common_gallery_loading}`
-        }
-
-        onError() {
-            return `${components.common_gallery_error}`
-        }
-
-    });
-
-
-
-</script>
