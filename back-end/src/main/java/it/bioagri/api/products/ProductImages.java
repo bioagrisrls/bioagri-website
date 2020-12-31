@@ -77,7 +77,7 @@ public class ProductImages {
         try {
 
             final var rootPath = Path.of(servletContext.getRealPath("/"));
-            final var imagesPath = rootPath.resolve("/assets/img/products/%s".formatted(sid));
+            final var imagesPath = rootPath.resolve("assets/img/products/%s".formatted(sid));
 
             if(Files.notExists(imagesPath))
                 return ResponseEntity.notFound().build();

@@ -99,7 +99,7 @@ public class Page {
         if(authToken.getUserRole().equals(UserRole.ADMIN))
             return loadPage(request, model, "admin/%s.jsp".formatted(page));
 
-        return "error";
+        return "prova";
 
     }
 
