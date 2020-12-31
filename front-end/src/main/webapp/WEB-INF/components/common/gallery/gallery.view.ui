@@ -26,10 +26,10 @@
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
     <div class="carousel-inner">
-
+        <? let i = 0; ?>
         <? for(let image of images) { ?>
             <div class="carousel-item active">
-                <ui-image ui:src="{{ image }}" ui:width="100%" ui:height="50%"></ui-image>
+                <ui-image id="{{this.id}}-carousel-image-{{i++}}" ui:src="{{ image }}" ui:width="100%" ui:height="50%"></ui-image>
             </div>
         <? } ?>
 

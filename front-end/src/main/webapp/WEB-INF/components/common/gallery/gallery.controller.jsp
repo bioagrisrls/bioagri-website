@@ -33,7 +33,7 @@
     Component.register('ui-gallery', (id, props) => new class extends StatefulComponent {
 
         constructor() {
-            super(id, api('/products/' + (props.id || '') + 'images').then(response => {
+            super(id, api('/products/' + (props.id || '') + '/images').then(response => {
 
                     return {
                         images: response,

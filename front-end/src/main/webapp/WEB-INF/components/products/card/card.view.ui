@@ -110,7 +110,7 @@
     <div class="card-body p-4 ui-zoom">
 
         <img class="img-fluid d-block mx-auto mb-3" src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" />
-        <h5><a href="/details" class="text-dark" ui-navigate ui-data="{ id: {{id}}, name: {{name}} }">{{ name }}</a></h5>
+        <h5><a href="/details" class="text-dark" ui-navigate ui-data="{ id: {{id}}, name: '{{name}}' }">{{ name }}</a></h5>
         <p class="small text-muted">{{ price }}</p>
 
         <div class = "row text-center">

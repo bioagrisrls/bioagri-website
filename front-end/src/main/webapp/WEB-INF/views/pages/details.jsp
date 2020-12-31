@@ -27,7 +27,7 @@
 <%--@elvariable id="locale" type="java.util.Map"--%>
 <%--@elvariable id="reference" type="java.lang.String"--%>
 
-<section id="ui-navigation-container" ui-title="{{param.name}} &ndash; ${locale.page_details} &ndash; ${locale.info_title}">
+<section id="ui-navigation-container" ui-title="${param.name} &ndash; ${locale.page_details} &ndash; ${locale.info_title}">
 
     <!-- Header -->
     <ui-header id="ui-header"></ui-header>
@@ -50,8 +50,12 @@
 
     <section ui-animated>
 
-        <!-- Product Info -->
-        <ui-product-info id="ui-product-info" ui:id="param.id"></ui-product-info>
+        <div class="ui-container">
+
+            <!-- Product Info -->
+            <ui-product-info id="ui-product-info" ui:id="${param.id}"></ui-product-info>
+
+        </div>
 
     </section>
 
