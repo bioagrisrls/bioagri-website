@@ -28,7 +28,6 @@
     <div class="card shadow-sm my-2 rounded-0">
         <div class="row align-items-center gx-2 mx-2">
             <div class="col-md-2">
-                <!--<img src="/assets/uploads/img/products/{{id}}/preview.png" class="card-img">-->
                 <img src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" class="card-img" />
             </div>
             <div class="col-md-10">
@@ -68,12 +67,14 @@
 
     <div class="card ui-container ui-zoom">
            <div class="row align-items-center gx-2 mx-2">
+
                <div class="col-md-2">
-                   <!--<img src="/assets/uploads/img/products/{{id}}/preview.png" class="card-img">-->
                    <img src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" class="card-img" />
                </div>
+
                <div class="col-md-10">
                    <div class="card-body">
+
                        <a href="#" ui-navigate class="float-start">
                            <h5 class="card-title mb-1">
                                {{ name }}
@@ -93,6 +94,7 @@
                            <span onclick = "$$.onClickAddToWishList(this);" class="col-4 mdi mdi-24px mdi-heart-outline ui-heart-icon-scale-color"> </span>
                            <span class="col-4 mdi mdi-24px mdi-cart-outline ui-cart-icon-scale-color"> </span>
                            <span class="col-4 mdi mdi-24px mdi-information-outline ui-information-icon-scale-color"> </span>
+
                        </div>
 
                    </div>

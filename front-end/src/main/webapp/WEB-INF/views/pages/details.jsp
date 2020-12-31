@@ -22,11 +22,59 @@
    ~ SOFTWARE.
    ~
    --%>
-<jsp:include page="/WEB-INF/components/products/details/details.controller.jsp" />
-<jsp:include page="/WEB-INF/components/common/feedbackStars/feedbackStars.controller.jsp"/>
 
-<section id="ui-navigation-container" ui-title="${locale.info_title}">
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
 
-    <ui-details id="ui-details" ui:id="${param.id}"> </ui-details>
+
+<jsp:include page="/WEB-INF/components/common/navbar/navbar.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/header/header.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/footer/footer.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/breadcrumb/breadcrumb.controller.jsp"/>
+<jsp:include page="/WEB-INF/components/common/form/form.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/stars/stars.controller.jsp" />
+<jsp:include page="/WEB-INF/components/common/gallery/gallery.controller.jsp" />
+<jsp:include page="/WEB-INF/components/users/login/login.controller.jsp" />
+<jsp:include page="/WEB-INF/components/image/parallax/parallax.controller.jsp"/>
+<jsp:include page="/WEB-INF/components/products/catalog/catalog.controller.jsp" />
+<jsp:include page="/WEB-INF/components/products/card/card.controller.jsp" />
+
+<section id="ui-navigation-container" ui-title="{{param.name}} &ndash; ${locale.page_details} &ndash; ${locale.info_title}">
+
+    <!-- Header -->
+    <ui-header id="ui-header"></ui-header>
+
+    <!-- Navigation Bar -->
+    <ui-navbar id="ui-navbar" ></ui-navbar>
+
+    <br>
+    <br>
+
+    <div class="ui-container">
+
+        <!-- Breadcrumb -->
+        <ui-breadcrumb id="ui-breadcrumb-8" ui:current="${locale.page_details}"></ui-breadcrumb>
+
+    </div>
+
+    <br>
+    <br>
+
+    <section ui-animated>
+
+        <!-- Product Info -->
+        <ui-product-info id="ui-product-info" ui:id="param.id"></ui-product-info>
+
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- Footer -->
+    <ui-footer id="ui-footer" ui:current="home"> </ui-footer>
 
 </section>

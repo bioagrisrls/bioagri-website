@@ -23,6 +23,10 @@
   ~
   --%>
 
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
+
 <script defer>
 
     Component.register('ui-product-info', (id, props) => new class extends StatefulComponent {
@@ -42,6 +46,10 @@
                         feedback: r2,
                         categories: r3,
                         tags: r4,
+
+                        ivaText: `${locale.info_product_iva}`,
+                        descriptionText: `${locale.info_product_description}`,
+                        addToCartButton: `${locale.info_product_cart}`,
 
                         current: 'description'
                     }

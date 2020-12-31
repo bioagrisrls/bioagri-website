@@ -12,6 +12,7 @@
   "page_support" : "Contatti",
   "page_registration" : "Registrazione",
   "page_checkout" : "Checkout",
+  "page_details" : "Checkout",
 
   "nav_logo" : "/assets/img/logo/logo-navbar.jpg",
   "nav_home" : "Home",
@@ -90,5 +91,10 @@
   "checkout_remind_bottom": "Ricorda di lasciarci una recensione! ",
   "checkout_order_hint": "Ritira comodamente in sede",
   "checkout_shipment_hint": "Spedizioni in tutta Italia",
-  "checkout_payment_hint": "Paga in tutta sicurezza con PayPal"
+  "checkout_payment_hint": "Paga in tutta sicurezza con PayPal",
+
+  "info_product_iva": "IVA inclusa",
+  "info_product_description": "Descrizione",
+  "info_product_cart": "Aggiungi al carrello"
+
 }

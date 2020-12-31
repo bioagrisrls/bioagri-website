@@ -23,3 +23,45 @@
   ~
   -->
 
+
+<div class="row">
+
+    <div class="col col-lg-8">
+
+        <!-- Product Gallery -->
+        <ui-gallery id="ui-gallery-1" ui:id="{{product.id}}"></ui-gallery>
+
+    </div>
+
+    <!-- Product Info -->
+    <div class="col col-lg-4 bg-white shadow">
+        <div class="container">
+
+            <!-- Info -->
+            <div class="display-4 my-3">
+                <h2 class="d-inline p-0">{{ product.name }}</h2>
+            </div>
+
+            <div class="display-5 my-3 text-danger">
+                <h2 class="d-inline p-0">{{ product.price }} &euro; {{ ivaText }}</h2>
+            </div>
+
+            <div>
+                <ui-stars id="ui-stars-1" ui:id="{{product.id}}" ui:clickable="{{false}}"></ui-stars>
+            </div>
+
+            <div>
+                <p class="d-inline p-0">{{ descriptionText }}</p>
+                <p class="d-inline p-0">{{ product.description }}</p>
+            </div>
+
+            <!-- Add to Cart -->
+            <div>
+                <button class="btn btn-primary btn-lg"><span class="mdi mdi-24px mdi-cart-outline align-middle"></span>{{ addToCartButton }}</button>
+                <!-- Wish List-->
+            </div>
+
+        </div>
+    </div>
+
+</div>

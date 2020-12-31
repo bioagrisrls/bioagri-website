@@ -23,4 +23,56 @@
   ~
   --%>
 
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
 
+<script defer>
+
+    Component.register('ui-feedback-stars', (id, props) => new class extends StatefulComponent {
+
+        constructor() {
+
+            super(id, api("/products/"+(props.id || 0) +"/votes/avg").then(response => {
+
+                return {
+
+                    star: response,
+                    clickable: props.clickable || "false",
+
+                };
+
+            }));
+        }
+
+        onRender() {
+            return `${components.common_stars}`
+        }
+
+        onLoading() {
+            return `${components.common_stars_loading}`
+        }
+
+        onError() {
+            return `${components.common_stars_error}`
+        }
+
+        onStarClicked(star, index) {
+
+            for (let i = 1; i <= index; i++) {
+                document.querySelector("#" + this.id + "-star-" + i).classList.remove('mdi-star-outline');
+                document.querySelector("#" + this.id + "-star-" + i).classList.add('mdi-star');
+            }
+
+
+            for (let i = index + 1; i <= 5; i++) {
+                document.querySelector("#" + this.id + "-star-" + i).classList.remove('mdi-star');
+                document.querySelector("#" + this.id + "-star-" + i).classList.add('mdi-star-outline');
+            }
+
+        }
+
+    });
+
+
+</script>
