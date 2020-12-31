@@ -33,7 +33,9 @@
     Component.register('ui-signin-google', (id, props) => new class extends StatelessComponent {
 
         constructor() {
-            super(id, {});
+            super(id, {
+                form: props.form || '',
+            });
         }
 
         onRender() {
@@ -41,6 +43,9 @@
         }
 
         onReady() {
+
+
+
 
             gapi.load('auth2', () => {
 
@@ -60,14 +65,27 @@
                             'theme': 'light',
                             'data-longtitle' : 'true',
 
-                            'onsuccess': (s) => {
+                            'onsuccess': (response) => {
 
+                                const profile = response.getBasicProfile();
 
+                                if(this.state.form && window.components[this.state.form] && window.components[this.state.form].onSubmit) {
+
+                                    window.components[this.state.form].onSubmit({
+
+                                        username: profile.getEmail(),
+                                        password: "<<AUTH_TYPE_GOOGLE>>",
+                                        name: profile.getGivenName(),
+                                        surname: profile.getFamilyName(),
+
+                                    });
+
+                                }
 
                             },
 
-                            'onfailure': (e) => {
-
+                            'onfailure': (reason) => {
+                                console.error("Google Button error: ", reason);
                             },
 
                         });
