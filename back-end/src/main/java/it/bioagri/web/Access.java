@@ -52,7 +52,7 @@ public class Access implements Filter {
     static {
 
         accessWithAuthentication = Map.of (
-            //"/checkout",     Map.entry("/catalog", true),
+            //"/checkout",     Map.entry("/catalog", true), // FIXME: Remove comment here
             "/registration", Map.entry("/home", false)
         );
 
