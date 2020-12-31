@@ -41,17 +41,22 @@
  * @param username {string}
  * @param password {string}
  * @param store {boolean}
+ * @param externalService {string}
  * @returns {Promise<* | void>}
  */
-const authenticate = async (username, password, store = false) => {
+const authenticate = async (username, password, store = false, externalService = undefined) => {
 
     return api('/auth/authenticate', 'POST', {
-        username: username,
-        password: password
+
+        username    : username,
+        password    : password,
+        service     : externalService || '',
+        type        : externalService ? 'AUTH_SERVICE_EXTERNAL' : 'AUTH_SERVICE_INTERNAL',
+
     }).then(
         response => {
 
-            if(store) {
+            if(store && !externalService) {
                 localStorage.setItem('X-Auth-Username', username);
                 localStorage.setItem('X-Auth-Password', password);
             }

@@ -26,6 +26,7 @@
 package it.bioagri.persistence;
 
 import ch.qos.logback.classic.Logger;
+import it.bioagri.api.auth.Auth;
 import it.bioagri.api.auth.AuthLogin;
 import it.bioagri.models.User;
 import it.bioagri.persistence.dao.*;
@@ -202,15 +203,15 @@ public class DataSource {
     }
 
 
-    public User authenticate(AuthLogin authLogin) {
+    public User authenticate(String username, String password) {
 
         final AtomicReference<User> result = new AtomicReference<>(null);
 
 
         fetch("SELECT id FROM shop_user WHERE email = ? AND password = ?",
                 s -> {
-                    s.setString(1, authLogin.getUsername());
-                    s.setString(2, authLogin.getPassword());
+                    s.setString(1, username);
+                    s.setString(2, password);
                 },
                 r -> {
                     getUserRepository().findByPrimaryKey(r.getLong("id"))

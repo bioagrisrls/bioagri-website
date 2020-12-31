@@ -12,6 +12,17 @@ database:
   password: "admin"
 
 
+auth:
+  services:
+    external:
+      google:
+        id: "209781809708-5uqvtbr7fs9t4qs3bqnjo54b0rin6kk8.apps.googleusercontent.com"
+      facebook:
+        id: ""
+      twitter:
+        id: ""
+
+
 server:
   error:
     whitelabel:

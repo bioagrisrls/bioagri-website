@@ -46,10 +46,6 @@
         <meta property="og:url" content="https://www.bioagrishop.it" />
         <meta property="og:image" content="/assets/favicon.png" />
 
-        <!-- Google API -->
-        <meta name="google-signin-client_id" content="270526632051-gbkhsqrar19bl94hvmau64nhoi5bobhm.apps.googleusercontent.com">
-
-
         <link rel="profile" href="http://gmpg.org/xfn/11">
         <link rel="icon" href="/assets/favicon.png">
 
@@ -57,11 +53,8 @@
 
 
         <!-- Third-party Styles -->
-        <!--<link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap-reboot.min.css">-->
-        <!--<link rel="stylesheet" href="/assets/css/third-party/bootstrap/bootstrap.min.css">-->
         <link rel="stylesheet" href="/assets/css/third-party/material-design-icons/materialdesignicons.min.css">
         <link rel="stylesheet" href="/assets/css/third-party/animate/animate.min.css">
-        <link rel="stylesheet" href="/assets/css/third-party/tippy/tippy.min.css">
 
         <!-- Styles -->
         <link rel="stylesheet" href="/assets/css/ui-bootstrap.min.css">
@@ -70,22 +63,20 @@
         <!-- Third-party Dependencies -->
         <script src="/assets/js/third-party/jquery.min.js"></script>
         <script src="/assets/js/third-party/popper.min.js"></script>
-        <script src="/assets/js/third-party/tippy.umd.min.js"></script>
         <script src="/assets/js/third-party/js.cookie.min.js"></script>
         <script src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
+        <script src="https://apis.google.com/js/api.js"></script>
         <script src="https://apis.google.com/js/platform.js"></script>
-        <script src="https://smtpjs.com/v3/smtp.js"></script>
 
 
         <!-- Dependencies -->
-        <script src="/assets/js/api/google.js"></script>
+        <script src="/assets/js/services/google.js"></script>
         <script src="/assets/js/ui/api.js"></script>
         <script src="/assets/js/ui/auth.js"></script>
         <script src="/assets/js/ui/components.js"></script>
         <script src="/assets/js/ui/shopping.js"></script>
         <script defer src="/assets/js/ui/navigation.js"></script>
         <script defer src="/assets/js/ui/animation.js"></script>
-
 
 
     </head>

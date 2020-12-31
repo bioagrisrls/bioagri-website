@@ -23,40 +23,19 @@
  *
  */
 
-'use strict';
+package it.bioagri.api.auth.services;
 
+public class FacebookAuth implements AuthExternalService {
 
+    private final String clientId;
 
-/**
- * On google sign-in access.
- * @param user {object}
- */
-const googleOnSignIn = (user) => {
+    public FacebookAuth(String clientId) {
+        this.clientId = clientId;
+    }
 
-    const profile = user.getBasicProfile();
-
-    console.log(user);
-    console.log(profile);
-
-}
-
-const googleOnFailure = (error) => {
-    console.log(error);
-}
-
-const googleSignInRender = () => {
-
-    console.log("googleSignInRender");
-
-    gapi.signin2.render('button-signin-google', {
-        'scope': 'profile email',
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': googleOnSignIn,
-        'onfailure': googleOnFailure
-    });
+    @Override
+    public boolean verify(String username, String password) {
+        return false;
+    }
 
 }
-

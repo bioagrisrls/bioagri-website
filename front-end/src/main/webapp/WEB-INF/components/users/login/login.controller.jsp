@@ -35,6 +35,15 @@
         constructor() {
             super(id, {
 
+                auth: {
+                    type: 'hidden',
+                    value: 'AUTH_SERVICE_INTERNAL',
+                },
+
+                service: {
+                    type: 'hidden'
+                },
+
                 username: {
                     type: 'email',
                     label: "Indirizzo email", // FIXME

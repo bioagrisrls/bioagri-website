@@ -23,48 +23,19 @@
  *
  */
 
-package it.bioagri.api.auth;
+package it.bioagri.api.auth.services;
 
-import java.util.StringJoiner;
+public class TwitterAuth implements AuthExternalService {
 
-public final class AuthLogin {
+    private final String clientId;
 
-    private final String username;
-    private final String password;
-    private final String service;
-    private final AuthServiceType type;
-
-
-    public AuthLogin() {
-        this.username = null;
-        this.password = null;
-        this.service = null;
-        this.type = null;
-    }
-
-    public String getService() {
-        return service;
-    }
-
-    public AuthServiceType getType() {
-        return type;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
+    public TwitterAuth(String clientId) {
+        this.clientId = clientId;
     }
 
     @Override
-    public String toString() {
-        return new StringJoiner(", ", AuthLogin.class.getSimpleName() + "[", "]")
-                .add("username='" + username + "'")
-                .add("password='" + password + "'")
-                .add("service='" + service + "'")
-                .add("type='" + type + "'")
-                .toString();
+    public boolean verify(String username, String password) {
+        return false;
     }
+
 }

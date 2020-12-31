@@ -14,5 +14,20 @@
       "name": "database.password",
       "type": "java.lang.String",
       "description": "Description for database.password."
+    },
+    {
+      "name": "auth.services.external.google.id",
+      "type": "java.lang.String",
+      "description": "Description for auth.services.external.google.id."
+    },
+    {
+      "name": "auth.services.external.facebook.id",
+      "type": "java.lang.String",
+      "description": "Description for auth.services.external.facebook.id."
+    },
+    {
+      "name": "auth.services.external.twitter.id",
+      "type": "java.lang.String",
+      "description": "Description for auth.services.external.twitter.id."
     }
   ] }
