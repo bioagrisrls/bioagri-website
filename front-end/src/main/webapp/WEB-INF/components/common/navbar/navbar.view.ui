@@ -132,7 +132,7 @@
                             <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col">Vai alla cassa (FIXME)</button>
                         </div>
 
-                        <div class="w-100 p-4"><h5 class="text-end">Totale ({{this.id}}-info-count articoli): {{this.id}}-info-price &euro;</h5></div>
+                        <div class="w-100 p-4"><h5 class="text-end">Totale (<span id="{{this.id}}-info-count"></span> articoli): <span id="{{this.id}}-info-price"></span> &euro;</h5></div>
 
                     </div>
 

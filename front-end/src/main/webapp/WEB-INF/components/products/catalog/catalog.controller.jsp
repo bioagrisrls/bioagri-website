@@ -61,7 +61,7 @@
 
             $(window).one('scroll', this, function handler(e) {
 
-                if(!e.data.elem) {
+                if(e.data.running) {
 
                     const wy = window.pageYOffset + window.innerHeight;
                     const ty = e.data.elem.offsetTop + e.data.elem.offsetHeight;
@@ -75,8 +75,6 @@
                         $(window).one('scroll', e.data, handler);
                     }
 
-                } else {
-                    $(window).one('scroll', e.data, handler);
                 }
 
             });
