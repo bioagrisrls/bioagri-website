@@ -92,6 +92,11 @@ class Component {
         this.events = [];
 
 
+
+        if(!this.id || this.id === '')
+            throw new Error("Component id cannot be null: " + elem.localName);
+
+
         for(const attr of elem.attributes) {
 
             if(!attr.name.startsWith('ui:bind-'))
