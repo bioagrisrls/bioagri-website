@@ -54,6 +54,8 @@
                 shipmentHint: `${locale.checkout_shipment_hint}`,
                 paymentHint: `${locale.checkout_payment_hint}`,
 
+                success: true,
+
             });
         }
 
