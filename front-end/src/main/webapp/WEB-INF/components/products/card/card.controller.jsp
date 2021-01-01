@@ -57,7 +57,7 @@
 
 
         onClickAddToWishList(element){
-                element.toggleClass('mdi-heart-outline').toggleClass('mdi-heart');
+            element.toggleClass('mdi-heart-outline').toggleClass('mdi-heart');
         }
 
     });

@@ -29,20 +29,35 @@
 
 <script defer>
 
-    Component.register('ui-feedback-stars', (id, props) => new class extends StatefulComponent {
+    Component.register('ui-stars', (id, props) => new class extends StatefulComponent {
 
         constructor() {
 
-            super(id, api("/products/"+(props.id || 0) +"/votes/avg").then(response => {
+            if(!props.vote) {
 
-                return {
+                props.id = props.id || 0;
+                props.target = props.target || 'products';
+                props.type = props.type || 'avg';
 
-                    star: response,
-                    clickable: props.clickable || "false",
+                super(id, api('/' + props.target + '/' + props.id + (props.target === 'products' ? '/votes/' + props.type : ''))
+                    .then(response => (props.target === 'products' ? response : response.vote))
+                    .then(response => {
+                        return {
+                            id: props.id,
+                            vote: response,
+                            clickable: props.clickable
+                        }
+                    }));
 
-                };
+            } else {
 
-            }));
+                super(id, {
+                    id: props.id,
+                    vote: props.vote,
+                    clickable: props.clickable
+                });
+
+            }
         }
 
         onRender() {
@@ -57,7 +72,12 @@
             return `${components.common_stars_error}`
         }
 
-        onStarClicked(star, index) {
+
+        turn(index, set = false) {
+
+            if(index === 0)
+                index = this.state.vote;
+
 
             for (let i = 1; i <= index; i++) {
                 document.querySelector("#" + this.id + "-star-" + i).classList.remove('mdi-star-outline');
@@ -68,6 +88,12 @@
             for (let i = index + 1; i <= 5; i++) {
                 document.querySelector("#" + this.id + "-star-" + i).classList.remove('mdi-star');
                 document.querySelector("#" + this.id + "-star-" + i).classList.add('mdi-star-outline');
+            }
+
+            if(set) {
+                this.state = {
+                    vote: index
+                };
             }
 
         }

@@ -507,7 +507,14 @@ const $renderTemplate = (instance, template = '', state = {}) => {
     output += 'return $$$$.join("");';
 
 
-    return new Function(Object.keys(state).join(", "), output)
-       .apply(instance, Object.values(state));
+    try {
+
+        return new Function(Object.keys(state).join(", "), output)
+            .apply(instance, Object.values(state));
+
+    } catch (e) {
+        console.error(e);
+        console.error(output);
+    }
 
 }
