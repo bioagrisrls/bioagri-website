@@ -101,7 +101,7 @@
                     <div class="col-md text-center" ui-animated-hover ui-animated-scroll><ui-image id="ui-image-services-05" class="d-block p-3" ui:src="/assets/img/home/5.png"></ui-image><h5>Organic food</h5></div>
                 </div>
 
-                <ui-stars id="stars" ui:vote="3"></ui-stars>
+                <ui-stars id="stars" ui:vote="3" ui:clickable="true"></ui-stars>
 
 
             </section>

@@ -43,8 +43,8 @@
                     .then(response => (props.target === 'products' ? response : response.vote))
                     .then(response => {
                         return {
-                            id: props.id,
-                            vote: response,
+                            id: +props.id,
+                            vote: +response,
                             clickable: props.clickable
                         }
                     }));
@@ -52,8 +52,8 @@
             } else {
 
                 super(id, {
-                    id: props.id,
-                    vote: props.vote,
+                    id: +props.id,
+                    vote: +props.vote,
                     clickable: props.clickable
                 });
 
@@ -74,6 +74,9 @@
 
 
         turn(index, set = false) {
+
+            if(!this.state.clickable)
+                return;
 
             if(index === 0)
                 index = this.state.vote;

@@ -33,15 +33,19 @@
 
 }
 
-.mdi-star {
-  color:yellow;
-}
+.ui-stars-icon {
 
-.ui-star-icon-scale-color:hover{
-
-  transform: scale(1.5);
+  display: inline-block;
+  transform: scale(1);
   transition: all .4s ease-in-out;
-  color:yellow;
+
+  &:hover {
+    transform: scale(1.5);
+  }
+
+  &.clickable {
+    cursor: pointer;
+  }
 
 }
 

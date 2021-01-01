@@ -26,12 +26,14 @@
 <div onmouseleave="$$.turn(0)">
     <?
 
-        for(let i = 1; i <= +vote; i++) {
-            ?> <span id="{{this.id}}-star-{{i}}" class="text-secondary mdi mdi-24px mdi-star" onmouseenter="$$.turn({{i}})" onmouseleave="$$.turn(0)" onclick="$$.turn({{i}}, true)"></span> <?
+        const classes = clickable ? 'clickable' : '';
+
+        for(let i = 1; i <= vote; i++) {
+            ?> <span id="{{this.id}}-star-{{i}}" class="{{classes}} text-secondary ui-stars-icon mdi mdi-24px mdi-star" onmouseenter="$$.turn({{i}})" onclick="$$.turn({{i}}, true)"></span> <?
         }
 
-        for(let i = +vote + 1; i <= 5; i++) {
-            ?> <span id="{{this.id}}-star-{{i}}" class="text-secondary mdi mdi-24px mdi-star-outline" onmouseenter="$$.turn({{i}})" onmouseleave="$$.turn(0)" onclick="$$.turn({{i}}, true)"></span> <?
+        for(let i = vote + 1; i <= 5; i++) {
+            ?> <span id="{{this.id}}-star-{{i}}" class="{{classes}} text-secondary ui-stars-icon mdi mdi-24px mdi-star-outline" onmouseenter="$$.turn({{i}})" onclick="$$.turn({{i}}, true)"></span> <?
         }
 
     ?>

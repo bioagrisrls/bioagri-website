@@ -396,13 +396,18 @@ class StatefulComponent extends Component {
     /**
      * Change state of component and redraw it.
      * @param state {object}
+     * @param redraw {boolean}
      */
-    setState(state) {
+    setState(state, redraw = true) {
 
         this.$currentState = Object.assign(this.$currentState, state);
 
+
         this.onBeforeUpdate(this.state);
-        Component.render(this, this.onRender(), this.state);
+
+        if(redraw)
+            Component.render(this, this.onRender(), this.state);
+
         this.onUpdated(this.state);
 
 
