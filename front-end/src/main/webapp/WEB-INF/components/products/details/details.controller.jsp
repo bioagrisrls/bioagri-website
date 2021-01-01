@@ -35,13 +35,43 @@
 
     Component.register('ui-details', (id, props) => new class extends StatefulComponent {
 
+
         constructor() {
-            super(id, api("/products/" + props.id))
+            super(id,
+                api("/products/" + props.id)
+                    .then(product => api("/feedbacks?filter-by=productId&filter-val=" + props.id)
+                    .then(feedbacks => {
+
+                        return {
+
+                            products: product,
+                            feedbacks: feedbacks,
+                            current:'details'
+
+                        }
+                    })
+                    )
+            )
+
         }
+
 
         onRender() {
             return `${components.products_details}`
         }
+
+        goToDetails() {
+            this.setState({current: 'details'});
+        }
+
+        goToFeedbacks() {
+            this.setState({current: 'feedbacks'});
+        }
+
+        goToShipment() {
+            this.setState({current: 'shipment'});
+        }
+
 
     });
 
