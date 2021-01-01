@@ -37,12 +37,21 @@
 
                     return {
                         images: response,
+                        current: 0
                     }
 
                 })
             );
         }
 
+        onReady(state){
+
+            let galleryCarousel = document.querySelector('#galleryCarousel');
+            let carousel = new bootstrap.Carousel(galleryCarousel);
+
+            this.setState({carousel: carousel});
+
+        }
 
         onRender() {
             return `${components.common_gallery}`
@@ -54,6 +63,28 @@
 
         onError() {
             return `${components.common_gallery_error}`
+        }
+
+        nextTo() {
+
+            if((+this.state.current + 1) < this.state.images.length)
+                this.setState({current: '0'}, false);
+            else
+                this.setState({current: (+this.state.current + 1)}, false);
+
+        }
+
+        prevTo() {
+
+            if((+this.state.current - 1) < 0)
+                this.setState({current: (+this.state.images.length - 1)}, false);
+            else
+                this.setState({current: (+this.state.current - 1)}, false);
+
+        }
+
+        goTo(i) {
+            this.setState({current: i}, false);
         }
 
     });
