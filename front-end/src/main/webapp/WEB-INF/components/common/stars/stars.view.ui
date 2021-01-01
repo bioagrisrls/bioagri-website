@@ -23,34 +23,16 @@
   ~
   -->
 
-<? if( clickable === false) { ?>
+<div onmouseleave="$$.turn(0)">
+    <?
 
-    <? for (let i = 1; i <= star; i++) { ?>
+        for(let i = 1; i <= +vote; i++) {
+            ?> <span id="{{this.id}}-star-{{i}}" class="text-secondary mdi mdi-24px mdi-star" onmouseenter="$$.turn({{i}})" onmouseleave="$$.turn(0)" onclick="$$.turn({{i}}, true)"></span> <?
+        }
 
-        <span id = "{{this.id}}-star-{{i}}-solid"
-              class = "mdi mdi-24px mdi-star ui-star-icon-scale-color">
-        </span>
+        for(let i = +vote + 1; i <= 5; i++) {
+            ?> <span id="{{this.id}}-star-{{i}}" class="text-secondary mdi mdi-24px mdi-star-outline" onmouseenter="$$.turn({{i}})" onmouseleave="$$.turn(0)" onclick="$$.turn({{i}}, true)"></span> <?
+        }
 
-    <? } ?>
-
-    <? for (let i = 1; i <= star; i++) { ?>
-
-        <span id = "{{this.id}}-star-{{i}}-outline"
-              class = "mdi mdi-24px mdi-star-outline">
-        </span>
-
-    <? } ?>
-
-<? } else { ?>
-
-    <? for (let i = 1; i <= 5; i++) { ?>
-
-        <span id="{{this.id}}-star-{{i}}"
-              onclick="$$.onStarClicked(this, {{i}})"
-              class = "mdi mdi-24px mdi-star-outline ui-star-icon-scale-color">
-        </span>
-
-    <? } ?>
-
-<? } ?>
-
+    ?>
+</div>
