@@ -36,7 +36,7 @@ const $basePath = '/api';
  * @param method {string}
  * @param body {object}
  * @param returnJson {boolean}
- * @returns {Promise<Response>}
+ * @returns {Promise<Response | object | object[] | void>}
  */
 const api = async (path, method = 'GET', body = {}, returnJson = true) => {
 

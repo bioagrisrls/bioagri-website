@@ -48,8 +48,8 @@
         if(v.pattern)
             output.push('pattern="' + v.pattern.toString().slice(1, -1) + '"');
 
-        if(v.placeholder)
-            output.push('placeholder="' + v.placeholder + '"');
+        if(v.placeholder || v.label)
+            output.push('placeholder="' + (v.placeholder || v.label) + '"');
 
         if(v.size)
             output.push('size=' + v.size);
@@ -124,9 +124,9 @@
 
                         ?>
 
-                             <div>
-                                 <label for="{{k}}" class="form-label">{{v.label || ''}}</label>
+                             <div class="form-floating my-3">
                                  <input type="{{v.type || 'text'}}" class="form-control {{wrong(k)}}" id="{{k}}" {{getprops(v)}} oninput="$$.$check(this)">
+                                 <label for="{{k}}">{{v.label || ''}}</label>
                                  <? if(wrong(k)) { ?>
                                  <?     if(v.wrong) { ?> <div class="invalid-feedback">{{v.wrong}}</div><? } ?>
                                  <? } else { ?>
@@ -144,7 +144,7 @@
                         case 'radio':
 
                         ?>
-                            <div class="form-check {{v.type === 'switch' ? 'form-switch' : ''}}">
+                            <div class="form-check {{v.type === 'switch' ? 'form-switch' : ''}} my-3">
                                 <input type="{{v.type === 'radio' ? 'radio' : 'checkbox'}}" class="form-check-input {{wrong(k)}}" value="" id="{{k}}" {{getprops(v)}} oninput="$$.$check(this)">
                                 <label class="form-check-label" for="{{k}}">{{v.label || ''}}</label>
                                 <? if(wrong(k)) { ?>
@@ -163,8 +163,8 @@
 
                         ?>
 
-                            <div>
-                                <label for="{{k}}" class="form-label">{{v.label || ''}}</label>
+                            <div class="form-floating my-3">
+                                <label for="{{k}}">{{v.label || ''}}</label>
                                 <textarea class="form-control {{wrong(k)}}" id="{{k}}" {{getprops(v)}} oninput="$$.$check(this)"></textarea>
                                 <? if(wrong(k)) { ?>
                                 <?     if(v.wrong) { ?> <div class="invalid-feedback">{{v.wrong}}</div><? } ?>
