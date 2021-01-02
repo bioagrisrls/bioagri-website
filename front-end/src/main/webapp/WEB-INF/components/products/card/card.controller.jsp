@@ -33,13 +33,19 @@
 
         constructor() {
             super(id,
-                api("/products/" + (props.id || 0)).then(response => {
-                            return Object.assign(response, {
-                                view: props.view || 'card',
-                                quantity: props.quantity || 0
-                            }
-                        )}
-                ))
+                api("/products/" + (props.id || 0))
+                    .then(products => {
+                        return {
+
+                            view: props.view || 'card',
+                            quantity: props.quantity || 0,
+                            products: products,
+                            iswish : props.iswish || 'no'
+
+                        }
+                    })
+                )
+
             }
 
 
@@ -57,7 +63,10 @@
 
 
         onClickAddToWishList(element){
-                element.toggleClass('mdi-heart-outline').toggleClass('mdi-heart');
+
+                element.classList.toggle('mdi-heart-outline');
+                element.classList.toggle('mdi-heart');
+
         }
 
     });

@@ -191,11 +191,12 @@
                 <? for (let product of products) { ?>
                     <div class="p-2 flex-fill bd-highlight {{ selectedView ===  'card' ? 'mw-33 mw-sm-100 mw-md-50' : 'w-100' }}">
 
-                        <ui-card id="ui-card-{{ product + '-' + selectedView }}"
+                        <ui-card id="ui-card-{{ product }}-{{selectedView}}"
                                  ui:id="{{ product }}"
-                                 ui:view="{{ selectedView }}">
+                                 ui:view="{{ selectedView }}"
+                                 ui::iswish="{{this.isWish(product)}}"
+                        >
                         </ui-card>
-
                     </div>
 
                 <? } ?>
