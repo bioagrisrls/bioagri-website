@@ -55,6 +55,9 @@
             <!-- Product Info -->
             <ui-product-info id="ui-product-info" ui:id="${param.id}"></ui-product-info>
 
+            <!-- Product Stats -->
+            <ui-product-stats id="ui-product-stats" ui:id="${param.id}"></ui-product-stats>
+
         </div>
 
     </section>
