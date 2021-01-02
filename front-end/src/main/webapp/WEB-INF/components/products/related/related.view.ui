@@ -23,18 +23,14 @@
   ~
   -->
 
-<div>
-    <div>
-        <div class="row">
+<div style="overflow-x: scroll">
+    <?
+        for(const product of products) {
+            ?>
+                <div class="mw-25 d-inline-block" style="white-space: nowrap">
+                    <ui-card id="{{this.id}}-{{product}}" ui:id="{{product}}"></ui-card>
+                </div>
             <?
-            for(const product of products) {
-                ?>
-            <div class="col-2">
-                <ui-card id="{{this.id}}-{{product}}" ui:id="{{product}}"></ui-card>
-            </div>
-            <?
-            }
-        ?>
-        </div>
-    </div>
+        }
+    ?>
 </div>
