@@ -37,12 +37,12 @@
 
                     return {
                         images: response,
+                        current: 0
                     }
 
                 })
             );
         }
-
 
         onRender() {
             return `${components.common_gallery}`
@@ -54,6 +54,32 @@
 
         onError() {
             return `${components.common_gallery_error}`
+        }
+
+        nextTo() {
+
+            let value = +this.state.current + 1;
+
+            if(+value > (+this.state.images.length - 1))
+                this.setState({current: 0}, false);
+            else
+                this.setState({current: +value}, false);
+
+        }
+
+        prevTo() {
+
+            let value = +this.state.current - 1;
+
+            if(+value < 0)
+                this.setState({current: (+this.state.images.length - 1)}, false);
+            else
+                this.setState({current: +value}, false);
+
+        }
+
+        goTo(i) {
+            this.setState({current: +i}, false);
         }
 
     });

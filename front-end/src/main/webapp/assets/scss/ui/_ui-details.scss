@@ -33,16 +33,24 @@
 
 }
 
-.mdi-star {
-  color:yellow;
+.ui-stars-icon {
+
+  display: inline-block;
+  transform: scale(1);
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.5);
+  }
+
+  &.clickable {
+    cursor: pointer;
+  }
+
 }
 
-.ui-star-icon-scale-color:hover{
-
-  transform: scale(1.5);
-  transition: all .4s ease-in-out;
-  color:yellow;
-
+.ui-products-stats-progressbar {
+  height: 3px !important;
 }
 
 .ui-active:hover {

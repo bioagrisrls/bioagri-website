@@ -87,11 +87,14 @@
         <%@ include file="/WEB-INF/components/common/header/header.controller.jsp"              %>
         <%@ include file="/WEB-INF/components/common/navbar/navbar.controller.jsp"              %>
         <%@ include file="/WEB-INF/components/common/stars/stars.controller.jsp"                %>
+        <%@ include file="/WEB-INF/components/common/contact/contact.controller.jsp"            %>
         <%@ include file="/WEB-INF/components/image/image/image.controller.jsp"                 %>
         <%@ include file="/WEB-INF/components/image/parallax/parallax.controller.jsp"           %>
         <%@ include file="/WEB-INF/components/products/card/card.controller.jsp"                %>
         <%@ include file="/WEB-INF/components/products/catalog/catalog.controller.jsp"          %>
         <%@ include file="/WEB-INF/components/products/info/info.controller.jsp"                %>
+        <%@ include file="/WEB-INF/components/products/stats/stats.controller.jsp"              %>
+        <%@ include file="/WEB-INF/components/products/related/related.controller.jsp"          %>
         <%@ include file="/WEB-INF/components/shopping/cart/cart.controller.jsp"                %>
         <%@ include file="/WEB-INF/components/shopping/checkout/checkout.controller.jsp"        %>
         <%@ include file="/WEB-INF/components/users/login/login.controller.jsp"                 %>

@@ -23,18 +23,43 @@
   ~
   -->
 
-<div onmouseleave="$$.turn(0)">
+<div>
+
     <?
 
-        const classes = clickable ? 'clickable' : '';
+        const votes = [];
 
-        for(let i = 1; i <= Math.ceil(vote); i++) {
-            ?> <span id="{{this.id}}-star-{{i}}" class="{{classes}} text-secondary ui-stars-icon mdi mdi-24px mdi-star" onmouseenter="$$.turn({{i}})" onclick="$$.turn({{i}}, true)"></span> <?
-        }
+        votes[0] = reviews.reduce((v, j) => j.vote + v, 0) / reviews.length;
 
-        for(let i = Math.ceil(vote) + 1; i <= 5; i++) {
-            ?> <span id="{{this.id}}-star-{{i}}" class="{{classes}} text-secondary ui-stars-icon mdi mdi-24px mdi-star-outline" onmouseenter="$$.turn({{i}})" onclick="$$.turn({{i}}, true)"></span> <?
-        }
+        for(let i = 1; i <= 5; i++)
+            votes[i] = Math.ceil(reviews .filter((v) => Math.ceil(v.vote) === i).length / reviews.length * 100);
 
     ?>
+
+
+    <h5 class="py-3">Recensioni clienti (FIXME): ({{reviews.length}})</h5>
+
+    <div class="row gx-5 align-items-center">
+        <h5 class="col">{{votes[0].toFixed(2)}}/5</h5>
+        <ui-stars class="col-auto" id="{{this.id}}-reviews-stars" ui:vote="{{votes[0]}}"></ui-stars>
+    </div>
+
+
+    <?
+        for(let i = 5; i > 0; i--) {
+            ?>
+                <div class="row gx-5 align-items-center">
+                    <div class="col-auto">
+                        <span>{{i}}</span>
+                    </div>
+                    <div class="col">
+                        <div class="progress ui-products-stats-progressbar">
+                            <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: {{votes[i]}}%"></div>
+                        </div>
+                    </div>
+                </div>
+            <?
+        }
+    ?>
+
 </div>

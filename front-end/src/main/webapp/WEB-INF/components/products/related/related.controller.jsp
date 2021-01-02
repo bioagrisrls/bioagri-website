@@ -1,4 +1,4 @@
-<!--
+<%--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,20 +21,45 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  -->
+  --%>
 
-<div onmouseleave="$$.turn(0)">
-    <?
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
 
-        const classes = clickable ? 'clickable' : '';
+<script defer>
 
-        for(let i = 1; i <= Math.ceil(vote); i++) {
-            ?> <span id="{{this.id}}-star-{{i}}" class="{{classes}} text-secondary ui-stars-icon mdi mdi-24px mdi-star" onmouseenter="$$.turn({{i}})" onclick="$$.turn({{i}}, true)"></span> <?
+    Component.register('ui-product-related', (id, props) => new class extends StatefulComponent {
+
+        constructor() {
+
+            let uri = '';
+
+            switch(props.kind) {
+
+                case "categories":
+                    uri = 'filter-by=categories.id&filter-val=' + (props.id || 0);
+                    break;
+
+                case "tags":
+                    uri = 'filter-by=tags.id&filter-val=' + (props.id || 0);
+                    break;
+
+            }
+
+            super(id, api('/products?limit=25&' + uri).then(response => {
+                return {
+                    products: response.map(i => i.id)
+                }
+            }));
+
         }
 
-        for(let i = Math.ceil(vote) + 1; i <= 5; i++) {
-            ?> <span id="{{this.id}}-star-{{i}}" class="{{classes}} text-secondary ui-stars-icon mdi mdi-24px mdi-star-outline" onmouseenter="$$.turn({{i}})" onclick="$$.turn({{i}}, true)"></span> <?
+        onRender() {
+            return `${components.products_related}`
         }
 
-    ?>
-</div>
+    });
+
+
+</script>
