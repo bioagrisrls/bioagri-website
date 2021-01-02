@@ -194,7 +194,7 @@
                         <ui-card id="ui-card-{{ product }}-{{selectedView}}"
                                  ui:id="{{ product }}"
                                  ui:view="{{ selectedView }}"
-                                 ui::iswish="{{this.isWish(product)}}"
+                                 ui:iswish="{{this.isWish(product)}}"
                         >
                         </ui-card>
                     </div>

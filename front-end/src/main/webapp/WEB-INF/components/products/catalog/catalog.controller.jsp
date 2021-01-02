@@ -103,7 +103,7 @@
 
         isWish(id){
 
-            for(let i = 0; i < this.state.wishlist.lenght; i++){
+            for(let i = 0; i < this.state.wishlist.length; i++){
 
                     if(this.state.wishlist[i].id === id)
                         return 'yes';
