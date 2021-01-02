@@ -87,6 +87,7 @@
         <%@ include file="/WEB-INF/components/common/header/header.controller.jsp"              %>
         <%@ include file="/WEB-INF/components/common/navbar/navbar.controller.jsp"              %>
         <%@ include file="/WEB-INF/components/common/stars/stars.controller.jsp"                %>
+        <%@ include file="/WEB-INF/components/common/contact/contact.controller.jsp"            %>
         <%@ include file="/WEB-INF/components/image/image/image.controller.jsp"                 %>
         <%@ include file="/WEB-INF/components/image/parallax/parallax.controller.jsp"           %>
         <%@ include file="/WEB-INF/components/products/card/card.controller.jsp"                %>
