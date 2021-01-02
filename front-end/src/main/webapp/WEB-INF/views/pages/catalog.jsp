@@ -51,7 +51,7 @@
     <br>
 
     <section ui-animated>
-        <ui-catalog id="ui-catalog"></ui-catalog>
+        <ui-catalog id="ui-catalog" ></ui-catalog>
     </section>
 
     <br>

@@ -35,7 +35,7 @@
 
                     <a href="#" ui-navigate class="float-start">
                         <h5 class="card-title mb-1">
-                            {{ name }}
+                            {{ products.name }}
                         </h5>
                     </a>
 
@@ -44,11 +44,11 @@
                     </p>
 
                     <hr class="clear-end my-3">
-                    <h5 class="float-end">{{ price }} &euro;</h5>
-                    <p class="card-text text-truncate">{{description}}</p>
+                    <h5 class="float-end">{{ products.price }} &euro;</h5>
+                    <p class="card-text text-truncate">{{products.description}}</p>
 
                     <p class="card-text float-start">
-                        <small class="text-muted">Aggiunto il {{createdAt}} (FIXME)</small>
+                        <small class="text-muted">Aggiunto il {{products.createdAt}} (FIXME)</small>
                     </p>
 
                     <select class="form-select form-select-sm float-end w-auto" onchange="$$.setState({ quantity: this.value })">
@@ -77,7 +77,7 @@
 
                        <a href="#" ui-navigate class="float-start">
                            <h5 class="card-title mb-1">
-                               {{ name }}
+                               {{ products.name }}
                            </h5>
                        </a>
 
@@ -86,12 +86,12 @@
                        </p>
 
                        <hr class="clear-end my-3">
-                       <h5 class="float-end">{{ price }} &euro;</h5>
-                       <p class="card-text text-truncate">{{description}}</p>
+                       <h5 class="float-end">{{ products.price }} &euro;</h5>
+                       <p class="card-text text-truncate">{{products.description}}</p>
 
                        <div class = "row text-center">
 
-                           <span onclick = "$$.onClickAddToWishList(this);" class="col-4 mdi mdi-24px mdi-heart-outline ui-heart-icon-scale-color"> </span>
+                           <span onclick = "$$.updateWishList(this);" class="col-4 mdi mdi-24px mdi-heart{{ iswish === 'yes' ? ' ' : '-outline '}} ui-heart-icon-scale-color"> </span>
                            <span class="col-4 mdi mdi-24px mdi-cart-outline ui-cart-icon-scale-color"> </span>
                            <span class="col-4 mdi mdi-24px mdi-information-outline ui-information-icon-scale-color"> </span>
 
@@ -110,13 +110,12 @@
     <div class="card-body p-4 ui-zoom">
 
         <img class="img-fluid d-block mx-auto mb-3" src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" />
-        <h5><a href="/details" class="text-dark" ui-navigate ui-data="{ id: {{id}}, name: '{{name}}' }">{{ name }}</a></h5>
-        <p class="small text-muted">{{ price }}</p>
+        <h5><a href="/details" class="text-dark" ui-navigate ui-data="{ id: {{products.id}}, name: '{{products.name}}' }">{{ products.name }}</a></h5>
+        <p class="small text-muted">{{ products.price }}</p>
 
         <div class = "row text-center">
 
-            <span onclick="$$.onClickAddToWishList(this);" class="col-4 mdi mdi-24px mdi-heart ui-heart-icon-scale-color"> </span>
-            <span onclick="$$.onClickAddToWishList(this);" class="col-4 mdi mdi-24px mdi-heart-outline ui-heart-icon-scale-color"> </span>
+            <span onclick = "$$.updateWishList(this);" class="col-4 mdi mdi-24px mdi-heart{{ iswish === 'yes' ? ' ' : '-outline '}} ui-heart-icon-scale-color"> </span>
             <span class="col-4 mdi mdi-24px mdi-cart-outline ui-cart-icon-scale-color"> </span>
             <span class="col-4 mdi mdi-24px mdi-information-outline ui-information-icon-scale-color"> </span>
 

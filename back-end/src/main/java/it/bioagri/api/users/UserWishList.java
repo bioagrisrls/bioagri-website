@@ -89,8 +89,8 @@ public class UserWishList {
 
     }
 
-    @PutMapping("/{sid}/wishlist/{id}")
-    public ResponseEntity<String> update(@PathVariable Long sid, @PathVariable Long id) {
+    @PostMapping("/{sid}/wishlist/{id}")
+    public ResponseEntity<String> create(@PathVariable Long sid, @PathVariable Long id) {
 
         ApiPermission.verifyOrThrow(ApiPermissionType.PRODUCTS, ApiPermissionOperation.READ, authToken);
 

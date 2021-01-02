@@ -33,13 +33,19 @@
 
         constructor() {
             super(id,
-                api("/products/" + (props.id || 0)).then(response => {
-                            return Object.assign(response, {
-                                view: props.view || 'card',
-                                quantity: props.quantity || 0
-                            }
-                        )}
-                ))
+                api("/products/" + (props.id || 0))
+                    .then(products => {
+                        return {
+
+                            view: props.view || 'card',
+                            quantity: props.quantity || 0,
+                            products: products,
+                            iswish : props.iswish || 'no'
+
+                        }
+                    })
+                )
+
             }
 
 
@@ -56,8 +62,16 @@
         }
 
 
-        onClickAddToWishList(element){
-            element.toggleClass('mdi-heart-outline').toggleClass('mdi-heart');
+        updateWishList(element){
+
+            if(this.state.iswish === 'yes')
+                api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + props.id,'DELETE', {}, false);
+            else
+                api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + props.id,'POST', {}, false);
+
+            element.classList.toggle('mdi-heart-outline');
+            element.classList.toggle('mdi-heart');
+
         }
 
     });

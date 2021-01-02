@@ -34,13 +34,18 @@
         constructor() {
             super( id,
 
-                api('/categories').then( r1 => api('/tags')
-                    .then( r2 =>  {
+                api('/categories')
+                    .then( categories => api('/tags')
+                    .then( tags => api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") +"/wishlist")
+                    .then( wishlist => {
 
                         return {
+
                             products: [],
-                            categories: r1,
-                            tags: r2,
+                            categories: categories,
+                            tags: tags,
+                            wishlist : wishlist,
+                            iswish : 'no',
                             skip: 0,
                             count: 0,
                             selectedSort : 'createdAt',
@@ -49,10 +54,12 @@
                             tag : '',
                             search : '',
                             filterByAttribute : false,
-                            hasMoreProducts : true,
-                        }
+                            hasMoreProducts : true
 
-                    })));
+                        }
+                        })
+
+                    )));
         }
 
         onReady(state) {
@@ -82,6 +89,7 @@
         }
 
         onRender() {
+
             return `${components.products_catalog}`
         }
 
@@ -93,7 +101,16 @@
             return `${components.products_catalog_error}`
         }
 
+        isWish(id){
 
+            for(let i = 0; i < this.state.wishlist.length; i++){
+
+                    if(this.state.wishlist[i].id === id)
+                        return 'yes';
+
+            }
+
+        }
 
         fetchNextGroup() {
 
@@ -242,6 +259,7 @@
         }
 
     });
+
 
 
 </script>
