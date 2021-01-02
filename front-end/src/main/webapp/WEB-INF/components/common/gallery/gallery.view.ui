@@ -58,7 +58,7 @@
         <? for(let image of images) { ?>
 
             <ui-image id="{{this.id}}-carousel-image-{{j++}}-preview"
-                      onclick="$$.goTo({{j}})"
+                      onclick="$$.goTo({{j++}})"
                       ui:src="{{ image }}"
                       ui:width="20%"
                       ui:height="10%"></ui-image>
