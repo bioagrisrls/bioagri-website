@@ -26,7 +26,7 @@
 <div>
 
     <!-- Gallery Carousel -->
-    <div id="galleryCarousel" class="shadow carousel carousel-dark slide mb-2" data-ride="carousel">
+    <div id="galleryCarousel" class="shadow carousel carousel-dark slide mb-4" data-ride="carousel">
 
         <div class="carousel-inner">
 
@@ -54,12 +54,12 @@
     </div>
 
     <!-- Image Preview -->
-    <div class="d-flex flex-wrap align-items-start bg-white">
+    <div class="d-flex flex-wrap align-items-start bg-white shadow">
 
             <? let j = 0; ?>
             <? for(let image of images) { ?>
 
-                <div class="p-2 flex-fill bd-highlight border mw-25">
+                <div class="p-2 flex-fill bd-highlight border mw-25 {{current === j ? 'border-dark' : ''}}">
 
                     <ui-image id="{{this.id}}-carousel-image-preview-{{j}}"
                               onclick="$$.goTo({{j}})"
