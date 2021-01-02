@@ -44,15 +44,6 @@
             );
         }
 
-        onReady(state){
-
-            let galleryCarousel = document.querySelector('#galleryCarousel');
-            let carousel = new bootstrap.Carousel(galleryCarousel);
-
-            this.setState({carousel: carousel});
-
-        }
-
         onRender() {
             return `${components.common_gallery}`
         }
@@ -67,24 +58,28 @@
 
         nextTo() {
 
-            if((+this.state.current + 1) < this.state.images.length)
-                this.setState({current: '0'}, false);
+            let value = +this.state.current + 1;
+
+            if(+value > (+this.state.images.length - 1))
+                this.setState({current: 0}, false);
             else
-                this.setState({current: (+this.state.current + 1)}, false);
+                this.setState({current: +value}, false);
 
         }
 
         prevTo() {
 
-            if((+this.state.current - 1) < 0)
+            let value = +this.state.current - 1;
+
+            if(+value < 0)
                 this.setState({current: (+this.state.images.length - 1)}, false);
             else
-                this.setState({current: (+this.state.current - 1)}, false);
+                this.setState({current: +value}, false);
 
         }
 
         goTo(i) {
-            this.setState({current: i}, false);
+            this.setState({current: +i}, false);
         }
 
     });
