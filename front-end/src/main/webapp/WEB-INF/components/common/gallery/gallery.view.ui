@@ -23,48 +23,58 @@
   ~
   -->
 
-<!-- Gallery Carousel -->
-<div id="galleryCarousel" class="carousel carousel-dark slide" data-ride="carousel">
+<div>
 
-    <div class="carousel-inner">
+    <!-- Gallery Carousel -->
+    <div id="galleryCarousel" class="shadow carousel carousel-dark slide mb-2" data-ride="carousel">
 
-        <? let i = 0; ?>
-        <? for(let image of images) { ?>
+        <div class="carousel-inner">
 
-            <div class="carousel-item {{ i === current ? 'active' : '' }}">
-                <ui-image id="carousel-image-{{i++}}" ui:src="{{ image }}" ui:width="100%" ui:height="50%"></ui-image>
-            </div>
+            <? let i = 0; ?>
+            <? for(let image of images) { ?>
 
-        <? } ?>
+                <div class="carousel-item {{ i === current ? 'active' : '' }}">
+                    <ui-image id="{{this.id}}-carousel-image-{{i}}" ui:src="{{ image }}" ui:width="100%" ui:height="50%"></ui-image>
+                </div>
+
+                <? i = i + 1; ?>
+
+            <? } ?>
+
+        </div>
+
+        <a class="carousel-control-prev" onclick="$$.prevTo()" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+
+        <a class="carousel-control-next" onclick="$$.nextTo()" role="button" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+
+    </div>
+
+    <!-- Image Preview -->
+    <div class="d-flex flex-wrap align-items-start bg-white">
+
+            <? let j = 0; ?>
+            <? for(let image of images) { ?>
+
+                <div class="p-2 flex-fill bd-highlight border mw-25">
+
+                    <ui-image id="{{this.id}}-carousel-image-preview-{{j}}"
+                              onclick="$$.goTo({{j}})"
+                              ui:src="{{ image }}"
+                              ui:width="100%"
+                              ui:height="100%">
+                    </ui-image>
+
+                </div>
+
+                <? j = j + 1; ?>
+
+            <? } ?>
 
     </div>
 
-    <a class="carousel-control-prev" onclick="$$.nextTo()" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </a>
-
-    <a class="carousel-control-next" onclick="$$.prevTo()" role="button" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </a>
-
-</div>
-
-<!-- Image Preview -->
-<div class="d-flex flex-wrap align-items-start">
-
-    <div class="p-2 flex-fill bd-highlight">
-
-        <? let j = 0; ?>
-        <? for(let image of images) { ?>
-
-            <ui-image id="{{this.id}}-carousel-image-{{j++}}-preview"
-                      onclick="$$.goTo({{j++}})"
-                      ui:src="{{ image }}"
-                      ui:width="20%"
-                      ui:height="10%"></ui-image>
-
-        <? } ?>
-
-    </div>
 
 </div>
