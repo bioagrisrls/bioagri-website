@@ -64,17 +64,20 @@
 
         updateWishList(element){
 
-            if(this.state.iswish === 'yes')
-                api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + props.id,'DELETE', {}, false);
-            else
-                api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + props.id,'POST', {}, false);
+            authenticated().then(resolve => {
 
-            element.classList.toggle('mdi-heart-outline');
-            element.classList.toggle('mdi-heart');
+                if(this.state.iswish === 'yes')
+                    api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + props.id,'DELETE', {}, false);
+                else
+                    api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + props.id,'POST', {}, false);
 
+                element.classList.toggle('mdi-heart-outline');
+                element.classList.toggle('mdi-heart');
+
+            },function (){alert("effettua il login per aggiungere alla wishlist")});
         }
 
-    });
+    })
 
 
 </script>
