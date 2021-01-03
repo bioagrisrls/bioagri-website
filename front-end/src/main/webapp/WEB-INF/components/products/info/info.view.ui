@@ -26,68 +26,45 @@
 
 <div class="row mx-3 my-3">
 
-    <div class="col col-lg-8">
+    <div class="col-lg-6 col-md">
 
         <!-- Product Gallery -->
-        <ui-gallery id="ui-gallery-1" ui:id="{{product.id}}"></ui-gallery>
+        <ui-gallery id="ui-gallery-{{product.id}}" ui:id="{{product.id}}"></ui-gallery>
 
     </div>
 
     <!-- Product Info -->
-    <div class="col col-lg-4 bg-white shadow">
-        <div class="container">
+    <div class="col-lg-6 col-md">
+
+        <div class="container bg-white shadow">
 
             <!-- Info -->
-            <div class="display-4 mt-3">
+            <div class="display-4 py-3">
                 <h2 class="d-inline p-0">{{ product.name }}</h2>
             </div>
 
             <div class="display-5">
                 <h2 class="d-inline p-0">{{ product.price }} &euro;</h2>
-                <p>{{ ivaText }}</p>
+                <p class="d-inline p-0">{{ ivaText }}</p>
             </div>
 
-            <div class="row mb-5">
+            <div class="row mb-4">
                 <ui-stars id="ui-stars-1" ui:id="{{product.id}}" ui:clickable="{{false}}"></ui-stars>
             </div>
 
-            <!-- Accordion -->
-            <div class="row">
+            <div class="mb-2">
+                <h5 class="d-inline p-0">{{ descriptionText }}</h5>
+                <p>{{ product.description }}</p>
+            </div>
 
-                <div class="accordion accordion-flush" id="accordionFlush">
+            <div class="row py-4">
 
-                    <!-- Description -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne">
-                                Scheda Tecnica
-                            </button>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
-                            <div class="accordion-body">Scheda Tecnica</div>
-                        </div>
-                    </div>
-
-                    <!-- Stats -->
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo">
-                                Recensioni
-                            </button>
-                        </h2>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
-                            <div class="accordion-body">
-                                <ui-product-stats id="ui-product-stats" ui:id="{{product.id}}"></ui-product-stats>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
+                <!-- Stats -->
+                <ui-product-stats id="ui-product-stats-{{product.id}}" ui:id="{{product.id}}"></ui-product-stats>
 
             </div>
 
-            <div class="row">
+            <div class="row py-4">
 
                 <!-- Add to Cart -->
                 <button class="btn btn-primary btn-lg"><span class="mdi mdi-24px mdi-cart-outline align-middle"></span>{{ addToCartButton }}</button>

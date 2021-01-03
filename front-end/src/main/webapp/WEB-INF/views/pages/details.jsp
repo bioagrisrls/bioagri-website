@@ -41,7 +41,7 @@
     <div class="ui-container">
 
         <!-- Breadcrumb -->
-        <ui-breadcrumb id="ui-breadcrumb-8" ui:current="${locale.page_details}"></ui-breadcrumb>
+        <ui-breadcrumb id="ui-breadcrumb-8" ui:current="${param.name}" ui:urls="/catalog" ui:path="${locale.page_catalog},"></ui-breadcrumb>
 
     </div>
 
@@ -53,7 +53,7 @@
         <div class="ui-container">
 
             <!-- Product Info -->
-            <ui-product-info id="ui-product-info" ui:id="${param.id}"></ui-product-info>
+            <ui-product-info id="ui-product-info-${param.id}" ui:id="${param.id}"></ui-product-info>
 
 
         </div>

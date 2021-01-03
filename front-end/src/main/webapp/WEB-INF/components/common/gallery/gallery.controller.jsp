@@ -44,6 +44,16 @@
             );
         }
 
+        onReady(state) {
+
+            $('#gallery-carousel').on('slide.bs.carousel', function(e) {
+                $('.carousel-caption').hide();
+            }).on('slid.bs.carousel', function(e) {
+                $('.active .carousel-caption').slideToggle('slow');
+            });
+
+        }
+
         onRender() {
             return `${components.common_gallery}`
         }
@@ -58,28 +68,69 @@
 
         nextTo() {
 
-            let value = +this.state.current + 1;
+            const oldItem = '#carousel-item-' + this.state.current;
+            const oldContainer = '#carousel-image-container-' + this.state.current;
+
+            $(oldItem).removeClass('active');
+            $(oldContainer).removeClass('border-dark');
+
+            const value = +this.state.current + 1;
 
             if(+value > (+this.state.images.length - 1))
                 this.setState({current: 0}, false);
             else
                 this.setState({current: +value}, false);
 
+            const newItem = '#carousel-item-' + this.state.current;
+            const newContainer = '#carousel-image-container-' + this.state.current;
+
+            $(newItem).addClass('active');
+            $(newContainer).addClass('border-dark');
+
         }
 
         prevTo() {
 
-            let value = +this.state.current - 1;
+            const oldItem = '#carousel-item-' + this.state.current;
+            const oldContainer = '#carousel-image-container-' + this.state.current;
+
+            $(oldItem).removeClass('active');
+            $(oldContainer).removeClass('border-dark');
+
+            const value = +this.state.current - 1;
 
             if(+value < 0)
                 this.setState({current: (+this.state.images.length - 1)}, false);
             else
                 this.setState({current: +value}, false);
 
+            const newItem = '#carousel-item-' + this.state.current;
+            const newContainer = '#carousel-image-container-' + this.state.current;
+
+            $(newItem).addClass('active');
+            $(newContainer).addClass('border-dark');
+
         }
 
         goTo(i) {
+
+            if(+i === +this.state.current)
+                return;
+
+            const oldItem = '#carousel-item-' + this.state.current;
+            const oldContainer = '#carousel-image-container-' + this.state.current;
+
+            $(oldItem).removeClass('active');
+            $(oldContainer).removeClass('border-dark');
+
             this.setState({current: +i}, false);
+
+            const newItem = '#carousel-item-' + this.state.current;
+            const newContainer = '#carousel-image-container-' + this.state.current;
+
+            $(newItem).addClass('active');
+            $(newContainer).addClass('border-dark');
+
         }
 
     });
