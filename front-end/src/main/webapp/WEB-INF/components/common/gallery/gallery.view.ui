@@ -26,14 +26,14 @@
 <div>
 
     <!-- Gallery Carousel -->
-    <div id="galleryCarousel" class="shadow carousel carousel-dark slide mb-4" data-ride="carousel">
+    <div id="gallery-carousel" class="shadow carousel carousel-dark slide mb-4" data-ride="carousel">
 
         <div class="carousel-inner">
 
             <? let i = 0; ?>
             <? for(let image of images) { ?>
 
-                <div class="carousel-item {{ i === current ? 'active' : '' }}">
+                <div id="carousel-item-{{i}}" class="carousel-item {{ i === 0 ? 'active' : ''}}">
                     <ui-image id="{{this.id}}-carousel-image-{{i}}" ui:src="{{ image }}" ui:width="100%" ui:height="50%"></ui-image>
                 </div>
 
@@ -54,12 +54,12 @@
     </div>
 
     <!-- Image Preview -->
-    <div class="d-flex flex-wrap align-items-start bg-white shadow">
+    <div class="d-flex flex-wrap align-items-start bg-white shadow mb-4">
 
             <? let j = 0; ?>
             <? for(let image of images) { ?>
 
-                <div class="p-2 flex-fill bd-highlight border mw-25 {{current === j ? 'border-dark' : ''}}">
+                <div id="carousel-image-container-{{j}}" class="p-2 flex-fill bd-highlight border mw-25 {{j === 0 ? 'border-dark' : ''}}">
 
                     <ui-image id="{{this.id}}-carousel-image-preview-{{j}}"
                               onclick="$$.goTo({{j}})"
