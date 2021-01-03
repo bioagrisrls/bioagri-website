@@ -63,6 +63,19 @@ $spacers: (
 $link-decoration: none;
 
 
+//
+// Breakpoints
+//
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1200px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+
 @import "../bootstrap/bootstrap-reboot";
 @import "../bootstrap/bootstrap";
 
