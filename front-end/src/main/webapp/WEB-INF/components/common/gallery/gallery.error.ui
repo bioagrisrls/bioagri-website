@@ -1,4 +1,4 @@
-<%--
+<!--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,60 +21,4 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  --%>
-
-<%--
-  Created by IntelliJ IDEA.
-  User: Davide
-  Date: 28/12/2020
-  Time: 04:30
-  To change this template use File | Settings | File Templates.
---%>
-
-<script defer>
-
-    Component.register('ui-details', (id, props) => new class extends StatefulComponent {
-
-
-        constructor() {
-            super(id,
-                api("/products/" + props.id)
-                    .then(product => api("/feedbacks?filter-by=productId&filter-val=" + props.id)
-                    .then(feedbacks => {
-
-                        return {
-
-                            products: product,
-                            feedbacks: feedbacks,
-                            current:'details'
-
-                        }
-                    })
-                    )
-            )
-
-        }
-
-
-        onRender() {
-            return `${components.products_details}`
-        }
-
-        goToDetails() {
-            this.setState({current: 'details'});
-        }
-
-        goToFeedbacks() {
-            this.setState({current: 'feedbacks'});
-        }
-
-        goToShipment() {
-            this.setState({current: 'shipment'});
-        }
-
-
-    });
-
-
-</script>
-
+  -->
