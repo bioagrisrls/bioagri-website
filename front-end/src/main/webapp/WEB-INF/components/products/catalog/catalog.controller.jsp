@@ -37,7 +37,7 @@
                 api('/categories')
                     .then( categories => api('/tags')
                     .then( tags => api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") +"/wishlist")
-                    .then( wishlist => {
+                    .then(wishlist => {
 
                         return {
 
@@ -57,7 +57,26 @@
                             hasMoreProducts : true
 
                         }
-                        })
+                        }, reason =>  {
+
+                        return {
+
+                            products: [],
+                            categories: categories,
+                            tags: tags,
+                            wishlist: '',
+                            iswish: 'no',
+                            skip: 0,
+                            count: 0,
+                            selectedSort: 'createdAt',
+                            selectedView: 'card',
+                            category: '',
+                            tag: '',
+                            search: '',
+                            filterByAttribute: false,
+                            hasMoreProducts: true
+                        }
+                    })
 
                     )));
         }
