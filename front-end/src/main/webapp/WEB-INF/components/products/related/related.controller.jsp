@@ -84,14 +84,23 @@
             $sub.css({ width: (products.length + 1) * $prd.width()          + 'px' });
             $sub.css({ left:  (window.innerWidth / 2) - (1200 / 2) - offset + 'px' });
 
+
             if($sub.width() - offset < window.innerWidth)
                 this.setState({ offset: $sub.width() - window.innerWidth });
+
+            if(offset < 0)
+                this.setState({ offset: 0 });
+
 
         }
 
 
         next() {
             this.setState({ offset: this.state.offset + (window.innerWidth / 2) }, false);
+        }
+
+        prev() {
+            this.setState({ offset: this.state.offset - (window.innerWidth / 2) }, false);
         }
 
     });
