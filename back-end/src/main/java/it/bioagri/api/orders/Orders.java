@@ -70,7 +70,7 @@ public class Orders {
         try {
 
             return ResponseEntity.ok(
-                    dataSource.getOrderRepository()
+                    dataSource.getOrderDao()
                             .findAll()
                             .stream()
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
@@ -91,7 +91,7 @@ public class Orders {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getOrderRepository()
+            return ResponseEntity.ok(dataSource.getOrderDao()
                     .findByPrimaryKey(id)
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
                     .orElseThrow(() -> new ApiResponseStatus(404)));
@@ -112,7 +112,7 @@ public class Orders {
 
             order.setId(dataSource.getId("shop_order", Long.class));
 
-            dataSource.getOrderRepository().save(order);
+            dataSource.getOrderDao().save(order);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -130,11 +130,11 @@ public class Orders {
 
             order.setId(dataSource.getId("shop_order", Long.class));
 
-            dataSource.getOrderRepository().findByPrimaryKey(id)
+            dataSource.getOrderDao().findByPrimaryKey(id)
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE, authToken, i.getUserId()))
                     .ifPresentOrElse(
-                            (r) -> dataSource.getOrderRepository().update(r, order),
-                            ( ) -> dataSource.getOrderRepository().save(order)
+                            (r) -> dataSource.getOrderDao().update(r, order),
+                            ( ) -> dataSource.getOrderDao().save(order)
                     );
 
         } catch (DataSourceSQLException e) {
@@ -153,12 +153,12 @@ public class Orders {
 
         try {
 
-            dataSource.getOrderRepository()
+            dataSource.getOrderDao()
                     .findAll()
                     .stream()
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
                     .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
-                    .forEach(dataSource.getOrderRepository()::delete);
+                    .forEach(dataSource.getOrderDao()::delete);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -173,8 +173,8 @@ public class Orders {
 
         try {
 
-            dataSource.getOrderRepository().delete(
-                    dataSource.getOrderRepository()
+            dataSource.getOrderDao().delete(
+                    dataSource.getOrderDao()
                             .findByPrimaryKey(id)
                             .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
                             .orElseThrow(() -> new ApiResponseStatus(404)));

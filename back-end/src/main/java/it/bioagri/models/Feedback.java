@@ -112,7 +112,7 @@ public final class Feedback implements Model {
     public Optional<User> getUser(DataSource dataSource) {
 
         if(user == null) {
-            user = dataSource.getUserRepository()
+            user = dataSource.getUserDao()
                     .findByPrimaryKey(userId)
                     .orElse(null);
         }
@@ -125,7 +125,7 @@ public final class Feedback implements Model {
     public Optional<Product> getProduct(DataSource dataSource) {
 
         if(product == null) {
-            product = dataSource.getProductRepository()
+            product = dataSource.getProductDao()
                     .findByPrimaryKey(productId)
                     .orElse(null);
         }

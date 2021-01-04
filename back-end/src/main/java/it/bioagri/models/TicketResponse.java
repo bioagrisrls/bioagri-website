@@ -88,7 +88,7 @@ public class TicketResponse implements Model {
     public Optional<Ticket> getTicket(DataSource dataSource) {
 
         if(ticket == null) {
-            ticket = dataSource.getTicketRepository()
+            ticket = dataSource.getTicketDao()
                     .findByPrimaryKey(ticketId)
                     .orElse(null);
         }

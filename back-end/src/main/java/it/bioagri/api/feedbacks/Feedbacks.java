@@ -67,7 +67,7 @@ public class Feedbacks {
         try {
 
             return ResponseEntity.ok(
-                    dataSource.getFeedbackRepository()
+                    dataSource.getFeedbackDao()
                             .findAll()
                             .stream()
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken, i.getUserId()))
@@ -90,7 +90,7 @@ public class Feedbacks {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getFeedbackRepository()
+            return ResponseEntity.ok(dataSource.getFeedbackDao()
                     .findByPrimaryKey(id)
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken, i.getUserId()))
                     .orElseThrow(() -> new ApiResponseStatus(404)));
@@ -111,7 +111,7 @@ public class Feedbacks {
 
             feedback.setId(dataSource.getId("shop_feedback", Long.class));
 
-            dataSource.getFeedbackRepository().save(feedback);
+            dataSource.getFeedbackDao().save(feedback);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -129,11 +129,11 @@ public class Feedbacks {
 
             feedback.setId(dataSource.getId("shop_feedback", Long.class));
 
-            dataSource.getFeedbackRepository().findByPrimaryKey(id)
+            dataSource.getFeedbackDao().findByPrimaryKey(id)
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.UPDATE, authToken, i.getUserId()))
                     .ifPresentOrElse(
-                            (r) -> dataSource.getFeedbackRepository().update(r, feedback),
-                            ( ) -> dataSource.getFeedbackRepository().save(feedback)
+                            (r) -> dataSource.getFeedbackDao().update(r, feedback),
+                            ( ) -> dataSource.getFeedbackDao().save(feedback)
                     );
 
         } catch (DataSourceSQLException e) {
@@ -152,12 +152,12 @@ public class Feedbacks {
 
         try {
 
-            dataSource.getFeedbackRepository()
+            dataSource.getFeedbackDao()
                     .findAll()
                     .stream()
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
                     .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
-                    .forEach(dataSource.getFeedbackRepository()::delete);
+                    .forEach(dataSource.getFeedbackDao()::delete);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -173,8 +173,8 @@ public class Feedbacks {
 
         try {
 
-            dataSource.getFeedbackRepository().delete(
-                    dataSource.getFeedbackRepository()
+            dataSource.getFeedbackDao().delete(
+                    dataSource.getFeedbackDao()
                             .findByPrimaryKey(id)
                             .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.DELETE, authToken, i.getUserId()))
                             .orElseThrow(() -> new ApiResponseStatus(404)));

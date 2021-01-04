@@ -78,7 +78,7 @@ public class Categories {
         try {
 
             return ResponseEntity.ok(
-                    dataSource.getCategoryRepository()
+                    dataSource.getCategoryDao()
                             .findAll()
                             .stream()
                             .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
@@ -107,7 +107,7 @@ public class Categories {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getCategoryRepository()
+            return ResponseEntity.ok(dataSource.getCategoryDao()
                     .findByPrimaryKey(id)
                     .orElseThrow(() -> new ApiResponseStatus(404)));
 
@@ -131,7 +131,7 @@ public class Categories {
 
             category.setId(dataSource.getId("shop_category", Long.class));
 
-            dataSource.getCategoryRepository().save(category);
+            dataSource.getCategoryDao().save(category);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -155,10 +155,10 @@ public class Categories {
 
             category.setId(dataSource.getId("shop_category", Long.class));
 
-            dataSource.getCategoryRepository().findByPrimaryKey(id)
+            dataSource.getCategoryDao().findByPrimaryKey(id)
                     .ifPresentOrElse(
-                            (r) -> dataSource.getCategoryRepository().update(r, category),
-                            ( ) -> dataSource.getCategoryRepository().save(category)
+                            (r) -> dataSource.getCategoryDao().update(r, category),
+                            ( ) -> dataSource.getCategoryDao().save(category)
                     );
 
         } catch (DataSourceSQLException e) {
@@ -184,10 +184,10 @@ public class Categories {
 
         try {
 
-            dataSource.getCategoryRepository().findAll()
+            dataSource.getCategoryDao().findAll()
                     .stream()
                     .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
-                    .forEach(dataSource.getCategoryRepository()::delete);
+                    .forEach(dataSource.getCategoryDao()::delete);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -210,8 +210,8 @@ public class Categories {
 
         try {
 
-            dataSource.getCategoryRepository().delete(
-                    dataSource.getCategoryRepository()
+            dataSource.getCategoryDao().delete(
+                    dataSource.getCategoryDao()
                             .findByPrimaryKey(id)
                             .orElseThrow(() -> new ApiResponseStatus(404)));
 

@@ -106,7 +106,7 @@ public final class Ticket implements Model {
     public Optional<User> getUser(DataSource dataSource) {
 
         if(user == null) {
-            user = dataSource.getUserRepository()
+            user = dataSource.getUserDao()
                     .findByPrimaryKey(userId)
                     .orElse(null);
         }
@@ -119,7 +119,7 @@ public final class Ticket implements Model {
     public Optional<List<TicketResponse>> getResponses(DataSource dataSource) {
 
         if(responses == null) {
-            responses = dataSource.getTicketResponseRepository()
+            responses = dataSource.getTicketResponseDao()
                     .findByTicketId(id);
         }
 

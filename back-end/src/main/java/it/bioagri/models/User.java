@@ -153,7 +153,7 @@ public final class User implements Model {
     public List<Product> getWishList(DataSource dataSource) {
 
         if(wishList == null) {
-            wishList = dataSource.getProductRepository().
+            wishList = dataSource.getProductDao().
                     findByWishUserId(id);
         }
 
@@ -165,7 +165,7 @@ public final class User implements Model {
     public List<Feedback> getFeedbacks(DataSource dataSource) {
 
         if(feedbacks == null) {
-            feedbacks = dataSource.getFeedbackRepository().
+            feedbacks = dataSource.getFeedbackDao().
                     findByUserId(id);
         }
 
@@ -176,7 +176,7 @@ public final class User implements Model {
     public List<Ticket> getTickets(DataSource dataSource) {
 
         if(tickets == null) {
-            tickets = dataSource.getTicketRepository().
+            tickets = dataSource.getTicketDao().
                     findByUserId(id);
         }
 

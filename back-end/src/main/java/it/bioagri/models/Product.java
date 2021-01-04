@@ -121,7 +121,7 @@ public final class Product implements Model {
     public List<Category> getCategories(DataSource dataSource) {
 
         if(categories == null) {
-            categories = dataSource.getCategoryRepository()
+            categories = dataSource.getCategoryDao()
                     .findByProductId(id);
         }
 
@@ -132,7 +132,7 @@ public final class Product implements Model {
     public List<Tag> getTags(DataSource dataSource) {
 
         if(tags == null) {
-            tags = dataSource.getTagRepository()
+            tags = dataSource.getTagDao()
                     .findByProductId(id);
         }
 
@@ -143,7 +143,7 @@ public final class Product implements Model {
     public List<Feedback> getFeedbacks(DataSource dataSource) {
 
         if(feedbacks == null) {
-            feedbacks = dataSource.getFeedbackRepository()
+            feedbacks = dataSource.getFeedbackDao()
                     .findByProductId(id);
         }
 

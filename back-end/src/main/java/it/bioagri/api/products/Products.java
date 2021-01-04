@@ -71,7 +71,7 @@ public class Products {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getProductRepository()
+            return ResponseEntity.ok(dataSource.getProductDao()
                     .findAll()
                     .stream()
                     .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
@@ -94,7 +94,7 @@ public class Products {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getProductRepository()
+            return ResponseEntity.ok(dataSource.getProductDao()
                     .findByPrimaryKey(id)
                     .orElseThrow(() -> new ApiResponseStatus(404)));
 
@@ -118,7 +118,7 @@ public class Products {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getProductRepository()
+            return ResponseEntity.ok(dataSource.getProductDao()
                     .findAll()
                     .stream()
                     .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
@@ -142,7 +142,7 @@ public class Products {
 
             product.setId(dataSource.getId("shop_product", Long.class));
 
-            dataSource.getProductRepository().save(product);
+            dataSource.getProductDao().save(product);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -162,10 +162,10 @@ public class Products {
 
             product.setId(dataSource.getId("shop_product", Long.class));
 
-            dataSource.getProductRepository().findByPrimaryKey(id)
+            dataSource.getProductDao().findByPrimaryKey(id)
                     .ifPresentOrElse(
-                            (r) -> dataSource.getProductRepository().update(r, product),
-                            ( ) -> dataSource.getProductRepository().save(product)
+                            (r) -> dataSource.getProductDao().update(r, product),
+                            ( ) -> dataSource.getProductDao().save(product)
                     );
 
         } catch (DataSourceSQLException e) {
@@ -187,11 +187,11 @@ public class Products {
 
         try {
 
-            dataSource.getProductRepository()
+            dataSource.getProductDao()
                     .findAll()
                     .stream()
                     .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
-                    .forEach(dataSource.getProductRepository()::delete);
+                    .forEach(dataSource.getProductDao()::delete);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -208,8 +208,8 @@ public class Products {
 
         try {
 
-            dataSource.getProductRepository().delete(
-                    dataSource.getProductRepository()
+            dataSource.getProductDao().delete(
+                    dataSource.getProductDao()
                             .findByPrimaryKey(id)
                             .orElseThrow(() -> new ApiResponseStatus(404)));
 

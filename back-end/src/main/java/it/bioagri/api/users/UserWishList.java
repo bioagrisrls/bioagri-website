@@ -71,7 +71,7 @@ public class UserWishList {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getUserRepository()
+            return ResponseEntity.ok(dataSource.getUserDao()
                     .findByPrimaryKey(sid)
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.USERS, ApiPermissionOperation.READ, authToken, i.getId()))
                     .orElseThrow(() -> new ApiResponseStatus(400))
@@ -96,12 +96,12 @@ public class UserWishList {
 
         try {
 
-            dataSource.getUserRepository().addWishList(
-                    dataSource.getUserRepository()
+            dataSource.getUserDao().addWishList(
+                    dataSource.getUserDao()
                             .findByPrimaryKey(sid)
                             .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.USERS, ApiPermissionOperation.UPDATE, authToken, i.getId()))
                             .orElseThrow(() -> new ApiResponseStatus(400)),
-                    dataSource.getProductRepository()
+                    dataSource.getProductDao()
                             .findByPrimaryKey(id)
                             .orElseThrow(() -> new ApiResponseStatus(404)));
 
@@ -122,12 +122,12 @@ public class UserWishList {
 
         try {
 
-            dataSource.getUserRepository().removeWishList(
-                    dataSource.getUserRepository()
+            dataSource.getUserDao().removeWishList(
+                    dataSource.getUserDao()
                             .findByPrimaryKey(sid)
                             .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.USERS, ApiPermissionOperation.UPDATE, authToken, i.getId()))
                             .orElseThrow(() -> new ApiResponseStatus(400)),
-                    dataSource.getProductRepository()
+                    dataSource.getProductDao()
                             .findByPrimaryKey(id)
                             .orElseThrow(() -> new ApiResponseStatus(404)));
 

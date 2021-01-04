@@ -71,7 +71,7 @@ public class ProductTags {
         try {
 
             return ResponseEntity.ok(
-                    dataSource.getProductRepository()
+                    dataSource.getProductDao()
                             .findByPrimaryKey(sid)
                             .orElseThrow(() -> new ApiResponseStatus(400))
                             .getTags(dataSource)
@@ -97,11 +97,11 @@ public class ProductTags {
 
         try {
 
-            dataSource.getProductRepository().addTag(
-                    dataSource.getProductRepository()
+            dataSource.getProductDao().addTag(
+                    dataSource.getProductDao()
                             .findByPrimaryKey(sid)
                             .orElseThrow(() -> new ApiResponseStatus(400)),
-                    dataSource.getTagRepository()
+                    dataSource.getTagDao()
                             .findByPrimaryKey(id)
                             .orElseThrow(() -> new ApiResponseStatus(404)));
 
@@ -124,11 +124,11 @@ public class ProductTags {
         try {
 
 
-            dataSource.getProductRepository().removeTag(
-                    dataSource.getProductRepository()
+            dataSource.getProductDao().removeTag(
+                    dataSource.getProductDao()
                             .findByPrimaryKey(sid)
                             .orElseThrow(() -> new ApiResponseStatus(400)),
-                    dataSource.getTagRepository()
+                    dataSource.getTagDao()
                             .findByPrimaryKey(id)
                             .orElseThrow(() -> new ApiResponseStatus(404)));
 

@@ -69,7 +69,7 @@ public class Transactions {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getTransactionRepository()
+            return ResponseEntity.ok(dataSource.getTransactionDao()
                     .findAll()
                     .stream()
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.READ, authToken, i.getOrder(dataSource)
@@ -92,7 +92,7 @@ public class Transactions {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getTransactionRepository()
+            return ResponseEntity.ok(dataSource.getTransactionDao()
                     .findByPrimaryKey(id)
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.READ, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
@@ -117,7 +117,7 @@ public class Transactions {
 
             transaction.setId(dataSource.getId("shop_transaction", Long.class));
 
-            dataSource.getTransactionRepository().save(transaction);
+            dataSource.getTransactionDao().save(transaction);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -135,13 +135,13 @@ public class Transactions {
 
             transaction.setId(dataSource.getId("shop_transaction", Long.class));
 
-            dataSource.getTransactionRepository().findByPrimaryKey(id)
+            dataSource.getTransactionDao().findByPrimaryKey(id)
                     .filter(i ->  ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.UPDATE, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
                     .ifPresentOrElse(
-                            (r) -> dataSource.getTransactionRepository().update(r, transaction),
-                            ( ) -> dataSource.getTransactionRepository().save(transaction)
+                            (r) -> dataSource.getTransactionDao().update(r, transaction),
+                            ( ) -> dataSource.getTransactionDao().save(transaction)
                     );
 
         } catch (DataSourceSQLException e) {
@@ -160,14 +160,14 @@ public class Transactions {
 
         try {
 
-            dataSource.getTransactionRepository()
+            dataSource.getTransactionDao()
                     .findAll()
                     .stream()
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.DELETE, authToken, i.getOrder(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
                     .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
-                    .forEach(dataSource.getTransactionRepository()::delete);
+                    .forEach(dataSource.getTransactionDao()::delete);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -183,8 +183,8 @@ public class Transactions {
 
         try {
 
-            dataSource.getTransactionRepository().delete(
-                    dataSource.getTransactionRepository()
+            dataSource.getTransactionDao().delete(
+                    dataSource.getTransactionDao()
                             .findByPrimaryKey(id)
                             .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TRANSACTIONS, ApiPermissionOperation.DELETE, authToken, i.getOrder(dataSource)
                                     .orElseThrow(() -> new ApiResponseStatus(502))

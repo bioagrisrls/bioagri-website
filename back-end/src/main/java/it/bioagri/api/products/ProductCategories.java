@@ -72,7 +72,7 @@ public class ProductCategories {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getProductRepository()
+            return ResponseEntity.ok(dataSource.getProductDao()
                     .findByPrimaryKey(sid)
                     .orElseThrow(() -> new ApiResponseStatus(400))
                     .getCategories(dataSource)
@@ -97,11 +97,11 @@ public class ProductCategories {
 
         try {
 
-            dataSource.getProductRepository().addCategory(
-                    dataSource.getProductRepository()
+            dataSource.getProductDao().addCategory(
+                    dataSource.getProductDao()
                             .findByPrimaryKey(sid)
                             .orElseThrow(() -> new ApiResponseStatus(400)),
-                    dataSource.getCategoryRepository()
+                    dataSource.getCategoryDao()
                             .findByPrimaryKey(id)
                             .orElseThrow(() -> new ApiResponseStatus(404))
             );
@@ -124,11 +124,11 @@ public class ProductCategories {
         try {
 
 
-            dataSource.getProductRepository().removeCategory(
-                    dataSource.getProductRepository()
+            dataSource.getProductDao().removeCategory(
+                    dataSource.getProductDao()
                         .findByPrimaryKey(sid)
                         .orElseThrow(() -> new ApiResponseStatus(400)),
-                    dataSource.getCategoryRepository()
+                    dataSource.getCategoryDao()
                         .findByPrimaryKey(id)
                         .orElseThrow(() -> new ApiResponseStatus(404))
             );

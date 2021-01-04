@@ -70,7 +70,7 @@ public class ProductVotes {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getProductRepository()
+            return ResponseEntity.ok(dataSource.getProductDao()
                     .findByPrimaryKey(sid)
                     .orElseThrow(() -> new ApiResponseStatus(400))
                     .getFeedbacks(dataSource)
@@ -103,7 +103,7 @@ public class ProductVotes {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getProductRepository()
+            return ResponseEntity.ok(dataSource.getProductDao()
                     .findByPrimaryKey(sid)
                     .orElseThrow(() -> new ApiResponseStatus(400))
                     .getFeedbacks(dataSource)
@@ -136,7 +136,7 @@ public class ProductVotes {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getProductRepository()
+            return ResponseEntity.ok(dataSource.getProductDao()
                     .findByPrimaryKey(sid)
                     .orElseThrow(() -> new ApiResponseStatus(400))
                     .getFeedbacks(dataSource)

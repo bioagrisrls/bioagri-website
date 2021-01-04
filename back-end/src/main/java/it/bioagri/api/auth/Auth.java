@@ -87,7 +87,7 @@ public final class Auth {
         if(authLogin.getPassword().isEmpty())
             return ResponseEntity.badRequest().build();
 
-        if(dataSource.getUserRepository().findByMail(authLogin.getUsername()).isEmpty())
+        if(dataSource.getUserDao().findByMail(authLogin.getUsername()).isEmpty())
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
 
@@ -168,7 +168,7 @@ public final class Auth {
         if (!user.getStatus().equals(UserStatus.WAIT_FOR_MAIL))
             throw new ApiResponseStatus(403);
 
-        if (dataSource.getUserRepository().findByMail(user.getMail()).isPresent())
+        if (dataSource.getUserDao().findByMail(user.getMail()).isPresent())
             throw new ApiResponseStatus(406);
 
 

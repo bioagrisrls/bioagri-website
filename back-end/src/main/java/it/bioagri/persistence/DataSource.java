@@ -52,15 +52,15 @@ public class DataSource {
     private final String username;
     private final String password;
 
-    private final UserDao userRepository;
-    private final ProductDao productRepository;
-    private final CategoryDao categoryRepository;
-    private final FeedbackDao feedbackRepository;
-    private final OrderDao orderRepository;
-    private final TagDao tagRepository;
-    private final TicketDao ticketRepository;
-    private final TicketResponseDao ticketResponseRepository;
-    private final TransactionDao transactionRepository;
+    private final UserDao userDao;
+    private final ProductDao productDao;
+    private final CategoryDao categoryDao;
+    private final FeedbackDao feedbackDao;
+    private final OrderDao orderDao;
+    private final TagDao tagDao;
+    private final TicketDao ticketDao;
+    private final TicketResponseDao ticketResponseDao;
+    private final TransactionDao transactionDao;
 
 
     @Autowired
@@ -74,15 +74,15 @@ public class DataSource {
         this.password = password;
 
         // TODO...
-        this.userRepository = new UserDaoImpl(this);
-        this.productRepository = new ProductDaoImpl(this);
-        this.categoryRepository = new CategoryDaoImpl(this);
-        this.feedbackRepository = new FeedbackDaoImpl(this);
-        this.orderRepository = new OrderDaoImpl(this);
-        this.tagRepository = new TagDaoImpl(this);
-        this.ticketRepository = new TicketDaoImpl(this);
-        this.ticketResponseRepository = new TicketResponseDaoImpl(this);
-        this.transactionRepository = new TransactionDaoImpl(this);
+        this.userDao = new UserDaoImpl(this);
+        this.productDao = new ProductDaoImpl(this);
+        this.categoryDao = new CategoryDaoImpl(this);
+        this.feedbackDao = new FeedbackDaoImpl(this);
+        this.orderDao = new OrderDaoImpl(this);
+        this.tagDao = new TagDaoImpl(this);
+        this.ticketDao = new TicketDaoImpl(this);
+        this.ticketResponseDao = new TicketResponseDaoImpl(this);
+        this.transactionDao = new TransactionDaoImpl(this);
 
     }
 
@@ -95,40 +95,40 @@ public class DataSource {
 
     }
 
-    public UserDao getUserRepository() {
-        return userRepository;
+    public UserDao getUserDao() {
+        return userDao;
     }
 
-    public ProductDao getProductRepository() {
-        return productRepository;
+    public ProductDao getProductDao() {
+        return productDao;
     }
 
-    public CategoryDao getCategoryRepository() {
-        return categoryRepository;
+    public CategoryDao getCategoryDao() {
+        return categoryDao;
     }
 
-    public FeedbackDao getFeedbackRepository() {
-        return feedbackRepository;
+    public FeedbackDao getFeedbackDao() {
+        return feedbackDao;
     }
 
-    public OrderDao getOrderRepository() {
-        return orderRepository;
+    public OrderDao getOrderDao() {
+        return orderDao;
     }
 
-    public TagDao getTagRepository() {
-        return tagRepository;
+    public TagDao getTagDao() {
+        return tagDao;
     }
 
-    public TicketDao getTicketRepository() {
-        return ticketRepository;
+    public TicketDao getTicketDao() {
+        return ticketDao;
     }
 
-    public TicketResponseDao getTicketResponseRepository() {
-        return ticketResponseRepository;
+    public TicketResponseDao getTicketResponseDao() {
+        return ticketResponseDao;
     }
 
-    public TransactionDao getTransactionRepository() {
-        return transactionRepository;
+    public TransactionDao getTransactionDao() {
+        return transactionDao;
     }
 
 
@@ -212,7 +212,7 @@ public class DataSource {
                     s.setString(2, password);
                 },
                 r -> {
-                    getUserRepository().findByPrimaryKey(r.getLong("id"))
+                    getUserDao().findByPrimaryKey(r.getLong("id"))
                             .ifPresent(result::set);
                 }
         );

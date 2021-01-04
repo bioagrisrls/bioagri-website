@@ -76,7 +76,7 @@ public class Users {
         try {
 
             return ResponseEntity.ok(
-                    dataSource.getUserRepository().findAll()
+                    dataSource.getUserDao().findAll()
                             .stream()
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.READ, authToken, i.getId()))
                             .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
@@ -96,7 +96,7 @@ public class Users {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getUserRepository()
+            return ResponseEntity.ok(dataSource.getUserDao()
                     .findByPrimaryKey(id)
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.READ, authToken, i.getId()))
                     .orElseThrow(() -> new ApiResponseStatus(404)));
@@ -122,7 +122,7 @@ public class Users {
 
             user.setId(dataSource.getId("shop_user", Long.class));
 
-            dataSource.getUserRepository().save(user);
+            dataSource.getUserDao().save(user);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -140,11 +140,11 @@ public class Users {
 
             user.setId(dataSource.getId("shop_user", Long.class));
 
-            dataSource.getUserRepository().findByPrimaryKey(id)
+            dataSource.getUserDao().findByPrimaryKey(id)
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.USERS, ApiPermissionOperation.UPDATE, authToken, i.getId()))
                     .ifPresentOrElse(
-                            (r) -> dataSource.getUserRepository().update(r, user),
-                            ( ) -> dataSource.getUserRepository().save(user)
+                            (r) -> dataSource.getUserDao().update(r, user),
+                            ( ) -> dataSource.getUserDao().save(user)
                     );
 
         } catch (DataSourceSQLException e) {
@@ -163,12 +163,12 @@ public class Users {
 
         try {
 
-            dataSource.getUserRepository()
+            dataSource.getUserDao()
                     .findAll()
                     .stream()
                     .filter(i -> ApiPermission.hasPermission(ApiPermissionType.USERS, ApiPermissionOperation.DELETE, authToken, i.getId()))
                     .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
-                    .forEach(dataSource.getUserRepository()::delete);
+                    .forEach(dataSource.getUserDao()::delete);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -183,8 +183,8 @@ public class Users {
 
         try {
 
-            dataSource.getUserRepository().delete(
-                    dataSource.getUserRepository()
+            dataSource.getUserDao().delete(
+                    dataSource.getUserDao()
                             .findByPrimaryKey(id)
                             .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.USERS, ApiPermissionOperation.DELETE, authToken, i.getId()))
                             .orElseThrow(() -> new ApiResponseStatus(404)));

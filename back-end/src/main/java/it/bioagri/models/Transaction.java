@@ -190,7 +190,7 @@ public final class Transaction implements Model {
     public Optional<Order> getOrder(DataSource dataSource) {
 
         if(order == null) {
-            order = dataSource.getOrderRepository()
+            order = dataSource.getOrderDao()
                     .findByPrimaryKey(orderId)
                     .orElse(null);
         }

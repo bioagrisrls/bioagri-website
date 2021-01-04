@@ -72,7 +72,7 @@ public class OrderProducts {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getOrderRepository()
+            return ResponseEntity.ok(dataSource.getOrderDao()
                     .findByPrimaryKey(sid)
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
                     .orElseThrow(() -> new ApiResponseStatus(400))
@@ -96,12 +96,12 @@ public class OrderProducts {
 
         try {
 
-            dataSource.getOrderRepository().addProduct(
-                    dataSource.getOrderRepository()
+            dataSource.getOrderDao().addProduct(
+                    dataSource.getOrderDao()
                             .findByPrimaryKey(sid)
                             .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE, authToken, i.getUserId()))
                             .orElseThrow(() -> new ApiResponseStatus(400)),
-                    dataSource.getProductRepository()
+                    dataSource.getProductDao()
                             .findByPrimaryKey(id)
                             .orElseThrow(() -> new ApiResponseStatus(404)),
                     quantity.getQuantity());
@@ -123,12 +123,12 @@ public class OrderProducts {
         try {
 
 
-            dataSource.getOrderRepository().removeProduct(
-                    dataSource.getOrderRepository()
+            dataSource.getOrderDao().removeProduct(
+                    dataSource.getOrderDao()
                             .findByPrimaryKey(sid)
                             .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.UPDATE, authToken, i.getUserId()))
                             .orElseThrow(() -> new ApiResponseStatus(400)),
-                    dataSource.getProductRepository()
+                    dataSource.getProductDao()
                             .findByPrimaryKey(id)
                             .orElseThrow(() -> new ApiResponseStatus(404)));
 

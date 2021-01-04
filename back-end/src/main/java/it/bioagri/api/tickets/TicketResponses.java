@@ -70,7 +70,7 @@ public class TicketResponses {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getTicketResponseRepository()
+            return ResponseEntity.ok(dataSource.getTicketResponseDao()
                     .findAll()
                     .stream()
                     .filter(i -> i.getTicketId().equals(sid))
@@ -94,7 +94,7 @@ public class TicketResponses {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getTicketResponseRepository()
+            return ResponseEntity.ok(dataSource.getTicketResponseDao()
                     .findByPrimaryKey(id)
                     .filter(i -> i.getTicketId().equals(sid))
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.READ, authToken, i.getTicket(dataSource)
@@ -120,7 +120,7 @@ public class TicketResponses {
 
             response.setId(dataSource.getId("shop_ticket_response", Long.class));
 
-            dataSource.getTicketResponseRepository().save(response);
+            dataSource.getTicketResponseDao().save(response);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -138,14 +138,14 @@ public class TicketResponses {
 
             response.setId(dataSource.getId("shop_ticket_response", Long.class));
 
-            dataSource.getTicketResponseRepository()
+            dataSource.getTicketResponseDao()
                     .findByPrimaryKey(id)
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.UPDATE, authToken, i.getTicket(dataSource)
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
                     .ifPresentOrElse(
-                            (r) -> dataSource.getTicketResponseRepository().update(r, response),
-                            ( ) -> dataSource.getTicketResponseRepository().save(response)
+                            (r) -> dataSource.getTicketResponseDao().update(r, response),
+                            ( ) -> dataSource.getTicketResponseDao().save(response)
                     );
 
         } catch (DataSourceSQLException e) {
@@ -166,7 +166,7 @@ public class TicketResponses {
 
         try {
 
-            dataSource.getTicketResponseRepository()
+            dataSource.getTicketResponseDao()
                     .findAll()
                     .stream()
                     .filter(i -> i.getTicketId().equals(sid))
@@ -174,7 +174,7 @@ public class TicketResponses {
                             .orElseThrow(() -> new ApiResponseStatus(502))
                             .getUserId()))
                     .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
-                    .forEach(dataSource.getTicketResponseRepository()::delete);
+                    .forEach(dataSource.getTicketResponseDao()::delete);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -190,8 +190,8 @@ public class TicketResponses {
 
         try {
 
-            dataSource.getTicketResponseRepository().delete(
-                    dataSource.getTicketResponseRepository()
+            dataSource.getTicketResponseDao().delete(
+                    dataSource.getTicketResponseDao()
                             .findByPrimaryKey(id)
                             .filter(i -> i.getTicketId().equals(sid))
                             .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.TICKET_RESPONSES, ApiPermissionOperation.DELETE, authToken, i.getTicket(dataSource)

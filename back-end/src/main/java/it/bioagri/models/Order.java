@@ -97,7 +97,7 @@ public final class Order implements Model {
     public Optional<User> getUser(DataSource dataSource) {
 
         if(user == null) {
-            user = dataSource.getUserRepository()
+            user = dataSource.getUserDao()
                     .findByPrimaryKey(userId)
                     .orElse(null);
         }
@@ -110,7 +110,7 @@ public final class Order implements Model {
     public List<Map.Entry<Product, Integer>> getProducts(DataSource dataSource) {
 
         if(products == null) {
-            products = dataSource.getProductRepository()
+            products = dataSource.getProductDao()
                     .findByOrderId(id);
         }
 
@@ -121,7 +121,7 @@ public final class Order implements Model {
     public List<Transaction> getTransactions(DataSource dataSource) {
 
         if(transactions == null) {
-            transactions = dataSource.getTransactionRepository()
+            transactions = dataSource.getTransactionDao()
                     .findByOrderId(id);
         }
 

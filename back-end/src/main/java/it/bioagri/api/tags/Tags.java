@@ -69,7 +69,7 @@ public class Tags {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getTagRepository()
+            return ResponseEntity.ok(dataSource.getTagDao()
                     .findAll()
                     .stream()
                     .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
@@ -92,7 +92,7 @@ public class Tags {
 
         try {
 
-            return ResponseEntity.ok(dataSource.getTagRepository()
+            return ResponseEntity.ok(dataSource.getTagDao()
                     .findByPrimaryKey(id)
                     .orElseThrow(() -> new ApiResponseStatus(404)));
 
@@ -112,7 +112,7 @@ public class Tags {
         tag.setId(dataSource.getId("shop_tag", Long.class));
 
         try {
-            dataSource.getTagRepository().save(tag);
+            dataSource.getTagDao().save(tag);
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -131,10 +131,10 @@ public class Tags {
 
             tag.setId(dataSource.getId("shop_tag", Long.class));
 
-            dataSource.getTagRepository().findByPrimaryKey(id)
+            dataSource.getTagDao().findByPrimaryKey(id)
                     .ifPresentOrElse(
-                            (r) -> dataSource.getTagRepository().update(r, tag),
-                            ( ) -> dataSource.getTagRepository().save(tag)
+                            (r) -> dataSource.getTagDao().update(r, tag),
+                            ( ) -> dataSource.getTagDao().save(tag)
                     );
 
         } catch (DataSourceSQLException e) {
@@ -155,11 +155,11 @@ public class Tags {
 
         try {
 
-            dataSource.getTagRepository()
+            dataSource.getTagDao()
                     .findAll()
                     .stream()
                     .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
-                    .forEach(dataSource.getTagRepository()::delete);
+                    .forEach(dataSource.getTagDao()::delete);
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -176,8 +176,8 @@ public class Tags {
 
         try {
 
-            dataSource.getTagRepository().delete(
-                    dataSource.getTagRepository()
+            dataSource.getTagDao().delete(
+                    dataSource.getTagDao()
                             .findByPrimaryKey(id)
                             .orElseThrow(() -> new ApiResponseStatus(404)));
 
