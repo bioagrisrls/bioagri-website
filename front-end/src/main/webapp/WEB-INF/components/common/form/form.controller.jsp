@@ -79,9 +79,9 @@
                 if(k.startsWith('$'))
                     continue;
 
-                data[k] = $(this.elem).find('#' + k).val()  ||
-                          $(this.elem).find('#' + k).text() ||
-                          $(this.elem).find('#' + k).prop('checked');
+                data[k] = $(this.elem).find('#' + this.id + '-' + k).val()  ||
+                          $(this.elem).find('#' + this.id + '-' + k).text() ||
+                          $(this.elem).find('#' + this.id + '-' + k).prop('checked');
 
             }
 

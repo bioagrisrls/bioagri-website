@@ -125,8 +125,8 @@
                         ?>
 
                              <div class="form-floating my-3">
-                                 <input type="{{v.type || 'text'}}" class="form-control {{wrong(k)}}" id="{{k}}" {{getprops(v)}} oninput="$$.$check(this)">
-                                 <label for="{{k}}">{{v.label || ''}}</label>
+                                 <input type="{{v.type || 'text'}}" class="form-control {{wrong(k)}}" id="{{this.id}}-{{k}}" {{getprops(v)}} oninput="$$.$check(this)">
+                                 <label for="{{this.id}}-{{k}}">{{v.label || ''}}</label>
                                  <? if(wrong(k)) { ?>
                                  <?     if(v.wrong) { ?> <div class="invalid-feedback">{{v.wrong}}</div><? } ?>
                                  <? } else { ?>
@@ -145,8 +145,8 @@
 
                         ?>
                             <div class="form-check {{v.type === 'switch' ? 'form-switch' : ''}} my-3">
-                                <input type="{{v.type === 'radio' ? 'radio' : 'checkbox'}}" class="form-check-input {{wrong(k)}}" value="" id="{{k}}" {{getprops(v)}} oninput="$$.$check(this)">
-                                <label class="form-check-label" for="{{k}}">{{v.label || ''}}</label>
+                                <input type="{{v.type === 'radio' ? 'radio' : 'checkbox'}}" class="form-check-input {{wrong(k)}}" value="" id="{{this.id}}-{{k}}" {{getprops(v)}} oninput="$$.$check(this)">
+                                <label class="form-check-label" for="{{this.id}}-{{k}}">{{v.label || ''}}</label>
                                 <? if(wrong(k)) { ?>
                                 <?     if(v.wrong) { ?> <div class="invalid-feedback">{{v.wrong}}</div><? } ?>
                                 <? } else { ?>
@@ -164,8 +164,8 @@
                         ?>
 
                             <div class="form-floating my-3">
-                                <label for="{{k}}">{{v.label || ''}}</label>
-                                <textarea class="form-control {{wrong(k)}}" id="{{k}}" {{getprops(v)}} oninput="$$.$check(this)"></textarea>
+                                <label for="{{this.id}}-{{k}}">{{v.label || ''}}</label>
+                                <textarea class="form-control {{wrong(k)}}" id="{{this.id}}-{{k}}" {{getprops(v)}} oninput="$$.$check(this)"></textarea>
                                 <? if(wrong(k)) { ?>
                                 <?     if(v.wrong) { ?> <div class="invalid-feedback">{{v.wrong}}</div><? } ?>
                                 <? } else { ?>
@@ -181,7 +181,7 @@
                         ?>
 
                             <div>
-                                <input id="{{k}}" type="hidden" value="{{ v.value || '' }}">
+                                <input id="{{this.id}}-{{k}}" type="hidden" value="{{ v.value || '' }}">
                             </div>
 
                         <?
