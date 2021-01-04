@@ -146,13 +146,13 @@ const authenticated = async () => api('/auth/verify', 'GET', {}, false).catch(re
 
 const requestUserAuthentication = () => {
 
-    const melem = document.getElementById('ui-authentication-modal');
-    const modal = new bootstrap.Modal(melem, {});
+    const el = document.getElementById('ui-authentication-modal');
+    const md = new bootstrap.Modal(el, {});
 
-    modal.show();
+    md.show();
 
     $(document).on('auth-connection-occurred', () => {
-        modal.hide();
+        md.hide();
     });
 
 };
@@ -170,7 +170,7 @@ $(document).ready(() => ((body) => {
               </div>
               <div class="modal-body">
                 <div class="px-5 py-3">
-                  <ui-login id="ui-authentication-modal-login" ui:bind="#ui-authentication-model-title:$title"></ui-login>
+                  <ui-login id="ui-authentication-modal-login" ui:bind-1="#ui-authentication-modal-title:$title"></ui-login>
                 </div>
               </div>
             </div>
