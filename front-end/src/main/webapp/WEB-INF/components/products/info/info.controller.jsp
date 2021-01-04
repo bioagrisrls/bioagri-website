@@ -34,28 +34,35 @@
         constructor() {
             super(id,
 
-                api('/products/' + (props.id || ''))
-                .then(r1 => api('/feedbacks?filter-by=productId&filter-val=' + (props.id || ''))
-                .then(r2 => api('/products/' + (props.id || '') + '/categories')
-                .then(r3 => api('/products/' + (props.id || '') + '/tags')
-                .then(r4 => {
+                Promise.all([
+                    api('/products/' + (props.id || '')),
+                    api('/feedbacks?filter-by=productId&filter-val=' + (props.id || '')),
+                    api('/products/' + (props.id || '') + '/categories'),
+                    api('/products/' + (props.id || '') + '/tags')
+                ]).then(response => {
 
                     return {
 
-                        product: r1,
-                        feedback: r2,
-                        categories: r3,
-                        tags: r4,
+                        product: response[0],
+                        feedback: response[1],
+                        categories: response[2],
+                        tags: response[3],
 
                         ivaText: `${locale.info_product_iva}`,
                         descriptionText: `${locale.info_product_description}`,
                         addToCartButton: `${locale.info_product_cart}`,
-                        feedbacksText: ${locale.info_product_feedbacks},
+                        feedbacksText: `${locale.info_product_feedbacks}`,
 
                         current: 'description',
+
                     }
 
-                })))));
+                }).catch(reason => {
+
+                    console.log(reason);
+
+                }));
+
         }
 
         onRender() {

@@ -48,6 +48,11 @@
             <span class="mdi mdi-36px mdi-chevron-right"></span>
         </div>
     </div>
+    <div class="float-start ui-products-related-button prev">
+        <div class="next" onclick="$$.next()">
+            <span class="mdi mdi-36px mdi-chevron-left"></span>
+        </div>
+    </div>
 </div>
 
 
