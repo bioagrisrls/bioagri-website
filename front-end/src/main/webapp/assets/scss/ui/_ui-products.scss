@@ -85,6 +85,10 @@
 
   bottom: 8rem;
 
+  &:hover {
+    @extend .shadow;
+  }
+
   &.next {
     right: 3rem;
   }

@@ -76,21 +76,23 @@
         onUpdated(state) {
             super.onUpdated(state);
 
-            const { products, offset } = this.state;
+            let { products, offset } = this.state;
 
             const $sub = $(this.elem).find('#' + this.id + '-sub-container');
             const $prd = $(this.elem).find('.' + this.id + '-product');
 
+
+            if($sub.width() - offset < window.innerWidth)
+                offset = $sub.width() - window.innerWidth;
+
+            if(offset < 0)
+                offset = 0;
+
+
             $sub.css({ width: (products.length + 1) * $prd.width()          + 'px' });
             $sub.css({ left:  (window.innerWidth / 2) - (1200 / 2) - offset + 'px' });
 
-
-            if($sub.width() - offset < window.innerWidth)
-                this.setState({ offset: $sub.width() - window.innerWidth });
-
-            if(offset < 0)
-                this.setState({ offset: 0 });
-
+            this.setState({ offset : offset }, false);
 
         }
 
