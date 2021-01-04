@@ -23,56 +23,122 @@
   ~
   -->
 
+<div>
 
-<div class="row mx-3 my-3">
+    <div class="row mx-3 my-3">
 
-    <div class="col-lg-6 col-md">
+        <div class="col-lg-6 col-md">
 
-        <!-- Product Gallery -->
-        <ui-gallery id="ui-gallery-{{product.id}}" ui:id="{{product.id}}"></ui-gallery>
+            <!-- Product Gallery -->
+            <ui-gallery id="ui-gallery-{{product.id}}" ui:id="{{product.id}}"></ui-gallery>
+
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-lg-6 col-md">
+
+            <div class="container bg-white shadow">
+
+                <!-- Info -->
+                <div class="display-4 py-3">
+                    <h2 class="d-inline p-0">{{ product.name }}</h2>
+                </div>
+
+                <div class="display-5">
+                    <h2 class="d-inline p-0">{{ product.price }} &euro;</h2>
+                    <p class="d-inline p-0">{{ ivaText }}</p>
+                </div>
+
+                <div class="row mb-4">
+                    <ui-stars id="ui-stars-1" ui:id="{{product.id}}" ui:clickable="{{false}}"></ui-stars>
+                </div>
+
+                <div class="mb-2">
+                    <h5 class="d-inline p-0">{{ descriptionText }}</h5>
+                    <p>{{ product.description }}</p>
+                </div>
+
+                <div class="row py-4">
+
+                    <!-- Stats -->
+                    <ui-product-stats id="ui-product-stats-{{product.id}}" ui:id="{{product.id}}"></ui-product-stats>
+
+                </div>
+
+                <div class="row py-4">
+
+                    <!-- Add to Cart -->
+                    <button class="btn btn-primary btn-lg"><span class="mdi mdi-24px mdi-cart-outline align-middle"></span>{{ addToCartButton }}</button>
+
+                </div>
+
+
+            </div>
+        </div>
 
     </div>
 
-    <!-- Product Info -->
-    <div class="col-lg-6 col-md">
+    <br>
+    <br>
+    <br>
+    <br>
 
-        <div class="container bg-white shadow">
+    <div>
 
-            <!-- Info -->
-            <div class="display-4 py-3">
-                <h2 class="d-inline p-0">{{ product.name }}</h2>
-            </div>
+        <!-- Tab List -->
+        <ul class="nav nav-tabs" id="tab" role="tablist">
 
-            <div class="display-5">
-                <h2 class="d-inline p-0">{{ product.price }} &euro;</h2>
-                <p class="d-inline p-0">{{ ivaText }}</p>
-            </div>
+            <!-- Feedbacks -->
+            <li class="nav-item">
+                <a class="nav-link {{ current === 'feedbacks' ? 'active' : '' }}"
+                   onclick="$$.goToFeedbacks()"
+                   id="tabOrder"
+                   role="tab">
 
-            <div class="row mb-4">
-                <ui-stars id="ui-stars-1" ui:id="{{product.id}}" ui:clickable="{{false}}"></ui-stars>
-            </div>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><h5>{{ feedbacksText }}</h5></li>
+                        <li class="list-inline-item"><span class="mdi mdi-comment-quote mdi-24px"></span></li>
+                    </ul>
 
-            <div class="mb-2">
-                <h5 class="d-inline p-0">{{ descriptionText }}</h5>
-                <p>{{ product.description }}</p>
-            </div>
+                </a>
+            </li>
 
-            <div class="row py-4">
+            <!-- Description -->
+            <li class="nav-item">
+                <a class="nav-link {{ current === 'description' ? 'active' : '' }}"
+                   onclick="$$.goToDescription()"
+                   id="tabPayment"
+                   role="tab">
 
-                <!-- Stats -->
-                <ui-product-stats id="ui-product-stats-{{product.id}}" ui:id="{{product.id}}"></ui-product-stats>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><h5>{{ descriptionText }}</h5></li>
+                        <li class="list-inline-item"><span class="mdi mdi-semantic-web mdi-24px"></span></li>
+                    </ul>
 
-            </div>
+                </a>
+            </li>
 
-            <div class="row py-4">
+        </ul>
 
-                <!-- Add to Cart -->
-                <button class="btn btn-primary btn-lg"><span class="mdi mdi-24px mdi-cart-outline align-middle"></span>{{ addToCartButton }}</button>
 
-            </div>
+    </div>
+
+
+    <div class="tab-content bg-light " id="tabContent">
+
+        <!-- Feedbacks -->
+        <div class="tab-pane p-4 fade {{ current === 'feedbacks' ? 'show active' : '' }}" id="feedbacks" role="tabpanel">
 
 
         </div>
+
+        <!-- Feedbacks -->
+        <div class="tab-pane p-4 fade {{ current === 'description' ? 'show active' : '' }}" id="description" role="tabpanel">
+
+
+        </div>
+
     </div>
+
 
 </div>

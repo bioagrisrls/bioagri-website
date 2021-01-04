@@ -50,8 +50,9 @@
                         ivaText: `${locale.info_product_iva}`,
                         descriptionText: `${locale.info_product_description}`,
                         addToCartButton: `${locale.info_product_cart}`,
+                        feedbacksText: ${locale.info_product_feedbacks},
 
-                        current: 'description'
+                        current: 'description',
                     }
 
                 })))));
@@ -67,6 +68,14 @@
 
         onError() {
             return `${components.products_info_error}`
+        }
+
+        goToFeedbacks() {
+            this.setState({current: 'feedbacks'});
+        }
+
+        goToDescription() {
+            this.setState({current: 'description'});
         }
 
 

@@ -40,7 +40,7 @@
                 current: props.current || '',
 
                 path: (props.path && props.path.split('/')) || [],
-                urls: (props.path && props.path.split(',')) || [],
+                urls: (props.urls && props.urls.split(',')) || [],
 
             });
 
