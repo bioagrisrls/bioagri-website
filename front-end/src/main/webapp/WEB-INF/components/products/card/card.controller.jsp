@@ -61,8 +61,7 @@
             return `${components.products_card_error}`
         }
 
-
-        updateWishList(element){
+    updateWishList(element){
 
             authenticated().then(resolve => {
 
@@ -77,7 +76,7 @@
             },function (){alert("effettua il login per aggiungere alla wishlist")});
         }
 
-    })
 
+    })
 
 </script>
