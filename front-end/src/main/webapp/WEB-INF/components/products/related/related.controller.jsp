@@ -51,7 +51,6 @@
                 return {
                     products: response.map(i => i.id),
                     offset: 0,
-                    length: 0,
                 }
             }));
 
@@ -76,10 +75,14 @@
         onUpdated(state) {
             super.onUpdated(state);
 
-            let { products, offset } = this.state;
-
+            const containerWidth = 1200;
             const $sub = $(this.elem).find('#' + this.id + '-sub-container');
             const $prd = $(this.elem).find('.' + this.id + '-product');
+
+            let {
+                products,
+                offset
+            } = this.state;
 
 
             if($sub.width() - offset < window.innerWidth)
@@ -88,9 +91,14 @@
             if(offset < 0)
                 offset = 0;
 
+            $sub.css({
+                width: (products.length + 1) * $prd.width() + 'px'
+            });
 
-            $sub.css({ width: (products.length + 1) * $prd.width()          + 'px' });
-            $sub.css({ left:  (window.innerWidth / 2) - (1200 / 2) - offset + 'px' });
+            $sub.css({
+                left:  (window.innerWidth / 2) - (containerWidth / 2) - offset + 'px'
+            });
+
 
             this.setState({ offset : offset }, false);
 
