@@ -75,21 +75,14 @@
         onUpdated(state) {
             super.onUpdated(state);
 
-
-            const containerWidth = 1200;
+            const containerWidth = (window.innerWidth > 1200) ? 1200: window.innerWidth;
             const containerStart = (window.innerWidth / 2) - (containerWidth / 2);
 
             const $sub = $(this.elem).find('#' + this.id + '-sub-container');
             const $prd = $(this.elem).find('.' + this.id + '-product');
 
+
             const { products, offset } = this.state;
-
-
-            if(offset > $sub.width() - window.innerWidth + containerStart)
-                return this.setState({ offset: $sub.width() - window.innerWidth + containerStart }, false);
-
-            if(offset < 0)
-                return this.setState({ offset: 0 }, false);
 
 
             $sub.css({
@@ -99,6 +92,13 @@
             $sub.css({
                 left:  containerStart - offset + 'px'
             });
+
+
+            if(offset > $sub.width() - window.innerWidth + containerStart)
+                return this.setState({ offset: $sub.width() - window.innerWidth + containerStart }, false);
+
+            if(offset < 0)
+                return this.setState({ offset: 0 }, false);
 
 
         }
