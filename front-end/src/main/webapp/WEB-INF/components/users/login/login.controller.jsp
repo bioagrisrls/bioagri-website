@@ -69,9 +69,12 @@
                 },
 
                 $submit: {
-                    value: `Login`,
+                    value: 'Login',
                     align: 'center'
                 }, // FIXME
+
+
+                $title: 'Accedi (FIXME)'
 
             });
         }
@@ -84,6 +87,20 @@
                     .then(response => this.state = { $state: 'ok', $userInfo: response })
                 )
                 .catch(() => this.state = { $state: 'need-login' });
+
+
+            $(document).on('auth-connection-occurred', () => {
+                if(this.running) {
+                    api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id'))
+                        .then(response => this.state = { $state: 'ok', $userInfo: response });
+                }
+            });
+
+            $(document).on('auth-disconnection-occurred', () => {
+                if(this.running) {
+                    this.state = { $state: 'need-login' }
+                }
+            });
 
         }
 

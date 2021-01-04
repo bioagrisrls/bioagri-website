@@ -142,3 +142,41 @@ const authenticated = async () => api('/auth/verify', 'GET', {}, false).catch(re
     throw reason;
 
 });
+
+
+const requestUserAuthentication = () => {
+
+    const melem = document.getElementById('ui-authentication-modal');
+    const modal = new bootstrap.Modal(melem, {});
+
+    modal.show();
+
+    $(document).on('auth-connection-occurred', () => {
+        modal.hide();
+    });
+
+};
+
+
+$(document).ready(() => ((body) => {
+
+    $(body).append(`
+        <div class="modal fade" id="ui-authentication-modal">
+          <div class="modal-dialog modal-dialog-centered modal-fullscreen-lg-down">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 id="ui-authentication-modal-title" class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                <div class="px-5 py-3">
+                  <ui-login id="ui-authentication-modal-login" ui:bind="#ui-authentication-model-title:$title"></ui-login>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    `);
+
+
+}) (document.body));

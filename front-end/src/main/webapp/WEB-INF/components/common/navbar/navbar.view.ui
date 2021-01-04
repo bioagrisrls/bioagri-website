@@ -70,7 +70,7 @@
                 <? for (let nav of navs) { ?>
                     <li class="nav-item">
                         <a ui-navigate class="nav-link link-dark text-nowrap {{ (current === nav.key ? 'active' : '') }}" href="/{{nav.key}}">
-                            <span class="text-uppercase">{{ nav.name }}</span>
+                            <span class="text-uppercase text-muted">{{ nav.name }}</span>
                         </a>
                     </li>
                 <? } ?>
@@ -84,6 +84,10 @@
 
                     <button class="btn btn-outline-primary rounded-circle mx-1" onclick="$('#ui-navbar-user-popover').toggleClass('show'); $('#ui-navbar-cart-popover').removeClass('show')">
                         <span class="mdi mdi-24px mdi-account"></span>
+                    </button>
+
+                    <button class="btn btn-outline-primary rounded-circle mx-1" onclick="requestUserAuthentication()">
+                        <span class="mdi mdi-24px mdi-account-check"></span>
                     </button>
 
                     <div id="ui-navbar-user-popover" class="ui-navbar-popover ui-navbar-user-popover bg-white animate__animated">

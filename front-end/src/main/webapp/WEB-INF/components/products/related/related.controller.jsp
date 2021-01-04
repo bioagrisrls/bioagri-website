@@ -86,7 +86,7 @@
 
 
             if(offset > $sub.width() - window.innerWidth + containerStart)
-                return this.setState({ offset: $sub.width() - window.innerWidth + containerStart}, false);
+                return this.setState({ offset: $sub.width() - window.innerWidth + containerStart }, false);
 
             if(offset < 0)
                 return this.setState({ offset: 0 }, false);
