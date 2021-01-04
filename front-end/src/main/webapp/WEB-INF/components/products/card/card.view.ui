@@ -105,20 +105,18 @@
 
 <? } else if(view === 'card') {?>
 
-<div class="card rounded shadow-sm border-0">
+<div class="card rounded shadow-sm border-0 bg-light">
 
     <div class="card-body p-4 ui-zoom">
 
-
-
-        <img class="img-fluid d-block mx-auto mb-3" src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" />
-
-        <div class = "positionc position-absolute">
-                    <div onclick = "$$.updateWishList(this);" class="shadow-sm col-4 mdi mdi-24px mdi-heart{{ iswish === 'yes' ? ' ' : '-outline '}} ui-heart-icon-scale-color"> </div>
-                    <div class="shadow-sm col-4 mdi mdi-24px mdi-cart-outline ui-cart-icon-scale-color"> </div>
-                    <div class="shadow-sm col-4 mdi mdi-24px mdi-information-outline ui-information-icon-scale-color"> </div>
+        <div class = "ui-icon-position position-relative">
+                    <div  onclick = "$$.updateWishList(this);" class="px-2 py-1 bg-white fs-1 w-100 col-4 mdi-36px mdi  mdi-heart{{ iswish === 'yes' ? ' ' : '-outline '}} ui-heart-icon-scale-color"> </div>
+                    <!-- <div class="fs-1 w-100 h-100 col-4 mdi  mdi-cart-outline ui-cart-icon-scale-color"> </div> -->
+                    <!-- <div class="fs-1 w-100 h-100 col-4 mdi  mdi-information-outline ui-information-icon-scale-color"> </div> -->
         </div>
 
+        <img class="img-fluid d-block mx-auto mb-3" src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" />
+        <!-- <img class="img-fluid d-block mx-auto mb-3" src="/assets/img/products/zalando.jpg" /> -->
         <h5><a href="/details" class="text-dark" ui-navigate ui-data="{ id: {{products.id}}, name: '{{products.name}}' }">{{ products.name }}</a></h5>
         <p class="small text-muted">{{ products.price }}</p>
 

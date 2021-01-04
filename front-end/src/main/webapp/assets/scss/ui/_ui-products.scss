@@ -32,7 +32,8 @@
 
     &:hover {
 
-      transform: scale(1.5);
+      transform: scale(1.3);
+      transition-delay:0.5s;
 
       ~ :not(img) {
           visibility: hidden;
@@ -44,6 +45,14 @@
 
 }
 
+.ui-icon-position {
+
+float: right;
+left:22px;
+
+
+}
+
 .mdi-heart {
 
    color:red;
@@ -51,10 +60,8 @@
 }
 
 
-
 .ui-heart-icon-scale-color:hover {
 
-    transform: scale(1.5);
     transition: all .2s ease-in-out;
     color:red;
 
