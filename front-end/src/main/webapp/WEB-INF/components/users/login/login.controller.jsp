@@ -89,8 +89,6 @@
 
         onSubmit(data) {
 
-            console.log(data);
-
             const hash = (str) => crypto.subtle
                 .digest("SHA-512", new TextEncoder().encode(str))
                 .then(buf => Array.prototype.map.call(new Uint8Array(buf), i => ('00' + i.toString(16)).slice(-2)).join(''));

@@ -38,7 +38,6 @@ const navigate = (url, data = undefined, container = '#ui-navigation-container',
     if(!url)
         throw new Error('URL cannot be null');
 
-    console.log(data);
     if(data)
         url += '?' + $.param(data);
 
