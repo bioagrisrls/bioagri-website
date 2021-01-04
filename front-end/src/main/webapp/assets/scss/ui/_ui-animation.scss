@@ -34,3 +34,7 @@
   animation-duration: 1s;
   animation-fill-mode: both;
 }
+
+.ui-smooth-transition {
+  transition: all 0.4s ease-in-out;
+}

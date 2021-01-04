@@ -40,7 +40,7 @@
     <div class="ui-footer-header">
         <div class="ui-container">
 
-            <div class="row align-items-center">
+            <div class="row align-items-center gx-0">
 
                 <div class="col-md text-center">
                     <span>{{ connected }}</span>
