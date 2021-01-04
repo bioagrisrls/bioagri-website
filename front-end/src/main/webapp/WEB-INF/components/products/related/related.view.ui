@@ -23,13 +23,6 @@
   ~
   -->
 
-<style>
-    .next {
-        position: relative;
-        top: -50%;
-        cursor: pointer;
-    }
-</style>
 
 <div id="{{this.id}}-container" class="overflow-hidden w-100 h-auto">
     <div id="{{this.id}}-sub-container" class="position-relative ui-smooth-transition">
