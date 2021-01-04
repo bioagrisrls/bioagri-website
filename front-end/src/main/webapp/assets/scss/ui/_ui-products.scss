@@ -75,3 +75,23 @@
 
 }
 
+
+.ui-products-related-button {
+
+  @extend .position-relative;
+  @extend .border;
+  @extend .shadow-sm;
+  @extend .bg-white;
+
+  bottom: 8rem;
+
+  &.next {
+    right: 3rem;
+  }
+
+  &.prev {
+    left: 3rem;
+  }
+
+}
+

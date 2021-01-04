@@ -101,12 +101,11 @@
                     <div class="col-md text-center" ui-animated-hover ui-animated-scroll><ui-image id="ui-image-services-05" class="d-block p-3" ui:src="/assets/img/home/5.png"></ui-image><h5>Organic food</h5></div>
                 </div>
 
-                <ui-product-related id="ui-product-related" ui:kind="" ui:id="1"></ui-product-related>
-
-
             </section>
 
         </div>
+
+        <ui-product-related id="ui-product-related" ui:kind="" ui:id="1"></ui-product-related>
 
         <ui-parallax id="ui-parallax-2" ui:src="/assets/img/home/parallax02.jpg" ui:reserve="400px">
             <h2>Hello World!</h2>

@@ -23,14 +23,31 @@
   ~
   -->
 
-<div style="overflow-x: scroll">
-    <?
-        for(const product of products) {
-            ?>
-                <div class="mw-25 d-inline-block" style="white-space: nowrap">
-                    <ui-card id="{{this.id}}-{{product}}" ui:id="{{product}}"></ui-card>
-                </div>
-            <?
-        }
-    ?>
+<style>
+    .next {
+        position: relative;
+        top: -50%;
+        cursor: pointer;
+    }
+</style>
+
+<div id="{{this.id}}-container" class="overflow-hidden w-100 h-auto">
+    <div id="{{this.id}}-sub-container" class="position-relative ui-smooth-transition">
+        <?
+            for(const product of products) {
+                ?>
+                    <div class="{{this.id}}-product d-inline-block" style="width: 240px">
+                        <ui-card id="{{this.id}}-{{product}}" ui:id="{{product}}"></ui-card>
+                    </div>
+                <?
+            }
+        ?>
+    </div>
+    <div class="float-end ui-products-related-button next">
+        <div class="next" onclick="$$.next()">
+            <span class="mdi mdi-36px mdi-chevron-right"></span>
+        </div>
+    </div>
 </div>
+
+

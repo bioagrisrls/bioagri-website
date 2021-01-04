@@ -47,9 +47,11 @@
 
             }
 
-            super(id, api('/products?limit=25&' + uri).then(response => {
+            super(id, api('/products?limit=15&' + uri).then(response => {
                 return {
-                    products: response.map(i => i.id)
+                    products: response.map(i => i.id),
+                    offset: 0,
+                    length: 0,
                 }
             }));
 
@@ -57,6 +59,39 @@
 
         onRender() {
             return `${components.products_related}`
+        }
+
+
+        onReady(state) {
+            super.onReady(state);
+
+            $(window).on('resize', this, (e) => {
+                if(e.data.running) {
+                    e.data.setState({}, false);
+                }
+            });
+
+        }
+
+        onUpdated(state) {
+            super.onUpdated(state);
+
+            const { products, offset } = this.state;
+
+            const $sub = $(this.elem).find('#' + this.id + '-sub-container');
+            const $prd = $(this.elem).find('.' + this.id + '-product');
+
+            $sub.css({ width: (products.length + 1) * $prd.width()          + 'px' });
+            $sub.css({ left:  (window.innerWidth / 2) - (1200 / 2) - offset + 'px' });
+
+            if($sub.width() - offset < window.innerWidth)
+                this.setState({ offset: $sub.width() - window.innerWidth });
+
+        }
+
+
+        next() {
+            this.setState({ offset: this.state.offset + (window.innerWidth / 2) }, false);
         }
 
     });
