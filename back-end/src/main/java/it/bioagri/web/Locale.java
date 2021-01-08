@@ -51,7 +51,7 @@ public class Locale {
     private final Map<String, Map<String, String>> dictionaries;
 
     @Autowired
-    public Locale(ServletContext servletContext) {
+    private Locale(ServletContext servletContext) {
 
         this.dictionaries = Collections.unmodifiableMap(new HashMap<>() {{
 

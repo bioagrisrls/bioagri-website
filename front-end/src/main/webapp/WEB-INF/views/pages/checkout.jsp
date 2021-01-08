@@ -67,6 +67,8 @@
             <!-- Checkout Tabs -->
             <ui-checkout id="ui-checkout-1"></ui-checkout>
 
+
+
         </div>
 
     </section>

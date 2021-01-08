@@ -23,9 +23,8 @@
   ~
   --%>
 
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.function.Consumer" %>
-<%@ page import="java.io.IOException" %>
+<%--@elvariable id="reference" type="java.lang.String"--%>
+<%--@elvariable id="paypal" type="it.bioagri.payments.PayPal"--%>
 
 
 <!DOCTYPE html>
@@ -68,6 +67,7 @@
         <script src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
         <script src="https://apis.google.com/js/api.js"></script>
         <script src="https://apis.google.com/js/platform.js"></script>
+        <script src="https://www.paypal.com/sdk/js?client-id=${paypal.clientId}&currency=EUR&locale=it_IT" data-namespace="paypal_sdk"></script>
     
     
         <!-- Dependencies -->

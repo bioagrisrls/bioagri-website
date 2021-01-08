@@ -29,6 +29,7 @@ import ch.qos.logback.classic.Logger;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.UserRole;
+import it.bioagri.payments.PayPal;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -55,14 +56,14 @@ public class Page {
     private final Locale locale;
     private final Components components;
     private final AuthToken authToken;
-    private final ServletContext servletContext;
+    private final PayPal payPal;
 
     @Autowired
-    public Page(Locale locale, Components components, AuthToken authToken, ServletContext servletContext) {
+    public Page(Locale locale, Components components, AuthToken authToken, PayPal payPal) {
         this.locale = locale;
         this.components = components;
         this.authToken = authToken;
-        this.servletContext = servletContext;
+        this.payPal = payPal;
     }
 
 
@@ -72,6 +73,7 @@ public class Page {
         model.addAttribute("components", components.getComponents());
         model.addAttribute("locale", locale.getCurrentLocale(request));
         model.addAttribute("authToken", authToken);
+        model.addAttribute("paypal", payPal);
 
         return "router";
 

@@ -29,5 +29,10 @@
       "name": "auth.services.external.twitter.id",
       "type": "java.lang.String",
       "description": "Description for auth.services.external.twitter.id."
+    },
+    {
+      "name": "payments.services.paypal.id",
+      "type": "java.lang.String",
+      "description": "Description for payments.services.paypal.id."
     }
   ] }

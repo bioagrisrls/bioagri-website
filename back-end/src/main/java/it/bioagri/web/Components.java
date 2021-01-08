@@ -45,7 +45,7 @@ public class Components {
     private final Map<String, String> components;
 
     @Autowired
-    public Components(ServletContext servletContext) {
+    private Components(ServletContext servletContext) {
 
         this.components = Collections.unmodifiableMap(new HashMap<>() {{
 
@@ -75,7 +75,7 @@ public class Components {
 
                         });
 
-            } catch (IOException ignored) {
+            } catch (IOException e) {
                 throw new IllegalStateException();
             }
 

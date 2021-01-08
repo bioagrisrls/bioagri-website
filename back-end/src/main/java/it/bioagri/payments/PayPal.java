@@ -23,54 +23,26 @@
  *
  */
 
-package it.bioagri.api.auth;
+package it.bioagri.payments;
 
-import it.bioagri.api.auth.services.AuthExternalService;
-import it.bioagri.api.auth.services.FacebookAuth;
-import it.bioagri.api.auth.services.GoogleAuth;
-import it.bioagri.api.auth.services.TwitterAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-
 @Component
 @Scope("singleton")
-public class AuthService {
+public class PayPal {
 
-    private final Map<String, AuthExternalService> services;
-
+    private final String clientId;
 
     @Autowired
-    private AuthService(
-            @Value("${auth.services.external.google.id}"  ) String googleId,
-            @Value("${auth.services.external.facebook.id}") String facebookId,
-            @Value("${auth.services.external.twitter.id}" ) String twitterId) {
-
-
-        services = Map.of(
-                "<<AUTH_TYPE_GOOGLE>>",     new GoogleAuth(googleId),
-                "<<AUTH_TYPE_FACEBOOK>>",   new FacebookAuth(facebookId),
-                "<<AUTH_TYPE_TWITTER>>",    new TwitterAuth(twitterId)
-        );
-
+    private PayPal(@Value("${payments.services.paypal.id}") String clientId) {
+        this.clientId = clientId;
     }
 
-
-
-    public boolean verify(AuthLogin authLogin) {
-
-        for(var service : services.keySet()) {
-
-            if(authLogin.getPassword().equals(service) && services.get(service).verify(authLogin.getUsername(), authLogin.getToken()))
-                return true;
-
-        }
-
-        return false;
-
+    public String getClientId() {
+        return clientId;
     }
 
 

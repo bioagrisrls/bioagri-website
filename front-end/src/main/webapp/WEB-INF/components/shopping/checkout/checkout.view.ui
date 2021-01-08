@@ -227,7 +227,9 @@
                         </button>
                     </h2>
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
-                        <div class="accordion-body">Paypal</div>
+                        <div class="accordion-body">
+                            <div id="paypal-button-paynow"></div>
+                        </div>
                     </div>
                 </div>
 
