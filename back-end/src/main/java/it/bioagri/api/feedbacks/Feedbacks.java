@@ -28,6 +28,7 @@ package it.bioagri.api.feedbacks;
 import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Feedback;
+import it.bioagri.models.UserInfo;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import it.bioagri.utils.ApiRequestQuery;
@@ -72,7 +73,7 @@ public class Feedbacks {
                             .stream()
                             .filter(i -> ApiPermission.hasPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken, i.getUserId()))
                             .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
-                    .sorted((a, b) -> ApiRequestQuery.sortedBy(sortedBy, order, a, b))
+                            .sorted((a, b) -> ApiRequestQuery.sortedBy(sortedBy, order, a, b))
                             .skip(skip)
                             .limit(limit)
                             .collect(Collectors.toList()));
@@ -184,6 +185,31 @@ public class Feedbacks {
         }
 
         return ResponseEntity.noContent().build();
+
+    }
+
+
+
+    @GetMapping("/{sid}/owner")
+    @ApiPermissionPublic
+    public ResponseEntity<UserInfo> getOwner(@PathVariable Long sid) {
+
+        ApiPermission.verifyOrThrow(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken);
+
+        try {
+
+            return ResponseEntity.ok(
+                    dataSource.getFeedbackDao()
+                            .findByPrimaryKey(sid)
+                            .orElseThrow(() -> new ApiResponseStatus(400))
+                            .getUser(dataSource)
+                            .map(u -> new UserInfo(u.getName(), u.getSurname()))
+                            .orElseThrow(() -> new ApiResponseStatus(404)));
+
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
 
     }
 
