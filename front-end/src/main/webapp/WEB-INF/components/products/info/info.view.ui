@@ -129,12 +129,39 @@
         <!-- Feedbacks -->
         <div class="tab-pane p-4 fade {{ current === 'feedbacks' ? 'show active' : '' }}" id="feedbacks" role="tabpanel">
 
+            <div class="row">
+
+                <div class="row">
+
+                    <h2 class="display-3">Recensioni dei clienti</h2>
+
+                    <br>
+                    <br>
+
+                    <ui-product-stats id="ui-products-feedback-stats-{{product.id}}" ui:id="{{product.id}}"></ui-product-stats>
+
+                    <br>
+                    <br>
+
+                    <p>
+                        I clienti inseriscono volontariamente le recensioni, che possono essere lette mentre il prodotto è disponibile.
+                        Non è previsto alcun compenso finanziario in cambio. Tutti i messaggi vengono controllati.
+                    </p>
+
+                    <h5>Ordinate per data e rilevanza</h5>
+
+                </div>
+
+                <div class="row">
+                    <ui-feedback id="ui-product-feedbacks-{{product.id}}" ui:id="{{product.id}}"></ui-feedback>
+                </div>
+
+            </div>
 
         </div>
 
-        <!-- Feedbacks -->
+        <!-- Descriptions -->
         <div class="tab-pane p-4 fade {{ current === 'description' ? 'show active' : '' }}" id="description" role="tabpanel">
-
 
         </div>
 

@@ -99,6 +99,7 @@
         <%@ include file="/WEB-INF/components/shopping/checkout/checkout.controller.jsp"        %>
         <%@ include file="/WEB-INF/components/users/login/login.controller.jsp"                 %>
         <%@ include file="/WEB-INF/components/users/registration/registration.controller.jsp"   %>
+        <%@ include file="/WEB-INF/components/products/feedback/feedback.controller.jsp"        %>
 
     </head>
 

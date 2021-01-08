@@ -23,4 +23,57 @@
   ~
   --%>
 
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
+
+<script defer>
+
+    Component.register('ui-feedback', (id, props) => new class extends StatefulComponent {
+
+        constructor() {
+            super(id,
+
+                api('/feedbacks?sorted-by=createdAt&filter-by=productId&filter-val=' + (props.id || ''))
+                    .then( r1 => api('/products/' + (props.id || '') + '/images')
+                    .then( r2 => {
+
+                    return {
+                        feedbacks: r1,
+                        images: r2,
+                        users: [],
+                        productId: props.id,
+                    }
+
+                })).catch(r => {
+
+                    console.log(r);
+
+                }));
+        }
+
+        onReady(state) {
+
+            this.state.feedbacks.forEach( item =>
+                api('/user/' + item.userId + '/owner').then(response => this.state.users.add(response))
+            )
+
+        }
+
+        onRender() {
+            return `${components.feedback}`
+        }
+
+        onLoading() {
+            return `${components.feedback_loading}`
+        }
+
+        onError() {
+            return `${components.feedback_error}`
+        }
+
+    });
+
+
+</script>
 
