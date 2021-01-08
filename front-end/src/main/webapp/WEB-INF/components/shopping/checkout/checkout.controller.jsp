@@ -121,7 +121,7 @@
 
                 }
 
-            }).render('#paypal-button-paynow');
+            }).render('body');
 
 
         }
