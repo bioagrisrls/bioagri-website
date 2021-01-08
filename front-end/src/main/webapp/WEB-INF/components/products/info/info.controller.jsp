@@ -36,7 +36,6 @@
 
                 Promise.all([
                     api('/products/' + (props.id || '')),
-                    api('/feedbacks?filter-by=productId&filter-val=' + (props.id || '')),
                     api('/products/' + (props.id || '') + '/categories'),
                     api('/products/' + (props.id || '') + '/tags')
                 ]).then(response => {
@@ -44,16 +43,15 @@
                     return {
 
                         product: response[0],
-                        feedback: response[1],
-                        categories: response[2],
-                        tags: response[3],
+                        categories: response[1],
+                        tags: response[2],
 
                         ivaText: `${locale.info_product_iva}`,
                         descriptionText: `${locale.info_product_description}`,
                         addToCartButton: `${locale.info_product_cart}`,
                         feedbacksText: `${locale.info_product_feedbacks}`,
 
-                        current: 'description',
+                        current: 'feedbacks',
 
                     }
 

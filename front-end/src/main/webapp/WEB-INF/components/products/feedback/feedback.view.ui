@@ -23,3 +23,32 @@
   ~
   -->
 
+<? for(const feedback of feedbacks) { ?>
+    <div class="row">
+        <hr>
+
+        <div class="col col-8" >
+            <h4></h4>
+            <p>Recensito: {{feedback.createdAt}}</p>
+            <ui-stars class="col-auto" id="{{this.id}}-reviews-stars" ui:vote="{{feedback.vote}}"></ui-stars>
+        </div>
+
+        <div class="col col-4" >
+            <ui-image id="{{this.id}}-feedback-image-preview-{{productId}}"
+                      ui:src="{{ images[0] }}"
+                      ui:width="100%"
+                      ui:height="100%">
+            </ui-image>
+        </div>
+
+        <div class="row">
+
+            <h5>{{ feedback.title }}</h5>
+            <br>
+            <p>{{ description }}</p>
+
+        </div>
+
+        <hr>
+    </div>
+<? } ?>
