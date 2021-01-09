@@ -49,6 +49,7 @@
                     label: "Indirizzo email", // FIXME
                     pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                     required: true,
+                    autocomplete: 'email',
                     size: 128, // FIXME
                     wrong: "Username wrong! (FIXME)"
                 },
@@ -59,6 +60,7 @@
                     minlength: 8,
                     pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
                     required: true,
+                    autocomplete: 'new-password',
                     size: 128,
                 },
 
@@ -66,6 +68,7 @@
                     type: 'text',
                     label: 'Nome', // FIXME,
                     required: true,
+                    autocomplete: 'given-name',
                     maxlength: 32
                 },
 
@@ -73,6 +76,7 @@
                     type: 'text',
                     label: 'Cognome', // FIXME,
                     required: true,
+                    autocomplete: 'family-name',
                     maxlength: 32
                 },
 
@@ -80,6 +84,7 @@
                     type: 'select',
                     label: 'Sesso', // FIXME,
                     required: true,
+                    autocomplete: 'sex',
                     options: [
                         { key: 'male',      value: 'MALE'       },
                         { key: 'female',    value: 'FEMALE'     },
@@ -92,13 +97,15 @@
                     type: 'date',
                     label: 'Data di nascita', // FIXME
                     required: true,
+                    autocomplete: 'bday'
                 },
 
                 phone: {
                     type: 'tel',
                     label: 'Recapito telefonico', // FIXME
                     required: true,
-                    size: 16,
+                    autocomplete: 'tel',
+                    size: 16
                 },
 
                 legals: {

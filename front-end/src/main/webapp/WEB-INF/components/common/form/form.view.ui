@@ -54,6 +54,9 @@
         if(v.size)
             output.push('size=' + v.size);
 
+        if(v.autocomplete)
+            output.push('autocomplete=' + v.autocomplete);
+
         return output.join(' ');
 
     };

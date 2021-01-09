@@ -49,6 +49,7 @@
                     label: "Indirizzo email", // FIXME
                     pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                     required: true,
+                    autocomplete: 'email',
                     size: 128, // FIXME
                     wrong: "Username wrong! (FIXME)"
                 },
@@ -59,6 +60,7 @@
                     minlength: 8,
                     pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
                     required: true,
+                    autocomplete: 'current-password',
                     size: 128,
                     wrong: "Password wrong! (FIXME)"
                 },
