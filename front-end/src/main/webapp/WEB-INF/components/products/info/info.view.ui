@@ -133,7 +133,7 @@
 
                 <div class="row">
 
-                    <h2 class="display-3">Recensioni dei clienti</h2>
+                    <h2 class="display-5">Recensioni dei clienti</h2>
 
                     <br>
                     <br>
@@ -148,7 +148,12 @@
                         Non è previsto alcun compenso finanziario in cambio. Tutti i messaggi vengono controllati.
                     </p>
 
+                    <br>
+                    <br>
+
                     <h5>Ordinate per data e rilevanza</h5>
+
+                    <br>
 
                 </div>
 

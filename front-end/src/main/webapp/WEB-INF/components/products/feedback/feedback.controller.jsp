@@ -54,22 +54,16 @@
 
         onReady(state) {
 
+            console.log(this.state.feedbacks);
+
             this.state.feedbacks.forEach( item =>
-                api('/user/' + item.userId + '/owner').then(response => this.state.users.add(response))
+                api('/feedbacks/' + item.userId + '/owner').then(response => this.state.users.push(response))
             )
 
         }
 
         onRender() {
-            return `${components.feedback}`
-        }
-
-        onLoading() {
-            return `${components.feedback_loading}`
-        }
-
-        onError() {
-            return `${components.feedback_error}`
+            return `${components.products_feedback}`
         }
 
     });
