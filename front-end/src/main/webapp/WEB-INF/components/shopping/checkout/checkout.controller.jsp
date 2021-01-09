@@ -71,58 +71,52 @@
             return `${components.shopping_checkout_error}`
         }
 
-        onReady(state) {
-            super.onReady(state);
+        onUpdated(state) {
+            super.onUpdated(state);
 
-            let i = paypal_sdk.Buttons({
+            if(state.current === 'payment') {
 
-                createOrder: (data, actions) => {
+                paypal_sdk.Buttons({
 
-                    console.log(data, actions);
+                    createOrder: (data, actions) => {
 
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: '40.00',
-                                currency_code: 'EUR',
-                                breakdown: {
-                                    item_total: '40.00',
-                                    shipping: '0',
-                                    handling: '0',
-                                    tax_total: '0',
-                                    insurance: '0',
-                                    shipping_discount: '0',
-                                    discount: '0'
+                        console.log(data, actions);
+
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: '40.00',
+                                    currency_code: 'EUR',
                                 }
-                            }
-                        }],
+                            }],
 
-                        items: [{
-                            name: 'Solfato di ferro',
-                            unit_amount: '5.00',
-                            quantity: '3',
-                        }, {
-                            name: 'Albero di Natale',
-                            unit_amount: '25.00',
-                            quantity: '1',
-                        }],
+                            items: [{
+                                name: 'Solfato di ferro',
+                                unit_amount: '5.00',
+                                quantity: '3',
+                            }, {
+                                name: 'Albero di Natale',
+                                unit_amount: '25.00',
+                                quantity: '1',
+                            }],
 
-                        description: "Hello World!",
+                            description: "Hello World!",
 
-                    });
+                        });
 
-                },
+                    },
 
-                onApprove: (data, actions) => {
+                    onApprove: (data, actions) => {
 
-                    return actions.order.capture().then(response => {
-                        console.log('onApprove', response);
-                    });
+                        return actions.order.capture().then(response => {
+                            console.log('onApprove', response);
+                        });
 
-                }
+                    }
 
-            }).render('body');
+                }).render('#paypal-button-paynow');
 
+            }
 
         }
 
