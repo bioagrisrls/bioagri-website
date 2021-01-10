@@ -23,39 +23,51 @@
   ~
   -->
 
-<? for(const feedback of feedbacks) { ?>
+<? let i = 0; ?>
+<? for ( ; i < this.state.feedbacks.length; i++) { ?>
+
+    <?
+        let date = new Date(+this.state.feedbacks[i].createdAt);
+        let year = date.getFullYear();
+        let month = (date.getMonth() + 1).toString().padStart(2, '0');
+        let day = date.getDate().toString().padStart(2, '0');
+        let compatted = day + '/' + month + '/' + year;
+    ?>
+
+    <hr>
+    <br>
 
     <div class="row">
 
-        <hr>
-
         <div class="row mh-50">
 
-            <div class="col col-8" >
-                <h4>{{feedback.createdAt}}</h4>
-                <p>Recensito: {{feedback.createdAt}}</p>
-                <ui-stars class="col-auto" id="{{this.id}}-reviews-stars" ui:vote="{{feedback.vote}}"></ui-stars>
+            <div class="col" >
+                <h4>{{ typeof this.state.users[i] === 'undefined' ? '' : this.state.users[i].name }} {{ typeof this.state.users[i] === 'undefined' ? '' : this.state.users[i].surname }}</h4>
+                <p>Recensito: {{ compatted }}</p>
+                <ui-stars class="col-auto" id="{{this.id}}-reviews-stars-{{i}}" ui:vote="{{this.state.feedbacks[i].vote}}"></ui-stars>
             </div>
 
-            <div class="col col-4" >
-                <ui-image id="{{this.id}}-feedback-image-preview-{{productId}}"
+            <div class="col-auto" >
+                <ui-image id="{{this.id}}-feedback-image-preview-{{productId}}-{{i}}"
                           ui:src="{{ images[0] }}"
-                          ui:width="100%"
-                          ui:height="100%">
+                          ui:width="128px"
+                          ui:height="128px">
                 </ui-image>
             </div>
 
         </div>
 
+        <br>
+        <br>
+
         <div class="row">
 
-            <h5>{{ feedback.title }}</h5>
+            <h5>{{ this.state.feedbacks[i].title }}</h5>
             <br>
-            <p>{{ feedback.description }}</p>
+            <p>{{ this.state.feedbacks[i].description }}</p>
 
         </div>
 
-        <hr>
 
     </div>
 

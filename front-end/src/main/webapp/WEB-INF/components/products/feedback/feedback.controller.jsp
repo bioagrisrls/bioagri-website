@@ -54,11 +54,14 @@
 
         onReady(state) {
 
-            console.log(this.state.feedbacks);
+            this.state.feedbacks.forEach( item => {
+                api('/feedbacks/' + item.userId + '/owner').then(response => {
 
-            this.state.feedbacks.forEach( item =>
-                api('/feedbacks/' + item.userId + '/owner').then(response => this.state.users.push(response))
-            )
+                    this.state.users.push(response);
+                    this.setState({users: this.state.users})
+
+                });
+            })
 
         }
 

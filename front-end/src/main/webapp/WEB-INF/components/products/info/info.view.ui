@@ -30,14 +30,16 @@
         <div class="col-lg-6 col-md">
 
             <!-- Product Gallery -->
-            <ui-gallery id="ui-gallery-{{product.id}}" ui:id="{{product.id}}"></ui-gallery>
+            <div class="container shadow-sm">
+                <ui-gallery id="ui-gallery-{{product.id}}" ui:id="{{product.id}}"></ui-gallery>
+            </div>
 
         </div>
 
         <!-- Product Info -->
         <div class="col-lg-6 col-md">
 
-            <div class="container bg-white shadow">
+            <div class="container shadow-sm">
 
                 <!-- Info -->
                 <div class="display-4 py-3">
@@ -124,7 +126,7 @@
     </div>
 
 
-    <div class="tab-content bg-light " id="tabContent">
+    <div class="tab-content " id="tabContent">
 
         <!-- Feedbacks -->
         <div class="tab-pane p-4 fade {{ current === 'feedbacks' ? 'show active' : '' }}" id="feedbacks" role="tabpanel">
@@ -133,26 +135,25 @@
 
                 <div class="row">
 
-                    <h2 class="display-5">Recensioni dei clienti</h2>
+                    <h2 class="display-6">Recensioni dei clienti</h2>
 
                     <br>
                     <br>
 
                     <ui-product-stats id="ui-products-feedback-stats-{{product.id}}" ui:id="{{product.id}}"></ui-product-stats>
 
-                    <br>
-                    <br>
-
-                    <p>
+                    <p class="pt-4">
                         I clienti inseriscono volontariamente le recensioni, che possono essere lette mentre il prodotto è disponibile.
                         Non è previsto alcun compenso finanziario in cambio. Tutti i messaggi vengono controllati.
                     </p>
 
                     <br>
                     <br>
+                    <br>
 
                     <h5>Ordinate per data e rilevanza</h5>
 
+                    <br>
                     <br>
 
                 </div>
