@@ -1,0 +1,13 @@
+.git
+.gradle
+.idea
+docs
+back-end
+front-end/src/main/webapp/assets/css
+front-end/src/main/webapp/assets/fonts
+front-end/src/main/webapp/assets/img
+front-end/src/main/webapp/assets/scss/bootstrap
+front-end/src/main/webapp/assets/svgs
+gradle
+node_modules
+utils
