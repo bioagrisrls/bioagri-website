@@ -25,23 +25,27 @@
 
 <header class="bg-light d-none d-lg-block">
     <div class="ui-container">
-        <div class="row gx-0">
-            <div class="col col-6">
-                <a ui-navigate class="nav-link" href="/support#maps">
-                    <span class="text-muted"><span class="mdi mdi-map"></span> {{ address }}</span>
+        <div class="row gx-0 p-3 align-items-baseline">
+            <div class="col-5">
+                <a ui-navigate class="link-info" href="/support#maps">
+                    <span class="mdi mdi-google-maps"></span> {{ address }}
                 </a>
             </div>
-            <div class="col col-3">
-                <div align="right">
-                    <a ui-navigate class="nav-link" href="/support#contacts">
-                        <span class="text-muted"><span class="mdi mdi-email"></span> {{ email }}</span>
+            <div class="col-5">
+                <div class="text-end">
+                    <a ui-navigate class="link-info" href="/support#contacts">
+                        <span class="mdi mdi-email"></span> {{ email }} &ndash;
+                        <span class="mdi mdi-phone"></span> {{ phone }}
                     </a>
                 </div>
             </div>
-            <div class="col col-3">
-                <div align="right">
-                    <a ui-navigate class="nav-link" href="/support#contacts">
-                        <span class="text-muted"><span class="mdi mdi-phone"></span> {{ phone }}</span>
+            <div class="col-2">
+                <div class="text-end">
+                    <a ui-navigate class="link-info px-1" href="/support#contacts">
+                        <span class="mdi mdi-24px mdi-flag-outline"></span>
+                    </a>
+                    <a ui-navigate class="link-info px-1" href="/support#contacts">
+                        <span class="mdi mdi-24px mdi-lightbulb-on-outline"></span>
                     </a>
                 </div>
             </div>

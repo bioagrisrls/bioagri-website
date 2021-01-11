@@ -43,6 +43,17 @@
                 catalog: `${locale.nav_catalog}`,
                 about: `${locale.nav_about}`,
                 support: `${locale.nav_support}`,
+                welcome: `${locale.nav_user_greetings}`,
+                account: `${locale.nav_user_account}`,
+                order: `${locale.nav_user_order}`,
+                wishlist: `${locale.nav_user_wishlist}`,
+                settings: `${locale.nav_user_settings}`,
+                exit: `${locale.nav_user_exit}`,
+                cart: `${locale.nav_shopping_cart}`,
+                total: `${locale.nav_shopping_cart_total}`,
+                cartOrder: `${locale.nav_shopping_cart_order}`,
+                clear: `${locale.nav_shopping_cart_clear}`,
+                article: `${locale.nav_shopping_cart_article}`,
 
             });
         }

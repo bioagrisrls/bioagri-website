@@ -1,7 +1,7 @@
 {
 
   "info_title" : "Bioagri Shop",
-  "info_address" : "Rosarno, Via delle livare, 100 100",
+  "info_address" : "Rosarno (RC), Via Nazionale Sud, 365",
   "info_phone" : "0966-543210",
   "info_email" : "info@bioagri.com",
   "info_copy" : "Copyright &copy; 2021 Bioagri S.r.l.s. All rights reserved.",
@@ -14,11 +14,25 @@
   "page_checkout" : "Checkout",
   "page_details" : "Dettagli Prodotto",
 
-  "nav_logo" : "/assets/img/logo/logo-navbar.jpg",
+  "locale_country" : "IT",
+
+  "nav_logo" : "/assets/img/logo/logo-extended.png",
   "nav_home" : "Home",
   "nav_catalog" : "Catalogo",
   "nav_about" : "Chi siamo",
   "nav_support" : "Contatti",
+  "nav_user_greetings" : "Benvenuto",
+  "nav_user_account" : "Il mio account",
+  "nav_user_order" : "I miei ordini",
+  "nav_user_wishlist" : "La mia lista desideri",
+  "nav_user_settings" : "Impostazioni",
+  "nav_user_exit" : "Esci",
+  "nav_shopping_cart" : "Carrello",
+  "nav_shopping_cart_total" : "Totale:",
+  "nav_shopping_cart_order" : "Vai alla cassa",
+  "nav_shopping_cart_clear" : "Svuota carrello",
+  "nav_shopping_cart_article" : "articoli):",
+
 
   "foo_header_connected" : "Seguici sui nostri social network per rimanere connesso!",
 
