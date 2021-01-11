@@ -37,6 +37,7 @@ $enable-shadows: true;
 //
 $primary:       $ui-theme-primary;
 $secondary:     $ui-theme-secondary;
+$info:          gray;
 
 
 //
@@ -98,6 +99,28 @@ $utilities: map-merge(
         33: 33%,
         50: 50%,
         75: 75%,
+      )
+    )
+  )
+);
+
+
+//
+// Width
+//
+$utilities: map-merge(
+  $utilities, (
+    "width-responsive": (
+      property: width,
+      class: w,
+      responsive: true,
+      values: (
+        0: 0,
+        25: 25%,
+        50: 50%,
+        75: 75%,
+        100: 100%,
+        auto: auto,
       )
     )
   )

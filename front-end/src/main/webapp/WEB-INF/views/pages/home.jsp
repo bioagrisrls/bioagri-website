@@ -41,7 +41,7 @@
     <section ui-animated>
 
         <!-- Slide show -->
-        <ui-parallax id="ui-parallax-1" ui:src="/assets/img/home" ui:items="parallax01.jpg,parallax02.jpg" ui:delay="5">
+        <ui-parallax id="ui-parallax-1" ui:src="/assets/img/home" ui:items="parallax01.jpg,parallax02.jpg,parallax03.jpg" ui:delay="5">
 
             <div class="ui-container p-4">
 
@@ -58,6 +58,21 @@
                     </p>
 
                     <button type="button" class="btn btn-primary animate__animated animate__backInUp">Contact us</button>
+
+                </div>
+
+                <div class="ui-parallax-caption-item">
+
+                    <h1 class="animate__animated animate__backInDown">
+                        Animate.css v4 brought some breaking changes.
+                    </h1>
+
+                    <p class="animate__animated animate__backInUp">
+                        Animate.css is a library of ready-to-use, cross-browser animations for use in your web projects.
+                        Great for emphasis, home pages, sliders, and attention-guiding hints.
+                    </p>
+
+                    <button type="button" class="btn btn-primary animate__animated animate__backInUp">Reent T-MAX</button>
 
                 </div>
 

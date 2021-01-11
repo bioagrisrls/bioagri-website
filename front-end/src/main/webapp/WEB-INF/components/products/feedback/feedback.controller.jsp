@@ -34,22 +34,23 @@
         constructor() {
             super(id,
 
-                api('/feedbacks?sorted-by=createdAt&filter-by=productId&filter-val=' + (props.id || ''))
-                    .then( r1 => api('/products/' + (props.id || '') + '/images')
-                    .then( r2 => {
+                Promise.all([
+                    api('/feedbacks?sorted-by=createdAt&filter-by=productId&filter-val=' + (props.id || '') + '&limit=3'),
+                    api('/products/' + (props.id || '') + '/images')
+                ]).then(response => {
 
                     return {
-                        feedbacks: r1,
-                        images: r2,
+                        feedbacks: response[0],
+                        images: response[1],
                         users: [],
                         productId: props.id,
+                        skip: 0
                     }
 
-                })).catch(r => {
-
-                    console.log(r);
-
-                }));
+                }).catch(response => {
+                    console.log(response)
+                })
+            )
         }
 
         onReady(state) {
@@ -68,6 +69,31 @@
         onRender() {
             return `${components.products_feedback}`
         }
+
+
+        moreFeedback() {
+
+            let feedbacks = this.state.feedbacks;
+            let users = this.state.users;
+
+            this.setState({skip: feedbacks.length})
+
+            api('/feedbacks?sorted-by=createdAt&filter-by=productId&filter-val=' + this.state.productId +
+                '&limit=3&skip=' + this.state.skip)
+                .then( response => response.forEach( item => feedbacks.push(item))).then( () => {
+
+                    feedbacks.forEach( item => {
+                        api('/feedbacks/' + item.userId + '/owner').then(response => users.push(response));
+                    })
+
+                }).then( () => {
+
+                    this.setState({users: users,
+                                   feedbacks: feedbacks});
+
+                })
+       }
+
 
     });
 
