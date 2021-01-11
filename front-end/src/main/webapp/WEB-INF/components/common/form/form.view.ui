@@ -99,6 +99,12 @@
 
     <? } else { ?>
 
+        <?
+            if(typeof $header !== undefined) {
+                ?> <div>{{$header}}</div> <?
+            }
+        ?>
+
         <form id="{{this.id}}-form" name="{{this.id}}-form">
 
             <?
@@ -179,6 +185,8 @@
 
                         <?
 
+                            break;
+
                         case 'hidden':
 
                         ?>
@@ -188,6 +196,17 @@
                             </div>
 
                         <?
+
+                            break;
+
+
+                        case 'link':
+
+                        ?>
+                            <a ui-navigate href="{{v.href || '#'}}">{{v.value || v.href || ''}}</a>
+                        <?
+
+                            break;
 
                         default:
                             break;
@@ -203,6 +222,13 @@
             </div>
 
         </form>
+
+
+        <?
+            if(typeof $footer !== undefined) {
+                ?> <div>{{$footer}}</div> <?
+            }
+        ?>
 
     <? } ?>
 </div>

@@ -35,6 +35,28 @@
         constructor() {
             super(id, {
 
+                $header: `
+                    <h2>Accedi (FIXME)</h2>
+                    <p>Inserisci i tuoi dati utente per accedere al tuo account (FIXME)</p>
+                `,
+
+                $footer: `
+                    <hr>
+                    <h2>Sei un nuovo Cliente? (FIXME)</h2>
+                    <button class="btn btn-primary">Registra ora!</button>
+                `,
+
+
+                $submit: {
+                    value: 'Login',
+                    align: 'center'
+                }, // FIXME
+
+
+                $title: 'Accedi (FIXME)',
+
+
+
                 auth: {
                     type: 'hidden',
                     value: 'AUTH_SERVICE_INTERNAL'
@@ -65,18 +87,16 @@
                     wrong: "Password wrong! (FIXME)"
                 },
 
+                forgotten: {
+                    type: 'link',
+                    value: 'Hai dimenticato la password? (FIXME)'
+                },
+
                 store: {
                     type: 'switch',
                     label: "Resta connesso" // FIXME
                 },
 
-                $submit: {
-                    value: 'Login',
-                    align: 'center'
-                }, // FIXME
-
-
-                $title: 'Accedi (FIXME)'
 
             });
         }
