@@ -46,17 +46,21 @@
                         <img src="/assets/img/home/content01.png" alt="" />
                     </div>
                     <div class="col-6">
-                        <span>Ordina Ora!</span>
+                        <div class="row">
+                            <span>Ordina ora!</span>
+                        </div>
+                        <div class="row">
+                            <div class="ui-home-social-buttons">
+                                <ul>
+                                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
+                                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
+                                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
+                                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="ui-home-social-buttons">
-                <ul>
-                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
-                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
-                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
-                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
-                </ul>
             </div>
         </div>
     </section>

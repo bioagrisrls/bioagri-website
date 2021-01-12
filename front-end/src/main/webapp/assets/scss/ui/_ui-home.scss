@@ -59,9 +59,15 @@
 
 
     div.ui-home-order-now {
+
+      img {
+        @extend .h-25;
+      }
+
       span {
         @extend .display-5;
       }
+
     }
 
     div.ui-home-social-buttons {
