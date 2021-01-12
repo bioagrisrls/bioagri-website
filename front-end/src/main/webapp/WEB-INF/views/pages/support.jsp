@@ -31,9 +31,6 @@
 
 <section id="ui-navigation-container" ui-title="${locale.page_support} &ndash; ${locale.info_title}">
 
-    <!-- Header -->
-    <ui-header id="ui-header"></ui-header>
-
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ui:current="support"></ui-navbar>
 
