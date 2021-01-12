@@ -168,34 +168,3 @@
 
 }
 
-
-.ui-home {
-
-  background-image: url("/assets/img/home/background.png");
-  background-size: 55%;
-  background-position: top right;
-  background-repeat: no-repeat;
-  background-attachment: local;
-  height: 2000px;
-
-
-  & .ui-home-content {
-
-    @extend .bg-white;
-    @extend .my-5;
-
-    h3 {
-      @extend .text-uppercase;
-      @extend .text-primary;
-    }
-
-    h1 {
-      @extend .text-uppercase;
-      @extend .text-dark;
-      @extend .display-4;
-    }
-
-  }
-
-}
-

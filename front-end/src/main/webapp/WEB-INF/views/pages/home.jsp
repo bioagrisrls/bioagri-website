@@ -36,10 +36,20 @@
 
 
     <section class="ui-home" ui-animated>
+        <img class="ui-home-background" src="/assets/img/home/background.png" alt="" />
         <div class="ui-home-content">
             <h3>High Quality</h3>
             <h1>Welcome on Bioagri!</h1>
-            <div class="ui-home-order-now"></div>
+            <div class="ui-home-order-now">
+                <div class="row">
+                    <div class="col-6">
+                        <img src="/assets/img/home/content01.png" alt="" />
+                    </div>
+                    <div class="col-6">
+                        <span>Ordina Ora!</span>
+                    </div>
+                </div>
+            </div>
             <div class="ui-home-social-buttons">
                 <ul>
                     <li><span class="mdi mdi-36px mdi-facebook"></span></li>
