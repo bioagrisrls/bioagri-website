@@ -101,3 +101,70 @@
 
 
 
+.ui-nav {
+
+  background: transparent;
+
+  @extend .text-dark;
+  @extend .px-5;
+  @extend .py-4;
+  @extend .fixed-top;
+
+  & .row {
+    @extend .align-items-center;
+  }
+
+  & .ui-nav-logo {
+    height: 48px;
+  }
+
+  & .ui-nav-menu {
+
+    @extend .list-unstyled;
+    @extend .list-inline;
+    @extend .m-auto;
+    @extend .gx-0;
+    @extend .d-flex;
+    @extend .justify-content-center;
+
+
+    li {
+      @extend .list-inline-item;
+    }
+
+    &.primary {
+
+      @extend .text-center;
+
+      li {
+
+        @extend .border-bottom;
+        @extend .border-4;
+        @extend .border-light;
+        @extend .mx-0;
+
+        line-height: 48px;
+
+        span {
+          @extend .px-4;
+          @extend .text-uppercase;
+        }
+
+        &:hover, &.active {
+          cursor: pointer;
+          @extend .border-primary;
+          @extend .ui-smooth-transition;
+        }
+
+      }
+
+    }
+
+    &.side {
+      @extend .float-end;
+    }
+
+  }
+
+}
+

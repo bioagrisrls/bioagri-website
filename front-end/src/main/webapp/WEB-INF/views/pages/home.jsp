@@ -31,101 +31,38 @@
 
 <section id="ui-navigation-container" ui-title="${locale.info_title}">
 
-    <!-- Header -->
-    <ui-header id="ui-header"></ui-header>
-
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ui:current="home"></ui-navbar>
 
 
-    <section ui-animated>
-
-        <!-- Slide show -->
-        <ui-parallax id="ui-parallax-1" ui:src="/assets/img/home" ui:items="parallax01.jpg,parallax02.jpg,parallax03.jpg" ui:delay="5">
-
-            <div class="ui-container p-4">
-
-                <div class="ui-parallax-caption-item">
-
-                    <h1 class="animate__animated animate__backInDown">
-                        The Hearth Of The Farm Is The True Center Of Our Universe.
-                    </h1>
-
-                    <p class="animate__animated animate__backInUp">
-                        Mauris vestibulum dolor nec lacinia facilisis. Fusce interdum sagittis volutpat. Praesent eget varius ligula, malesuada eleifend purus. Aenean euismod est at mauris mollis ultricies.
-                        Morbi arcu mi, dictum eu luala, dapibus
-                        interdum mollis.
-                    </p>
-
-                    <button type="button" class="btn btn-primary animate__animated animate__backInUp">Contact us</button>
-
-                </div>
-
-                <div class="ui-parallax-caption-item">
-
-                    <h1 class="animate__animated animate__backInDown">
-                        Animate.css v4 brought some breaking changes.
-                    </h1>
-
-                    <p class="animate__animated animate__backInUp">
-                        Animate.css is a library of ready-to-use, cross-browser animations for use in your web projects.
-                        Great for emphasis, home pages, sliders, and attention-guiding hints.
-                    </p>
-
-                    <button type="button" class="btn btn-primary animate__animated animate__backInUp">Reent T-MAX</button>
-
-                </div>
-
-                <div class="ui-parallax-caption-item">
-
-                    <h1 class="animate__animated animate__backInDown">
-                        Animate.css v4 brought some breaking changes.
-                    </h1>
-
-                    <p class="animate__animated animate__backInUp">
-                        Animate.css is a library of ready-to-use, cross-browser animations for use in your web projects.
-                        Great for emphasis, home pages, sliders, and attention-guiding hints.
-                    </p>
-
-                    <button type="button" class="btn btn-primary animate__animated animate__backInUp">Reent T-MAX</button>
-
-                </div>
-
-            </div>
-
-        </ui-parallax>
-
-
-
-
-        <div class="ui-container">
-
-            <section class="pt-5 pb-5">
-
-                <!-- Banner -->
-                <div class="pt-5 pb-5">
-                    <ui-image id="ui-image-services-banner" ui:src="/assets/img/home/services-banner.jpg" ui:width="100%" ui:rounded></ui-image>
-                </div>
-
-                <!-- Services -->
+    <section class="ui-home" ui-animated>
+        <img class="ui-home-background" src="/assets/img/home/background.png" alt="" />
+        <div class="ui-home-content">
+            <h3>High Quality</h3>
+            <h1>Welcome on Bioagri!</h1>
+            <div class="ui-home-order-now">
                 <div class="row">
-                    <div class="col-md text-center" ui-animated-hover ui-animated-scroll><ui-image id="ui-image-services-01" class="d-block p-3" ui:src="/assets/img/home/1.png"></ui-image><h5>Best Services</h5></div>
-                    <div class="col-md text-center" ui-animated-hover ui-animated-scroll><ui-image id="ui-image-services-02" class="d-block p-3" ui:src="/assets/img/home/2.png"></ui-image><h5>Farm Experiences</h5></div>
-                    <div class="col-md text-center" ui-animated-hover ui-animated-scroll><ui-image id="ui-image-services-03" class="d-block p-3" ui:src="/assets/img/home/3.png"></ui-image><h5>100% Natural</h5></div>
-                    <div class="col-md text-center" ui-animated-hover ui-animated-scroll><ui-image id="ui-image-services-04" class="d-block p-3" ui:src="/assets/img/home/4.png"></ui-image><h5>Farm Equipment</h5></div>
-                    <div class="col-md text-center" ui-animated-hover ui-animated-scroll><ui-image id="ui-image-services-05" class="d-block p-3" ui:src="/assets/img/home/5.png"></ui-image><h5>Organic food</h5></div>
+                    <div class="col-6">
+                        <img src="/assets/img/home/content01.png" alt="" />
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <span>Ordina ora!</span>
+                        </div>
+                        <div class="row">
+                            <div class="ui-home-social-buttons">
+                                <ul>
+                                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
+                                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
+                                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
+                                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-            </section>
-
+            </div>
         </div>
-
-        <ui-product-related id="ui-product-related" ui:kind="" ui:id="1"></ui-product-related>
-
-        <ui-parallax id="ui-parallax-2" ui:src="/assets/img/home/parallax02.jpg" ui:reserve="400px">
-            <h2>Hello World!</h2>
-        </ui-parallax>
-
     </section>
 
     <!-- Footer -->

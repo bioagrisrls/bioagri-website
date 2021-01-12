@@ -24,152 +24,25 @@
   -->
 
 
-<?
-
-    let navs = [
-        { key: 'home',      name: home    },
-        { key: 'catalog',   name: catalog },
-        { key: 'about',     name: about   },
-        { key: 'support',   name: support },
-    ];
-
-?>
-
-
-<nav class="navbar navbar-expand-lg w-100 sticky-top shadow-sm bg-white">
-
-
-    <div class="ui-container container-fluid text-nowrap overflow-visible row gx-0">
-
-
-        <!-- Navigation Logo -->
-        <a ui-navigate class="navbar-brand nav-link col-3" href="/">
-            <img class="m-2" src="{{logo}}" height="64" ui-animated-hover alt=""/>
-        </a>
-
-
-        <!-- Toggle Menu -->
-        <button class="navbar-toggler col-2 pull-right"
-                type="button"
-                onclick="$('#ui-navbar-links').collapse('toggle')"
-                aria-controls="ui-navbar-links"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-
-            <span class="mdi mdi-24px mdi-menu"></span>
-
-        </button>
-
-
-        <div id="ui-navbar-links" class="navbar-collapse collapse w-lg-auto col-6 w-100">
-
-            <!-- Navigation Links -->
-            <ul class="ui-navbar-nav navbar-nav">
-                <? let i = 0; ?>
-                <? for (let nav of navs) { ?>
-                    <li class="nav-item">
-                        <a ui-navigate class="nav-link link-dark text-nowrap {{ (current === nav.key ? 'active' : '') }}" href="/{{nav.key}}">
-                            <span class="text-uppercase text-muted">{{ nav.name }}</span>
-                        </a>
-                    </li>
-                <? } ?>
-
-                <li class="d-lg-none">
-                    <div class="text-center">
-                        <button class="btn btn-link rounded-circle d-inline-block" onclick="requestUserAuthentication()">
-                            <span class="mdi mdi-36px mdi-account-outline"></span>
-                        </button>
-                        <button class="btn btn-link rounded-circle d-inline-block position-relative" onclick="">
-                            <span class="mdi mdi-36px mdi-cart-outline"></span>
-                            <span id="ui-navbar-cart-count-1" class="ui-navbar-cart-badge badge rounded-pill bg-danger position-absolute">
-                            {{ shopping_cart_count() }}
-                        </span>
-                        </button>
-                    </div>
-                </li>
-            </ul>
-
-            <!-- Navigation Users -->
-            <div class="mx-5 w-auto d-lg-block d-none">
-
-                <!-- User Account -->
-                <div id="ui-navbar-user" class="position-relative d-inline-block">
-
-                    <button class="btn btn-link rounded-circle mx-1" onclick="$('#ui-navbar-user-popover').toggleClass('show'); $('#ui-navbar-cart-popover').removeClass('show')">
-                        <span class="mdi mdi-24px mdi-account-outline"></span>
-                    </button>
-
-                    <div id="ui-navbar-user-popover" class="ui-navbar-popover ui-navbar-user-popover bg-white animate__animated">
-                        <ui-login id="ui-navbar-login" ui:bind-1="#ui-navbar-user-greetings:$userInfo.name">
-
-                            <div class="display-5">
-                                <h4 class="d-inline p-0">{{ welcome }}</h4>
-                                <h4 class="d-inline p-0" id="ui-navbar-user-greetings"></h4>
-                            </div>
-
-                            <hr>
-
-                            <a href="#" ui-navigate class="list-group-item list-group-item-action">{{ account }}</a>
-                            <a href="#" ui-navigate class="list-group-item list-group-item-action">{{ order }}</a>
-                            <a href="#" ui-navigate class="list-group-item list-group-item-action">{{ wishlist }}</a>
-                            <a href="#" ui-navigate class="list-group-item list-group-item-action">{{ settings }}</a>
-                            <a href="#" class="list-group-item list-group-item-action" onclick="disconnect()">{{ exit }}</a>
-
-                        </ui-login>
-                    </div>
-
-                </div>
-
-
-                <!-- Shopping Cart -->
-                <div id="ui-navbar-cart" class="position-relative d-inline-block">
-
-                    <button class="btn btn-link rounded-circle mx-1 position-relative" onclick="$('#ui-navbar-cart-popover').toggleClass('show'); $('#ui-navbar-user-popover').removeClass('show')">
-
-                        <span class="mdi mdi-24px mdi-cart-outline"></span>
-
-                        <span id="ui-navbar-cart-count-2" class="ui-navbar-cart-badge badge rounded-pill bg-danger position-absolute">
-                            {{ shopping_cart_count() }}
-                        </span>
-
-                    </button>
-
-                    <div id="ui-navbar-cart-popover" class="ui-navbar-popover ui-navbar-cart-popover bg-white animate__animated">
-
-                        <h4>{{ cart }}</h4>
-
-                        <ui-shopping-cart id="ui-navbar-cart-popover-component"
-                                          ui:bind-1="#{{this.id}}-info-total:total"
-                                          ui:bind-2="#{{this.id}}-info-price:price"
-                                          ui:bind-3="#{{this.id}}-info-shipment:shipment"
-                                          ui:bind-4="#{{this.id}}-info-count:count-1"
-                                          ui:bind-5="#{{this.id}}-info-count:count-2"
-                        ></ui-shopping-cart>
-
-                        <div class="row mb-4">
-                            <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col" onclick="shopping_cart_clear()">{{ clear }}</button>
-                            <button type="button" role="button" class="btn btn-primary gx-2 mx-2 col">{{ cartOrder }}</button>
-                        </div>
-
-                        <div class="w-100 p-4">
-                            <h5 class="text-end">
-                                {{ total }}
-                                <span id="{{this.id}}-info-count"></span>
-                                {{ article }}
-                                <span id="{{this.id}}-info-price"></span>
-                                &euro;
-                            </h5>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+<nav class="ui-nav">
+    <div class="row">
+        <div class="col-3">
+            <img class="ui-nav-logo" src="{{logo}}" alt="" />
         </div>
-
+        <div class="col-6">
+            <ul class="ui-nav-menu primary">
+                <li class="{{ current === 'home'    ? 'active' : ''}}"><span>{{ home }}</span></li>
+                <li class="{{ current === 'catalog' ? 'active' : ''}}"><span>{{ catalog }}</span></li>
+                <li class="{{ current === 'about'   ? 'active' : ''}}"><span>{{ about }}</span></li>
+                <li class="{{ current === 'support' ? 'active' : ''}}"><span>{{ support }}</span></li>
+            </ul>
+        </div>
+        <div class="col-3">
+            <ul class="ui-nav-menu side">
+                <li><span class="mdi mdi-36px mdi-account-outline"></span></li>
+                <li><span class="mdi mdi-36px mdi-cart-outline"></span></li>
+            </ul>
+        </div>
     </div>
-
 </nav>
 

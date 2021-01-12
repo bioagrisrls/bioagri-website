@@ -29,9 +29,6 @@
 
 <section id="ui-navigation-container" ui-title="${param.name} &ndash; ${locale.page_details} &ndash; ${locale.info_title}">
 
-    <!-- Header -->
-    <ui-header id="ui-header"></ui-header>
-
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ></ui-navbar>
 

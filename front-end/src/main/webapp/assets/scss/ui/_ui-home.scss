@@ -1,4 +1,4 @@
-/*!
+/*
  * MIT License
  *
  * Copyright (c) 2020 BioAgri S.r.l.s.
@@ -23,19 +23,64 @@
  *
  */
 
-@import 'ui/ui-theme';
-@import 'ui/ui-bootstrap-override';
-@import 'ui/ui-font';
-@import 'ui/ui-animation';
-@import 'ui/ui-container';
-@import 'ui/ui-header';
-@import 'ui/ui-navbar';
-@import 'ui/ui-home';
-@import 'ui/ui-parallax';
-@import 'ui/ui-footer';
-@import 'ui/ui-navigation';
-@import 'ui/ui-about';
-@import 'ui/ui-support';
-@import 'ui/ui-catalog';
-@import 'ui/ui-products';
-@import 'ui/ui-details';
+
+.ui-home {
+
+  @extend .position-relative;
+
+  & .ui-home-background {
+
+    @extend .position-absolute;
+    @extend .w-50;
+
+    right: 0;
+    top: 0;
+
+  }
+
+  & .ui-home-content {
+
+    height: 2000px;
+
+    @extend .px-9;
+    @extend .py-9;
+    @extend .bg-white;
+
+    h3 {
+      @extend .text-uppercase;
+      @extend .text-primary;
+    }
+
+    h1 {
+      @extend .text-uppercase;
+      @extend .text-dark;
+      @extend .display-2;
+    }
+
+
+    div.ui-home-order-now {
+
+      img {
+        @extend .h-25;
+      }
+
+      span {
+        @extend .display-5;
+      }
+
+    }
+
+    div.ui-home-social-buttons {
+      ul {
+        @extend .list-unstyled;
+        @extend .list-inline;
+        li {
+          @extend .list-inline-item;
+        }
+      }
+    }
+
+  }
+
+}
+
