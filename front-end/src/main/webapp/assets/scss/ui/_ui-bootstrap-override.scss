@@ -104,6 +104,27 @@ $utilities: map-merge(
   )
 );
 
+//
+// Max-Height
+//
+$utilities: map-merge(
+  $utilities, (
+    "max-height-responsive": (
+      property: max-height,
+      class: mh,
+      responsive: true,
+      values: (
+        0: 0,
+        25: 25%,
+        30: 30%,
+        33: 33%,
+        50: 50%,
+        75: 75%,
+      )
+    )
+  )
+);
+
 
 //
 // Width
@@ -113,6 +134,28 @@ $utilities: map-merge(
     "width-responsive": (
       property: width,
       class: w,
+      responsive: true,
+      values: (
+        0: 0,
+        25: 25%,
+        50: 50%,
+        75: 75%,
+        100: 100%,
+        auto: auto,
+      )
+    )
+  )
+);
+
+
+//
+// Height
+//
+$utilities: map-merge(
+  $utilities, (
+    "height-responsive": (
+      property: height,
+      class: h,
       responsive: true,
       values: (
         0: 0,
@@ -278,3 +321,15 @@ textarea {
   height: 1px !important;
 }
 
+
+//
+// Show only...
+//
+.show-only-desktop {
+  @extend .d-none;
+  @extend .d-lg-block;
+}
+
+.show-only-mobile {
+  @extend .d-lg-none;
+}

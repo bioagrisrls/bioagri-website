@@ -24,6 +24,9 @@
  */
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap');
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -37,4 +40,16 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
+.ui-font-title-secondary {
+  font-family: 'Lobster', sans-serif;
+}
+
+.ui-font-title-primary {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+}
+
+.ui-font-description-primary {
+  font-family: 'Caveat', sans-serif;
+}
 

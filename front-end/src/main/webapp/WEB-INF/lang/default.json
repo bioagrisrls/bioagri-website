@@ -5,6 +5,16 @@
   "info_phone" : "0966-543210",
   "info_email" : "info@bioagri.com",
   "info_copy" : "Copyright &copy; 2021 Bioagri S.r.l.s. All rights reserved.",
+  "info_facebook" : "https://www.facebook.com/bioagristore",
+  "info_twitter" : "https://twitter.com/BioAgri1",
+  "info_instagram" : "https://twitter.com/BioAgri1",
+  "info_linkedin" : "https://twitter.com/BioAgri1",
+
+  "home_intro_title" : "Ci prendiamo cura del tuo giardino, scegli noi!",
+  "home_intro_header" : "Con te dal 1968!",
+  "home_intro_description" : "Bioagri nasce dall'idea di un giovane imprenditore, come realtà locale con l'obiettivo di unire passione e dedizione per l'agronomia mettendole al servizio della comunità",
+  "home_section_order_header" : "Ordina ora!",
+  "home_section_order_description" : "Prodotti e servizi per agricoltura, giardinaggio e cura degli animali.",
 
   "page_home" : "Home",
   "page_catalog" : "Catalogo",
