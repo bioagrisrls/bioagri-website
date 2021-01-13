@@ -36,25 +36,30 @@
             super(id, {
 
                 $header: `
-                    <h2>Accedi (FIXME)</h2>
-                    <p>Inserisci i tuoi dati utente per accedere al tuo account (FIXME)</p>
+                    <div class="text-center">
+                        <h3>${locale.auth_welcome}</h3>
+                    </div>
                 `,
 
                 $footer: `
                     <hr>
-                    <h2>Sei un nuovo Cliente? (FIXME)</h2>
-                    <button class="btn btn-primary">Registra ora!</button>
+                    <div class="text-center">
+                        <button class="btn btn-info rounded-circle"><span class="mdi mdi-36px mdi-google"></span></button>
+                        <button class="btn btn-info rounded-circle"><span class="mdi mdi-36px mdi-facebook"></span></button>
+                        <button class="btn btn-info rounded-circle"><span class="mdi mdi-36px mdi-twitter"></span></button>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <h3>${locale.auth_promo}</h3>
+                        <button class="btn btn-primary btn-block">${locale.auth_subscribe}</button>
+                    </div>
                 `,
 
 
                 $submit: {
-                    value: 'Login',
+                    value: '${locale.auth_login}',
                     align: 'center'
-                }, // FIXME
-
-
-                $title: 'Accedi (FIXME)',
-
+                },
 
 
                 auth: {
@@ -68,33 +73,33 @@
 
                 username: {
                     type: 'email',
-                    label: "Indirizzo email", // FIXME
+                    label: '${locale.auth_email}',
                     pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                     required: true,
                     autocomplete: 'email',
                     size: 128, // FIXME
-                    wrong: "Username wrong! (FIXME)"
+                    wrong: '${locale.auth_email_wrong}'
                 },
 
                 password: {
                     type: 'password',
-                    label: "Password", // FIXME
+                    label: '${locale.auth_password}',
                     minlength: 8,
                     pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
                     required: true,
                     autocomplete: 'current-password',
                     size: 128,
-                    wrong: "Password wrong! (FIXME)"
+                    wrong: '${locale.auth_password_wrong}'
                 },
 
                 forgotten: {
                     type: 'link',
-                    value: 'Hai dimenticato la password? (FIXME)'
+                    value: '${locale.auth_forgotten}'
                 },
 
                 store: {
                     type: 'switch',
-                    label: "Resta connesso" // FIXME
+                    label: '${locale.auth_remember}'
                 },
 
 

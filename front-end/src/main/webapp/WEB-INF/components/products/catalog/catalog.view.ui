@@ -170,8 +170,8 @@
                                     onchange="$$.$changeView(this)"
                                     required>
 
-                                <option value="card"
-                                        {{ selectedView ===  'card' ? 'selected' : '' }} >
+                                <option value="block"
+                                        {{ selectedView ===  'block' ? 'selected' : '' }} >
                                 Griglia
                                 </option>
 
@@ -189,14 +189,14 @@
             <!-- Products -->
             <div class="d-flex flex-wrap align-items-start" >
                 <? for (let product of products) { ?>
-                    <div class="p-2 flex-fill bd-highlight {{ selectedView ===  'card' ? 'mw-33 mw-sm-100 mw-md-50' : 'w-100' }}">
+                    <div class="p-2 flex-fill bd-highlight {{ selectedView ===  'block' ? 'mw-33 mw-sm-100 mw-md-50' : 'w-100' }}">
 
-                        <ui-card id="ui-card-{{ product }}-{{selectedView}}"
-                                 ui:id="{{ product }}"
-                                 ui:view="{{ selectedView }}"
-                                 ui:iswish="{{this.isWish(product)}}"
-                        >
+                        <ui-card id="ui-card-{{product}}-{{selectedView}}"
+                                 ui:id="{{product}}"
+                                 ui:view="{{selectedView}}"
+                                 ui:wish="true">
                         </ui-card>
+
                     </div>
 
                 <? } ?>

@@ -23,4 +23,35 @@
   ~
   -->
 
-<div>Loading</div>
+
+<div class="ui-auth fade" id="{{this.id}}-modal">
+    <div class="modal-dialog ui-auth-container">
+        <div class="ui-auth-content">
+
+            <div class="row">
+                <div class="col-lg-6 d-lg-block d-none">
+                    <div class="ui-auth-side"></div>
+                </div>
+                <div class="col-lg-6">
+                    <ui-login class="ui-auth-primary" id="{{this.id}}-user-auth-form"></ui-login>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    (() => {
+
+        const el = document.getElementById('{{this.id}}-modal');
+        const md = new bootstrap.Modal(el, {});
+
+        md.show();
+
+    }) ();
+
+</script>

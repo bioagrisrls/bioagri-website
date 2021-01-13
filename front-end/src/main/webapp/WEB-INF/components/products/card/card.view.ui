@@ -23,108 +23,70 @@
   ~
   -->
 
-<? if(view === 'tiny') { ?>
+<? if(view === 'row') { ?>
 
-    <div class="card shadow-sm my-2 rounded-0">
-        <div class="row align-items-center gx-2 mx-2">
-            <div class="col-md-2">
-                <img src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" class="card-img" />
+    <!-- Card Row -->
+    <div class="ui-card-row">
+        <div class="row">
+
+            <div class="col">
+                <ui-image id="{{this.id}}-row-image--{{product.id}}"
+                          ui:src="{{image}}"
+                          ui:width="100%"
+                          ui:height="100%">
+                </ui-image>
             </div>
-            <div class="col-md-10">
-                <div class="card-body">
 
-                    <a href="#" ui-navigate class="float-start">
-                        <h5 class="card-title mb-1">
-                            {{ products.name }}
-                        </h5>
-                    </a>
-
-                    <p class="card-text float-end mb-1">
-                        <small class="text-muted">Prezzo (FIXME)</small>
-                    </p>
-
-                    <hr class="clear-end my-3">
-                    <h5 class="float-end">{{ products.price }} &euro;</h5>
-                    <p class="card-text text-truncate">{{products.description}}</p>
-
-                    <p class="card-text float-start">
-                        <small class="text-muted">Aggiunto il {{products.createdAt}} (FIXME)</small>
-                    </p>
-
-                    <select class="form-select form-select-sm float-end w-auto" onchange="$$.setState({ quantity: this.value })">
-                        <option value="0">Rimuovi</option>
-                        <? for(let i = 1; i < 99; i++) { ?>
-                            <option value="{{i}}" {{ i == quantity ? 'selected' : '' }}>{{i}}</option>
-                        <? } ?>
-                    </select>
-
+            <div class="col-auto">
+                <div>
+                    <h4 class="d-inline p-0">
+                        <a href="/details"
+                           class="text-dark"
+                           ui-data="{ id: {{product.id}}, name: '{{product.name}}' }"
+                           ui-navigate>
+                            {{ product.name }}
+                        </a>
+                    </h4>
+                    <p class="d-inline p-0">{{ product.price }}</p>
                 </div>
             </div>
+
         </div>
     </div>
 
-<? } else if(view === 'row') {?>
+<? } else if(view === 'block') {?>
 
-    <div class="card ui-container ui-zoom">
-           <div class="row align-items-center gx-2 mx-2">
+    <!-- Card Block -->
+    <div class="ui-card-block">
 
-               <div class="col-md-2">
-                   <img src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" class="card-img" />
-               </div>
+        <div class="row">
 
-               <div class="col-md-10">
-                   <div class="card-body">
+            <div class="row">
+                <? console.log(image);?>
+                <ui-image id="{{this.id}}-block-image-{{product.id}}"
+                          ui:src="{{image}}"
+                          ui:width="100%"
+                          ui:height="100%">
+                </ui-image>
+            </div>
 
-                       <a href="#" ui-navigate class="float-start">
-                           <h5 class="card-title mb-1">
-                               {{ products.name }}
-                           </h5>
-                       </a>
+            <div class="row">
+                <div>
+                    <h4 class="d-inline p-0">
+                        <a href="/details"
+                           class="text-dark"
+                           ui-data="{ id: {{product.id}}, name: '{{product.name}}' }"
+                           ui-navigate>
+                            {{ product.name }}
+                        </a>
+                    </h4>
+                    <p class="d-inline p-0">{{ product.price }}</p>
+                </div>
+            </div>
 
-                       <p class="card-text float-end mb-1">
-                           <small class="text-muted">Prezzo</small>
-                       </p>
-
-                       <hr class="clear-end my-3">
-                       <h5 class="float-end">{{ products.price }} &euro;</h5>
-                       <p class="card-text text-truncate">{{products.description}}</p>
-
-                       <div class = "row text-center">
-
-                           <span onclick = "$$.updateWishList(this);" class="col-4 mdi mdi-24px mdi-heart{{ iswish === 'yes' ? ' ' : '-outline '}} ui-heart-icon-scale-color"> </span>
-                           <span class="col-4 mdi mdi-24px mdi-cart-outline ui-cart-icon-scale-color"> </span>
-                           <span class="col-4 mdi mdi-24px mdi-information-outline ui-information-icon-scale-color"> </span>
-
-                       </div>
-
-                   </div>
-
-               </div>
-           </div>
-       </div>
-
-<? } else if(view === 'card') {?>
-
-<div class="card rounded shadow-sm border-0 bg-light">
-
-    <div class="card-body p-4 ui-zoom">
-
-        <div class = "ui-icon-position position-relative">
-                    <div  onclick = "$$.updateWishList(this);" class="px-2 py-1 bg-white fs-1 w-100 col-4 mdi-36px mdi  mdi-heart{{ iswish === 'yes' ? ' ' : '-outline '}} ui-heart-icon-scale-color"> </div>
-                    <!-- <div class="fs-1 w-100 h-100 col-4 mdi  mdi-cart-outline ui-cart-icon-scale-color"> </div> -->
-                    <!-- <div class="fs-1 w-100 h-100 col-4 mdi  mdi-information-outline ui-information-icon-scale-color"> </div> -->
         </div>
 
-        <img class="img-fluid d-block mx-auto mb-3" src="https://www.paeseverde.com/wp-content/uploads/2017/09/solfato_ferroso.png" />
-        <!-- <img class="img-fluid d-block mx-auto mb-3" src="/assets/img/products/zalando.jpg" /> -->
-        <h5><a href="/details" class="text-dark" ui-navigate ui-data="{ id: {{products.id}}, name: '{{products.name}}' }">{{ products.name }}</a></h5>
-        <p class="small text-muted">{{ products.price }}</p>
-
-
     </div>
-
-
-</div>
 
 <? } ?>
 

@@ -84,6 +84,19 @@
         }
 
 
+        onAccountClicked() {
+
+            authenticated()
+                .then( () => Component.render(Component.dummy('user-menu'), `${components.users_account_menu}`, this.state))
+                .catch(() => Component.render(Component.dummy('user-auth'), `${components.users_account_auth}`, this.state));
+
+        }
+
+        onShoppingClicked() {
+            Component.render(Component.dummy('user-cart'), `${components.users_account_cart}`, this.state);
+        }
+
+
     });
 
 

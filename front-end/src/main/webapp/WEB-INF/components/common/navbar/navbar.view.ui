@@ -39,8 +39,8 @@
         </div>
         <div class="col-3 show-only-desktop">
             <ul class="ui-nav-menu side">
-                <li><span class="mdi mdi-36px mdi-account-outline"></span></li>
-                <li><span class="mdi mdi-36px mdi-cart-outline"></span></li>
+                <li><span onclick="$$.onAccountClicked()" class="mdi mdi-36px mdi-account-outline"></span></li>
+                <li><span onclick="$$.onShoppingClicked()" class="mdi mdi-36px mdi-cart-outline"></span></li>
             </ul>
         </div>
         <div class="col-9 show-only-mobile">
