@@ -46,12 +46,6 @@
 
         onReady(state) {
 
-            $('#gallery-carousel').on('slide.bs.carousel', function(e) {
-                $('.carousel-caption').hide();
-            }).on('slid.bs.carousel', function(e) {
-                $('.active .carousel-caption').slideToggle('slow');
-            });
-
         }
 
         onRender() {

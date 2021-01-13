@@ -43,6 +43,7 @@
   "nav_shopping_cart_clear" : "Svuota carrello",
   "nav_shopping_cart_article" : "articoli):",
 
+  "card_not_avaliable" : "/assets/img/products/not-available.png",
 
   "foo_header_connected" : "Seguici sui nostri social network per rimanere connesso!",
 
@@ -112,7 +113,7 @@
   "checkout_cart_products" : "articolo/i",
   "checkout_remind_header" : "Rivolgiti a noi!",
   "checkout_remind_top": "Se vuoi avere delle informazioni o ti serve aiuto per effettuare un ordine guarda le nostre FAQ, oppure contattaci sui nostri Social Network.",
-  "checkout_remind_bottom": "Ricorda di lasciarci una recensione! ",
+  "checkout_remind_bottom": "Ricorda di lasciarci una recensione!",
   "checkout_order_hint": "Ritira comodamente in sede",
   "checkout_shipment_hint": "Spedizioni in tutta Italia",
   "checkout_payment_hint": "Paga in tutta sicurezza con PayPal",
@@ -120,6 +121,20 @@
   "info_product_iva": "IVA inclusa",
   "info_product_description": "Descrizione",
   "info_product_cart": "Aggiungi al carrello",
-  "info_product_feedbacks": "Recensioni"
+  "info_product_feedbacks": "Recensioni",
+
+  "auth_welcome": "Bentornato!",
+  "auth_promo": "Sei un nuovo cliente?",
+  "auth_subscribe": "Registrati ora!",
+  "auth_email": "Inserisci la tua e-mail",
+  "auth_email_wrong": "Inserisci una e-mail valida",
+  "auth_password": "Inserisci la tua password",
+  "auth_password_wrong": "Password errata",
+  "auth_remember": "Ricordami",
+  "auth_forgotten": "Hai dimenticato la password?",
+  "auth_login": "Accedi",
+  "auth_login_with_google": "Accedi con Google",
+  "auth_login_with_facebook": "Accedi con Facebook",
+  "auth_login_with_twitter": "Accedi con Twitter"
 
 }

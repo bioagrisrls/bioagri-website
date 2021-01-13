@@ -322,6 +322,31 @@ class Component {
     }
 
 
+    /**
+     * Create a dummy component for a dummy context in a dummy world.
+     * @param id {string}
+     * @returns {Component}
+     */
+    static dummy(id = Math.random().toString(36).substring(7)) {
+
+        const ref = 'dummy-' + id;
+
+        if(window.components[ref])
+            return window.components[ref];
+
+
+        $(document.body)
+            .append('<ui-dummy id="' + ref + '"></ui-dummy>');
+
+
+        console.assert(document.getElementById(ref) !== undefined, 'ref cannot be null', ref);
+        console.debug("Loading dummy component: ", ref);
+
+        return (window.components[ref] = new StatelessComponent(document.getElementById(ref), {}));
+
+    }
+
+
 }
 
 
@@ -385,7 +410,7 @@ class StatefulComponent extends Component {
         if((state || {}).then) {
             state.then(
                 (response) => this.setState(response),
-                (reason) => Component.render(this, this.onError(), {})
+                (reason) => Component.render(this, this.onError(), this.state)
             )
         } else {
             this.setState(state || {});
@@ -423,7 +448,7 @@ class StatefulComponent extends Component {
      * @returns {object}
      */
     get state() {
-        return this.$currentState;
+        return this.$currentState || {};
     }
 
     /**

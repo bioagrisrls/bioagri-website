@@ -33,47 +33,41 @@
 
         constructor() {
             super(id,
-                api("/products/" + (props.id || 0))
-                    .then(products => {
-                        return {
 
-                            view: props.view || 'card',
-                            quantity: props.quantity || 0,
-                            products: products,
-                            iswish : props.iswish || 'no'
+                Promise.all([
+                    api("/products/" + (props.id || '')),
+                    api('/products/' + (props.id || '') + '/images')
+                ]).then(response => {
 
-                        }
-                    })
-                )
+                    return {
+                        product: response[0] || {},
+                        image: response[1][0] || '',
+                        view: props.view || 'block',
+                        wish: props.wish || true,
+                    };
 
-            }
+                })
 
+            )
+
+        }
+
+
+        onError() {
+
+            this.setState({
+                product: '',
+                image: '${locale.card_not_avaliable}',
+                view: props.view || 'block',
+                wish : props.wish || true,
+            }, false);
+
+            return this.onRender();
+
+        }
 
         onRender() {
             return `${components.products_card}`
-        }
-
-        onLoading() {
-            return `${components.products_card_loading}`
-        }
-
-        onError() {
-            return `${components.products_card_error}`
-        }
-
-    updateWishList(element){
-
-            authenticated().then(resolve => {
-
-                if(this.state.iswish === 'yes')
-                    api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + props.id,'DELETE', {}, false);
-                else
-                    api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + props.id,'POST', {}, false);
-
-                element.classList.toggle('mdi-heart-outline');
-                element.classList.toggle('mdi-heart');
-
-            },function (){alert("effettua il login per aggiungere alla wishlist")});
         }
 
 

@@ -273,6 +273,11 @@ $utilities: map-merge(
 }
 
 
+.btn-block {
+  @extend .d-block;
+  @extend .w-100;
+}
+
 
 input[type=text],
 input[type=search],

@@ -1,4 +1,4 @@
-/*!
+/*
  * MIT License
  *
  * Copyright (c) 2020 BioAgri S.r.l.s.
@@ -23,20 +23,54 @@
  *
  */
 
-@import 'ui/ui-theme';
-@import 'ui/ui-bootstrap-override';
-@import 'ui/ui-font';
-@import 'ui/ui-animation';
-@import 'ui/ui-container';
-@import 'ui/ui-header';
-@import 'ui/ui-navbar';
-@import 'ui/ui-home';
-@import 'ui/ui-parallax';
-@import 'ui/ui-footer';
-@import 'ui/ui-navigation';
-@import 'ui/ui-about';
-@import 'ui/ui-support';
-@import 'ui/ui-catalog';
-@import 'ui/ui-products';
-@import 'ui/ui-details';
-@import 'ui/ui-auth';
+
+.ui-auth {
+
+  @extend .modal;
+  @extend .border-0;
+
+  .ui-auth-container {
+
+    @extend .modal-dialog-centered;
+    @extend .modal-xl;
+    @extend .modal-fullscreen-md-down;
+
+    .ui-auth-content {
+      @extend .modal-content;
+
+
+      .ui-auth-primary {
+
+        @extend .d-block;
+        @extend .w-100;
+        @extend .h-100;
+        @extend .px-5;
+        @extend .py-6;
+
+        h3 {
+          @extend .ui-font-title-primary;
+          @extend .fs-1;
+          @extend .py-3;
+        }
+
+        button {
+          @extend .py-3;
+          @extend .my-3;
+        }
+
+      }
+
+      .ui-auth-side {
+
+        @extend .w-100;
+        @extend .h-100;
+
+        background: url('/assets/img/home/parallax03.jpg') center center no-repeat;
+        background-size: cover;
+
+      }
+    }
+
+  }
+
+}
