@@ -24,12 +24,12 @@
   -->
 
 
-<nav class="ui-nav">
+<nav class="ui-nav" id="{{this.id}}-container">
     <div class="row">
         <div class="col-3">
             <img class="ui-nav-logo" src="{{logo}}" alt="" />
         </div>
-        <div class="col-6">
+        <div class="col-6 show-only-desktop">
             <ul class="ui-nav-menu primary">
                 <li class="{{ current === 'home'    ? 'active' : ''}}"><span>{{ home }}</span></li>
                 <li class="{{ current === 'catalog' ? 'active' : ''}}"><span>{{ catalog }}</span></li>
@@ -37,10 +37,15 @@
                 <li class="{{ current === 'support' ? 'active' : ''}}"><span>{{ support }}</span></li>
             </ul>
         </div>
-        <div class="col-3">
+        <div class="col-3 show-only-desktop">
             <ul class="ui-nav-menu side">
                 <li><span class="mdi mdi-36px mdi-account-outline"></span></li>
                 <li><span class="mdi mdi-36px mdi-cart-outline"></span></li>
+            </ul>
+        </div>
+        <div class="col-9 show-only-mobile">
+            <ul class="ui-nav-menu side">
+                <li><span class="mdi mdi-36px mdi-menu"></span></li>
             </ul>
         </div>
     </div>

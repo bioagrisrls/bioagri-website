@@ -36,28 +36,28 @@
 
 
     <section class="ui-home" ui-animated>
-        <img class="ui-home-background" src="/assets/img/home/background.png" alt="" />
-        <div class="ui-home-content">
-            <h3>High Quality</h3>
-            <h1>Welcome on Bioagri!</h1>
-            <div class="ui-home-order-now">
+        <img class="ui-home-background" src="/assets/img/home/background.png" alt="" ui-animated="slideInRight"/>
+        <div class="ui-home-content" ui-animated="slideInLeft">
+            <h3>${locale.home_intro_header}</h3>
+            <h1>${locale.home_intro_title}</h1>
+            <p>${locale.home_intro_description}</p>
+            <div class="ui-home-order-now" ui-animated="slideInUp">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-sm-auto">
                         <img src="/assets/img/home/content01.png" alt="" />
                     </div>
-                    <div class="col-6">
-                        <div class="row">
-                            <span>Ordina ora!</span>
+                    <div class="col-sm">
+                        <div class="ui-home-order-content" ui-animated-hover>
+                            <a class="stretched-link" href="#"><h3>${locale.home_section_order_header}</h3></a>
+                            <p>${locale.home_section_order_description}</p>
                         </div>
-                        <div class="row">
-                            <div class="ui-home-social-buttons">
-                                <ul>
-                                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
-                                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
-                                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
-                                    <li><span class="mdi mdi-36px mdi-facebook"></span></li>
-                                </ul>
-                            </div>
+                        <div class="ui-home-social-buttons">
+                            <ul>
+                                <li><a target="_blank" href="${locale.info_facebook}"><span class="mdi mdi-48px mdi-facebook"></span></a></li>
+                                <li><a target="_blank" href="${locale.info_twitter}"><span class="mdi mdi-48px mdi-twitter"></span></a></li>
+                                <li><a target="_blank" href="${locale.info_instagram}"><span class="mdi mdi-48px mdi-instagram"></span></a></li>
+                                <li><a target="_blank" href="${locale.info_linkedin}"><span class="mdi mdi-48px mdi-linkedin"></span></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>

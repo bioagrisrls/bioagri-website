@@ -1,4 +1,4 @@
-/*
+/*!
  * MIT License
  *
  * Copyright (c) 2020 BioAgri S.r.l.s.
@@ -30,6 +30,7 @@
 
   & .ui-home-background {
 
+    @extend .show-only-desktop;
     @extend .position-absolute;
     @extend .w-50;
 
@@ -42,30 +43,54 @@
 
     height: 2000px;
 
-    @extend .px-9;
     @extend .py-9;
+    @extend .px-4;
+    @extend .ps-lg-9;
+    @extend .pe-lg-6;
+
+    @extend .w-100;
+    @extend .w-lg-50;
+
     @extend .bg-white;
 
     h3 {
-      @extend .text-uppercase;
+      @extend .ui-font-title-secondary;
       @extend .text-primary;
     }
 
     h1 {
+      @extend .ui-font-title-primary;
       @extend .text-uppercase;
       @extend .text-dark;
-      @extend .display-2;
+      font-size: 6rem;
+    }
+
+    p {
+      @extend .ui-font-description-primary;
+      @extend .fs-3;
     }
 
 
     div.ui-home-order-now {
 
-      img {
-        @extend .h-25;
+      .ui-home-order-content {
+        cursor: pointer;
+        @extend .position-relative;
+        @extend .mt-5;
       }
 
-      span {
-        @extend .display-5;
+      img {
+        @extend .h-auto;
+        max-height: 360px;
+      }
+
+      h3 {
+        @extend .ui-font-title-secondary;
+        @extend .display-4;
+      }
+
+      .row {
+        @extend .gx-0;
       }
 
     }
@@ -74,8 +99,10 @@
       ul {
         @extend .list-unstyled;
         @extend .list-inline;
+        @extend .float-start;
         li {
           @extend .list-inline-item;
+          @extend .text-dark;
         }
       }
     }

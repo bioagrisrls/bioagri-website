@@ -59,35 +59,30 @@
         }
 
 
-        onInit() {
-            super.onInit();
+        onRender() {
+            return `${components.common_navbar}`
+        }
 
-            $(document).on('shopping-cart-has-changed', this, (e) => {
+        onReady(state) {
+            super.onReady(state);
 
-                if(!e.data.elem)
+
+            window.addEventListener('scroll', () => {
+
+                if(!this.running)
                     return;
 
-                $(e.data.elem).find('#ui-navbar-cart-count').each((i, e) => {
+                if(window.scrollY > 0)
+                    this.elem.querySelector('#' + this.id + '-container').classList.add('scrolled');
+                else
+                    this.elem.querySelector('#' + this.id + '-container').classList.remove('scrolled');
 
-                    if(shopping_cart_empty())
-                        $(e).addClass('d-none');
-
-                    $(e).text(shopping_cart_count());
-
-                })
 
             });
 
 
         }
 
-        onRender() {
-            return `${components.common_navbar}`
-        }
-
-        onUpdated(state) {
-            super.onUpdated(state);
-        }
 
     });
 

@@ -103,12 +103,19 @@
 
 .ui-nav {
 
-  background: transparent;
-
   @extend .text-dark;
   @extend .px-5;
   @extend .py-4;
   @extend .fixed-top;
+  @extend .ui-smooth-transition;
+
+  background: transparent;
+
+  &.scrolled {
+    @extend .py-0;
+    @extend .bg-white;
+    @extend .shadow-sm;
+  }
 
   & .row {
     @extend .align-items-center;
@@ -117,6 +124,7 @@
   & .ui-nav-logo {
     height: 48px;
   }
+
 
   & .ui-nav-menu {
 
@@ -138,6 +146,7 @@
 
       li {
 
+        @extend .user-select-none;
         @extend .border-bottom;
         @extend .border-4;
         @extend .border-light;
@@ -162,9 +171,21 @@
 
     &.side {
       @extend .float-end;
+
+      li {
+        cursor: pointer;
+
+        &:hover {
+          @extend .text-primary;
+          @extend .ui-smooth-transition;
+        }
+      }
+
     }
 
   }
 
 }
+
+
 
