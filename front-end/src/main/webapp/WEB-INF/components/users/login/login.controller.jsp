@@ -44,9 +44,9 @@
                 $footer: `
                     <hr>
                     <div class="text-center">
-                        <button class="btn btn-info rounded-circle"><span class="mdi mdi-36px mdi-google"></span></button>
-                        <button class="btn btn-info rounded-circle"><span class="mdi mdi-36px mdi-facebook"></span></button>
-                        <button class="btn btn-info rounded-circle"><span class="mdi mdi-36px mdi-twitter"></span></button>
+                        <button class="btn-auth-google"><span class="mdi mdi-google"></span></button>
+                        <button class="btn-auth-facebook"><span class="mdi mdi-facebook"></span></button>
+                        <button class="btn-auth-twitter"><span class="mdi mdi-twitter"></span></button>
                     </div>
                     <hr>
                     <div class="text-center">
