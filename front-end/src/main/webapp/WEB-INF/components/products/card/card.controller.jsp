@@ -34,35 +34,22 @@
         constructor() {
             super(id,
 
-                Promise.all([
+                Promise.allSettled([
                     api("/products/" + (props.id || '')),
                     api('/products/' + (props.id || '') + '/images')
                 ]).then(response => {
 
                     return {
-                        product: response[0] || {},
-                        image: response[1][0] || '',
+                        product: response[0].status === 'fulfilled' ? response[0].value : {},
+                        image: response[1].status === 'fulfilled' ? response[1].value[0] : '${locale.card_not_avaliable}',
                         view: props.view || 'block',
                         wish: props.wish || true,
+                        cart: props.cart || true,
                     };
 
                 })
 
             )
-
-        }
-
-
-        onError() {
-
-            this.setState({
-                product: '',
-                image: '${locale.card_not_avaliable}',
-                view: props.view || 'block',
-                wish : props.wish || true,
-            }, false);
-
-            return this.onRender();
 
         }
 

@@ -55,7 +55,7 @@
             output.push('size=' + v.size);
 
         if(v.autocomplete)
-            output.push('autocomplete=' + v.autocomplete);
+            output.push('autocomplete="' + v.autocomplete + '"');
 
         return output.join(' ');
 
@@ -133,7 +133,7 @@
 
                         ?>
 
-                             <div class="form-floating my-3">
+                             <div class="form-floating my-3 {{v.style || ''}}">
                                  <input type="{{v.type || 'text'}}" class="form-control {{wrong(k)}}" id="{{this.id}}-{{k}}" {{getprops(v)}} oninput="$$.$check(this)">
                                  <label for="{{this.id}}-{{k}}">{{v.label || ''}}</label>
                                  <? if(wrong(k)) { ?>
@@ -153,7 +153,7 @@
                         case 'radio':
 
                         ?>
-                            <div class="form-check {{v.type === 'switch' ? 'form-switch' : ''}} my-3">
+                            <div class="form-check {{v.type === 'switch' ? 'form-switch' : ''}} m-3 {{v.style || ''}}">
                                 <input type="{{v.type === 'radio' ? 'radio' : 'checkbox'}}" class="form-check-input {{wrong(k)}}" value="" id="{{this.id}}-{{k}}" {{getprops(v)}} oninput="$$.$check(this)">
                                 <label class="form-check-label" for="{{this.id}}-{{k}}">{{v.label || ''}}</label>
                                 <? if(wrong(k)) { ?>
@@ -172,7 +172,7 @@
 
                         ?>
 
-                            <div class="form-floating my-3">
+                            <div class="form-floating my-3 {{v.style || ''}}">
                                 <label for="{{this.id}}-{{k}}">{{v.label || ''}}</label>
                                 <textarea class="form-control {{wrong(k)}}" id="{{this.id}}-{{k}}" {{getprops(v)}} oninput="$$.$check(this)"></textarea>
                                 <? if(wrong(k)) { ?>
@@ -203,7 +203,9 @@
                         case 'link':
 
                         ?>
-                            <a ui-navigate href="{{v.href || '#'}}">{{v.value || v.href || ''}}</a>
+                            <div class="m-3 {{v.style || ''}}">
+                                <a ui-navigate href="{{v.href || '#'}}">{{v.value || v.href || ''}}</a>
+                            </div>
                         <?
 
                             break;
@@ -217,8 +219,8 @@
             ?>
 
 
-            <div class="d-flex justify-content-{{ $submit.align || 'left' }} ">
-                <button id="{{this.id}}-form-submit" type="submit" class="btn btn-primary mb-3" onclick="$$.$submit(this, event)" disabled>{{ $submit.value || 'OK' }}</button>
+            <div class="d-flex justify-content-{{ $submit.align || 'left' }} {{$submit.style || ''}} ">
+                <button id="{{this.id}}-form-submit" type="submit" class="btn btn-primary btn-block mb-3" onclick="$$.$submit(this, event)" disabled>{{ $submit.value || 'OK' }}</button>
             </div>
 
         </form>

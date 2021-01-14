@@ -44,7 +44,7 @@
                 $footer: `
                     <hr>
                     <div class="text-center">
-                        <button class="btn-auth-google"><span class="mdi mdi-google"></span></button>
+                        <button onclick="googleAuthenticate(` + id.id + `)" class="btn-auth-google"><span class="mdi mdi-google"></span></button>
                         <button class="btn-auth-facebook"><span class="mdi mdi-facebook"></span></button>
                         <button class="btn-auth-twitter"><span class="mdi mdi-twitter"></span></button>
                     </div>
@@ -58,7 +58,8 @@
 
                 $submit: {
                     value: '${locale.auth_login}',
-                    align: 'center'
+                    align: 'center',
+                    style: 'btn-block clear-both'
                 },
 
 
@@ -92,15 +93,18 @@
                     wrong: '${locale.auth_password_wrong}'
                 },
 
-                forgotten: {
-                    type: 'link',
-                    value: '${locale.auth_forgotten}'
-                },
-
                 store: {
                     type: 'switch',
-                    label: '${locale.auth_remember}'
+                    label: '${locale.auth_remember}',
+                    style: 'float-end',
                 },
+
+                forgotten: {
+                    type: 'link',
+                    value: '${locale.auth_forgotten}',
+                    style: 'float-start'
+                },
+
 
 
             });

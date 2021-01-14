@@ -52,6 +52,10 @@
 
         md.show();
 
+        $(document).on('auth-connection-occurred', () => {
+            md.hide();
+        });
+
     }) ();
 
 </script>

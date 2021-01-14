@@ -62,7 +62,6 @@
         <div class="row">
 
             <div class="row">
-                <? console.log(image);?>
                 <ui-image id="{{this.id}}-block-image-{{product.id}}"
                           ui:src="{{image}}"
                           ui:width="100%"
