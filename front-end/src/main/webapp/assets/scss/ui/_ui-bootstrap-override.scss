@@ -37,7 +37,14 @@ $enable-shadows: true;
 //
 $primary:       $ui-theme-primary;
 $secondary:     $ui-theme-secondary;
-$info:          gray;
+$light:         $ui-theme-light;
+$dark:          $ui-theme-dark;
+$white:         $ui-theme-white;
+$info:          $ui-theme-info;
+$success:       $ui-theme-success;
+$danger:        $ui-theme-danger;
+$warning:       $ui-theme-warning;
+$border-color:  rgba(0, 0, 0, 0.1);
 
 
 //
@@ -279,17 +286,19 @@ $utilities: map-merge(
 }
 
 .btn-circle {
-  width: 4rem;
-  height: 4rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
 
-  &.btn-circle-lg span {
-    font-size: 2rem;
-    line-height: 2rem;
+  &.btn-circle-lg {
+    width: 4rem;
+    height: 4rem;
+    span {
+      font-size: 2rem;
+      line-height: 2rem;
+    }
   }
-
 }
-
 
 input[type=text],
 input[type=search],
@@ -299,6 +308,7 @@ input[type=password],
 input[type=tel] {
 
   @extend .bg-white;
+  @extend .text-dark;
   @extend .border;
   @extend .shadow-sm;
   @extend .rounded-pill;
@@ -311,10 +321,15 @@ input[type=tel] {
 
 }
 
+label {
+  @extend .text-dark;
+}
+
 
 textarea {
 
   @extend .bg-white;
+  @extend .text-dark;
   @extend .border;
   @extend .shadow-sm;
   @extend .rounded-3;

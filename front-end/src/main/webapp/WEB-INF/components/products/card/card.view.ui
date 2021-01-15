@@ -26,10 +26,10 @@
 <? if(view === 'row') { ?>
 
     <!-- Card Row -->
-    <div class="ui-card-row">
-        <div class="row">
+    <div class="ui-card">
+        <div class="ui-card-row row">
 
-            <div class="col">
+            <div class="col col-4">
                 <ui-image id="{{this.id}}-row-image--{{product.id}}"
                           ui:src="{{image}}"
                           ui:width="100%"
@@ -37,18 +37,17 @@
                 </ui-image>
             </div>
 
-            <div class="col-auto">
-                <div>
-                    <h4 class="d-inline p-0">
-                        <a href="/details"
-                           class="text-dark"
-                           ui-data="{ id: {{product.id}}, name: '{{product.name}}' }"
-                           ui-navigate>
-                            {{ product.name }}
-                        </a>
-                    </h4>
-                    <p class="d-inline p-0">{{ product.price }}</p>
+            <div class="col col-8">
+
+                <div class="row">
+                    <a href="/details"
+                       ui-data="{ id: {{product.id}}, name: '{{product.name}}' }"
+                       ui-navigate>
+                        <h4>{{ product.name }}</h4>
+                    </a>
+                    <p>{{ product.price }} 	&euro;</p>
                 </div>
+
             </div>
 
         </div>
@@ -57,10 +56,12 @@
 <? } else if(view === 'block') {?>
 
     <!-- Card Block -->
-    <div class="ui-card-block">
+    <div class="ui-card">
 
-        <div class="row">
+        <? if(wish || cart)?>
+            <div class="ui-card-block-icon">
 
+<<<<<<< HEAD
             <div class="row">
                 <ui-image id="{{this.id}}-block-image-{{product.id}}"
                           ui:src="{{image}}"
@@ -68,21 +69,41 @@
                           ui:height="100%">
                 </ui-image>
             </div>
+=======
+                <? if(wish) {?>
+                    <div>
+                        <span class="ui-card-block-icon-heart mdi mdi-heart-outline mdi-24px"
+                              onclick = "$$.onWishClicked(this)">
+                        </span>
+                    </div>
+                <? } ?>
 
-            <div class="row">
-                <div>
-                    <h4 class="d-inline p-0">
-                        <a href="/details"
-                           class="text-dark"
-                           ui-data="{ id: {{product.id}}, name: '{{product.name}}' }"
-                           ui-navigate>
-                            {{ product.name }}
-                        </a>
-                    </h4>
-                    <p class="d-inline p-0">{{ product.price }}</p>
-                </div>
+                <? if(cart) {?>
+                    <div>
+                        <span class="ui-card-block-icon-cart mdi mdi-cart-outline mdi-24px"></span>
+                    </div>
+                <? } ?>
+>>>>>>> dev
+
             </div>
+        <? } ?>
 
+        <div class="row">
+            <ui-image id="{{this.id}}-block-image-{{product.id}}"
+                      class="ui-card-block-image"
+                      ui:src="{{image}}"
+                      ui:width="100%"
+                      ui:height="100%">
+            </ui-image>
+        </div>
+
+        <div class="row">
+            <a href="/details"
+               ui-data="{ id: {{product.id}}, name: '{{product.name}}' }"
+               ui-navigate>
+                <h4>{{ product.name }}</h4>
+            </a>
+            <p>{{ product.price }} 	&euro;</p>
         </div>
 
     </div>

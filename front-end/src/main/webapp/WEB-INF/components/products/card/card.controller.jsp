@@ -57,6 +57,23 @@
             return `${components.products_card}`
         }
 
+        onWishClicked(icon) {
+
+            authenticated().then(() => {
+
+                    if (this.state.wish === true)
+                        api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + this.state.product.id, 'DELETE', {}, false);
+                    else
+                        api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + this.state.product.id, 'POST', {}, false);
+
+                    icon.classList.toggle('mdi-heart-outline');
+                    icon.classList.toggle('mdi-heart');
+
+                },function (){alert("")}
+            );
+
+        }
+
 
     })
 

@@ -23,7 +23,6 @@
   ~
   -->
 
-
 <div class="ui-side-menu fade" id="{{this.id}}-modal">
     <div class="modal-dialog ui-side-menu-container">
 
@@ -36,11 +35,10 @@
             <div class="row vh-100 align-items-center justify-content-center">
                 <div class="col-auto">
                     <ul>
-                        <li><a ui-navigate data-bs-dismiss="modal" href="#"><span>Il mio account</span></a></li>
-                        <li><a ui-navigate data-bs-dismiss="modal" href="#"><span>I miei ordini</span></a></li>
-                        <li><a ui-navigate data-bs-dismiss="modal" href="#"><span>La mia lista desideri</span></a></li>
-                        <li><a ui-navigate data-bs-dismiss="modal" href="#"><span>Impostazioni</span></a></li>
-                        <li><a ui-navigate data-bs-dismiss="modal" onclick="disconnect(true)"><span>Esci</span></a></li>
+                        <li class="{{ current === 'home'    ? 'active' : ''}}" data-bs-dismiss="modal" onclick="navigate('/home')"><span>{{ home }}</span></li>
+                        <li class="{{ current === 'catalog' ? 'active' : ''}}" data-bs-dismiss="modal" onclick="navigate('/catalog')"><span>{{ catalog }}</span></li>
+                        <li class="{{ current === 'about'   ? 'active' : ''}}" data-bs-dismiss="modal" onclick="navigate('/about')"><span>{{ about }}</span></li>
+                        <li class="{{ current === 'support' ? 'active' : ''}}" data-bs-dismiss="modal" onclick="navigate('/support')"><span>{{ support }}</span></li>
                     </ul>
                 </div>
             </div>

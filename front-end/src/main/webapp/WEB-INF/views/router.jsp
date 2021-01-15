@@ -57,8 +57,10 @@
         <link rel="stylesheet" href="/assets/css/third-party/animate/animate.min.css">
     
         <!-- Styles -->
-        <link rel="stylesheet" href="/assets/css/ui-bootstrap.min.css">
-    
+        <link rel="preload" href="/assets/css/ui-bootstrap.min.css" as="style">
+        <link rel="preload" href="/assets/css/ui-bootstrap-dark.min.css" as="style">
+        <link id="ui-theme-stylesheet" rel="stylesheet" href="/assets/css/ui-bootstrap.min.css">
+
     
         <!-- Third-party Dependencies -->
         <script src="/assets/js/third-party/jquery.min.js"></script>

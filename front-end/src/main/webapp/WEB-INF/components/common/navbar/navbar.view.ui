@@ -31,21 +31,34 @@
         </div>
         <div class="col-6 show-only-desktop">
             <ul class="ui-nav-menu primary">
-                <li class="{{ current === 'home'    ? 'active' : ''}}"><span>{{ home }}</span></li>
-                <li class="{{ current === 'catalog' ? 'active' : ''}}"><span>{{ catalog }}</span></li>
-                <li class="{{ current === 'about'   ? 'active' : ''}}"><span>{{ about }}</span></li>
-                <li class="{{ current === 'support' ? 'active' : ''}}"><span>{{ support }}</span></li>
+                <li class="{{ current === 'home'    ? 'active' : ''}}" onclick="navigate('/home')"><span>{{ home }}</span></li>
+                <li class="{{ current === 'catalog' ? 'active' : ''}}" onclick="navigate('/catalog')"><span>{{ catalog }}</span></li>
+                <li class="{{ current === 'about'   ? 'active' : ''}}" onclick="navigate('/about')"><span>{{ about }}</span></li>
+                <li class="{{ current === 'support' ? 'active' : ''}}" onclick="navigate('/support')"><span>{{ support }}</span></li>
             </ul>
         </div>
         <div class="col-3 show-only-desktop">
             <ul class="ui-nav-menu side">
-                <li><span onclick="$$.onAccountClicked()" class="mdi mdi-36px mdi-account-outline"></span></li>
-                <li><span onclick="$$.onShoppingClicked()" class="mdi mdi-36px mdi-cart-outline"></span></li>
+
+                <li>
+                    <div class="ui-dark-mode" id="{{this.id}}-dark-mode">
+                        <input type="checkbox" class="ui-dark-mode-switch" id="{{this.id}}-dark-mode-switch" onchange="$$.onDarkModeSwitched(this.checked)" />
+                        <label class="ui-dark-mode-label" for="{{this.id}}-dark-mode-switch">
+                            <i class="mdi mdi-moon-waxing-crescent"></i>
+                            <i class="mdi mdi-weather-sunny"></i>
+                            <span class="ui-dark-mode-switch-selector"></span>
+                        </label>
+                    </div>
+                </li>
+
+                <li><span onclick="$$.onAccountClicked()" class="mdi mdi-24px mdi-account-outline"></span></li>
+                <li><span onclick="$$.onShoppingClicked()" class="mdi mdi-24px mdi-cart-outline"></span></li>
+
             </ul>
         </div>
         <div class="col-9 show-only-mobile">
             <ul class="ui-nav-menu side">
-                <li><span class="mdi mdi-36px mdi-menu"></span></li>
+                <li><span onclick="$$.onSideClicked()" class="mdi mdi-36px mdi-menu"></span></li>
             </ul>
         </div>
     </div>

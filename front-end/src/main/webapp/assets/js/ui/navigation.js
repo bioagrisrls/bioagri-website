@@ -58,20 +58,39 @@ const navigate = (url, data = undefined, container = '#ui-navigation-container',
 
                 if (container === document.documentElement) {
 
-                    $(container).html($(response).html());
+                    try {
+
+                        $(container).html($(response).html());
+
+                    } catch (reason) {
+                        console.error("Caught an error when navigating on navigation ", url, response, reason);
+                    }
 
                 } else {
 
                     $.each($(response), (i, e) => {
 
-                        if($(e).is('script'))
-                            eval($(e).html());
+                        try {
+
+                            if ($(e).is('script'))
+                                eval($(e).html());
+
+                        } catch (reason) {
+                            console.error("Caught an error when running script on ", url, e, reason);
+                        }
+
 
                         if ($(container).id !== $(e).id)
                             return;
 
-                        $(container).html($(e).html());
-                        $(container).attr('ui-title', $(e).attr('ui-title'));
+                        try {
+
+                            $(container).html($(e).html());
+                            $(container).attr('ui-title', $(e).attr('ui-title'));
+
+                        } catch (reason) {
+                            console.error("Caught an error when navigating on navigation ", url, e, reason);
+                        }
 
                     });
 
@@ -149,7 +168,7 @@ $(document).ready(() => {
     });
 
     $('body').append(`
-        <div class="ui-navigation-progress progress fixed-top">
+        <div class="ui-navigation-progress progress bg-white fixed-top">
             <div id="ui-navigation-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     `);

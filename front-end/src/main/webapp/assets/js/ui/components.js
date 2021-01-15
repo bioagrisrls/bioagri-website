@@ -218,12 +218,17 @@ class Component {
      * Render a component into his own HTML Element.
      * @param instance {Component}
      * @param template {string}
+     * @param rendered {boolean}
      * @param state {object}
      */
-    static render(instance, template, state = {}) {
+    static render(instance, template, state = {}, rendered = false) {
 
 
-        $(instance.elem).html((instance.renderedHTML = $renderTemplate(instance, template, state)));
+        if(rendered)
+            $(instance.elem).html(instance.renderedHTML = template);
+        else
+            $(instance.elem).html((instance.renderedHTML = $renderTemplate(instance, template, state)));
+
 
         for(const bind of instance.binds) {
 
@@ -243,7 +248,7 @@ class Component {
             for(let el of elem.children) {
 
                 if(window.components[el.id])
-                    Component.render(window.components[el.id], window.components[el.id].renderedHTML, window.components[el.id].state);
+                    Component.render(window.components[el.id], window.components[el.id].renderedHTML, window.components[el.id].state, true);
 
                 else if(window.registered[el.localName])
                     Component.run(el);

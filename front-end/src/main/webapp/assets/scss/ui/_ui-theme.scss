@@ -43,10 +43,14 @@ $ui-theme-background-variant: darken($ui-theme-background, 5%);
 $ui-theme-divider-color: #BDBDBD;
 
 
-//$white: #212529;
-//$black: #FFFFFF;
-//$dark: #FFFFFF;
-//$light: #212529;
+$ui-theme-light: #F8F9FA !default;
+$ui-theme-dark: #343A40 !default;
+$ui-theme-white: #FFFFFF !default;
+$ui-theme-info: gray !default;
+$ui-theme-success: #28A745 !default;
+$ui-theme-danger: #DC3545 !default;
+$ui-theme-warning: #FFC107 !default;
+
 
 // Layout
 $ui-theme-layout-container-width: 1200px;

@@ -24,90 +24,71 @@
  */
 
 
-.ui-auth {
+.ui-side-menu {
 
   @extend .modal;
   @extend .border-0;
 
-  .ui-auth-container {
+  .ui-side-menu-container {
 
     @extend .modal-dialog-centered;
-    @extend .modal-xl;
-    @extend .modal-fullscreen-md-down;
+    @extend .modal-fullscreen;
 
-    .ui-auth-content {
+    .ui-side-menu-content {
+
       @extend .modal-content;
 
+      ul {
 
-      .ui-auth-primary {
+        @extend .list-unstyled;
 
-        @extend .d-block;
-        @extend .w-100;
-        @extend .h-100;
-        @extend .px-5;
-        @extend .py-6;
+        li {
 
-        h3 {
-          @extend .text-dark;
-          @extend .ui-font-title-primary;
-          @extend .fs-1;
-          @extend .py-3;
+          cursor: pointer;
+          user-select: none;
+
+          @extend .position-relative;
+
+          span {
+            @extend .position-relative;
+            @extend .display-1;
+            @extend .ui-font-title-primary;
+            @extend .ui-smooth-transition;
+            @extend .text-uppercase;
+            @extend .border-start;
+            @extend .border-5;
+            @extend .border-primary;
+            @extend .px-5;
+            @extend .text-dark;
+            z-index: 1001;
+          }
+
+          &::before {
+            @extend .position-absolute;
+            @extend .w-0;
+            @extend .h-100;
+            @extend .bg-primary;
+            @extend .ui-smooth-transition;
+            content: '';
+            left: 0;
+            z-index: 1000;
+          }
+
+          &:hover, &:active, &.active {
+            span {
+              @extend .text-light;
+            }
+            &::before {
+              @extend .w-100;
+            }
+          }
+
+
         }
-
-        button {
-          @extend .py-3;
-          @extend .my-3;
-        }
-
       }
 
-      .ui-auth-side {
-
-        @extend .w-100;
-        @extend .h-100;
-
-        background: url('/assets/img/home/parallax03.jpg') center center no-repeat;
-        background-size: cover;
-
-      }
     }
 
   }
 
-}
-
-
-
-.btn-auth-google,
-.btn-auth-facebook,
-.btn-auth-twitter {
-  @extend .btn;
-  @extend .btn-circle;
-  @extend .btn-circle-lg;
-  @extend .mx-2;
-  color: #FFF;
-  &:hover {
-    @extend .shadow;
-  }
-}
-
-.btn-auth-google {
-  background: #DB4437;
-  &:hover {
-    background: darken(#DB4437, 10%);
-  }
-}
-
-.btn-auth-facebook {
-  background: #4267B2;
-  &:hover {
-    background: darken(#4267B2, 10%);
-  }
-}
-
-.btn-auth-twitter {
-  background: #1DA1F2;
-  &:hover {
-    background: darken(#1DA1F2, 10%);
-  }
 }

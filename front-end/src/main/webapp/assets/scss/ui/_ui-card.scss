@@ -27,14 +27,62 @@
 
   & .ui-card-row {
 
+    h4 {
+      @extend .ui-font-title-primary;
+      @extend .mt-3;
+    }
 
+    p {
+      @extend .ui-font-title-primary;
+      @extend .my-1;
+      @extend .fs-5;
+    }
 
   }
 
   & .ui-card-block {
 
+    @extend .position-relative;
+    z-index: 1000;
 
+    h4 {
+      @extend .ui-font-title-primary;
+      @extend .mt-3;
+    }
+
+    p {
+      @extend .ui-font-title-primary;
+      @extend .my-1;
+      @extend .fs-5;
+    }
+
+    & .ui-card-block-image {
+      display: block;
+    }
+
+    & .ui-card-block-icon {
+      @extend .position-absolute;
+
+      z-index: 1001;
+      right: 0;
+      top: 0;
+
+      div {
+        @extend .mx-2;
+        @extend .my-2;
+      }
+
+    }
+
+    & .ui-card-block-icon-heart {
+      @extend .btn-circle;
+      @extend .shadow-sm;
+    }
+
+    & .ui-card-block-icon-cart {
+      @extend .btn-circle;
+      @extend .shadow-sm;
+    }
 
   }
-
 }

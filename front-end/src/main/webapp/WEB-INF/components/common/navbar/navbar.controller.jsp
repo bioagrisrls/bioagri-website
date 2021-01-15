@@ -81,7 +81,20 @@
             });
 
 
+            if(localStorage.getItem('X-Interface-Dark-Mode') === 'true') {
+
+                const chk = document.querySelector('#' + this.id + '-dark-mode-switch');
+
+                if(chk)
+                    chk.checked = true;
+
+                this.onDarkModeSwitched(true);
+
+            }
+
         }
+
+
 
 
         onAccountClicked() {
@@ -94,6 +107,34 @@
 
         onShoppingClicked() {
             Component.render(Component.dummy('user-cart'), `${components.users_account_cart}`, this.state);
+        }
+
+        onSideClicked() {
+            Component.render(Component.dummy('side-menu'), `${components.users_account_side}`, this.state);
+        }
+
+        onDarkModeSwitched(checked) {
+
+            const theme = document.querySelector('#ui-theme-stylesheet');
+
+            if(!theme)
+                throw new Error('theme cannot be null');
+
+
+            if(checked) {
+
+                if (theme.attributes['href'] && theme.attributes['href'] !== '/assets/css/ui-bootstrap-dark.min.css')
+                    theme.attributes['href'].value = '/assets/css/ui-bootstrap-dark.min.css';
+
+            } else {
+
+                if (theme.attributes['href'] && theme.attributes['href'] !== '/assets/css/ui-bootstrap.min.css')
+                    theme.attributes['href'].value = '/assets/css/ui-bootstrap.min.css';
+
+            }
+
+            localStorage.setItem('X-Interface-Dark-Mode', checked.toString());
+
         }
 
 
