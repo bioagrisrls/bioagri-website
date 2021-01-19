@@ -81,16 +81,14 @@
             });
 
 
-            if(localStorage.getItem('X-Interface-Dark-Mode') === 'true') {
 
-                const chk = document.querySelector('#' + this.id + '-dark-mode-switch');
+            const chk = document.querySelector('#' + this.id + '-dark-mode-switch');
+            const checked = localStorage.getItem('X-Interface-Dark-Mode') === 'true';
 
-                if(chk)
-                    chk.checked = true;
+            if(chk)
+                chk.checked = checked;
 
-                this.onDarkModeSwitched(true);
-
-            }
+            this.onDarkModeSwitched(checked);
 
         }
 
@@ -116,9 +114,13 @@
         onDarkModeSwitched(checked) {
 
             const theme = document.querySelector('#ui-theme-stylesheet');
+            const check = document.querySelector('#' + this.id + '-dark-mode');
 
             if(!theme)
                 throw new Error('theme cannot be null');
+
+            if(!check)
+                throw new Error('check cannot be null');
 
 
             if(checked) {
@@ -126,10 +128,14 @@
                 if (theme.attributes['href'] && theme.attributes['href'] !== '/assets/css/ui-bootstrap-dark.min.css')
                     theme.attributes['href'].value = '/assets/css/ui-bootstrap-dark.min.css';
 
+                check.title = '${locale.nav_daymode}';
+
             } else {
 
                 if (theme.attributes['href'] && theme.attributes['href'] !== '/assets/css/ui-bootstrap.min.css')
                     theme.attributes['href'].value = '/assets/css/ui-bootstrap.min.css';
+
+                check.title = '${locale.nav_nightmode}';
 
             }
 
