@@ -27,7 +27,7 @@
 <nav class="ui-nav" id="{{this.id}}-container">
     <div class="row">
         <div class="col-3">
-            <img class="ui-nav-logo" src="{{logo}}" alt="" />
+            <img class="ui-nav-logo" src="{{logo}}" alt="" ui-animated-hover />
         </div>
         <div class="col-6 show-only-desktop">
             <ul class="ui-nav-menu primary">

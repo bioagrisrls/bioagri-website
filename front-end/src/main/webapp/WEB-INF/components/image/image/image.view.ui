@@ -24,16 +24,18 @@
   -->
 
 
-<? if (!ready) { ?>
+<div class="d-inline-block" style="width: {{width}}; height: {{height}}" ui-animated>
 
-    <div class="d-inline-block" style="width: {{width}}; height: {{height}}" ui-animated>
+    <? if (!ready) { ?>
+
         <div class="d-grid align-items-center h-100">
             <div class="spinner-grow m-auto" role="status">
-                <span class="visually-hidden">Loading...</span>
+                <span class="visually-hidden"></span>
             </div>
         </div>
-    </div>
 
-<? } else { ?>
-    <img src="{{src}}" width="{{width}}" height="{{height}}" alt="{{alt}}" class="{{rounded ? 'rounded' : ''}}" ui-animated />
-<? } ?>
+    <? } else { ?>
+        <div class="{{rounded ? 'rounded' : ''}} w-100 h-100" style="background: url('{{src}}') {{repeat}} {{position}}; background-size: {{size}};"></div>
+    <? } ?>
+
+</div>

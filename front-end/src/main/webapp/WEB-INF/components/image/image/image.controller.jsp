@@ -35,9 +35,11 @@
         constructor() {
             super(id, {
                 src: props.src || '',
-                alt: props.alt || '',
                 width: props.width || props.height || 'auto',
                 height: props.height || props.width || 'auto',
+                size: props.size || 'auto',
+                repeat: props.repeat || 'no-repeat',
+                position: props.position || 'top left',
                 rounded: props.rounded || false,
                 ready: false
             });

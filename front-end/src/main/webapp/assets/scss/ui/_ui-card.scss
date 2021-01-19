@@ -67,9 +67,18 @@
       right: 0;
       top: 0;
 
-      div {
+      button {
+        @extend .btn;
+        @extend .btn-circle;
         @extend .mx-2;
         @extend .my-2;
+        @extend .bg-white;
+        @extend .text-dark;
+        @extend .d-block;
+
+        &:hover {
+          @extend .bg-light;
+        }
       }
 
     }

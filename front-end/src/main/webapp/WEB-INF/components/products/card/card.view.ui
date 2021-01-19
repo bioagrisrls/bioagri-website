@@ -53,28 +53,26 @@
         </div>
     </div>
 
-<? } else if(view === 'block') {?>
+<? } else if(view === 'block') { ?>
 
     <!-- Card Block -->
     <div class="ui-card">
 
-        <? if(wish || cart) {?>
+        <? if(wish || cart) { ?>
 
             <div class="ui-card-block">
 
                 <div class="ui-card-block-icon">
-                    <? if(wish) {?>
-                        <div>
-                            <span class="ui-card-block-icon-heart mdi mdi-heart-outline mdi-24px"
-                                  onclick = "$$.onWishClicked(this)">
-                            </span>
-                        </div>
+                    <? if(wish) { ?>
+                        <button title="FIXME" onclick= "$$.onWishClicked(this)">
+                            <span class="mdi mdi-heart-outline"></span>
+                        </button>
                     <? } ?>
 
-                    <? if(cart) {?>
-                        <div>
-                            <span class="ui-card-block-icon-cart mdi mdi-cart-outline mdi-24px"></span>
-                        </div>
+                    <? if(cart) { ?>
+                        <button title="FIXME" onclick= "shopping_cart_add({{product.id}}, 1)">
+                            <span class="mdi mdi-cart-outline"></span>
+                        </button>
                     <? } ?>
                 </div>
 
@@ -87,7 +85,9 @@
                       class="ui-card-block-image"
                       ui:src="{{image}}"
                       ui:width="100%"
-                      ui:height="100%">
+                      ui:height="50vh"
+                      ui:size="cover"
+                      ui:position="center">
             </ui-image>
         </div>
 
