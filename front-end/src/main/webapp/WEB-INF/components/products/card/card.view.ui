@@ -58,34 +58,28 @@
     <!-- Card Block -->
     <div class="ui-card">
 
-        <? if(wish || cart)?>
-            <div class="ui-card-block-icon">
+        <? if(wish || cart) {?>
 
-<<<<<<< HEAD
-            <div class="row">
-                <ui-image id="{{this.id}}-block-image-{{product.id}}"
-                          ui:src="{{image}}"
-                          ui:width="100%"
-                          ui:height="100%">
-                </ui-image>
-            </div>
-=======
-                <? if(wish) {?>
-                    <div>
-                        <span class="ui-card-block-icon-heart mdi mdi-heart-outline mdi-24px"
-                              onclick = "$$.onWishClicked(this)">
-                        </span>
-                    </div>
-                <? } ?>
+            <div class="ui-card-block">
 
-                <? if(cart) {?>
-                    <div>
-                        <span class="ui-card-block-icon-cart mdi mdi-cart-outline mdi-24px"></span>
-                    </div>
-                <? } ?>
->>>>>>> dev
+                <div class="ui-card-block-icon">
+                    <? if(wish) {?>
+                        <div>
+                            <span class="ui-card-block-icon-heart mdi mdi-heart-outline mdi-24px"
+                                  onclick = "$$.onWishClicked(this)">
+                            </span>
+                        </div>
+                    <? } ?>
+
+                    <? if(cart) {?>
+                        <div>
+                            <span class="ui-card-block-icon-cart mdi mdi-cart-outline mdi-24px"></span>
+                        </div>
+                    <? } ?>
+                </div>
 
             </div>
+
         <? } ?>
 
         <div class="row">
