@@ -31,6 +31,8 @@
   "nav_catalog" : "Catalogo",
   "nav_about" : "Chi siamo",
   "nav_support" : "Contatti",
+  "nav_daymode" : "Modalità diurna",
+  "nav_nightmode" : "Modalità notturna",
   "nav_user_greetings" : "Benvenuto",
   "nav_user_account" : "Il mio account",
   "nav_user_order" : "I miei ordini",
