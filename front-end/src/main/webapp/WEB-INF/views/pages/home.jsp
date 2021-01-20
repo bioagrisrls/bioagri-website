@@ -68,7 +68,7 @@
         <section class="ui-home-promo">
 
             <article>
-                <h1 ui-animated-scroll="slideInUp">Le novit&agrave; del momento!</h1>
+                <h1 ui-animated-scroll="slideInUp">${locale.home_promo_last_news}</h1>
 
                 <div class="ui-home-promo-slider" ui-animated-scroll="slideInRight">
                     <ui-product-related id="ui-home-promo-slider-related-1"></ui-product-related>
@@ -94,10 +94,10 @@
                         <div class="col d-grid align-items-center">
 
                             <div>
-                                <h3>Saldi Invernali!</h3>
-                                <h1>Risparmia fino al 30% su tutta la nostra collezione!</h1>
+                                <h3>${locale.home_promo_sales_subtitle}</h3>
+                                <h1>${locale.home_promo_sales_title}</h1>
 
-                                <button>Vai al catalogo (FIXME)</button>
+                                <button>${locale.home_promo_sales_catalog}</button>
                             </div>
 
                         </div>
@@ -120,8 +120,8 @@
 
                 <div class="ui-home-promo-categories">
 
-                    <h3>Solo il meglio!</h3>
-                    <h1>Trova quello che fa per te!</h1>
+                    <h3>${locale.home_promo_categories_subtitle}</h3>
+                    <h1>${locale.home_promo_categories_title}</h1>
 
                     <div class="row">
                         <div class="col-lg-4" ui-animated-scroll="slideInLeft">
@@ -137,8 +137,8 @@
                                                   ui:position="center"
                                                   ui:size="cover"></ui-image>
 
-                                        <h5>Problemi con gli insetti?</h5>
-                                        <h4>Visita la sezione Insetticidi &rightarrow;</h4>
+                                        <h5>${locale.home_promo_insecticide_motto}</h5>
+                                        <h4>${locale.home_promo_insecticide_link} &rightarrow;</h4>
                                         <a class="stretched-link" href="/catalog&category=insetticidi"></a>
                                     </div>
                                 </div>
@@ -151,8 +151,8 @@
                                                   ui:height="200px"
                                                   ui:position="center"
                                                   ui:size="cover"></ui-image>
-                                        <h5>Prenditi cura del tuo giardino!</h5>
-                                        <h4>Visita la sezione Giardinaggio &rightarrow;</h4>
+                                        <h5>${locale.home_promo_gardening_motto}</h5>
+                                        <h4>${locale.home_promo_gardening_link} &rightarrow;</h4>
                                         <a class="stretched-link" href="/catalog&category=giardinaggio"></a>
                                     </div>
                                 </div>
@@ -169,8 +169,8 @@
                                       ui:height="720px"
                                       ui:position="center"
                                       ui:size="cover"></ui-image>
-                            <h5>Mettiti comodo, alla spesa ci pensiamo noi!</h5>
-                            <h4>Visita la sezione Alimentari &rightarrow;</h4>
+                            <h5>${locale.home_promo_food_motto}</h5>
+                            <h4>${locale.home_promo_food_link} &rightarrow;</h4>
                             <a class="stretched-link" href="/catalog&category=alimentari"></a>
                         </div>
 
@@ -187,8 +187,8 @@
                                                   ui:height="200px"
                                                   ui:position="center"
                                                   ui:size="cover"></ui-image>
-                                        <h5>Riscopri il profumo di casa!</h5>
-                                        <h4>Visita la sezione Casalinghi &rightarrow;</h4>
+                                        <h5>${locale.home_promo_household_motto}</h5>
+                                        <h4>${locale.home_promo_household_link} &rightarrow;</h4>
                                         <a class="stretched-link" href="/catalog&category=casalinghi"></a>
                                     </div>
                                 </div>
@@ -201,8 +201,8 @@
                                                   ui:height="200px"
                                                   ui:position="center"
                                                   ui:size="cover"></ui-image>
-                                        <h5>Previeni, non curare!</h5>
-                                        <h4>Visita la sezione Anti-infortunistica &rightarrow;</h4>
+                                        <h5>${locale.home_promo_accident_motto}</h5>
+                                        <h4>${locale.home_promo_accident_link} &rightarrow;</h4>
                                         <a class="stretched-link" href="/catalog&category=infortunistica"></a>
                                     </div>
                                 </div>
@@ -217,7 +217,7 @@
 
 
             <article>
-                <h1 ui-animated-scroll="slideInUp">Scopri i nostri prodotti!</h1>
+                <h1 ui-animated-scroll="slideInUp">${locale.home_promo_product}</h1>
 
                 <div class="ui-home-promo-slider" ui-animated-scroll="slideInRight">
                     <ui-product-related id="ui-home-promo-slider-related-2"></ui-product-related>
@@ -233,8 +233,8 @@
 
                         <div class="col-md-9 col-lg-6" ui-animated-scroll="slideInUp">
 
-                            <h3>Stay tuned!</h3>
-                            <h1>Iscriviti alla Newsletter</h1>
+                            <h3>${locale.home_promo_newsletter_motto}</h3>
+                            <h1>${locale.home_promo_newsletter_title}</h1>
 
                             <ui-image id="ui-home-promo-third-section-center"
                                       class="ui-home-promo-section-image-center"
@@ -245,12 +245,12 @@
                                       ui:size="contain"></ui-image>
 
                             <p>
-                                Per maggiori informazioni consulta la nostra <a ui-navigate href="/privacy">informativa a tutela della privacy</a>.
+                                ${locale.home_promo_newsletter_info} <a ui-navigate href="/privacy">${locale.home_promo_newsletter_info_link}</a>.
                             </p>
 
                             <form>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Inserisci qui la tua e-mail (FIXME)">
+                                    <input type="text" class="form-control" placeholder="$.{locale.home_promo_newsletter_mail}">
                                     <button class="btn btn-secondary" type="button">
                                         <span class="mdi mdi-24px mdi-chevron-right"></span>
                                     </button>
