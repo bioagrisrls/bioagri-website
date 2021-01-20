@@ -35,42 +35,51 @@
             super(id,
 
                 Promise.allSettled([
+
                     api("/products/" + (props.id || '')),
-                    api('/products/' + (props.id || '') + '/images')
+                    api('/products/' + (props.id || '') + '/images'),
+                    api('/products/' + (props.id || '') + '/tags'),
+
                 ]).then(response => {
 
                     return {
                         product: response[0].status === 'fulfilled' ? response[0].value : {},
                         image: response[1].status === 'fulfilled' ? response[1].value[0] : '${locale.card_not_avaliable}',
+                        tags: response[2].status === 'fulfilled' ? response[2].value : {},
                         view: props.view || 'block',
                         wish: props.wish || true,
                         cart: props.cart || true,
+                        likes: props.likes || true,
+                        addCart: `${locale.card_add_cart}`,
+                        addWish: `${locale.card_add_wish}`,
                     };
-
                 })
-
             )
-
         }
 
         onRender() {
             return `${components.products_card}`
         }
 
-        onWishClicked(icon) {
+        onWishClicked() {
+
+            const icon = document.querySelector('#heart-icon-' + this.state.product.id);
 
             authenticated().then(() => {
 
-                    if (this.state.wish === true)
+                    if (this.state.likes === true){
                         api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + this.state.product.id, 'DELETE', {}, false);
-                    else
+                        this.setState({likes: false}, false)
+                    }
+                    else {
                         api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + this.state.product.id, 'POST', {}, false);
+                        this.setState({likes: true}, false)
+                    }
 
                     icon.classList.toggle('mdi-heart-outline');
                     icon.classList.toggle('mdi-heart');
 
-                },function (){alert("")}
-            );
+                }).catch(() => requestUserAuthentication());
 
         }
 

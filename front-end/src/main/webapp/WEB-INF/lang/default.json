@@ -137,6 +137,9 @@
   "auth_login": "Accedi",
   "auth_login_with_google": "Accedi con Google",
   "auth_login_with_facebook": "Accedi con Facebook",
-  "auth_login_with_twitter": "Accedi con Twitter"
+  "auth_login_with_twitter": "Accedi con Twitter",
+
+  "card_add_wish": "Aggiungi alla tua Lista dei Desideri",
+  "card_add_cart": "Aggiungi al carrello"
 
 }

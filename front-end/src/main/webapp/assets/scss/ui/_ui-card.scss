@@ -54,6 +54,8 @@
       @extend .ui-font-title-primary;
       @extend .my-1;
       @extend .fs-5;
+      @extend .d-inline;
+      @extend .p-0;
     }
 
     & .ui-card-block-image {
