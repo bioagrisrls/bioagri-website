@@ -38,8 +38,11 @@ $enable-shadows: true;
 $primary:       $ui-theme-primary;
 $secondary:     $ui-theme-secondary;
 $light:         $ui-theme-light;
+$light-always:  $ui-theme-light-always;
 $dark:          $ui-theme-dark;
+$dark-always:   $ui-theme-dark-always;
 $white:         $ui-theme-white;
+$white-always:  $ui-theme-white-always;
 $info:          $ui-theme-info;
 $success:       $ui-theme-success;
 $danger:        $ui-theme-danger;
@@ -211,19 +214,47 @@ $utilities: map-merge(
   box-shadow: none;
 }
 
+
+
+.bg-white-always {
+  background-color: $white-always !important;
+}
+
+.bg-light-always {
+  background-color: $light-always !important;
+}
+
+.bg-dark-always {
+  background-color: $dark-always !important;
+}
+
+.text-white-always, .link-white-always {
+  color: $white-always !important;
+}
+
+.text-light-always, .link-light-always {
+  color: $light-always !important;
+}
+
+.text-dark-always, .link-dark-always {
+  color: $dark-always !important;
+}
+
+
+
 .btn-primary {
 
   background-color: $primary;
-  color: $white;
+  color: $white-always;
 
   @extend .shadow-sm;
-  @extend .rounded-pill;
+  @extend .rounded-0;
   @extend .border;
   @extend .px-4;
 
   &:hover, &:active, &.active {
     @extend .shadow;
-    color: $light;
+    color: $light-always;
     background-color: darken($primary, 15%);
   }
 
@@ -232,16 +263,16 @@ $utilities: map-merge(
 .btn-secondary {
 
   background-color: $secondary;
-  color: $light;
+  color: $white-always;
 
   @extend .shadow-sm;
-  @extend .rounded-pill;
+  @extend .rounded-0;
   @extend .border;
   @extend .px-4;
 
   &:hover, &:active, &.active {
     @extend .shadow;
-    color: $light;
+    color: $light-always;
     background-color: darken($secondary, 20%);
   }
 
@@ -253,7 +284,7 @@ $utilities: map-merge(
   color: $dark;
 
   @extend .shadow-sm;
-  @extend .rounded-pill;
+  @extend .rounded-0;
   @extend .border;
   @extend .px-4;
 
@@ -271,7 +302,7 @@ $utilities: map-merge(
   color: $dark;
 
   @extend .shadow-sm;
-  @extend .rounded-pill;
+  @extend .rounded-0;
   @extend .border;
   @extend .px-4;
 
@@ -321,7 +352,7 @@ input[type=tel] {
   @extend .text-dark;
   @extend .border;
   @extend .shadow-sm;
-  @extend .rounded-pill;
+  @extend .rounded-0;
   @extend .px-3;
 
   &:hover, &:focus, &:active {
@@ -342,7 +373,7 @@ textarea {
   @extend .text-dark;
   @extend .border;
   @extend .shadow-sm;
-  @extend .rounded-3;
+  @extend .rounded-0;
   @extend .p-3;
 
   &:hover, &:focus, &:active {

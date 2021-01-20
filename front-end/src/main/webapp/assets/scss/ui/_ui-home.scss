@@ -115,7 +115,7 @@
 
     @extend .text-primary;
     @extend .d-block;
-    @extend .my-6;
+    @extend .mt-6;
     @extend .ui-smooth-transition;
     @extend .bg-light;
     @extend .text-dark;
@@ -127,7 +127,9 @@
 
       h1 {
         @extend .ui-font-title-primary;
-        @extend .text-center;
+        @extend .display-5;
+        @extend .text-start;
+        @extend .px-5;
         @extend .py-5;
       }
 
@@ -140,14 +142,121 @@
 
     section {
 
-      @extend .text-white;
+      @extend .text-white-always;
 
-      img {
-        @extend .px-8;
-        @extend .py-6;
-        height: 320px;
+
+      .ui-home-promo-sales {
+
+        @extend .text-center;
+        @extend .py-5;
+        @extend .px-3;
+
+        h1 {
+          @extend .ui-font-title-primary;
+          @extend .display-4;
+        }
+
+        h3 {
+          @extend .ui-font-title-secondary;
+        }
+
+        button {
+          @extend .btn;
+          @extend .btn-primary;
+          @extend .btn-lg;
+          @extend .my-3;
+        }
+
+        ui-image {
+          @extend .d-block;
+          @extend .px-7;
+          @extend .py-3;
+          @extend .show-only-desktop;
+        }
+
       }
 
+
+      .ui-home-promo-categories {
+
+        @extend .text-center;
+        @extend .text-dark;
+        @extend .py-5;
+        @extend .px-3;
+
+        h1, h4 {
+          @extend .ui-font-title-primary;
+          @extend .display-4;
+        }
+
+        h4 {
+          @extend .fs-3;
+        }
+
+        h3, h5 {
+          @extend .ui-font-title-secondary;
+          @extend .text-primary;
+        }
+
+
+        .ui-home-promo-category {
+
+          @extend .position-relative;
+          @extend .py-5;
+
+          ui-image {
+            @extend .d-block;
+            @extend .py-2;
+          }
+
+        }
+
+      }
+
+      .ui-home-promo-newsletter {
+
+        @extend .text-center;
+        @extend .py-5;
+        @extend .px-3;
+
+        .row {
+          @extend .justify-content-center;
+        }
+
+        h1 {
+          @extend .ui-font-title-primary;
+          @extend .display-5;
+        }
+
+        h3 {
+          @extend .ui-font-title-secondary;
+        }
+
+        p {
+          @extend .ui-font-description-primary;
+          @extend .fs-4;
+        }
+
+        a {
+          @extend .link-secondary;
+          @extend .ui-font-description-primary;
+          @extend .fs-4;
+        }
+
+        ui-image {
+          @extend .d-block;
+          @extend .py-2;
+        }
+
+
+      }
+
+
+
+    }
+
+    .row {
+      @extend .gx-0;
     }
 
   }

@@ -79,32 +79,138 @@
 
             <section class="bg-secondary">
 
-                <div class="row">
-                    <div class="col-auto">
-                        <img src="/assets/img/home/man01.png">
-                    </div>
-                    <div class="col">
+                <div class="ui-home-promo-sales">
 
+                    <div class="row">
+                        <div class="col-auto" ui-animated-scroll="slideInLeft">
+                            <ui-image id="ui-home-promo-first-section-start"
+                                      class="ui-home-promo-section-image"
+                                      ui:src="/assets/img/home/man01.png"
+                                      ui:width="220px"
+                                      ui:height="320px"
+                                      ui:position="center"
+                                      ui:size="auto 192px"></ui-image>
+                        </div>
+                        <div class="col d-grid align-items-center">
+
+                            <div>
+                                <h3>Saldi Invernali!</h3>
+                                <h1>Risparmia fino al 30% su tutta la nostra collezione!</h1>
+
+                                <button>Vai al catalogo (FIXME)</button>
+                            </div>
+
+                        </div>
+                        <div class="col-auto" ui-animated-scroll="slideInRight">
+                            <ui-image id="ui-home-promo-first-section-end"
+                                      class="ui-home-promo-section-image"
+                                      ui:src="/assets/img/home/woman02.png"
+                                      ui:width="220px"
+                                      ui:height="320px"
+                                      ui:position="center"
+                                      ui:size="auto 192px"></ui-image>
+                        </div>
                     </div>
-                    <div class="col-auto">
-                        <img src="/assets/img/home/woman02.png">
-                    </div>
+
                 </div>
 
             </section>
 
             <section class="bg-white">
 
-                <div class="row">
-                    <div class="col-auto">
-                        <img src="/assets/img/home/man01.png">
-                    </div>
-                    <div class="col">
+                <div class="ui-home-promo-categories">
 
+                    <h3>Solo il meglio!</h3>
+                    <h1>Trova quello che fa per te!</h1>
+
+                    <div class="row">
+                        <div class="col-lg-4" ui-animated-scroll="slideInLeft">
+
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-12">
+                                    <div class="ui-home-promo-category" ui-animated-hover="pulse">
+                                        <ui-image id="ui-home-promo-second-section-1"
+                                                  class="ui-home-promo-section-image"
+                                                  ui:src="/assets/img/home/promo01.jpg"
+                                                  ui:width="340px"
+                                                  ui:height="200px"
+                                                  ui:position="center"
+                                                  ui:size="cover"></ui-image>
+
+                                        <h5>Problemi con gli insetti?</h5>
+                                        <h4>Visita la sezione Insetticidi &rightarrow;</h4>
+                                        <a class="stretched-link" href="/catalog&category=insetticidi"></a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-12">
+                                    <div class="ui-home-promo-category" ui-animated-hover="pulse">
+                                        <ui-image id="ui-home-promo-second-section-2"
+                                                  class="ui-home-promo-section-image"
+                                                  ui:src="/assets/img/home/promo02.jpg"
+                                                  ui:width="340px"
+                                                  ui:height="200px"
+                                                  ui:position="center"
+                                                  ui:size="cover"></ui-image>
+                                        <h5>Prenditi cura del tuo giardino!</h5>
+                                        <h4>Visita la sezione Giardinaggio &rightarrow;</h4>
+                                        <a class="stretched-link" href="/catalog&category=giardinaggio"></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4" ui-animated-scroll="slideInUp">
+
+                            <div class="ui-home-promo-category" ui-animated-hover="pulse">
+                            <ui-image id="ui-home-promo-second-section-3"
+                                      class="ui-home-promo-section-image"
+                                      ui:src="/assets/img/home/promo03.jpg"
+                                      ui:width="400px"
+                                      ui:height="720px"
+                                      ui:position="center"
+                                      ui:size="cover"></ui-image>
+                            <h5>Mettiti comodo, alla spesa ci pensiamo noi!</h5>
+                            <h4>Visita la sezione Alimentari &rightarrow;</h4>
+                            <a class="stretched-link" href="/catalog&category=alimentari"></a>
+                        </div>
+
+                        </div>
+                        <div class="col-lg-4" ui-animated-scroll="slideInRight">
+
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-12">
+                                    <div class="ui-home-promo-category" ui-animated-hover="pulse">
+                                        <ui-image id="ui-home-promo-second-section-4"
+                                                  class="ui-home-promo-section-image"
+                                                  ui:src="/assets/img/home/promo04.jpg"
+                                                  ui:width="340px"
+                                                  ui:height="200px"
+                                                  ui:position="center"
+                                                  ui:size="cover"></ui-image>
+                                        <h5>Riscopri il profumo di casa!</h5>
+                                        <h4>Visita la sezione Casalinghi &rightarrow;</h4>
+                                        <a class="stretched-link" href="/catalog&category=casalinghi"></a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-12">
+                                    <div class="ui-home-promo-category" ui-animated-hover="pulse">
+                                        <ui-image id="ui-home-promo-second-section-5"
+                                                  class="ui-home-promo-section-image"
+                                                  ui:src="/assets/img/home/promo05.jpg"
+                                                  ui:width="340px"
+                                                  ui:height="200px"
+                                                  ui:position="center"
+                                                  ui:size="cover"></ui-image>
+                                        <h5>Previeni, non curare!</h5>
+                                        <h4>Visita la sezione Anti-infortunistica &rightarrow;</h4>
+                                        <a class="stretched-link" href="/catalog&category=infortunistica"></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="col-auto">
-                        <img src="/assets/img/home/woman02.png">
-                    </div>
+
                 </div>
 
             </section>
@@ -121,19 +227,44 @@
 
             <section class="bg-primary">
 
-                <div class="row">
-                    <div class="col-auto">
-                        <img src="/assets/img/home/man01.png">
-                    </div>
-                    <div class="col">
+                <div class="ui-home-promo-newsletter">
+
+                    <div class="row">
+
+                        <div class="col-md-9 col-lg-6" ui-animated-scroll="slideInUp">
+
+                            <h3>Stay tuned!</h3>
+                            <h1>Iscriviti alla Newsletter</h1>
+
+                            <ui-image id="ui-home-promo-third-section-center"
+                                      class="ui-home-promo-section-image-center"
+                                      ui:src="/assets/img/home/newsletter1.png"
+                                      ui:width="100%"
+                                      ui:height="320px"
+                                      ui:position="center"
+                                      ui:size="contain"></ui-image>
+
+                            <p>
+                                Per maggiori informazioni consulta la nostra <a ui-navigate href="/privacy">informativa a tutela della privacy</a>.
+                            </p>
+
+                            <form>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Inserisci qui la tua e-mail (FIXME)">
+                                    <button class="btn btn-secondary" type="button">
+                                        <span class="mdi mdi-24px mdi-chevron-right"></span>
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
 
                     </div>
-                    <div class="col-auto">
-                        <img src="/assets/img/home/woman02.png">
-                    </div>
+
                 </div>
 
             </section>
+
 
         </section>
 
