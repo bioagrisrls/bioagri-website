@@ -68,7 +68,7 @@
         <section class="ui-home-promo">
 
             <article>
-                <h1 ui-animated-scroll="slideInUp">Scopri i nostri prodotti!</h1>
+                <h1 ui-animated-scroll="slideInUp">Le novit&agrave; del momento!</h1>
 
                 <div class="ui-home-promo-slider" ui-animated-scroll="slideInRight">
                     <ui-product-related id="ui-home-promo-slider-related-1"></ui-product-related>
@@ -127,7 +127,7 @@
                         <div class="col-lg-4" ui-animated-scroll="slideInLeft">
 
                             <div class="row">
-                                <div class="col-sm-6 col-lg-12">
+                                <div class="col-md-6 col-lg-12">
                                     <div class="ui-home-promo-category" ui-animated-hover="pulse">
                                         <ui-image id="ui-home-promo-second-section-1"
                                                   class="ui-home-promo-section-image"
@@ -142,7 +142,7 @@
                                         <a class="stretched-link" href="/catalog&category=insetticidi"></a>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-12">
+                                <div class="col-md-6 col-lg-12">
                                     <div class="ui-home-promo-category" ui-animated-hover="pulse">
                                         <ui-image id="ui-home-promo-second-section-2"
                                                   class="ui-home-promo-section-image"
@@ -178,7 +178,7 @@
                         <div class="col-lg-4" ui-animated-scroll="slideInRight">
 
                             <div class="row">
-                                <div class="col-sm-6 col-lg-12">
+                                <div class="col-md-6 col-lg-12">
                                     <div class="ui-home-promo-category" ui-animated-hover="pulse">
                                         <ui-image id="ui-home-promo-second-section-4"
                                                   class="ui-home-promo-section-image"
@@ -192,7 +192,7 @@
                                         <a class="stretched-link" href="/catalog&category=casalinghi"></a>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-12">
+                                <div class="col-md-6 col-lg-12">
                                     <div class="ui-home-promo-category" ui-animated-hover="pulse">
                                         <ui-image id="ui-home-promo-second-section-5"
                                                   class="ui-home-promo-section-image"
@@ -217,7 +217,7 @@
 
 
             <article>
-                <h1 ui-animated-scroll="slideInUp">Le novit&agrave; del momento!</h1>
+                <h1 ui-animated-scroll="slideInUp">Scopri i nostri prodotti!</h1>
 
                 <div class="ui-home-promo-slider" ui-animated-scroll="slideInRight">
                     <ui-product-related id="ui-home-promo-slider-related-2"></ui-product-related>
