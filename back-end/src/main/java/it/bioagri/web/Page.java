@@ -43,6 +43,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -67,11 +68,11 @@ public class Page {
     }
 
 
-    private String loadPage(ServletRequest request, ServletResponse response, ModelMap model, String page) {
+    private String loadPage(ServletRequest request, ServletResponse response, HttpSession session, ModelMap model, String page) {
 
         model.addAttribute("reference", page);
         model.addAttribute("components", components.getComponents());
-        model.addAttribute("locale", locale.getCurrentLocale(request));
+        model.addAttribute("locale", locale.getCurrentLocale(request, session));
         model.addAttribute("authToken", authToken);
         model.addAttribute("paypal", payPal);
 
@@ -81,12 +82,12 @@ public class Page {
 
 
     @GetMapping("/")
-    public String index(ServletRequest request, ServletResponse response, ModelMap model) {
-        return loadPage(request, response, model, "pages/home.jsp");
+    public String index(ServletRequest request, ServletResponse response, HttpSession session, ModelMap model) {
+        return loadPage(request, response, session, model, "pages/home.jsp");
     }
 
     @GetMapping("/{page}")
-    public String page(ServletRequest request, ServletResponse response, ModelMap model, @PathVariable String page) {
+    public String page(ServletRequest request, ServletResponse response, HttpSession session, ModelMap model, @PathVariable String page) {
 
         if(page.startsWith("{{")) // FIXME
             throw new ApiResponseStatus(204);
@@ -94,17 +95,17 @@ public class Page {
         return switch (page) {
             case "favicon.ico" -> "/assets/favicon.ico";
             case "favicon.png" -> "/assets/favicon.png";
-            default -> loadPage(request, response, model, "pages/%s.jsp".formatted(page));
+            default -> loadPage(request, response, session, model, "pages/%s.jsp".formatted(page));
         };
 
     }
 
 
     @GetMapping("/admin/{page}")
-    public String admin(ServletRequest request, ServletResponse response, ModelMap model, @PathVariable String page) throws ServletException, IOException {
+    public String admin(ServletRequest request, ServletResponse response, HttpSession session, ModelMap model, @PathVariable String page) throws ServletException, IOException {
 
         if(authToken.getUserRole().equals(UserRole.ADMIN))
-            return loadPage(request, response, model, "admin/%s.jsp".formatted(page));
+            return loadPage(request, response, session, model, "admin/%s.jsp".formatted(page));
 
         return "error";
 
