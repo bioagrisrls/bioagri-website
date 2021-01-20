@@ -55,6 +55,11 @@
                 mail: `${locale.info_email}`,
                 piva: `${locale.info_piva}`,
 
+                registration: ${locale.foo_body_registration},
+                tickets: ${locale.foo_body_tickets},
+                faq: ${locale.foo_body_faq},
+                policy: ${locale.foo_body_policy},
+
                 copyright: `${locale.info_copy}`
 
             });
