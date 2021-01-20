@@ -63,13 +63,87 @@
                 </div>
             </div>
         </div>
+
+
+        <section class="ui-home-promo">
+
+            <article>
+                <h1 ui-animated-scroll="slideInUp">Scopri i nostri prodotti!</h1>
+
+                <div class="ui-home-promo-slider" ui-animated-scroll="slideInRight">
+                    <ui-product-related id="ui-home-promo-slider-related-1"></ui-product-related>
+                </div>
+
+            </article>
+
+
+            <section class="bg-secondary">
+
+                <div class="row">
+                    <div class="col-auto">
+                        <img src="/assets/img/home/man01.png">
+                    </div>
+                    <div class="col">
+
+                    </div>
+                    <div class="col-auto">
+                        <img src="/assets/img/home/woman02.png">
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="bg-white">
+
+                <div class="row">
+                    <div class="col-auto">
+                        <img src="/assets/img/home/man01.png">
+                    </div>
+                    <div class="col">
+
+                    </div>
+                    <div class="col-auto">
+                        <img src="/assets/img/home/woman02.png">
+                    </div>
+                </div>
+
+            </section>
+
+
+            <article>
+                <h1 ui-animated-scroll="slideInUp">Le novit&agrave; del momento!</h1>
+
+                <div class="ui-home-promo-slider" ui-animated-scroll="slideInRight">
+                    <ui-product-related id="ui-home-promo-slider-related-2"></ui-product-related>
+                </div>
+            </article>
+
+
+            <section class="bg-primary">
+
+                <div class="row">
+                    <div class="col-auto">
+                        <img src="/assets/img/home/man01.png">
+                    </div>
+                    <div class="col">
+
+                    </div>
+                    <div class="col-auto">
+                        <img src="/assets/img/home/woman02.png">
+                    </div>
+                </div>
+
+            </section>
+
+        </section>
+
+
     </section>
 
     <!-- Footer -->
     <ui-footer id="ui-footer" ui:current="home"> </ui-footer>
 
 </section>
-
 
 
 

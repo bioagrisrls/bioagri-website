@@ -41,8 +41,6 @@
 
   & .ui-home-content {
 
-    height: 2000px;
-
     @extend .py-9;
     @extend .px-4;
     @extend .ps-lg-9;
@@ -74,6 +72,10 @@
 
     div.ui-home-order-now {
 
+      @extend .text-center;
+      @extend .text-sm-start;
+
+
       .ui-home-order-content {
         cursor: pointer;
         @extend .position-relative;
@@ -100,7 +102,6 @@
       ul {
         @extend .list-unstyled;
         @extend .list-inline;
-        @extend .float-start;
         li {
           @extend .list-inline-item;
           @extend .text-dark;
@@ -109,6 +110,48 @@
     }
 
   }
+
+  & .ui-home-promo {
+
+    @extend .text-primary;
+    @extend .d-block;
+    @extend .my-6;
+    @extend .ui-smooth-transition;
+    @extend .bg-light;
+    @extend .text-dark;
+
+    article {
+
+      @extend .py-3;
+      @extend .my-3;
+
+      h1 {
+        @extend .ui-font-title-primary;
+        @extend .text-center;
+        @extend .py-5;
+      }
+
+      .ui-home-promo-slider {
+        @extend .w-100;
+        @extend .px-3;
+        height: auto;
+      }
+    }
+
+    section {
+
+      @extend .text-white;
+
+      img {
+        @extend .px-8;
+        @extend .py-6;
+        height: 320px;
+      }
+
+    }
+
+  }
+
 
 }
 
