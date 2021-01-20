@@ -37,6 +37,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -105,21 +106,20 @@ public class Locale {
     }
 
 
-    public Map<String, String> getCurrentLocale(ServletRequest servletRequest) {
+    public Map<String, String> getCurrentLocale(ServletRequest servletRequest, HttpSession session) {
+
+        if(servletRequest.getParameter("lang") != null)
+            session.setAttribute("override-locale", servletRequest.getParameter("lang").toLowerCase());
+
 
         String country;
 
-        if(servletRequest.getParameter("lang") != null ) {
-
-            country = servletRequest.getParameter("lang")
-                    .toLowerCase();
-
-        } else {
-
+        if(session.getAttribute("override-locale") != null)
+            country = session.getAttribute("override-locale").toString();
+        else
             country = servletRequest.getLocale()
                     .getCountry()
                     .toLowerCase();
-        }
 
 
         if(dictionaries.containsKey(country))
