@@ -29,7 +29,7 @@
         <?
             for(const product of products) {
                 ?>
-                    <div class="{{this.id}}-product d-inline-block" style="width: 240px">
+                    <div class="{{this.id}}-product ui-products-related-card">
                         <ui-card id="{{this.id}}-{{product}}" ui:id="{{product}}"></ui-card>
                     </div>
                 <?

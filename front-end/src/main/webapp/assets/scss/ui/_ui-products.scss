@@ -92,7 +92,9 @@ left:22px;
   @extend .bg-white;
   @extend .text-dark;
 
+  cursor: pointer;
   bottom: 8rem;
+  z-index: 1010;
 
   &:hover {
     @extend .shadow;
@@ -105,6 +107,16 @@ left:22px;
   &.prev {
     left: 3rem;
   }
+
+}
+
+.ui-products-related-card {
+
+  @extend .d-inline-block;
+  @extend .ui-smooth-transition;
+
+  cursor: pointer;
+  width: 280px;
 
 }
 

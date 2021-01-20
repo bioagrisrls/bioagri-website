@@ -28,10 +28,11 @@
 
 .ui-footer {
 
-  @extend .text-light;
+  @extend .text-light-always;
+  @extend .w-100;
 
-  width: 100%;
   background-color: $ui-theme-primary-variant;
+  user-select: none;
 
 }
 
@@ -96,7 +97,7 @@
       list-style-type: none;
 
       li a {
-        @extend .text-light;
+        @extend .text-light-always;
       }
     }
 
@@ -132,5 +133,5 @@
 }
 
 .ui-footer-icon {
-  @extend .text-light;
+  @extend .text-light-always;
 }

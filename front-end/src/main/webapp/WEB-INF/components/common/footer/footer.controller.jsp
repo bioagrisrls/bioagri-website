@@ -53,6 +53,7 @@
                 address: `${locale.info_address}`,
                 phone: `${locale.info_phone}`,
                 mail: `${locale.info_email}`,
+                piva: `${locale.info_piva}`,
 
                 copyright: `${locale.info_copy}`
 

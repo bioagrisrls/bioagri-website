@@ -63,18 +63,17 @@
     <div class="ui-footer-body p-3">
         <div class="ui-container">
 
-            <div class="row align-items-center">
+            <div class="row align-items-center align-middle">
 
                 <div class="col-md-5 text-center text-md-start">
                     <ul>
                         <li>
                             <a ui-navigate href="/">
-                                <img src="{{ logo }}" width="48" height="48" />
-                                <span> {{ title }} </span>
+                                <img src="{{ logo }}" height="48" alt="" />
                             </a>
 
                             <br>
-                            <span>{{ description }}</span>
+                            <p>{{ description }}</p>
 
                         </li>
                     </ul>
@@ -101,10 +100,10 @@
                     <header>{{ util }}</header>
 
                     <ul>
-                        <li><a href="">Link 1</a></li>
-                        <li><a href="">Link 2</a></li>
-                        <li><a href="">Link 3</a></li>
-                        <li><a href="">Link 4</a></li>
+                        <li><a href="/registration">Registrati</a></li>
+                        <li><a href="/tickets">Servizio Clienti</a></li>
+                        <li><a href="/support#faq">Domande frequenti</a></li>
+                        <li><a href="/privacy">Cookie Policy</a></li>
                     </ul>
 
                 </div>
@@ -132,6 +131,12 @@
                                 {{ phone }}
                             </a>
                         </li>
+                        <li>
+                            <a class="ui-footer-icon">
+                                <span class="mdi mdi-bank mdi"></span>
+                                {{ piva }}
+                            </a>
+                        </li>
                     </ul>
 
                 </div>
@@ -143,7 +148,14 @@
 
     <div class="ui-footer-copy p-3">
         <div class="text-center">
-            {{ copyright }}
+            <div class="p-3">
+                <a href="?lang=IT"><img src="/assets/img/flags/IT.png" alt="IT"></a>
+                <a href="?lang=GB"><img src="/assets/img/flags/GB.png" alt="EN"></a>
+                <a href="?lang=DE"><img src="/assets/img/flags/DE.png" alt="DE"></a>
+                <a href="?lang=FR"><img src="/assets/img/flags/FR.png" alt="FR"></a>
+                <a href="?lang=ES"><img src="/assets/img/flags/ES.png" alt="ES"></a>
+            </div>
+            <p>{{ copyright }}</p>
         </div>
     </div>
 
