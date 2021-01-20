@@ -250,7 +250,7 @@
 
                             <form>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="$.{locale.home_promo_newsletter_mail}">
+                                    <input type="text" class="form-control" placeholder="${locale.home_promo_newsletter_mail}">
                                     <button class="btn btn-secondary" type="button">
                                         <span class="mdi mdi-24px mdi-chevron-right"></span>
                                     </button>
