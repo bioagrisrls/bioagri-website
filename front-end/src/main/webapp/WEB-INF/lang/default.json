@@ -175,5 +175,6 @@
   "catalog_main_views" : "Visualizza",
   "catalog_side_allcategories" : "Tutte le categorie",
   "catalog_side_alltags" : "Tutti i tags",
-  "catalog_main_more" : "Mostra altro"
+  "catalog_main_more" : "Mostra altro",
+  "catalog_main_body_empty" : "La ricerca non ha prodotto nessun risultato"
 }
