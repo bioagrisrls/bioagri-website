@@ -100,10 +100,10 @@
                     <header>{{ util }}</header>
 
                     <ul>
-                        <li><a href="/registration">{{ registration }}</a></li>
-                        <li><a href="/tickets">{{ tickets }}</a></li>
-                        <li><a href="/support#faq">{{ faq }}</a></li>
-                        <li><a href="/privacy">{{ policy }}</a></li>
+                        <li><a ui-navigate href="/registration">{{ registration }}</a></li>
+                        <li><a ui-navigate href="/tickets">{{ tickets }}</a></li>
+                        <li><a ui-navigate href="/support#faq">{{ faq }}</a></li>
+                        <li><a ui-navigate href="/privacy">{{ policy }}</a></li>
                     </ul>
 
                 </div>

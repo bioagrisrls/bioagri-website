@@ -32,130 +32,109 @@
     Component.register('ui-catalog', (id, props) => new class extends StatefulComponent {
 
         constructor() {
-            super( id,
+            super(id,
 
-                api('/categories')
-                    .then( categories => api('/tags')
-                    .then( tags => api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") +"/wishlist")
-                    .then(wishlist => {
+                Promise.all([
+                    api('/tags'),
+                    api('/categories'),
+                ]).then(response => {
 
-                        return {
+                    return {
 
-                            products: [],
-                            categories: categories,
-                            tags: tags,
-                            wishlist : wishlist,
-                            iswish : 'no',
-                            skip: 0,
-                            count: 0,
-                            selectedSort : 'createdAt',
-                            selectedView : 'block',
-                            category : '',
-                            tag : '',
-                            search : '',
-                            filterByAttribute : false,
-                            hasMoreProducts : true
+                        products: [],
+                        wishlist: [],
+                        tags: response[0],
+                        categories: response[1],
 
+                        skip: 0,
+                        count: 0,
+
+                        sortType: 'createdAt',
+                        viewType: 'block',
+
+                        filterCategory: props.category || '',
+                        filterSearch: props.search || '',
+                        filterTag: props.tag || '',
+
+                        hasMore: true,
+
+                        strings: {
+                            categories:     `${locale.catalog_side_categories}`,
+                            allcategories:  `${locale.catalog_side_allcategories}`,
+                            tags:           `${locale.catalog_side_tags}`,
+                            alltags:        `${locale.catalog_side_alltags}`,
+                            results:        `${locale.catalog_main_results}`,
+                            search:         `${locale.catalog_main_search}`,
+                            orderby:        `${locale.catalog_main_orderby}`,
+                            views:          `${locale.catalog_main_views}`,
                         }
-                        }, reason =>  {
 
-                        return {
+                    };
 
-                            products: [],
-                            categories: categories,
-                            tags: tags,
-                            wishlist: '',
-                            iswish: 'no',
-                            skip: 0,
-                            count: 0,
-                            selectedSort: 'createdAt',
-                            selectedView: 'block',
-                            category: '',
-                            tag: '',
-                            search: '',
-                            filterByAttribute: false,
-                            hasMoreProducts: true
-                        }
-                    })
+                })
 
-                    )));
+            );
+
         }
 
         onReady(state) {
 
-            this.fetchNextGroup();
+            authenticated(false)
+                .then(() => this.wish())
 
-            $(window).one('scroll', this, function handler(e) {
 
-                if(e.data.running) {
+            $(document).on('auth-connection-occurred', () => {
 
-                    const wy = window.pageYOffset + window.innerHeight;
-                    const ty = e.data.elem.offsetTop + e.data.elem.offsetHeight;
-
-                    if (e.data.state.hasMoreProducts && (wy > ty)) {
-
-                        e.data.fetchNextGroup().then(
-                            () => $(window).one('scroll', e.data, handler));
-
-                    } else {
-                        $(window).one('scroll', e.data, handler);
-                    }
-
-                }
+                if(this.running)
+                    this.wish();
 
             });
+
+            $(document).on('auth-disconnection-occurred', () => {
+
+                if(this.running)
+                    this.wish(true);
+
+            });
+
+
+            this.fetchNextGroup();
 
         }
 
         onRender() {
-
             return `${components.products_catalog}`
         }
 
-        onLoading() {
-            return `${components.products_catalog_loading}`
-        }
 
-        onError() {
-            return `${components.products_catalog_error}`
-        }
-
-        isWish(id){
-
-            for(let i = 0; i < this.state.wishlist.length; i++){
-
-                    if(this.state.wishlist[i].id === id)
-                        return 'yes';
-
-            }
-
-        }
-
+        /**
+         * Fetch next group of products applying filters.
+         */
         fetchNextGroup() {
 
             const fetchSize = 9;
             const products = this.state.products;
 
-            if(this.state.hasMoreProducts) {
+            if(this.state.hasMore) {
 
                 const query = [];
 
-                if(this.state.search) {
+                if(this.state.filterSearch) {
                     query.push('filter-by=name');
-                    query.push('filter-val=' + '(?i)(.)*(' + this.state.search + '(.)*)');
+                    query.push('filter-val=' + '(?i)(.)*(' + this.state.filterSearch + '(.)*)');
                 }
 
-                if(this.state.category) {
+                if(this.state.filterCategory) {
                     query.push('filter-by=categories.id');
-                    query.push('filter-val=' + this.state.category);
+                    query.push('filter-val=' + this.state.filterCategory);
                 }
 
-                if(this.state.tag) {
+                if(this.state.filterTag) {
                     query.push('filter-by=tags.id');
-                    query.push('filter-val=' + this.state.tag);
+                    query.push('filter-val=' + this.state.filterTag);
                 }
 
-                query.push('sorted-by=' + this.state.selectedSort);
+                query.push('sorted-by=' + this.state.sortType);
 
 
                 return api('/products/count?' + query.join('&'), 'GET', {}, false)
@@ -165,7 +144,7 @@
                         if(+count === 0) {
 
                             this.state = {
-                                hasMoreProducts: false
+                                hasMore: false
                             };
 
                         } else {
@@ -182,7 +161,7 @@
                                         products: products,
                                         skip: this.state.skip + (response || []).length,
                                         count: count,
-                                        hasMoreProducts: (response || []).length === fetchSize
+                                        hasMore: (response || []).length === fetchSize
                                     };
 
                                 });
@@ -197,84 +176,83 @@
 
         }
 
-        $selectCategory(button) {
+        /**
+         * Load/Unload Wishlist
+         * @param clear {boolean}
+         */
+        wish(clear = false) {
 
-            this.setState({
-                category: button.value,
-                products: [],
-                skip: 0,
-                count: 0,
-                hasMoreProducts: true
-            });
+            if(clear)
+                return this.state = { wishlist: [] };
 
-            this.fetchNextGroup();
+            else {
 
-        }
-
-        $selectTag(button) {
-
-            this.setState({
-                tag: button.value,
-                products: [],
-                skip: 0,
-                count: 0,
-                hasMoreProducts: true
-            });
-
-            this.fetchNextGroup();
-
-        }
-
-        $search() {
-
-
-            this.setState({
-                products: [],
-                skip: 0,
-                count: 0,
-                hasMoreProducts: true,
-                search: $('#searchText').val(),
-            })
-
-            this.fetchNextGroup();
-        }
-
-        $searchKey(event) {
-
-            const key = event.keyCode || event.which;
-
-            if (key === 13) {
-
-                this.setState({
-                    products: [],
-                    skip: 0,
-                    count: 0,
-                    hasMoreProducts: true,
-                    search: $('#searchText').val(),
-                })
-
-                this.fetchNextGroup();
+                api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist')
+                    .then(response => this.state = { wishlist: response })
+                    .catch(() => undefined);
 
             }
+
         }
 
-        $changeSort(button) {
+        /**
+         * Apply filter to catalog
+         * @param filter {string}
+         * @param value {string}
+         */
+        applyFilter(filter, value) {
+
+            switch(filter) {
+
+                case 'category':
+                    this.setState({
+                        filterCategory: value,
+                    }, false);
+                    break;
+
+                case 'tag':
+                    this.setState({
+                        filterTag: value,
+                    }, false);
+                    break;
+
+                case 'search':
+                    this.setState({
+                        filterSearch: value,
+                    }, false);
+                    break;
+
+                case 'order':
+                    this.setState({
+                        sortType: value,
+                    }, false);
+                    break;
+
+                default:
+                    throw new Error('Invalid filter: ' + filter);
+
+            }
+
 
             this.setState({
-
-                selectedSort: button.value,
                 products: [],
                 skip: 0,
                 count: 0,
-                hasMoreProducts : true,
-
-            });
+                hasMore: true
+            }, false);
 
             this.fetchNextGroup();
+
         }
 
-        $changeView(button) {
-            this.setState({ selectedView: button.value });
+        /**
+         * Apply View type to catalog
+         * @param type {string}
+         */
+        view(type) {
+            this.state = {
+                viewType: type
+            };
         }
 
     });
