@@ -168,11 +168,11 @@
   "card_add_cart": "Aggiungi al carrello",
 
   "catalog_side_categories" : "Categorie",
-  "catalog_side_tag" : "Tags",
+  "catalog_side_tags" : "Tags",
   "catalog_main_results" : "risultati",
   "catalog_main_search" : "Cerca",
   "catalog_main_orderby" : "Ordina per",
   "catalog_main_views" : "Visualizza",
   "catalog_side_allcategories" : "Tutte le categorie",
-  "catalog_side_alltags" : "Tutte i tags"
+  "catalog_side_alltags" : "Tutti i tags"
 }
