@@ -23,7 +23,65 @@
  *
  */
 
-.round{
-  height: 30px !important;
-  border-radius: 60px !important;
+.ui-catalog {
+
+  & .ui-catalog-side {
+
+    @extend .col-2;
+    @extend .px-5;
+    @extend .show-only-desktop;
+
+    h4 {
+      @extend .ui-font-title-primary;
+    }
+
+    ul {
+      @extend .list-unstyled;
+
+      li {
+
+        button {
+          @extend .btn;
+          @extend .btn-primary;
+        }
+      }
+    }
+
+    & .ui-catalog-side-search {
+
+    }
+
+    & .ui-catalog-side-filter {
+
+    }
+
+  }
+
+
+  & .ui-catalog-main {
+
+    & .ui-catalog-main-header {
+
+        p {
+
+        }
+
+    }
+
+    & .ui-catalog-main-body {
+
+      @extend .d-flex;
+      @extend .flex-wrap;
+      @extend .align-items-start;
+
+      & .ui-catalog-main-body-card {
+
+        @extend .w-100;
+
+      }
+
+    }
+
+  }
+
 }
