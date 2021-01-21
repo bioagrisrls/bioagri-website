@@ -87,6 +87,16 @@
         }
       }
 
+      .ui-side-menu-content-icons {
+        @extend .text-center;
+        @extend .my-5;
+        span {
+          @extend .mx-1;
+          @extend .text-dark;
+          cursor: pointer;
+        }
+      }
+
     }
 
   }

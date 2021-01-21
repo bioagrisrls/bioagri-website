@@ -149,11 +149,11 @@
     <div class="ui-footer-copy p-3">
         <div class="text-center">
             <div class="p-3">
-                <a href="?lang=IT"><img src="/assets/img/flags/IT.png" alt="IT"></a>
-                <a href="?lang=EN"><img src="/assets/img/flags/GB.png" alt="EN"></a>
-                <a href="?lang=DE"><img src="/assets/img/flags/DE.png" alt="DE"></a>
-                <a href="?lang=FR"><img src="/assets/img/flags/FR.png" alt="FR"></a>
-                <a href="?lang=ES"><img src="/assets/img/flags/ES.png" alt="ES"></a>
+                <a href="?lang=IT"><img ui-animated-hover="flip" class="mx-1" src="/assets/img/flags/IT.svg" width="18" height="18" alt="IT"></a>
+                <a href="?lang=EN"><img ui-animated-hover="flip" class="mx-1" src="/assets/img/flags/EN.svg" width="18" height="18" alt="EN"></a>
+                <a href="?lang=DE"><img ui-animated-hover="flip" class="mx-1" src="/assets/img/flags/DE.svg" width="18" height="18" alt="DE"></a>
+                <a href="?lang=FR"><img ui-animated-hover="flip" class="mx-1" src="/assets/img/flags/FR.svg" width="18" height="18" alt="FR"></a>
+                <a href="?lang=ES"><img ui-animated-hover="flip" class="mx-1" src="/assets/img/flags/ES.svg" width="18" height="18" alt="ES"></a>
             </div>
             <p>{{ copyright }}</p>
         </div>

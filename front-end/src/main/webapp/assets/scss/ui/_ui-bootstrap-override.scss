@@ -314,6 +314,9 @@ $utilities: map-merge(
 
 }
 
+.btn-close {
+  @extend .bg-light;
+}
 
 .btn-block {
   @extend .d-block;
