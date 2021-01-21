@@ -39,7 +39,10 @@
                     api('/categories'),
                 ]).then(response => {
 
+
                     return {
+
+                        state: 'working',
 
                         products: [],
                         wishlist: [],
@@ -72,6 +75,7 @@
 
                     };
 
+
                 })
 
             );
@@ -82,6 +86,7 @@
 
             authenticated(false)
                 .then(() => this.wish())
+                .catch(() => undefined);
 
 
             $(document).on('auth-connection-occurred', () => {
@@ -99,6 +104,45 @@
             });
 
 
+
+            const promises = [];
+
+            for(let i of this.state.tags) {
+
+                promises.push(
+                    api('/products/count?filter-by=tags.id&filter-val=' + i.id, 'GET', {}, false)
+                        .then(response => response.text())
+                );
+
+            }
+
+            for(let i of this.state.categories) {
+
+                promises.push(
+                    api('/products/count?filter-by=categories.id&filter-val=' + i.id, 'GET', {}, false)
+                        .then(response => response.text())
+                );
+
+            }
+
+
+            Promise.all(promises).then(response => {
+
+                this.state = {
+
+                    tags: this.state.tags.map(
+                        (i, j) => Object.assign(i, { count: response[j] })
+                    ),
+
+                    categories: this.state.categories.map(
+                        (i, j) => Object.assign(i, { count: response[j] })
+                    )
+
+                }
+
+            });
+
+
             this.fetch();
 
         }
@@ -110,13 +154,20 @@
 
         /**
          * Fetch next group of products applying filters.
+         * @param restoreScroll {boolean}
          */
-        fetch() {
+        fetch(restoreScroll = false) {
 
             const fetchSize = 9;
             const products = this.state.products;
+            const window_offset = window.pageYOffset;
 
             if(this.state.hasMore) {
+
+                this.state = {
+                    state: 'working'
+                };
+
 
                 const query = [];
 
@@ -145,7 +196,8 @@
                         if(+count === 0) {
 
                             this.state = {
-                                hasMore: false
+                                hasMore: false,
+                                state: 'ready'
                             };
 
                         } else {
@@ -158,17 +210,16 @@
 
                                     (response || []).forEach(e => products.push(e.id));
 
-
-                                    const window_offset = window.pageYOffset;
-
                                     this.state = {
                                         products: products,
                                         skip: this.state.skip + (response || []).length,
                                         count: count,
-                                        hasMore: (response || []).length === fetchSize
+                                        hasMore: (response || []).length === fetchSize,
+                                        state: 'ready'
                                     };
 
-                                    window.scrollTo(0, window_offset);
+                                    if(restoreScroll)
+                                        window.scrollTo(0, window_offset);
 
                                 });
 

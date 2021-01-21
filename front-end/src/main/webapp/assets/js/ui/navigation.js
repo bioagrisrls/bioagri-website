@@ -44,6 +44,9 @@ const navigate = (url, data = undefined, container = '#ui-navigation-container',
 
     if (window.history && window.history.pushState) {
 
+        if(window.history.scrollRestoration)
+            window.history.scrollRestoration = 'manual';
+
 
         let prog = $('#ui-navigation-progress-bar').show()
             .css('width', '33%')
@@ -114,7 +117,6 @@ const navigate = (url, data = undefined, container = '#ui-navigation-container',
             })
                 .then(() => Component.run())
                 .then(() => prog.hide())
-                .then(() => window.scrollTo(0, 0))
                 .then(() => $(document).trigger('ui-ready'))
 
             .catch(reason => {
@@ -138,7 +140,7 @@ const navigate = (url, data = undefined, container = '#ui-navigation-container',
     } else {
 
         console.warn("window.history not supported, fallback to window.location :(");
-        window.location.href = this.href;
+        window.location.href = url;
 
     }
 

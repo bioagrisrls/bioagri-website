@@ -38,19 +38,36 @@
       position: sticky;
       top: 5rem;
 
+      @extend .p-5;
+      @extend .shadow-sm;
+
+
       h4 {
         @extend .ui-font-title-primary;
+        @extend .text-dark;
+        @extend .mt-5;
       }
 
       ul {
+
         @extend .list-unstyled;
 
         li {
 
-          button {
-            @extend .btn;
-            @extend .btn-primary;
+          @extend .my-1;
+
+          div {
+
+            @extend .clearfix;
+            @extend .text-dark;
+            cursor: pointer;
+
+            &.active {
+              @extend .text-secondary;
+            }
+
           }
+
         }
       }
 
@@ -72,23 +89,23 @@
     @extend .col-12;
     @extend .col-lg-9;
 
-    & .ui-catalog-main-header {
+
+    .ui-catalog-main-header {
 
         p {
-
+          @extend .text-end;
+          @extend .px-3;
         }
 
     }
 
-    & .ui-catalog-main-body {
+    .ui-catalog-main-body {
 
       @extend .d-flex;
       @extend .flex-wrap;
       @extend .justify-content-start;
 
-
-
-      & .ui-catalog-main-body-card {
+      .ui-catalog-main-body-card {
 
         @extend .m-2;
         @extend .flex-basis-1;
@@ -96,6 +113,24 @@
         @extend .flex-basis-lg-3;
         @extend .position-relative;
 
+      }
+
+    }
+
+    .ui-catalog-main-footer {
+
+      @extend .text-center;
+      @extend .m-5;
+
+      button {
+        @extend .btn;
+        @extend .btn-primary;
+        @extend .ui-font-title-primary;
+        @extend .fs-3;
+
+        span {
+          @extend .ps-1;
+        }
       }
 
     }
