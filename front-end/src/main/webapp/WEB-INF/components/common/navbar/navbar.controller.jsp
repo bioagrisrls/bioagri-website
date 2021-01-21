@@ -81,14 +81,7 @@
             });
 
 
-
-            const chk = document.querySelector('#' + this.id + '-dark-mode-switch');
-            const checked = localStorage.getItem('X-Interface-Dark-Mode') === 'true';
-
-            if(chk)
-                chk.checked = checked;
-
-            this.onDarkModeSwitched(checked);
+            this.onDarkModeSwitched(localStorage.getItem('X-Interface-Dark-Mode') === 'true');
 
         }
 
@@ -111,16 +104,21 @@
             Component.render(Component.dummy('side-menu'), `${components.users_account_side}`, this.state);
         }
 
-        onDarkModeSwitched(checked) {
+        onDarkModeSwitched(checked = undefined) {
 
             const theme = document.querySelector('#ui-theme-stylesheet');
             const check = document.querySelector('#' + this.id + '-dark-mode');
+            const chkbx = document.querySelector('#' + this.id + '-dark-mode-switch');
 
             if(!theme)
                 throw new Error('theme cannot be null');
 
             if(!check)
                 throw new Error('check cannot be null');
+
+
+            if(checked === undefined)
+                checked = !(localStorage.getItem('X-Interface-Dark-Mode') === 'true');
 
 
             if(checked) {
@@ -138,6 +136,11 @@
                 check.title = '${locale.nav_nightmode}';
 
             }
+
+
+            if(chkbx && !!chkbx.checked !== checked)
+                chkbx.checked = checked;
+
 
             localStorage.setItem('X-Interface-Dark-Mode', checked.toString());
 
