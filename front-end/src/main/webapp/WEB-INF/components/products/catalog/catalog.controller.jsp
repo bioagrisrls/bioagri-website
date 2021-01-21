@@ -67,6 +67,7 @@
                             search:         `${locale.catalog_main_search}`,
                             orderby:        `${locale.catalog_main_orderby}`,
                             views:          `${locale.catalog_main_views}`,
+                            more:           `${locale.catalog_main_more}`,
                         }
 
                     };
@@ -98,7 +99,7 @@
             });
 
 
-            this.fetchNextGroup();
+            this.fetch();
 
         }
 
@@ -110,7 +111,7 @@
         /**
          * Fetch next group of products applying filters.
          */
-        fetchNextGroup() {
+        fetch() {
 
             const fetchSize = 9;
             const products = this.state.products;
@@ -157,12 +158,17 @@
 
                                     (response || []).forEach(e => products.push(e.id));
 
+
+                                    const window_offset = window.pageYOffset;
+
                                     this.state = {
                                         products: products,
                                         skip: this.state.skip + (response || []).length,
                                         count: count,
                                         hasMore: (response || []).length === fetchSize
                                     };
+
+                                    window.scrollTo(0, window_offset);
 
                                 });
 
@@ -241,7 +247,8 @@
                 hasMore: true
             }, false);
 
-            this.fetchNextGroup();
+
+            this.fetch();
 
         }
 

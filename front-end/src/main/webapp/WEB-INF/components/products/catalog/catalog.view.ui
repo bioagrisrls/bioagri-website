@@ -30,79 +30,82 @@
         <!-- Sidebar -->
         <div class="ui-catalog-side">
 
-            <div class="ui-catalog-side-search">
-                <form>
-                    <div class="input-group mb-3">
+            <div class="ui-catalog-side-bar">
 
-                        <input id="{{this.id}}-search-bar"
-                               type="text"
-                               class="form-control"
-                               placeholder="{{strings.search}}"
-                               value="{{filterSearch}}">
+                <div class="ui-catalog-side-search">
+                    <form>
+                        <div class="input-group mb-3">
 
-                        <button type="button"
-                                class="btn btn-secondary"
-                                onclick="$$.applyFilter('search', $('#{{this.id}}-search-bar').text())">
-                            <span class="mdi mdi-24px mdi-magnify"></span>
-                        </button>
+                            <input id="{{this.id}}-search-bar"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="{{strings.search}}"
+                                   value="{{filterSearch}}">
 
-                    </div>
-                </form>
-            </div>
+                            <button type="button"
+                                    class="btn btn-secondary"
+                                    onclick="$$.applyFilter('search', $('#{{this.id}}-search-bar').text())">
+                                <span class="mdi mdi-24px mdi-magnify"></span>
+                            </button>
+
+                        </div>
+                    </form>
+                </div>
 
 
-            <div class="ui-catalog-side-filters">
+                <div class="ui-catalog-side-filters">
 
-                <h4>{{strings.categories}}</h4>
+                    <h4>{{strings.categories}}</h4>
 
-                <ul>
-                    <li>
-                        <button value=""
-                                class="{{ filterCategory === '' ? 'active' : '' }}"
-                                onclick="$$.applyFilter('category', this.value)">{{strings.allcategories}}</button>
-                    </li>
-
-                    <? for (let i of categories) { ?>
-
+                    <ul>
                         <li>
-                            <button value="{{i.id}}"
-                                    class="{{ filterCategory === i.id ? 'active' : '' }}"
-                                    onclick="$$.applyFilter('category', this.value)">{{i.name}}</button>
+                            <button value=""
+                                    class="{{ filterCategory === '' ? 'active' : '' }}"
+                                    onclick="$$.applyFilter('category', this.value)">{{strings.allcategories}}</button>
                         </li>
 
-                    <? } ?>
-                </ul>
+                        <? for (let i of categories) { ?>
+
+                            <li>
+                                <button value="{{i.id}}"
+                                        class="{{ filterCategory === i.id ? 'active' : '' }}"
+                                        onclick="$$.applyFilter('category', this.value)">{{i.name}}</button>
+                            </li>
+
+                        <? } ?>
+                    </ul>
 
 
-                <h4>{{strings.tags}}</h4>
+                    <h4>{{strings.tags}}</h4>
 
-                <ul>
-                    <li>
-                        <button value=""
-                                class="{{ filterTag === '' ? 'active' : '' }}"
-                                onclick="$$.applyFilter('tag', this.value)">{{strings.alltags}}</button>
-                    </li>
-
-                    <? for (let i of tags) { ?>
-
+                    <ul>
                         <li>
-                            <button value="{{i.id}}"
-                                    class="{{ filterTag === i.id ? 'active' : '' }}"
-                                    onclick="$$.applyFilter('tag', this.value)">{{i.hashtag}}</button>
+                            <button value=""
+                                    class="{{ filterTag === '' ? 'active' : '' }}"
+                                    onclick="$$.applyFilter('tag', this.value)">{{strings.alltags}}</button>
                         </li>
 
-                    <? } ?>
-                </ul>
+                        <? for (let i of tags) { ?>
+
+                            <li>
+                                <button value="{{i.id}}"
+                                        class="{{ filterTag === i.id ? 'active' : '' }}"
+                                        onclick="$$.applyFilter('tag', this.value)">{{i.hashtag}}</button>
+                            </li>
+
+                        <? } ?>
+                    </ul>
+
+                </div>
 
             </div>
-
 
         </div>
 
 
 
         <!-- Catalog -->
-        <div class="ui-catalog-main" >
+        <div class="ui-catalog-main">
 
             <!-- Catalog Header-->
             <div class="ui-catalog-main-header">
@@ -118,7 +121,7 @@
 
                 <? for (let i of products) { ?>
 
-                    <div class="ui-catalog-main-body-card {{ viewType === 'block' ? 'w-sm-50 w-md-33' : '' }}">
+                    <div class="ui-catalog-main-body-card">
 
                         <ui-card id="{{this.id}}-card-{{i}}-{{viewType}}"
                                  ui:id="{{i}}"
@@ -127,6 +130,13 @@
                     </div>
 
                 <? } ?>
+
+            </div>
+
+            <!-- Catalog Footer -->
+            <div class="ui-catalog-main-footer">
+
+                <button onclick="$$.fetch()">{{strings.more}} &darr;</button>
 
             </div>
 

@@ -112,9 +112,10 @@ const navigate = (url, data = undefined, container = '#ui-navigation-container',
 
 
             })
-              .then(() => Component.run())
-              .then(() => prog.hide())
-              .then(() => $(document).trigger('ui-ready'))
+                .then(() => Component.run())
+                .then(() => prog.hide())
+                .then(() => window.scrollTo(0, 0))
+                .then(() => $(document).trigger('ui-ready'))
 
             .catch(reason => {
 

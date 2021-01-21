@@ -218,13 +218,12 @@ class Component {
      * Render a component into his own HTML Element.
      * @param instance {Component}
      * @param template {string}
-     * @param rendered {boolean}
+     * @param recursive {boolean}
      * @param state {object}
      */
-    static render(instance, template, state = {}, rendered = false) {
+    static render(instance, template, state = {}, recursive = false) {
 
-
-        if(rendered)
+        if(recursive)
             $(instance.elem).html(instance.renderedHTML = template);
         else
             $(instance.elem).html((instance.renderedHTML = $renderTemplate(instance, template, state)));

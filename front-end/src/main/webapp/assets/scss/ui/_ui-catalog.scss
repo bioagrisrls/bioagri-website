@@ -25,33 +25,42 @@
 
 .ui-catalog {
 
+  @extend .px-5;
+
+
   & .ui-catalog-side {
 
-    @extend .col-2;
-    @extend .px-5;
+    @extend .col-3;
     @extend .show-only-desktop;
 
-    h4 {
-      @extend .ui-font-title-primary;
-    }
+    .ui-catalog-side-bar {
 
-    ul {
-      @extend .list-unstyled;
+      position: sticky;
+      top: 5rem;
 
-      li {
+      h4 {
+        @extend .ui-font-title-primary;
+      }
 
-        button {
-          @extend .btn;
-          @extend .btn-primary;
+      ul {
+        @extend .list-unstyled;
+
+        li {
+
+          button {
+            @extend .btn;
+            @extend .btn-primary;
+          }
         }
       }
-    }
 
-    & .ui-catalog-side-search {
+      .ui-catalog-side-search {
 
-    }
+      }
 
-    & .ui-catalog-side-filter {
+      .ui-catalog-side-filter {
+
+      }
 
     }
 
@@ -59,6 +68,9 @@
 
 
   & .ui-catalog-main {
+
+    @extend .col-12;
+    @extend .col-lg-9;
 
     & .ui-catalog-main-header {
 
@@ -72,11 +84,17 @@
 
       @extend .d-flex;
       @extend .flex-wrap;
-      @extend .align-items-start;
+      @extend .justify-content-start;
+
+
 
       & .ui-catalog-main-body-card {
 
-        @extend .w-100;
+        @extend .m-2;
+        @extend .flex-basis-1;
+        @extend .flex-basis-md-2;
+        @extend .flex-basis-lg-3;
+        @extend .position-relative;
 
       }
 

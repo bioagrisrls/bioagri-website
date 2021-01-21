@@ -183,6 +183,27 @@ $utilities: map-merge(
   )
 );
 
+
+//
+// Flex Basis
+//
+$utilities: map-merge(
+  $utilities, (
+    "flex-basis-responsive": (
+      property: flex,
+      class: flex-basis,
+      responsive: true,
+      values: (
+        1: 51%,
+        2: 34%,
+        3: 26%,
+        4: 21%,
+        auto: auto,
+      )
+    )
+  )
+);
+
 //
 // Clearfix
 //
