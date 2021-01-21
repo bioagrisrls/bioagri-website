@@ -170,8 +170,8 @@
                         <? } ?>
                     <? } else { ?>
 
-                        <p class="ui-catalog-main-body-no-result">
-                            {{strings.}}
+                        <p class="ui-catalog-main-body-empty">
+                            {{strings.empty}}
                         </p>
 
                     <? } ?>

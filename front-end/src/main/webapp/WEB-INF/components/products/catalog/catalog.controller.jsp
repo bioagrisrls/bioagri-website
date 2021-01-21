@@ -71,6 +71,7 @@
                             orderby:        `${locale.catalog_main_orderby}`,
                             views:          `${locale.catalog_main_views}`,
                             more:           `${locale.catalog_main_more}`,
+                            empty:          `${locale.catalog_main_empty}`,
                         }
 
                     };
