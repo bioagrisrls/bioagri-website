@@ -94,10 +94,14 @@
 
             <div class="row">
 
-                <? if(tags.length > 0) { ?>
-                    <? const t = tags.join() ?>
+                <? let names = [];
+                   tags.forEach(e => names.push(e.hashtag));
+                ?>
+
+                <? if(names.length > 0) {
+                    const t = names.join() ?>
                     <div>
-                        <p class="ui-card-tags">{{ t }}</p>
+                        <p class="ui-card-tags-{{product.id}}">{{ t }}</p>
                     </div>
                 <? } ?>
 
