@@ -42,9 +42,10 @@
  * @param password {string}
  * @param store {boolean}
  * @param token {string}
+ * @param triggerEvent {boolean}
  * @returns {Promise<* | void>}
  */
-const authenticate = async (username, password, store = false, token = '') => {
+const authenticate = async (username, password, store = false, token = '', triggerEvent = true) => {
 
     return api('/auth/authenticate', 'POST', {
 
@@ -65,7 +66,8 @@ const authenticate = async (username, password, store = false, token = '') => {
             sessionStorage.setItem('X-Auth-UserInfo-Role', response.userRole);
 
 
-            $(document).trigger('auth-connection-occurred');
+            if(triggerEvent)
+                $(document).trigger('auth-connection-occurred');
 
             return response;
 
@@ -80,9 +82,10 @@ const authenticate = async (username, password, store = false, token = '') => {
 /**
  * Disconnect from back-end and clear all authentication data.
  * @param redirectToHome {boolean}
+ * @param triggerEvent {boolean}
  * @returns {Promise<* | void>}
  */
-const disconnect = async (redirectToHome= true) => {
+const disconnect = async (redirectToHome= true, triggerEvent = true) => {
 
     return api('/auth/disconnect', 'POST', {}, false).then(
         response => {
@@ -96,7 +99,8 @@ const disconnect = async (redirectToHome= true) => {
                 navigate('/');
 
 
-            $(document).trigger('auth-disconnection-occurred');
+            if(triggerEvent)
+                $(document).trigger('auth-disconnection-occurred');
 
             return response;
 
@@ -110,9 +114,10 @@ const disconnect = async (redirectToHome= true) => {
 
 /**
  * Check if client is currently authenticated.
+ * @param triggerEvent {boolean}
  * @returns {Promise<* | void>}
  */
-const authenticated = async () => api('/auth/verify', 'GET', {}, false).catch(reason => {
+const authenticated = async (triggerEvent = true) => api('/auth/verify', 'GET', {}, false).catch(reason => {
 
     if(localStorage.getItem('X-Auth-Username')) {
 
@@ -120,6 +125,9 @@ const authenticated = async () => api('/auth/verify', 'GET', {}, false).catch(re
 
             localStorage.getItem('X-Auth-Username'),
             localStorage.getItem('X-Auth-Password'),
+            false,
+            '',
+            triggerEvent
 
         ).catch(reason => {
 

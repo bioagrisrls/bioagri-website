@@ -23,183 +23,111 @@
   ~
   -->
 
-<div class="ui-container">
+<div class="ui-catalog">
 
     <div class="row">
 
-        <!--Left Menù -->
-        <div class="col col-lg-2 d-none d-sm-block d-sm-none d-md-block d-md-none d-lg-block pt-3">
+        <!-- Sidebar -->
+        <div class="ui-catalog-side">
 
-            <h4>Categorie</h4>
-            <hr>
+            <div class="ui-catalog-side-search">
+                <form>
+                    <div class="input-group mb-3">
 
-            <ul class="list-unstyled">
+                        <input id="{{this.id}}-search-bar"
+                               type="text"
+                               class="form-control"
+                               placeholder="{{strings.search}}"
+                               value="{{filterSearch}}">
 
-                <li><button value=""
-                            onclick="$$.$selectCategory(this)"
-                            class="list-group-item list-group-item-action {{ category === '' ? 'active' : 'text-dark'}}">
-                    Tutte le Categorie
-                </button></li>
+                        <button type="button"
+                                class="btn btn-secondary"
+                                onclick="$$.applyFilter('search', $('#{{this.id}}-search-bar').text())">
+                            <span class="mdi mdi-24px mdi-magnify"></span>
+                        </button>
 
-                <? for (let c of categories) { ?>
+                    </div>
+                </form>
+            </div>
 
-                    <li><button value="{{ c.id }}"
-                                onclick="$$.$selectCategory(this)"
-                                class="list-group-item list-group-item-action {{ category == c.id ? 'active' : 'text-dark'}}">
-                        {{ c.name }}
-                    </button></li>
 
-                <? } ?>
+            <div class="ui-catalog-side-filters">
 
-            </ul>
+                <h4>{{strings.categories}}</h4>
 
-            <br>
+                <ul>
+                    <li>
+                        <button value=""
+                                class="{{ filterCategory === '' ? 'active' : '' }}"
+                                onclick="$$.applyFilter('category', this.value)">{{strings.allcategories}}</button>
+                    </li>
 
-            <h4>Tag</h4>
-            <hr>
+                    <? for (let i of categories) { ?>
 
-            <ul class="list-unstyled">
+                        <li>
+                            <button value="{{i.id}}"
+                                    class="{{ filterCategory === i.id ? 'active' : '' }}"
+                                    onclick="$$.applyFilter('category', this.value)">{{i.name}}</button>
+                        </li>
 
-                <li><button value=""
-                            onclick="$$.$selectTag(this)"
-                            class="list-group-item list-group-item-action {{ tag === '' ? 'active' : 'text-dark'}}">
-                    Tutte le Categorie
-                </button></li>
+                    <? } ?>
+                </ul>
 
-                <? for (let t of tags) { ?>
 
-                <li><button value="{{ t.id }}"
-                            onclick="$$.$selectTag(this)"
-                            class="list-group-item list-group-item-action {{ tag == t.id ? 'active' : 'text-dark'}}">
-                    {{ t.hashtag }}
-                </button></li>
+                <h4>{{strings.tags}}</h4>
 
-                <? } ?>
+                <ul>
+                    <li>
+                        <button value=""
+                                class="{{ filterTag === '' ? 'active' : '' }}"
+                                onclick="$$.applyFilter('tag', this.value)">{{strings.alltags}}</button>
+                    </li>
 
-            </ul>
+                    <? for (let i of tags) { ?>
+
+                        <li>
+                            <button value="{{i.id}}"
+                                    class="{{ filterTag === i.id ? 'active' : '' }}"
+                                    onclick="$$.applyFilter('tag', this.value)">{{i.hashtag}}</button>
+                        </li>
+
+                    <? } ?>
+                </ul>
+
+            </div>
 
 
         </div>
 
 
+
         <!-- Catalog -->
-        <div class="col col-lg-10 col-md-12 col-sm-12 border rounded w-sm-100 w-md-100 pt-3 pb-5" >
-
-            <!-- Search-->
-            <div class="row">
-
-                <div class="input-group input-group-sm mb-3">
-
-                    <div class="input-group-prepend">
-
-                        <button class="btn btn-sm"
-                                onclick="$$.$search()"
-                                type="button">
-                            <span class="mdi mdi-magnify mdi-24px"></span>
-                        </button>
-
-                    </div>
-
-                    <input id ="searchText"
-                           onkeypress="$$.$searchKey(event)"
-                           type="search"
-                           class="form-control round mt-2"
-                           placeholder="Cerca"
-                           value="{{ search === '' ? '' : search }}">
-
-                </div>
-
-            </div>
+        <div class="ui-catalog-main" >
 
             <!-- Catalog Header-->
-            <div class="row border-bottom pt-3 px-3">
+            <div class="ui-catalog-main-header">
 
-                <div class="col col-5">
-                    <p>{{ count }} risultati</p>
-                </div>
-
-                <div class="col col-4 float-end">
-
-                        <div class="form-group">
-
-                            <label for="toggle-group-sort">Ordina per:</label>
-
-                            <select id="toggle-group-sort"
-                                    class="custom-select"
-                                    onchange="$$.$changeSort(this)"
-                                    required>
-
-                                <option value="createdAt&order=asc"
-                                        {{ selectedSort ===  'createdAt&order=asc' ? 'selected' : '' }} >
-                                Recenti
-                                </option>
-
-                                <option value="price&order=asc"
-                                        {{ selectedSort ===  'price&order=asc' ? 'selected' : '' }} >
-                                Prezzo Basso
-                                </option>
-
-                                <option value="price&order=desc"
-                                        {{ selectedSort ===  'price&order=desc' ? 'selected' : '' }} >
-                                Prezzo Alto
-                                </option>
-
-                                <option value="name&order=asc"
-                                        {{ selectedSort ===  'name&order=asc' ? 'selected' : '' }} >
-                                Alfabetico(a-Z)
-                                </option>
-
-                                <option value="name&order=desc"
-                                        {{ selectedSort ===  'name&order=desc' ? 'selected' : '' }}>
-                                Alfabetico(A-z)
-                                </option>
-
-                            </select>
-                        </div>
-
-                </div>
-
-                <div class="col col-3 float-end">
-
-                        <div class="form-group">
-
-                            <label for="toggle-group-view">Visualizza:</label>
-
-                            <select id="toggle-group-view"
-                                    class="custom-select"
-                                    onchange="$$.$changeView(this)"
-                                    required>
-
-                                <option value="block"
-                                        {{ selectedView ===  'block' ? 'selected' : '' }} >
-                                Griglia
-                                </option>
-
-                                <option value="row"
-                                        {{ selectedView ===  'row' ? 'selected' : '' }} >
-                                Riga
-                                </option>
-
-                            </select>
-                        </div>
-                </div>
+                <p>
+                    {{count}} {{strings.results}}
+                </p>
 
             </div>
 
-            <!-- Products -->
-            <div class="d-flex flex-wrap align-items-start" >
-                <? for (let product of products) { ?>
-                    <div class="p-2 flex-fill bd-highlight {{ selectedView ===  'block' ? 'w-100 w-sm-50 w-md-33' : 'w-100' }}">
+            <!-- Catalog Body -->
+            <div class="ui-catalog-main-body">
 
-                        <ui-card id="ui-card-{{product}}-{{selectedView}}"
-                                 ui:id="{{product}}"
-                                 ui:view="{{selectedView}}"
-                                 ui:wish="true">
-                        </ui-card>
+                <? for (let i of products) { ?>
+
+                    <div class="ui-catalog-main-body-card {{ viewType === 'block' ? 'w-sm-50 w-md-33' : '' }}">
+
+                        <ui-card id="{{this.id}}-card-{{i}}-{{viewType}}"
+                                 ui:id="{{i}}"
+                                 ui:view="{{viewType}}"></ui-card>
 
                     </div>
 
                 <? } ?>
+
             </div>
 
         </div>
