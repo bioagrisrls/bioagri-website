@@ -164,6 +164,7 @@
 
   "card_not_available" : "/assets/img/products/not-available.png",
   "card_add_wish": "Aggiungi alla tua Lista dei Desideri",
+  "card_added_wish": "Aggiunto alla tua Lista dei Desideri",
   "card_add_cart": "Aggiungi al carrello",
 
   "catalog_side_categories" : "Categorie",
