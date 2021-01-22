@@ -59,18 +59,16 @@
 
             <article>
 
-                <h2 ui-animated-scroll="slideInUp">${locale.details_products_similiar}</h2>
+                <h2 ui-animated-scroll="slideInUp">${locale.details_products_suggest}</h2>
 
                 <div class="ui-details-related-slider" ui-animated-scroll="slideInRight">
-                    <ui-product-related id="ui-details-related-${param.q}-slider-1"></ui-product-related>
+                    <ui-product-related id="ui-details-related-${param.q}-slider-1" ui:id="1" ui:kind="tags"></ui-product-related>
                 </div>
 
             </article>
 
         </section>
 
-        <br>
-        <br>
         <br>
 
         <section class="ui-details-related">
