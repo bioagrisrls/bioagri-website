@@ -153,6 +153,9 @@
         @extend .w-100;
         @extend .text-center;
 
+        animation: fadeIn 0.4s linear;
+
+
         p {
           @extend .text-muted;
           @extend .ui-font-title-primary;

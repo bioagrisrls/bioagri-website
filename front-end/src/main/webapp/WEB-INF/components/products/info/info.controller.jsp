@@ -67,13 +67,6 @@
             return `${components.products_info}`
         }
 
-        onLoading() {
-            return `${components.products_info_loading}`
-        }
-
-        onError() {
-            return `${components.products_info_error}`
-        }
 
         goToFeedbacks() {
             this.setState({current: 'feedbacks'});

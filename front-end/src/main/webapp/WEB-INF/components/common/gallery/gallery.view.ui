@@ -23,10 +23,10 @@
   ~
   -->
 
-<div>
+<div class="ui-gallery">
 
     <!-- Gallery Carousel -->
-    <div id="gallery-carousel" class="carousel carousel-dark slide mb-4" data-ride="carousel">
+    <div id="{{this.id}}-gallery-carousel" class="carousel carousel-dark slide mb-4" data-ride="carousel">
 
         <div class="carousel-inner">
 
@@ -63,9 +63,11 @@
 
                     <ui-image id="{{this.id}}-carousel-image-preview-{{j}}"
                               onclick="$$.goTo({{j}})"
-                              ui:src="{{ image }}"
+                              ui:src="{{image}}"
                               ui:width="100%"
-                              ui:height="100%">
+                              ui:height="100%"
+                              ui:position="center"
+                              ui:size="100% 800px">
                     </ui-image>
 
                 </div>

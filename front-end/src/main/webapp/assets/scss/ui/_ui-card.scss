@@ -54,6 +54,7 @@
       .ui-card-title {
         h1 {
           @extend .ui-font-title-primary;
+          @extend .p-0;
         }
       }
 

@@ -27,7 +27,7 @@
 <%--@elvariable id="locale" type="java.util.Map"--%>
 <%--@elvariable id="reference" type="java.lang.String"--%>
 
-<section id="ui-navigation-container" ui-title="${param.name} &ndash; ${locale.page_details} &ndash; ${locale.info_title}">
+<section id="ui-navigation-container" ui-title="${param.product} &ndash; ${locale.page_details} &ndash; ${locale.info_title}">
 
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ></ui-navbar>
@@ -38,7 +38,7 @@
     <div class="ui-container">
 
         <!-- Breadcrumb -->
-        <ui-breadcrumb id="ui-breadcrumb-8" ui:current="${param.name}" ui:urls="/catalog" ui:path="${locale.page_catalog},"></ui-breadcrumb>
+        <ui-breadcrumb id="ui-breadcrumb-8" ui:current="${param.product}" ui:urls="/catalog" ui:path="${locale.page_catalog}"></ui-breadcrumb>
 
     </div>
 
@@ -50,7 +50,7 @@
         <div class="ui-container">
 
             <!-- Product Info -->
-            <ui-product-info id="ui-product-info-${param.id}" ui:id="${param.id}"></ui-product-info>
+            <ui-product-info id="ui-product-info-${param.q}" ui:id="${param.q}"></ui-product-info>
 
 
         </div>

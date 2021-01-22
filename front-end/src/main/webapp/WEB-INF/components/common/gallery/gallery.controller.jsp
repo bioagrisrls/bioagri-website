@@ -52,13 +52,6 @@
             return `${components.common_gallery}`
         }
 
-        onLoading() {
-            return `${components.common_gallery_loading}`
-        }
-
-        onError() {
-            return `${components.common_gallery_error}`
-        }
 
         nextTo() {
 
