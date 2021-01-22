@@ -39,6 +39,7 @@
                     api("/products/" + (props.id || '')),
                     api('/products/' + (props.id || '') + '/images'),
                     api('/products/' + (props.id || '') + '/tags'),
+                    api('/products/' + (props.id || '') + '/votes/avg', 'GET', {}, 'text'),
 
                 ]).then(response => {
 
@@ -46,6 +47,7 @@
                         product: response[0].status === 'fulfilled' ? response[0].value : {},
                         image: response[1].status === 'fulfilled' ? response[1].value[0] : '${locale.card_not_avaliable}',
                         tags: response[2].status === 'fulfilled' ? response[2].value : {},
+                        average: response[3].status === 'fulfilled' ? response[3].value : {},
                         view: props.view || 'block',
                         wish: props.wish || true,
                         cart: props.cart || true,
@@ -68,11 +70,11 @@
             authenticated().then(() => {
 
                     if (this.state.likes === true){
-                        api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + this.state.product.id, 'DELETE', {}, false);
+                        api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + this.state.product.id, 'DELETE', {}, 'raw');
                         this.setState({likes: false}, false)
                     }
                     else {
-                        api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + this.state.product.id, 'POST', {}, false);
+                        api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + this.state.product.id, 'POST', {}, 'raw');
                         this.setState({likes: true}, false)
                     }
 

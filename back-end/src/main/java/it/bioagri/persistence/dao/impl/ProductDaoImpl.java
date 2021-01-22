@@ -59,6 +59,7 @@ public class ProductDaoImpl extends ProductDao {
                             r.getLong("id"),
                             r.getString("name"),
                             r.getString("description"),
+                            r.getString("info"),
                             r.getFloat("price"),
                             r.getFloat("discount"),
                             r.getInt("stock"),
@@ -90,6 +91,7 @@ public class ProductDaoImpl extends ProductDao {
                         r.getLong("id"),
                         r.getString("name"),
                         r.getString("description"),
+                        r.getString("info"),
                         r.getFloat("price"),
                         r.getFloat("discount"),
                         r.getInt("stock"),
@@ -118,12 +120,13 @@ public class ProductDaoImpl extends ProductDao {
                         s.setLong(1, value.getId());
                         s.setString(2, value.getName());
                         s.setString(3, value.getDescription());
-                        s.setFloat(4, value.getPrice());
-                        s.setFloat(5, value.getDiscount());
-                        s.setInt(6, value.getStock());
-                        s.setShort(7, (short) value.getStatus().ordinal());
-                        s.setTimestamp(8, value.getCreatedAt());
-                        s.setTimestamp(9, value.getUpdatedAt());
+                        s.setString(4, value.getInfo());
+                        s.setFloat(5, value.getPrice());
+                        s.setFloat(6, value.getDiscount());
+                        s.setInt(7, value.getStock());
+                        s.setShort(8, (short) value.getStatus().ordinal());
+                        s.setTimestamp(9, value.getCreatedAt());
+                        s.setTimestamp(10, value.getUpdatedAt());
                     });
 
     }
@@ -140,13 +143,14 @@ public class ProductDaoImpl extends ProductDao {
                     s -> {
                         s.setString(1, newValue.getName());
                         s.setString(2, newValue.getDescription());
-                        s.setFloat(3, newValue.getPrice());
-                        s.setFloat(4, newValue.getDiscount());
-                        s.setInt(5, newValue.getStock());
-                        s.setShort(6, (short) newValue.getStatus().ordinal());
-                        s.setTimestamp(7, newValue.getCreatedAt());
-                        s.setTimestamp(8, newValue.getUpdatedAt());
-                        s.setLong(9, oldValue.getId());
+                        s.setString(3, newValue.getInfo());
+                        s.setFloat(4, newValue.getPrice());
+                        s.setFloat(5, newValue.getDiscount());
+                        s.setInt(6, newValue.getStock());
+                        s.setShort(7, (short) newValue.getStatus().ordinal());
+                        s.setTimestamp(8, newValue.getCreatedAt());
+                        s.setTimestamp(9, newValue.getUpdatedAt());
+                        s.setLong(10, oldValue.getId());
                     });
 
     }

@@ -139,7 +139,7 @@ public final class Feedback implements Model {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Feedback feedback = (Feedback) o;
-        return getId() == feedback.getId();
+        return getId().equals(feedback.getId());
     }
 
     @Override

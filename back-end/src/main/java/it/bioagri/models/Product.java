@@ -37,6 +37,7 @@ public final class Product implements Model {
     private long id;
     private final String name;
     private final String description;
+    private final String info;
     private final float price;
     private final float discount;
     private final int stock;
@@ -54,10 +55,11 @@ public final class Product implements Model {
     private List<Feedback> feedbacks;
 
 
-    public Product(long id, String name, String description, float price, float discount, int stock, ProductStatus status, Timestamp updatedAt, Timestamp createdAt, List<Category> categories, List<Tag> tags, List<Feedback> feedbacks) {
+    public Product(long id, String name, String description, String info, float price, float discount, int stock, ProductStatus status, Timestamp updatedAt, Timestamp createdAt, List<Category> categories, List<Tag> tags, List<Feedback> feedbacks) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.info = info;
         this.price = price;
         this.discount = discount;
         this.stock = stock;
@@ -73,6 +75,7 @@ public final class Product implements Model {
         this.id = 0;
         this.name = null;
         this.description = null;
+        this.info = null;
         this.price = 0;
         this.discount = 0;
         this.stock = 0;
@@ -98,6 +101,10 @@ public final class Product implements Model {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getInfo() {
+        return info;
     }
 
     public Float getPrice() {
@@ -163,7 +170,7 @@ public final class Product implements Model {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return getId() == product.getId();
+        return getId().equals(product.getId());
     }
 
     @Override

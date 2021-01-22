@@ -204,7 +204,7 @@ public final class Transaction implements Model {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transaction that = (Transaction) o;
-        return getId() == that.getId();
+        return getId().equals(that.getId());
     }
 
     @Override

@@ -111,8 +111,7 @@
             for(let i of this.state.tags) {
 
                 promises.push(
-                    api('/products/count?filter-by=tags.id&filter-val=' + i.id, 'GET', {}, false)
-                        .then(response => response.text())
+                    api('/products/count?filter-by=tags.id&filter-val=' + i.id, 'GET', {}, 'text')
                 );
 
             }
@@ -120,8 +119,7 @@
             for(let i of this.state.categories) {
 
                 promises.push(
-                    api('/products/count?filter-by=categories.id&filter-val=' + i.id, 'GET', {}, false)
-                        .then(response => response.text())
+                    api('/products/count?filter-by=categories.id&filter-val=' + i.id, 'GET', {}, 'text')
                 );
 
             }
@@ -190,8 +188,7 @@
                 query.push('sorted-by=' + this.state.sortType);
 
 
-                return api('/products/count?' + query.join('&'), 'GET', {}, false)
-                    .then(check => check.text())
+                return api('/products/count?' + query.join('&'), 'GET', {}, 'text')
                     .then(count => {
 
                         if(+count === 0) {

@@ -56,6 +56,12 @@
                     <span>{{product.price}} &euro; </span>
                 <? } ?>
             </div>
+            <div class="ui-card-stars">
+                <ui-stars id="{{this.id}}-row-{{product.id}}-stars" ui:vote="{{average}}"></ui-stars>
+            </div>
+            <div class="ui-card-buttons">
+                <div class=""
+            </div>
         </div>
     </div>
 

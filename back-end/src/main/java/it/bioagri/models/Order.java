@@ -49,7 +49,7 @@ public final class Order implements Model {
     private User user;
 
 
-    public Order(long id, OrderStatus status, Timestamp createdAt, Timestamp updatedAt, Long userId, List<Map.Entry<Product, Integer>> products, List<Transaction> transactions) {
+    public Order(Long id, OrderStatus status, Timestamp createdAt, Timestamp updatedAt, Long userId, List<Map.Entry<Product, Integer>> products, List<Transaction> transactions) {
         this.id = id;
         this.status = status;
         this.createdAt = createdAt;
@@ -73,7 +73,7 @@ public final class Order implements Model {
         this.id = id;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -133,7 +133,7 @@ public final class Order implements Model {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return getId() == order.getId();
+        return getId().equals(order.getId());
     }
 
     @Override

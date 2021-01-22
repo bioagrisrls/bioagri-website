@@ -59,7 +59,7 @@ public final class Tag implements Model {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tag tag = (Tag) o;
-        return getId() == tag.getId();
+        return getId().equals(tag.getId());
     }
 
     @Override

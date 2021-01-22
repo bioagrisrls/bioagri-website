@@ -132,7 +132,7 @@ public final class Ticket implements Model {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
-        return getId() == ticket.getId();
+        return getId().equals(ticket.getId());
     }
 
     @Override

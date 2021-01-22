@@ -25,14 +25,16 @@
 
 .ui-card {
 
+  @extend .w-100;
+  @extend .h-100;
+
   .ui-card-row {
 
     @extend .row;
+    @extend .h-100;
 
     .ui-card-image {
-
       @extend .col-3;
-
     }
 
     .ui-card-body {
@@ -40,38 +42,39 @@
       @extend .col-9;
 
       .ui-card-tags {
-
-        @extend .ui-font-title-secondary;
-
         ul {
-
           @extend .list-unstyled;
-
+          @extend .my-0;
           li {
-
+            @extend .ui-font-title-secondary;
           }
-
         }
-
       }
 
       .ui-card-title {
-        @extend .ui-font-title-primary;
-
+        h1 {
+          @extend .ui-font-title-primary;
+        }
       }
 
       .ui-card-price {
 
-        @extend .ui-font-title-primary;
-
         s {
+          @extend .ui-font-title-primary;
           @extend .text-muted;
+          @extend .me-2;
         }
 
         span {
+          @extend .ui-font-title-primary;
           @extend .text-secondary;
+          @extend .fs-5;
         }
 
+      }
+
+      .ui-card-stars {
+        @extend .align-bottom;
       }
 
     }

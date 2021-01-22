@@ -87,7 +87,7 @@ const authenticate = async (username, password, store = false, token = '', trigg
  */
 const disconnect = async (redirectToHome= true, triggerEvent = true) => {
 
-    return api('/auth/disconnect', 'POST', {}, false).then(
+    return api('/auth/disconnect', 'POST', {}, 'raw').then(
         response => {
 
             sessionStorage.clear();
@@ -117,7 +117,7 @@ const disconnect = async (redirectToHome= true, triggerEvent = true) => {
  * @param triggerEvent {boolean}
  * @returns {Promise<* | void>}
  */
-const authenticated = async (triggerEvent = true) => api('/auth/verify', 'GET', {}, false).catch(reason => {
+const authenticated = async (triggerEvent = true) => api('/auth/verify', 'GET', {}, 'raw').catch(reason => {
 
     if(localStorage.getItem('X-Auth-Username')) {
 

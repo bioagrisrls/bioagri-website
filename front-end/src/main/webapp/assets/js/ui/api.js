@@ -35,10 +35,10 @@ const $basePath = '/api';
  * @param path {string}
  * @param method {string}
  * @param body {object}
- * @param returnJson {boolean}
+ * @param returnType {string}
  * @returns {Promise<Response | object | object[] | void>}
  */
-const api = async (path, method = 'GET', body = {}, returnJson = true) => {
+const api = async (path, method = 'GET', body = {}, returnType = 'json') => {
 
     return fetch($baseUri + $basePath + encodeURI(path), {
 
@@ -65,8 +65,12 @@ const api = async (path, method = 'GET', body = {}, returnJson = true) => {
         if(response.status < 200 || response.status > 299)
             throw response.status;
 
-        if(returnJson)
+
+        if(returnType === 'json')
             return response.json();
+
+        if(returnType === 'text')
+            return response.text();
 
         return response;
 

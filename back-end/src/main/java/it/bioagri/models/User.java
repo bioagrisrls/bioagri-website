@@ -189,7 +189,7 @@ public final class User implements Model {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return getId() == user.getId();
+        return getId().equals(user.getId());
     }
 
     @Override
