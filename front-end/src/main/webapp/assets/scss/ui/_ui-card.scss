@@ -25,22 +25,52 @@
 
 .ui-card {
 
-  & .ui-card-row {
+  .ui-card-row {
 
-    h4 {
-      @extend .ui-font-title-primary;
-      @extend .mt-3;
+    .ui-card-image {
+
     }
 
-    p {
-      @extend .ui-font-title-primary;
-      @extend .my-1;
-      @extend .fs-5;
+    .ui-card-body {
+
+      .ui-card-tags {
+
+        @extend .ui-font-title-secondary;
+
+        ul {
+
+          li {
+
+          }
+
+        }
+
+      }
+
+      .ui-card-title {
+        @extend .ui-font-title-primary;
+
+      }
+
+      .ui-card-price {
+
+        @extend .ui-font-title-primary;
+
+        s {
+          @extend .text-muted;
+        }
+
+        span {
+          @extend .text-secondary;
+        }
+
+      }
+
     }
 
   }
 
-  & .ui-card-block {
+  .ui-card-block {
 
     @extend .position-relative;
     z-index: 1000;
