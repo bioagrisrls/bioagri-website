@@ -35,25 +35,50 @@
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ui:current="catalog"></ui-navbar>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
-    <div class="ui-container">
 
-        <!-- Breadcrumb -->
-        <ui-breadcrumb id="ui-breadcrumb-3" ui:current="${locale.page_catalog}"></ui-breadcrumb>
 
-    </div>
+    <section >
 
-    <br>
-    <br>
+        <div class="ui-catalog-background">
+            <div></div>
+        </div>
 
-    <section ui-animated>
-        <ui-catalog id="ui-catalog" ></ui-catalog>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+        <div class="mx-5 text-center">
+            <ui-image id="ui-catalog-promo-image"
+                      ui:src="/assets/img/catalog/promo.jpg"
+                      ui:width="90%"
+                      ui:height="620px"
+                      ui:size="cover"
+                      ui:animation="slideInRight"></ui-image>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="mx-5" ui-animated="slideInLeft">
+
+            <!-- Breadcrumb -->
+            <ui-breadcrumb id="ui-breadcrumb-3" ui:current="${locale.page_catalog}"></ui-breadcrumb>
+
+        </div>
+
+
+        <br>
+        <br>
+
+        <div ui-animated-scroll="slideInUp">
+            <ui-catalog id="ui-catalog"></ui-catalog>
+        </div>
+
     </section>
 
     <br>

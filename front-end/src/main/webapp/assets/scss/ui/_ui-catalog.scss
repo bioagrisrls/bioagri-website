@@ -26,6 +26,7 @@
 .ui-catalog {
 
   @extend .px-5;
+  @extend .text-dark;
 
 
   & .ui-catalog-side {
@@ -40,11 +41,11 @@
 
       @extend .p-5;
       @extend .shadow-sm;
+      @extend .bg-white;
 
 
       h4 {
         @extend .ui-font-title-primary;
-        @extend .text-dark;
         @extend .mt-5;
       }
 
@@ -59,7 +60,6 @@
           div {
 
             @extend .clearfix;
-            @extend .text-dark;
             cursor: pointer;
 
             &.active {
@@ -79,6 +79,28 @@
 
       }
 
+      .ui-catalog-side-mode {
+
+        @extend .mt-5;
+
+        div {
+          @extend .ui-font-title-primary;
+          @extend .fs-5;
+        }
+
+        span {
+          cursor: pointer;
+          @extend .p-1;
+          @extend .align-baseline;
+        }
+
+        span.active {
+          @extend .bg-secondary;
+          @extend .text-white-always;
+        }
+
+      }
+
     }
 
   }
@@ -88,19 +110,22 @@
 
     @extend .col-12;
     @extend .col-lg-9;
-
+    @extend .bg-white;
+    @extend .shadow-sm;
 
     .ui-catalog-main-header {
 
-        p {
+      p {
           @extend .text-end;
           @extend .px-3;
+          @extend .py-3;
         }
 
     }
 
     .ui-catalog-main-body {
 
+      @extend .bg-white;
       @extend .d-flex;
       @extend .flex-wrap;
       @extend .justify-content-start;
@@ -109,13 +134,36 @@
 
         @extend .m-2;
         @extend .flex-basis-1;
-        @extend .flex-basis-md-2;
-        @extend .flex-basis-lg-3;
         @extend .position-relative;
+
+        &.block {
+          @extend .flex-basis-md-2;
+          @extend .flex-basis-lg-3;
+        }
+
+        &.row {
+          min-height: 320px;
+        }
 
       }
 
       .ui-catalog-main-body-empty {
+
+        @extend .w-100;
+        @extend .text-center;
+
+        p {
+          @extend .text-muted;
+          @extend .ui-font-title-primary;
+          @extend .fs-4;
+        }
+
+        img {
+          @extend .my-2;
+          @extend .w-100;
+          @extend .w-sm-auto;
+          max-height: 490px;
+        }
 
       }
 
@@ -139,6 +187,21 @@
 
     }
 
+  }
+
+}
+
+
+.ui-catalog-background {
+
+  @extend .position-relative;
+
+  div {
+    @extend .position-absolute;
+    @extend .w-100;
+    @extend .bg-light;
+    height: 72rem;
+    z-index: -1;
   }
 
 }

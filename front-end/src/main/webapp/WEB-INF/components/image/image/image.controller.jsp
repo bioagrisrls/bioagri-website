@@ -41,6 +41,7 @@
                 repeat: props.repeat || 'no-repeat',
                 position: props.position || 'top left',
                 rounded: props.rounded || false,
+                animation: props.animation || 'fadeIn',
                 ready: false
             });
         }
