@@ -104,7 +104,7 @@ public class Page {
     @GetMapping("/admin/{page}")
     public String admin(ServletRequest request, ServletResponse response, HttpSession session, ModelMap model, @PathVariable String page) throws ServletException, IOException {
 
-        if(authToken.getUserRole().equals(UserRole.ADMIN))
+        if(authToken.isLoggedIn() && authToken.getUserRole().equals(UserRole.ADMIN))
             return loadPage(request, response, session, model, "admin/%s.jsp".formatted(page));
 
         return "error";
