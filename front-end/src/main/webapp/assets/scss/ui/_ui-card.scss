@@ -55,6 +55,9 @@
 
           .ui-card-button {
 
+            @extend .btn;
+            @extend .btn-primary;
+
           }
 
         }
