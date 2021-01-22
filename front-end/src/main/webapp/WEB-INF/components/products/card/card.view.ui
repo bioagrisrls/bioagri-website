@@ -69,7 +69,9 @@
             </div>
 
             <div class="ui-card-stars">
-                <ui-stars id="{{this.id}}-row-{{product.id}}-stars" ui:vote="{{average}}"></ui-stars>
+                <? if (!hide.includes('vote')) { ?>
+                    <ui-stars id="{{this.id}}-row-{{product.id}}-stars" ui:vote="{{average}}"></ui-stars>
+                <? } ?>
             </div>
 
             <div class="ui-card-footer">
@@ -158,7 +160,9 @@
             </div>
 
             <div class="ui-card-stars">
-                <ui-stars id="{{this.id}}-block-{{product.id}}-stars" ui:vote="{{average}}"></ui-stars>
+                <? if (!hide.includes('vote')) { ?>
+                    <ui-stars id="{{this.id}}-block-{{product.id}}-stars" ui:vote="{{average}}"></ui-stars>
+                <? } ?>
             </div>
 
         </div>

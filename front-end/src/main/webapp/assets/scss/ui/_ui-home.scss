@@ -264,3 +264,41 @@
 
 }
 
+
+.ui-products-related-button {
+
+  @extend .position-relative;
+  @extend .border;
+  @extend .shadow-sm;
+  @extend .bg-white;
+  @extend .text-dark;
+
+  cursor: pointer;
+  bottom: 8rem;
+  z-index: 1010;
+
+  &:hover {
+    @extend .shadow;
+  }
+
+  &.next {
+    right: 3rem;
+  }
+
+  &.prev {
+    left: 3rem;
+  }
+
+}
+
+.ui-products-related-card {
+
+  @extend .d-inline-block;
+  @extend .ui-smooth-transition;
+
+  cursor: pointer;
+  width: 280px;
+  height: 480px;
+
+}
+
