@@ -37,24 +37,46 @@
                 Promise.allSettled([
 
                     api("/products/" + (props.id || '')),
-                    api('/products/' + (props.id || '') + '/images'),
                     api('/products/' + (props.id || '') + '/tags'),
                     api('/products/' + (props.id || '') + '/votes/avg', 'GET', {}, 'text'),
+                    api('/products/' + (props.id || '') + '/images'),
 
                 ]).then(response => {
 
+                    if(response[0].status !== 'fulfilled')
+                        throw new Error('product cannot be null');
+
+                    if(response[1].status !== 'fulfilled')
+                        throw new Error('tags cannot be null');
+
+                    if(response[2].status !== 'fulfilled')
+                        throw new Error('vote-average cannot be null');
+
+
+                    let image = `${locale.card_not_available}`;
+
+                    if(response[3].status === 'fulfilled')
+                        image = response.value[0]
+
+
                     return {
-                        product: response[0].status === 'fulfilled' ? response[0].value : {},
-                        image: response[1].status === 'fulfilled' ? response[1].value[0] : '${locale.card_not_avaliable}',
-                        tags: response[2].status === 'fulfilled' ? response[2].value : {},
-                        average: response[3].status === 'fulfilled' ? response[3].value : {},
+
+                        product:    response[0].value,
+                        tags:       response[1].value,
+                        average:    response[2].value,
+                        image:      image,
+
                         view: props.view || 'block',
-                        wish: props.wish || true,
-                        cart: props.cart || true,
-                        likes: props.likes || true,
-                        addCart: `${locale.card_add_cart}`,
-                        addWish: `${locale.card_add_wish}`,
+                        hide: props.hide || '',
+                        like: props.like || false,
+
+                        strings: {
+                            like: `${locale.card_add_wish}`,
+                            cart: `${locale.card_add_cart}`,
+                        }
+
                     };
+
                 })
             )
         }
