@@ -47,6 +47,7 @@
         p {
           @extend .my-0;
           @extend .ui-font-title-secondary;
+          @extend .text-truncate;
         }
       }
 
@@ -143,6 +144,7 @@
         p {
           @extend .my-0;
           @extend .ui-font-title-secondary;
+          @extend .text-truncate;
         }
       }
 

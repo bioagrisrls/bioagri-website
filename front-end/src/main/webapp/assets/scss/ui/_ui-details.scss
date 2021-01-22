@@ -38,6 +38,10 @@
     @extend .my-3;
 
     h1 {
+      @extend .text-truncate;
+    }
+
+    h2 {
       @extend .ui-font-title-primary;
       @extend .display-5;
       @extend .text-start;
