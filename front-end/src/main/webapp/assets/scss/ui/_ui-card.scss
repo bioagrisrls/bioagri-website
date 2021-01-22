@@ -45,6 +45,8 @@
 
         ul {
 
+          @extend .list-unstyled;
+
           li {
 
           }
