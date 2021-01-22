@@ -142,7 +142,7 @@
                 like: this.state.like === 'true' ? 'false' : 'true'
             };
 
-            this.raise(this.state.like
+            this.raise(this.state.like === 'true'
                 ? 'wish-add'
                 : 'wish-remove');
 

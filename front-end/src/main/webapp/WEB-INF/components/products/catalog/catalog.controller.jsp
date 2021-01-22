@@ -45,7 +45,6 @@
                         state: 'working',
 
                         products: [],
-                        wishlist: [],
                         tags: response[0],
                         categories: response[1],
 
@@ -221,9 +220,6 @@
          */
         wishAdd(id) {
 
-            if(id in this.state.wishlist)
-                return;
-
             authenticated()
                 .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + id, 'POST', {}, 'raw').catch(() => {}))
                 .then(() => Component.render(Component.dummy(), `${components.common_notify}`, { message: '<span class="mdi mdi-18px mdi-heart-plus"></span> ${locale.wish_add}' }))
@@ -237,9 +233,6 @@
          * @param id {number}
          */
         wishRemove(id) {
-
-            if(!(id in this.state.wishlist))
-                return;
 
             authenticated()
                 .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + id, 'DELETE', {}, 'raw').catch(() => {}))
