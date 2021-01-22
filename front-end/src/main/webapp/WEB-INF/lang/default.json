@@ -185,6 +185,6 @@
   "catalog_main_more" : "Mostra altro",
   "catalog_main_empty" : "La ricerca non ha prodotto nessun risultato",
 
-  "details_products_similiar" : "Prodotti simili",
+  "details_products_suggest" : "Protrebbe interessarti anche..",
   "details_products_news" : "Le novità del momento"
 }
