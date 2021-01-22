@@ -71,8 +71,9 @@
                         like: props.like || false,
 
                         strings: {
-                            like: `${locale.card_add_wish}`,
-                            cart: `${locale.card_add_cart}`,
+                            cart:  `${locale.card_add_cart}`,
+                            like:  `${locale.card_add_wish}`,
+                            liked: `${locale.card_added_wish}`,
                         }
 
                     };
@@ -85,25 +86,15 @@
             return `${components.products_card}`
         }
 
-        onWishClicked() {
+        wishToggle() {
 
-            const icon = document.querySelector('#heart-icon-' + this.state.product.id);
+            this.state = {
+                like: !this.state.like
+            }
 
-            authenticated().then(() => {
-
-                    if (this.state.likes === true){
-                        api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + this.state.product.id, 'DELETE', {}, 'raw');
-                        this.setState({likes: false}, false)
-                    }
-                    else {
-                        api("/users/" + sessionStorage.getItem("X-Auth-UserInfo-Id") + "/wishlist/" + this.state.product.id, 'POST', {}, 'raw');
-                        this.setState({likes: true}, false)
-                    }
-
-                    icon.classList.toggle('mdi-heart-outline');
-                    icon.classList.toggle('mdi-heart');
-
-                }).catch(() => requestUserAuthentication());
+            this.raise(this.state.like
+                ? 'wish-add'
+                : 'wish-remove');
 
         }
 

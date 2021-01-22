@@ -25,6 +25,7 @@
 
 .ui-card {
 
+  @extend .text-dark;
   @extend .w-100;
   @extend .h-100;
 
@@ -43,12 +44,9 @@
       @extend .my-3;
 
       .ui-card-tags {
-        ul {
-          @extend .list-unstyled;
+        p {
           @extend .my-0;
-          li {
-            @extend .ui-font-title-secondary;
-          }
+          @extend .ui-font-title-secondary;
         }
       }
 
@@ -104,7 +102,86 @@
 
   .ui-card-block {
 
+    @extend .position-relative;
+    @extend .h-100;
+    @extend .d-flex;
 
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    .ui-card-buttons {
+      @extend .position-absolute;
+      right: 0;
+
+      button {
+        @extend .btn;
+        @extend .btn-circle;
+        @extend .bg-white;
+        @extend .text-dark;
+        @extend .d-block;
+        @extend .mx-2;
+        @extend .my-2;
+
+        &:hover {
+          @extend .bg-light;
+        }
+      }
+    }
+
+
+    .ui-card-image {
+      @extend .d-block;
+      @extend .flex-fill;
+    }
+
+    .ui-card-body {
+
+      @extend .mt-2;
+
+      .ui-card-tags {
+        p {
+          @extend .my-0;
+          @extend .ui-font-title-secondary;
+        }
+      }
+
+      .ui-card-title {
+        h1 {
+          @extend .ui-font-title-primary;
+        }
+      }
+
+    }
+
+    .ui-card-footer {
+
+      @extend .row;
+      @extend .align-items-baseline;
+
+      .ui-card-price {
+
+        @extend .col;
+
+        s {
+          @extend .ui-font-title-primary;
+          @extend .text-muted;
+          @extend .me-2;
+        }
+
+        span {
+          @extend .ui-font-title-primary;
+          @extend .text-secondary;
+          @extend .fs-5;
+        }
+
+      }
+
+      .ui-card-stars {
+        @extend .col;
+        @extend .text-end;
+      }
+
+    }
 
   }
 

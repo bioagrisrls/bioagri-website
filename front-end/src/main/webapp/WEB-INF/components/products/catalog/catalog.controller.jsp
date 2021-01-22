@@ -246,10 +246,40 @@
             else {
 
                 api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist')
-                    .then(response => this.state = { wishlist: response })
+                    .then(response => this.state = { wishlist: response.map(i => i.id) })
                     .catch(() => undefined);
 
             }
+
+        }
+
+        /**
+         * Add product to Wishlist
+         * @param id {number}
+         */
+        wishAdd(id) {
+
+            if(id in this.state.wishlist)
+                return;
+
+            authenticated()
+                .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + id, 'POST', {}, 'raw'))
+                .catch(() => requestUserAuthentication());
+
+        }
+
+        /**
+         * Remove product to Wishlist
+         * @param id {number}
+         */
+        wishRemove(id) {
+
+            if(!(id in this.state.wishlist))
+                return;
+
+            authenticated()
+                .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + id, 'DELETE', {}, 'raw'))
+                .catch(() => requestUserAuthentication());
 
         }
 
