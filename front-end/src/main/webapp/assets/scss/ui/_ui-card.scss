@@ -49,6 +49,16 @@
             @extend .ui-font-title-secondary;
           }
         }
+
+
+        .ui-card-footer {
+
+          .ui-card-button {
+
+          }
+
+        }
+
       }
 
       .ui-card-title {
@@ -75,14 +85,6 @@
 
       .ui-card-stars {
         @extend .align-bottom;
-      }
-
-      .ui-card-footer {
-
-        .ui-card-button {
-
-        }
-
       }
 
     }
