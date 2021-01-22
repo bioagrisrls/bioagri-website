@@ -167,6 +167,13 @@
   "card_added_wish": "Aggiunto alla tua Lista dei Desideri",
   "card_add_cart": "Aggiungi al carrello",
 
+  "cart_add": "Aggiunto al carrello",
+  "cart_remove": "Rimosso dal carrello",
+  "cart_clear": "Carrello svuotato",
+
+  "wish_add": "Aggiunto alla lista desideri",
+  "wish_remove": "Rimosso dalla lista desideri ",
+
   "catalog_side_categories" : "Categorie",
   "catalog_side_tags" : "Tags",
   "catalog_main_results" : "risultati",
