@@ -32,36 +32,70 @@
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ></ui-navbar>
 
-    <br>
-    <br>
 
-    <div class="ui-container">
+    <section ui-animated>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
 
         <!-- Breadcrumb -->
         <ui-breadcrumb id="ui-breadcrumb-8" ui:current="${param.product}" ui:urls="/catalog" ui:path="${locale.page_catalog}"></ui-breadcrumb>
 
-    </div>
 
-    <br>
-    <br>
-
-    <section ui-animated>
-
-        <div class="ui-container">
-
-            <!-- Product Info -->
-            <ui-product-info id="ui-product-info-${param.q}" ui:id="${param.q}"></ui-product-info>
+        <!-- Product Info -->
+        <ui-product-info id="ui-product-info-${param.q}" ui:id="${param.q}"></ui-product-info>
 
 
-        </div>
+        <br>
+        <br>
+        <br>
+
+        <section class="ui-details-related">
+
+            <article>
+
+                <h2 ui-animated-scroll="slideInUp">${locale.details_products_similiar}</h2>
+
+                <div class="ui-details-related-slider" ui-animated-scroll="slideInRight">
+                    <ui-product-related id="ui-details-related-${param.q}-slider-1"></ui-product-related>
+                </div>
+
+            </article>
+
+        </section>
+
+        <br>
+        <br>
+        <br>
+
+        <section class="ui-details-related">
+
+            <article>
+
+                <h2 ui-animated-scroll="slideInUp">${locale.details_products_news}</h2>
+
+                <div class="ui-details-related-slider" ui-animated-scroll="slideInRight">
+                    <ui-product-related id="ui-details-related-${param.q}-slider-2"></ui-product-related>
+                </div>
+
+            </article>
+
+        </section>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
     </section>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
 
     <!-- Footer -->
     <ui-footer id="ui-footer" ui:current="home"> </ui-footer>
