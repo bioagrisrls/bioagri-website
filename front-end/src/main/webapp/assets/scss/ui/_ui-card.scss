@@ -40,6 +40,7 @@
     .ui-card-body {
 
       @extend .col-9;
+      @extend .my-3;
 
       .ui-card-tags {
         ul {
@@ -49,20 +50,8 @@
             @extend .ui-font-title-secondary;
           }
         }
-
-
-        .ui-card-footer {
-
-          .ui-card-button {
-
-            @extend .btn;
-            @extend .btn-primary;
-
-          }
-
-        }
-
       }
+
 
       .ui-card-title {
         h1 {
@@ -87,7 +76,25 @@
       }
 
       .ui-card-stars {
-        @extend .align-bottom;
+
+      }
+
+      .ui-card-footer {
+
+        @extend .position-absolute;
+        bottom: 1rem;
+
+        .ui-card-buttons {
+
+          button {
+            @extend .btn;
+            @extend .btn-primary;
+            @extend .ui-font-title-primary;
+            @extend .fs-5;
+          }
+
+        }
+
       }
 
     }

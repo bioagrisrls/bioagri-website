@@ -38,7 +38,7 @@
 
 
 
-    <section >
+    <section>
 
         <div class="ui-catalog-background">
             <div></div>
@@ -79,13 +79,14 @@
             <ui-catalog id="ui-catalog"></ui-catalog>
         </div>
 
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
     </section>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
     <!-- Footer -->
     <ui-footer id="ui-footer" ui:current="home"> </ui-footer>

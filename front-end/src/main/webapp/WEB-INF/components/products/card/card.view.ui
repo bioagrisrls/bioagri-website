@@ -30,6 +30,7 @@
 <? if(view === 'row') { ?>
 
     <div class="ui-card-row">
+
         <div class="ui-card-image">
             <ui-image id="{{this.id}}-row-{{product.id}}-image"
                       ui:src="{{image}}"
@@ -38,7 +39,9 @@
                       ui:position="center center"
                       ui:size="cover"></ui-image>
         </div>
+
         <div class="ui-card-body">
+
             <div class="ui-card-tags">
                 <ul>
                     <? for (let i of tags) { ?>
@@ -46,104 +49,97 @@
                     <? } ?>
                 </ul>
             </div>
+
             <div class="ui-card-title">
                 <a href="/details?q={{product.id}}&product={{encodeURIComponent(product.name)}}"><h1>{{product.name}}</h1></a>
             </div>
+
             <div class="ui-card-price">
                 <? if (+product.discount > 0) { ?>
-                    <s>{{product.price}} &euro; </s> <span>{{ ((+product.price * +product.discount) / 100).toFixed(2) }} &euro; </span>
+                    <s>{{product.price}} &euro; </s> <span>{{ (+product.price - ((+product.price * +product.discount) / 100)).toFixed(2) }} &euro; </span>
                 <? } else { ?>
                     <span>{{product.price}} &euro; </span>
                 <? } ?>
             </div>
+
             <div class="ui-card-stars">
                 <ui-stars id="{{this.id}}-row-{{product.id}}-stars" ui:vote="{{average}}"></ui-stars>
             </div>
+
             <div class="ui-card-footer">
+
                 <div class="ui-card-buttons">
                     <?
                         if (!hide.includes('wish')) {
-                            ?> <button>{{strings.like}}</button> <?
+                            ?> <button><span class="mdi mdi-18px mdi-heart-plus"></span> {{strings.like}}</button> <?
                         }
 
                         if (!hide.includes('cart')) {
-                            ?> <button>{{strings.cart}}</button> <?
+                            ?> <button><span class="mdi mdi-18px mdi-cart-plus"></span> {{strings.cart}}</button> <?
                         }
                     ?>
                 </div>
+
             </div>
         </div>
     </div>
 
 <? } else if(view === 'block') { ?>
 
-<!--    &lt;!&ndash; Card Block &ndash;&gt;-->
-<!--    <div class="ui-card">-->
-<!--        <div class="ui-card-block">-->
+    <!-- Card Block -->
+    <div class="ui-card-block">
 
-<!--            <? if(wish || cart) { ?>-->
+        <div class="ui-card-buttons">
+            <?
+                if (!hide.includes('wish')) {
+                    ?> <button title="{{strings.like}}"><span class="mdi mdi-18px mdi-heart-plus-outline"></span></button> <?
+                }
 
-<!--                <div class="ui-card-block">-->
+                if (!hide.includes('cart')) {
+                    ?> <button title="{{strings.cart}}"><span class="mdi mdi-18px mdi-cart-plus"></span></button> <?
+                }
+            ?>
+        </div>
 
-<!--                    <div class="ui-card-block-icon">-->
-<!--                        <? if(wish) { ?>-->
-<!--                            <button title="{{addWish}}" onclick= "$$.onWishClicked()">-->
-<!--                                <span id="heart-icon-{{product.id}}" class="mdi {{likes === true ? 'mdi-heart' : 'mdi-heart-outline'}}"></span>-->
-<!--                            </button>-->
-<!--                        <? } ?>-->
+        <div class="ui-card-image">
+            <ui-image id="{{this.id}}-row-{{product.id}}-image"
+                      ui:src="{{image}}"
+                      ui:width="100%"
+                      ui:height="100%"
+                      ui:position="center center"
+                      ui:size="cover"></ui-image>
+        </div>
 
-<!--                        <? if(cart) { ?>-->
-<!--                            <button title="{{addCart}}" onclick= "shopping_cart_add({{product.id}}, 1)">-->
-<!--                                <span class="mdi mdi-cart-outline"></span>-->
-<!--                            </button>-->
-<!--                        <? } ?>-->
-<!--                    </div>-->
+        <div class="ui-card-body">
 
-<!--                </div>-->
+            <div class="ui-card-tags">
+                <ul>
+                    <? for (let i of tags) { ?>
+                    <li><span class="mdi mdi-pound"></span> {{i.hashtag.slice(1)}}</li>
+                    <? } ?>
+                </ul>
+            </div>
 
-<!--            <? } ?>-->
+            <div class="ui-card-title">
+                <a href="/details?q={{product.id}}&product={{encodeURIComponent(product.name)}}"><h1>{{product.name}}</h1></a>
+            </div>
 
-<!--            <div class="row">-->
-<!--                <ui-image id="{{this.id}}-block-image-{{product.id}}"-->
-<!--                          class="ui-card-block-image"-->
-<!--                          ui:src="{{image}}"-->
-<!--                          ui:width="100%"-->
-<!--                          ui:height="50vh"-->
-<!--                          ui:size="cover"-->
-<!--                          ui:position="center">-->
-<!--                </ui-image>-->
-<!--            </div>-->
+            <div class="ui-card-price">
+                <? if (+product.discount > 0) { ?>
+                <s>{{product.price}} &euro; </s> <span>{{ (+product.price - ((+product.price * +product.discount) / 100)).toFixed(2) }} &euro; </span>
+                <? } else { ?>
+                <span>{{product.price}} &euro; </span>
+                <? } ?>
+            </div>
 
-<!--            <div class="row">-->
+            <div class="ui-card-stars">
+                <ui-stars id="{{this.id}}-row-{{product.id}}-stars" ui:vote="{{average}}"></ui-stars>
+            </div>
 
-<!--                <? let names = [];-->
-<!--                   tags.forEach(e => names.push(e.hashtag));-->
-<!--                ?>-->
+        </div>
 
-<!--                <? if(names.length > 0) {-->
-<!--                    const t = names.join() ?>-->
-<!--                    <div>-->
-<!--                        <p class="ui-card-tags-{{product.id}}">{{ t }}</p>-->
-<!--                    </div>-->
-<!--                <? } ?>-->
-
-<!--                <a href="/details"-->
-<!--                   ui-data="{ id: {{product.id}}, name: '{{product.name}}' }"-->
-<!--                   ui-navigate>-->
-<!--                    <h4>{{ product.name }}</h4>-->
-<!--                </a>-->
-
-<!--                <div>-->
-<!--                    <p>{{ product.price }} 	&euro;</p>-->
-<!--                    <? if(+product.discount !== 0) { ?>-->
-<!--                        <p class="ui-card-discount">{{ (+product.discount * +product.price) / 100 }}</p>-->
-<!--                    <? } ?>-->
-<!--                </div>-->
-
-<!--            </div>-->
-
-<!--        </div>-->
-<!--    </div>-->
+    </div>
 
 <? } ?>
 
+</div>
