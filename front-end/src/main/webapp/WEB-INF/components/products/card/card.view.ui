@@ -43,11 +43,17 @@
         <div class="ui-card-body">
 
             <div class="ui-card-tags">
-                <ul>
-                    <? for (let i of tags) { ?>
-                        <li><span class="mdi mdi-pound"></span> {{i.hashtag.slice(1)}}</li>
-                    <? } ?>
-                </ul>
+                <p>
+                    <?
+                        if (tags.length > 0) {
+                            for (let i of tags) {
+                                ?> <span class="mdi mdi-pound"></span> {{i.hashtag.slice(1)}} <?
+                            }
+                        } else {
+                            ?> <span class="mdi mdi-pound"></span> <?
+                        }
+                    ?>
+                </p>
             </div>
 
             <div class="ui-card-title">
@@ -71,7 +77,11 @@
                 <div class="ui-card-buttons">
                     <?
                         if (!hide.includes('wish')) {
-                            ?> <button><span class="mdi mdi-18px mdi-heart-plus"></span> {{strings.like}}</button> <?
+                            if (like) {
+                                ?> <button onclick="$$.wishToggle()"><span class="mdi mdi-18px mdi-heart"></span> {{strings.liked}}</button> <?
+                            } else {
+                                ?> <button onclick="$$.wishToggle()"><span class="mdi mdi-18px mdi-heart-plus"></span> {{strings.like}}</button> <?
+                            }
                         }
 
                         if (!hide.includes('cart')) {
@@ -92,38 +102,52 @@
         <div class="ui-card-buttons">
             <?
                 if (!hide.includes('wish')) {
-                    ?> <button title="{{strings.like}}"><span class="mdi mdi-18px mdi-heart-plus-outline"></span></button> <?
+                    if (like) {
+                        ?> <button onclick="$$.wishToggle()" title="{{strings.liked}}"><span class="mdi mdi-18px mdi-heart"></span></button> <?
+                    } else {
+                        ?> <button onclick="$$.wishToggle()" title="{{strings.like}}"><span class="mdi mdi-18px mdi-heart-plus-outline"></span></button> <?
+                    }
                 }
 
                 if (!hide.includes('cart')) {
-                    ?> <button title="{{strings.cart}}"><span class="mdi mdi-18px mdi-cart-plus"></span></button> <?
+                    ?> <button onclick="$$.wishToggle()" title="{{strings.cart}}"><span class="mdi mdi-18px mdi-cart-plus"></span></button> <?
                 }
             ?>
         </div>
 
 
+        <div class="ui-card-image">
+            <ui-image id="{{this.id}}-block-{{product.id}}-image"
+                      ui:src="{{image}}"
+                      ui:width="100%"
+                      ui:height="100%"
+                      ui:position="center center"
+                      ui:size="cover"></ui-image>
+        </div>
+
         <div class="ui-card-body">
 
-            <div class="ui-card-image">
-                <ui-image id="{{this.id}}-block-{{product.id}}-image"
-                          ui:src="{{image}}"
-                          ui:width="100%"
-                          ui:height="100%"
-                          ui:position="center center"
-                          ui:size="cover"></ui-image>
-            </div>
-
             <div class="ui-card-tags">
-                <ul>
-                    <? for (let i of tags) { ?>
-                    <li><span class="mdi mdi-pound"></span> {{i.hashtag.slice(1)}}</li>
-                    <? } ?>
-                </ul>
+                <p>
+                    <?
+                        if (tags.length > 0) {
+                            for (let i of tags) {
+                                ?> <span class="mdi mdi-pound"></span> {{i.hashtag.slice(1)}} <?
+                            }
+                        } else {
+                            ?> <span class="mdi mdi-pound"></span> <?
+                        }
+                    ?>
+                </p>
             </div>
 
             <div class="ui-card-title">
                 <a href="/details?q={{product.id}}&product={{encodeURIComponent(product.name)}}"><h1>{{product.name}}</h1></a>
             </div>
+
+        </div>
+
+        <div class="ui-card-footer">
 
             <div class="ui-card-price">
                 <? if (+product.discount > 0) { ?>

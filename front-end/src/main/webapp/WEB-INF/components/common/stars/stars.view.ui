@@ -23,7 +23,7 @@
   ~
   -->
 
-<div onmouseleave="$$.turn(0)">
+<div class="text-nowrap" onmouseleave="$$.turn(0)">
     <?
 
         const classes = clickable ? 'clickable' : '';
