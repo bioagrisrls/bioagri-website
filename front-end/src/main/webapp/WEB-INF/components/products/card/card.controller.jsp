@@ -68,7 +68,7 @@
 
                         view: props.view || 'block',
                         hide: props.hide || '',
-                        like: props.like || false,
+                        like: props.like || 'false',
 
                         strings: {
                             cart:  `${locale.card_add_cart}`,
@@ -82,19 +82,84 @@
             )
         }
 
+
+        onReady(state) {
+            super.onReady(state);
+
+            authenticated(false)
+                .then(() => this.wish())
+                .catch(() => undefined);
+
+
+            $(document).on('auth-connection-occurred', () => {
+
+                if(this.running)
+                    this.wish();
+
+            });
+
+            $(document).on('auth-disconnection-occurred', () => {
+
+                if(this.running)
+                    this.wish(true);
+
+            });
+
+        }
+
         onRender() {
             return `${components.products_card}`
         }
 
+
+
+        /**
+         * Load/Unload Wishlist
+         * @param clear {boolean}
+         */
+        wish(clear = false) {
+
+            if(clear)
+                return this.state = { like: 'false' };
+
+            else {
+
+                api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist?filter-by=id&filter-val=' + this.state.product.id)
+                    .then(response => this.state = { like: response.length === 0 ? 'false' : 'true' })
+                    .catch();
+
+            }
+
+        }
+
+
+        /**
+         * Toggle wish button
+         */
         wishToggle() {
 
             this.state = {
-                like: !this.state.like
-            }
+                like: this.state.like === 'true' ? 'false' : 'true'
+            };
 
             this.raise(this.state.like
                 ? 'wish-add'
                 : 'wish-remove');
+
+
+            Component.render(Component.dummy(), `${components.common_notify}`, { message: '${locale.wish_add}' });
+
+        }
+
+
+        /**
+         * Add product in shopping cart
+         */
+        cart() {
+
+            shopping_cart_add(this.state.product.id, 1);
+
+            Component.render(Component.dummy(), `${components.common_notify}`, { message: '${locale.cart_add}' });
 
         }
 

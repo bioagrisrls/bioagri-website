@@ -85,26 +85,6 @@
 
         onReady(state) {
 
-            authenticated(false)
-                .then(() => this.wish())
-                .catch(() => undefined);
-
-
-            $(document).on('auth-connection-occurred', () => {
-
-                if(this.running)
-                    this.wish();
-
-            });
-
-            $(document).on('auth-disconnection-occurred', () => {
-
-                if(this.running)
-                    this.wish(true);
-
-            });
-
-
 
             const promises = [];
 
@@ -234,24 +214,6 @@
 
         }
 
-        /**
-         * Load/Unload Wishlist
-         * @param clear {boolean}
-         */
-        wish(clear = false) {
-
-            if(clear)
-                return this.state = { wishlist: [] };
-
-            else {
-
-                api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist')
-                    .then(response => this.state = { wishlist: response.map(i => i.id) })
-                    .catch(() => undefined);
-
-            }
-
-        }
 
         /**
          * Add product to Wishlist
@@ -263,7 +225,7 @@
                 return;
 
             authenticated()
-                .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + id, 'POST', {}, 'raw'))
+                .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + id, 'POST', {}, 'raw').catch(() => {}))
                 .catch(() => requestUserAuthentication());
 
         }
@@ -278,7 +240,7 @@
                 return;
 
             authenticated()
-                .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + id, 'DELETE', {}, 'raw'))
+                .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + id, 'DELETE', {}, 'raw').catch(() => {}))
                 .catch(() => requestUserAuthentication());
 
         }
