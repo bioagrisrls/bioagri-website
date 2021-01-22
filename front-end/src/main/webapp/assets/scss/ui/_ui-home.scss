@@ -125,7 +125,7 @@
       @extend .py-3;
       @extend .my-3;
 
-      h1 {
+      h2 {
         @extend .ui-font-title-primary;
         @extend .display-5;
         @extend .text-start;
@@ -138,6 +138,7 @@
         @extend .px-3;
         height: auto;
       }
+
     }
 
     section {

@@ -47,7 +47,7 @@
 
             }
 
-            super(id, api('/products?limit=15&' + uri).then(response => {
+            super(id, api('/products?sorted-by=updatedAt&limit=15&' + uri).then(response => {
                 return {
                     products: response.map(i => i.id),
                     offset: 0,

@@ -68,7 +68,8 @@
         <section class="ui-home-promo">
 
             <article>
-                <h1 ui-animated-scroll="slideInUp">${locale.home_promo_last_news}</h1>
+
+                <h2 ui-animated-scroll="slideInUp">${locale.home_promo_last_news}</h2>
 
                 <div class="ui-home-promo-slider" ui-animated-scroll="slideInRight">
                     <ui-product-related id="ui-home-promo-slider-related-1"></ui-product-related>
@@ -217,11 +218,13 @@
 
 
             <article>
-                <h1 ui-animated-scroll="slideInUp">${locale.home_promo_product}</h1>
+
+                <h2 ui-animated-scroll="slideInUp">${locale.home_promo_product}</h2>
 
                 <div class="ui-home-promo-slider" ui-animated-scroll="slideInRight">
                     <ui-product-related id="ui-home-promo-slider-related-2"></ui-product-related>
                 </div>
+
             </article>
 
 
