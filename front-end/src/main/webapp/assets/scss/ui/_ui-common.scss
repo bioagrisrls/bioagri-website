@@ -38,3 +38,19 @@
   }
 
 }
+
+.ui-toast {
+
+  @extend .m-3;
+  @extend .d-flex;
+  @extend .align-items-center;
+  @extend .text-dark;
+  @extend .bg-light;
+  @extend .border-0;
+
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 1030;
+
+}
