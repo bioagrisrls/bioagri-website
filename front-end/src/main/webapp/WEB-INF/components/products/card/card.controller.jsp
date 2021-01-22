@@ -56,7 +56,7 @@
                     let image = `${locale.card_not_available}`;
 
                     if(response[3].status === 'fulfilled')
-                        image = response.value[0]
+                        image = response[3].value[0];
 
 
                     return {
