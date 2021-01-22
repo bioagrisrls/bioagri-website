@@ -23,7 +23,7 @@
   ~
   -->
 
-<div id="{{this.id}}-toast" class="toast d-flex align-items-center text-white bg-secondary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+<div id="{{this.id}}-toast" class="toast ui-toast" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-body">
         {{ message }}
     </div>
@@ -36,7 +36,7 @@
     (() => {
 
         const el = document.getElementById('{{this.id}}-toast');
-        const ny = new bootstrap.Toast(el, { delay: 3000 });
+        const ny = new bootstrap.Toast(el, {});
 
         ny.show();
 
