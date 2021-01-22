@@ -101,60 +101,11 @@
 
   }
 
+
   .ui-card-block {
 
-    @extend .position-relative;
-    z-index: 1000;
 
-    h4 {
-      @extend .ui-font-title-primary;
-      @extend .mt-3;
-    }
-
-    p {
-      @extend .ui-font-title-primary;
-      @extend .my-1;
-      @extend .fs-5;
-      @extend .d-inline;
-      @extend .p-0;
-    }
-
-    & .ui-card-block-image {
-      display: block;
-    }
-
-    & .ui-card-block-icon {
-      @extend .position-absolute;
-
-      z-index: 1001;
-      right: 0;
-      top: 0;
-
-      button {
-        @extend .btn;
-        @extend .btn-circle;
-        @extend .mx-2;
-        @extend .my-2;
-        @extend .bg-white;
-        @extend .text-dark;
-        @extend .d-block;
-
-        &:hover {
-          @extend .bg-light;
-        }
-      }
-
-    }
-
-    & .ui-card-block-icon-heart {
-      @extend .btn-circle;
-      @extend .shadow-sm;
-    }
-
-    & .ui-card-block-icon-cart {
-      @extend .btn-circle;
-      @extend .shadow-sm;
-    }
 
   }
+
 }

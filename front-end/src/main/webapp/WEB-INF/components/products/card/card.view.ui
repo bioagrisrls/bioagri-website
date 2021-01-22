@@ -101,16 +101,17 @@
             ?>
         </div>
 
-        <div class="ui-card-image">
-            <ui-image id="{{this.id}}-row-{{product.id}}-image"
-                      ui:src="{{image}}"
-                      ui:width="100%"
-                      ui:height="100%"
-                      ui:position="center center"
-                      ui:size="cover"></ui-image>
-        </div>
 
         <div class="ui-card-body">
+
+            <div class="ui-card-image">
+                <ui-image id="{{this.id}}-block-{{product.id}}-image"
+                          ui:src="{{image}}"
+                          ui:width="100%"
+                          ui:height="100%"
+                          ui:position="center center"
+                          ui:size="cover"></ui-image>
+            </div>
 
             <div class="ui-card-tags">
                 <ul>
@@ -133,7 +134,7 @@
             </div>
 
             <div class="ui-card-stars">
-                <ui-stars id="{{this.id}}-row-{{product.id}}-stars" ui:vote="{{average}}"></ui-stars>
+                <ui-stars id="{{this.id}}-block-{{product.id}}-stars" ui:vote="{{average}}"></ui-stars>
             </div>
 
         </div>
