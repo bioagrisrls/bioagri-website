@@ -23,40 +23,37 @@
  *
  */
 
-.ui-zoom-button {
+.ui-details-related {
 
-    transition: all .4s ease-in-out;
+  @extend .text-primary;
+  @extend .d-block;
+  @extend .mt-6;
+  @extend .ui-smooth-transition;
+  @extend .bg-light;
+  @extend .text-dark;
 
-    &:hover {
-      transform: scale(1.1);
+  article {
+
+    @extend .py-3;
+    @extend .my-3;
+
+    h1 {
+      @extend .ui-font-title-primary;
+      @extend .display-5;
+      @extend .text-start;
+      @extend .px-5;
+      @extend .py-5;
     }
 
-}
+    .ui-details-related-slider {
 
-.ui-stars-icon {
+      @extend .w-100;
+      @extend .px-3;
+      height: auto;
 
-  display: inline-block;
-  transform: scale(1);
-  transition: all .2s ease-in-out;
+    }
 
-  &:hover {
-    transform: scale(1.5);
   }
-
-  &.clickable {
-    cursor: pointer;
-  }
-
-}
-
-.ui-products-stats-progressbar {
-  height: 3px !important;
-}
-
-.ui-active:hover {
-
-  border-bottom-style:solid;
-  border-color: $ui-theme-primary;
 
 }
 
