@@ -27,11 +27,17 @@
 
   .ui-card-row {
 
+    @extend .row;
+
     .ui-card-image {
+
+      @extend .col-3;
 
     }
 
     .ui-card-body {
+
+      @extend .col-9;
 
       .ui-card-tags {
 
