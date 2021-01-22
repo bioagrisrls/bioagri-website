@@ -39,7 +39,7 @@
                         <li><a ui-navigate data-bs-dismiss="modal" href="#"><span>Il mio account</span></a></li>
                         <li><a ui-navigate data-bs-dismiss="modal" href="#"><span>I miei ordini</span></a></li>
                         <li><a ui-navigate data-bs-dismiss="modal" href="#"><span>La mia lista desideri</span></a></li>
-                        <li><a ui-navigate data-bs-dismiss="modal" href="/admin/dashboard"><span>Dashboard</span></a></li>
+                        <li><a href="/admin/dashboard"><span>Dashboard</span></a></li>
                         <li><a ui-navigate data-bs-dismiss="modal" href="#"><span>Impostazioni</span></a></li>
                         <li><a ui-navigate data-bs-dismiss="modal" onclick="disconnect(true)"><span>Esci</span></a></li>
                     </ul>
