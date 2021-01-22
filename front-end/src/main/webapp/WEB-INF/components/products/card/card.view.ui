@@ -42,7 +42,7 @@
             <div class="ui-card-tags">
                 <ul>
                     <? for (let i of tags) { ?>
-                        <li><span class="mdi mdi-pound"></span> {{i.slice(1)}}</li>
+                        <li><span class="mdi mdi-pound"></span> {{i.hashtag.slice(1)}}</li>
                     <? } ?>
                 </ul>
             </div>
