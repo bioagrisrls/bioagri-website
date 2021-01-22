@@ -53,7 +53,7 @@
                 <? if (+product.discount > 0) { ?>
                     <s>{{product.price}} &euro; </s> <span>{{ (+product.price * +product.discount) / 100 }} &euro; </span>
                 <? } else { ?>
-                    <span>{{ (+product.price * +product.discount) / 100 }} &euro; </span>
+                    <span>{{product.price}} &euro; </span>
                 <? } ?>
             </div>
         </div>

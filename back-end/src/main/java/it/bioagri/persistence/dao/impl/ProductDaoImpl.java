@@ -60,6 +60,7 @@ public class ProductDaoImpl extends ProductDao {
                             r.getString("name"),
                             r.getString("description"),
                             r.getFloat("price"),
+                            r.getFloat("discount"),
                             r.getInt("stock"),
                             ProductStatus.values()[r.getShort("status")],
                             r.getTimestamp("updated_at"),
@@ -90,6 +91,7 @@ public class ProductDaoImpl extends ProductDao {
                         r.getString("name"),
                         r.getString("description"),
                         r.getFloat("price"),
+                        r.getFloat("discount"),
                         r.getInt("stock"),
                         ProductStatus.values()[r.getShort("status")],
                         r.getTimestamp("updated_at"),
@@ -109,7 +111,7 @@ public class ProductDaoImpl extends ProductDao {
 
         getDataSource().update(
                 """
-                    INSERT INTO shop_product (id, name, description, price, stock, status, created_at, updated_at)
+                    INSERT INTO shop_product (id, name, description, price, discount, stock, status, created_at, updated_at)
                                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     s -> {
@@ -117,10 +119,11 @@ public class ProductDaoImpl extends ProductDao {
                         s.setString(2, value.getName());
                         s.setString(3, value.getDescription());
                         s.setFloat(4, value.getPrice());
-                        s.setInt(5, value.getStock());
-                        s.setShort(6, (short) value.getStatus().ordinal());
-                        s.setTimestamp(7, value.getCreatedAt());
-                        s.setTimestamp(8, value.getUpdatedAt());
+                        s.setFloat(5, value.getDiscount());
+                        s.setInt(6, value.getStock());
+                        s.setShort(7, (short) value.getStatus().ordinal());
+                        s.setTimestamp(8, value.getCreatedAt());
+                        s.setTimestamp(9, value.getUpdatedAt());
                     });
 
     }
@@ -138,11 +141,12 @@ public class ProductDaoImpl extends ProductDao {
                         s.setString(1, newValue.getName());
                         s.setString(2, newValue.getDescription());
                         s.setFloat(3, newValue.getPrice());
-                        s.setInt(4, newValue.getStock());
-                        s.setShort(5, (short) newValue.getStatus().ordinal());
-                        s.setTimestamp(6, newValue.getCreatedAt());
-                        s.setTimestamp(7, newValue.getUpdatedAt());
-                        s.setLong(8, oldValue.getId());
+                        s.setFloat(4, newValue.getDiscount());
+                        s.setInt(5, newValue.getStock());
+                        s.setShort(6, (short) newValue.getStatus().ordinal());
+                        s.setTimestamp(7, newValue.getCreatedAt());
+                        s.setTimestamp(8, newValue.getUpdatedAt());
+                        s.setLong(9, oldValue.getId());
                     });
 
     }

@@ -38,6 +38,7 @@ public final class Product implements Model {
     private final String name;
     private final String description;
     private final float price;
+    private final float discount;
     private final int stock;
     private final ProductStatus status;
     private final Timestamp updatedAt;
@@ -53,11 +54,12 @@ public final class Product implements Model {
     private List<Feedback> feedbacks;
 
 
-    public Product(long id, String name, String description, float price, int stock, ProductStatus status, Timestamp updatedAt, Timestamp createdAt, List<Category> categories, List<Tag> tags, List<Feedback> feedbacks) {
+    public Product(long id, String name, String description, float price, float discount, int stock, ProductStatus status, Timestamp updatedAt, Timestamp createdAt, List<Category> categories, List<Tag> tags, List<Feedback> feedbacks) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.discount = discount;
         this.stock = stock;
         this.status = status;
         this.updatedAt = updatedAt;
@@ -72,6 +74,7 @@ public final class Product implements Model {
         this.name = null;
         this.description = null;
         this.price = 0;
+        this.discount = 0;
         this.stock = 0;
         this.status = null;
         this.updatedAt = null;
@@ -99,6 +102,10 @@ public final class Product implements Model {
 
     public Float getPrice() {
         return price;
+    }
+
+    public float getDiscount() {
+        return discount;
     }
 
     public Integer getStock() {
