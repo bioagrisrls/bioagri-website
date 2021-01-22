@@ -52,7 +52,7 @@
                         skip: 0,
                         count: 0,
 
-                        sortType: 'createdAt',
+                        sortType: 'updatedAt',
                         viewType: 'block',
 
                         filterCategory: props.category || '',
@@ -200,6 +200,9 @@
                                 hasMore: false,
                                 state: 'ready'
                             };
+
+                            if(restoreScroll)
+                                window.scrollTo(0, window_offset);
 
                         } else {
 

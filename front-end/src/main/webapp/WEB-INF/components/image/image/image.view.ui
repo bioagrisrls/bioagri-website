@@ -35,7 +35,8 @@
         </div>
 
     <? } else { ?>
-        <div class="{{rounded ? 'rounded' : ''}} w-100 h-100" style="background: url('{{src}}') {{repeat}} {{position}}; background-size: {{size}};"></div>
+        <div class="{{rounded ? 'rounded' : ''}} w-100 h-100"
+             style="background: url('{{src}}') {{repeat}} {{position}}; background-size: {{size}}; animation: {{animation}} 0.4s linear"></div>
     <? } ?>
 
 </div>

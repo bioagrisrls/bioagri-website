@@ -42,8 +42,7 @@
                                    placeholder="{{strings.search}}"
                                    value="{{filterSearch}}">
 
-                            <button type="button"
-                                    class="btn btn-secondary">
+                            <button type="submit" class="btn btn-secondary">
                                 <span class="mdi mdi-18px mdi-magnify"></span>
                             </button>
 
@@ -79,7 +78,7 @@
 
                                     <div class="{{ filterCategory === i.id ? 'active' : '' }}" onclick="$$.applyFilter('category', {{i.id}})">
                                             <span class="float-start">
-                                                {{i.name}}
+                                                <span class="mdi mdi-tag-outline"></span> {{i.name}}
                                             </span>
                                             <span class="float-end">
                                                 {{i.count || 0}}
@@ -117,7 +116,7 @@
 
                                     <div class="{{ filterTag === i.id ? 'active' : '' }}" onclick="$$.applyFilter('tag', {{i.id}})">
                                         <span class="float-start">
-                                            {{i.hashtag}}
+                                            <span class="mdi mdi-pound"></span> {{i.hashtag.slice(1)}}
                                         </span>
                                         <span class="float-end">
                                             {{i.count || 0}}
@@ -132,6 +131,51 @@
                     </div>
 
                 </div>
+
+
+                <div class="ui-catalog-side-mode">
+
+                    <div class="row">
+                        <div class="col">
+                            {{strings.orderby}}:
+                        </div>
+                        <div class="col text-end">
+
+                            <span onclick="$$.applyFilter('order', 'name&order=asc')"
+                                  class="{{ sortType === 'name&order=asc' ? 'active' : '' }} mdi mdi-18px mdi-order-alphabetical-ascending"></span>
+
+                            <span onclick="$$.applyFilter('order', 'name&order=desc')"
+                                  class="{{ sortType === 'name&order=desc' ? 'active' : '' }} mdi mdi-18px mdi-order-alphabetical-descending"></span>
+
+                            <span onclick="$$.applyFilter('order', 'price&order=asc')"
+                                  class="{{ sortType === 'price&order=asc' ? 'active' : '' }} mdi mdi-18px mdi-order-numeric-ascending"></span>
+
+                            <span onclick="$$.applyFilter('order', 'price&order=desc')"
+                                  class="{{ sortType === 'price&order=desc' ? 'active' : '' }} mdi mdi-18px mdi-order-numeric-descending"></span>
+
+                            <span onclick="$$.applyFilter('order', 'updatedAt')"
+                                  class="{{ sortType === 'updatedAt' ? 'active' : '' }} mdi mdi-18px mdi-clock-outline"></span>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            {{strings.views}}:
+                        </div>
+                        <div class="col text-end">
+
+                            <span onclick="$$.view('row')"
+                                  class="{{ viewType === 'row' ? 'active' : '' }} mdi mdi-18px mdi-table-of-contents"></span>
+
+                            <span onclick="$$.view('block')"
+                                  class="{{ viewType === 'block' ? 'active' : '' }} mdi mdi-18px mdi-grid-large"></span>
+
+                        </div>
+                    </div>
+
+                </div>
+
 
             </div>
 
@@ -159,7 +203,7 @@
                     <? if (products.length > 0) { ?>
                         <? for (let i of products) { ?>
 
-                            <div class="ui-catalog-main-body-card">
+                            <div class="ui-catalog-main-body-card {{viewType}}">
 
                                 <ui-card id="{{this.id}}-card-{{i}}-{{viewType}}"
                                          ui:id="{{i}}"
@@ -170,9 +214,10 @@
                         <? } ?>
                     <? } else { ?>
 
-                        <p class="ui-catalog-main-body-empty">
-                            {{strings.empty}}
-                        </p>
+                        <div class="ui-catalog-main-body-empty">
+                            <img src="/assets/img/common/404.png" alt="">
+                            <p>{{strings.empty}}</p>
+                        </div>
 
                     <? } ?>
                 <? } else { ?>
