@@ -68,8 +68,6 @@
   "nav_shopping_cart_clear" : "Svuota carrello",
   "nav_shopping_cart_article" : "articoli):",
 
-  "card_not_avaliable" : "/assets/img/products/not-available.png",
-
   "foo_header_connected" : "Seguici sui nostri social network per rimanere connesso!",
   "foo_body_logo" : "/assets/img/logo/logo-extended.png",
   "foo_body_description" : "BioAgri S.r.l.s. è un azienda che opera nel settore agrario distribuendo ed erogando servizi di consulenza e prodotti per il giardinaggio, coltura, e strumenti per l’agronomia.",
@@ -164,6 +162,7 @@
   "auth_login_with_facebook": "Accedi con Facebook",
   "auth_login_with_twitter": "Accedi con Twitter",
 
+  "card_not_available" : "/assets/img/products/not-available.png",
   "card_add_wish": "Aggiungi alla tua Lista dei Desideri",
   "card_add_cart": "Aggiungi al carrello",
 
