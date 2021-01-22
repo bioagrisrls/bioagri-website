@@ -77,7 +77,7 @@
                 <div class="ui-card-buttons">
                     <?
                         if (!hide.includes('wish')) {
-                            if (like) {
+                            if (like === 'true') {
                                 ?> <button onclick="$$.wishToggle()"><span class="mdi mdi-18px mdi-heart"></span> {{strings.liked}}</button> <?
                             } else {
                                 ?> <button onclick="$$.wishToggle()"><span class="mdi mdi-18px mdi-heart-plus"></span> {{strings.like}}</button> <?
@@ -85,7 +85,7 @@
                         }
 
                         if (!hide.includes('cart')) {
-                            ?> <button><span class="mdi mdi-18px mdi-cart-plus"></span> {{strings.cart}}</button> <?
+                            ?> <button onclick="$$.cart()"><span class="mdi mdi-18px mdi-cart-plus"></span> {{strings.cart}}</button> <?
                         }
                     ?>
                 </div>
@@ -102,7 +102,7 @@
         <div class="ui-card-buttons">
             <?
                 if (!hide.includes('wish')) {
-                    if (like) {
+                    if (like === 'true') {
                         ?> <button onclick="$$.wishToggle()" title="{{strings.liked}}"><span class="mdi mdi-18px mdi-heart"></span></button> <?
                     } else {
                         ?> <button onclick="$$.wishToggle()" title="{{strings.like}}"><span class="mdi mdi-18px mdi-heart-plus-outline"></span></button> <?
@@ -110,7 +110,7 @@
                 }
 
                 if (!hide.includes('cart')) {
-                    ?> <button onclick="$$.wishToggle()" title="{{strings.cart}}"><span class="mdi mdi-18px mdi-cart-plus"></span></button> <?
+                    ?> <button onclick="$$.cart()" title="{{strings.cart}}"><span class="mdi mdi-18px mdi-cart-plus"></span></button> <?
                 }
             ?>
         </div>
@@ -151,9 +151,9 @@
 
             <div class="ui-card-price">
                 <? if (+product.discount > 0) { ?>
-                <s>{{product.price}} &euro; </s> <span>{{ (+product.price - ((+product.price * +product.discount) / 100)).toFixed(2) }} &euro; </span>
+                    <s>{{product.price}} &euro; </s> <span>{{ (+product.price - ((+product.price * +product.discount) / 100)).toFixed(2) }} &euro; </span>
                 <? } else { ?>
-                <span>{{product.price}} &euro; </span>
+                    <span>{{product.price}} &euro; </span>
                 <? } ?>
             </div>
 
