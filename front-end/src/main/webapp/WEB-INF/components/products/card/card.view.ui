@@ -51,7 +51,7 @@
             </div>
             <div class="ui-card-price">
                 <? if (+product.discount > 0) { ?>
-                    <s>{{product.price}} &euro; </s> <span>{{ (+product.price * +product.discount) / 100 }} &euro; </span>
+                    <s>{{product.price}} &euro; </s> <span>{{ ((+product.price * +product.discount) / 100).toFixed(2) }} &euro; </span>
                 <? } else { ?>
                     <span>{{product.price}} &euro; </span>
                 <? } ?>
