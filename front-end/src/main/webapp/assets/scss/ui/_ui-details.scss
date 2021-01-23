@@ -23,6 +23,12 @@
  *
  */
 
+.ui-details {
+
+  @extend .mx-5;
+
+}
+
 .ui-details-related {
 
   @extend .text-primary;

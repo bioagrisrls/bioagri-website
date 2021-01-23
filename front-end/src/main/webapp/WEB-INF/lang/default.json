@@ -143,11 +143,6 @@
   "checkout_shipment_hint": "Spedizioni in tutta Italia",
   "checkout_payment_hint": "Paga in tutta sicurezza con PayPal",
 
-  "info_product_iva": "IVA inclusa",
-  "info_product_description": "Descrizione",
-  "info_product_cart": "Aggiungi al carrello",
-  "info_product_feedbacks": "Recensioni",
-
   "auth_welcome": "Bentornato!",
   "auth_promo": "Sei un nuovo cliente?",
   "auth_subscribe": "Registrati ora!",
@@ -186,5 +181,11 @@
   "catalog_main_empty" : "La ricerca non ha prodotto nessun risultato",
 
   "details_products_suggest" : "Protrebbe interessarti anche..",
-  "details_products_news" : "Le novità del momento"
+  "details_products_news" : "Le novità del momento",
+  "details_iva": "IVA inclusa",
+  "details_description": "Descrizione",
+  "details_cart": "Aggiungi al carrello",
+  "details_feedbacks": "Recensioni",
+  "details_liked": "Rimuovi dlla lista desideri",
+  "details_like": "Aggiungi alla lista desideri"
 }
