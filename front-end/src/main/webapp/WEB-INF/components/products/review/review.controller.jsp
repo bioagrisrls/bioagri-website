@@ -63,7 +63,7 @@
 
                 vote: {
                     type: 'hidden',
-                    value: '0'
+                    value: ''
                 },
 
                 title: {
@@ -86,7 +86,7 @@
                         <ui-stars id="` + id.id + `-stars-component"
                                   ui:clickable="true"
                                   ui:vote="5"
-                                  ui:bind="#` + id.id + `-vote:vote"></ui-stars>
+                                  ui:bind-1="#` + id.id + `-vote:vote"></ui-stars>
                     `
                 },
 
@@ -110,17 +110,11 @@
                 createdAt:      new Date().toISOString(),
                 updatedAt:      new Date().toISOString(),
             }, 'raw')
+            .then(response => {
+                this.state = { $state: 'ok' }
+            })
             .catch(reason => {
-
-                switch(reason) {
-                    case 401:
-                        return this.state = { $state: 'wrong', $reason: [ 'username' ] };
-                    case 403:
-                        return this.state = { $state: 'wrong', $reason: [ 'password' ] };
-                    default:
-                        return this.state = { $state: 'error', $reason: reason };
-                }
-
+                this.state = { $state: 'error', $reason: reason };
             });
 
         }

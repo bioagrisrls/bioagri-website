@@ -32,11 +32,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <div class="ui-review-form">
-                <ui-review id="{{this.id}}-review-form"
-                           ui:id="{{id}}"
-                           ui:name="{{name}}"></ui-review>
-            </div>
+
+            <ui-review id="{{this.id}}-review-form" class="ui-review-form"
+                       ui:id="{{id}}"
+                       ui:name="{{name}}">
+
+                <div class="ui-review-form-success">
+                    {{success}}
+                </div>
+
+            </ui-review>
 
         </div>
     </div>
