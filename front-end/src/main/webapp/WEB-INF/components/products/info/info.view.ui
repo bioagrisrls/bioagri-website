@@ -25,9 +25,9 @@
 
 <div class=ui-product-info">
 
-    <div class="row mx-3 my-3">
+    <div class="ui-product-info-details">
 
-        <div class="col-lg-6 col-md">
+        <div class="ui-product-info-gallery">
 
             <!-- Product Gallery -->
             <div class="container shadow-sm">
@@ -37,45 +37,68 @@
         </div>
 
         <!-- Product Info -->
-        <div class="col-lg-6 col-md">
+        <div class="ui-product-info-side">
 
-            <div class="container shadow-sm">
+            <div class="ui-product-info-tags">
+                <p>
+                    <?
+                        if (tags.length > 0) {
+                    for (let i of tags) {
+                    ?> <span class="mdi mdi-pound"></span> {{i.hashtag.slice(1)}} <?
+                            }
+                        } else {
+                            ?> <span class="mdi mdi-pound"></span> <?
+                        }
+                    ?>
+                </p>
+            </div>
 
-                <!-- Info -->
-                <div class="display-4 py-3">
-                    <h2 class="d-inline p-0">{{ product.name }}</h2>
-                </div>
+            <div class="ui-product-info-title">
+                <h1>{{product.name}}</h1>
+            </div>
 
-                <div class="display-5">
-                    <h2 class="d-inline p-0">{{ product.price }} &euro;</h2>
-                    <p class="d-inline p-0">{{ ivaText }}</p>
-                </div>
+            <div class="ui-product-info-price">
+                <? if (+product.discount > 0) { ?>
+                    <s>{{product.price}} &euro; </s> <span>{{ (+product.price - ((+product.price * +product.discount) / 100)).toFixed(2) }} &euro; </span>
+                <? } else { ?>
+                    <span>{{product.price}} &euro; </span>
+                <? } ?>
+            </div>
 
-                <div class="row mb-4">
-                    <ui-stars id="ui-stars-1" ui:id="{{product.id}}" ui:clickable="{{false}}"></ui-stars>
-                </div>
+            <div class="ui-product-info-stars">
+                <ui-stars id="{{this.id}}-{{product.id}}-stars" ui:vote="{{average}}"></ui-stars>
+            </div>
 
-                <div class="mb-2">
-                    <h5 class="d-inline p-0">{{ descriptionText }}</h5>
-                    <p>{{ product.description }}</p>
-                </div>
+            <div class="ui-product-info-content">
+                <h3>{{strings.description}}</h3>
+                <p>{{product.info}}</p>
+            </div>
 
-                <div class="row py-4">
+            <div class="ui-product-info-footer">
+
+                <div class="ui-product-info-stats">
 
                     <!-- Stats -->
-                    <ui-product-stats id="ui-product-stats-{{product.id}}" ui:id="{{product.id}}"></ui-product-stats>
+                    <ui-product-stats id="{{this.id}}-{{product.id}}-stats" ui:id="{{product.id}}"></ui-product-stats>
 
                 </div>
 
-                <div class="row py-4">
+                <div class="ui-product-info-buttons">
+                    <?
 
-                    <!-- Add to Cart -->
-                    <button class="btn btn-primary btn-lg"><span class="mdi mdi-24px mdi-cart-outline align-middle"></span>{{ addToCartButton }}</button>
+                        if (like === 'true') {
+                            ?> <button onclick="$$.wishToggle()"><span class="mdi mdi-18px mdi-heart"></span> {{strings.liked}}</button> <?
+                        } else {
+                            ?> <button onclick="$$.wishToggle()"><span class="mdi mdi-18px mdi-heart-plus"></span> {{strings.like}}</button> <?
+                        }
 
+                        ?> <button onclick="$$.cart()"><span class="mdi mdi-18px mdi-cart-plus"></span> {{strings.cart}}</button> <?
+
+                    ?>
                 </div>
-
 
             </div>
+
         </div>
 
     </div>
@@ -85,7 +108,7 @@
     <br>
     <br>
 
-    <div>
+    <div class="ui-product-info-more">
 
         <!-- Tab List -->
         <ul class="nav nav-tabs" id="tab" role="tablist">
@@ -93,12 +116,11 @@
             <!-- Feedbacks -->
             <li class="nav-item">
                 <a class="nav-link {{ current === 'feedbacks' ? 'active' : '' }}"
-                   onclick="$$.goToFeedbacks()"
-                   id="tabOrder"
+                   onclick="$$.feedbacks()"
                    role="tab">
 
                     <ul class="list-inline">
-                        <li class="list-inline-item"><h5>{{ feedbacksText }}</h5></li>
+                        <li class="list-inline-item"><h5>{{ strings.feedbacks }}</h5></li>
                         <li class="list-inline-item"><span class="mdi mdi-comment-quote mdi-24px"></span></li>
                     </ul>
 
@@ -108,12 +130,11 @@
             <!-- Description -->
             <li class="nav-item">
                 <a class="nav-link {{ current === 'description' ? 'active' : '' }}"
-                   onclick="$$.goToDescription()"
-                   id="tabPayment"
+                   onclick="$$.description()"
                    role="tab">
 
                     <ul class="list-inline">
-                        <li class="list-inline-item"><h5>{{ descriptionText }}</h5></li>
+                        <li class="list-inline-item"><h5>{{ strings.description }}</h5></li>
                         <li class="list-inline-item"><span class="mdi mdi-semantic-web mdi-24px"></span></li>
                     </ul>
 

@@ -37,29 +37,35 @@
                 Promise.all([
                     api('/products/' + (props.id || '')),
                     api('/products/' + (props.id || '') + '/categories'),
-                    api('/products/' + (props.id || '') + '/tags')
+                    api('/products/' + (props.id || '') + '/tags'),
+                    api('/products/' + (props.id || '') + '/votes/avg', 'GET', {}, 'text'),
                 ]).then(response => {
 
                     return {
 
-                        product: response[0],
+                        product:    response[0],
                         categories: response[1],
-                        tags: response[2],
+                        tags:       response[2],
+                        average:    response[3],
 
-                        ivaText: `${locale.info_product_iva}`,
-                        descriptionText: `${locale.info_product_description}`,
-                        addToCartButton: `${locale.info_product_cart}`,
+                        strings: {
+                            description:  `${locale.details_description}`,
+                            iva:          `${locale.details_iva}`,
+                            liked:        `${locale.details_liked}`,
+                            like:         `${locale.details_like}`,
+                            cart:         `${locale.details_cart}`,
+                            feedbacks:    `${locale.details_feedbacks}`
+                        },
+
                         feedbacksText: `${locale.info_product_feedbacks}`,
 
                         current: 'feedbacks',
 
                     }
 
-                }).catch(reason => {
+                }).catch(reason => navigate('/catalog'))
 
-                    console.log(reason);
-
-                }));
+            );
 
         }
 
@@ -68,12 +74,12 @@
         }
 
 
-        goToFeedbacks() {
-            this.setState({current: 'feedbacks'});
+        feedbacks() {
+            this.state = { current: 'feedbacks' };
         }
 
-        goToDescription() {
-            this.setState({current: 'description'});
+        description() {
+            this.state = { current: 'description' };
         }
 
 

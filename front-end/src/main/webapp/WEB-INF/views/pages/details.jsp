@@ -33,7 +33,7 @@
     <ui-navbar id="ui-navbar" ></ui-navbar>
 
 
-    <section ui-animated>
+    <section class="ui-details" ui-animated>
 
         <br>
         <br>
@@ -44,7 +44,12 @@
 
 
         <!-- Breadcrumb -->
-        <ui-breadcrumb id="ui-breadcrumb-8" ui:current="${param.product}" ui:urls="/catalog" ui:path="${locale.page_catalog}"></ui-breadcrumb>
+        <ui-breadcrumb id="ui-breadcrumb-details-${param.q}" ui:current="${param.product}" ui:urls="/catalog" ui:path="${locale.page_catalog}"></ui-breadcrumb>
+
+
+        <br>
+        <br>
+        <br>
 
 
         <!-- Product Info -->
@@ -54,6 +59,11 @@
         <br>
         <br>
         <br>
+
+    </section>
+
+
+    <section>
 
         <section class="ui-details-related">
 
