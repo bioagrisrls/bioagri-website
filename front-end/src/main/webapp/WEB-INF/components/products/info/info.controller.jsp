@@ -196,6 +196,7 @@
                 .then(() => Component.render(Component.dummy(), `${components.products_review}`, {
                     id: this.state.product.id,
                     name: this.state.product.name,
+                    success: `${locale.review_form_success}`
                 }))
 
                 .catch(reason => {
