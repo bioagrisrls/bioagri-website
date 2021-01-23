@@ -139,14 +139,30 @@
         wishToggle() {
 
             this.state = {
-                like: this.state.like === 'true' ? 'false' : 'true'
+                like: this.state.like === 'true'
+                    ? 'false'
+                    : 'true'
             };
 
-            this.raise(this.state.like === 'true'
-                ? 'wish-add'
-                : 'wish-remove');
+            if(this.state.like === 'true') {
+
+                authenticated()
+                    .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + this.state.product.id, 'POST', {}, 'raw').catch(() => {}))
+                    .then(() => Component.render(Component.dummy(), `${components.common_notify}`, { message: '<span class="mdi mdi-18px mdi-heart-plus"></span> ${locale.wish_add}' }))
+                    .catch(() => requestUserAuthentication());
+
+            } else {
+
+                authenticated()
+                    .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + this.state.product.id, 'DELETE', {}, 'raw').catch(() => {}))
+                    .then(() => Component.render(Component.dummy(), `${components.common_notify}`, { message: '<span class="mdi mdi-18px mdi-heart-minus"></span> ${locale.wish_remove}' }))
+                    .catch(() => requestUserAuthentication());
+
+            }
+
 
         }
+
 
 
         /**

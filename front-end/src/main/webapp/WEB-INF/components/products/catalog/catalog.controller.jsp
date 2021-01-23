@@ -215,33 +215,6 @@
 
 
         /**
-         * Add product to Wishlist
-         * @param id {number}
-         */
-        wishAdd(id) {
-
-            authenticated()
-                .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + id, 'POST', {}, 'raw').catch(() => {}))
-                .then(() => Component.render(Component.dummy(), `${components.common_notify}`, { message: '<span class="mdi mdi-18px mdi-heart-plus"></span> ${locale.wish_add}' }))
-                .catch(() => requestUserAuthentication());
-
-        }
-
-
-        /**
-         * Remove product to Wishlist
-         * @param id {number}
-         */
-        wishRemove(id) {
-
-            authenticated()
-                .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + id, 'DELETE', {}, 'raw').catch(() => {}))
-                .then(() => Component.render(Component.dummy(), `${components.common_notify}`, { message: '<span class="mdi mdi-18px mdi-heart-minus"></span> ${locale.wish_remove}' }))
-                .catch(() => requestUserAuthentication());
-
-        }
-
-        /**
          * Apply filter to catalog
          * @param filter {string}
          * @param value {string}

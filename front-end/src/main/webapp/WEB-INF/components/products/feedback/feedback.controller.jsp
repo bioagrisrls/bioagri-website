@@ -40,16 +40,22 @@
                 ]).then(response => {
 
                     return {
+
                         feedbacks: response[0],
                         images: response[1],
                         users: [],
                         productId: props.id,
-                        skip: 0
+                        skip: 0,
+
+                        strings: {
+                            more:       `${locale.feedbacks_more}`,
+                            reviewed:   `${locale.feedbacks_reviewed}`
+                        }
+
                     }
 
-                }).catch(response => {
-                    console.log(response)
-                })
+                }).catch(() => {})
+
             )
         }
 

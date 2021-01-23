@@ -41,8 +41,8 @@
                 <p>
                     <?
                         if (tags.length > 0) {
-                    for (let i of tags) {
-                    ?> <span class="mdi mdi-pound"></span> {{i.hashtag.slice(1)}} <?
+                            for (let i of tags) {
+                                ?> <span class="mdi mdi-pound"></span> {{i.hashtag.slice(1)}} <?
                             }
                         } else {
                             ?> <span class="mdi mdi-pound"></span> <?
