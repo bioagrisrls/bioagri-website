@@ -44,9 +44,6 @@
             );
         }
 
-        onUpdated(state) {
-            console.log(state.current);
-        }
 
         onRender() {
             return `${components.common_gallery}`

@@ -85,6 +85,7 @@
                     html: `
                         <ui-stars id="` + id.id + `-stars-component"
                                   ui:clickable="true"
+                                  ui:vote="5"
                                   ui:bind="#` + id.id + `-vote:vote"></ui-stars>
                     `
                 },
@@ -93,6 +94,9 @@
         }
 
 
+        onReady(state) {
+            this.state = { $state: 'ready' };
+        }
 
         onSubmit(data) {
 

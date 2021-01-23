@@ -165,7 +165,7 @@
                             <h1>{{strings.order}}</h1>
                         </div>
                         <div class="ui-product-info-feedbacks-order-write">
-                            <button>{{strings.write}} <span class="mdi mdi-24px mdi-message-draw"></span> </button>
+                            <button onclick="$$.review()">{{strings.write}} <span class="mdi mdi-24px mdi-message-draw"></span> </button>
                         </div>
                     </div>
 

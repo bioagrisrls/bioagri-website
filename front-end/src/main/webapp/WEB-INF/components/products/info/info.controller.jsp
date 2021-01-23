@@ -186,11 +186,12 @@
 
             authenticated()
 
-                .then(() => api('/orders/count?filter-by=userId&filter-val=' + sessionStorage.getItem('X-Auth-UserInfo-Id'), 'GET', {}, 'text')
-                    .then(response => {
-                        if(+response === 0)
-                            throw new Error('purchase-first')
-                    }))
+                // .then(() => api('/orders/products/count?filter-by=userId&filter-val=' + sessionStorage.getItem('X-Auth-UserInfo-Id') +
+                //                                       '&filter-by=id&filter-val=' + this.state.product.id, 'GET', {}, 'text')
+                //     .then(response => {
+                //         if(+response === 0)
+                //             throw new Error('purchase-first')
+                //     }))
 
                 .then(() => Component.render(Component.dummy(), `${components.products_review}`, {
                     id: this.state.product.id,
@@ -198,6 +199,8 @@
                 }))
 
                 .catch(reason => {
+
+                    console.error(reason);
 
                     if(reason === 'purchase-first')
                         Component.render(Component.dummy(), `${components.common_notify}`, { message: '${locale.review_purchase_first}' });

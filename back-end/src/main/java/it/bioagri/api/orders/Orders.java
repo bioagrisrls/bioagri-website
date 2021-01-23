@@ -25,10 +25,7 @@
 
 package it.bioagri.api.orders;
 
-import it.bioagri.api.ApiPermission;
-import it.bioagri.api.ApiPermissionOperation;
-import it.bioagri.api.ApiPermissionType;
-import it.bioagri.api.ApiResponseStatus;
+import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Order;
 import it.bioagri.persistence.DataSource;
@@ -95,6 +92,33 @@ public class Orders {
                     .findByPrimaryKey(id)
                     .filter(i -> ApiPermission.verifyOrThrow(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
                     .orElseThrow(() -> new ApiResponseStatus(404)));
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
+
+
+    @GetMapping("count")
+    public ResponseEntity<Long> count(
+            @RequestParam(required = false, defaultValue =   "0") Long skip,
+            @RequestParam(required = false, defaultValue = "999") Long limit,
+            @RequestParam(required = false, value =  "filter-by") List<String> filterBy,
+            @RequestParam(required = false, value = "filter-val") List<String> filterValue) {
+
+
+        try {
+
+            return ResponseEntity.ok(
+                    dataSource.getOrderDao()
+                            .findAll()
+                            .stream()
+                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.ORDERS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                            .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
+                            .skip(skip)
+                            .limit(limit)
+                            .count());
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
