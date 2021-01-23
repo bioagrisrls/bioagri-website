@@ -153,9 +153,9 @@
                 </div>
 
                 <div class="ui-product-info-disclaimer">
-                    <p>
+                    <small>
                         {{strings.disclaimer}}
-                    </p>
+                    </small>
                 </div>
 
                 <div class="ui-product-info-feedbacks-content">
