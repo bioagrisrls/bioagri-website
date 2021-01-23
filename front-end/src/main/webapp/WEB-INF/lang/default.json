@@ -187,5 +187,11 @@
   "details_cart": "Aggiungi al carrello",
   "details_feedbacks": "Recensioni",
   "details_liked": "Rimuovi dlla lista desideri",
-  "details_like": "Aggiungi alla lista desideri"
+  "details_like": "Aggiungi alla lista desideri",
+
+  "feedbacks_more": "Mostra di più",
+  "feedback_reviewed": "Recensito",
+
+  "stats_user_reviews": "Recensioni clienti"
+
 }
