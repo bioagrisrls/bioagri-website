@@ -86,6 +86,22 @@
 
         .ui-product-info-stats {
           @extend .my-5;
+
+          h3 {
+            @extend .fs-3;
+            @extend .ui-font-title-primary;
+          }
+
+          h5 {
+            @extend .fs-4;
+            @extend .ui-font-title-primary;
+          }
+
+          span {
+            @extend .fs-5;
+            @extend .ui-font-title-primary;
+          }
+
         }
 
         .ui-product-info-buttons {

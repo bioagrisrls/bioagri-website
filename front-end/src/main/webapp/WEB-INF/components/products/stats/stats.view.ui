@@ -37,7 +37,7 @@
     ?>
 
 
-    <h5 class="py-3">{{strings.reviews}}: ({{reviews.length}})</h5>
+    <h3 class="py-3">{{strings.reviews}}: ({{reviews.length}})</h3>
 
     <div class="row gx-5 align-items-center">
         <h5 class="col">{{votes[0].toFixed(2)}}/5</h5>
