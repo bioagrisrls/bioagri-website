@@ -94,7 +94,7 @@
 
         <div class="ui-feedback-more">
             <button onclick="$$.more()">
-                {{strings.more}} <span class="mdi mdi-24px mdi-arrow-down-thick"></span>
+                {{strings.more}} <span class="mdi mdi-18px mdi-arrow-down-thick"></span>
             </button>
         </div>
 

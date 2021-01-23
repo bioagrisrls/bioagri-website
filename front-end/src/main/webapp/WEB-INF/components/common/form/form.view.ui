@@ -210,6 +210,18 @@
 
                             break;
 
+                        case 'html':
+
+                        ?>
+
+                            <div class="{{this.id}}-{{k}}">
+                                {{v.html || ''}}
+                            </div>
+
+                        <?
+
+                            break;
+
                         default:
                             break;
 
