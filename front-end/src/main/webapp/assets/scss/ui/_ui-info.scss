@@ -139,7 +139,7 @@
     .ui-product-info-pane {
 
       @extend .tab-pane;
-      @extend .p-5;
+      @extend .py-5;
       @extend .fade;
 
       .ui-product-info-feedbacks {
