@@ -70,7 +70,12 @@
       }
 
       .ui-product-info-content {
+        @extend .my-5;
 
+        h3 {
+          @extend .fs-3;
+          @extend .ui-font-title-primary;
+        }
       }
 
       .ui-product-info-stars {
@@ -79,13 +84,21 @@
 
       .ui-product-info-footer {
 
+        .ui-product-info-stats {
+          @extend .my-5;
+        }
+
         .ui-product-info-buttons {
+
+          @extend .text-end;
 
           button {
             @extend .btn;
             @extend .btn-primary;
             @extend .ui-font-title-primary;
             @extend .fs-5;
+            @extend .w-100;
+            @extend .w-sm-auto;
           }
 
         }

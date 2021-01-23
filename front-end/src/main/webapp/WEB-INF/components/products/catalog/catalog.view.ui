@@ -207,9 +207,7 @@
 
                                 <ui-card id="{{this.id}}-card-{{i}}-{{viewType}}"
                                          ui:id="{{i}}"
-                                         ui:view="{{viewType}}"
-                                         ui:on-wish-add="$$.wishAdd({{i}})"
-                                         ui:on-wish-remove="$$.wishRemove({{i}})"></ui-card>
+                                         ui:view="{{viewType}}"></ui-card>
 
                             </div>
 

@@ -23,8 +23,8 @@
   ~
   -->
 
-<? let i = 0; ?>
-<? for ( ; i < this.state.feedbacks.length; i++) { ?>
+
+<? for (let i = 0 ; i < this.state.feedbacks.length; i++) { ?>
 
     <?
         let date = new Date(+this.state.feedbacks[i].createdAt);
@@ -42,8 +42,8 @@
         <div class="row mh-50">
 
             <div class="col" >
-                <h4>{{ typeof this.state.users[i] === 'undefined' ? '' : this.state.users[i].name }} {{ typeof this.state.users[i] === 'undefined' ? '' : this.state.users[i].surname }}</h4>
-                <p>Recensito: {{ compatted }}</p>
+                <h4>{{ (this.state.users[i] && this.state.users[i].name) || '' }} {{ (this.state.users[i] && this.state.users[i].surname) || '' }}</h4>
+                <p>{{strings.reviewed}}: {{ compatted }}</p>
                 <ui-stars class="col-auto" id="{{this.id}}-reviews-stars-{{i}}" ui:vote="{{this.state.feedbacks[i].vote}}"></ui-stars>
             </div>
 
@@ -79,7 +79,7 @@
         <button class="btn btn-primary btn-lg"
                 onclick="$$.moreFeedback()">
             <span class="mdi mdi-24px mdi-cart-outline align-middle"></span>
-            Mostra di piu
+            {{strings.more}}
         </button>
     </div>
 
