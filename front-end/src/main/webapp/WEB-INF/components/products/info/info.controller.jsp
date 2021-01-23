@@ -47,6 +47,10 @@
                         categories: response[1],
                         tags:       response[2],
                         average:    response[3],
+                        like:       'false',
+
+                        current: 'feedbacks',
+
 
                         strings: {
                             description:  `${locale.details_description}`,
@@ -57,9 +61,6 @@
                             feedbacks:    `${locale.details_feedbacks}`
                         },
 
-                        feedbacksText: `${locale.info_product_feedbacks}`,
-
-                        current: 'feedbacks',
 
                     }
 

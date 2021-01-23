@@ -23,16 +23,14 @@
   ~
   -->
 
-<div class=ui-product-info">
+<div class="ui-product-info">
 
     <div class="ui-product-info-details">
 
         <div class="ui-product-info-gallery">
 
             <!-- Product Gallery -->
-            <div class="container shadow-sm">
-                <ui-gallery id="ui-gallery-{{product.id}}" ui:id="{{product.id}}"></ui-gallery>
-            </div>
+            <ui-gallery id="ui-gallery-{{product.id}}" ui:id="{{product.id}}"></ui-gallery>
 
         </div>
 

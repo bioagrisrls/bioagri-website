@@ -38,6 +38,8 @@
 
     .ui-product-info-side {
 
+      @extend .col-lg;
+
       .ui-product-info-tags {
         p {
           @extend .my-0;
@@ -76,13 +78,6 @@
       }
 
       .ui-product-info-footer {
-
-        @extend .position-absolute;
-        bottom: 1rem;
-
-        .ui-product-info-buttons {
-
-        }
 
         .ui-product-info-buttons {
 
