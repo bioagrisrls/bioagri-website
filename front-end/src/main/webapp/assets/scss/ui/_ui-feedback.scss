@@ -27,9 +27,24 @@
 
   .ui-feedback-item {
 
+    @extend.row;
+
     .ui-feedback-content {
 
+      @extend .col-md-10;
+
       .ui-feedback-header {
+
+        h1 {
+          @extend .ui-font-title-primary;
+          @extend .fs-2;
+          @extend .float-start
+        }
+
+        p {
+          @extend .text-muted;
+          @extend .float-end;
+        }
 
       }
 
@@ -44,11 +59,24 @@
     }
 
     .ui-feedback-image {
-
+      @extend .col-md-2;
+      @extend .show-only-desktop;
     }
 
     .ui-feedback-more {
 
+      button {
+
+        @extend .btn;
+        @extend .btn-primary;
+        @extend .ui-font-title-primary;
+        @extend .fs-3;
+
+        span {
+          @extend .ps-1;
+        }
+
+      }
     }
 
   }
