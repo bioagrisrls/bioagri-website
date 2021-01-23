@@ -262,6 +262,13 @@ $utilities: map-merge(
 }
 
 
+.nav-link {
+  @extend .text-dark;
+  cursor: pointer;
+  &.active {
+    @extend .text-primary;
+  }
+}
 
 .btn-primary {
 
