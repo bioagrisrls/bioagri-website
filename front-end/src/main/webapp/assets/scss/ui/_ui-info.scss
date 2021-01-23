@@ -128,5 +128,49 @@
 
   }
 
+  .ui-product-info-tabs {
+
+    @extend .tab-content;
+
+    .ui-product-info-pane {
+
+      @extend .tab-pane;
+      @extend .p-5;
+      @extend .fade;
+
+      .ui-product-info-stats {
+
+      }
+
+
+      .ui-product-info-disclaimer {
+
+      }
+
+      .ui-product-info-feedbacks {
+
+      }
+
+      .ui-product-info-feedbacks-content {
+
+        h1 {
+          @extend .ui-font-title-primary;
+
+        }
+
+      }
+
+      .ui-product-info-description {
+
+        h1, h2, h3, h4, h5 {
+          @extend .ui-font-title-primary
+        }
+
+      }
+
+    }
+
+  }
+
 }
 
