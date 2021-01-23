@@ -195,6 +195,13 @@
   "feedbacks_reviewed": "Recensito",
   "feedbacks_write": "Scrivi una recensione",
 
-  "stats_user_reviews": "Recensioni clienti"
+  "stats_user_reviews": "Recensioni clienti",
 
+  "review_header": "Stai scrivendo una recensione per",
+  "review_purchase_first": "Non hai acquistato qeusto prodotto! Aquistalo prima di poter lasciare una recensione",
+  "review_send": "Invia recensione",
+  "review_title": "Inserisci il titolo",
+  "review_title_wrong": "Il titolo non può essere vuoto",
+  "review_description": "Inserisci una descrizione",
+  "review_description_wrong": "La descrizione non può essere vuota"
 }
