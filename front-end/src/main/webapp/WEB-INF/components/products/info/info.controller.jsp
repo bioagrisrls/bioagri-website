@@ -62,6 +62,7 @@
                             feedbacks:    `${locale.details_feedbacks}`,
                             order:        `${locale.details_feedbacks_order}`,
                             disclaimer:   `${locale.details_feedbacks_disclaimer}`,
+                            write:        `${locale.details_feedbacks_write}`,
                         },
 
 

@@ -27,58 +27,101 @@
 
   .ui-feedback-item {
 
-    @extend.row;
+    @extend .row;
+    @extend .gx-0;
+
+
+    .ui-feedback-image {
+
+      @extend .col-auto;
+      @extend .justify-content-end;
+      @extend .show-only-desktop;
+
+    }
 
     .ui-feedback-content {
 
-      @extend .col-md-10;
+      @extend .col;
+      @extend .px-3;
 
       .ui-feedback-header {
 
         h1 {
           @extend .ui-font-title-primary;
           @extend .fs-2;
-          @extend .float-start
+          @extend .my-0;
         }
-
-        p {
-          @extend .text-muted;
-          @extend .float-end;
-        }
-
-      }
-
-      .ui-feedback-stars {
 
       }
 
       .ui-feedback-body {
 
-      }
+        @extend .my-3;
 
-    }
-
-    .ui-feedback-image {
-      @extend .col-md-2;
-      @extend .show-only-desktop;
-    }
-
-    .ui-feedback-more {
-
-      button {
-
-        @extend .btn;
-        @extend .btn-primary;
-        @extend .ui-font-title-primary;
-        @extend .fs-3;
-
-        span {
-          @extend .ps-1;
+        h1 {
+          @extend .ui-font-title-primary;
+          @extend .fs-5;
         }
 
       }
+
     }
 
+
+    .ui-feedback-info {
+
+      @extend .position-relative;
+      @extend .col-2;
+      @extend .d-none;
+      @extend .d-md-block;
+
+      .ui-feedback-stars {
+
+        @extend .position-absolute;
+        top: 0;
+        right: 0;
+
+      }
+
+      .ui-feedback-data {
+
+        @extend .position-absolute;
+        bottom: 0;
+        right: 0;
+
+        small {
+          @extend .text-muted;
+          @extend .text-nowrap;
+        }
+
+      }
+
+    }
+
+
+  }
+
+
+  .ui-feedback-more {
+
+    @extend .text-center;
+    @extend .my-5;
+    @extend .w-100;
+
+    button {
+
+      @extend .btn;
+      @extend .btn-primary;
+      @extend .ui-font-title-primary;
+      @extend .fs-3;
+      @extend .w-100;
+      @extend .w-sm-auto;
+
+      span {
+        @extend .ps-1;
+      }
+
+    }
   }
 
 }
