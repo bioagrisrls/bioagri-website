@@ -37,7 +37,7 @@
                 Promise.all([
                     api('/feedbacks/count?sorted-by=createdAt&filter-by=productId&filter-val=' + (props.id || '')),
                     api('/feedbacks?sorted-by=createdAt&filter-by=productId&filter-val=' + (props.id || '') + '&limit=3'),
-                    api('/products/' + (props.id || '') + '/images'),
+                    api('/products/' + (props.id || '') + '/images?limit=1'),
                 ]).then(response => {
 
                     return {
