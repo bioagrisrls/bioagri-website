@@ -37,6 +37,33 @@
     .ui-review-content {
 
       @extend .modal-content;
+      @extend .px-5;
+
+      .ui-review-form {
+
+        @extend .d-block;
+        @extend .w-100;
+        @extend .h-100;
+        @extend .px-5;
+        @extend .py-6;
+
+        h3 {
+          @extend .text-dark;
+          @extend .ui-font-title-primary;
+          @extend .fs-1;
+          @extend .py-3;
+        }
+
+        button {
+          @extend .py-3;
+          @extend .my-3;
+        }
+
+        textarea {
+          height: 420px;
+        }
+
+      }
 
       .ui-review-form {
 
