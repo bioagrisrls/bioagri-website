@@ -103,6 +103,34 @@ public class Feedbacks {
     }
 
 
+    @GetMapping("count")
+    @ApiPermissionPublic
+    public ResponseEntity<Long> count(
+            @RequestParam(required = false, defaultValue =   "0") Long skip,
+            @RequestParam(required = false, defaultValue = "999") Long limit,
+            @RequestParam(required = false, value =  "filter-by") List<String> filterBy,
+            @RequestParam(required = false, value = "filter-val") List<String> filterValue) {
+
+
+        try {
+
+            return ResponseEntity.ok(
+                    dataSource.getFeedbackDao()
+                            .findAll()
+                            .stream()
+                            .filter(i -> ApiPermission.hasPermission(ApiPermissionType.FEEDBACKS, ApiPermissionOperation.READ, authToken, i.getUserId()))
+                            .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
+                            .skip(skip)
+                            .limit(limit)
+                            .count());
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
+
+
     @PostMapping("")
     public ResponseEntity<String> create(@RequestBody Feedback feedback) {
 
