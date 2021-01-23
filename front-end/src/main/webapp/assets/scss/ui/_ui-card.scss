@@ -35,12 +35,12 @@
     @extend .h-100;
 
     .ui-card-image {
-      @extend .col-3;
+      @extend .col-sm-3;
     }
 
     .ui-card-body {
 
-      @extend .col-9;
+      @extend .col-sm-9;
       @extend .my-3;
 
       .ui-card-tags {
@@ -91,6 +91,8 @@
             @extend .btn-primary;
             @extend .ui-font-title-primary;
             @extend .fs-5;
+            @extend .w-100;
+            @extend .w-md-auto;
           }
 
         }

@@ -273,7 +273,7 @@ $utilities: map-merge(
   @extend .border;
   @extend .px-4;
 
-  &:hover, &:active, &.active {
+  &:hover, &:active, &:focus, &.active {
     @extend .shadow;
     color: $light-always;
     background-color: darken($primary, 15%);
@@ -291,7 +291,7 @@ $utilities: map-merge(
   @extend .border;
   @extend .px-4;
 
-  &:hover, &:active, &.active {
+  &:hover, &:active, &:focus, &.active {
     @extend .shadow;
     color: $light-always;
     background-color: darken($secondary, 20%);
@@ -309,7 +309,7 @@ $utilities: map-merge(
   @extend .border;
   @extend .px-4;
 
-  &:hover, &:active, &.active {
+  &:hover, &:active, &:focus, &.active {
     @extend .shadow;
     color: $light;
     background-color: $primary;
@@ -327,7 +327,7 @@ $utilities: map-merge(
   @extend .border;
   @extend .px-4;
 
-  &:hover, &:active, &.active {
+  &:hover, &:active, &:focus, &.active {
     @extend .shadow;
     color: $light;
     background-color: $secondary;

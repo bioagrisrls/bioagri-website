@@ -25,7 +25,7 @@
 
 <div class="ui-catalog">
 
-    <div class="row">
+    <div class="row gx-0">
 
         <!-- Sidebar -->
         <div class="ui-catalog-side">

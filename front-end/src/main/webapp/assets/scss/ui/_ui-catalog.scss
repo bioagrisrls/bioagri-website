@@ -135,6 +135,7 @@
         @extend .m-2;
         @extend .flex-basis-1;
         @extend .position-relative;
+        @extend .mw-100;
 
         &.block {
           @extend .flex-basis-md-2;
