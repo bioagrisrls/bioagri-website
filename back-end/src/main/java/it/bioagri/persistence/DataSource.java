@@ -62,6 +62,9 @@ public class DataSource {
     private final TicketResponseDao ticketResponseDao;
     private final TransactionDao transactionDao;
 
+    // TODO: ...
+    private Connection connection;
+
 
     @Autowired
     private DataSource (
@@ -88,8 +91,10 @@ public class DataSource {
 
     public Connection getConnection() throws SQLException {
 
-        var connection = DriverManager.getConnection(uri, username, password);
-        connection.setAutoCommit(true);
+        if(connection == null) {
+            connection = DriverManager.getConnection(uri, username, password);
+            connection.setAutoCommit(true);
+        }
 
         return connection;
 
@@ -136,10 +141,10 @@ public class DataSource {
 
         logger.trace("FETCH data with query '{}'", sql);
 
+        try {
 
-        try(var connection = getConnection();
-            var statement = connection.prepareStatement(sql)) {
-
+            var connection = getConnection();
+            var statement = connection.prepareStatement(sql);
 
             if(prepareStatement != null)
                 prepareStatement.prepare(statement);
@@ -172,9 +177,10 @@ public class DataSource {
         logger.trace("UPDATE data with query '{}'", sql);
 
 
-        try(var connection = getConnection();
-            var statement = connection.prepareStatement(sql)) {
+        try {
 
+            var connection = getConnection();
+            var statement = connection.prepareStatement(sql);
 
             if(prepareStatement != null)
                 prepareStatement.prepare(statement);

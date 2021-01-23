@@ -74,7 +74,7 @@ public class Access implements Filter {
                     .orElse(accessWithAuthentication.get(URI).getKey())
             );
 
-            logger.trace("Access denied for URI {} by {}", URI, authToken);
+            logger.error("Access denied for URI {} by {}", URI, authToken);
 
         }
 

@@ -32,6 +32,7 @@
   & .ui-catalog-side {
 
     @extend .col-3;
+    @extend .px-2;
     @extend .show-only-desktop;
 
     .ui-catalog-side-bar {
@@ -110,8 +111,10 @@
 
     @extend .col-12;
     @extend .col-lg-9;
+    @extend .px-2;
     @extend .bg-white;
     @extend .shadow-sm;
+
 
     .ui-catalog-main-header {
 

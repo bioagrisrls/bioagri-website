@@ -79,7 +79,7 @@ public final class Auth {
     @ApiPermissionPublic
     public ResponseEntity<AuthToken> authenticate(@RequestBody AuthLogin authLogin) {
 
-        logger.trace("Authentication attempt with {}", authLogin);
+        logger.debug("Authentication attempt with {}", authLogin);
 
         if(authLogin.getUsername().isEmpty())
             return ResponseEntity.badRequest().build();
@@ -123,7 +123,7 @@ public final class Auth {
     @PostMapping("disconnect")
     public void disconnect(HttpSession session) {
 
-        logger.trace("Authentication closed from {}", authToken);
+        logger.debug("Authentication closed from {}", authToken);
 
         authToken.setUserId(null);
         authToken.setUserRole(null);
@@ -146,7 +146,7 @@ public final class Auth {
     @ApiPermissionPublic
     public void register(HttpServletRequest request, HttpServletResponse response, @RequestBody User user) {
 
-        logger.trace("Registration attempt from {} {} <{}>", user.getName(), user.getSurname(), user.getMail());
+        logger.debug("Registration attempt from {} {} <{}>", user.getName(), user.getSurname(), user.getMail());
 
 
         if (user.getName().isBlank())

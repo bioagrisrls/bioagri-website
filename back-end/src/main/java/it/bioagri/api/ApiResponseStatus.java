@@ -58,8 +58,8 @@ public class ApiResponseStatus extends RuntimeException {
         @ResponseBody
         public ResponseEntity<String> handle(ApiResponseStatus e) {
 
-            if(logger.isTraceEnabled() && !e.getStatus().is2xxSuccessful())
-                logger.trace("Got a not successful status {}", e.getStatus());
+            if(logger.isErrorEnabled() && !e.getStatus().is2xxSuccessful())
+                logger.error("Got a not successful status {}", e.getStatus());
 
             return ResponseEntity.status(e.getStatus()).build();
 

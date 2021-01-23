@@ -109,11 +109,11 @@
                 this.state = {
 
                     tags: this.state.tags.map(
-                        (i, j) => Object.assign(i, { count: response[j] })
+                        (e, i) => Object.assign(e, { count: response[i] })
                     ),
 
                     categories: this.state.categories.map(
-                        (i, j) => Object.assign(i, { count: response[j] })
+                        (e, i) => Object.assign(e, { count: response[this.state.tags.length + i] })
                     )
 
                 }

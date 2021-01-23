@@ -59,7 +59,7 @@ public class GoogleAuth implements AuthExternalService {
             GoogleIdToken idToken = idTokenVerifier.verify(token);
             GoogleIdToken.Payload payload = idToken.getPayload();
 
-            logger.trace("External Authentication <{}> attempt from {} <{}> (verified: {})",
+            logger.debug("External Authentication <{}> attempt from {} <{}> (verified: {})",
                     GoogleAuth.class.getSimpleName(),
                     payload.get("name"),
                     payload.getEmail(),

@@ -38,7 +38,7 @@
 
 
 
-    <section>
+    <section ui-animated>
 
         <div class="ui-catalog-background">
             <div></div>
