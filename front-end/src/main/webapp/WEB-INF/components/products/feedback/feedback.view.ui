@@ -39,6 +39,21 @@
 
         <div class="ui-feedback-item">
 
+
+            <div class="ui-feedback-image">
+
+
+                <ui-image id="{{this.id}}-feedback-image-preview-{{productId}}-{{i}}"
+                          ui:src="{{images[0]}}"
+                          ui:width="128px"
+                          ui:height="128px"
+                          ui:position="center"
+                          ui:size="contain">
+                </ui-image>
+
+            </div>
+
+
             <div class="ui-feedback-content">
 
                 <div class="ui-feedback-header">
@@ -48,31 +63,25 @@
                         {{ (this.state.users[i] && this.state.users[i].surname) || '' }}
                     </h1>
 
-                    <div class="ui-feedback-stars">
-                        <ui-stars class="col-auto" id="{{this.id}}-reviews-stars-{{i}}" ui:vote="{{this.state.feedbacks[i].vote}}"></ui-stars>
-                    </div>
-
                 </div>
 
                 <div class="ui-feedback-body">
-                    <h5>{{ this.state.feedbacks[i].title }}</h5>
+                    <h1>{{ this.state.feedbacks[i].title }}</h1>
                     <p>{{ this.state.feedbacks[i].description }}</p>
                 </div>
 
             </div>
 
 
-            <div class="ui-feedback-image">
+            <div class="ui-feedback-info">
 
-                <p>{{strings.reviewed}}: {{ compatted }}</p>
+                <div class="ui-feedback-stars">
+                    <ui-stars class="col-auto" id="{{this.id}}-reviews-stars-{{i}}" ui:vote="{{this.state.feedbacks[i].vote}}"></ui-stars>
+                </div>
 
-                <ui-image id="{{this.id}}-feedback-image-preview-{{productId}}-{{i}}"
-                          ui:src="{{images[0]}}"
-                          ui:width="128px"
-                          ui:height="128px"
-                          ui:position="center"
-                          ui:size="contain">
-                </ui-image>
+                <div class="ui-feedback-data">
+                    <small>{{strings.reviewed}}: {{ compatted }}</small>
+                </div>
 
             </div>
 

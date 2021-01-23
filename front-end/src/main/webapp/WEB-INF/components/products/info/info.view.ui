@@ -160,7 +160,14 @@
 
                 <div class="ui-product-info-feedbacks-content">
 
-                    <h1>{{strings.order}}</h1>
+                    <div class="ui-product-info-feedbacks-order">
+                        <div class="ui-product-info-feedbacks-order-text">
+                            <h1>{{strings.order}}</h1>
+                        </div>
+                        <div class="ui-product-info-feedbacks-order-write">
+                            <button>{{strings.write}}</button>
+                        </div>
+                    </div>
 
                     <div>
                         <ui-feedback id="{{this.id}}-feedbacks-{{product.id}}" ui:id="{{product.id}}"></ui-feedback>

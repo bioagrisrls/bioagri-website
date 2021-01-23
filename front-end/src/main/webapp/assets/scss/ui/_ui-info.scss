@@ -174,9 +174,41 @@
 
           @extend .my-5;
 
-          h1 {
-            @extend .ui-font-title-primary;
+          .ui-product-info-feedbacks-order {
+
+            @extend .col;
+            @extend .gx-0;
+
+            .ui-product-info-feedbacks-order-text {
+
+              @extend .col;
+              @extend .d-none;
+              @extend .d-sm-block;
+
+              h1 {
+                @extend .ui-font-title-primary;
+              }
+
+            }
+
+            .ui-product-info-feedbacks-order-write {
+
+              @extend .col;
+              @extend .col-sm-auto;
+
+              button {
+                @extend .btn;
+                @extend .btn-primary;
+                @extend .w-100;
+                @extend .w-sm-auto;
+              }
+
+            }
+
+
           }
+
+
 
         }
 
