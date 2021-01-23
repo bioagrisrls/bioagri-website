@@ -176,7 +176,7 @@
 
           .ui-product-info-feedbacks-order {
 
-            @extend .col;
+            @extend .row;
             @extend .gx-0;
 
             .ui-product-info-feedbacks-order-text {
@@ -199,6 +199,8 @@
               button {
                 @extend .btn;
                 @extend .btn-primary;
+                @extend .ui-font-title-primary;
+                @extend .fs-3;
                 @extend .w-100;
                 @extend .w-sm-auto;
               }

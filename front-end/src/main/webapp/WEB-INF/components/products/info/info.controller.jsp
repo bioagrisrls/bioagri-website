@@ -50,7 +50,7 @@
                         average:    response[3],
                         like:       'false',
 
-                        current: 'feedbacks',
+                        current: 'description',
 
 
                         strings: {
@@ -115,7 +115,7 @@
 
 
         /**
-         * Load/Unload Wishlist
+         * Load/Unload Wishlist.
          * @param clear {boolean}
          */
         wish(clear = false) {
@@ -134,7 +134,7 @@
         }
 
         /**
-         * Toggle wish button
+         * Toggle wish button.
          */
         wishToggle() {
 
@@ -166,7 +166,7 @@
 
 
         /**
-         * Add product in shopping cart
+         * Add product in shopping cart.
          */
         cart() {
 
@@ -175,6 +175,36 @@
             Component.render(Component.dummy(), `${components.common_notify}`, {
                 message: '<span class="mdi mdi-18px mdi-cart-plus"></span> ${locale.cart_add}'
             });
+
+        }
+
+
+        /**
+         * Write a new review.
+         */
+        review() {
+
+            authenticated()
+
+                .then(() => api('/orders/count?filter-by=userId&filter-val=' + sessionStorage.getItem('X-Auth-UserInfo-Id'), 'GET', {}, 'text')
+                    .then(response => {
+                        if(+response === 0)
+                            throw new Error('purchase-first')
+                    }))
+
+                .then(() => Component.render(Component.dummy(), `${components.products_review}`, {
+                    id: this.state.product.id,
+                    name: this.state.product.name,
+                }))
+
+                .catch(reason => {
+
+                    if(reason === 'purchase-first')
+                        Component.render(Component.dummy(), `${components.common_notify}`, { message: '${locale.review_purchase_first}' });
+                    else
+                        requestUserAuthentication()
+
+                });
 
         }
 

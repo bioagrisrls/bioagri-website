@@ -113,13 +113,9 @@
       @extend .btn;
       @extend .btn-primary;
       @extend .ui-font-title-primary;
-      @extend .fs-3;
+      @extend .fs-5;
       @extend .w-100;
       @extend .w-sm-auto;
-
-      span {
-        @extend .ps-1;
-      }
 
     }
   }
