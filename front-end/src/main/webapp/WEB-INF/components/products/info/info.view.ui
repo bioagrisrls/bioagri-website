@@ -75,10 +75,7 @@
             <div class="ui-product-info-footer">
 
                 <div class="ui-product-info-stats">
-
-                    <!-- Stats -->
                     <ui-product-stats id="{{this.id}}-{{product.id}}-stats" ui:id="{{product.id}}"></ui-product-stats>
-
                 </div>
 
                 <div class="ui-product-info-buttons">
@@ -109,13 +106,12 @@
     <div class="ui-product-info-more">
 
         <!-- Tab List -->
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs">
 
             <!-- Description -->
             <li class="nav-item">
                 <a class="nav-link {{ current === 'description' ? 'active' : '' }}"
-                   onclick="$$.description()"
-                   role="tab">
+                   onclick="$$.description()">
 
                     <ul class="list-inline">
                         <li class="list-inline-item"><h5>{{ strings.description }}</h5></li>
@@ -128,8 +124,7 @@
             <!-- Feedbacks -->
             <li class="nav-item">
                 <a class="nav-link {{ current === 'feedbacks' ? 'active' : '' }}"
-                   onclick="$$.feedbacks()"
-                   role="tab">
+                   onclick="$$.feedbacks()">
 
                     <ul class="list-inline">
                         <li class="list-inline-item"><h5>{{ strings.feedbacks }}</h5></li>
@@ -145,50 +140,47 @@
     </div>
 
 
-    <div class="tab-content " id="tabContent">
+    <div class="ui-product-info-tabs">
+
 
         <!-- Feedbacks -->
-        <div class="tab-pane p-4 fade {{ current === 'feedbacks' ? 'show active' : '' }}" id="feedbacks" role="tabpanel">
+        <div class="ui-product-info-pane {{ current === 'feedbacks' ? 'show active' : '' }}">
 
-            <div class="row">
+            <div class="ui-product-info-feedbacks">
 
-                <div class="row">
-
-                    <h2 class="display-6">Recensioni dei clienti</h2>
-
-                    <br>
-                    <br>
-
+                <div class="ui-product-info-stats">
                     <ui-product-stats id="ui-products-feedback-stats-{{product.id}}" ui:id="{{product.id}}"></ui-product-stats>
-
-                    <p class="pt-4">
-                        I clienti inseriscono volontariamente le recensioni, che possono essere lette mentre il prodotto è disponibile.
-                        Non è previsto alcun compenso finanziario in cambio. Tutti i messaggi vengono controllati.
-                    </p>
-
-                    <br>
-                    <br>
-                    <br>
-
-                    <h5>Ordinate per data e rilevanza</h5>
-
-                    <br>
-                    <br>
-
                 </div>
 
-                <div class="row">
-                    <ui-feedback id="ui-product-feedbacks-{{product.id}}" ui:id="{{product.id}}"></ui-feedback>
+                <div class="ui-product-info-disclaimer">
+                    <p>
+                        {{strings.disclaimer}}
+                    </p>
+                </div>
+
+                <div class="ui-product-info-feedbacks-content">
+
+                    <h1>{{strings.order}}</h1>
+
+                    <div>
+                        <ui-feedback id="{{this.id}}-feedbacks-{{product.id}}" ui:id="{{product.id}}"></ui-feedback>
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
 
-        <!-- Descriptions -->
-        <div class="tab-pane p-4 fade {{ current === 'description' ? 'show active' : '' }}" id="description" role="tabpanel">
 
+
+        <!-- Description -->
+        <div class="ui-product-info-pane {{ current === 'description' ? 'show active' : '' }}">
+            <div class="ui-product-info-description">
+                {{product.description}}
+            </div>
         </div>
+
 
     </div>
 

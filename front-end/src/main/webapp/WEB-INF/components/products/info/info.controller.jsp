@@ -59,7 +59,9 @@
                             liked:        `${locale.details_liked}`,
                             like:         `${locale.details_like}`,
                             cart:         `${locale.details_cart}`,
-                            feedbacks:    `${locale.details_feedbacks}`
+                            feedbacks:    `${locale.details_feedbacks}`,
+                            order:        `${locale.details_feedbacks_order}`,
+                            disclaimer:   `${locale.details_feedbacks_disclaimer}`,
                         },
 
 
