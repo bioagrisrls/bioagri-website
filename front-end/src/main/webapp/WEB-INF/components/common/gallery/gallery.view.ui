@@ -38,7 +38,7 @@
                               ui:width="100%"
                               ui:height="100%"
                               ui:position="center center"
-                              ui:size="cover"></ui-image>
+                              ui:size="contain"></ui-image>
                 </div>
 
             <? }); ?>
@@ -46,12 +46,12 @@
 
             <div class="ui-gallery-frame-controls">
 
-                <div class="ui-gallery-frame-controls-prev">
-                    <button onclick="$$.prev()"><span class="mdi mdi-24px mdi-chevron-left"></span></button>
+                <div onclick="$$.prev()" class="ui-gallery-frame-controls-prev">
+                    <span class="mdi mdi-36px mdi-chevron-left"></span>
                 </div>
 
-                <div class="ui-gallery-frame-controls-next">
-                    <button onclick="$$.next()"><span class="mdi mdi-24px mdi-chevron-right"></span></button>
+                <div onclick="$$.next()" class="ui-gallery-frame-controls-next">
+                    <span class="mdi mdi-36px mdi-chevron-right"></span>
                 </div>
 
             </div>
@@ -68,17 +68,13 @@
 
             <? images.forEach((e, i) => { ?>
 
-                <div onclick="$$.go({{i}})" class="ui-gallery-frame-item">
-
-                    <div class="ui-gallery-frame-item {{ i === current ? 'active' : '' }}">
-                        <ui-image id="{{this.id}}-frame-{{i}}-image"
-                                  ui:src="{{e}}"
-                                  ui:width="100%"
-                                  ui:height="100%"
-                                  ui:position="center center"
-                                  ui:size="cover"></ui-image>
-                    </div>
-
+                <div onclick="$$.go({{i}})" class="ui-gallery-frame-item {{ i === current ? 'active' : '' }}">
+                    <ui-image id="{{this.id}}-frame-{{i}}-preview"
+                              ui:src="{{e}}"
+                              ui:width="100%"
+                              ui:height="100%"
+                              ui:position="center center"
+                              ui:size="cover"></ui-image>
                 </div>
 
             <? }); ?>

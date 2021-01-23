@@ -109,21 +109,7 @@
     <div class="ui-product-info-more">
 
         <!-- Tab List -->
-        <ul class="nav nav-tabs" id="tab" role="tablist">
-
-            <!-- Feedbacks -->
-            <li class="nav-item">
-                <a class="nav-link {{ current === 'feedbacks' ? 'active' : '' }}"
-                   onclick="$$.feedbacks()"
-                   role="tab">
-
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><h5>{{ strings.feedbacks }}</h5></li>
-                        <li class="list-inline-item"><span class="mdi mdi-comment-quote mdi-24px"></span></li>
-                    </ul>
-
-                </a>
-            </li>
+        <ul class="nav nav-tabs" role="tablist">
 
             <!-- Description -->
             <li class="nav-item">
@@ -134,6 +120,20 @@
                     <ul class="list-inline">
                         <li class="list-inline-item"><h5>{{ strings.description }}</h5></li>
                         <li class="list-inline-item"><span class="mdi mdi-semantic-web mdi-24px"></span></li>
+                    </ul>
+
+                </a>
+            </li>
+
+            <!-- Feedbacks -->
+            <li class="nav-item">
+                <a class="nav-link {{ current === 'feedbacks' ? 'active' : '' }}"
+                   onclick="$$.feedbacks()"
+                   role="tab">
+
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><h5>{{ strings.feedbacks }}</h5></li>
+                        <li class="list-inline-item"><span class="mdi mdi-comment-quote mdi-24px"></span></li>
                     </ul>
 
                 </a>

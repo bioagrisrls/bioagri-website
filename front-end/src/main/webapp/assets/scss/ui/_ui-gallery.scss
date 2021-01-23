@@ -25,24 +25,67 @@
 
 .ui-gallery {
 
+  @extend .w-100;
+  @extend .h-100;
+  @extend .d-flex;
+
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+
   .ui-gallery-slider {
+
+    @extend .flex-fill;
 
     .ui-gallery-frame {
 
+      @extend .position-relative;
+      @extend .w-100;
+      @extend .h-100;
+
       .ui-gallery-frame-item {
+
+        @extend .w-100;
+        @extend .h-100;
+        @extend .d-none;
+
+        ui-image {
+          @extend .d-block;
+          @extend .w-100;
+          @extend .h-100;
+        }
+
+        &.active {
+          @extend .d-block;
+        }
 
       }
 
       .ui-gallery-frame-controls {
 
+        @extend .position-absolute;
+        @extend .w-100;
+        @extend .px-5;
+
+        bottom: 40%;
 
         .ui-gallery-frame-controls-prev {
-
+          @extend .float-start;
+          cursor: pointer;
+          span {
+            text-shadow: 0 0 3px $light;
+          }
         }
 
         .ui-gallery-frame-controls-next {
-
+          @extend .float-end;
+          cursor: pointer;
+          span {
+            text-shadow: 0 0 3px $light;
+          }
         }
+
+        @extend .clearfix;
 
       }
 
@@ -53,10 +96,38 @@
 
   .ui-gallery-preview {
 
-    .ui-galllery-frame {
+    @extend .my-5;
+    @extend .w-100;
+
+    height: 120px;
+
+
+    .ui-gallery-frame {
+
+      @extend .row;
+      @extend .gx-0;
+      @extend .w-100;
+      @extend .h-100;
+      @extend .justify-content-start;
 
       .ui-gallery-frame-item {
 
+        max-width: 120px;
+        cursor: pointer;
+
+        @extend .h-100;
+        @extend .col;
+
+        ui-image {
+          @extend .d-block;
+          @extend .w-100;
+          @extend .h-100;
+        }
+
+        &.active {
+          @extend .border;
+          @extend .border-2;
+        }
       }
 
     }

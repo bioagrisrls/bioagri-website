@@ -35,7 +35,7 @@
         </div>
 
     <? } else { ?>
-        <div class="{{rounded ? 'rounded' : ''}} w-100 h-100"
+        <div class="{{rounded ? 'rounded' : ''}} w-100 h-100 ui-image-frame"
              style="background: url('{{src}}') {{repeat}} {{position}}; background-size: {{size}}; animation: {{animation}} 0.4s linear"></div>
     <? } ?>
 

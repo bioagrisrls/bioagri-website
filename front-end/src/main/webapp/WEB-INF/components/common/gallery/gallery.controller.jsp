@@ -44,8 +44,8 @@
             );
         }
 
-        onReady(state) {
-
+        onUpdated(state) {
+            console.log(state.current);
         }
 
         onRender() {
@@ -53,11 +53,12 @@
         }
 
         next() {
-            this.state = { current: (this.state.current + 1) % this.state.images.length };
+            this.state = { current: (+this.state.current + 1) % +this.state.images.length };
         }
 
         prev() {
-            this.state = { current: (this.state.current - 1) % this.state.images.length };
+            const mod = (n, m) => ((n % m) + m) % m;
+            this.state = { current: mod(+this.state.current - 1, +this.state.images.length) };
         }
 
         go(id) {
