@@ -126,6 +126,9 @@
 
   .ui-product-info-more {
 
+    @extend .ui-font-title-primary;
+    @extend .display-5;
+
   }
 
   .ui-product-info-tabs {
@@ -138,27 +141,44 @@
       @extend .p-5;
       @extend .fade;
 
-      .ui-product-info-stats {
-
-      }
-
-
-      .ui-product-info-disclaimer {
-
-      }
-
       .ui-product-info-feedbacks {
 
-      }
+        .ui-product-info-stats {
 
-      .ui-product-info-feedbacks-content {
+          h3 {
+            @extend .fs-3;
+            @extend .ui-font-title-primary;
+          }
 
-        h1 {
-          @extend .ui-font-title-primary;
+          h5 {
+            @extend .fs-4;
+            @extend .ui-font-title-primary;
+          }
+
+          span {
+            @extend .fs-5;
+            @extend .ui-font-title-primary;
+          }
+
+        }
+
+        .ui-product-info-disclaimer {
+          @extend .my-5;
+          @extend .text-muted;
+        }
+
+        .ui-product-info-feedbacks-content {
+
+          @extend .my-5;
+
+          h1 {
+            @extend .ui-font-title-primary;
+          }
 
         }
 
       }
+
 
       .ui-product-info-description {
 
