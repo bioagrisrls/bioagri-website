@@ -25,56 +25,65 @@
 
 <div class="ui-gallery">
 
-    <!-- Gallery Carousel -->
-    <div id="{{this.id}}-gallery-carousel" class="carousel carousel-dark slide mb-4" data-ride="carousel">
+    <!-- Gallery -->
+    <div id="{{this.id}}-slider" class="ui-gallery-slider">
 
-        <div class="carousel-inner">
+        <div class="ui-gallery-frame">
 
-            <? let i = 0; ?>
-            <? for(let image of images) { ?>
+            <? images.forEach((e, i) => { ?>
 
-                <div id="carousel-item-{{i}}" class="carousel-item {{ i === 0 ? 'active' : ''}}">
-                    <ui-image id="{{this.id}}-carousel-image-{{i}}" ui:src="{{ image }}" ui:width="100%" ui:height="50%"></ui-image>
+                <div class="ui-gallery-frame-item {{ i === current ? 'active' : '' }}">
+                    <ui-image id="{{this.id}}-frame-{{i}}-image"
+                              ui:src="{{e}}"
+                              ui:width="100%"
+                              ui:height="100%"
+                              ui:position="center center"
+                              ui:size="cover"></ui-image>
                 </div>
 
-                <? i = i + 1; ?>
+            <? }); ?>
 
-            <? } ?>
+
+            <div class="ui-gallery-frame-controls">
+
+                <div class="ui-gallery-frame-controls-prev">
+                    <button onclick="$$.prev()"><span class="mdi mdi-24px mdi-chevron-left"></span></button>
+                </div>
+
+                <div class="ui-gallery-frame-controls-next">
+                    <button onclick="$$.next()"><span class="mdi mdi-24px mdi-chevron-right"></span></button>
+                </div>
+
+            </div>
 
         </div>
 
-        <a class="carousel-control-prev" onclick="$$.prevTo()" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </a>
-
-        <a class="carousel-control-next" onclick="$$.nextTo()" role="button" data-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </a>
-
     </div>
 
+
     <!-- Image Preview -->
-    <div class="d-flex flex-wrap align-items-start mb-4">
+    <div class="ui-gallery-preview">
 
-            <? let j = 0; ?>
-            <? for(let image of images) { ?>
+        <div class="ui-gallery-frame">
 
-                <div id="carousel-image-container-{{j}}" class="p-2 flex-fill bd-highlight border mw-25 shadow-sm {{j === 0 ? 'border-dark' : ''}}">
+            <? images.forEach((e, i) => { ?>
 
-                    <ui-image id="{{this.id}}-carousel-image-preview-{{j}}"
-                              onclick="$$.goTo({{j}})"
-                              ui:src="{{image}}"
-                              ui:width="100%"
-                              ui:height="100%"
-                              ui:position="center"
-                              ui:size="100% 800px">
-                    </ui-image>
+                <div onclick="$$.go({{i}})" class="ui-gallery-frame-item">
+
+                    <div class="ui-gallery-frame-item {{ i === current ? 'active' : '' }}">
+                        <ui-image id="{{this.id}}-frame-{{i}}-image"
+                                  ui:src="{{e}}"
+                                  ui:width="100%"
+                                  ui:height="100%"
+                                  ui:position="center center"
+                                  ui:size="cover"></ui-image>
+                    </div>
 
                 </div>
 
-                <? j = j + 1; ?>
+            <? }); ?>
 
-            <? } ?>
+        </div>
 
     </div>
 
