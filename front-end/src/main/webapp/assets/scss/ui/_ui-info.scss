@@ -127,8 +127,10 @@
 
   .ui-product-info-more {
 
-    @extend .ui-font-title-primary;
-    @extend .display-5;
+    h5 {
+      @extend .ui-font-title-primary;
+      @extend .fs-4;
+    }
 
   }
 

@@ -35,17 +35,19 @@
             super(id,
 
                 Promise.all([
+                    api('/feedbacks/count?sorted-by=createdAt&filter-by=productId&filter-val=' + (props.id || '')),
                     api('/feedbacks?sorted-by=createdAt&filter-by=productId&filter-val=' + (props.id || '') + '&limit=3'),
-                    api('/products/' + (props.id || '') + '/images')
+                    api('/products/' + (props.id || '') + '/images'),
                 ]).then(response => {
 
                     return {
 
-                        feedbacks: response[0],
-                        images: response[1],
+                        feedbacks: response[1],
+                        images: response[2],
                         users: [],
                         productId: props.id,
                         skip: 0,
+                        count: response[0],
 
                         strings: {
                             more:       `${locale.feedbacks_more}`,
@@ -61,14 +63,12 @@
 
         onReady(state) {
 
-            this.state.feedbacks.forEach( item => {
-                api('/feedbacks/' + item.userId + '/owner').then(response => {
-
-                    this.state.users.push(response);
-                    this.setState({users: this.state.users})
-
+            Promise.all(this.state.feedbacks.map(i => api('/feedbacks/' + i.userId + '/owner')))
+                .then(response => {
+                    this.state = {
+                        users: response
+                    };
                 });
-            })
 
         }
 
@@ -77,27 +77,20 @@
         }
 
 
-        moreFeedback() {
+        more() {
 
-            let feedbacks = this.state.feedbacks;
-            let users = this.state.users;
+            api('/feedbacks?sorted-by=createdAt&filter-by=productId&filter-val=' + this.state.productId + '&limit=3&skip=' + this.state.feedbacks.length)
+                .then(feedbacks => feedbacks.forEach(i => this.state.feedbacks.push(i)))
+                .then(() => {
 
-            this.setState({skip: feedbacks.length})
+                    return Promise.all(
+                        this.state.feedbacks.map(i => api('/feedbacks/' + i.userId + '/owner')
+                            .then(user => this.state.users.push(user))
+                        )
+                    );
 
-            api('/feedbacks?sorted-by=createdAt&filter-by=productId&filter-val=' + this.state.productId +
-                '&limit=3&skip=' + this.state.skip)
-                .then( response => response.forEach( item => feedbacks.push(item))).then( () => {
+                }).then(() => this.state = {});
 
-                    feedbacks.forEach( item => {
-                        api('/feedbacks/' + item.userId + '/owner').then(response => users.push(response));
-                    })
-
-                }).then( () => {
-
-                    this.setState({users: users,
-                                   feedbacks: feedbacks});
-
-                })
        }
 
 

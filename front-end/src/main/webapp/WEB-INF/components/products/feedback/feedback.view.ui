@@ -23,7 +23,7 @@
   ~
   -->
 
-<div>
+<div class="ui-feedback">
 
     <? for (let i = 0 ; i < this.state.feedbacks.length; i++) { ?>
 
@@ -36,54 +36,58 @@
         ?>
 
         <hr>
-        <br>
 
-        <div class="row">
+        <div class="ui-feedback-item">
 
-            <div class="row mh-50">
+            <div class="ui-feedback-content">
 
-                <div class="col" >
-                    <h4>{{ (this.state.users[i] && this.state.users[i].name) || '' }} {{ (this.state.users[i] && this.state.users[i].surname) || '' }}</h4>
+                <div class="ui-feedback-header">
+
+                    <h4>
+                        {{ (this.state.users[i] && this.state.users[i].name) || '' }}
+                        {{ (this.state.users[i] && this.state.users[i].surname) || '' }}
+                    </h4>
+
                     <p>{{strings.reviewed}}: {{ compatted }}</p>
-                    <ui-stars class="col-auto" id="{{this.id}}-reviews-stars-{{i}}" ui:vote="{{this.state.feedbacks[i].vote}}"></ui-stars>
+
+                    <div class="ui-feedback-stars">
+                        <ui-stars class="col-auto" id="{{this.id}}-reviews-stars-{{i}}" ui:vote="{{this.state.feedbacks[i].vote}}"></ui-stars>
+                    </div>
+
                 </div>
 
-                <div class="col-auto" >
-                    <ui-image id="{{this.id}}-feedback-image-preview-{{productId}}-{{i}}"
-                              ui:src="{{ images[0] }}"
-                              ui:width="128px"
-                              ui:height="128px">
-                    </ui-image>
+                <div class="ui-feedback-body">
+                    <h5>{{ this.state.feedbacks[i].title }}</h5>
+                    <p>{{ this.state.feedbacks[i].description }}</p>
                 </div>
 
             </div>
 
-            <br>
-            <br>
 
-            <div class="row">
-
-                <h5>{{ this.state.feedbacks[i].title }}</h5>
-                <br>
-                <p>{{ this.state.feedbacks[i].description }}</p>
-
+            <div class="ui-feedback-image">
+                <ui-image id="{{this.id}}-feedback-image-preview-{{productId}}-{{i}}"
+                          ui:src="{{ images[0] }}"
+                          ui:width="128px"
+                          ui:height="128px">
+                </ui-image>
             </div>
-
 
         </div>
 
+
+
     <? } ?>
 
-    <div class="row">
 
-        <div class="col-12 justify-content-center align-items-center">
-            <button class="btn btn-primary btn-lg"
-                    onclick="$$.moreFeedback()">
-                <span class="mdi mdi-24px mdi-cart-outline align-middle"></span>
+    <? if (feedbacks.length < count) { ?>
+
+        <div class="ui-feedback-more">
+            <button onclick="$$.more()">
+                <span class="mdi mdi-24px mdi-cart-outline"></span>
                 {{strings.more}}
             </button>
         </div>
 
-    </div>
+    <? } ?>
 
 </div>

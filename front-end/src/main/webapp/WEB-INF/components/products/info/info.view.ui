@@ -115,7 +115,7 @@
 
                     <ul class="list-inline">
                         <li class="list-inline-item"><h5>{{ strings.description }}</h5></li>
-                        <li class="list-inline-item"><span class="mdi mdi-semantic-web mdi-24px"></span></li>
+                        <li class="list-inline-item"><span class="mdi mdi-18px mdi-semantic-web "></span></li>
                     </ul>
 
                 </a>
@@ -128,7 +128,7 @@
 
                     <ul class="list-inline">
                         <li class="list-inline-item"><h5>{{ strings.feedbacks }}</h5></li>
-                        <li class="list-inline-item"><span class="mdi mdi-comment-quote mdi-24px"></span></li>
+                        <li class="list-inline-item"><span class="mdi mdi-18px mdi-comment-quote "></span></li>
                     </ul>
 
                 </a>
