@@ -23,65 +23,67 @@
   ~
   -->
 
+<div>
 
-<? for (let i = 0 ; i < this.state.feedbacks.length; i++) { ?>
+    <? for (let i = 0 ; i < this.state.feedbacks.length; i++) { ?>
 
-    <?
-        let date = new Date(+this.state.feedbacks[i].createdAt);
-        let year = date.getFullYear();
-        let month = (date.getMonth() + 1).toString().padStart(2, '0');
-        let day = date.getDate().toString().padStart(2, '0');
-        let compatted = day + '/' + month + '/' + year;
-    ?>
+        <?
+            let date = new Date(+this.state.feedbacks[i].createdAt);
+            let year = date.getFullYear();
+            let month = (date.getMonth() + 1).toString().padStart(2, '0');
+            let day = date.getDate().toString().padStart(2, '0');
+            let compatted = day + '/' + month + '/' + year;
+        ?>
 
-    <hr>
-    <br>
-
-    <div class="row">
-
-        <div class="row mh-50">
-
-            <div class="col" >
-                <h4>{{ (this.state.users[i] && this.state.users[i].name) || '' }} {{ (this.state.users[i] && this.state.users[i].surname) || '' }}</h4>
-                <p>{{strings.reviewed}}: {{ compatted }}</p>
-                <ui-stars class="col-auto" id="{{this.id}}-reviews-stars-{{i}}" ui:vote="{{this.state.feedbacks[i].vote}}"></ui-stars>
-            </div>
-
-            <div class="col-auto" >
-                <ui-image id="{{this.id}}-feedback-image-preview-{{productId}}-{{i}}"
-                          ui:src="{{ images[0] }}"
-                          ui:width="128px"
-                          ui:height="128px">
-                </ui-image>
-            </div>
-
-        </div>
-
-        <br>
+        <hr>
         <br>
 
         <div class="row">
 
-            <h5>{{ this.state.feedbacks[i].title }}</h5>
+            <div class="row mh-50">
+
+                <div class="col" >
+                    <h4>{{ (this.state.users[i] && this.state.users[i].name) || '' }} {{ (this.state.users[i] && this.state.users[i].surname) || '' }}</h4>
+                    <p>{{strings.reviewed}}: {{ compatted }}</p>
+                    <ui-stars class="col-auto" id="{{this.id}}-reviews-stars-{{i}}" ui:vote="{{this.state.feedbacks[i].vote}}"></ui-stars>
+                </div>
+
+                <div class="col-auto" >
+                    <ui-image id="{{this.id}}-feedback-image-preview-{{productId}}-{{i}}"
+                              ui:src="{{ images[0] }}"
+                              ui:width="128px"
+                              ui:height="128px">
+                    </ui-image>
+                </div>
+
+            </div>
+
             <br>
-            <p>{{ this.state.feedbacks[i].description }}</p>
+            <br>
+
+            <div class="row">
+
+                <h5>{{ this.state.feedbacks[i].title }}</h5>
+                <br>
+                <p>{{ this.state.feedbacks[i].description }}</p>
+
+            </div>
+
 
         </div>
 
+    <? } ?>
 
-    </div>
+    <div class="row">
 
-<? } ?>
+        <div class="col-12 justify-content-center align-items-center">
+            <button class="btn btn-primary btn-lg"
+                    onclick="$$.moreFeedback()">
+                <span class="mdi mdi-24px mdi-cart-outline align-middle"></span>
+                {{strings.more}}
+            </button>
+        </div>
 
-<div class="row">
-
-    <div class="col-12 justify-content-center align-items-center">
-        <button class="btn btn-primary btn-lg"
-                onclick="$$.moreFeedback()">
-            <span class="mdi mdi-24px mdi-cart-outline align-middle"></span>
-            {{strings.more}}
-        </button>
     </div>
 
 </div>
-

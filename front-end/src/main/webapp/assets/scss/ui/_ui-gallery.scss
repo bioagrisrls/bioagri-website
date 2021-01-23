@@ -53,6 +53,10 @@
           @extend .d-block;
           @extend .w-100;
           @extend .h-100;
+
+          .ui-image-frame {
+            min-height: 320px;
+          }
         }
 
         &.active {
