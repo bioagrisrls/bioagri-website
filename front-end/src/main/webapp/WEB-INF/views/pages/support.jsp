@@ -57,16 +57,14 @@
 
                     <div class="ui-support-header-block">
 
-                        <div ui-animated-scroll="slideInLeft">
-                            <ui-image id="ui-support-header-image"
-                                      class="ui-support-header-image"
-                                      ui-animated-scroll="slideInLeft"
-                                      ui:src="/assets/img/support/support.png"
-                                      ui:width="100%"
-                                      ui:height="320px"
-                                      ui:position="center"
-                                      ui:size="contain"></ui-image>
-                        </div>
+                        <ui-image id="ui-support-header-image"
+                                  class="ui-support-header-image"
+                                  ui:animation="slideInLeft"
+                                  ui:src="/assets/img/support/support.png"
+                                  ui:width="100%"
+                                  ui:height="320px"
+                                  ui:position="center"
+                                  ui:size="contain"></ui-image>
 
                         <h1 ui-animated-scroll="slideInRight">${locale.support_header}</h1>
 

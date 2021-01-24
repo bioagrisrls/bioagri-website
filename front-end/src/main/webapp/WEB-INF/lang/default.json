@@ -161,7 +161,6 @@
 
   "cart_add": "Aggiunto al carrello",
   "cart_remove": "Rimosso dal carrello",
-  "cart_clear": "Carrello svuotato",
 
   "wish_add": "Aggiunto alla lista dei desideri",
   "wish_remove": "Rimosso dalla lista dei desideri ",
@@ -204,5 +203,19 @@
   "review_form_success": "La recensione è stata inviata con successo",
   "review_stars": "Inserisci una valutazione da 1 a 5 stelle",
 
-  "feedbacks_none" : "Nessun utente ha lasciato una recensione per questo prodotto"
+  "feedbacks_none" : "Nessun utente ha lasciato una recensione per questo prodotto",
+
+  "cart_empty" : "Nessun prodotto è presente nel carrello",
+  "cart_title" : "Carrello",
+  "cart_subtitle" : "Prodotti",
+  "cart_quantity" : "Quantità",
+  "cart_total" : "Totale",
+  "cart_products" : "Prodotti",
+  "cart_total_no_discount" : "Totale (Senza applicazione sconti)",
+  "cart_total_with_discount" : "Totale carrello (Dopo applicazione sconti)",
+  "cart_discount" : "Sconto",
+  "cart_shipment" : "Spedizione",
+  "cart_shipment_free" : "Spedizione gratuita",
+  "cart_clear" : "Svuota carrello",
+  "cart_checkout" : "Vai alla cassa"
 }
