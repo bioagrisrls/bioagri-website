@@ -332,6 +332,10 @@ $utilities: map-merge(
     background-color: darken($primary, 15%);
   }
 
+  &.disabled {
+    color: $light-always;
+  }
+
 }
 
 .btn-secondary {
@@ -348,6 +352,10 @@ $utilities: map-merge(
     @extend .shadow;
     color: $light-always;
     background-color: darken($secondary, 20%);
+  }
+
+  &.disabled {
+    color: $light-always;
   }
 
 }
@@ -368,6 +376,10 @@ $utilities: map-merge(
     background-color: $primary;
   }
 
+  &.disabled {
+    color: $light-always;
+  }
+
 }
 
 .btn-outline-secondary {
@@ -384,6 +396,10 @@ $utilities: map-merge(
     @extend .shadow;
     color: $light;
     background-color: $secondary;
+  }
+
+  &.disabled {
+    color: $light-always;
   }
 
 }
