@@ -23,7 +23,203 @@
  *
  */
 
-@import "ui-theme";
+
+.ui-about {
+
+  .ui-about-header {
+
+    @extend .text-dark;
+
+    .ui-about-header-content {
+
+      @extend .row;
+      @extend .justify-content-center;
+      @extend .py-5;
+      @extend .px-3;
+
+      .ui-about-header-block {
+
+        @extend .col-md-9;
+        @extend .col-lg-6;
+        @extend .text-center;
+
+        h1 {
+          @extend .ui-font-title-primary;
+          @extend .py-2;
+        }
+
+        .ui-about-header-image {
+          @extend .d-block;
+        }
+
+      }
+
+    }
+
+  }
+
+
+  .ui-about-presentation {
+
+    @extend .row;
+    @extend .align-items-center;
+
+    .ui-about-presentation-title {
+      @extend .col-md;
+
+      h1 {
+
+      }
+
+      h4 {
+
+      }
+
+      p {
+
+      }
+
+    }
+
+    .ui-about-presentation-image {
+      @extend .col-md;
+      @extend .text-center;
+
+      .ui-about-owner {
+
+        @extend .rounded-circle;
+        @extend .border-2;
+        @extend .border-primary;
+        @extend .shadow-lg;
+
+      }
+
+    }
+
+  }
+
+
+  .ui-about-history {
+
+    @extend .row;
+    @extend .align-items-center;
+    @extend .text-center;
+    @extend .justify-content-center;
+
+    .ui-about-history-header {
+
+      @extend .col-md;
+
+      .ui-about-history-header-content {
+
+        h1 {
+
+        }
+
+        h4 {
+
+        }
+
+        .ui-about-history-image {
+
+          //@extend .col-md;
+          //@extend .text-center;
+
+          .ui-about-shop {
+
+            @extend .rounded-circle;
+            @extend .shadow-lg;
+            @extend .border-2;
+            @extend .border-primary;
+
+          }
+
+        }
+
+      }
+
+    }
+
+
+    .ui-history-body {
+
+      @extend .row;
+      @extend .align-items-center;
+      @extend .justify-content-center;
+
+      .ui-history-body-left {
+
+        @extend .col;
+        @extend .col-5;
+
+        .ui-history-body-left-content{
+
+          h1 {
+
+          }
+
+          br {
+
+          }
+
+          p {
+
+          }
+
+        }
+
+      }
+
+      .ui-history-body-center {
+
+        @extend .col;
+        @extend .col-5;
+        @extend .w-100;
+        @extend .h-100;
+
+        .ui-about-history-divider {
+          margin: 0 auto;
+          border: 3.75px solid $ui-theme-secondary;
+          border-radius: 0 0 10px 10px;
+          width: 1px !important;
+          height: 1242px;
+          z-index: 1;
+        }
+
+      }
+
+      .ui-history-body-right {
+
+        @extend .col;
+        @extend .col-5;
+
+        .ui-history-body-right-content{
+
+          h1 {
+
+          }
+
+          br {
+
+          }
+
+          p {
+
+          }
+
+        }
+
+      }
+
+    }
+
+
+  }
+
+
+}
+
+
 
 .ui-about-header h1 {
   color: $ui-theme-primary-text;
