@@ -47,6 +47,10 @@
         @extend .px-3;
         @extend .py-3;
 
+        p {
+          @extend .text-dark;
+        }
+
         h3 {
           @extend .text-dark;
           @extend .ui-font-title-primary;
