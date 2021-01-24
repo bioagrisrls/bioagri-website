@@ -30,28 +30,28 @@
 
 <script defer>
 
-    Component.register('ui-contact-us', (id, props) => new class extends FormComponent {
+    Component.register('ui-contact', (id, props) => new class extends FormComponent {
 
         constructor() {
             super(id, {
 
                 name: {
                     type: 'text',
-                    label: 'Nome', // FIXME,
+                    placeholder: '${locale.support_form_name}',
                     required: true,
                     maxlength: 32
                 },
 
                 surname: {
                     type: 'text',
-                    label: 'Cognome', // FIXME,
+                    placeholder: '${locale.support_form_surname}',
                     required: true,
                     maxlength: 32
                 },
 
                 email: {
                     type: 'email',
-                    label: "Indirizzo email", // FIXME
+                    placeholder: '${locale.support_form_email}',
                     pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                     required: true,
                     size: 128, // FIXME
@@ -60,27 +60,27 @@
 
                 phone: {
                     type: 'tel',
-                    label: 'Recapito telefonico', // FIXME
+                    placeholder: '${locale.support_form_phone}',
                     required: true,
                     size: 16
                 },
 
                 object: {
                     type: 'text',
-                    label: 'oggetto', // FIXME,
+                    placeholder: '${locale.support_form_subject}',
                     required: true,
                     maxlength: 32
                 },
                 message: {
                     type: 'textarea',
-                    label: 'scrivi qui il tuo messaggio', // FIXME,
+                    placeholder: '${locale.support_form_message}',
                     required: true,
                     maxlength: 512
                 },
 
                 $submit: {
-                    value: `${locale.support_contact_us_by_email_button}`,
-                    align: 'center'
+                    value: `${locale.support_form_submit}`,
+                    align: 'start',
                 },
 
                 $header: '',
@@ -95,21 +95,8 @@
 
 
         onSubmit(data) {
-
-            console.log(this.state.email);
-
-            Email.send({
-                Host: "smtp.elasticemail.com",
-                Username: 'davidecrisafull2009@libero.it',
-                Password: "DCB69D8ED84CB4F5102BE9E0AEE875FD610C",
-                To: 'davidecrisafull2015@gmail.com',
-                From: 'info@elasticemail.com',
-                Subject: 'prova',
-                Body: 'prova messaggio',
-            }).then(function (message) {
-                alert("mail sent successfully")
-            });
         }
+
     })
 
 </script>

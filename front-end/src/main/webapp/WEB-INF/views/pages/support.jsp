@@ -35,7 +35,7 @@
     <ui-navbar id="ui-navbar" ui:current="support"></ui-navbar>
 
     <!-- Support -->
-    <section ui-animated>
+    <section class="ui-support" ui-animated>
 
         <div class="ui-support-background">
             <div></div>
@@ -55,17 +55,20 @@
 
                 <div class="ui-support-header-content">
 
-                    <div class="ui-support-header-block" ui-animated-scroll="slideInUp">
+                    <div class="ui-support-header-block">
 
-                        <ui-image id="ui-support-header-image"
-                                  class="ui-support-header-image"
-                                  ui:src="/assets/img/support/support.png"
-                                  ui:width="100%"
-                                  ui:height="320px"
-                                  ui:position="center"
-                                  ui:size="contain"></ui-image>
+                        <div ui-animated-scroll="slideInLeft">
+                            <ui-image id="ui-support-header-image"
+                                      class="ui-support-header-image"
+                                      ui-animated-scroll="slideInLeft"
+                                      ui:src="/assets/img/support/support.png"
+                                      ui:width="100%"
+                                      ui:height="320px"
+                                      ui:position="center"
+                                      ui:size="contain"></ui-image>
+                        </div>
 
-                        <h1>${locale.support_header}</h1>
+                        <h1 ui-animated-scroll="slideInRight">${locale.support_header}</h1>
 
                     </div>
 
@@ -96,9 +99,9 @@
                     <!-- Contact Header-->
                     <div class="ui-support-contact-header">
 
-                        <div class="ui-support-contact-header-title">
-                            <h6> ${ locale.support_contact_info_title } </h6>
-                            <h1><span> ${ locale.support_contact_info_subtitle_start } </span><b> ${ locale.support_contact_info_subtitle_end } </b></h1>
+                        <div class="ui-support-contact-header-title" ui-animated-scroll="slideInLeft">
+                            <h4>${locale.support_contact_info_title}</h4>
+                            <h1>${locale.support_contact_info_subtitle}</h1>
                         </div>
 
                     </div>
@@ -110,40 +113,40 @@
                     <div class="ui-support-contact-body">
 
                         <div class="ui-support-contact-body-content">
-                            <div class="ui-support-contact-body-title">
+                            <div class="ui-support-contact-body-title" ui-animated-scroll="slideInUp">
 
-                                <div class="ui-support-contact-info-icon" ui-animated-hover ui-animated-scroll>
-                                    <a href="https://www.google.com/maps/place/Farmacia+Agricola+S.R.L./@38.489809,15.969147,15z/data=!4m5!3m4!1s0x0:0x4896d3bba66df8d0!8m2!3d38.4886!4d15.97119?hl=it"><span class="mdi mdi-google-maps mdi-36px"></span></a>
+                                <div class="ui-support-contact-info-button" ui-animated-hover ui-animated-scroll>
+                                    <a href="https://www.google.com/maps/place/Farmacia+Agricola+S.R.L./@38.489809,15.969147,15z/data=!4m5!3m4!1s0x0:0x4896d3bba66df8d0!8m2!3d38.4886!4d15.97119?hl=it"><span class="ui-support-contact-info-icon mdi mdi-google-maps mdi-36px"></span></a>
                                 </div>
 
-                                <h4>${ locale.support_contact_info_address }</h4>
-                                <p>${ locale.info_address }</p>
+                                <h4>${locale.support_contact_info_address }</h4>
+                                <p>${locale.info_address}</p>
 
                             </div>
                         </div>
 
                         <div class="ui-support-contact-body-content">
-                            <div class="ui-support-contact-body-title">
+                            <div class="ui-support-contact-body-title" ui-animated-scroll="slideInUp">
 
-                                <div class="ui-support-contact-info-icon" ui-animated-hover ui-animated-scroll>
-                                    <a href="tel:0966-543210"><span class="mdi mdi-phone mdi-36px"></span></a>
+                                <div class="ui-support-contact-info-button" ui-animated-hover ui-animated-scroll>
+                                    <a href="tel:0966-543210"><span class="ui-support-contact-info-icon mdi mdi-phone mdi-36px"></span></a>
                                 </div>
 
-                                <h4>${ locale.support_contact_info_phone }</h4>
-                                <p>${ locale.info_phone }</p>
+                                <h4>${locale.support_contact_info_phone }</h4>
+                                <p>${locale.info_phone}</p>
 
                             </div>
                         </div>
 
-                        <div class="cui-support-contact-body-content">
-                            <div class="ui-support-contact-body-title">
+                        <div class="ui-support-contact-body-content">
+                            <div class="ui-support-contact-body-title" ui-animated-scroll="slideInUp">
 
-                                <div class="ui-support-contact-info-icon" ui-animated-hover ui-animated-scroll>
-                                    <a href="mailto: info@bioagri.com"><span class="mdi mdi-email mdi-36px"></span></a>
+                                <div class="ui-support-contact-info-button" ui-animated-hover ui-animated-scroll>
+                                    <a href="mailto: info@bioagri.com"><span class="ui-support-contact-info-icon mdi mdi-email mdi-36px"></span></a>
                                 </div>
 
-                                <h4>${ locale.support_contact_info_email }</h4>
-                                <p>${ locale.info_email }</p>
+                                <h4>${locale.support_contact_info_email}</h4>
+                                <p>${locale.info_email}</p>
 
                             </div>
                         </div>
@@ -163,15 +166,17 @@
                 <div class="ui-support-form">
                     <div class="ui-support-form-content">
 
-                        <div class="ui-support-form-title">
-                            <h6> ${ locale.support_form_title } </h6>
-                            <h1><span> ${ locale.support_form_subtitle_start } </span><b> ${ locale.support_form_subtitle_end } </b></h1>
+                        <div class="ui-support-form-title" ui-animated-scroll="slideInLeft">
+                            <h4>${locale.support_form_title}</h4>
+                            <h1>${locale.support_form_subtitle}</h1>
                         </div>
 
                         <br>
 
                         <div>
-                            <ui-contact id="ui-contact"></ui-contact>
+                            <ui-contact id="ui-contact"
+                                        class="ui-contact-form"
+                                        ui-animated-scroll="slideInRight"></ui-contact>
                         </div>
 
                     </div>
@@ -186,9 +191,9 @@
             <section>
                 <div class="ui-support-find">
 
-                    <div class="ui-support-find-title">
-                        <h6> ${ locale.support_maps_title } </h6>
-                        <h1><span> ${ locale.support_maps_subtitle_start } </span><b> ${ locale.support_maps_subtitle_end } </b></h1>
+                    <div class="ui-support-find-title" ui-animated-scroll="slideInLeft">
+                        <h4>${locale.support_maps_title}</h4>
+                        <h1>${locale.support_maps_subtitle}</h1>
                     </div>
 
                 </div>
