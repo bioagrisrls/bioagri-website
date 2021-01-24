@@ -171,11 +171,8 @@
 
                         <br>
 
-                        <div>
-                            <ui-contact id="ui-contact"
-                                        class="ui-contact-form"
-                                        ui-animated-scroll="slideInRight"></ui-contact>
-                        </div>
+                        <ui-contact id="ui-contact"
+                                    ui-animated-scroll="slideInRight"></ui-contact>
 
                     </div>
                 </div>
