@@ -82,27 +82,36 @@
 
                         console.log(data, actions);
 
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: {
-                                    value: '40.00',
-                                    currency_code: 'EUR',
-                                }
-                            }],
+                        return Promise.all(shopping_cart_map(item => api('/products/' + item.id)))
+                            .then(response => {
 
-                            items: [{
-                                name: 'Solfato di ferro',
-                                unit_amount: '5.00',
-                                quantity: '3',
-                            }, {
-                                name: 'Albero di Natale',
-                                unit_amount: '25.00',
-                                quantity: '1',
-                            }],
+                                const order = {
 
-                            description: "Hello World!",
+                                    purchase_units: [{
+                                        amount: {
+                                            value: (+response.reduce((j, i) => j + (+i.price - ((+i.price / 100) * +i.discount)), 0)).toFixed(2),
+                                            currency_code: 'EUR',
+                                        }
+                                    }],
 
-                        });
+                                    items: response.map(i => {
+                                        return {
+                                            name: i.name,
+                                            unit_amount: (+i.price - ((+i.price / 100) * +i.discount)).toFixed(2),
+                                            quantity: shopping_cart_count(i.id)
+                                        }
+                                    }),
+
+                                    description: "Acquisto su Bioagri Shop",
+
+                                };
+
+                                console.log(order);
+
+                                return actions.order.create(order);
+
+                            });
+
 
                     },
 

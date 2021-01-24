@@ -93,7 +93,20 @@ const shopping_cart_each = (callbackfn) => {
     const cache = localStorage.getItem('X-Shopping-Cart');
     const items = (cache && JSON.parse(cache)) || [];
 
-    items.forEach(callbackfn);
+    return items.forEach(callbackfn);
+
+}
+
+/**
+ * Map each entry on the shopping cart
+ * @param callbackfn {function}
+ */
+const shopping_cart_map = (callbackfn) => {
+
+    const cache = localStorage.getItem('X-Shopping-Cart');
+    const items = (cache && JSON.parse(cache)) || [];
+
+    return items.map(callbackfn);
 
 }
 
