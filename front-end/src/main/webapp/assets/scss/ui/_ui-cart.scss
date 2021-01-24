@@ -25,41 +25,52 @@
 
 .ui-cart {
 
-  @extend .modal;
-  @extend .border-0;
+  .ui-cart-header {
 
-  .ui-cart-container {
+  }
 
-    @extend .modal-dialog-centered;
-    @extend .modal-xl;
-    @extend .modal-fullscreen-md-down;
+  .ui-cart-body {
 
-    .ui-cart-content {
+    .ui-cart-items {
 
-      @extend .modal-content;
+      @extend .vh-75;
+      @extend .vw-100;
+      @extend .px-5;
+      @extend .py-5;
 
-      .ui-cart-items {
+      overflow-y: scroll;
 
-        @extend .d-flex;
-        @extend .vh-100;
-        @extend .vw-100;
-        @extend .px-5;
-        @extend .py-5;
+      .ui-cart-item {
 
-        flex-direction: column;
-        flex-wrap: nowrap;
+        @extend .row;
+        @extend .gx-0;
+        @extend .py-3;
+        @extend .border-bottom;
 
-        .ui-cart-item {
+        .ui-cart-product {
+          @extend .col-lg;
 
-          @extend .row;
-          @extend .gx-0;
+          .ui-card-image {
+            @extend .col-1;
+          }
+        }
 
-          .ui-cart-product {
-            @extend .col-lg-10;
+        .ui-cart-quantity {
+
+          @extend .col-lg-auto;
+          @extend .text-end;
+
+          label {
+            @extend .d-block;
+            @extend .ui-font-title-primary;
+            @extend .fs-3;
           }
 
-          .ui-cart-quantity {
-            @extend .col-lg-2;
+          input {
+            @extend .px-3;
+            @extend .py-3;
+            @extend .my-3;
+            @extend .w-100;
           }
 
         }
