@@ -42,8 +42,8 @@
 
                     return {
 
-                        feedbacks: response[1],
-                        images: response[2],
+                        feedbacks: response[1] || [],
+                        images: response[2] || [],
                         users: [],
                         productId: props.id,
                         skip: 0,

@@ -98,7 +98,7 @@
                                 <h3>${locale.home_promo_sales_subtitle}</h3>
                                 <h1>${locale.home_promo_sales_title}</h1>
 
-                                <button>${locale.home_promo_sales_catalog}</button>
+                                <button onclick="navigate('/catalog')">${locale.home_promo_sales_catalog}</button>
                             </div>
 
                         </div>
