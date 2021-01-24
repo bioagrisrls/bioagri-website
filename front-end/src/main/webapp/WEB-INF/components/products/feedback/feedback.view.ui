@@ -25,72 +25,84 @@
 
 <div class="ui-feedback">
 
-    <? for (let i = 0 ; i < this.state.feedbacks.length; i++) { ?>
-
-        <?
-            let date = new Date(+this.state.feedbacks[i].createdAt);
-            let year = date.getFullYear();
-            let month = (date.getMonth() + 1).toString().padStart(2, '0');
-            let day = date.getDate().toString().padStart(2, '0');
-            let compatted = day + '/' + month + '/' + year;
-        ?>
-
-        <hr>
+    <? if ((feedbacks || []).length === 0) { ?>
 
         <div class="ui-feedback-item">
-
-
-            <div class="ui-feedback-image">
-
-
-                <ui-image id="{{this.id}}-feedback-image-preview-{{productId}}-{{i}}"
-                          ui:src="{{images[0]}}"
-                          ui:width="128px"
-                          ui:height="128px"
-                          ui:position="center"
-                          ui:size="contain">
-                </ui-image>
-
-            </div>
-
-
             <div class="ui-feedback-content">
-
-                <div class="ui-feedback-header">
-
-                    <h1>
-                        {{ (this.state.users[i] && this.state.users[i].name) || '' }}
-                        {{ (this.state.users[i] && this.state.users[i].surname) || '' }}
-                    </h1>
-
-                </div>
-
                 <div class="ui-feedback-body">
-                    <h1>{{ this.state.feedbacks[i].title }}</h1>
-                    <p>{{ this.state.feedbacks[i].description }}</p>
+                    <p class="text-muted">{{none}}</p>
                 </div>
-
             </div>
-
-
-            <div class="ui-feedback-info">
-
-                <div class="ui-feedback-stars">
-                    <ui-stars class="col-auto" id="{{this.id}}-reviews-stars-{{i}}" ui:vote="{{this.state.feedbacks[i].vote}}"></ui-stars>
-                </div>
-
-                <div class="ui-feedback-data">
-                    <small>{{strings.reviewed}}: {{ compatted }}</small>
-                </div>
-
-            </div>
-
         </div>
 
+    <? } else { ?>
+        <? feedbacks.forEach((e, i) => { ?>
+
+            <?
+                const date = new Date(+e.createdAt);
+                const year = date.getFullYear();
+                const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                const day = date.getDate().toString().padStart(2, '0');
+                const compatted = day + '/' + month + '/' + year;
+            ?>
+
+            <hr>
+
+            <div class="ui-feedback-item">
+
+
+                <div class="ui-feedback-image">
+
+
+                    <ui-image id="{{this.id}}-feedback-image-preview-{{productId}}-{{i}}"
+                              ui:src="{{images[0]}}"
+                              ui:width="128px"
+                              ui:height="128px"
+                              ui:position="center"
+                              ui:size="contain">
+                    </ui-image>
+
+                </div>
+
+
+                <div class="ui-feedback-content">
+
+                    <div class="ui-feedback-header">
+
+                        <h1>
+                            {{ (users[i] && users[i].name)    || '' }}
+                            {{ (users[i] && users[i].surname) || '' }}
+                        </h1>
+
+                    </div>
+
+                    <div class="ui-feedback-body">
+                        <h1>{{ e.title }}</h1>
+                        <p>{{ e.description }}</p>
+                    </div>
+
+                </div>
+
+
+                <div class="ui-feedback-info">
+
+                    <div class="ui-feedback-stars">
+                        <ui-stars class="col-auto" id="{{this.id}}-reviews-stars-{{i}}" ui:vote="{{e.vote}}"></ui-stars>
+                    </div>
+
+                    <div class="ui-feedback-data">
+                        <small>{{strings.reviewed}}: {{ compatted }}</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        <? }); ?>
     <? } ?>
 
 
-    <? if (feedbacks.length < count) { ?>
+    <? if ((feedbacks || []).length < count) { ?>
 
         <div class="ui-feedback-more">
             <button onclick="$$.more()">

@@ -34,23 +34,28 @@
         constructor() {
             super(id,
 
-                Promise.all([
+                Promise.allSettled([
                     api('/feedbacks/count?sorted-by=createdAt&filter-by=productId&filter-val=' + (props.id || '')),
                     api('/feedbacks?sorted-by=createdAt&filter-by=productId&filter-val=' + (props.id || '') + '&limit=3'),
                     api('/products/' + (props.id || '') + '/images?limit=1'),
                 ]).then(response => {
 
+                    const count     = response[0].value || 0;
+                    const feedbacks = response[1].value || [];
+                    const images    = response[2].value || [ '${locale.card_not_available}' ];
+
                     return {
 
-                        feedbacks: response[1] || [],
-                        images: response[2] || [],
-                        users: [],
-                        productId: props.id,
-                        skip: 0,
-                        count: response[0],
+                        productId:  props.id,
+                        feedbacks:  feedbacks,
+                        images:     images,
+                        users:      [],
+                        skip:       0,
+                        count:      count,
 
                         strings: {
                             more:       `${locale.feedbacks_more}`,
+                            none:       `${locale.feedbacks_none}`,
                             reviewed:   `${locale.feedbacks_reviewed}`
                         }
 
@@ -63,7 +68,7 @@
 
         onReady(state) {
 
-            Promise.all(this.state.feedbacks.map(i => api('/feedbacks/' + i.userId + '/owner')))
+            Promise.all((state.feedbacks || []).map(i => api('/feedbacks/' + i.userId + '/owner')))
                 .then(response => {
                     this.state = {
                         users: response
