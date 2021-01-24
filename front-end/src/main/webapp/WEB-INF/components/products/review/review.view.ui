@@ -32,7 +32,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-
             <ui-review id="{{this.id}}-review-form" class="ui-review-form"
                        ui:id="{{id}}"
                        ui:name="{{name}}"

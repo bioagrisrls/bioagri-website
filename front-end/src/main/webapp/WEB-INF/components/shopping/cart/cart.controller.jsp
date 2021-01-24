@@ -30,7 +30,7 @@
 
 <script defer>
 
-    Component.register('ui-shopping-cart', (id, props) => new class extends StatefulComponent {
+    Component.register('ui-cart', (id, props) => new class extends StatefulComponent {
 
         constructor() {
             super(id, {

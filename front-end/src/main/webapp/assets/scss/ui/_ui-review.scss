@@ -37,14 +37,13 @@
     .ui-review-content {
 
       @extend .modal-content;
-      @extend .px-5;
 
       .ui-review-form {
 
         @extend .d-block;
         @extend .w-100;
         @extend .h-100;
-        @extend .px-3;
+        @extend .px-5;
         @extend .py-3;
 
         p {

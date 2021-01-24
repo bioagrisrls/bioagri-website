@@ -38,9 +38,10 @@
  * Add item to shopping cart.
  * @param id {number}
  * @param quantity {number}
+ * @param update {boolean}
  * @param raiseEvent {boolean}
  */
-const shopping_cart_add = (id, quantity, raiseEvent = true) => {
+const shopping_cart_add = (id, quantity, update = false, raiseEvent = true) => {
 
     const cache = localStorage.getItem('X-Shopping-Cart');
     const items = (cache && JSON.parse(cache)) || [];
@@ -48,7 +49,7 @@ const shopping_cart_add = (id, quantity, raiseEvent = true) => {
     const item = items.find(i => i.id === id);
 
     if(item)
-        item.quantity = quantity;
+        item.quantity = (update ? item.quantity : 0) + quantity;
     else
         items.push({ id: id, quantity: quantity });
 
@@ -66,7 +67,7 @@ const shopping_cart_add = (id, quantity, raiseEvent = true) => {
  * @param raiseEvent {boolean}
  */
 const shopping_cart_remove = (id, raiseEvent = true) => {
-    shopping_cart_add(id, 0, raiseEvent);
+    shopping_cart_add(id, 0, false, raiseEvent);
 }
 
 

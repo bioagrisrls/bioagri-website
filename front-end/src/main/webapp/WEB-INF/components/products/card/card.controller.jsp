@@ -170,7 +170,7 @@
          */
         cart() {
 
-            shopping_cart_add(this.state.product.id, 1);
+            shopping_cart_add(this.state.product.id, 1, true);
 
             Component.render(Component.dummy(), `${components.common_notify}`, {
                 message: '<span class="mdi mdi-18px mdi-cart-plus"></span> ${locale.cart_add}'

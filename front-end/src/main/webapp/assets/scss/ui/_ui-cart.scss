@@ -1,4 +1,4 @@
-/*!
+/*
  * MIT License
  *
  * Copyright (c) 2020 BioAgri S.r.l.s.
@@ -23,27 +23,51 @@
  *
  */
 
-@import 'ui/ui-theme';
-@import 'ui/ui-bootstrap-override';
-@import 'ui/ui-font';
-@import 'ui/ui-animation';
-@import 'ui/ui-container';
-@import 'ui/ui-header';
-@import 'ui/ui-navbar';
-@import 'ui/ui-home';
-@import 'ui/ui-parallax';
-@import 'ui/ui-footer';
-@import 'ui/ui-navigation';
-@import 'ui/ui-about';
-@import 'ui/ui-support';
-@import 'ui/ui-catalog';
-@import 'ui/ui-details';
-@import 'ui/ui-auth';
-@import 'ui/ui-side-menu';
-@import 'ui/ui-card';
-@import 'ui/ui-common';
-@import 'ui/ui-gallery';
-@import 'ui/ui-info';
-@import 'ui/ui-feedback';
-@import 'ui/ui-review';
-@import 'ui/ui-cart';
+.ui-cart {
+
+  @extend .modal;
+  @extend .border-0;
+
+  .ui-cart-container {
+
+    @extend .modal-dialog-centered;
+    @extend .modal-xl;
+    @extend .modal-fullscreen-md-down;
+
+    .ui-cart-content {
+
+      @extend .modal-content;
+
+      .ui-cart-items {
+
+        @extend .d-flex;
+        @extend .vh-100;
+        @extend .vw-100;
+        @extend .px-5;
+        @extend .py-5;
+
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+        .ui-cart-item {
+
+          @extend .row;
+          @extend .gx-0;
+
+          .ui-cart-product {
+            @extend .col-lg-10;
+          }
+
+          .ui-cart-quantity {
+            @extend .col-lg-2;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}

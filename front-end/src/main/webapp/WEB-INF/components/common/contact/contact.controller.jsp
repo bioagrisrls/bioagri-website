@@ -55,6 +55,9 @@
                     align: 'center'
                 },
 
+                $header: '',
+                $footer: '',
+
             });
         }
 
