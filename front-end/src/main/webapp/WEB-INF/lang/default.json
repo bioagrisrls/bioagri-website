@@ -84,10 +84,25 @@
   "about_header" : "Scopri di più sulla nostra storia!",
   "about_presentation_subtitle" : "Su di noi",
   "about_presentation_title" : "Lascia che ti raccontiamo la nostra storia",
-  "about_presentation_body" : "La nostra è una ditta a conduzione familiare nata nel 1908, è stata da sempre attiva nel settore agricolo, e si è espansa con il passare degli anni arrivando ad avere clienti in tutta la regione.",
+  "about_presentation_body" : "La nostra è una ditta a conduzione familiare nata nel 1983, è stata da sempre attiva nel settore agricolo, e si è espansa con il passare degli anni arrivando ad avere clienti in tutta la regione. Dal 2017 dopo diverse generazioni l'azienda è passata nelle mani di Salvatore Crisafulli, giovanissimo impenditore che contro la crisi che affronta il territorio calabrese ha intrapreso la difficile decisione di investire nella sua passione",
 
   "about_history_title" : "BioAgri",
   "about_history_subtitle" : "Un po' di storia",
+
+  "about_history_1_year" : "1983",
+  "about_history_1_event" : "Bio Agri vede la luce nel 1983 in una mattina di Agosto, per mano di Vincenzo Crisafulli, che vuole trasformare la sua passione per l'agricoltura in un lavoro.",
+
+  "about_history_2_year" : "1989",
+  "about_history_2_event" : "Vede poi l'autorizzazione regionale nel 1989 dopo un grande impegno, nasce il primo store fisico di BioAgri.",
+
+  "about_history_3_year" : "1995",
+  "about_history_3_event" : "Anno decisivo in cui l'azienza, inizia a fornire oltre il materiale agricolo anche delle consulenze personalizzate, per tutti i servizi agricoli",
+
+  "about_history_4_year" : "2013",
+  "about_history_4_event" : "Per la prima volta i prodotti BioAgri vengono venduti sul web tramite la piattaforma Ebay, dove il servizio è attivo ancora oggi",
+
+  "about_history_5_year" : "2017",
+  "about_history_5_event" : "Dopo ben 34 anni Vincenzo Crisafulli lascia làazienda nelle mani del figlio Salvatore",
 
   "support_header" : "Scopri come metterti in contatto con noi!",
   "support_contact_info_title" : "Informazioni di Contatto",
