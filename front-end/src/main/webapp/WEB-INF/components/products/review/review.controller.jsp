@@ -69,14 +69,14 @@
 
                 title: {
                     type: 'text',
-                    label: '${locale.review_title}',
+                    placeholder: '${locale.review_title}',
                     required: true,
                     wrong: '${locale.review_title_wrong}'
                 },
 
                 description: {
                     type: 'textarea',
-                    label: '${locale.review_description}',
+                    placeholder: '${locale.review_description}',
                     required: true,
                     wrong: '${locale.review_description_wrong}'
                 },
@@ -84,10 +84,13 @@
                 stars: {
                     type: 'html',
                     html: `
-                        <ui-stars id="` + id.id + `-stars-component"
-                                  ui:clickable="true"
-                                  ui:vote="5"
-                                  ui:bind-1="#` + id.id + `-vote:vote"></ui-stars>
+                        <div class="py-3">
+                            <p> ${locale.review_stars} </p>
+                            <ui-stars id="` + id.id + `-stars-component"
+                                      ui:clickable="true"
+                                      ui:vote="5"
+                                      ui:bind-1="#` + id.id + `-vote:vote"></ui-stars>
+                        </div>
                     `
                 },
 
@@ -106,7 +109,7 @@
                 $(document).trigger('ui-review-on-success');
 
                 Component.render(Component.dummy(), `${components.common_notify}`, {
-                    message: this.state.$success
+                    message: state.$success
                 });
 
             }

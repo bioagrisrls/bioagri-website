@@ -35,7 +35,8 @@
 
             <ui-review id="{{this.id}}-review-form" class="ui-review-form"
                        ui:id="{{id}}"
-                       ui:name="{{name}}">
+                       ui:name="{{name}}"
+                       ui:success="{{success}}">
             </ui-review>
 
         </div>
