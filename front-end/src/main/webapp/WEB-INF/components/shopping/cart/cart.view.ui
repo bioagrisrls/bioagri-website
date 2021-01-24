@@ -28,7 +28,6 @@
 
     <div class="ui-cart-header">
         <h1>{{strings.title}}</h1>
-        <h3>{{strings.subtitle}}</h3>
     </div>
 
     <div class="ui-cart-body">
@@ -148,8 +147,8 @@
                 </div>
 
                 <div class="ui-cart-checkout-controls">
-                    <button onclick="shopping_cart_clear()">{{strings.clear}}</button>
-                    <button onclick="navigate('/checkout')">{{strings.checkout}}</button>
+                    <button onclick="shopping_cart_clear()"><span class="mdi mdi-18px mdi-cart-remove"></span> {{strings.clear}}</button>
+                    <button onclick="navigate('/checkout')"><span class="mdi mdi-18px mdi-cash-check"></span> {{strings.checkout}}</button>
                 </div>
 
             </div>

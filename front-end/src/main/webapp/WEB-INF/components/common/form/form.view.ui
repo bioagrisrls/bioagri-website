@@ -133,7 +133,7 @@
 
                         ?>
 
-                             <div class="{{v.label && 'form-floating' }} my-3 {{v.style || ''}}">
+                             <div class="{{v.label && 'form-floating my-3' || '' }} {{v.style || ''}}">
                                  <input type="{{v.type || 'text'}}" class="form-control {{!v.label && 'py-3'}} {{wrong(k)}}" id="{{this.id}}-{{k}}" {{getprops(v)}} oninput="$$.$check(this)">
                                  <label for="{{this.id}}-{{k}}">{{v.label || ''}}</label>
                                  <? if(wrong(k)) { ?>
