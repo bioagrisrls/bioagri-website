@@ -54,7 +54,7 @@ public class PayPal {
             @Value("${payments.services.paypal.id}")     String clientId,
             @Value("${payments.services.paypal.secret}") String clientSecret
     ) {
-        this.client = new PayPalHttpClient(new PayPalEnvironment.Sandbox(clientId, clientSecret));
+        this.client = null; //new PayPalHttpClient(new PayPalEnvironment.Sandbox(clientId, clientSecret));
     }
 
 
