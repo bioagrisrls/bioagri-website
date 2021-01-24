@@ -37,10 +37,6 @@
     <!-- Support -->
     <section class="ui-support" ui-animated>
 
-        <div class="ui-support-background">
-            <div></div>
-        </div>
-
         <br>
         <br>
         <br>
@@ -50,7 +46,6 @@
 
         <section class="bg-light">
 
-            <!-- Support -->
             <div class="ui-support-header">
 
                 <div class="ui-support-header-content">
@@ -69,7 +64,6 @@
                         <h1 ui-animated-scroll="slideInRight">${locale.support_header}</h1>
 
                     </div>
-
                 </div>
 
             </div>

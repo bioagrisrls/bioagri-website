@@ -1,7 +1,5 @@
 {
 
-  "locale_country" : "IT",
-
   "info_title" : "Bioagri Shop",
   "info_address" : "Rosarno (RC), Via Nazionale Sud, 365",
   "info_phone" : "0966-543210",
@@ -83,28 +81,22 @@
   "foo_body_faq" : "Domande frequenti",
   "foo_body_policy" : "Cookie Policy",
 
-  "about_title" : "Chi siamo?",
-  "support_title" : "Contatti",
-
-  "about_presentation_title" : "Su di noi",
-  "about_presentation_subtitle_start" : "Lascia che",
-  "about_presentation_subtitle_end" : " ti raccontiamo la nostra storia",
+  "about_header" : "Scopri di più sulla nostra storia!",
+  "about_presentation_subtitle" : "Su di noi",
+  "about_presentation_title" : "Lascia che ti raccontiamo la nostra storia",
   "about_presentation_body" : "La nostra è una ditta a conduzione familiare nata nel 1908, è stata da sempre attiva nel settore agricolo, e si è espansa con il passare degli anni arrivando ad avere clienti in tutta la regione.",
 
-  "history_title" : "BioAgri",
-  "history_subtitle" : "Un po' di storia",
+  "about_history_title" : "BioAgri",
+  "about_history_subtitle" : "Un po' di storia",
 
   "support_header" : "Scopri come metterti in contatto con noi!",
-
   "support_contact_info_title" : "Informazioni di Contatto",
   "support_contact_info_subtitle" : "Il modo migliore di contattarci per chiedere aiuto",
   "support_contact_info_address" : "Indirizzo",
   "support_contact_info_phone" : "Telefono",
   "support_contact_info_email" : "E-mail",
-
   "support_form_title" : "Contattaci ora",
   "support_form_subtitle" : "Mettiti in contatto con noi",
-
   "support_form_name" : "Nome",
   "support_form_surname" : "Cognome",
   "support_form_email" : "E-mail",
@@ -112,7 +104,6 @@
   "support_form_subject" : "Oggetto",
   "support_form_message" : "Inserisci qui il tuo messaggio",
   "support_form_submit" : "Invia messaggio",
-
   "support_maps_title" : "Dove siamo?",
   "support_maps_subtitle" : "Vieni a trovarci in sede",
 
@@ -158,7 +149,6 @@
   "card_add_wish": "Aggiungi alla tua lista dei desideri",
   "card_added_wish": "Rimuovi dalla tua lista dei desideri",
   "card_add_cart": "Aggiungi al carrello",
-
   "cart_add": "Aggiunto al carrello",
   "cart_remove": "Rimosso dal carrello",
 
@@ -218,4 +208,5 @@
   "cart_shipment_free" : "Spedizione gratuita",
   "cart_clear" : "Svuota carrello",
   "cart_checkout" : "Vai alla cassa"
+
 }
