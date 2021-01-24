@@ -34,11 +34,28 @@
 
         constructor() {
             super(id, {
+
                 items: {},
-                price: 0,
                 shipment: 10, // FIXME
-                total: 0,
+                prices: [ 0, 0 ],
                 count: 0,
+
+                strings: {
+                    empty:                  `${locale.cart_empty}`,
+                    title:                  `${locale.cart_title}`,
+                    subtitle:               `${locale.cart_subtitle}`,
+                    quantity:               `${locale.cart_quantity}`,
+                    products:               `${locale.cart_products}`,
+                    discount:               `${locale.cart_discount}`,
+                    total:                  `${locale.cart_total}`,
+                    total_no_discount:      `${locale.cart_total_no_discount}`,
+                    total_with_discount:    `${locale.cart_total_with_discount}`,
+                    shipment:               `${locale.cart_shipment}`,
+                    shipment_free:          `${locale.cart_shipment_free}`,
+                    clear:                  `${locale.cart_clear}`,
+                    checkout:               `${locale.cart_checkout}`,
+                }
+
             });
         }
 
@@ -54,8 +71,32 @@
             return `${components.shopping_cart}`
         }
 
-        getPrice(items, addend = 0) {
-            return Object.values(items).reduce((i, v) => i + v.price * v.quantity, addend).toFixed(2);
+
+        onBeforeUpdate(state) {
+            super.onBeforeUpdate(state);
+
+            this.state.count = shopping_cart_count();
+            this.state.prices = [
+                this.getPrice(state.items, 0),
+                this.getPrice(state.items, 0, true),
+                this.getPrice(state.items, state.shipment, true),
+            ];
+
+        }
+
+        getPrice(items, addend, discount = false) {
+
+            return Object
+                .values(items)
+                .reduce((i, v) => {
+
+                    if(discount)
+                        return ((+v.price - ((+v.price / 100) * +v.discount)) * shopping_cart_count(v.id)) + i;
+
+                    return (+v.price * shopping_cart_count(v.id)) + i;
+
+                }, +addend).toFixed(2);
+
         }
 
     });
