@@ -27,6 +27,16 @@
 
   .ui-support-background {
 
+    @extend .position-relative;
+
+    div {
+      @extend .position-absolute;
+      @extend .w-100;
+      @extend .bg-light;
+      height: 72rem;
+      z-index: -1;
+    }
+
   }
 
   .ui-support-header {
@@ -37,7 +47,6 @@
 
       @extend .row;
       @extend .justify-content-center;
-      @extend .text-center;
       @extend .py-5;
       @extend .px-3;
 
@@ -45,15 +54,15 @@
 
         @extend .col-md-9;
         @extend .col-lg-6;
+        @extend .text-center;
 
         h1 {
           @extend .ui-font-title-primary;
-          @extend .display-5;
+          @extend .py-2;
         }
 
         .ui-support-header-image {
           @extend .d-block;
-          @extend .py-2;
         }
 
       }
@@ -64,26 +73,33 @@
 
   .ui-support-contact {
 
+    @extend .text-dark;
     @extend .ui-container;
 
     .ui-support-contact-header {
 
       @extend .row;
+      @extend .justify-content-center;
+      @extend .text-center;
 
       .ui-support-contact-header-title {
 
-        @extend .text-center;
-
-        h1 {
-
+        h6 {
+          @extend .ui-font-title-secondary;
         }
 
-        h6 {
-
+        h1 {
+          @extend .ui-font-title-primary;
+          color : $primary;
         }
 
         span {
+          @extend .ui-font-title-primary;
+          color: $primary;
+        }
 
+        b {
+          @extend .ui-font-title-primary;
         }
 
       }
@@ -93,26 +109,33 @@
     .ui-support-contact-body {
 
       @extend .row;
+      @extend .text-center;
 
       .ui-support-contact-body-content {
 
-        @extend .col-12;
-        @extend .col-md-4;
-
         .ui-support-contact-body-title {
 
-          @extend .text-center;
 
           h4 {
-
+            @extend .ui-font-title-primary;
           }
 
           p {
-
+            @extend .ui-font-title-secondary;
           }
 
           .ui-support-contact-info-icon {
-            @extend .rounded-circle;
+
+            @extend .btn;
+            @extend .btn-circle;
+            @extend .btn-circle-lg;
+            @extend .mx-2;
+
+            color: #FFF;
+
+            &:hover {
+              @extend .shadow;
+            }
           }
 
         }
@@ -133,20 +156,23 @@
 
       .ui-support-form-title {
 
-        @extend .text-center;
-
-        h1 {
-
+        h6 {
+          @extend .ui-font-title-secondary;
         }
 
-        h6 {
-
+        h1 {
+          @extend .ui-font-title-primary;
+          color : $primary;
         }
 
         span {
-
+          @extend .ui-font-title-primary;
+          color: $primary;
         }
 
+        b {
+          @extend .ui-font-title-primary;
+        }
       }
 
     }
@@ -162,16 +188,22 @@
 
       @extend .text-center;
 
-      h1 {
-
+      h6 {
+        @extend .ui-font-title-secondary;
       }
 
-      h6 {
-
+      h1 {
+        @extend .ui-font-title-primary;
+        color : $primary;
       }
 
       span {
+        @extend .ui-font-title-primary;
+        color: $primary;
+      }
 
+      b {
+        @extend .ui-font-title-primary;
       }
 
     }

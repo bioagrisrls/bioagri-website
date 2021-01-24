@@ -57,8 +57,6 @@
 
                     <div class="ui-support-header-block" ui-animated-scroll="slideInUp">
 
-                        <h1>${locale.support_banner}</h1>
-
                         <ui-image id="ui-support-header-image"
                                   class="ui-support-header-image"
                                   ui:src="/assets/img/support/support.png"
@@ -67,6 +65,8 @@
                                   ui:position="center"
                                   ui:size="contain"></ui-image>
 
+                        <h1>${locale.support_header}</h1>
+
                     </div>
 
                 </div>
@@ -74,6 +74,8 @@
             </div>
 
         </section>
+
+        <br>
 
         <div class="mx-5" ui-animated="slideInLeft">
 
