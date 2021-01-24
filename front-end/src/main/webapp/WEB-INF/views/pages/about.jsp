@@ -34,42 +34,45 @@
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ui:current="about"></ui-navbar>
 
-    <!-- About -->
-    <section class="ui-about" ui-animated>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
 
-        <section class="bg-light">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
-            <div class="ui-about-header">
+    <section class="bg-light">
 
-                <div class="ui-about-header-content">
+        <div class="ui-about-header">
 
-                    <div class="ui-about-header-block">
+            <div class="ui-about-header-content">
 
-                        <ui-image id="ui-about-header-image"
-                                  class="ui-about-header-image"
-                                  ui:animation="slideInLeft"
-                                  ui:src="/assets/img/about/aboutus.png"
-                                  ui:width="100%"
-                                  ui:height="320px"
-                                  ui:position="center"
-                                  ui:size="contain"></ui-image>
+                <div class="ui-about-header-block">
 
-                        <h1 ui-animated-scroll="slideInRight">${locale.about_header}</h1>
+                    <ui-image id="ui-about-header-image"
+                              class="ui-about-header-image"
+                              ui:animation="slideInLeft"
+                              ui:src="/assets/img/about/aboutus.png"
+                              ui:width="100%"
+                              ui:height="320px"
+                              ui:position="center"
+                              ui:size="contain"></ui-image>
 
-                    </div>
+                    <h1 ui-animated-scroll="slideInRight">${locale.about_header}</h1>
 
                 </div>
 
             </div>
 
-        </section>
+        </div>
+
+    </section>
+
+
+    <!-- About -->
+    <section class="ui-about" ui-animated>
 
         <br>
 
@@ -95,7 +98,6 @@
 
                 <div class="ui-about-presentation-image">
                     <ui-image id="ui-about-owner"
-                              class="ui-about-owner"
                               ui:animation="slideInLeft"
                               ui:src="/assets/img/about/owner.jpg"
                               ui:width="100%"
@@ -120,26 +122,23 @@
 
             <!-- History Head -->
             <div class="ui-about-history-header">
-                <div class="ui-about-history-header-content">
 
-                    <h4>${locale.about_history_subtitle}</h4>
-                    <br>
-                    <h1>${locale.about_history_title}</h1>
+                <h4>${locale.about_history_subtitle}</h4>
+                <br>
+                <h1>${locale.about_history_title}</h1>
 
-                    <br>
+                <br>
 
-                    <div class="ui-about-history-image">
-                        <ui-image id="ui-about-shop"
-                                  class="ui-about-shop"
-                                  ui:animation="slideInLeft"
-                                  ui:src="/assets/img/about/shop.jpeg"
-                                  ui:width="100%"
-                                  ui:height="320px"
-                                  ui:position="center"
-                                  ui:size="contain"></ui-image>
-                    </div>
-
+                <div class="ui-about-history-image">
+                    <ui-image id="ui-about-shop"
+                              ui:animation="slideInLeft"
+                              ui:src="/assets/img/about/shop.jpeg"
+                              ui:width="100%"
+                              ui:height="100%"
+                              ui:position="center"
+                              ui:size="cover"></ui-image>
                 </div>
+
             </div>
 
 
@@ -147,66 +146,76 @@
             <div class="ui-history-body">
 
 
-                <!-- Left -->
-                <div class="ui-history-body-left">
+                <div class="ui-history-body-row">
 
-                    <div class="ui-history-body-left-content" ui-animated-hover ui-animated-scroll>
+                    <div class="ui-history-body-left" ui-animated-hover ui-animated-scroll>
 
                         <h1>2018</h1>
-                        <br>
                         <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
 
                     </div>
 
-                    <div class="ui-history-body-left-content" ui-animated-hover ui-animated-scroll>
-
-                        <h1>2018</h1>
-                        <br>
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                    <div class="ui-history-body-right" ui-animated-hover ui-animated-scroll>
 
                     </div>
 
-                    <div class="ui-history-body-left-content" ui-animated-hover ui-animated-scroll>
+                </div>
+
+                <div class="ui-history-body-row">
+
+                    <div class="ui-history-body-left" ui-animated-hover ui-animated-scroll>
+
+                    </div>
+
+                    <div class="ui-history-body-right" ui-animated-hover ui-animated-scroll>
 
                         <h1>2018</h1>
-                        <br>
                         <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
 
                     </div>
 
                 </div>
 
+                <div class="ui-history-body-row">
 
-                <!-- Center -->
-                <div class="ui-about-history-center">
-                    <div class="ui-about-history-divider"></div>
+                    <div class="ui-history-body-left" ui-animated-hover ui-animated-scroll>
+
+                        <h1>2018</h1>
+                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+
+                    </div>
+
+                    <div class="ui-history-body-right" ui-animated-hover ui-animated-scroll>
+
+                    </div>
+
                 </div>
 
+                <div class="ui-history-body-row">
 
-                <!-- Right -->
-                <div class="ui-history-body-right">
+                    <div class="ui-history-body-left" ui-animated-hover ui-animated-scroll>
 
-                    <div class="ui-history-body-right-content" ui-animated-hover ui-animated-scroll>
+                    </div>
+
+                    <div class="ui-history-body-right" ui-animated-hover ui-animated-scroll>
 
                         <h1>2018</h1>
-                        <br>
                         <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
 
                     </div>
 
-                    <div class="ui-history-body-right-content" ui-animated-hover ui-animated-scroll>
+                </div>
+
+                <div class="ui-history-body-row">
+
+                    <div class="ui-history-body-left" ui-animated-hover ui-animated-scroll>
 
                         <h1>2018</h1>
-                        <br>
                         <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
 
                     </div>
 
-                    <div class="ui-history-body-right-content" ui-animated-hover ui-animated-scroll>
-
-                        <h1>2018</h1>
-                        <br>
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                    <div class="ui-history-body-right" ui-animated-hover ui-animated-scroll>
 
                     </div>
 
