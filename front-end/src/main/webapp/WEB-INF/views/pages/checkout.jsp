@@ -48,12 +48,17 @@
 
     <section ui-animated>
 
-        <div class="ui-container">
+        <div class="ui-checkout">
 
-            <!-- Checkout Tabs -->
-            <ui-checkout id="ui-checkout-1"></ui-checkout>
+            <div class="ui-checkout-disclaimer">
+               <h1>${locale.checkout_remaind_header}</h1>
+               <p>${locale.checkout_remaind_top}</p>
+               <p>${locale.checkout_remaind_bottom}</p>
+            </div>
 
-
+            <div class="ui-checkout-body">
+                <ui-payment id="ui-payment"></ui-payment>
+            </div>
 
         </div>
 

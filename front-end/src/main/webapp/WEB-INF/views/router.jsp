@@ -97,7 +97,7 @@
         <%@ include file="/WEB-INF/components/products/stats/stats.controller.jsp"              %>
         <%@ include file="/WEB-INF/components/products/related/related.controller.jsp"          %>
         <%@ include file="/WEB-INF/components/shopping/cart/cart.controller.jsp"                %>
-        <%@ include file="/WEB-INF/components/shopping/checkout/checkout.controller.jsp"        %>
+        <%@ include file="/WEB-INF/components/shopping/payment/payment.controller.jsp"          %>
         <%@ include file="/WEB-INF/components/users/login/login.controller.jsp"                 %>
         <%@ include file="/WEB-INF/components/users/registration/registration.controller.jsp"   %>
         <%@ include file="/WEB-INF/components/products/feedback/feedback.controller.jsp"        %>
