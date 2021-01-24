@@ -26,9 +26,9 @@
 
 .ui-about {
 
-  .ui-about-header {
+  @extend .text-dark;
 
-    @extend .text-dark;
+  .ui-about-header {
 
     .ui-about-header-content {
 
@@ -68,15 +68,17 @@
       @extend .col-md;
 
       h1 {
-
+        @extend .ui-font-title-primary;
       }
 
       h4 {
+        @extend .text-primary;
+        @extend .ui-font-title-secondary;
 
       }
 
       p {
-
+        @extend .ui-font-title-primary;
       }
 
     }
@@ -113,10 +115,13 @@
       .ui-about-history-header-content {
 
         h1 {
-
+          @extend .ui-font-title-primary;
         }
 
         h4 {
+
+          @extend .text-primary;
+          @extend .ui-font-title-secondary;
 
         }
 
@@ -140,7 +145,6 @@
 
     }
 
-
     .ui-history-body {
 
       @extend .row;
@@ -155,7 +159,7 @@
         .ui-history-body-left-content{
 
           h1 {
-
+            @extend .ui-font-title-primary;
           }
 
           br {
@@ -163,7 +167,7 @@
           }
 
           p {
-
+            @extend .ui-font-title-primary;
           }
 
         }
@@ -179,7 +183,7 @@
 
         .ui-about-history-divider {
           margin: 0 auto;
-          border: 3.75px solid $ui-theme-secondary;
+          border: 3.75px solid $secondary;
           border-radius: 0 0 10px 10px;
           width: 1px !important;
           height: 1242px;
@@ -196,7 +200,7 @@
         .ui-history-body-right-content{
 
           h1 {
-
+            @extend .ui-font-title-primary;
           }
 
           br {
@@ -204,7 +208,7 @@
           }
 
           p {
-
+            @extend .ui-font-title-primary;
           }
 
         }
@@ -221,107 +225,107 @@
 
 
 
-.ui-about-header h1 {
-  color: $ui-theme-primary-text;
-  text-transform: uppercase;
-}
-
-.ui-about-presentation h6 {
-  text-transform: uppercase;
-}
-
-.ui-about-presentation span {
-  font-size: revert;
-  color: $ui-theme-primary;
-}
-
-.ui-about-presentation b {
-  font-size: revert;
-}
-
-.ui-about-history-header header {
-  font-size: large;
-  line-height: 32px;
-}
-
-.ui-about-history-header h1 {
-  color: $ui-theme-primary;
-}
-
-.ui-about-history-header img {
-  border: 7.5px solid $ui-theme-secondary;
-}
-
-.ui-about-history-mb {
-  margin-bottom: 200px;
-}
-
-.ui-about-history-mt {
-  margin-top: 200px;
-}
-
-.ui-about-history-divider {
-  margin: 0 auto;
-  border: 3.75px solid $ui-theme-secondary;
-  border-radius: 0 0 10px 10px;
-  width: 1px !important;
-  height: 1242px;
-  z-index: 1;
-}
-
-.ui-about-history-center {
-  width: 30px;
-}
-
-.ui-about-history-left header {
-  border-right: 10px solid $ui-theme-secondary;
-  border-radius: 10px;
-  margin-right: -32px;
-  margin-bottom: 20px;
-  padding-bottom: 18px;
-  padding-top: 36px;
-  z-index: -1;
-  line-height: 32px;
-}
-
-.ui-about-history-left h1 {
-  padding-right: 24px;
-  float: right;
-}
-
-.ui-about-history-left p {
-  padding-right: 24px;
-  text-align: end;
-}
-
-.ui-about-history-right header {
-  border-left: 10px solid $ui-theme-secondary;
-  border-radius: 10px;
-  margin-left: -32px;
-  margin-bottom: 20px;
-  padding-bottom: 18px;
-  padding-top: 36px;
-  z-index: -1;
-  line-height: 32px;
-}
-
-.ui-about-history-right h1 {
-  padding-left: 24px;
-  float: left;
-}
-
-.ui-about-history-right p {
-  padding-left: 24px;
-}
-
-.ui-about-card-container {
-  position: relative;
-  text-align: center;
-  color: white;
-}
-
-.ui-about-card-overlay {
-  text-align: initial;
-  position: absolute;
-  bottom: 0;
-}
+//.ui-about-header h1 {
+//  color: $ui-theme-primary-text;
+//  text-transform: uppercase;
+//}
+//
+//.ui-about-presentation h6 {
+//  text-transform: uppercase;
+//}
+//
+//.ui-about-presentation span {
+//  font-size: revert;
+//  color: $ui-theme-primary;
+//}
+//
+//.ui-about-presentation b {
+//  font-size: revert;
+//}
+//
+//.ui-about-history-header header {
+//  font-size: large;
+//  line-height: 32px;
+//}
+//
+//.ui-about-history-header h1 {
+//  color: $ui-theme-primary;
+//}
+//
+//.ui-about-history-header img {
+//  border: 7.5px solid $ui-theme-secondary;
+//}
+//
+//.ui-about-history-mb {
+//  margin-bottom: 200px;
+//}
+//
+//.ui-about-history-mt {
+//  margin-top: 200px;
+//}
+//
+//.ui-about-history-divider {
+//  margin: 0 auto;
+//  border: 3.75px solid $ui-theme-secondary;
+//  border-radius: 0 0 10px 10px;
+//  width: 1px !important;
+//  height: 1242px;
+//  z-index: 1;
+//}
+//
+//.ui-about-history-center {
+//  width: 30px;
+//}
+//
+//.ui-about-history-left header {
+//  border-right: 10px solid $ui-theme-secondary;
+//  border-radius: 10px;
+//  margin-right: -32px;
+//  margin-bottom: 20px;
+//  padding-bottom: 18px;
+//  padding-top: 36px;
+//  z-index: -1;
+//  line-height: 32px;
+//}
+//
+//.ui-about-history-left h1 {
+//  padding-right: 24px;
+//  float: right;
+//}
+//
+//.ui-about-history-left p {
+//  padding-right: 24px;
+//  text-align: end;
+//}
+//
+//.ui-about-history-right header {
+//  border-left: 10px solid $ui-theme-secondary;
+//  border-radius: 10px;
+//  margin-left: -32px;
+//  margin-bottom: 20px;
+//  padding-bottom: 18px;
+//  padding-top: 36px;
+//  z-index: -1;
+//  line-height: 32px;
+//}
+//
+//.ui-about-history-right h1 {
+//  padding-left: 24px;
+//  float: left;
+//}
+//
+//.ui-about-history-right p {
+//  padding-left: 24px;
+//}
+//
+//.ui-about-card-container {
+//  position: relative;
+//  text-align: center;
+//  color: white;
+//}
+//
+//.ui-about-card-overlay {
+//  text-align: initial;
+//  position: absolute;
+//  bottom: 0;
+//}

@@ -48,9 +48,9 @@
 
             <div class="ui-about-header">
 
-                <div class="ui-about-content">
+                <div class="ui-about-header-content">
 
-                    <div class="ui-about-block">
+                    <div class="ui-about-header-block">
 
                         <ui-image id="ui-about-header-image"
                                   class="ui-about-header-image"
@@ -122,9 +122,9 @@
             <div class="ui-about-history-header">
                 <div class="ui-about-history-header-content">
 
-                    <h4>${locale.history_subtitle}</h4>
+                    <h4>${locale.about_history_subtitle}</h4>
                     <br>
-                    <h1>${locale.history_title}</h1>
+                    <h1>${locale.about_history_title}</h1>
 
                     <br>
 
@@ -186,7 +186,7 @@
                 <!-- Right -->
                 <div class="ui-history-body-right">
 
-                    <div class="ui-history-body-left-content" ui-animated-hover ui-animated-scroll>
+                    <div class="ui-history-body-right-content" ui-animated-hover ui-animated-scroll>
 
                         <h1>2018</h1>
                         <br>
@@ -194,7 +194,7 @@
 
                     </div>
 
-                    <div class="ui-history-body-left-content" ui-animated-hover ui-animated-scroll>
+                    <div class="ui-history-body-right-content" ui-animated-hover ui-animated-scroll>
 
                         <h1>2018</h1>
                         <br>
@@ -202,7 +202,7 @@
 
                     </div>
 
-                    <div class="ui-history-body-left-content" ui-animated-hover ui-animated-scroll>
+                    <div class="ui-history-body-right-content" ui-animated-hover ui-animated-scroll>
 
                         <h1>2018</h1>
                         <br>
