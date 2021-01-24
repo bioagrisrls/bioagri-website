@@ -150,8 +150,8 @@
 
                     <div class="ui-history-body-left" ui-animated-hover ui-animated-scroll>
 
-                        <h1>2018</h1>
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                        <h1>${locale.about_history_1_year}</h1>
+                        <p>${locale.about_history_1_event}</p>
 
                     </div>
 
@@ -169,8 +169,8 @@
 
                     <div class="ui-history-body-right" ui-animated-hover ui-animated-scroll>
 
-                        <h1>2018</h1>
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                        <h1>${locale.about_history_2_year}</h1>
+                        <p>${locale.about_history_2_event}</p>
 
                     </div>
 
@@ -180,8 +180,8 @@
 
                     <div class="ui-history-body-left" ui-animated-hover ui-animated-scroll>
 
-                        <h1>2018</h1>
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                        <h1>${locale.about_history_3_year}</h1>
+                        <p>${locale.about_history_3_event}</p>
 
                     </div>
 
@@ -199,8 +199,8 @@
 
                     <div class="ui-history-body-right" ui-animated-hover ui-animated-scroll>
 
-                        <h1>2018</h1>
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                        <h1>${locale.about_history_4_year}</h1>
+                        <p>${locale.about_history_4_event}</p>
 
                     </div>
 
@@ -210,8 +210,8 @@
 
                     <div class="ui-history-body-left" ui-animated-hover ui-animated-scroll>
 
-                        <h1>2018</h1>
-                        <p>Il Centro Cuore vede la luce nel 2006 in una mattina di Agosto per la necessità di svolgere degli esami a pazienti già cardio operati i quali avevano difficoltà estreme ad effettuare un semplice elettrocardiogramma.</p>
+                        <h1>${locale.about_history_5_year}</h1>
+                        <p>${locale.about_history_5_event}</p>
 
                     </div>
 
