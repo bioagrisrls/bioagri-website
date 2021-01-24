@@ -151,7 +151,15 @@ class Component {
      * @returns {string}
      */
     onLoading() {
-        return "Loading...";
+        return ` 
+            <div class="d-inline-block w-100 h-100" ui-animated>
+                <div class="d-grid align-items-center h-100">
+                    <div class="spinner-grow m-auto" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                </div>
+            </div>
+        `;
     }
 
     /**

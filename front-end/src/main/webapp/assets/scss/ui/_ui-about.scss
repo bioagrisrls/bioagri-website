@@ -24,48 +24,56 @@
  */
 
 
-.ui-about {
+.ui-about-header {
 
   @extend .text-dark;
 
-  .ui-about-header {
+  .ui-about-header-content {
 
-    .ui-about-header-content {
+    @extend .row;
+    @extend .gx-0;
+    @extend .justify-content-center;
+    @extend .py-5;
 
-      @extend .row;
-      @extend .justify-content-center;
-      @extend .py-5;
-      @extend .px-3;
 
-      .ui-about-header-block {
+    .ui-about-header-block {
 
-        @extend .col-md-9;
-        @extend .col-lg-6;
-        @extend .text-center;
+      @extend .col-md-9;
+      @extend .col-lg-6;
+      @extend .text-center;
 
-        h1 {
-          @extend .ui-font-title-primary;
-          @extend .py-2;
-        }
+      h1 {
+        @extend .ui-font-title-primary;
+        @extend .py-2;
+      }
 
-        .ui-about-header-image {
-          @extend .d-block;
-        }
-
+      .ui-about-header-image {
+        @extend .d-block;
       }
 
     }
 
   }
 
+}
+
+.ui-about {
+
+  @extend .px-3;
+  @extend .text-dark;
+
 
   .ui-about-presentation {
 
     @extend .row;
+    @extend .gx-0;
     @extend .align-items-center;
+    @extend .justify-content-center;
+    @extend .ui-container;
 
     .ui-about-presentation-title {
-      @extend .col-md;
+
+      @extend .col-lg;
 
       h1 {
         @extend .ui-font-title-primary;
@@ -84,17 +92,11 @@
     }
 
     .ui-about-presentation-image {
-      @extend .col-md;
-      @extend .text-center;
 
-      .ui-about-owner {
-
-        @extend .rounded-circle;
-        @extend .border-2;
-        @extend .border-primary;
-        @extend .shadow-lg;
-
-      }
+      @extend .col-lg;
+      @extend .text-start;
+      @extend .border-2;
+      @extend .border-primary;
 
     }
 
@@ -103,67 +105,70 @@
 
   .ui-about-history {
 
-    @extend .row;
-    @extend .align-items-center;
-    @extend .text-center;
-    @extend .justify-content-center;
 
     .ui-about-history-header {
 
-      @extend .col-md;
+      @extend .text-center;
+      @extend .ui-container;
 
-      .ui-about-history-header-content {
+      h1 {
+        @extend .ui-font-title-primary;
+        @extend .display-1;
+        @extend .my-0;
+      }
 
-        h1 {
-          @extend .ui-font-title-primary;
-        }
+      h4 {
 
-        h4 {
+        @extend .text-primary;
+        @extend .border-primary;
+        @extend .border-bottom;
+        @extend .ui-font-title-secondary;
+        @extend .my-0;
+        @extend .py-3;
+      }
 
-          @extend .text-primary;
-          @extend .ui-font-title-secondary;
+      .ui-about-history-image {
 
-        }
+        @extend .rounded-circle;
+        @extend .border-2;
+        @extend .border-primary;
+        @extend .overflow-hidden;
+        @extend .m-auto;
 
-        .ui-about-history-image {
-
-          //@extend .col-md;
-          //@extend .text-center;
-
-          .ui-about-shop {
-
-            @extend .rounded-circle;
-            @extend .shadow-lg;
-            @extend .border-2;
-            @extend .border-primary;
-
-          }
-
-        }
+        width: 320px;
+        height: 320px;
 
       }
+
 
     }
 
     .ui-history-body {
 
-      @extend .row;
-      @extend .align-items-center;
-      @extend .justify-content-center;
+      .ui-history-body-row {
 
-      .ui-history-body-left {
+        @extend .row;
+        @extend .gx-0;
+        @extend .justify-content-center;
 
-        @extend .col;
-        @extend .col-5;
+        .ui-history-body-left {
 
-        .ui-history-body-left-content{
+          @extend .col-auto;
+          @extend .text-end;
+          @extend .border-2;
+          @extend .border-primary;
+          @extend .border-end;
+          @extend .px-5;
+
+          width: 320px;
+
 
           h1 {
             @extend .ui-font-title-primary;
-          }
-
-          br {
-
+            @extend .border-primary;
+            @extend .border-bottom;
+            @extend .py-3;
+            @extend .my-3;
           }
 
           p {
@@ -172,39 +177,24 @@
 
         }
 
-      }
+        .ui-history-body-right {
 
-      .ui-history-body-center {
+          @extend .col-auto;
+          @extend .text-start;
+          @extend .border-2;
+          @extend .border-primary;
+          @extend .border-start;
+          @extend .px-5;
 
-        @extend .col;
-        @extend .col-5;
-        @extend .w-100;
-        @extend .h-100;
+          width: 320px;
 
-        .ui-about-history-divider {
-          margin: 0 auto;
-          border: 3.75px solid $secondary;
-          border-radius: 0 0 10px 10px;
-          width: 1px !important;
-          height: 1242px;
-          z-index: 1;
-        }
-
-      }
-
-      .ui-history-body-right {
-
-        @extend .col;
-        @extend .col-5;
-
-        .ui-history-body-right-content{
 
           h1 {
             @extend .ui-font-title-primary;
-          }
-
-          br {
-
+            @extend .border-primary;
+            @extend .border-bottom;
+            @extend .py-3;
+            @extend .my-3;
           }
 
           p {

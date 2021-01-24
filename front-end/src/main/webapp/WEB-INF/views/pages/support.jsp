@@ -34,50 +34,57 @@
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ui:current="support"></ui-navbar>
 
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <section class="bg-light">
+
+        <div class="ui-support-header">
+
+            <div class="ui-support-header-content">
+
+                <div class="ui-support-header-block">
+
+                    <ui-image id="ui-support-header-image"
+                              class="ui-support-header-image"
+                              ui:animation="slideInLeft"
+                              ui:src="/assets/img/support/support.png"
+                              ui:width="100%"
+                              ui:height="320px"
+                              ui:position="center"
+                              ui:size="contain"></ui-image>
+
+                    <h1 ui-animated-scroll="slideInRight">${locale.support_header}</h1>
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <br>
+
+    <div class="mx-5" ui-animated="slideInLeft">
+
+        <!-- Breadcrumb -->
+        <ui-breadcrumb id="ui-breadcrumb-1" ui:current="${locale.page_support}"></ui-breadcrumb>
+
+    </div>
+
+
+
     <!-- Support -->
     <section class="ui-support" ui-animated>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
-        <section class="bg-light">
-
-            <div class="ui-support-header">
-
-                <div class="ui-support-header-content">
-
-                    <div class="ui-support-header-block">
-
-                        <ui-image id="ui-support-header-image"
-                                  class="ui-support-header-image"
-                                  ui:animation="slideInLeft"
-                                  ui:src="/assets/img/support/support.png"
-                                  ui:width="100%"
-                                  ui:height="320px"
-                                  ui:position="center"
-                                  ui:size="contain"></ui-image>
-
-                        <h1 ui-animated-scroll="slideInRight">${locale.support_header}</h1>
-
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-        <br>
-
-        <div class="mx-5" ui-animated="slideInLeft">
-
-            <!-- Breadcrumb -->
-            <ui-breadcrumb id="ui-breadcrumb-1" ui:current="${locale.page_support}"></ui-breadcrumb>
-
-        </div>
 
         <br>
         <br>
