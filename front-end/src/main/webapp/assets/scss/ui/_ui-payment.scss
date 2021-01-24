@@ -31,11 +31,15 @@
 
     .ui-payment-buttons {
 
-      @extend .ui-font-title-primary;
-      @extend .btn;
-      @extend .btn-primary;
-      @extend .btn-lg;
-      @extend .my-3;
+      button {
+
+        @extend .ui-font-title-primary;
+        @extend .btn;
+        @extend .btn-primary;
+        @extend .btn-lg;
+        @extend .my-3;
+
+      }
 
     }
 
