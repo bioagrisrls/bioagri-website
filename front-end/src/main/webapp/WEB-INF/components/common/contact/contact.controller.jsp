@@ -79,7 +79,7 @@
                 },
 
                 $submit: {
-                    value: `${locale.support_form_submit}`,
+                    value: `<span class="mdi mdi-18px mdi-email-send"></span> ${locale.support_form_submit}`,
                     style: 'ui-contact-form',
                     align: 'start',
                 },

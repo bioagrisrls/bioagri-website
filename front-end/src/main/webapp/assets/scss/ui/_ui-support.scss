@@ -71,7 +71,7 @@
       .ui-support-contact-header-title {
 
         h4 {
-          color : $primary;
+          @extend .text-primary;
           @extend .ui-font-title-secondary;
         }
 
@@ -97,32 +97,37 @@
         .ui-support-contact-body-title {
 
           @extend .text-center;
+          @extend .position-relative;
 
           h4 {
             @extend .ui-font-title-primary;
           }
 
           p {
-            @extend .ui-font-title-secondary;
+            @extend .ui-font-title-primary;
+            @extend .text-muted;
           }
 
           .ui-support-contact-info-button {
 
             @extend .rounded-circle;
+            @extend .bg-primary;
+            @extend .text-center;
 
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            text-align: center;
             font-size: large;
             line-height: 70px;
             margin: 0 auto 30px;
-            background-color: $primary;
 
             .ui-support-contact-info-icon {
-              color: white;
+              @extend .text-white-always;
             }
 
+            a {
+              @extend .stretched-link;
+            }
 
           }
 
@@ -146,7 +151,7 @@
       .ui-support-form-title {
 
         h4 {
-          color : $primary;
+          @extend .text-primary;
           @extend .ui-font-title-secondary;
         }
 
@@ -171,7 +176,7 @@
       @extend .text-center;
 
       h4 {
-        color : $primary;
+        @extend .text-primary;
         @extend .ui-font-title-secondary;
       }
 
@@ -183,18 +188,23 @@
 
   }
 
-  .ui-contact-form {
+}
 
-    textarea {
-      height: 180px;
-    }
 
-    .button {
-      @extend .ui-font-title-primary;
-      @extend .w-auto;
-      @extend .my-3;
-    }
+.ui-contact-form {
 
+  @extend .w-100;
+  @extend .justify-content-center;
+
+  textarea {
+    height: 180px;
+  }
+
+  button {
+    @extend .ui-font-title-primary;
+    @extend .w-auto;
+    @extend .my-3;
+    @extend .py-3;
   }
 
 }
