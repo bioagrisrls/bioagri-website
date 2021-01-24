@@ -23,38 +23,160 @@
  *
  */
 
-@import "ui-theme";
+.ui-support {
 
-.ui-support-header h1 {
-  color: $ui-theme-primary-text;
-  text-transform: uppercase;
-}
+  .ui-support-background {
 
-.ui-support-title h6 {
-  text-transform: uppercase;
-}
+  }
 
-.ui-support-title span {
-  color: $ui-theme-primary;
-  font-size: revert;
-}
+  .ui-support-header {
 
-.ui-support-title b {
-  font-size: revert;
-}
+    @extend .text-white-always;
 
-.ui-support-contact-info-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  text-align: center;
-  font-size: large;
-  line-height: 70px;
-  margin: 0 auto 30px;
-  background-color: $ui-theme-primary;
-}
+    .ui-support-header-content {
 
-.ui-support-contact-info-icon a {
-  color: $ui-theme-primary-text;
+      @extend .row;
+      @extend .justify-content-center;
+      @extend .text-center;
+      @extend .py-5;
+      @extend .px-3;
+
+      .ui-support-header-block {
+
+        @extend .col-md-9;
+        @extend .col-lg-6;
+
+        h1 {
+          @extend .ui-font-title-primary;
+          @extend .display-5;
+        }
+
+        .ui-support-header-image {
+          @extend .d-block;
+          @extend .py-2;
+        }
+
+      }
+
+    }
+
+  }
+
+  .ui-support-contact {
+
+    @extend .ui-container;
+
+    .ui-support-contact-header {
+
+      @extend .row;
+
+      .ui-support-contact-header-title {
+
+        @extend .text-center;
+
+        h1 {
+
+        }
+
+        h6 {
+
+        }
+
+        span {
+
+        }
+
+      }
+
+    }
+
+    .ui-support-contact-body {
+
+      @extend .row;
+
+      .ui-support-contact-body-content {
+
+        @extend .col-12;
+        @extend .col-md-4;
+
+        .ui-support-contact-body-title {
+
+          @extend .text-center;
+
+          h4 {
+
+          }
+
+          p {
+
+          }
+
+          .ui-support-contact-info-icon {
+            @extend .rounded-circle;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .ui-support-form {
+
+    @extend .row;
+
+    .ui-support-form-content {
+
+      @extend .col-md;
+
+      .ui-support-form-title {
+
+        @extend .text-center;
+
+        h1 {
+
+        }
+
+        h6 {
+
+        }
+
+        span {
+
+        }
+
+      }
+
+    }
+
+  }
+
+
+  .ui-support-find {
+
+    @extend .row;
+
+    .ui-support-form-title {
+
+      @extend .text-center;
+
+      h1 {
+
+      }
+
+      h6 {
+
+      }
+
+      span {
+
+      }
+
+    }
+
+  }
+
 }
 
