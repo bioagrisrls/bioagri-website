@@ -40,7 +40,7 @@
     <h3 class="py-3">{{strings.reviews}}: ({{reviews.length}})</h3>
 
     <div class="row gx-5 align-items-center">
-        <h5 class="col">{{votes[0].toFixed(2)}}/5</h5>
+        <h5 class="col">{{(votes[0] || 0).toFixed(2)}}/5</h5>
         <ui-stars class="col-auto" id="{{this.id}}-reviews-stars" ui:vote="{{votes[0]}}"></ui-stars>
     </div>
 

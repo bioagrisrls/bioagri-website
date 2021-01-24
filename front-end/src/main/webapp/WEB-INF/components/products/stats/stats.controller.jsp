@@ -34,11 +34,13 @@
         constructor() {
             super(id, api('/feedbacks?filter-by=productId&filter-val=' + (props.id || 0)).then(response => {
                 return {
+
                     reviews: response,
 
                     strings: {
                         reviews: `${locale.stats_user_reviews}`,
                     }
+
                 }
             }));
         }

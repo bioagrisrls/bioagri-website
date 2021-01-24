@@ -33,12 +33,26 @@
     Component.register('ui-gallery', (id, props) => new class extends StatefulComponent {
 
         constructor() {
-            super(id, api('/products/' + (props.id || '') + '/images').then(response => {
+            super(id, api('/products/' + (props.id || '') + '/images')
+                .then(response => {
 
                     return {
                         images: response,
                         current: 0
                     }
+
+                })
+                .catch(reason => {
+
+                    if(reason === 404) {
+                        return {
+                            images: [ '${locale.card_not_available}' ],
+                            current: 0
+                        }
+                    }
+
+                    console.error("error when loading ui-gallery: ", reason);
+                    throw reason;
 
                 })
             );
