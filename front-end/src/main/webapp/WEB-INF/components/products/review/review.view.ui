@@ -28,7 +28,7 @@
     <div class="modal-dialog ui-review-container">
         <div class="ui-review-content">
 
-            <div class="text-end p-3 d-lg-none d-block">
+            <div class="text-end p-3">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -36,11 +36,6 @@
             <ui-review id="{{this.id}}-review-form" class="ui-review-form"
                        ui:id="{{id}}"
                        ui:name="{{name}}">
-
-                <div class="ui-review-form-success">
-                    {{success}}
-                </div>
-
             </ui-review>
 
         </div>
@@ -57,6 +52,10 @@
         const md = new bootstrap.Modal(el, {});
 
         md.show();
+
+        $(document).on('ui-review-on-success', () => {
+            md.hide();
+        });
 
     }) ();
 

@@ -43,6 +43,7 @@
                 `,
 
                 $footer: '',
+                $success: props.success,
 
 
                 $submit: {
@@ -98,6 +99,20 @@
             this.state = { $state: 'ready' };
         }
 
+        onUpdated(state) {
+
+            if(state.$state === 'ok') {
+
+                $(document).trigger('ui-review-on-success');
+
+                Component.render(Component.dummy(), `${components.common_notify}`, {
+                    message: this.state.$success
+                });
+
+            }
+        }
+
+
         onSubmit(data) {
 
             return api('/feedbacks', 'POST', {
@@ -111,7 +126,7 @@
                 updatedAt:      new Date().toISOString(),
             }, 'raw')
             .then(response => {
-                this.state = { $state: 'ok' }
+                this.state = { $state: 'ok' };
             })
             .catch(reason => {
                 this.state = { $state: 'error', $reason: reason };
