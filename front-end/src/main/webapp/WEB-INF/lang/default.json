@@ -94,6 +94,8 @@
   "history_title" : "BioAgri",
   "history_subtitle" : "Un po' di storia",
 
+  "support_header" : "Scopri come metterti in contatto con noi!",
+
   "support_contact_info_title" : "Informazioni di Contatto",
   "support_contact_info_subtitle_start" : "Il modo migliore",
   "support_contact_info_subtitle_end" : "di contattarci per chiedere aiuto",
@@ -205,5 +207,7 @@
   "review_description": "Inserisci una descrizione",
   "review_description_wrong": "La descrizione non può essere vuota",
   "review_form_success": "La recensione è stata inviata con successo",
-  "review_stars": "Inserisci una valutazione da 1 a 5 stelle"
+  "review_stars": "Inserisci una valutazione da 1 a 5 stelle",
+
+  "feedbacks_none" : "Nessun utente ha lasciato una recensione per questo prodotto"
 }

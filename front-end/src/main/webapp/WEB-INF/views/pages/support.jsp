@@ -37,25 +37,45 @@
     <!-- Support -->
     <section ui-animated>
 
-        <!-- Support Header -->
-        <ui-parallax id="ui-parallax-3" ui:src="/assets/img/about/header.jpg" ui:reserve="300px">
-            <div class="ui-container">
+        <div class="ui-support-background">
+            <div></div>
+        </div>
 
-                <div class="row">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
-                    <div class="col-auto ui-support-header">
-                        <h1 class="display-6 pt-3">${ locale.support_title }</h1>
+        <section class="bg-primary">
+
+            <!-- Support -->
+            <div class="ui-support-header">
+
+                <div class="ui-support-header-content">
+
+                    <div class="ui-support-header-block" ui-animated-scroll="slideInUp">
+
+                        <h1>${locale.support_banner}</h1>
+
+                        <ui-image id="ui-support-header-image"
+                                  class="ui-support-header-image"
+                                  ui:src="/assets/img/support/support.png"
+                                  ui:width="100%"
+                                  ui:height="320px"
+                                  ui:position="center"
+                                  ui:size="contain"></ui-image>
+
                     </div>
 
                 </div>
 
             </div>
-        </ui-parallax>
 
-        <br>
-        <br>
+        </section>
 
-        <div class="ui-container">
+        <div class="mx-5" ui-animated="slideInLeft">
 
             <!-- Breadcrumb -->
             <ui-breadcrumb id="ui-breadcrumb-1" ui:current="${locale.page_support}"></ui-breadcrumb>
@@ -67,21 +87,16 @@
 
         <div class="ui-container">
 
-            <!-- Contact Info -->
+            <!-- Contact -->
             <section>
-                <div class="ui-container">
+                <div class="ui-support-contact">
 
-                    <!-- Contact Info Head-->
-                    <div class="row">
+                    <!-- Contact Header-->
+                    <div class="ui-support-contact-header">
 
-                        <div class="col-12">
-
-                            <div class="text-center ui-support-title">
-                                <h6 class="display-8"> ${ locale.support_contact_info_title } </h6>
-                                <h1 class="display-5"><span> ${ locale.support_contact_info_subtitle_start } </span><b> ${ locale.support_contact_info_subtitle_end } </b></h1>
-                                <img class="mt-3" src="/assets/img/support/decorator.jpg">
-                            </div>
-
+                        <div class="ui-support-contact-header-title">
+                            <h6> ${ locale.support_contact_info_title } </h6>
+                            <h1><span> ${ locale.support_contact_info_subtitle_start } </span><b> ${ locale.support_contact_info_subtitle_end } </b></h1>
                         </div>
 
                     </div>
@@ -89,13 +104,13 @@
                     <br>
                     <br>
 
-                    <!-- Contact Info Body-->
-                    <div class="row">
+                    <!-- Contact Info -->
+                    <div class="ui-support-contact-body">
 
-                        <div class="col-12 col-md-4">
-                            <div class="text-center">
+                        <div class="ui-support-contact-body-content">
+                            <div class="ui-support-contact-body-title">
 
-                                <div class="ui-support-contact-info-icon rounded-circle" ui-animated-hover ui-animated-scroll>
+                                <div class="ui-support-contact-info-icon" ui-animated-hover ui-animated-scroll>
                                     <a href="https://www.google.com/maps/place/Farmacia+Agricola+S.R.L./@38.489809,15.969147,15z/data=!4m5!3m4!1s0x0:0x4896d3bba66df8d0!8m2!3d38.4886!4d15.97119?hl=it"><span class="mdi mdi-google-maps mdi-36px"></span></a>
                                 </div>
 
@@ -105,10 +120,10 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-md-4">
-                            <div class="text-center">
+                        <div class="ui-support-contact-body-content">
+                            <div class="ui-support-contact-body-title">
 
-                                <div class="ui-support-contact-info-icon rounded-circle" ui-animated-hover ui-animated-scroll>
+                                <div class="ui-support-contact-info-icon" ui-animated-hover ui-animated-scroll>
                                     <a href="tel:0966-543210"><span class="mdi mdi-phone mdi-36px"></span></a>
                                 </div>
 
@@ -118,10 +133,10 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-md-4">
-                            <div class="text-center">
+                        <div class="cui-support-contact-body-content">
+                            <div class="ui-support-contact-body-title">
 
-                                <div class="ui-support-contact-info-icon rounded-circle" ui-animated-hover ui-animated-scroll>
+                                <div class="ui-support-contact-info-icon" ui-animated-hover ui-animated-scroll>
                                     <a href="mailto: info@bioagri.com"><span class="mdi mdi-email mdi-36px"></span></a>
                                 </div>
 
@@ -143,19 +158,18 @@
 
             <!-- Contact Form -->
             <section>
-                <div class="row">
-                    <div class="col-md">
+                <div class="ui-support-form">
+                    <div class="ui-support-form-content">
 
-                        <div class="ui-support-title">
-                            <h6 class="display-8"> ${ locale.support_form_title } </h6>
-                            <h1 class="display-5"><span> ${ locale.support_form_subtitle_start } </span><b> ${ locale.support_form_subtitle_end } </b></h1>
-                            <img class="mt-3" src="/assets/img/support/decorator2.jpg">
+                        <div class="ui-support-form-title">
+                            <h6> ${ locale.support_form_title } </h6>
+                            <h1><span> ${ locale.support_form_subtitle_start } </span><b> ${ locale.support_form_subtitle_end } </b></h1>
                         </div>
 
                         <br>
 
                         <div>
-                            <ui-contact-us id = "ui-contact-us"></ui-contact-us>
+                            <ui-contact id="ui-contact"></ui-contact>
                         </div>
 
                     </div>
@@ -166,13 +180,13 @@
             <br>
             <br>
 
-            <!-- Find us (Bastoncini) -->
+            <!-- Find us -->
             <section>
-                <div class="row ui-support-title">
+                <div class="ui-support-find">
 
-                    <div>
-                        <h6 class="display-8"> ${ locale.support_maps_title } </h6>
-                        <h1 class="display-5"><span> ${ locale.support_maps_subtitle_start } </span><b> ${ locale.support_maps_subtitle_end } </b></h1>
+                    <div class="ui-support-find-title">
+                        <h6> ${ locale.support_maps_title } </h6>
+                        <h1><span> ${ locale.support_maps_subtitle_start } </span><b> ${ locale.support_maps_subtitle_end } </b></h1>
                     </div>
 
                 </div>
@@ -192,6 +206,6 @@
 
 
     <!-- Footer -->
-    <ui-footer id="ui-footer" ui:current="home"></ui-footer>
+    <ui-footer id="ui-footer" ui:current="support"></ui-footer>
 
 </section>
