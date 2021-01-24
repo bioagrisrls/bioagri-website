@@ -80,6 +80,7 @@
 
                 $submit: {
                     value: `${locale.support_form_submit}`,
+                    style: 'ui-contact-form',
                     align: 'start',
                 },
 

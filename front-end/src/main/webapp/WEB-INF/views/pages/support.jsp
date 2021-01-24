@@ -48,7 +48,7 @@
         <br>
         <br>
 
-        <section class="bg-primary">
+        <section class="bg-light">
 
             <!-- Support -->
             <div class="ui-support-header">

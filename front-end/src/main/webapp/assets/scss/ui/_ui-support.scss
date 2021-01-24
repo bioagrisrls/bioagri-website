@@ -25,25 +25,9 @@
 
 .ui-support {
 
-  .ui-support-background {
-
-    @extend .position-relative;
-
-    div {
-      @extend .position-absolute;
-      @extend .w-100;
-      @extend .bg-light;
-      height: 72rem;
-      z-index: -1;
-    }
-
-  }
-
-
-
   .ui-support-header {
 
-    @extend .text-white-always;
+    @extend .text-dark;
 
     .ui-support-header-content {
 
@@ -203,6 +187,12 @@
 
     textarea {
       height: 180px;
+    }
+
+    .button {
+      @extend .ui-font-title-primary;
+      @extend .w-auto;
+      @extend .my-3;
     }
 
   }
