@@ -44,11 +44,15 @@
       @extend .my-3;
 
       .ui-card-tags {
+
+        @extend .mw-100;
+
         p {
           @extend .my-0;
           @extend .ui-font-title-secondary;
           @extend .text-truncate;
         }
+
       }
 
 
@@ -60,6 +64,8 @@
       }
 
       .ui-card-price {
+
+        white-space: nowrap;
 
         s {
           @extend .ui-font-title-primary;
@@ -143,11 +149,15 @@
       @extend .mt-2;
 
       .ui-card-tags {
+
+        @extend .mw-100;
+
         p {
           @extend .my-0;
           @extend .ui-font-title-secondary;
           @extend .text-truncate;
         }
+
       }
 
       .ui-card-title {
@@ -166,6 +176,7 @@
       .ui-card-price {
 
         @extend .col;
+        white-space: nowrap;
 
         s {
           @extend .ui-font-title-primary;

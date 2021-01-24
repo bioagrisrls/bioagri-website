@@ -159,6 +159,29 @@ $utilities: map-merge(
   )
 );
 
+//
+// Virt Width
+//
+$utilities: map-merge(
+  $utilities, (
+    "virt-width-responsive": (
+      property: width,
+      class: vw,
+      responsive: true,
+      values: (
+        0: 0vw,
+        25: 25vw,
+        33: 33vw,
+        50: 50vw,
+        66: 66vw,
+        75: 75vw,
+        100: 100vw,
+        auto: auto,
+      )
+    )
+  )
+);
+
 
 //
 // Height
@@ -177,6 +200,29 @@ $utilities: map-merge(
         66: 66%,
         75: 75%,
         100: 100%,
+        auto: auto,
+      )
+    )
+  )
+);
+
+//
+// Virt Height
+//
+$utilities: map-merge(
+  $utilities, (
+    "virt-height-responsive": (
+      property: height,
+      class: vh,
+      responsive: true,
+      values: (
+        0: 0vh,
+        25: 25vh,
+        33: 33vh,
+        50: 50vh,
+        66: 66vh,
+        75: 75vh,
+        100: 100vh,
         auto: auto,
       )
     )

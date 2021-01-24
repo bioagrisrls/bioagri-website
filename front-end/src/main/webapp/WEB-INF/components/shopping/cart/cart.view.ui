@@ -26,44 +26,118 @@
 
 <div class="ui-cart">
 
-    <?
+    <div class="ui-cart-header">
+        <h1>Carrello (FIXME)</h1>
+        <h3>Prodotti (FIXME)</h3>
+    </div>
 
-        if(shopping_cart_empty()) {
-            ?> <small>Il tuo carrello è vuoto (FIXME)</small> <?
-        } else {
+    <div class="ui-cart-body">
+        <div class="ui-cart-products">
 
-            ?> <div class="ui-cart-items"> <?
+            <?
+                if(shopping_cart_empty()) {
+                    ?> <small>Il tuo carrello è vuoto (FIXME)</small> <?
+                } else {
 
-                shopping_cart_each((item) => {
-                    ?>
-                        <div class="ui-cart-item">
+                    ?> <div class="ui-cart-items"> <?
 
-                            <div class="ui-card-product">
-                                <ui-card id="{{this.id}}-card-{{item.id}}"
-                                         ui:id="{{item.id}}"
-                                         ui:view="row"
-                                         ui:hide="wish,cart,vote"
-                                         ui:on-before-update="$$.state.items[this.state.id] = ({ price: this.state.price, quantity: this.state.quantity }); $$.state = { items: $$.state.items, price: $$.getPrice($$.state.items), total: $$.getPrice($$.state.items, $$.state.shipment) }"></ui-card>
-                            </div>
+                        shopping_cart_each((item) => {
+                            ?>
+                                <div class="ui-cart-item">
 
-                            <div class="ui-card-quantity">
-                                <label for="{{this.id}}-card-{{item.id}}-quantity">Quantità</label>
-                                <input  id="{{this.id}}-card-{{item.id}}-quantity"
-                                        type="number"
-                                        min="0"
-                                        max="999"
-                                        value="{{+item.quantity}}"
-                                        onchange="shopping_cart_add({{item.id}}, +this.value)"/>
-                            </div>
+                                    <div class="ui-cart-product">
+                                        <ui-card id="{{this.id}}-card-{{item.id}}"
+                                                 ui:id="{{item.id}}"
+                                                 ui:view="row"
+                                                 ui:hide="wish,cart,vote"
+                                                 ui:on-before-update="$$.state.items[this.state.id] = ({ price: this.state.price, quantity: this.state.quantity }); $$.state = { items: $$.state.items, price: $$.getPrice($$.state.items), total: $$.getPrice($$.state.items, $$.state.shipment) }"></ui-card>
+                                    </div>
 
-                        </div>
-                    <?
-                });
+                                    <div class="ui-cart-quantity">
+                                        <label for="{{this.id}}-card-{{item.id}}-quantity">Quantità</label>
+                                        <input  id="{{this.id}}-card-{{item.id}}-quantity"
+                                                type="number"
+                                                min="0"
+                                                max="999"
+                                                value="{{+item.quantity}}"
+                                                onchange="shopping_cart_add({{item.id}}, +this.value)"/>
+                                    </div>
 
-            ?> </div> <?
+                                </div>
+                            <?
+                        });
 
-        }
-    ?>
+                    ?> </div> <?
+
+                }
+            ?>
+
+
+        </div>
+
+
+        <div class="ui-cart-checkout">
+
+            <div class="ui-cart-checkout-content">
+
+                <div class="ui-cart-checkout-total">
+                    <p>Totale (FIXME)</p>
+                    <h1>{{total}}</h1>
+                </div>
+
+                <div class="ui-cart-checkout-info">
+
+                    <div class="ui-cart-checkout-label">
+                        Prodotti:
+                    </div>
+                    <div class="ui-cart-checkout-value">
+                        {{count}}
+                    </div>
+
+                    <div class="ui-cart-checkout-label">
+                        Totale (senza applicazione sconti):
+                    </div>
+                    <div class="ui-cart-checkout-value">
+                        {{total}}
+                    </div>
+
+                    <div class="ui-cart-checkout-label">
+                        Sconto:
+                    </div>
+                    <div class="ui-cart-checkout-value">
+                        {{total}}
+                    </div>
+
+                    <div class="ui-cart-checkout-label">
+                        Totale carrello (dopo applicazione sconti):
+                    </div>
+                    <div class="ui-cart-checkout-value">
+                        {{count}}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="ui-cart-checkout-shipping">
+                <h1>Spedizione</h1>
+
+                <? if(+shipment === 0) { ?>
+                    <p>Spedizione gratuita</p>
+                <? } else { ?>
+                    <div class="ui-cart-checkout-label">
+                        Spedizione:
+                    </div>
+                    <div class="ui-cart-checkout-value">
+                        {{shipment}}
+                    </div>
+                <? } ?>
+            </div>
+
+        </div>
+
+
+    </div>
 
 
 </div>
