@@ -25,52 +25,97 @@
 
 .ui-cart {
 
-  .ui-cart-header {
+  @extend .w-100;
+  @extend .h-100;
+  @extend .px-3;
+  @extend .py-3;
+  @extend .text-dark;
+  @extend .bg-white;
 
+  .ui-cart-header {
+    h1 {
+      @extend .ui-font-title-primary;
+      @extend .display-4;
+      @extend .mb-5;
+    }
+
+    h3 {
+      @extend .ui-font-title-primary;
+      @extend .fs-3;
+      @extend .my-3;
+    }
   }
 
   .ui-cart-body {
 
-    .ui-cart-items {
+    @extend .row;
+    @extend .gx-0;
 
-      @extend .vh-75;
-      @extend .vw-100;
-      @extend .px-5;
-      @extend .py-5;
+    .ui-cart-products {
 
-      overflow-y: scroll;
+      @extend .col-lg-9;
 
-      .ui-cart-item {
+      .ui-cart-empty {
 
-        @extend .row;
-        @extend .gx-0;
-        @extend .py-3;
-        @extend .border-bottom;
+        @extend .w-100;
+        @extend .text-center;
 
-        .ui-cart-product {
-          @extend .col-lg;
+        animation: fadeIn 0.4s linear;
 
-          .ui-card-image {
-            @extend .col-1;
-          }
+
+        p {
+          @extend .text-muted;
+          @extend .ui-font-title-primary;
+          @extend .fs-4;
         }
 
-        .ui-cart-quantity {
+        img {
+          @extend .my-2;
+          @extend .w-100;
+          @extend .w-sm-auto;
+          max-height: 490px;
+        }
 
-          @extend .col-lg-auto;
-          @extend .text-end;
+      }
 
-          label {
-            @extend .d-block;
-            @extend .ui-font-title-primary;
-            @extend .fs-3;
+      .ui-cart-items {
+
+        @extend .px-5;
+        @extend .py-5;
+
+        .ui-cart-item {
+
+          @extend .row;
+          @extend .gx-0;
+          @extend .py-3;
+          @extend .border-bottom;
+
+          .ui-cart-product {
+            @extend .col-lg;
+
+            .ui-card-image {
+              @extend .col-1;
+            }
           }
 
-          input {
-            @extend .px-3;
-            @extend .py-3;
-            @extend .my-3;
-            @extend .w-100;
+          .ui-cart-quantity {
+
+            @extend .col-lg-auto;
+            @extend .text-end;
+
+            label {
+              @extend .d-block;
+              @extend .ui-font-title-primary;
+              @extend .fs-3;
+            }
+
+            input {
+              @extend .px-3;
+              @extend .py-3;
+              @extend .my-3;
+              @extend .w-100;
+            }
+
           }
 
         }
@@ -79,6 +124,93 @@
 
     }
 
+    .ui-cart-checkout {
+
+      @extend .col-lg-3;
+
+      .ui-cart-checkout-content {
+
+        @extend .px-3;
+        @extend .py-3;
+        @extend .shadow-sm;
+        @extend .sticky-top;
+
+        .ui-cart-checkout-total {
+
+          @extend .text-center;
+          @extend .my-3;
+          @extend .border-bottom;
+
+          p {
+            @extend .ui-font-title-primary;
+            @extend .fs-3;
+            @extend .my-0;
+          }
+
+          h1 {
+            @extend .ui-font-title-primary;
+            @extend .text-primary;
+            @extend .display-4;
+          }
+
+        }
+
+        .ui-cart-checkout-info {
+          @extend .my-5;
+        }
+
+        .ui-cart-checkout-shipping {
+          h1 {
+            @extend .ui-font-title-primary;
+            @extend .fs-3;
+          }
+        }
+
+        .ui-cart-checkout-controls {
+
+          @extend .mt-5;
+          @extend .mb-3;
+
+          button {
+            @extend .btn;
+            @extend .btn-primary;
+            @extend .btn-block;
+            @extend .my-1;
+            @extend .ui-font-title-primary;
+            @extend .fs-5;
+          }
+        }
+
+        .ui-cart-checkout-row {
+
+          @extend .row;
+          @extend .gx-0;
+          @extend .my-2;
+          @extend .align-items-center;
+
+          .ui-cart-checkout-label {
+            @extend .col;
+            @extend .text-muted;
+          }
+
+          .ui-cart-checkout-value {
+            @extend .col-auto;
+            @extend .ui-font-title-primary;
+            @extend .fs-5;
+            @extend .ms-2;
+          }
+        }
+
+      }
+
+    }
+
   }
 
+}
+
+.ui-cart-container {
+  @extend .vh-100;
+  @extend .vw-100;
+  overflow-y: scroll;
 }

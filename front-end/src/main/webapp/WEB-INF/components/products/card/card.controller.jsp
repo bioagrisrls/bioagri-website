@@ -86,24 +86,28 @@
         onReady(state) {
             super.onReady(state);
 
-            authenticated(false)
-                .then(() => this.wish())
-                .catch(() => undefined);
+            if(!state.hide.includes('wish')) {
+
+                authenticated(false)
+                    .then(() => this.wish())
+                    .catch(() => undefined);
 
 
-            $(document).on('auth-connection-occurred', () => {
+                $(document).on('auth-connection-occurred', () => {
 
-                if(this.running)
-                    this.wish();
+                    if (this.running)
+                        this.wish();
 
-            });
+                });
 
-            $(document).on('auth-disconnection-occurred', () => {
+                $(document).on('auth-disconnection-occurred', () => {
 
-                if(this.running)
-                    this.wish(true);
+                    if (this.running)
+                        this.wish(true);
 
-            });
+                });
+
+            }
 
         }
 

@@ -99,15 +99,18 @@ const shopping_cart_each = (callbackfn) => {
 
 
 /**
- * Iterate each entry on the shopping cart
+ * Get count of all items or a specific item in the shopping cart
  * @return {number}
  */
-const shopping_cart_count = () => {
+const shopping_cart_count = (id = undefined) => {
 
     const cache = localStorage.getItem('X-Shopping-Cart');
     const items = (cache && JSON.parse(cache)) || [];
 
-    return Object.values(items).reduce((i, v) => i + (+v.quantity), 0);
+    if(id === undefined)
+        return Object.values(items).reduce((i, v) => i + +v.quantity, 0);
+    else
+        return (items.find(i => i.id === id) || { quantity: 0 }).quantity;
 
 }
 

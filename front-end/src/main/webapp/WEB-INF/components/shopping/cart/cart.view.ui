@@ -27,8 +27,8 @@
 <div class="ui-cart">
 
     <div class="ui-cart-header">
-        <h1>Carrello (FIXME)</h1>
-        <h3>Prodotti (FIXME)</h3>
+        <h1>{{strings.title}}</h1>
+        <h3>{{strings.subtitle}}</h3>
     </div>
 
     <div class="ui-cart-body">
@@ -36,7 +36,12 @@
 
             <?
                 if(shopping_cart_empty()) {
-                    ?> <small>Il tuo carrello è vuoto (FIXME)</small> <?
+                    ?>
+                        <div class="ui-cart-empty">
+                            <img src="/assets/img/common/404.png" alt="">
+                            <p>{{strings.empty}}</p>
+                        </div>
+                    <?
                 } else {
 
                     ?> <div class="ui-cart-items"> <?
@@ -50,11 +55,11 @@
                                                  ui:id="{{item.id}}"
                                                  ui:view="row"
                                                  ui:hide="wish,cart,vote"
-                                                 ui:on-before-update="$$.state.items[this.state.id] = ({ price: this.state.price, quantity: this.state.quantity }); $$.state = { items: $$.state.items, price: $$.getPrice($$.state.items), total: $$.getPrice($$.state.items, $$.state.shipment) }"></ui-card>
+                                                 ui:on-ready="$$.state.items[this.state.product.id] = ({ id: this.state.product.id, price: this.state.product.price, discount: this.state.product.discount }); $$.state = {};"></ui-card>
                                     </div>
 
                                     <div class="ui-cart-quantity">
-                                        <label for="{{this.id}}-card-{{item.id}}-quantity">Quantità</label>
+                                        <label for="{{this.id}}-card-{{item.id}}-quantity">{{strings.quantity}}</label>
                                         <input  id="{{this.id}}-card-{{item.id}}-quantity"
                                                 type="number"
                                                 min="0"
@@ -81,58 +86,75 @@
             <div class="ui-cart-checkout-content">
 
                 <div class="ui-cart-checkout-total">
-                    <p>Totale (FIXME)</p>
-                    <h1>{{total}}</h1>
+                    <p>{{strings.total}}</p>
+                    <h1>{{prices[2]}} &euro;</h1>
                 </div>
 
                 <div class="ui-cart-checkout-info">
 
-                    <div class="ui-cart-checkout-label">
-                        Prodotti:
-                    </div>
-                    <div class="ui-cart-checkout-value">
-                        {{count}}
-                    </div>
-
-                    <div class="ui-cart-checkout-label">
-                        Totale (senza applicazione sconti):
-                    </div>
-                    <div class="ui-cart-checkout-value">
-                        {{total}}
+                    <div class="ui-cart-checkout-row">
+                        <div class="ui-cart-checkout-label">
+                            {{strings.products}}:
+                        </div>
+                        <div class="ui-cart-checkout-value">
+                            {{count}}
+                        </div>
                     </div>
 
-                    <div class="ui-cart-checkout-label">
-                        Sconto:
-                    </div>
-                    <div class="ui-cart-checkout-value">
-                        {{total}}
+                    <div class="ui-cart-checkout-row">
+                        <div class="ui-cart-checkout-label">
+                            {{strings.total_no_discount}}:
+                        </div>
+                        <div class="ui-cart-checkout-value">
+                            {{prices[0]}} &euro;
+                        </div>
                     </div>
 
-                    <div class="ui-cart-checkout-label">
-                        Totale carrello (dopo applicazione sconti):
+                    <div class="ui-cart-checkout-row">
+                        <div class="ui-cart-checkout-label">
+                            {{strings.discount}}:
+                        </div>
+                        <div class="ui-cart-checkout-value">
+                            {{(prices[1] - prices[0]).toFixed(2)}} &euro;
+                        </div>
                     </div>
-                    <div class="ui-cart-checkout-value">
-                        {{count}}
+
+                    <div class="ui-cart-checkout-row">
+                        <div class="ui-cart-checkout-label">
+                            {{strings.total_with_discount}}:
+                        </div>
+                        <div class="ui-cart-checkout-value text-secondary">
+                            {{prices[1]}} &euro;
+                        </div>
                     </div>
 
                 </div>
 
+                <div class="ui-cart-checkout-shipping">
+                    <h1>{{strings.shipment}}</h1>
+
+                    <? if(+shipment === 0) { ?>
+                    <p>{{strings.shipment_free}}</p>
+                    <? } else { ?>
+                    <div class="ui-cart-checkout-row">
+                        <div class="ui-cart-checkout-label">
+                            {{strings.shipment}}:
+                        </div>
+                        <div class="ui-cart-checkout-value">
+                            {{shipment}} &euro;
+                        </div>
+                    </div>
+                    <? } ?>
+                </div>
+
+                <div class="ui-cart-checkout-controls">
+                    <button onclick="shopping_cart_clear()">{{strings.clear}}</button>
+                    <button onclick="navigate('/checkout')">{{strings.checkout}}</button>
+                </div>
+
             </div>
 
-            <div class="ui-cart-checkout-shipping">
-                <h1>Spedizione</h1>
 
-                <? if(+shipment === 0) { ?>
-                    <p>Spedizione gratuita</p>
-                <? } else { ?>
-                    <div class="ui-cart-checkout-label">
-                        Spedizione:
-                    </div>
-                    <div class="ui-cart-checkout-value">
-                        {{shipment}}
-                    </div>
-                <? } ?>
-            </div>
 
         </div>
 
