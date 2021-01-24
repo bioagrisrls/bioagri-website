@@ -39,6 +39,8 @@
 
   }
 
+
+
   .ui-support-header {
 
     @extend .text-white-always;
@@ -84,21 +86,12 @@
 
       .ui-support-contact-header-title {
 
-        h6 {
+        h4 {
+          color : $primary;
           @extend .ui-font-title-secondary;
         }
 
         h1 {
-          @extend .ui-font-title-primary;
-          color : $primary;
-        }
-
-        span {
-          @extend .ui-font-title-primary;
-          color: $primary;
-        }
-
-        b {
           @extend .ui-font-title-primary;
         }
 
@@ -110,11 +103,16 @@
 
       @extend .row;
       @extend .text-center;
+      @extend .text-dark;
 
       .ui-support-contact-body-content {
 
+        @extend .col-12;
+        @extend .col-md-4;
+
         .ui-support-contact-body-title {
 
+          @extend .text-center;
 
           h4 {
             @extend .ui-font-title-primary;
@@ -124,18 +122,24 @@
             @extend .ui-font-title-secondary;
           }
 
-          .ui-support-contact-info-icon {
+          .ui-support-contact-info-button {
 
-            @extend .btn;
-            @extend .btn-circle;
-            @extend .btn-circle-lg;
-            @extend .mx-2;
+            @extend .rounded-circle;
 
-            color: #FFF;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: large;
+            line-height: 70px;
+            margin: 0 auto 30px;
+            background-color: $primary;
 
-            &:hover {
-              @extend .shadow;
+            .ui-support-contact-info-icon {
+              color: white;
             }
+
+
           }
 
         }
@@ -149,6 +153,7 @@
   .ui-support-form {
 
     @extend .row;
+    @extend .text-dark;
 
     .ui-support-form-content {
 
@@ -156,23 +161,15 @@
 
       .ui-support-form-title {
 
-        h6 {
+        h4 {
+          color : $primary;
           @extend .ui-font-title-secondary;
         }
 
         h1 {
           @extend .ui-font-title-primary;
-          color : $primary;
         }
 
-        span {
-          @extend .ui-font-title-primary;
-          color: $primary;
-        }
-
-        b {
-          @extend .ui-font-title-primary;
-        }
       }
 
     }
@@ -183,29 +180,29 @@
   .ui-support-find {
 
     @extend .row;
+    @extend .text-dark;
 
-    .ui-support-form-title {
+    .ui-support-find-title {
 
       @extend .text-center;
 
-      h6 {
+      h4 {
+        color : $primary;
         @extend .ui-font-title-secondary;
       }
 
       h1 {
         @extend .ui-font-title-primary;
-        color : $primary;
       }
 
-      span {
-        @extend .ui-font-title-primary;
-        color: $primary;
-      }
+    }
 
-      b {
-        @extend .ui-font-title-primary;
-      }
+  }
 
+  .ui-contact-form {
+
+    textarea {
+      height: 180px;
     }
 
   }
