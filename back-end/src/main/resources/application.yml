@@ -27,6 +27,7 @@ payments:
   services:
     paypal:
       id: "AUDWsdqYEuaWsjEFpN0TLd8Ej_HeeuQ_eAsmG65RBbAcknkPpqkk4D0joMdjUtEm_uj0qYJ8f5886gP1"
+      secret: ""
 
 server:
   error:

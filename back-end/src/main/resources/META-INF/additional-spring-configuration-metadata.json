@@ -34,5 +34,10 @@
       "name": "payments.services.paypal.id",
       "type": "java.lang.String",
       "description": "Description for payments.services.paypal.id."
+    },
+    {
+      "name": "payments.services.paypal.secret",
+      "type": "java.lang.String",
+      "description": "Description for payments.services.paypal.secret."
     }
   ] }
