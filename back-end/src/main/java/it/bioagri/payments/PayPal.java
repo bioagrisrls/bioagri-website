@@ -47,19 +47,26 @@ import java.io.IOException;
 public class PayPal {
 
     private final static Logger logger = (Logger) LoggerFactory.getLogger(PayPal.class);
+
+    private final String clientId;
     private final PayPalHttpClient client;
 
-    @Autowired
+    //@Autowired
     private PayPal(
             @Value("${payments.services.paypal.id}")     String clientId,
             @Value("${payments.services.paypal.secret}") String clientSecret
     ) {
+        this.clientId = clientId;
         this.client = null; //new PayPalHttpClient(new PayPalEnvironment.Sandbox(clientId, clientSecret));
     }
 
 
     public PayPalHttpClient getClient() {
         return client;
+    }
+
+    public String getClientId() {
+        return clientId;
     }
 
 
