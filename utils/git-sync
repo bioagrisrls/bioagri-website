@@ -35,7 +35,7 @@ die() {
 git checkout dev        || die
 git add -A              || die
 
-if git commit --no-edit -m "$1"; then
+if git commit -m "$1"; then
   git checkout main       || die
   git pull origin main    || die
   git merge dev           || die
