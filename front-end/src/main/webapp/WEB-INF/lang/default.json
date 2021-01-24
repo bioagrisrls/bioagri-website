@@ -204,5 +204,6 @@
   "review_title_wrong": "Il titolo non può essere vuoto",
   "review_description": "Inserisci una descrizione",
   "review_description_wrong": "La descrizione non può essere vuota",
-  "review_form_success": "La recensione è stata inviata con successo"
+  "review_form_success": "La recensione è stata inviata con successo",
+  "review_stars": "Inserisci una valutazione da 1 a 5 stelle"
 }
