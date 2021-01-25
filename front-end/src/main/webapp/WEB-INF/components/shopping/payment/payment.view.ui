@@ -74,8 +74,9 @@
 
             </div>
 
-
-            <button onclick="navigate('/catalog')" ><span class="mdi mdi-18px mdi-chevron-left"></span>{{strings.back}}</button>
+            <div class="ui-checkout-success-button">
+                <button onclick="navigate('/catalog')" ><span class="mdi mdi-18px mdi-chevron-left"></span>{{strings.back}}</button>
+            </div>
 
         </div>
 
