@@ -131,7 +131,7 @@
   "checkout_payments" : "Pagamento",
   "checkout_summary" : "Riepilogo",
 
-  "checkout_choose" : "Seleziona una modalità di pagamento",
+  "payment_choose" : "Seleziona una modalità di pagamento",
 
   "payment_purchase" : "Paga con bonifico",
   "payment_pickup" : "Ritira in negozio",
