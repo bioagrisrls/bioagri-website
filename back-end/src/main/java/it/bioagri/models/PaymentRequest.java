@@ -25,35 +25,65 @@
 
 package it.bioagri.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.bioagri.persistence.DataSource;
+
+import java.util.Optional;
+
 public class PaymentRequest {
 
     private final String service;
-    private final String paymentId;
-    private final String orderId;
+    private final String id;
+    private final String data;
+    private final Long orderId;
 
-    public PaymentRequest(String service, String paymentId, String orderId) {
+    @JsonIgnore
+    private Order order;
+
+
+    public PaymentRequest(String service, String id, String data, Long orderId) {
         this.service = service;
-        this.paymentId = paymentId;
+        this.id = id;
+        this.data = data;
         this.orderId = orderId;
     }
 
     public PaymentRequest() {
         this.service = null;
-        this.paymentId = null;
+        this.id = null;
+        this.data = null;
         this.orderId = null;
     }
 
+
+    public String getId() {
+        return id;
+    }
 
     public String getService() {
         return service;
     }
 
-    public String getPaymentId() {
-        return paymentId;
+    public String getData() {
+        return data;
     }
 
-    public String getOrderId() {
+    public Long getOrderId() {
         return orderId;
+    }
+
+
+    @JsonIgnore
+    public Optional<Order> getOrder(DataSource dataSource) {
+
+        if(order == null) {
+            order = dataSource.getOrderDao()
+                    .findByPrimaryKey(orderId)
+                    .orElse(null);
+        }
+
+        return Optional.ofNullable(order);
+
     }
 
 }

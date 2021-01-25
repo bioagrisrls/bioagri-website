@@ -25,6 +25,8 @@
 
 package it.bioagri.api.payments.services;
 
+import it.bioagri.models.PaymentRequest;
+
 public interface PaymentExternalService {
-    boolean authorize(String orderId);
+    boolean authorize(PaymentRequest request);
 }

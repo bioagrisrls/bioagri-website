@@ -33,6 +33,7 @@ import com.paypal.orders.Order;
 import com.paypal.orders.OrderRequest;
 import com.paypal.orders.OrdersCaptureRequest;
 import it.bioagri.api.auth.Auth;
+import it.bioagri.models.PaymentRequest;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
@@ -71,11 +72,11 @@ public class PaypalPayment implements PaymentExternalService {
 
 
     @Override
-    public boolean authorize(String orderId) {
+    public boolean authorize(PaymentRequest request) {
 
         try {
 
-            HttpResponse<Order> response = getClient().execute(new OrdersCaptureRequest(orderId) {{
+            HttpResponse<Order> response = getClient().execute(new OrdersCaptureRequest(request.getId()) {{
                 requestBody(new OrderRequest());
             }});
 

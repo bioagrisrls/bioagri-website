@@ -26,6 +26,8 @@
 package it.bioagri.api.payments;
 
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.models.Order;
+import it.bioagri.models.PaymentRequest;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,18 +41,28 @@ public class Payment {
 
     private final AuthToken authToken;
     private final DataSource dataSource;
+    private final PaymentService paymentService;
 
     @Autowired
-    public Payment(AuthToken authToken, DataSource dataSource) {
+    public Payment(AuthToken authToken, DataSource dataSource, PaymentService paymentService) {
         this.authToken = authToken;
         this.dataSource = dataSource;
+        this.paymentService = paymentService;
     }
 
 
     @PostMapping("authorize")
-    public ResponseEntity<String> authorize(@RequestBody Payment payment) {
+    public ResponseEntity<String> authorize(@RequestBody PaymentRequest request) {
 
         try {
+
+            // TODO: verify order coherency
+
+            if(!paymentService.authorize(request))
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+
+
 
 
 
