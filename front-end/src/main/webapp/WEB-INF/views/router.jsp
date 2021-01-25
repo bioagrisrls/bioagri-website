@@ -103,6 +103,7 @@
         <%@ include file="/WEB-INF/components/products/feedback/feedback.controller.jsp"        %>
         <%@ include file="/WEB-INF/components/products/review/review.controller.jsp"            %>
         <%@ include file="/WEB-INF/components/shopping/wish/wish.controller.jsp"                %>
+        <%@ include file="/WEB-INF/components/shopping/order/order.controller.jsp"                %>
 
     </head>
 

@@ -112,6 +112,14 @@
 
         }
 
+        onOrderClicked() {
+
+            authenticated()
+                .then( () => Component.render(Component.dummy('user-order'), `${components.users_account_order}`, this.state))
+                .catch(() => Component.render(Component.dummy('user-auth'), `${components.users_account_auth}`, this.state));
+
+        }
+
         onDarkModeSwitched(checked = undefined) {
 
             const theme = document.querySelector('#ui-theme-stylesheet');
