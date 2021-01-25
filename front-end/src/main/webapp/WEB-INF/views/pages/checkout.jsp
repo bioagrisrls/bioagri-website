@@ -55,10 +55,6 @@
 
         <div class="ui-checkout" ui-animated="slideInUp">
 
-            <div class="ui-checkout-header">
-                <h1>${locale.checkout_choose}</h1>
-            </div>
-
             <div class="ui-checkout-body">
                 <ui-payment id="ui-payment"></ui-payment>
             </div>
