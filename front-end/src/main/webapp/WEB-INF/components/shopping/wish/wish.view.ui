@@ -23,6 +23,43 @@
   ~
   -->
 
-<%--@elvariable id="components" type="java.util.Map"--%>
-<%--@elvariable id="locale" type="java.util.Map"--%>
-<%--@elvariable id="reference" type="java.lang.String"--%>
+<div class="ui-wish">
+
+    <div class="ui-wish-header">
+        <h1>{{strings.title}}</h1>
+    </div>
+
+    <div class="ui-wish-body">
+        <div class="ui-wish-products">
+
+            <? if(products.lenght === 0) { ?>
+
+                <div class="ui-wish-empty">
+                    <img src="/assets/img/common/404.png" alt="">
+                    <p>{{strings.empty}}</p>
+                </div>
+
+            <? } else {?>
+
+                <div class="ui-wish-items">
+
+                    <? for (let i of products) { ?>
+
+                        <div class="ui-wish-item">
+                            <div class="ui-wish-product">
+                                <ui-card id="{{this.id}}-card-{{i.id}}"
+                                         ui:id="{{i.id}}"
+                                         ui:view="row"></ui-card>
+                            </div>
+                        </div>
+
+                    <? } ?>
+
+                </div>
+
+            <? } ?>
+
+        </div>
+    </div>
+
+</div>

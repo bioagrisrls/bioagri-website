@@ -250,6 +250,8 @@
   "cart_shipment" : "Spedizione",
   "cart_shipment_free" : "Spedizione gratuita",
   "cart_clear" : "Svuota carrello",
-  "cart_checkout" : "Vai al checkout"
+  "cart_checkout" : "Vai al checkout",
 
+  "wish_empty" : "Non hai ancora aggiunto nessun prodotto alla tua lista desideri",
+  "wish_title" : "Lista dei desideri"
 }

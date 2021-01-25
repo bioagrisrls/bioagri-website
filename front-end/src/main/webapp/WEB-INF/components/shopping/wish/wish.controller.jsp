@@ -24,3 +24,43 @@
   --%>
 
 
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
+
+<script defer>
+
+    Component.register('ui-wish', (id, props) => new class extends StatefulComponent {
+
+        constructor() {
+
+            super(id,
+                authenticated()
+                    .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist')
+                    .then(response => {
+
+                        return {
+                            products: response || [],
+
+                            strings: {
+                                empty: `${locale.wish_empty}`,
+                                title: `${locale.wish_title}`,
+                            }
+
+                        }
+
+                    })).catch(() => requestUserAuthentication())
+            );
+
+        }
+
+        onRender() {
+            return `${components.shopping_wish}`;
+        }
+
+
+    });
+
+
+</script>
+
