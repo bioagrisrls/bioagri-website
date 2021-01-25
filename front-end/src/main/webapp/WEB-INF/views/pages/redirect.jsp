@@ -96,7 +96,7 @@
 
             switch (type) {
 
-                case 'user-active':
+                case '<<REDIRECT_TYPE_USER_ACTIVATE>>':
 
                     return api('/users/' + id + '/active', 'POST', { auth }, 'raw')
                         .finally(() => {

@@ -82,9 +82,9 @@ public class Mail {
 
         String uri = """
                 {
-                    'id'   : '%s',
-                    'auth' : '%s',
-                    'type' : '<<REDIRECT_TYPE_USER_ACTIVATE>>'
+                    "id"   : "%s",
+                    "auth" : "%s",
+                    "type" : "<<REDIRECT_TYPE_USER_ACTIVATE>>"
                 }
                 """.formatted(userId, "");  // TODO: Generate auth code
 

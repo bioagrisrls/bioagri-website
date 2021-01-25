@@ -61,19 +61,22 @@
 
             <div class="ui-order-products">
 
-                <? products[i].forEach(p => { ?>
+                <? products[i].forEach(p => {
+                    const id = Object.keys(p)[0];
+                    const qt = Object.values(p)[0];
+                ?>
 
                     <div class="ui-order-products-item">
 
                         <div class="ui-order-product">
-                            <ui-card id="{{this.id}}-card-{{Object.keys(p)[0]}}"
-                                     ui:id="{{Object.keys(p)[0]}}"
+                            <ui-card id="{{this.id}}-card-{{e.id}}-{{id}}"
+                                     ui:id="{{id}}"
                                      ui:view="row"
                                      ui:hide="wish,cart,vote"></ui-card>
                         </div>
 
                         <div class="ui-order-item-quantity">
-                            <h5>{{strings.quantity}}{{Object.values(p)[0]}}</h5>
+                            <h5>{{strings.quantity}}{{qt}}</h5>
                         </div>
 
                     </div>
