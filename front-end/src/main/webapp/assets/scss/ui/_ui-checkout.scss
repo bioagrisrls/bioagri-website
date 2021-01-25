@@ -27,22 +27,12 @@
 
   @extend .text-dark;
 
-  .ui-checkout-disclaimer {
+  .ui-checkout-header {
 
     h1 {
       @extend .ui-font-title-primary;
-    }
-
-    p {
-      @extend .ui-font-title-primary;
-    }
-
-  }
-
-  .ui-checkout-header {
-
-    h5 {
-
+      @extend .display-5;
+      @extend .px-3;
     }
 
   }
