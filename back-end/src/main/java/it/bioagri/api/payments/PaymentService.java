@@ -64,7 +64,7 @@ public class PaymentService {
 
         for(var service : services.keySet()) {
 
-            if(request.getService().equals(service) && services.get(service).authorize(request.getOrderId()))
+            if(request.getService().equals(service) && services.get(service).authorize(request))
                 return true;
 
         }
