@@ -39,31 +39,26 @@
                     .then(() => api('/orders')
                         .then(orders => {
 
-                            return Promise.all(orders.map(i => {
+                            return Promise.all(orders.map(i => api('/orders/' + i.id + '/products')))
+                                .then(products => {
 
-                                return {
-                                    [i.id]: api('/orders/' + i.id + '/products')
-                                }
+                                    console.log("Prodotti");
+                                    console.log(products);
+                                    console.log("Ordini");
+                                    console.log(orders);
 
-                            }));
+                                    return {
+                                        orders: orders || [],
+                                        products: products || [],
 
-                        }).then(products => {
+                                        strings: {
+                                            empty: `${locale.order_empty}`,
+                                            title: `${locale.order_title}`,
+                                            order: '${locale.order_acting}'
+                                        }
+                                    }
 
-                            console.log("Prodotti");
-                            console.log(products);
-                            console.log("Ordini");
-                            console.log(orders);
-
-                            return {
-                                orders: orders || [],
-                                products: products || [],
-
-                                strings: {
-                                    empty: `${locale.order_empty}`,
-                                    title: `${locale.order_title}`,
-                                    order: '${locale.order_acting}'
-                                }
-                            }
+                                });
 
                         })
                     ).catch(() => requestUserAuthentication())

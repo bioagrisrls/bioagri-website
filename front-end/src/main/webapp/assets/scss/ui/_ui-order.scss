@@ -47,6 +47,7 @@
     }
   }
 
+
   .ui-order-body {
 
     .ui-order-accordion {
@@ -55,14 +56,14 @@
 
       .ui-order-accordion-item {
 
-        //@extend .accordion-item;
+        @extend .accordion-item;
 
         .ui-order-accordion-item-header {
 
           h2 {
-            //@extend .accordion-header;
+            @extend .accordion-header;
             button {
-              //@extend .accordion-button;
+              @extend .accordion-button;
             }
           }
 

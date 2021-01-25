@@ -31,7 +31,7 @@
 
     <div class="ui-order-body">
 
-        <? orders.forEach(e => { ?>
+        <? orders.forEach((e, i) => { ?>
 
             <div class="ui-order-accordion">
 
@@ -48,12 +48,12 @@
 
                                 <div class="ui-order-items">
 
-                                    <?products[e].forEach(p => { ?>
+                                    <? products[i].forEach(p => { ?>
 
                                         <div class="ui-order-item">
                                             <div class="ui-order-product">
-                                                <ui-card id="{{this.id}}-card-{{p.id}}"
-                                                         ui:id="{{p.id}}"
+                                                <ui-card id="{{this.id}}-card-{{Object.keys(p)[0]}}"
+                                                         ui:id="{{Object.keys(p)[0]}}"
                                                          ui:view="row"
                                                          ui:hide="wish,cart,vote"></ui-card>
                                             </div>
