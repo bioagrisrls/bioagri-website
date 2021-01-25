@@ -113,8 +113,8 @@ public class ProductDaoImpl extends ProductDao {
 
         getDataSource().update(
                 """
-                    INSERT INTO shop_product (id, name, description, price, discount, stock, status, created_at, updated_at)
-                                      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    INSERT INTO shop_product (id, name, description, info, price, discount, stock, status, created_at, updated_at)
+                                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     s -> {
                         s.setLong(1, value.getId());
@@ -137,7 +137,7 @@ public class ProductDaoImpl extends ProductDao {
         getDataSource().update(
                 """
                     UPDATE shop_product 
-                       SET name = ?, description = ?, price = ?, stock = ?, status = ?, created_at = ?, updated_at = ?
+                       SET name = ?, description = ?, info = ?, price = ?, stock = ?, status = ?, created_at = ?, updated_at = ?
                      WHERE id = ?
                     """,
                     s -> {
