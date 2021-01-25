@@ -2,9 +2,13 @@
 
     <body>
 
-    <form>
+    <form action = "load" method = "GET">
         <label>titolo</label>
         <input type="text" id="titolo" name="titolo"><br><br>
+        <label >descrizione breve</label>
+        <input type="text" id="info" name="info"><br><br>
+        <label >descrizione</label>
+        <input type="text" id="descrizione" name="descrizione"><br><br>
         <label >prezzo:</label>
         <input type="text" id="prezzo" name="prezzo"><br><br>
         <label >giacenza</label>
