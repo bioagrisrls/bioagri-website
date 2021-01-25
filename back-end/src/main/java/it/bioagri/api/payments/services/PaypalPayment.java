@@ -32,13 +32,11 @@ import com.paypal.http.HttpResponse;
 import com.paypal.orders.Order;
 import com.paypal.orders.OrderRequest;
 import com.paypal.orders.OrdersCaptureRequest;
-import it.bioagri.api.auth.Auth;
-import it.bioagri.models.PaymentRequest;
+import it.bioagri.api.payments.PaymentRequest;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
 import java.io.IOException;
-import java.util.Objects;
 
 import static java.util.Objects.requireNonNull;
 

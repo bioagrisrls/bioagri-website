@@ -25,12 +25,10 @@
 
 package it.bioagri.api.payments;
 
-import it.bioagri.api.ApiPermission;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Order;
 import it.bioagri.models.OrderStatus;
-import it.bioagri.models.PaymentRequest;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import org.springframework.beans.factory.annotation.Autowired;

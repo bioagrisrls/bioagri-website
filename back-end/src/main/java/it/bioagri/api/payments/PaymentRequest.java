@@ -23,9 +23,10 @@
  *
  */
 
-package it.bioagri.models;
+package it.bioagri.api.payments;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.bioagri.models.Order;
 import it.bioagri.persistence.DataSource;
 
 import java.util.ArrayList;

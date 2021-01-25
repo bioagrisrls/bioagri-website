@@ -35,10 +35,12 @@ import it.bioagri.models.User;
 import it.bioagri.models.UserRole;
 import it.bioagri.models.UserStatus;
 import it.bioagri.persistence.DataSource;
+import it.bioagri.utils.Mail;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletContext;
@@ -59,13 +61,15 @@ public final class Auth {
     private final AuthService authService;
     private final DataSource dataSource;
     private final ServletContext servletContext;
+    private final Mail mail;
 
     @Autowired
-    public Auth(AuthToken authToken, AuthService authService, DataSource dataSource, ServletContext servletContext) {
+    public Auth(AuthToken authToken, AuthService authService, DataSource dataSource, ServletContext servletContext, Mail mail) {
         this.authToken = authToken;
         this.authService= authService;
         this.dataSource = dataSource;
         this.servletContext = servletContext;
+        this.mail = mail;
     }
 
 
@@ -171,6 +175,8 @@ public final class Auth {
         if (dataSource.getUserDao().findByMail(user.getMail()).isPresent())
             throw new ApiResponseStatus(406);
 
+
+        mail.send(user.getMail(), "REGISTRAZIONE (FIXME)", "BLABLABLABLABLABLA");
 
         try {
 

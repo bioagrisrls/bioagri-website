@@ -39,6 +39,11 @@
       "name": "payments.services.external.paypal.secret",
       "type": "java.lang.String",
       "description": "Description for payments.services.external.paypal.secret."
+    },
+    {
+      "name": "info.mail.sender",
+      "type": "java.lang.String",
+      "description": "Description for info.mail.sender."
     }
   ]
 }

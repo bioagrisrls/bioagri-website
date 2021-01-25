@@ -23,47 +23,48 @@
  *
  */
 
-package it.bioagri.api.payments;
+package it.bioagri.utils;
 
-import it.bioagri.api.payments.services.PaymentExternalService;
-import it.bioagri.api.payments.services.PaypalPayment;
+import ch.qos.logback.classic.Logger;
+import it.bioagri.api.auth.Auth;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
-
-import java.util.Map;
 
 @Component
 @Scope("singleton")
-public class PaymentService {
+public class Mail {
 
-    private final Map<String, PaymentExternalService> services;
+    private final static Logger logger = (Logger) LoggerFactory.getLogger(Auth.class);
 
+    private final String sender;
+    private final JavaMailSender service;
 
     @Autowired
-    private PaymentService(
-            @Value("${payments.services.external.paypal.id}"      ) String paypalId,
-            @Value("${payments.services.external.paypal.secret}"  ) String paypalSecret) {
+    public Mail(JavaMailSender service,
+                @Value("${info.mail.sender}") String sender) {
 
-        services = Map.of(
-                "<<PAYMENT_TYPE_PAYPAL>>", new PaypalPayment(paypalId, paypalSecret)
-        );
+        this.sender = sender;
+        this.service = service;
 
     }
 
 
+    public void send(String to, String subject, String content, Object... args) {
 
-    public boolean authorize(PaymentRequest request) {
+        logger.trace("Sending e-mail to <%s>:\nSubject: '%s'\nContent:\n'%s'"
+                .formatted(to, subject, content.formatted(args)));
 
-        for(var service : services.keySet()) {
-
-            if(request.getService().equals(service) && services.get(service).authorize(request))
-                return true;
-
-        }
-
-        return false;
+        service.send(new SimpleMailMessage() {{
+            setFrom(sender);
+            setTo(to);
+            setSubject(subject);
+            setText(content.formatted(args));
+        }});
 
     }
 

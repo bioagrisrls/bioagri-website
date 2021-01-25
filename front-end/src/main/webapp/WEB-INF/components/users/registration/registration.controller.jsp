@@ -35,6 +35,30 @@
         constructor() {
             super(id, {
 
+                $header: ``,
+
+                $footer: `
+                    <hr>
+                    <div class="text-center">
+                        <button onclick="googleAuthenticate('` + id.id + `')" class="btn-auth-google"><span class="mdi mdi-google"></span></button>
+                        <button class="btn-auth-facebook"><span class="mdi mdi-facebook"></span></button>
+                        <button class="btn-auth-twitter"><span class="mdi mdi-twitter"></span></button>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <h3>${locale.auth_promo}</h3>
+                        <button class="btn btn-primary btn-block">${locale.auth_subscribe}</button>
+                    </div>
+                `,
+
+                $submit: {
+                    value: `${locale.registration_button}`,
+                    align: 'center',
+                    style: 'btn-block clear-both'
+                },
+
+
+
                 auth: {
                     type: 'hidden',
                     value: 'AUTH_SERVICE_INTERNAL'
@@ -114,11 +138,6 @@
                     required: true
                 },
 
-
-                $submit: {
-                    value: `${locale.registration_button}`,
-                    align: 'center'
-                },
 
             });
         }

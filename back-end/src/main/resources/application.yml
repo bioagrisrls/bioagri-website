@@ -4,6 +4,19 @@ spring:
     view:
       prefix: "/WEB-INF/views/"
       suffix: ".jsp"
+  mail:
+    host: "smtp.pepipost.com"
+    port: 25
+    username: "davidecrisafull2015"
+    password: "davidecrisafull2015_05b493e847bc05b996c3bb3d20118dcc"
+    properties:
+      mail:
+        smtp:
+          auth: true
+        starttls:
+          enable: true
+        ssl:
+          trust: "smtp.pepipost.com"
 
 
 database:
@@ -29,6 +42,12 @@ payments:
       paypal:
         id: "AdSsZffa44n1DoLBL0_iEScA7-niopna57PacKEDWZK09xtv8xM1qaG2SMkxu83BaBC0vIovrdyfC8yA"
         secret: "ECa-ydTH0gc0z48ph9ZsVqbygtf5-tY3_sZwGa4_isoO1SONvwyEH491OAi5GdRh7pOeHikP-zkhhLyh"
+
+
+info:
+  mail:
+    sender: "noreply@pepisandbox.com"
+
 
 server:
   error:
