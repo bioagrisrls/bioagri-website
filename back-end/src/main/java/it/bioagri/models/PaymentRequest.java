@@ -28,6 +28,9 @@ package it.bioagri.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.bioagri.persistence.DataSource;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class PaymentRequest {
@@ -36,16 +39,18 @@ public class PaymentRequest {
     private final String id;
     private final String data;
     private final Long orderId;
+    private final List<Map.Entry<Long, Integer>> items;
 
     @JsonIgnore
     private Order order;
 
 
-    public PaymentRequest(String service, String id, String data, Long orderId) {
+    public PaymentRequest(String service, String id, String data, Long orderId, List<Map.Entry<Long, Integer>> items) {
         this.service = service;
         this.id = id;
         this.data = data;
         this.orderId = orderId;
+        this.items = items;
     }
 
     public PaymentRequest() {
@@ -53,6 +58,7 @@ public class PaymentRequest {
         this.id = null;
         this.data = null;
         this.orderId = null;
+        this.items = new ArrayList<>();
     }
 
 
@@ -72,6 +78,9 @@ public class PaymentRequest {
         return orderId;
     }
 
+    public List<Map.Entry<Long, Integer>> getItems() {
+        return items;
+    }
 
     @JsonIgnore
     public Optional<Order> getOrder(DataSource dataSource) {

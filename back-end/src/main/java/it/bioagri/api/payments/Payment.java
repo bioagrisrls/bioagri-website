@@ -25,8 +25,11 @@
 
 package it.bioagri.api.payments;
 
+import it.bioagri.api.ApiPermission;
+import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Order;
+import it.bioagri.models.OrderStatus;
 import it.bioagri.models.PaymentRequest;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
@@ -34,6 +37,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
+import java.time.Instant;
 
 @RestController
 @RequestMapping("/api/payments")
@@ -56,12 +62,41 @@ public class Payment {
 
         try {
 
-            // TODO: verify order coherency
-
-            if(!paymentService.authorize(request))
+            if(!authToken.isLoggedIn())
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
 
+            if(request.getOrder(dataSource).isEmpty()) {
+
+                var order = new Order(
+                        dataSource.getId("shop_order", Long.class),
+                        OrderStatus.PROCESSING,
+                        Timestamp.from(Instant.now()),
+                        Timestamp.from(Instant.now()),
+                        authToken.getUserId(),
+                        null,
+                        null
+                );
+
+                dataSource.getOrderDao().save(order);
+
+                for(var i : request.getItems())
+                    dataSource.getOrderDao().addProduct(
+                            order,
+                            dataSource.getProductDao()
+                                    .findByPrimaryKey(i.getKey())
+                                    .orElseThrow(() -> new ApiResponseStatus(400)),
+                            i.getValue()
+                    );
+
+            }
+
+            // TODO: Add transaction
+
+            if(!paymentService.authorize(request))
+                return ResponseEntity.status(HttpStatus.PAYMENT_REQUIRED).build();
+
+            // TODO: Make transaction success
 
 
 

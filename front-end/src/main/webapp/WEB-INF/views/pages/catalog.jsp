@@ -26,6 +26,7 @@
 <%--@elvariable id="components" type="java.util.Map"--%>
 <%--@elvariable id="locale" type="java.util.Map"--%>
 <%--@elvariable id="reference" type="java.lang.String"--%>
+<%--@elvariable id="dataSource" type="it.bioagri.persistence.DataSource"--%>
 
 
 
