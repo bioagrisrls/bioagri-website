@@ -163,8 +163,8 @@
   "payment_success" : "Ordine effettuato con successo!",
   "payment_instructions" : "Visita la sezione I miei ordini per ottenere maggiori informazioni",
 
-  "payment_paypal_success" : "Il pagamento è avvenuto con successo, stiamo elaborando il tuo ordine",
-  "payment_paypal_instructions" : "Riceverai a breve una e-mail con tutte le informazioni riguardo il tuo acquisto",
+  "payment_paypal_success" : "Il pagamento è avvenuto con successo",
+  "payment_paypal_instructions" : "Stiamo elaborando il tuo ordine, riceverai a breve una e-mail con tutte le informazioni riguardo il tuo acquisto",
 
   "payment_pickup_success" : "Istruzioni",
   "payment_pickup_instructions" : "Verrai contattato al tuo numero telefonico o al tuo indirizzo di posta elettronica da un nostro operatore per confermare l'acquisto e fissare un appuntamento per il ritiro della merce",
@@ -253,5 +253,10 @@
   "cart_checkout" : "Vai al checkout",
 
   "wish_empty" : "Non hai ancora aggiunto nessun prodotto alla tua lista desideri",
-  "wish_title" : "Lista dei desideri"
+  "wish_title" : "La mia lista dei desideri",
+
+  "order_empty" : "Non hai ancora effettuato nessun ordine",
+  "order_title" : "I miei ordini",
+  "order_acting" : "Ordine n°"
+
 }

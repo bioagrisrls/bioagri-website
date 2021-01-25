@@ -56,6 +56,8 @@
 
     .ui-wish-products {
 
+      @extend .w-100;
+
       .ui-wish-empty {
 
         @extend .w-100;
