@@ -49,7 +49,9 @@
 
                         }).then(products => {
 
+                            console.log("Prodotti");
                             console.log(products);
+                            console.log("Ordini");
                             console.log(orders);
 
                             return {
@@ -61,12 +63,10 @@
                                     title: `${locale.order_title}`,
                                     order: '${locale.order_acting}'
                                 }
-
-
                             }
 
                         })
-                    )
+                    ).catch(() => requestUserAuthentication())
             );
 
         }
