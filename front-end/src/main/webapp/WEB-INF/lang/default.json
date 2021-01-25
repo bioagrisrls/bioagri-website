@@ -161,7 +161,7 @@
   "payment_shipping_info_example" : "Piano 4, Interno 2, etc...",
 
   "payment_success" : "Ordine effettuato con successo",
-  "payment_instructions" : "Visita la sezione <I miei ordini> per ottenere maggiori informazioni",
+  "payment_instructions" : "Visita la sezione [I miei ordini] per ottenere maggiori informazioni",
 
   "payment_paypal_success" : "Il pagamento è avvenuto con successo, stiamo elaborando il tuo ordine",
   "payment_paypal_instructions" : "Riceverai a breve una e-mail con tutte le informazioni riguardo il tuo acquisto, visita la sezione <I miei ordini> per ottenere maggiori informazioni",
