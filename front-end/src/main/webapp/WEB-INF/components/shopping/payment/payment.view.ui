@@ -32,7 +32,7 @@
         <div class="ui-checkout-success">
 
             <img src="/assets/img/checkout/success.png" alt="">
-            <p>{{strings.success}}</p>
+            <h3>{{strings.success}}</h3>
 
             <div class="ui-checkout-success-body">
 
