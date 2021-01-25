@@ -35,11 +35,16 @@
 
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
 
     <div class="ui-container">
 
         <!-- Breadcrumb -->
-        <ui-breadcrumb id="ui-breadcrumb-6" ui:current="${locale.page_checkout}" ></ui-breadcrumb>
+        <ui-breadcrumb id="ui-breadcrumb-6" ui:current="${locale.page_checkout}" ui:urls="/catalog" ui:path="${locale.page_catalog}" ></ui-breadcrumb>
 
     </div>
 
@@ -50,10 +55,8 @@
 
         <div class="ui-checkout">
 
-            <div class="ui-checkout-disclaimer">
-               <h1>${locale.checkout_remaind_header}</h1>
-               <p>${locale.checkout_remaind_top}</p>
-               <p>${locale.checkout_remaind_bottom}</p>
+            <div class="ui-checkout-header">
+                <h1>${locale.checkout_choose}</h1>
             </div>
 
             <div class="ui-checkout-body">

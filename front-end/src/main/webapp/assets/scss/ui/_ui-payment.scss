@@ -26,17 +26,28 @@
 .ui-payment {
 
   @extend .text-dark;
+  @extend .px-3;
 
   .ui-payment-options {
 
+    @extend .w-100;
+    @extend .text-center;
+
     .ui-payment-buttons {
+
+      min-width: 200px;
+      max-width: 520px;
+
+      @extend .w-100;
+      @extend .mx-auto;
 
       button {
 
         @extend .ui-font-title-primary;
         @extend .btn;
-        @extend .btn-primary;
         @extend .btn-lg;
+        @extend .btn-block;
+        @extend .btn-primary;
         @extend .my-3;
 
       }
@@ -46,12 +57,20 @@
     .ui-payment-otherwise {
 
       p {
-
+        @extend .ui-font-title-primary;
+        @extend .fs-3;
+        @extend .text-muted;
       }
 
     }
 
     .ui-payment-paypal {
+
+      min-width: 200px;
+      max-width: 520px;
+
+      @extend .w-100;
+      @extend .mx-auto;
 
     }
 
