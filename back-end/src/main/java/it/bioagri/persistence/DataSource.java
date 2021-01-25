@@ -104,9 +104,7 @@ public class DataSource {
         return userDao;
     }
 
-    public ProductDao getProductDao() {
-        return productDao;
-    }
+    public ProductDao getProductDao() { return productDao; }
 
     public CategoryDao getCategoryDao() {
         return categoryDao;
