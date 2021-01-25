@@ -177,4 +177,9 @@ public final class Product implements Model {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+    @Override
+    public String toString() {
+        return getId().toString();
+    }
 }

@@ -27,8 +27,8 @@ payments:
   services:
     external:
       paypal:
-        id: "AX4pv9VZi_CSTZyzMzU62B22CM6B3KHj4bn0ki2n0NALLJ_IzrOumk15cDqXiZBeWOMndVtELwlm_KNp"
-        secret: "EAgNEBsO2R9DJbY9gOmOTLWfb7m721i0D3yR7nnZZ8QVeIUxKNKZhIWXO5TnCsbfviDYUgMMfxaKi3dD"
+        id: "AdSsZffa44n1DoLBL0_iEScA7-niopna57PacKEDWZK09xtv8xM1qaG2SMkxu83BaBC0vIovrdyfC8yA"
+        secret: "ECa-ydTH0gc0z48ph9ZsVqbygtf5-tY3_sZwGa4_isoO1SONvwyEH491OAi5GdRh7pOeHikP-zkhhLyh"
 
 server:
   error:
