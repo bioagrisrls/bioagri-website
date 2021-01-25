@@ -31,34 +31,51 @@
 
         <div class="ui-checkout-success">
 
-            <img src="/assets/img/checkout/success.png" alt="">
-            <h3>{{strings.success}}</h3>
+
+            <div class="ui-checkout-success-header">
+                <div class="ui-checkout-success-header-content">
+                    <div class="ui-checkout-success-header-block">
+
+                        <ui-image id="ui-checkout-success-header-image"
+                                  class="ui-checkout-success-header-image"
+                                  ui:animation="slideInLeft"
+                                  ui:src="/assets/img/checkout/success.png"
+                                  ui:width="100%"
+                                  ui:height="320px"
+                                  ui:position="center"
+                                  ui:size="contain"></ui-image>
+
+                        <h1 ui-animated-scroll="slideInRight">{{strings.success}}</h1>
+
+                    </div>
+                </div>
+            </div>
 
             <div class="ui-checkout-success-body">
 
                 <? if(current === 'ok-purchase') { ?>
 
-                    <h1><span class="mdi mdi-24px mdi-check-decagram"></span> {{strings.purchase_success}}</h1>
+                    <h1><span class="mdi mdi-36px mdi-check-decagram"></span> {{strings.purchase_success}}</h1>
                     <p>{{strings.purchase_instructions}}.</p>
 
                 <? } else if(current === 'ok-pickup') { ?>
 
-                    <h1><span class="mdi mdi-24px mdi-check-decagram"></span> {{strings.pickup_success}}</h1>
+                    <h1><span class="mdi mdi-36px mdi-check-decagram"></span> {{strings.pickup_success}}</h1>
                     <p>{{strings.pickup_instructions}}.</p>
 
                 <? } else if(current === 'ok-paypal') { ?>
 
-                    <h1><span class="mdi mdi-24px mdi-check-decagram"></span> {{strings.paypal_success}}</h1>
+                    <h1><span class="mdi mdi-36px mdi-check-decagram"></span> {{strings.paypal_success}}</h1>
                     <p>{{strings.paypal_instructions}}.</p>
 
                 <? } ?>
 
-                <p>{{strings.instructions}}</p>
+                <p>{{strings.instructions}}.</p>
 
             </div>
 
 
-            <button>{{strings.back}}</button>
+            <button onclick="navigate('/catalog')" ><span class="mdi mdi-18px mdi-chevron-left"></span>{{strings.back}}</button>
 
         </div>
 
@@ -234,9 +251,17 @@
     <? } else if(current === 'pickup') { ?>
 
         <div class="ui-payment-pickup-instructions">
-            <p>{{strings.pickup_instructions}}</p>
-            <small>{{strings.pickup_disclaimer}}</small>
-            <button onclick="$$.state = { current: 'ok-pickup' }">{{strings.pickup_confirm}}</button>
+
+            <div class="ui-payment-pickup-instructions-header">
+                <p>{{strings.pickup_instructions}}.</p>
+                <small>{{strings.pickup_disclaimer}}</small>
+            </div>
+
+            <div class="ui-payment-pickup-instructions-button">
+                <button onclick="navigate('/catalog')" ><span class="mdi mdi-18px mdi-chevron-left"></span>{{strings.back}}</button>
+                <button onclick="$$.state = { current: 'ok-pickup' }"><span class="mdi mdi-18px mdi-check"></span>{{strings.pickup_confirm}}</button>
+            </div>
+
         </div>
 
     <? } else if(current === 'error') { ?>
