@@ -38,28 +38,22 @@
 
                 <? if(current === 'ok-purchase') { ?>
 
-                    <h1>{{strings.purchase_success}}</h1>
+                    <h1><span class="mdi mdi-24px mdi-check-decagram"></span> {{strings.purchase_success}}</h1>
                     <p>{{strings.purchase_instructions}}.</p>
 
                 <? } else if(current === 'ok-pickup') { ?>
 
-                    <h1>{{strings.pickup_success}}</h1>
+                    <h1><span class="mdi mdi-24px mdi-check-decagram"></span> {{strings.pickup_success}}</h1>
                     <p>{{strings.pickup_instructions}}.</p>
 
                 <? } else if(current === 'ok-paypal') { ?>
 
-                    <h1>{{strings.pickup_success}}</h1>
-                    <p>{{strings.pickup_instructions}}.</p>
+                    <h1><span class="mdi mdi-24px mdi-check-decagram"></span> {{strings.paypal_success}}</h1>
+                    <p>{{strings.paypal_instructions}}.</p>
 
                 <? } ?>
 
-                <p>
-                    {{
-                        strings.instructions
-                            .replace('[', '<a onclick="navigate(\"/home?q=my-orders\")">')
-                            .replace(']', '</a>')
-                    }}
-                </p>
+                <p>{{strings.instructions}}</p>
 
             </div>
 

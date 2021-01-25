@@ -30,6 +30,7 @@ import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.UserRole;
 import it.bioagri.payments.PayPal;
+import it.bioagri.persistence.DataSource;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -58,12 +59,14 @@ public class Page {
     private final Components components;
     private final AuthToken authToken;
     private final PayPal payPal;
+    private final DataSource dataSource;
 
     @Autowired
-    public Page(Locale locale, Components components, AuthToken authToken, PayPal payPal) {
+    public Page(Locale locale, Components components, AuthToken authToken, DataSource dataSource, PayPal payPal) {
         this.locale = locale;
         this.components = components;
         this.authToken = authToken;
+        this.dataSource = dataSource;
         this.payPal = payPal;
     }
 
@@ -74,6 +77,7 @@ public class Page {
         model.addAttribute("components", components.getComponents());
         model.addAttribute("locale", locale.getCurrentLocale(request, session));
         model.addAttribute("authToken", authToken);
+        model.addAttribute("dataSource", dataSource);
         model.addAttribute("paypal", payPal);
 
         return "router";
@@ -104,10 +108,12 @@ public class Page {
     @GetMapping("/admin/{page}")
     public String admin(ServletRequest request, ServletResponse response, HttpSession session, ModelMap model, @PathVariable String page) throws ServletException, IOException {
 
-        if(authToken.isLoggedIn() && authToken.getUserRole().equals(UserRole.ADMIN))
-            return loadPage(request, response, session, model, "admin/%s.jsp".formatted(page));
+        model.addAttribute("reference", page);
+        model.addAttribute("locale", locale.getCurrentLocale(request, session));
+        model.addAttribute("authToken", authToken);
+        model.addAttribute("dataSource", dataSource);
 
-        return "error";
+        return "/admin/%s.jsp".formatted(page);
 
     }
 
