@@ -31,7 +31,7 @@
 
     <div class="ui-order-body">
 
-        <? orders.forEach((e,i) => { ?>
+        <? orders.forEach(e => { ?>
 
             <div class="ui-order-accordion">
 
@@ -48,7 +48,7 @@
 
                                 <div class="ui-order-items">
 
-                                    <?products[i].forEach(p => { ?>
+                                    <?products[e].forEach(p => { ?>
 
                                         <div class="ui-order-item">
                                             <div class="ui-order-product">
