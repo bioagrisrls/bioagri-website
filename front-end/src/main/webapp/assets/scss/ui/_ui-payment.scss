@@ -33,6 +33,18 @@
     @extend .w-100;
     @extend .text-center;
 
+
+    .ui-payment-header {
+      @extend .text-center;
+
+      h1 {
+        @extend .ui-font-title-primary;
+        @extend .display-5;
+        @extend .px-3;
+        @extend .my-5;
+      }
+    }
+
     .ui-payment-buttons {
 
       min-width: 200px;
@@ -95,6 +107,9 @@
 
 
       .ui-payment-body {
+
+        @extend .ui-container;
+
 
       }
 

@@ -27,16 +27,6 @@
 
   @extend .text-dark;
 
-  .ui-checkout-header {
-
-    h1 {
-      @extend .ui-font-title-primary;
-      @extend .display-5;
-      @extend .px-3;
-    }
-
-  }
-
   .ui-checkout-body {
 
     .ui-checkout-checkout {
