@@ -26,8 +26,6 @@
 .ui-payment {
 
   @extend .text-dark;
-  @extend .px-3;
-
 
   .ui-payment-options {
 
@@ -115,6 +113,7 @@
           @extend .btn;
           @extend .btn-lg;
           @extend .btn-primary;
+          @extend .ui-font-title-primary;
           @extend .m-auto;
           @extend .d-block;
           @extend .my-5;
@@ -125,38 +124,11 @@
 
   }
 
-  .ui-payment-pickup-instructions {
-
-    p {
-
-    }
-
-    small {
-
-    }
-
-    button {
-
-    }
-
-  }
-
   .ui-payment-error {
 
   }
 
   .ui-checkout-success {
-
-    button {
-
-      @extend .btn;
-      @extend .btn-primary;
-      @extend .ui-font-title-primary;
-      @extend .fs-5;
-      @extend .w-100;
-      @extend .w-sm-auto;
-
-    }
 
     .ui-checkout-success-header {
 
@@ -195,6 +167,8 @@
 
       @extend .alert;
       @extend .alert-success;
+      @extend .ui-container;
+      @extend .my-5;
 
       h1 {
 
@@ -206,7 +180,32 @@
       }
 
       p {
+        @extend .ui-font-title-primary;
         @extend .fs-5;
+      }
+
+      small {
+        @extend .ui-font-title-primary;
+        @extend .fs-5;
+      }
+
+    }
+
+
+    .ui-checkout-success-button {
+
+      @extend .ui-container;
+      @extend .p-0;
+
+      button {
+
+        @extend .btn;
+        @extend .btn-primary;
+        @extend .ui-font-title-primary;
+        @extend .fs-5;
+        @extend .w-100;
+        @extend .w-sm-auto;
+
       }
 
     }
@@ -216,7 +215,7 @@
 
   .ui-payment-pickup-instructions {
 
-    @extend .mx-5;
+    @extend .ui-container;
 
     .ui-payment-pickup-instructions-header {
 
@@ -228,8 +227,7 @@
       }
 
       small {
-        @extend .ui-font-title-primary;
-        @extend .fs-5;
+
       }
 
     }
