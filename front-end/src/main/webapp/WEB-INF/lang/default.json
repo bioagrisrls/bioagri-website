@@ -131,9 +131,7 @@
   "checkout_payments" : "Pagamento",
   "checkout_summary" : "Riepilogo",
 
-  "checkout_remind_header" : "Rivolgiti a noi!",
-  "checkout_remind_top": "Se vuoi avere delle informazioni o ti serve aiuto per effettuare un ordine guarda le nostre FAQ, oppure contattaci sui nostri Social Network.",
-  "checkout_remind_bottom": "Ricorda di lasciarci una recensione!",
+  "checkout_chooce" : "Seleziona una modalità di pagamento",
 
   "payment_purchase" : "Paga con bonifico",
   "payment_pickup" : "Ritira in negozio",
