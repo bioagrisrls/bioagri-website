@@ -23,17 +23,37 @@
   ~
   --%>
 
-<%@ page import="it.bioagri.models.Product" %>
-<%@ page import="it.bioagri.persistence.DataSource" %>
+
 
 <html>
 <head>
-    <title>Using GET Method to Read Form Data</title>
+
 </head>
 
 <body>
 
 
+<form action="/admin/form/product" method="POST">
+
+        <label>titolo</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label >descrizione:</label>
+        <input type="text" id="description" name="description"><br><br>
+        <label >descrizione breve:</label>
+        <input type="text" id="info" name="info"><br><br>
+        <label >prezzo:</label>
+        <input type="text" id="price" name="price"><br><br>
+        <label >giacenza</label>
+        <input type="text" id="stock" name="stock"><br><br>
+        <label >sconto</label>
+        <input type="text" id="discount" name="discount"><br><br>
+        <label >status</label>
+        <input type="text" id="status" name="status"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <label >immagine</label>
+    <input type="file" id="immgine" name="immagine" multiple = "true"><br><br>
 
 
 </body>
