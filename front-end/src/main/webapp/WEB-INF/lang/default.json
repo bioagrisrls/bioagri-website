@@ -160,6 +160,20 @@
   "payment_shipping_info" : "Informazioni aggiuntive",
   "payment_shipping_info_example" : "Piano 4, Interno 2, etc...",
 
+  "payment_success" : "Ordine effettuato con successo",
+  "payment_instructions" : "Visita la sezione <I miei ordini> per ottenere maggiori informazioni",
+
+  "payment_paypal_success" : "Il pagamento è avvenuto con successo, stiamo elaborando il tuo ordine",
+  "payment_paypal_instructions" : "Riceverai a breve una e-mail con tutte le informazioni riguardo il tuo acquisto, visita la sezione <I miei ordini> per ottenere maggiori informazioni",
+
+  "payment_pickup_success" : "Istruzioni",
+  "payment_pickup_instructions" : "Verrai contattato al tuo numero telefonico o al tuo indirizzo di posta elettronica da un nostro operatore per confermare l'acquisto e fissare un appuntamento per il ritiro della merce",
+
+  "payment_purchase_success" : "Istruzioni",
+  "payment_purchase_instructions" : "Riceverai a breve una e-mail contentente le istruzioni necessaraie al completamento dell'acquisto tramite bonifico bancario",
+
+  "payment_error" : "Si è verificato un errore durante la procedura di pagamento, si prega di contattare l'assistenza per risolvere il problema",
+
   "auth_welcome": "Bentornato",
   "auth_promo": "Sei un nuovo cliente?",
   "auth_subscribe": "Registrati ora!",

@@ -149,5 +149,32 @@
 
   }
 
+  .ui-checkout-success {
+
+    p {
+      @extend .ui-font-title-primary;
+    }
+
+    .ui-checkout-success-body {
+
+      @extend .alert;
+      @extend .alert-success;
+
+      h1 {
+
+        @extend .alert-heading;
+        @extend .ui-font-title-primary;
+
+      }
+
+      p {
+
+
+      }
+
+    }
+
+  }
+
 
 }
