@@ -41,7 +41,7 @@
     <br>
 
 
-    <div class="ui-container">
+    <div class="mx-5" ui-animated="slideInLeft">
 
         <!-- Breadcrumb -->
         <ui-breadcrumb id="ui-breadcrumb-6" ui:current="${locale.page_checkout}" ui:urls="/catalog" ui:path="${locale.page_catalog}" ></ui-breadcrumb>
