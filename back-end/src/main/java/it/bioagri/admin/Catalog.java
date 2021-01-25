@@ -32,7 +32,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -41,11 +46,13 @@ public class Catalog {
 
     private final AuthToken authToken;
     private final DataSource dataSource;
+    private final ServletContext servletContext;
 
     @Autowired
-    public Catalog(AuthToken authToken, DataSource dataSource) {
+    public Catalog(AuthToken authToken, DataSource dataSource, ServletContext servletContext) {
         this.authToken = authToken;
         this.dataSource = dataSource;
+        this.servletContext = servletContext;
     }
 
 
@@ -53,6 +60,8 @@ public class Catalog {
     @PostMapping("/admin/form/product")
     public void save(
 
+            HttpServletRequest request,
+            HttpServletResponse response,
             @RequestParam String name,
             @RequestParam String description,
             @RequestParam Float price,
@@ -83,10 +92,14 @@ public class Catalog {
                     )
 
             );
+
+            response.sendRedirect("/admin/dashboard");
+
         }
         catch (RuntimeException t) {
             t.printStackTrace();
-            System.out.println("Ok");
+        }  catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
