@@ -257,6 +257,14 @@
 
   "order_empty" : "Non hai ancora effettuato nessun ordine",
   "order_title" : "I miei ordini",
-  "order_acting" : "Ordine n°"
+  "order_number" : "Ordine",
+  "order_date" : "Ordine effettuato il",
+  "order_status" : "Stato",
+  "order_quantity" : "Quantità",
+
+  "redirect_wait" : "Attedi mentre processiamo la tua richiesta",
+
+  "mail_user_registration_subject" : "Link attivazione account",
+  "mail_user_registration_content" : "Attiva il tuo account cliccando sul seguente link: <a href=\"localhost:8080\redirect?q=%s\">Clicca qui<\\a>"
 
 }

@@ -50,61 +50,76 @@
 
   .ui-order-body {
 
-    .ui-order-accordion {
+    .ui-order-item {
 
-      //@extend .accordion;
+      @extend .row;
+      @extend .bg-light;
 
-      .ui-order-accordion-item {
+      .ui-order-item-date{
 
-        @extend .accordion-item;
+        @extend .col;
+        @extend .col-3;
 
-        .ui-order-accordion-item-header {
+        h4 {
+          @extend .ui-font-title-primary;
+        }
+      }
 
-          h2 {
-            @extend .accordion-header;
-            button {
-              @extend .accordion-button;
-            }
+      .ui-order-item-status{
+
+        @extend .col;
+        @extend .col-3;
+
+        h4 {
+          @extend .ui-font-title-primary;
+        }
+      }
+
+      .ui-order-item-number{
+
+        @extend .col;
+        @extend .col-3;
+
+        h4 {
+          @extend .ui-font-title-primary;
+        }
+      }
+
+    }
+
+    .ui-order-products {
+
+      @extend .bg-white;
+      @extend .d-flex;
+      @extend .flex-wrap;
+      @extend .justify-content-start;
+
+      .ui-order-products-item {
+
+        @extend .w-100;
+
+        .ui-order-product {
+
+          @extend .m-2;
+          @extend .flex-basis-1;
+          @extend .position-relative;
+          @extend .col;
+          @extend .col-11;
+
+          .row {
+            min-height: 280px;
           }
 
         }
 
-        .ui-order-accordion-item-collapse {
+        .ui-order-item-quantity{
 
-          @extend .accordion-collapse;
+          @extend .col;
+          @extend .col-1;
 
-          .ui-order-accordion-item-body {
-
-            @extend .accordion-body;
-            @extend .bg-white;
-            @extend .d-flex;
-            @extend .flex-wrap;
-            @extend .justify-content-start;
-
-            .ui-order-products {
-
-              @extend .w-100;
-
-              .ui-order-items {
-
-                .ui-order-item {
-
-                  @extend .m-2;
-                  @extend .flex-basis-1;
-                  @extend .position-relative;
-
-                  .row {
-                    min-height: 420px;
-                  }
-
-                }
-
-              }
-
-            }
-
+          h5 {
+            @extend .ui-font-title-primary;
           }
-
         }
 
       }
