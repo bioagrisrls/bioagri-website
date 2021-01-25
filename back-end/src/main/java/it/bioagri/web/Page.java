@@ -115,9 +115,6 @@ public class Page {
         model.addAttribute("authToken", authToken);
         model.addAttribute("dataSource", dataSource);
 
-        System.err.println("><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< " + page);
-
-
         return "admin/%s".formatted(page);
 
     }
