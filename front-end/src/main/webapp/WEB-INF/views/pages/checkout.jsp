@@ -53,7 +53,7 @@
 
     <section ui-animated>
 
-        <div class="ui-checkout">
+        <div class="ui-checkout" ui-animated="slideInUp">
 
             <div class="ui-checkout-header">
                 <h1>${locale.checkout_choose}</h1>
