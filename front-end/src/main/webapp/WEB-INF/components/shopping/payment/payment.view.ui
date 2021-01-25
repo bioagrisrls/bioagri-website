@@ -26,10 +26,45 @@
 
 <div class="ui-payment">
 
-    <? if (current === 'ok') { ?>
+    <? if (current.startsWith('ok-')) { ?>
 
 
         <div class="ui-checkout-success">
+
+            <img src="/assets/img/checkout/success.png" alt="">
+            <p>{{strings.success}}</p>
+
+            <div class="ui-checkout-success-body">
+
+                <? if(current === 'ok-purchase') { ?>
+
+                    <h1>{{strings.purchase_success}}</h1>
+                    <p>{{strings.purchase_instructions}}.</p>
+
+                <? } else if(current === 'ok-pickup') { ?>
+
+                    <h1>{{strings.pickup_success}}</h1>
+                    <p>{{strings.pickup_instructions}}.</p>
+
+                <? } else if(current === 'ok-paypal') { ?>
+
+                    <h1>{{strings.pickup_success}}</h1>
+                    <p>{{strings.pickup_instructions}}.</p>
+
+                <? } ?>
+
+                <p>
+                    {{
+                        strings.instructions
+                            .replace('<', '<a onclick="navigate(\"/home?q=my-orders\")">')
+                            .replace('>', '</a>')
+                    }}
+                </p>
+
+            </div>
+
+
+            <button>{{strings.back}}</button>
 
         </div>
 
@@ -193,7 +228,7 @@
                     </div>
 
                     <div>
-                        <button>{{strings.paynow}}</button>
+                        <button onclick="$$.state = { current: 'ok-purchase' }">{{strings.paynow}}</button>
                     </div>
 
                 </div>
@@ -207,7 +242,7 @@
         <div class="ui-payment-pickup-instructions">
             <p>{{strings.pickup_instructions}}</p>
             <small>{{strings.pickup_disclaimer}}</small>
-            <button>{{strings.pickup_confirm}}</button>
+            <button onclick="$$.state = { current: 'ok-pickup' }">{{strings.pickup_confirm}}</button>
         </div>
 
     <? } else if(current === 'error') { ?>
