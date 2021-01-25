@@ -86,6 +86,7 @@ public class Catalog {
         }
         catch (RuntimeException t) {
             t.printStackTrace();
+            System.out.println("Ok");
         }
 
     }
