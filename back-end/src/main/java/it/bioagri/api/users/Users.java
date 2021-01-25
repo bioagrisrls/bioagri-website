@@ -27,12 +27,10 @@ package it.bioagri.api.users;
 
 
 import ch.qos.logback.classic.Logger;
-import it.bioagri.api.ApiPermission;
-import it.bioagri.api.ApiPermissionOperation;
-import it.bioagri.api.ApiPermissionType;
-import it.bioagri.api.ApiResponseStatus;
+import it.bioagri.api.*;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.User;
+import it.bioagri.models.UserStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import it.bioagri.utils.ApiRequestQuery;
@@ -44,6 +42,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -156,6 +156,7 @@ public class Users {
     }
 
 
+
     @DeleteMapping("")
     public ResponseEntity<String> deleteAll(
             @RequestParam(required = false, value =  "filter-by") List<String> filterBy,
@@ -196,5 +197,42 @@ public class Users {
         return ResponseEntity.noContent().build();
 
     }
+
+
+
+    @PostMapping("/{id}/active")
+    @ApiPermissionPublic
+    public ResponseEntity<String> update(@PathVariable Long id, @RequestParam String auth) {
+
+        // TODO: check auth code...
+
+        var user = dataSource.getUserDao()
+                .findByPrimaryKey(id)
+                .orElseThrow(() -> new ApiResponseStatus(404));
+
+        dataSource.getUserDao().update(user, new User(
+                user.getId(),
+                user.getMail(),
+                user.getPassword(),
+                UserStatus.ACTIVE,
+                user.getRole(),
+                user.getName(),
+                user.getSurname(),
+                user.getGender(),
+                user.getPhone(),
+                user.getBirth(),
+                user.getAuth(),
+                user.getCreatedAt(),
+                Timestamp.from(Instant.now()),
+                null,
+                null,
+                null
+        ));
+
+
+        return ResponseEntity.ok().build();
+
+    }
+
 
 }

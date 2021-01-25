@@ -42,7 +42,7 @@
     <br>
     <br>
 
-    <section class="bg-light">
+    <section>
 
         <div class="ui-about-header">
 
@@ -53,13 +53,13 @@
                     <ui-image id="ui-about-header-image"
                               class="ui-about-header-image"
                               ui:animation="slideInLeft"
-                              ui:src="/assets/img/about/aboutus.png"
+                              ui:src="/assets/img/common/working.png"
                               ui:width="100%"
                               ui:height="320px"
                               ui:position="center"
                               ui:size="contain"></ui-image>
 
-                    <h1 ui-animated-scroll="slideInRight">${locale.about_header}</h1>
+                    <h1 ui-animated-scroll="slideInRight">${locale.redirect_wait}</h1>
 
                 </div>
 
@@ -69,13 +69,6 @@
 
     </section>
 
-
-    <!-- About -->
-    <section class="ui-redirect" ui-animated>
-
-        <h1>Attendi mentre processiamo la tua richiesta...</h1>
-
-    </section>
 
     <br>
     <br>
@@ -97,24 +90,27 @@
 
         if(q !== '') {
 
-            const i = JSON.parse(q);
+            const i = JSON.parse(btoa(q));
+            const { id, type, auth } = i;
 
-            if(i.type && i.param) {
 
-                switch (i.type) {
-                    case 'user-active':
-                        api('/users/' + i.param[0] + '/active', 'POST', {
-                            i.auth,
-                            i.param[0],
-                        })
-                }
+            switch (type) {
+
+                case 'user-active':
+
+                    return api('/users/' + id + '/active', 'POST', { auth }, 'raw')
+                        .finally(() => {
+                            setTimeout(() => window.location = '/home', 5000);
+                        });
+
 
             }
 
 
+
+        } else {
+            window.location = '/home';
         }
-
-
 
     });
 

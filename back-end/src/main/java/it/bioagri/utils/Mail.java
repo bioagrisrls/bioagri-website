@@ -27,6 +27,7 @@ package it.bioagri.utils;
 
 import ch.qos.logback.classic.Logger;
 import it.bioagri.api.auth.Auth;
+import it.bioagri.web.Locale;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,6 +36,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpSession;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 @Component
 @Scope("singleton")
 public class Mail {
@@ -42,13 +49,15 @@ public class Mail {
     private final static Logger logger = (Logger) LoggerFactory.getLogger(Auth.class);
 
     private final String sender;
+    private final Locale locale;
     private final JavaMailSender service;
 
     @Autowired
-    public Mail(JavaMailSender service,
+    public Mail(JavaMailSender service, Locale locale,
                 @Value("${info.mail.sender}") String sender) {
 
         this.sender = sender;
+        this.locale = locale;
         this.service = service;
 
     }
@@ -65,6 +74,26 @@ public class Mail {
             setSubject(subject);
             setText(content.formatted(args));
         }});
+
+    }
+
+
+    public void sendUserRegistration(ServletRequest request, HttpSession session, Long userId, String to) {
+
+        String uri = """
+                {
+                    'id'   : '%s',
+                    'auth' : '%s',
+                    'type' : '<<REDIRECT_TYPE_USER_ACTIVATE>>'
+                }
+                """.formatted(userId, "");  // TODO: Generate auth code
+
+        send(
+                to,
+                locale.getCurrentLocale(request, session).get("mail_user_registration_subject"),
+                locale.getCurrentLocale(request, session).get("mail_user_registration_content"),
+                Base64.getEncoder().encodeToString(uri.getBytes(StandardCharsets.UTF_8))
+        );
 
     }
 
