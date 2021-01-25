@@ -62,6 +62,7 @@ public class Payment {
 
         try {
 
+
             if(!authToken.isLoggedIn())
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 

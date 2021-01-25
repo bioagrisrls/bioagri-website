@@ -35,8 +35,12 @@ import com.paypal.orders.OrdersCaptureRequest;
 import it.bioagri.api.auth.Auth;
 import it.bioagri.models.PaymentRequest;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 
 import java.io.IOException;
+import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 public class PaypalPayment implements PaymentExternalService {
 
@@ -87,27 +91,26 @@ public class PaypalPayment implements PaymentExternalService {
                 logger.debug("Status Code: %d".formatted(response.statusCode()));
                 logger.debug("Status     : %s".formatted(response.result().status()));
                 logger.debug("OrderId    : %s".formatted(response.result().id()));
-                logger.debug("Links      : %s".formatted(response.result().links().stream().map(i -> "%s: %s".formatted(i.rel(), i.href()))));
+
+                for(var i : response.result().links())
+                    logger.debug("Links      : %s => %s".formatted(i.rel(), i.href()));
 
                 for(var i : response.result().purchaseUnits())
                     for(var j : i.payments().captures())
                         logger.debug("Captures   : %s".formatted(j.id()));
 
-
                 logger.debug("BuyerMail  : %s".formatted(response.result().payer().email()));
                 logger.debug("BuyerName  : %s".formatted(response.result().payer().name().fullName()));
-
-                logger.debug("BuyerPhone : %s %s".formatted(
-                        response.result().payer().phoneWithType().phoneNumber().countryCallingCode(),
-                        response.result().payer().phoneWithType().phoneNumber().nationalNumber()));
 
                 logger.debug("=====  END AUTHORIZATION   =====");
 
             }
 
 
-            return response.statusCode() == 200;
+            if(HttpStatus.resolve(response.statusCode()) != null)
+                return HttpStatus.valueOf(response.statusCode()).is2xxSuccessful();
 
+            return false;
 
         } catch (IOException e) {
 

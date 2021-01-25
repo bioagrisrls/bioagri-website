@@ -88,24 +88,65 @@
                     return Promise.all(shopping_cart_map(item => api('/products/' + item.id)))
                         .then(response => {
 
+                            const total = +(+response.reduce((j, i) => j + shopping_cart_count(i.id) * (+i.price - ((+i.price / 100) * +i.discount)), 0));
+                            const shipping = 10; // TODO: read from server
+
                             const order = {
 
                                 purchase_units: [{
+
+                                    description: "Acquisto su Bioagri Shop",
+
                                     amount: {
-                                        value: (+response.reduce((j, i) => j + (+i.price - ((+i.price / 100) * +i.discount)), 0)).toFixed(2),
                                         currency_code: 'EUR',
-                                    }
+                                        value: (total + shipping).toFixed(2),
+
+                                        breakdown: {
+                                            item_total: {
+                                                currency_code: 'EUR',
+                                                value: total.toFixed(2),
+                                            },
+                                            shipping: {
+                                                currency_code: 'EUR',
+                                                value: shipping.toFixed(2),
+                                            },
+                                            handling: {
+                                                currency_code: 'EUR',
+                                                value: '0.00'
+                                            },
+                                            tax_total: {
+                                                currency_code: 'EUR',
+                                                value: '0.00'
+                                            },
+                                            shipping_discount: {
+                                                currency_code: 'EUR',
+                                                value: '0.00'
+                                            }
+                                        }
+
+                                    },
+
+                                    items: response.map(i => {
+                                        return {
+
+                                            name: i.name,
+                                            quantity: shopping_cart_count(i.id),
+
+                                            unit_amount: {
+                                                currency_code: 'EUR',
+                                                value: (+i.price - ((+i.price / 100) * +i.discount)).toFixed(2)
+                                            },
+                                            tax: {
+                                                currency_code: 'EUR',
+                                                value: '0.00'
+                                            },
+
+                                        }
+                                    }),
+
+
                                 }],
 
-                                items: response.map(i => {
-                                    return {
-                                        name: i.name,
-                                        unit_amount: (+i.price - ((+i.price / 100) * +i.discount)).toFixed(2),
-                                        quantity: shopping_cart_count(i.id)
-                                    }
-                                }),
-
-                                description: "Acquisto su Bioagri Shop",
 
                             };
 
@@ -121,9 +162,10 @@
                     return api('/payments/authorize', 'POST', {
 
                         service:    '<<PAYMENT_TYPE_PAYPAL>>',
-                        id:         data.paymentID,
+                        id:         data.orderID,
                         data:       data.payerID,
                         orderId:    0,
+                        items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
 
                     }, 'raw')
                     .then(response => this.state = { current: 'ok-paypal' })
