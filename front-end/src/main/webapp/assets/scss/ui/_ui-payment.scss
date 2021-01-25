@@ -151,7 +151,7 @@
 
   .ui-checkout-success {
 
-    p {
+    h3 {
       @extend .ui-font-title-primary;
     }
 
@@ -164,11 +164,14 @@
 
         @extend .alert-heading;
         @extend .ui-font-title-primary;
+        @extend .border-2;
+        @extend .border-primary;
 
       }
 
       p {
 
+        @extend .fs-3
 
       }
 
