@@ -158,7 +158,7 @@
   "payment_shipping_city_example" : "Milano",
   "payment_shipping_zip" : "CAP",
   "payment_shipping_info" : "Informazioni aggiuntive",
-  "payment_shipping_info_example" : "Piano 4, Interno 2 etc...",
+  "payment_shipping_info_example" : "Piano 4, Interno 2, etc...",
 
   "auth_welcome": "Bentornato",
   "auth_promo": "Sei un nuovo cliente?",
