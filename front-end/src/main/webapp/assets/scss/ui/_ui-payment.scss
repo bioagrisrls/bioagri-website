@@ -169,6 +169,7 @@
       @extend .alert-success;
       @extend .ui-container;
       @extend .my-5;
+      @extend .p-3;
 
       h1 {
 
@@ -180,13 +181,9 @@
       }
 
       p {
-        @extend .ui-font-title-primary;
-        @extend .fs-5;
       }
 
       small {
-        @extend .ui-font-title-primary;
-        @extend .fs-5;
       }
 
     }
@@ -222,8 +219,7 @@
       @extend .my-4;
 
       p {
-        @extend .ui-font-title-primary;
-        @extend .fs-4;
+
       }
 
       small {
