@@ -104,6 +104,14 @@
             Component.render(Component.dummy('side-menu'), `${components.users_account_side}`, this.state);
         }
 
+        onWishClicked() {
+
+            authenticated()
+                .then( () => Component.render(Component.dummy('user-wish'), `${components.users_account_wish}`, this.state))
+                .catch(() => Component.render(Component.dummy('user-auth'), `${components.users_account_auth}`, this.state));
+
+        }
+
         onDarkModeSwitched(checked = undefined) {
 
             const theme = document.querySelector('#ui-theme-stylesheet');
