@@ -145,6 +145,8 @@
   "payment_paynow" : "Acquista ora",
 
   "payment_shipping_title" : "Indirizzo di consegna",
+  "payment_shipping_name" : "Nome",
+  "payment_shipping_surname" : "Cognome",
   "payment_shipping_country" : "Nazione",
   "payment_shipping_address" : "Indirizzo",
   "payment_shipping_province" : "Provincia",
