@@ -49,12 +49,18 @@
         <input type="text" id="discount" name="discount"><br><br>
         <label >status</label>
         <input type="text" id="status" name="status"><br><br>
-        <input type="submit" value="Submit">
+        <input type="submit" onclick="redirect()"  value="Submit">
     </form>
 
     <label >immagine</label>
     <input type="file" id="immgine" name="immagine" multiple = "true"><br><br>
 
+<script>
+
+        function redirect() {
+                location.replace("/admin/dashboard");
+        }
+</script>
 
 </body>
 </html>
