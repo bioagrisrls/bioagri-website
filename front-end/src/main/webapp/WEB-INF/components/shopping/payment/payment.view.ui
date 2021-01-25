@@ -29,6 +29,10 @@
     <? if (current === 'ok') { ?>
 
 
+        <div class="ui-checkout-success">
+
+        </div>
+
 
     <? } else if(current === 'purchase') { ?>
 
