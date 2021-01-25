@@ -31,13 +31,14 @@
       "description": "Description for auth.services.external.twitter.id."
     },
     {
-      "name": "payments.services.paypal.id",
+      "name": "payments.services.external.paypal.id",
       "type": "java.lang.String",
-      "description": "Description for payments.services.paypal.id."
+      "description": "Description for payments.services.external.paypal.id."
     },
     {
-      "name": "payments.services.paypal.secret",
+      "name": "payments.services.external.paypal.secret",
       "type": "java.lang.String",
-      "description": "Description for payments.services.paypal.secret."
+      "description": "Description for payments.services.external.paypal.secret."
     }
-  ] }
+  ]
+}

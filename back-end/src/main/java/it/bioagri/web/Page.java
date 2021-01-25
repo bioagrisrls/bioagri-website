@@ -29,10 +29,10 @@ import ch.qos.logback.classic.Logger;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.UserRole;
-import it.bioagri.payments.PayPal;
 import it.bioagri.persistence.DataSource;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -58,16 +58,18 @@ public class Page {
     private final Locale locale;
     private final Components components;
     private final AuthToken authToken;
-    private final PayPal payPal;
     private final DataSource dataSource;
+    private final String paypalId;
 
     @Autowired
-    public Page(Locale locale, Components components, AuthToken authToken, DataSource dataSource, PayPal payPal) {
+    public Page(Locale locale, Components components, AuthToken authToken, DataSource dataSource,
+            @Value("${payments.services.external.paypal.id}") String paypalId) {
+
         this.locale = locale;
         this.components = components;
         this.authToken = authToken;
         this.dataSource = dataSource;
-        this.payPal = payPal;
+        this.paypalId = paypalId;
     }
 
 
@@ -78,7 +80,7 @@ public class Page {
         model.addAttribute("locale", locale.getCurrentLocale(request, session));
         model.addAttribute("authToken", authToken);
         model.addAttribute("dataSource", dataSource);
-        model.addAttribute("paypal", payPal);
+        model.addAttribute("paypalId", paypalId);
 
         return "router";
 
@@ -113,7 +115,10 @@ public class Page {
         model.addAttribute("authToken", authToken);
         model.addAttribute("dataSource", dataSource);
 
-        return "/admin/%s.jsp".formatted(page);
+        System.err.println("><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< " + page);
+
+
+        return "admin/%s".formatted(page);
 
     }
 

@@ -69,7 +69,7 @@
         <script src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
         <script src="https://apis.google.com/js/api.js"></script>
         <script src="https://apis.google.com/js/platform.js"></script>
-        <script src="https://www.paypal.com/sdk/js?client-id=${paypal.clientId}&currency=EUR&locale=it_IT" data-namespace="paypal_sdk"></script>
+        <script src="https://www.paypal.com/sdk/js?client-id=${paypalId}&currency=EUR&locale=it_IT" data-namespace="paypal_sdk"></script>
     
     
         <!-- Dependencies -->

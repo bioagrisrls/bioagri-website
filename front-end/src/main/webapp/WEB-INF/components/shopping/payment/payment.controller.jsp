@@ -118,9 +118,12 @@
 
                 onApprove: (data, actions) => {
 
-                    return actions.order.capture().then(response => {
-                        console.log('onApprove', response);
-                    });
+                    return api('/payments/paypal/authorize', 'POST', {
+                        paymentId: data.paymentID,
+                        payerId: data.payerId,
+                    }, 'raw')
+                    .then(response => this.state = { current: 'ok-paypal' })
+                    .catch(reason  => this.state = { current: 'error'     });
 
                 }
 
