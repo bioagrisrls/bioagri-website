@@ -28,6 +28,7 @@
   @extend .text-dark;
   @extend .px-3;
 
+
   .ui-payment-options {
 
     @extend .w-100;
@@ -91,26 +92,33 @@
 
   .ui-payment-purchase {
 
+    @extend .ui-container;
+    @extend .px-3;
+
+    animation: slideInRight 0.4s ease-in-out;
+
     .ui-payment-address {
 
       .ui-payment-header {
 
         h1 {
-
-          span {
-
-          }
-
+          @extend .ui-font-title-primary;
+          @extend .display-5;
+          @extend .my-5;
         }
 
       }
 
 
       .ui-payment-body {
-
-        @extend .ui-container;
-
-
+        button {
+          @extend .btn;
+          @extend .btn-lg;
+          @extend .btn-primary;
+          @extend .m-auto;
+          @extend .d-block;
+          @extend .my-5;
+        }
       }
 
     }
