@@ -26,24 +26,9 @@
 
 <div class="ui-payment">
 
-    <? if (current === 'options') { ?>
+    <? if (current === 'ok') { ?>
 
-        <div class="ui-payment-options">
 
-            <div class="ui-payment-buttons">
-                <button onclick="$$.state = { current: 'purchase' }">{{strings.purchase}}</button>
-                <button onclick="$$.state = { current: 'pickup'   }">{{strings.pickup}}</button>
-            </div>
-
-            <div class="ui-payment-otherwise">
-                <p>{{strings.otherwise}}</p>
-            </div>
-
-            <div class="ui-payment-paypal">
-                <div id="paypal-button-paynow"></div>
-            </div>
-
-        </div>
 
     <? } else if(current === 'purchase') { ?>
 
@@ -200,6 +185,9 @@
                         <textarea placeholder="{{strings.shipping_info_example}}"></textarea>
                     </label>
 
+
+                    <button>{{strings.paynow}}</button>
+
                 </div>
 
             </div>
@@ -208,9 +196,38 @@
 
     <? } else if(current === 'pickup') { ?>
 
+        <div class="ui-payment-pickup-instructions">
+            <p>{{strings.pickup_instructions}}</p>
+            <small>{{strings.pickup_disclaimer}}</small>
+            <button>{{strings.pickup_confirm}}</button>
+        </div>
+
     <? } else if(current === 'error') { ?>
 
+        <div class="ui-payment-error">
+            <img src="/assets/img/common/404.png" alt="">
+            <p>{{strings.error}}</p>
+            <button>{{strings.back}}</button>
+        </div>
+
     <? } else { ?>
+
+        <div class="ui-payment-options">
+
+            <div class="ui-payment-buttons">
+                <button onclick="$$.state = { current: 'purchase' }">{{strings.purchase}}</button>
+                <button onclick="$$.state = { current: 'pickup'   }">{{strings.pickup}}</button>
+            </div>
+
+            <div class="ui-payment-otherwise">
+                <p>{{strings.otherwise}}</p>
+            </div>
+
+            <div class="ui-payment-paypal">
+                <div id="paypal-button-paynow"></div>
+            </div>
+
+        </div>
 
     <? } ?>
 

@@ -37,24 +37,30 @@
                 current: 'options',
 
                 strings: {
-                    purchase:           `${locale.payment_purchase}`,
-                    pickup:             `${locale.payment_pickup}`,
-                    otherwise:          `${locale.payment_otherwise}`,
-                    shipping_title:     `${locale.payment_shipping_title}`,
-                    shipping_country:   `${locale.payment_shipping_country}`,
-                    shipping_city:      `${locale.payment_shipping_city}`,
-                    shipping_provice:   `${locale.payment_shipping_province}`,
-                    shipping_address:   `${locale.payment_shipping_address}`,
-                    shipping_zip:       `${locale.payment_shipping_zip}`,
-                    shipping_info:      `${locale.payment_shipping_info}`,
-                    italy:              `${locale.payment_italy}`
+                    error:                  `${locale.payment_error}`,
+                    back:                   `${locale.payment_return}`,
+                    purchase:               `${locale.payment_purchase}`,
+                    pickup:                 `${locale.payment_pickup}`,
+                    otherwise:              `${locale.payment_otherwise}`,
+                    paynow:                 `${locale.payment_paynow}`,
+                    shipping_title:         `${locale.payment_shipping_title}`,
+                    shipping_country:       `${locale.payment_shipping_country}`,
+                    shipping_city:          `${locale.payment_shipping_city}`,
+                    shipping_province:      `${locale.payment_shipping_province}`,
+                    shipping_address:       `${locale.payment_shipping_address}`,
+                    shipping_zip:           `${locale.payment_shipping_zip}`,
+                    shipping_info:          `${locale.payment_shipping_info}`,
+                    italy:                  `${locale.payment_italy}`,
+                    pickup_instructions:    `${locale.payment_pickup_instructions}`,
+                    pickup_disclaimer:      `${locale.payment_pickup_disclaimer}`,
+                    pickup_confirm:         `${locale.payment_pickup_confirm}`,
                 }
 
             });
         }
 
         onRender() {
-            return `${components.shopping_checkout}`
+            return `${components.shopping_payment}`
         }
 
         onReady(state) {
