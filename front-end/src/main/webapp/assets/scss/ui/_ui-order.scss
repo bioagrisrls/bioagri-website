@@ -23,99 +23,99 @@
  *
  */
 
-//.ui-order {
-//
-//  @extend .w-100;
-//  @extend .h-100;
-//  @extend .px-3;
-//  @extend .py-3;
-//  @extend .text-dark;
-//  @extend .bg-white;
-//
-//  .ui-order-header {
-//
-//    h1 {
-//      @extend .ui-font-title-primary;
-//      @extend .display-4;
-//      @extend .mb-5;
-//    }
-//
-//    h3 {
-//      @extend .ui-font-title-primary;
-//      @extend .fs-3;
-//      @extend .my-3;
-//    }
-//  }
-//
-//  .ui-order-body {
-//
-//    .ui-order-accordion {
-//
-//      @extend .accordion;
-//
-//      .ui-order-accordion-item {
-//
-//        @extend .accordion-item;
-//
-//        .ui-order-accordion-item-header {
-//
-//          h2 {
-//            @extend .accordion-header;
-//            button {
-//              @extend .accordion-button;
-//            }
-//          }
-//
-//        }
-//
-//        .ui-order-accordion-item-collapse {
-//
-//          @extend .accordion-collapse;
-//
-//          .ui-order-accordion-item-body {
-//
-//            @extend .accordion-body;
-//            @extend .bg-white;
-//            @extend .d-flex;
-//            @extend .flex-wrap;
-//            @extend .justify-content-start;
-//
-//            .ui-order-products {
-//
-//              @extend .w-100;
-//
-//              .ui-order-items {
-//
-//                .ui-order-item {
-//
-//                  @extend .m-2;
-//                  @extend .flex-basis-1;
-//                  @extend .position-relative;
-//
-//                  .row {
-//                    min-height: 420px;
-//                  }
-//
-//                }
-//
-//              }
-//
-//            }
-//
-//          }
-//
-//        }
-//
-//      }
-//
-//    }
-//
-//  }
-//
-//}
-//
-//.ui-order-container {
-//  @extend .vh-100;
-//  @extend .vw-100;
-//  overflow-y: scroll;
-//}
+.ui-order {
+
+  @extend .w-100;
+  @extend .h-100;
+  @extend .px-3;
+  @extend .py-3;
+  @extend .text-dark;
+  @extend .bg-white;
+
+  .ui-order-header {
+
+    h1 {
+      @extend .ui-font-title-primary;
+      @extend .display-4;
+      @extend .mb-5;
+    }
+
+    h3 {
+      @extend .ui-font-title-primary;
+      @extend .fs-3;
+      @extend .my-3;
+    }
+  }
+
+  .ui-order-body {
+
+    .ui-order-accordion {
+
+      //@extend .accordion;
+
+      .ui-order-accordion-item {
+
+        //@extend .accordion-item;
+
+        .ui-order-accordion-item-header {
+
+          h2 {
+            //@extend .accordion-header;
+            button {
+              //@extend .accordion-button;
+            }
+          }
+
+        }
+
+        .ui-order-accordion-item-collapse {
+
+          @extend .accordion-collapse;
+
+          .ui-order-accordion-item-body {
+
+            @extend .accordion-body;
+            @extend .bg-white;
+            @extend .d-flex;
+            @extend .flex-wrap;
+            @extend .justify-content-start;
+
+            .ui-order-products {
+
+              @extend .w-100;
+
+              .ui-order-items {
+
+                .ui-order-item {
+
+                  @extend .m-2;
+                  @extend .flex-basis-1;
+                  @extend .position-relative;
+
+                  .row {
+                    min-height: 420px;
+                  }
+
+                }
+
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+.ui-order-container {
+  @extend .vh-100;
+  @extend .vw-100;
+  overflow-y: scroll;
+}
