@@ -38,6 +38,7 @@
 
                 strings: {
                     error:                   `${locale.payment_error}`,
+                    success:                 `${locale.payment_success}`,
                     back:                    `${locale.payment_return}`,
                     purchase:                `${locale.payment_purchase}`,
                     pickup:                  `${locale.payment_pickup}`,
@@ -45,6 +46,9 @@
                     paynow:                  `${locale.payment_paynow}`,
                     choose:                  `${locale.payment_choose}`,
                     italy:                   `${locale.payment_italy}`,
+                    instructions:            `${locale.payment_instructions}`,
+                    purchase_success:        `${locale.payment_purchase_success}`,
+                    purchase_instructions:   `${locale.payment_purchase_instructions}`,
                     shipping_name:           `${locale.payment_shipping_name}`,
                     shipping_name_example:   `${locale.payment_shipping_name_example}`,
                     shipping_surname:        `${locale.payment_shipping_surname}`,
@@ -59,9 +63,12 @@
                     shipping_zip:            `${locale.payment_shipping_zip}`,
                     shipping_info:           `${locale.payment_shipping_info}`,
                     shipping_info_example:   `${locale.payment_shipping_info_example}`,
+                    pickup_success:          `${locale.payment_pickup_success}`,
                     pickup_instructions:     `${locale.payment_pickup_instructions}`,
                     pickup_disclaimer:       `${locale.payment_pickup_disclaimer}`,
                     pickup_confirm:          `${locale.payment_pickup_confirm}`,
+                    paypal_success:          `${locale.payment_paypal_success}`,
+                    paypal_instructions:     `${locale.payment_paypal_instructions}`,
                 }
 
             });
