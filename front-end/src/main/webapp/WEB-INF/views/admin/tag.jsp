@@ -27,12 +27,35 @@
 
 <body>
 
-<h1>dashboard</h1>
+<h1>crea Tag</h1>
 
-<form action="/admin/delete/product" method="POST">
+<form action="/admin/create/tag" method="POST">
 
-    <label>titolo</label>
-    <input type="text" id="id" name="id"><br><br>
+    <label>tag</label>
+    <input type="text" name="hashtag"><br><br>
+    <input type="submit" value="Submit">
+
+</form>
+
+
+<h1>aggiorna tag </h1>
+<form action="/admin/update/tag" method="POST">
+
+    <label>id</label>
+    <input type="text" name="id"><br><br>
+    <label>nome</label>
+    <input type="text" name="hashtag"><br><br>
+    <input type="submit" value="Submit">
+
+</form>
+
+
+
+<h1>elimina tag</h1>
+<form action="/admin/delete/tag" method="POST">
+
+    <label>id</label>
+    <input type="text" name="id"><br><br>
     <input type="submit" value="Submit">
 
 </form>
