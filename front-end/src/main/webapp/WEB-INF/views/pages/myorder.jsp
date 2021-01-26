@@ -57,7 +57,7 @@
         <br>
         <br>
 
-        <ui-order id="{{this.id}}-order"></ui-order>
+        <ui-order id="ui-order"></ui-order>
 
     </section>
 

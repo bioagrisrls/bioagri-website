@@ -57,7 +57,7 @@
         <br>
         <br>
 
-        <ui-wish id="{{this.id}}-wish"></ui-wish>
+        <ui-wish id="ui-wish"></ui-wish>
 
     </section>
 
