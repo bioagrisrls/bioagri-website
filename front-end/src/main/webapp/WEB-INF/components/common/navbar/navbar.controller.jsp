@@ -57,7 +57,7 @@
 
                 userAccount : '${locale.menu_account}',
                 userOrder : '${locale.menu_order}',
-                userWishlist : '${locale.menu_wishlist}',
+                userWish : '${locale.menu_wishlist}',
                 userExit : '${locale.menu_exit}',
 
             });

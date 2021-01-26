@@ -171,7 +171,7 @@
                         case 'select':
 
                         ?>
-                            <div class="{{v.style || ''}}">
+                            <div class="form-floating {{v.style || ''}}">
                                 <label class="form-label" for="{{this.id}}-{{k}}">{{v.label || ''}}</label>
                                 <select id="{{this.id}}-{{k}}" class="form-control py-3" type="text" {{getprops(v)}} onchange="$$.$check(this)" >
                                     <? for(let i of v.options) { ?>
@@ -246,7 +246,7 @@
             ?>
 
 
-            <div class="d-flex justify-content-{{ $submit.align || 'left' }} ">
+            <div class="d-flex justify-content-{{ $submit.align || 'left' }} clear-both">
                 <button id="{{this.id}}-form-submit" type="submit" class="btn btn-primary btn-block mb-3 {{$submit.style || ''}}" onclick="$$.$submit(this, event)" disabled>{{ $submit.value || 'OK' }}</button>
             </div>
 
