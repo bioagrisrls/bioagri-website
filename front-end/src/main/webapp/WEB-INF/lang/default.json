@@ -286,6 +286,14 @@
   "redirect_wait" : "Attedi mentre processiamo la tua richiesta",
 
   "mail_user_registration_subject" : "Link attivazione account",
-  "mail_user_registration_content" : "Attiva il tuo account cliccando sul seguente link: http://localhost:8080/redirect?q=%s"
+  "mail_user_registration_content" : "Attiva il tuo account cliccando sul seguente link: http://localhost:8080/redirect?q=%s",
+
+  "profile_account" : "Il mio account",
+  "profile_details" : "Dettagli profilo",
+  "profile_password" : "Password",
+  "profile_password_old" : "Vecchia password",
+  "profile_password_new" : "Nuova password",
+  "profile_delete" : "Elimina profilo",
+  "profile_logout" : "Disconnetiti"
 
 }
