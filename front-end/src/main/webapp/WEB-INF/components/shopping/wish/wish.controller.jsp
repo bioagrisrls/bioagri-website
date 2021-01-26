@@ -35,8 +35,7 @@
         constructor() {
 
             super(id,
-                authenticated()
-                    .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist')
+                api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist')
                     .then(response => {
 
                         return {
@@ -49,7 +48,7 @@
 
                         }
 
-                    })).catch(() => requestUserAuthentication())
+                    }).catch(() => requestUserAuthentication())
             );
 
         }

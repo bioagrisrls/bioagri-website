@@ -35,32 +35,32 @@
         constructor() {
 
             super(id,
-                authenticated()
-                    .then(() => api('/orders')
-                        .then(orders => {
+                api('/orders')
+                    .then(orders => {
 
-                            return Promise.all(orders.map(i => api('/orders/' + i.id + '/products')))
-                                .then(products => {
+                        return Promise.all(orders.map(i => api('/orders/' + i.id + '/products')))
+                            .then(products => {
 
-                                    return {
-                                        orders: orders || [],
-                                        products: products || [],
+                                return {
 
-                                        strings: {
-                                            empty:      `${locale.order_empty}`,
-                                            title:      `${locale.order_title}`,
-                                            number:     `${locale.order_number}`,
-                                            date:       `${locale.order_date}`,
-                                            status:     `${locale.order_status}`,
-                                            quantity:   `${locale.order_quantity}`,
-                                            review:     `${locale.details_feedbacks_write}`
-                                        }
+                                    orders:   orders   || [],
+                                    products: products || [],
+
+                                    strings: {
+                                        empty:      `${locale.order_empty}`,
+                                        title:      `${locale.order_title}`,
+                                        number:     `${locale.order_number}`,
+                                        date:       `${locale.order_date}`,
+                                        status:     `${locale.order_status}`,
+                                        quantity:   `${locale.order_quantity}`,
+                                        review:     `${locale.details_feedbacks_write}`
                                     }
 
-                                });
+                                }
 
-                        })
-                    ).catch(() => requestUserAuthentication())
+                            });
+
+                    }).catch(() => requestUserAuthentication())
             );
 
         }

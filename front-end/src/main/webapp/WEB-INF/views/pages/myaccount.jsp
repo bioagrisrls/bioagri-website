@@ -50,13 +50,13 @@
 
 
 
-    <!-- My Wishlist -->
+    <!-- My Account -->
     <section ui-animated>
 
-
         <br>
         <br>
 
+        <ui-account id="ui-account"></ui-account>
 
     </section>
 

@@ -50,6 +50,9 @@ public class Access implements Filter {
 
         accessWithAuthentication = Map.of (
             "/checkout",     Map.entry("/catalog", true),
+            "/myaccount",    Map.entry("/home", true),
+            "/mywish",       Map.entry("/home", true),
+            "/myorder",      Map.entry("/home", true),
             "/registration", Map.entry("/home", false)
         );
 
