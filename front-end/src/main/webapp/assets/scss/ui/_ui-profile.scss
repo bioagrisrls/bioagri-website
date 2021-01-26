@@ -25,30 +25,37 @@
 
 .ui-profile {
 
-  @extend .w-100;
-  @extend .h-100;
   @extend .text-dark;
   @extend .bg-white;
-  @extend .ui-container;
+  @extend .row;
+  @extend .gx-0;
+  @extend .px-5;
 
   .ui-profile-side {
 
+    @extend .position-relative;
     @extend .list-group;
+    @extend .show-only-desktop;
+    @extend .col-3;
+    @extend .px-5;
 
     .ui-profile-side-header {
 
       h1 {
         @extend .ui-font-title-primary;
+        @extend .fs-3;
       }
     }
 
     .ui-profile-side-menu {
 
-      @extend .list-group-item;
-      @extend .list-group-item-action;
+     @extend .list-group;
 
       a {
+        @extend .list-group-item;
+        @extend .list-group-item-action;
         @extend .ui-font-title-primary;
+        @extend .fs-5;
       }
 
     }
@@ -57,31 +64,37 @@
 
   .ui-profile-content {
 
+    @extend .col;
+    @extend .col-lg-9;
+
     h1 {
       @extend .ui-font-title-primary;
+      @extend .fs-3;
     }
 
     .ui-profile-content-items {
 
+      @extend .my-5;
+
       .ui-profile-content-item {
 
+        @extend .row;
+        @extend .align-items-baseline;
 
         .ui-profile-content-label {
-
-          p {
-            @extend .ui-font-title-primary;
-          }
-
+          @extend .col-6;
         }
 
         .ui-profile-content-value {
 
-          p {
-            @extend .ui-font-title-primary;
-          }
+          @extend .col-6;
+          @extend .text-muted;
+
 
           input {
-
+            @extend .py-1;
+            @extend .w-100;
+            @extend .w-lg-auto;
           }
 
           button {
