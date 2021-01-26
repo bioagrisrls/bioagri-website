@@ -29,8 +29,11 @@
   @extend .h-100;
   @extend .text-dark;
   @extend .bg-white;
+  @extend .ui-container;
 
   .ui-profile-side {
+
+    @extend .list-group;
 
     .ui-profile-side-header {
 
@@ -41,12 +44,11 @@
 
     .ui-profile-side-menu {
 
-      button {
-        @extend .btn;
-        @extend .btn-lg;
-        @extend .btn-primary;
+      @extend .list-group-item;
+      @extend .list-group-item-action;
+
+      a {
         @extend .ui-font-title-primary;
-        @extend .fs-5;
       }
 
     }
@@ -55,11 +57,45 @@
 
   .ui-profile-content {
 
-    .ui-profile-content-header {
-
+    h1 {
+      @extend .ui-font-title-primary;
     }
 
-    .ui-profile-content-body {
+    .ui-profile-content-items {
+
+      .ui-profile-content-item {
+
+
+        .ui-profile-content-label {
+
+          p {
+            @extend .ui-font-title-primary;
+          }
+
+        }
+
+        .ui-profile-content-value {
+
+          p {
+            @extend .ui-font-title-primary;
+          }
+
+          input {
+
+          }
+
+          button {
+            @extend .btn;
+            @extend .btn-lg;
+            @extend .btn-primary;
+            @extend .ui-font-title-primary;
+            @extend .fs-5;
+          }
+
+        }
+
+
+      }
 
     }
 
