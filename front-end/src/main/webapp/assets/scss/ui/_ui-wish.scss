@@ -27,7 +27,7 @@
 
   @extend .w-100;
   @extend .h-100;
-  @extend .px-3;
+  @extend .px-5;
   @extend .py-3;
   @extend .text-dark;
   @extend .bg-white;
@@ -86,12 +86,24 @@
         .ui-wish-item {
 
           @extend .m-2;
+          @extend .py-3;
           @extend .flex-basis-1;
           @extend .position-relative;
+          @extend .border-bottom;
+          @extend .w-100;
 
-          .row {
-            min-height: 420px;
+
+          .ui-wish-product {
+
+            ui-card {
+              .ui-card-image {
+                width: 256px;
+                height: 256px;
+              }
+            }
           }
+
+
 
         }
 
