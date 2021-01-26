@@ -69,6 +69,11 @@
   "nav_shopping_cart_clear" : "Svuota carrello",
   "nav_shopping_cart_article" : "articoli):",
 
+  "menu_account" : "Il mio account",
+  "menu_order" : "I miei ordini",
+  "menu_wishlist" : "La mia lista desideri",
+  "menu_exit" : "Esci",
+
   "foo_header_connected" : "Seguici sui nostri social network per rimanere connesso!",
   "foo_body_logo" : "/assets/img/logo/logo-extended.png",
   "foo_body_description" : "BioAgri S.r.l.s. è un azienda che opera nel settore agrario distribuendo ed erogando servizi di consulenza e prodotti per il giardinaggio, coltura, e strumenti per l’agronomia.",
@@ -130,6 +135,14 @@
   "registration_button" : "Registrati via e-mail",
   "registration_body" : "Oppure",
   "registration_legal" : "Continuando, accetti i Termini di servizio, le Norme sulla privacy e le Norme sull'utilizzo del Data Storage di BioAgri Shop",
+  "registration_username" : "Indirizzo e-mail",
+  "registration_username_wrong" : "Indirizzo già associato ad un altro account",
+  "registration_username_password" : "Password",
+  "registration_username_name" : "Nome",
+  "registration_username_surname" : "Cognome",
+  "registration_username_gender" : "Sesso",
+  "registration_username_birth" : "Data di nascita",
+  "registration_username_phone" : "Numero di telefono",
 
   "checkout_payments" : "Pagamento",
   "checkout_summary" : "Riepilogo",

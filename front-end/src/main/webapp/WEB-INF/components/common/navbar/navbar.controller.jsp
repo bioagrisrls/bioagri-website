@@ -53,7 +53,12 @@
                 total: `${locale.nav_shopping_cart_total}`,
                 cartOrder: `${locale.nav_shopping_cart_order}`,
                 clear: `${locale.nav_shopping_cart_clear}`,
-                article: `${locale.nav_shopping_cart_article}`
+                article: `${locale.nav_shopping_cart_article}`,
+
+                userAccount : '${locale.menu_account}',
+                userOrder : '${locale.menu_order}',
+                userWishlist : '${locale.menu_wishlist}',
+                userExit : '${locale.menu_exit}',
 
             });
         }
@@ -102,22 +107,6 @@
 
         onSideClicked() {
             Component.render(Component.dummy('side-menu'), `${components.users_account_side}`, this.state);
-        }
-
-        onWishClicked() {
-
-            authenticated()
-                .then( () => Component.render(Component.dummy('user-wish'), `${components.users_account_wish}`, this.state))
-                .catch(() => Component.render(Component.dummy('user-auth'), `${components.users_account_auth}`, this.state));
-
-        }
-
-        onOrderClicked() {
-
-            authenticated()
-                .then( () => Component.render(Component.dummy('user-order'), `${components.users_account_order}`, this.state))
-                .catch(() => Component.render(Component.dummy('user-auth'), `${components.users_account_auth}`, this.state));
-
         }
 
         onDarkModeSwitched(checked = undefined) {
