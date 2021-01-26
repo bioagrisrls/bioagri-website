@@ -65,9 +65,10 @@
 
         @extend .w-100;
         @extend .h-100;
+        @extend .bg-white;
 
-        background: url('/assets/img/home/parallax03.jpg') center center no-repeat;
-        background-size: cover;
+        background: url('/assets/img/common/login.png') center center no-repeat;
+        background-size: contain;
 
       }
     }
