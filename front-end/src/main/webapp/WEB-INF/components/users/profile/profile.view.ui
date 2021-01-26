@@ -65,7 +65,7 @@
 
                 <div class="ui-profile-content-item">
                     <div class="ui-profile-content-label">
-                        <p>{{i.key}}</p>
+                        <p>{{i.key}}:</p>
                     </div>
 
                     <div class="ui-profile-content-value">
@@ -85,7 +85,7 @@
             <div class="ui-profile-content-item">
 
                 <div class="ui-profile-content-label">
-                    <p>{{strings.password_old}}</p>
+                    <p>{{strings.password_old}}:</p>
                 </div>
 
                 <div class="ui-profile-content-value">
@@ -97,11 +97,11 @@
             <div class="ui-profile-content-item">
 
                 <div class="ui-profile-content-label">
-                    <p>{{strings.password_new}}</p>
+                    <p>{{strings.password_new}}:</p>
                 </div>
 
                 <div class="ui-profile-content-value">
-                    <input type="password" minlength="8" autocomplete="new-password" />
+                    <input type="password" minlength="8" maxlength="128" size="128" autocomplete="new-password" />
                 </div>
 
             </div>
@@ -111,17 +111,17 @@
 
         <div class="ui-profile-content-items">
 
-            <h1 id="#{{this.id}}-delete">{{strings.delete}}</h1>
+            <h1 id="#{{this.id}}-delete">{{strings.remove}}</h1>
 
 
             <div class="ui-profile-content-item">
 
                 <div class="ui-profile-content-label">
-                    <p>{{strings.delete}}</p>
+                    <p>{{strings.remove}}</p>
                 </div>
 
                 <div class="ui-profile-content-value">
-                    <button onclick="$$.delete()">{{strings.delete}}</button>
+                    <button onclick="$$.remove()">{{strings.remove}}</button>
                 </div>
 
             </div>

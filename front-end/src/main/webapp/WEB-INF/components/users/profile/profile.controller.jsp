@@ -44,14 +44,28 @@
                             user: response,
 
                             strings: {
-                                empty: `${locale.wish_empty}`,
-                                title: `${locale.wish_title}`,
+                                account:        '${locale.profile_account}',
+                                details:        '${locale.profile_details}',
+                                password:       '${locale.profile_password}',
+                                password_old:   '${locale.profile_password_old}',
+                                password_new:   '${locale.profile_password_new}',
+                                remove:         '${locale.profile_remove}',
+                                logout:         '${locale.profile_logout}'
                             }
 
                         }
 
                     }).catch(() => requestUserAuthentication())
+
             );
+
+        }
+
+
+        remove() {
+
+            api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id'), 'DELETE', {}, 'raw')
+                .then(() => disconnect());
 
         }
 
