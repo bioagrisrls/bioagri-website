@@ -33,7 +33,6 @@
 
   .ui-profile-side {
 
-    @extend .position-relative;
     @extend .list-group;
     @extend .show-only-desktop;
     @extend .col-3;
@@ -66,6 +65,7 @@
 
     @extend .col;
     @extend .col-lg-9;
+    @extend .position-relative;
 
     h1 {
       @extend .ui-font-title-primary;
