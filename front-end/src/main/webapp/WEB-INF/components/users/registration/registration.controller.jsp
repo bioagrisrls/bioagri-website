@@ -101,10 +101,11 @@
 
                 gender: {
                     type: 'select',
-                    label: '${locale.registration_gender}',
+                    label: '',
                     required: true,
                     autocomplete: 'sex',
                     options: [
+                        { key: '${locale.registration_gender}',           value: ''           },
                         { key: '${locale.registration_gender_female}',    value: 'FEMALE'     },
                         { key: '${locale.registration_gender_male}',      value: 'MALE'       },
                         { key: '${locale.registration_gender_other}',     value: 'OTHER'      },
