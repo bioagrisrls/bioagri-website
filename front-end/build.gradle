@@ -128,3 +128,7 @@ task run(type: Sync) {
 
 run.finalizedBy(project(":front-end").tasks.sass)
 run.finalizedBy(project(":back-end").tasks.bootRun)
+
+task stage {
+    finalizedBy(project(":front-end").tasks.run)
+}
