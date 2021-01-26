@@ -33,11 +33,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
+import java.io.*;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -57,7 +55,7 @@ public class Catalog {
 
 
 
-    @PostMapping("/admin/form/product")
+    @PostMapping("/admin/create/product")
     public void save(
 
             HttpServletResponse response,
@@ -67,7 +65,8 @@ public class Catalog {
             @RequestParam Integer stock,
             @RequestParam String info,
             @RequestParam Float discount,
-            @RequestParam ProductStatus status
+            @RequestParam ProductStatus status,
+            @RequestParam String image
 
     ) throws IOException {
 
@@ -91,6 +90,7 @@ public class Catalog {
                     )
 
             );
+
 
             response.sendRedirect("/admin/dashboard");
 
@@ -145,7 +145,6 @@ public class Catalog {
         );
 
         response.sendRedirect("/admin/dashboard");
-
 
 
     }

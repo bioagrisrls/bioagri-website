@@ -23,38 +23,74 @@
   ~
   --%>
 
-
-
 <html>
-<head>
 
+<head>
 </head>
 
 <body>
 
+<h1> crea prodotto </h1>
 
-<form action="/admin/form/product" method="POST">
+<form action="/admin/create/product" method="POST">
 
         <label>titolo</label>
-        <input type="text" id="name" name="name"><br><br>
+        <input type="text"  name="name"><br><br>
         <label >descrizione:</label>
-        <input type="text" id="description" name="description"><br><br>
+        <input type="text"  name="description"><br><br>
         <label >descrizione breve:</label>
-        <input type="text" id="info" name="info"><br><br>
+        <input type="text" name="info"><br><br>
         <label >prezzo:</label>
-        <input type="text" id="price" name="price"><br><br>
+        <input type="text"  name="price"><br><br>
         <label >giacenza</label>
-        <input type="text" id="stock" name="stock"><br><br>
+        <input type="text"  name="stock"><br><br>
         <label >sconto</label>
-        <input type="text" id="discount" name="discount"><br><br>
+        <input type="text"  name="discount"><br><br>
         <label >status</label>
-        <input type="text" id="status" name="status"><br><br>
+        <input type="text" name="status"><br><br>
+        <label >immagine</label>
+        <input onchange="getFile(this)" type="file" id="immgine" name="image" multiple = "true"><br><br>
         <input type="submit" value="Submit">
+
 
     </form>
 
-    <label >immagine</label>
-    <input type="file" id="immgine" name="immagine" multiple = "true"><br><br>
+
+
+<h1>aggiorna prodotto</h1>
+
+<form action="/admin/update/product" method="POST">
+
+        <label>id</label>
+        <input type="text"  name="id"><br><br>
+        <label>titolo</label>
+        <input type="text"  name="name"><br><br>
+        <label >descrizione:</label>
+        <input type="text"  name="description"><br><br>
+        <label >descrizione breve:</label>
+        <input type="text"  name="info"><br><br>
+        <label >prezzo:</label>
+        <input type="text"  name="price"><br><br>
+        <label >giacenza</label>
+        <input type="text" name="stock"><br><br>
+        <label >sconto</label>
+        <input type="text"  name="discount"><br><br>
+        <label >status</label>
+        <input type="text" name="status"><br><br>
+        <input type="submit" value="Submit">
+
+</form>
+
+
+<h1>elimina prodotto</h1>
+
+<form action="/admin/delete/product" method="POST">
+
+        <label>titolo</label>
+        <input type="text" name="id"><br><br>
+        <input type="submit" value="Submit">
+
+</form>
 
 
 </body>
