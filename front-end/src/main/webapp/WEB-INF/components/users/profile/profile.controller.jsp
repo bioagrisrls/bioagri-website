@@ -45,6 +45,9 @@
 
                             strings: {
                                 account:        '${locale.profile_account}',
+                                name:        '${locale.profile_account}',
+                                account:        '${locale.profile_account}',
+                                account:        '${locale.profile_account}',
                                 details:        '${locale.profile_details}',
                                 password:       '${locale.profile_password}',
                                 password_old:   '${locale.profile_password_old}',
