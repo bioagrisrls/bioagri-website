@@ -47,7 +47,7 @@
             </div>
 
             <div id="{{this.id}}-side" class="ui-profile-side-menu">
-                <a href="#{{this.id}}-details" >{{strings.details}}</a>
+                <a class="active" href="#{{this.id}}-details">{{strings.details}}</a>
                 <a href="#{{this.id}}-password">{{strings.password}}</a>
                 <a href="#{{this.id}}-remove">{{strings.remove}}</a>
                 <a href="#{{this.id}}-logout">{{strings.logout}}</a>
@@ -78,61 +78,6 @@
 
         </div>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
         <div class="ui-profile-content-items">
 
             <h1 id="{{this.id}}-password">{{strings.password}}</h1>
@@ -157,7 +102,7 @@
                 </div>
 
                 <div class="ui-profile-content-value">
-                    <input type="password" minlength="8" maxlength="128" autocomplete="new-password" />
+                    <input id="{{this.id}}-new-password" type="password" minlength="8" maxlength="128" autocomplete="new-password" />
                 </div>
 
             </div>
@@ -169,7 +114,7 @@
                 </div>
 
                 <div class="ui-profile-content-value">
-                    <button onclick="$$.password()">{{strings.password_save}}</button>
+                    <button onclick="$$.password($('#{{this.id}}-new-password').val())">{{strings.password_save}}</button>
                 </div>
 
             </div>

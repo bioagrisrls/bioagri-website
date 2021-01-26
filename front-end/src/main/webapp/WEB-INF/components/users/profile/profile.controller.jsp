@@ -110,6 +110,28 @@
         }
 
 
+        password(pw) {
+
+            crypto.subtle
+                .digest("SHA-512", new TextEncoder().encode(pw))
+                .then(buf => Array.prototype.map.call(new Uint8Array(buf), i => ('00' + i.toString(16)).slice(-2)).join(''))
+                .then(buf => {
+
+                    return api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id')).then(user => {
+
+                        user.password = buf;
+
+                        return api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id'), 'PUT', user, 'raw')
+                            .then(() => disconnect())
+
+                    });
+
+                });
+
+
+        }
+
+
     });
 
 
