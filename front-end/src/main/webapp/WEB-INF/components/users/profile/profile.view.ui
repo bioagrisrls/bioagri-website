@@ -46,11 +46,11 @@
                 <h1><span class="mdi mdi-24px mdi-cog"></span> {{strings.account}}</h1>
             </div>
 
-            <div id="{{this.id}}-side" class="ui-profile-side-menu list-group">
-                <a href="#{{this.id}}-details"  class="list-group-item list-group-item-action">{{strings.details}}</a>
-                <a href="#{{this.id}}-password" class="list-group-item list-group-item-action">{{strings.password}}</a>
-                <a href="#{{this.id}}-remove"   class="list-group-item list-group-item-action">{{strings.remove}}</a>
-                <a href="#{{this.id}}-logout"   class="list-group-item list-group-item-action">{{strings.logout}}</a>
+            <div id="{{this.id}}-side" class="ui-profile-side-menu">
+                <a href="#{{this.id}}-details" >{{strings.details}}</a>
+                <a href="#{{this.id}}-password">{{strings.password}}</a>
+                <a href="#{{this.id}}-remove">{{strings.remove}}</a>
+                <a href="#{{this.id}}-logout">{{strings.logout}}</a>
             </div>
 
 
