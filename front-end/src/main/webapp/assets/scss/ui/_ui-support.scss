@@ -155,6 +155,10 @@
 
       @extend .col-md;
 
+      textarea {
+        height: 180px !important;
+      }
+
       .ui-support-form-title {
 
         h4 {
@@ -166,12 +170,6 @@
           @extend .ui-font-title-primary;
         }
 
-      }
-
-      .ui-contact-form-block {
-        textarea {
-          height: 180px;
-        }
       }
 
     }

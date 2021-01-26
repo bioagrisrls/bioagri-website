@@ -173,7 +173,7 @@
                         <br>
 
                         <div ui-animated-scroll="slideInRight">
-                            <ui-contact id="ui-contact" class=ui-support-form-block"></ui-contact>
+                            <ui-contact id="ui-contact"></ui-contact>
                         </div>
 
                     </div>

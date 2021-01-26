@@ -31,11 +31,14 @@ import it.bioagri.models.Order;
 import it.bioagri.models.OrderStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
+import it.bioagri.utils.Mail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -46,17 +49,19 @@ public class Payment {
     private final AuthToken authToken;
     private final DataSource dataSource;
     private final PaymentService paymentService;
+    private final Mail mail;
 
     @Autowired
-    public Payment(AuthToken authToken, DataSource dataSource, PaymentService paymentService) {
+    public Payment(AuthToken authToken, DataSource dataSource, Mail mail, PaymentService paymentService) {
         this.authToken = authToken;
         this.dataSource = dataSource;
         this.paymentService = paymentService;
+        this.mail = mail;
     }
 
 
     @PostMapping("authorize")
-    public ResponseEntity<String> authorize(@RequestBody PaymentRequest request) {
+    public ResponseEntity<String> authorize(HttpServletRequest http, @RequestBody PaymentRequest request) {
 
         try {
 
@@ -99,6 +104,11 @@ public class Payment {
 
 
 
+            var user = dataSource.getUserDao()
+                    .findByPrimaryKey(authToken.getUserId())
+                    .orElseThrow(() -> new ApiResponseStatus(502));
+
+            mail.sendUserPayment(http, http.getSession(), user.getId(), user.getMail(), request.getOrderId());
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

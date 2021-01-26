@@ -26,6 +26,7 @@
 package it.bioagri.utils;
 
 import ch.qos.logback.classic.Logger;
+import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.Auth;
 import it.bioagri.web.Locale;
 import org.slf4j.LoggerFactory;
@@ -96,5 +97,18 @@ public class Mail {
         );
 
     }
+
+
+    public void sendUserPayment(ServletRequest request, HttpSession session, Long userId, String to, Long orderId) {
+
+        send(
+                to,
+                locale.getCurrentLocale(request, session).get("mail_user_payment_subject"),
+                locale.getCurrentLocale(request, session).get("mail_user_payment_content"),
+                orderId, request.getRemoteHost()
+        );
+
+    }
+
 
 }
