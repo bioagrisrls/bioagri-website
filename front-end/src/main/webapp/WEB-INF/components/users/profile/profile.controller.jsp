@@ -60,7 +60,7 @@
                                 remove:         '${locale.profile_remove}',
                                 remove_warn:    '${locale.profile_remove_warn}',
                                 logout:         '${locale.profile_logout}',
-                                logout_warn:    '${locale.profile_logout_warn}'
+                                logout_warn:    '${locale.profile_logout_warn}',
                             }
 
                         }
