@@ -172,7 +172,7 @@
 
                         ?>
                             <div class="form-floating {{v.style || ''}}">
-                                <label class="form-label" for="{{this.id}}-{{k}}">{{v.label || ''}}</label>
+                                <label for="{{this.id}}-{{k}}">{{v.label || ''}}</label>
                                 <select id="{{this.id}}-{{k}}" class="form-control py-3" type="text" {{getprops(v)}} onchange="$$.$check(this)" >
                                     <? for(let i of v.options) { ?>
                                         <option value="{{i.value}}">{{i.key}}</option>
