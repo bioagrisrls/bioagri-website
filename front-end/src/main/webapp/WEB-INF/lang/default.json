@@ -295,9 +295,9 @@
   "profile_password_new" : "Nuova password",
   "profile_password_save" : "Reimposta password",
   "profile_remove" : "Elimina profilo",
-  "profile_remove_warn" : "Attenzione! Cliccando su Elimina profilo confermi l'eliminazione dell'account, e tutti i dati ad esso associati",
-  "profile_logout" : "Disconneti",
-  "profile_logout_warn" : "Premi il tasto Disconneti per uscire dal tuo account",
+  "profile_remove_warn" : "Attenzione! Cliccando su Elimina profilo confermi l\\'eliminazione dell'account, e tutti i dati ad esso associati",
+  "profile_logout" : "Disconnetti",
+  "profile_logout_warn" : "Premi il tasto Disconnetti per uscire dal tuo account",
 
   "profile_name" : "Nome",
   "profile_surname" : "Cognome",
