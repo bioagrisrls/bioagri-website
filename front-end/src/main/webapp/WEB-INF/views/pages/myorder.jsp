@@ -30,7 +30,7 @@
 <section id="ui-navigation-container" ui-title="${locale.page_myorder} &ndash; ${locale.info_title}">
 
     <!-- Navigation Bar -->
-    <ui-navbar id="ui-navbar" ui:current="myorder"></ui-navbar>
+    <ui-navbar id="ui-navbar"></ui-navbar>
 
 
     <br>
@@ -63,6 +63,6 @@
 
 
     <!-- Footer -->
-    <ui-footer id="ui-footer" ui:current="myorder"></ui-footer>
+    <ui-footer id="ui-footer"></ui-footer>
 
 </section>
