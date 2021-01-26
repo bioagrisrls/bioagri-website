@@ -48,6 +48,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 
 @RestController
@@ -60,15 +62,13 @@ public final class Auth {
     private final AuthService authService;
     private final DataSource dataSource;
     private final ServletContext servletContext;
-    private final Mail mail;
 
     @Autowired
-    public Auth(AuthToken authToken, AuthService authService, DataSource dataSource, ServletContext servletContext, Mail mail) {
+    public Auth(AuthToken authToken, AuthService authService, DataSource dataSource, ServletContext servletContext) {
         this.authToken = authToken;
         this.authService= authService;
         this.dataSource = dataSource;
         this.servletContext = servletContext;
-        this.mail = mail;
     }
 
 
@@ -175,8 +175,6 @@ public final class Auth {
             throw new ApiResponseStatus(406);
 
 
-        mail.sendUserRegistration(request, request.getSession(), user.getId(), user.getMail());
-
 
         try {
 
@@ -192,5 +190,43 @@ public final class Auth {
 
 
     }
+
+
+
+
+    @PostMapping("/active")
+    @ApiPermissionPublic
+    public ResponseEntity<String> active(@RequestBody AuthActiveRequest request) {
+
+        // TODO: check auth code...
+
+        var user = dataSource.getUserDao()
+                .findByPrimaryKey(request.getId())
+                .orElseThrow(() -> new ApiResponseStatus(404));
+
+        dataSource.getUserDao().update(user, new User(
+                user.getId(),
+                user.getMail(),
+                user.getPassword(),
+                UserStatus.ACTIVE,
+                user.getRole(),
+                user.getName(),
+                user.getSurname(),
+                user.getGender(),
+                user.getPhone(),
+                user.getBirth(),
+                user.getAuth(),
+                user.getCreatedAt(),
+                Timestamp.from(Instant.now()),
+                null,
+                null,
+                null
+        ));
+
+
+        return ResponseEntity.ok().build();
+
+    }
+
 
 }

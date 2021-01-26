@@ -43,8 +43,8 @@
                     </ul>
 
                     <div class="ui-side-menu-content-icons">
-                        <span onclick="window.components['ui-navbar'].onAccountClicked()" class="mdi mdi-48px mdi-account-outline"></span>
-                        <span onclick="window.components['ui-navbar'].onShoppingClicked()" class="mdi mdi-48px mdi-cart-outline"></span>
+                        <span data-bs-dismiss="modal" onclick="window.components['ui-navbar'].onAccountClicked()" class="mdi mdi-48px mdi-account-outline"></span>
+                        <span data-bs-dismiss="modal" onclick="window.components['ui-navbar'].onShoppingClicked()" class="mdi mdi-48px mdi-cart-outline"></span>
                         <span onclick="window.components['ui-navbar'].onDarkModeSwitched()" class="mdi mdi-48px mdi-lightbulb-outline"></span>
                     </div>
 

@@ -51,7 +51,7 @@
                     <hr>
                     <div class="text-center">
                         <h3>${locale.auth_promo}</h3>
-                        <button class="btn btn-primary btn-block">${locale.auth_subscribe}</button>
+                        <button onclick="navigate('/registration')" data-bs-dismiss="modal" class="btn btn-primary btn-block">${locale.auth_subscribe}</button>
                     </div>
                 `,
 

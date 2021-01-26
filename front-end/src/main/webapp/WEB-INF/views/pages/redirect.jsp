@@ -29,7 +29,7 @@
 
 
 
-<section id="ui-navigation-container" ui-title="${locale.page_about} &ndash; ${locale.info_title}">
+<section id="ui-navigation-container" ui-title="${locale.page_redirect} &ndash; ${locale.info_title}">
 
     <!-- Navigation Bar -->
     <ui-navbar id="ui-navbar" ui:current="about"></ui-navbar>
@@ -90,17 +90,17 @@
 
         if(q !== '') {
 
-            const i = JSON.parse(btoa(q));
+            const i = JSON.parse(atob(q));
             const { id, type, auth } = i;
 
 
             switch (type) {
 
-                case '<<REDIRECT_TYPE_USER_ACTIVATE>>':
+                case 'REDIRECT_TYPE_USER_ACTIVATE':
 
-                    return api('/users/' + id + '/active', 'POST', { auth }, 'raw')
+                    return api('/auth/active', 'POST', { id: id, auth: auth }, 'raw')
                         .finally(() => {
-                            setTimeout(() => window.location = '/home', 5000);
+                            setTimeout(() => window.location = '/home', 3000);
                         });
 
 
