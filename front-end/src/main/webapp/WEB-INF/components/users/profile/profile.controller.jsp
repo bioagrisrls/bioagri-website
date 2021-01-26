@@ -45,15 +45,22 @@
 
                             strings: {
                                 account:        '${locale.profile_account}',
-                                name:        '${locale.profile_account}',
-                                account:        '${locale.profile_account}',
-                                account:        '${locale.profile_account}',
+                                name:           '${locale.profile_name}',
+                                surname:        '${locale.profile_surname}',
+                                mail:           '${locale.profile_mail}',
+                                gender:         '${locale.profile_gender}',
+                                phone:          '${locale.profile_phone}',
+                                birth:          '${locale.profile_birth}',
+                                status:         '${locale.profile_status}',
                                 details:        '${locale.profile_details}',
                                 password:       '${locale.profile_password}',
                                 password_old:   '${locale.profile_password_old}',
                                 password_new:   '${locale.profile_password_new}',
+                                password_save:  '${locale.profile_password_save}',
                                 remove:         '${locale.profile_remove}',
-                                logout:         '${locale.profile_logout}'
+                                remove_warn:    '${locale.profile_remove_warn}',
+                                logout:         '${locale.profile_logout}',
+                                logout_warn:    '${locale.profile_logout_warn}'
                             }
 
                         }
@@ -65,15 +72,24 @@
         }
 
 
-        remove() {
+        onReady(state) {
+            super.onReady(state);
 
-            api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id'), 'DELETE', {}, 'raw')
-                .then(() => disconnect());
+            new bootstrap.ScrollSpy(document.querySelector('#' + this.id + '-content'), {
+                target: '#' + this.id + '-side'
+            });
 
         }
 
         onRender() {
             return `${components.users_profile}`;
+        }
+
+
+
+        remove() {
+            api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id'), 'DELETE', {}, 'raw')
+                .then(() => disconnect());
         }
 
 
