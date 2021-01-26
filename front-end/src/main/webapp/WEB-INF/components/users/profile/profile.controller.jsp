@@ -75,7 +75,22 @@
         onReady(state) {
             super.onReady(state);
 
+            window.addEventListener('scroll', () => {
 
+                if(!this.running)
+                    return;
+
+
+                $('#' + this.id + '-side').find('a').each(e => {
+
+                    console.log(e);
+
+                    if(window.scrollY > $(e.href).position().top)
+                        e.classList.add('active');
+
+                });
+
+            });
 
         }
 
