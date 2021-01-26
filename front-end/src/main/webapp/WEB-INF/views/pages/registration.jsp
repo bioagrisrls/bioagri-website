@@ -47,7 +47,7 @@
         <br>
         <br>
 
-        <div class="ui-container">
+        <div class="ui-container text-dark">
             <div class="bg-light shadow border w-100 w-lg-50 mx-auto my-5" ui-animated="backInUp">
                 <div class="my-5">
 
