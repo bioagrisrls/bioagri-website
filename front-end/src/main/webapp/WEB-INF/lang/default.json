@@ -294,6 +294,14 @@
   "profile_password_old" : "Vecchia password",
   "profile_password_new" : "Nuova password",
   "profile_remove" : "Elimina profilo",
-  "profile_logout" : "Disconnetiti"
+  "profile_logout" : "Disconnetiti",
+
+  "profile_name" : "Nome",
+  "profile_surname" : "Cognome",
+  "profile_mail" : "E-mail",
+  "profile_gender" : "Sesso",
+  "profile_phone" : "Recapito telefonico",
+  "profile_birth" : "Data di nascita",
+  "profile_status" : "Stato"
 
 }
