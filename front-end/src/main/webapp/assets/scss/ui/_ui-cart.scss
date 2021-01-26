@@ -93,8 +93,12 @@
           .ui-cart-product {
             @extend .col-lg;
 
-            .ui-card-image {
-              @extend .col-1;
+            ui-card {
+              .ui-card-image {
+                @extend .col-auto;
+                width: 128px;
+                height: 128px;
+              }
             }
           }
 
