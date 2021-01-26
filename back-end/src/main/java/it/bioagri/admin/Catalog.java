@@ -60,7 +60,6 @@ public class Catalog {
     @PostMapping("/admin/form/product")
     public void save(
 
-            HttpServletRequest request,
             HttpServletResponse response,
             @RequestParam String name,
             @RequestParam String description,
@@ -70,9 +69,9 @@ public class Catalog {
             @RequestParam Float discount,
             @RequestParam ProductStatus status
 
-    ) {
+    ) throws IOException {
 
-        try {
+
             dataSource.getProductDao().save(
 
                     new Product(
@@ -95,13 +94,61 @@ public class Catalog {
 
             response.sendRedirect("/admin/dashboard");
 
-        }
-        catch (RuntimeException t) {
-            t.printStackTrace();
-        }  catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
     }
+
+    @PostMapping("/admin/delete/product")
+    public void delete(@RequestParam long id, HttpServletResponse response) throws IOException {
+
+        dataSource.getProductDao().delete(dataSource.getProductDao().findByPrimaryKey(id).get());
+
+        response.sendRedirect("/admin/dashboard");
+
+    }
+
+
+    @PostMapping("/admin/update/product")
+    public void update(
+
+            HttpServletResponse response,
+            @RequestParam long id,
+            @RequestParam String name,
+            @RequestParam String description,
+            @RequestParam Float price,
+            @RequestParam Integer stock,
+            @RequestParam String info,
+            @RequestParam Float discount,
+            @RequestParam ProductStatus status
+
+    ) throws IOException {
+
+
+        dataSource.getProductDao().update(dataSource.getProductDao().findByPrimaryKey(id).get(),
+
+                new Product(
+                        id,
+                        name,
+                        description,
+                        info,
+                        price,
+                        discount,
+                        stock,
+                        status,
+                        Timestamp.from(Instant.now()),
+                        Timestamp.from(Instant.now()),
+                        null,
+                        null,
+                        null
+                )
+
+        );
+
+        response.sendRedirect("/admin/dashboard");
+
+
+
+    }
+
 
 }
