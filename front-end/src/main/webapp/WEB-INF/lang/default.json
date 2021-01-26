@@ -293,7 +293,7 @@
   "profile_password" : "Password",
   "profile_password_old" : "Vecchia password",
   "profile_password_new" : "Nuova password",
-  "profile_delete" : "Elimina profilo",
+  "profile_remove" : "Elimina profilo",
   "profile_logout" : "Disconnetiti"
 
 }
