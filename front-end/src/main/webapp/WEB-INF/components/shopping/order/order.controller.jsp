@@ -47,12 +47,13 @@
                                         products: products || [],
 
                                         strings: {
-                                            empty: `${locale.order_empty}`,
-                                            title: `${locale.order_title}`,
-                                            number: '${locale.order_number}',
-                                            date:  '${locale.order_date}',
-                                            status: '${locale.order_status}',
-                                            quantity: '${locale.order_quantity}',
+                                            empty:      `${locale.order_empty}`,
+                                            title:      `${locale.order_title}`,
+                                            number:     `${locale.order_number}`,
+                                            date:       `${locale.order_date}`,
+                                            status:     `${locale.order_status}`,
+                                            quantity:   `${locale.order_quantity}`,
+                                            review:     `${locale.details_feedbacks_write}`
                                         }
                                     }
 
@@ -64,8 +65,35 @@
 
         }
 
+
         onRender() {
             return `${components.shopping_order}`;
+        }
+
+
+
+        /**
+         * Write a new review.
+         */
+        review(id) {
+
+            authenticated()
+                .then(() => api('/products/' + id))
+                .then((product) => Component.render(Component.dummy(), `${components.products_review}`, {
+                    id: product.id,
+                    name: product.name,
+                    success: `${locale.review_form_success}`
+                }))
+
+                .catch(reason => {
+
+                    if(reason === 'purchase-first')
+                        Component.render(Component.dummy(), `${components.common_notify}`, { message: '${locale.review_purchase_first}' });
+                    else
+                        requestUserAuthentication()
+
+                });
+
         }
 
 

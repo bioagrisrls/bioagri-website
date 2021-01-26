@@ -53,11 +53,14 @@
     .ui-order-item {
 
       @extend .row;
+      @extend .gx-0;
+      @extend .py-3;
       @extend .bg-light;
 
       .ui-order-item-date {
 
         @extend .col-4;
+        @extend .px-5;
 
         h4 {
           @extend .ui-font-title-primary;
@@ -84,6 +87,7 @@
       .ui-order-item-number {
 
         @extend .col-4;
+        @extend .px-5;
         @extend .text-end;
 
         h4 {
@@ -159,7 +163,7 @@
             h5 {
               @extend .d-block;
               @extend .ui-font-title-primary;
-              @extend .fs-3;
+              @extend .fs-5;
             }
 
             button {
@@ -167,11 +171,8 @@
               @extend .btn;
               @extend .btn-lg;
               @extend .btn-primary;
-
-              span {
-                @extend .ui-font-title-primary;
-                @extend .fs-5;
-              }
+              @extend .ui-font-title-primary;
+              @extend .fs-5;
 
             }
 

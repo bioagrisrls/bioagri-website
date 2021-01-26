@@ -87,7 +87,8 @@
                                         </div>
 
                                         <div class="ui-product-quantity">
-                                            <h5>{{strings.quantity}}{{qt}}</h5>
+                                            <h5>{{strings.quantity}}: {{qt}}</h5>
+                                            <button onclick="$$.review({{id}})"><span class="mdi mdi-18px mdi-message-draw"></span> {{strings.review}}</button>
                                         </div>
 
                                     </div>
