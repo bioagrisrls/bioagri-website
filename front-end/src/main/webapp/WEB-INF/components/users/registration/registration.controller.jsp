@@ -44,11 +44,6 @@
                         <button class="btn-auth-facebook"><span class="mdi mdi-facebook"></span></button>
                         <button class="btn-auth-twitter"><span class="mdi mdi-twitter"></span></button>
                     </div>
-                    <hr>
-                    <div class="text-center">
-                        <h3>${locale.auth_promo}</h3>
-                        <button class="btn btn-primary btn-block">${locale.auth_subscribe}</button>
-                    </div>
                 `,
 
                 $submit: {

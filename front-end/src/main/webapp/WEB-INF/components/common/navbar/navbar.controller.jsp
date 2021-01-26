@@ -53,7 +53,7 @@
                 total: `${locale.nav_shopping_cart_total}`,
                 cartOrder: `${locale.nav_shopping_cart_order}`,
                 clear: `${locale.nav_shopping_cart_clear}`,
-                article: `${locale.nav_shopping_cart_article}`,
+                article: `${locale.nav_shopping_cart_article}`
 
             });
         }

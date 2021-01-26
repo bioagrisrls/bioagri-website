@@ -84,7 +84,7 @@ public class Mail {
                 {
                     "id"   : "%s",
                     "auth" : "%s",
-                    "type" : "<<REDIRECT_TYPE_USER_ACTIVATE>>"
+                    "type" : "REDIRECT_TYPE_USER_ACTIVATE"
                 }
                 """.formatted(userId, "");  // TODO: Generate auth code
 

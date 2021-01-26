@@ -34,6 +34,7 @@ import it.bioagri.models.UserStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import it.bioagri.utils.ApiRequestQuery;
+import it.bioagri.utils.Mail;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,11 +57,14 @@ public class Users {
 
     private final AuthToken authToken;
     private final DataSource dataSource;
+    private final Mail mail;
+
 
     @Autowired
-    public Users(AuthToken authToken, DataSource dataSource) {
+    public Users(AuthToken authToken, DataSource dataSource, Mail mail) {
         this.authToken = authToken;
         this.dataSource = dataSource;
+        this.mail = mail;
     }
 
 
@@ -123,6 +127,11 @@ public class Users {
             user.setId(dataSource.getId("shop_user", Long.class));
 
             dataSource.getUserDao().save(user);
+
+
+            if(user.getStatus().equals(UserStatus.WAIT_FOR_MAIL))
+                mail.sendUserRegistration(request, request.getSession(), user.getId(), user.getMail());
+
 
         } catch (DataSourceSQLException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -195,42 +204,6 @@ public class Users {
         }
 
         return ResponseEntity.noContent().build();
-
-    }
-
-
-
-    @PostMapping("/{id}/active")
-    @ApiPermissionPublic
-    public ResponseEntity<String> update(@PathVariable Long id, @RequestParam String auth) {
-
-        // TODO: check auth code...
-
-        var user = dataSource.getUserDao()
-                .findByPrimaryKey(id)
-                .orElseThrow(() -> new ApiResponseStatus(404));
-
-        dataSource.getUserDao().update(user, new User(
-                user.getId(),
-                user.getMail(),
-                user.getPassword(),
-                UserStatus.ACTIVE,
-                user.getRole(),
-                user.getName(),
-                user.getSurname(),
-                user.getGender(),
-                user.getPhone(),
-                user.getBirth(),
-                user.getAuth(),
-                user.getCreatedAt(),
-                Timestamp.from(Instant.now()),
-                null,
-                null,
-                null
-        ));
-
-
-        return ResponseEntity.ok().build();
 
     }
 

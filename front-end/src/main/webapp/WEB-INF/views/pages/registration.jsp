@@ -62,37 +62,18 @@
 
                     <!-- Registration Logo -->
                     <div class="d-flex justify-content-center pt-4">
-                        <img src="${ locale.nav_logo }" width="64" height="64" />
+                        <img src="${locale.nav_logo}" width="64" height="64" />
                     </div>
 
                     <!-- Registration Slogan -->
-                    <h4 class="text-center display-6">${ locale.registration_slogan_title }</h4>
-                    <p class="text-center display-7">${ locale.registration_slogan_subtitle }</p>
+                    <h4 class="text-center display-6">${locale.registration_slogan_title}</h4>
+                    <p class="text-center display-7">${locale.registration_slogan_subtitle}</p>
 
                     <div class="p-5">
 
                         <!-- Registration Form -->
                         <ui-registration id="ui-registration"></ui-registration>
 
-                        <!-- Other Access -->
-                        <div class="d-flex justify-content-center">
-                            <ul class="list-unstyled">
-
-                                <li>
-                                    <h6 class="text-center display-8 pb-3">${ locale.registration_body }</h6>
-                                </li>
-
-                                <!-- Google -->
-                                <li>
-                                    <button type="button" class="btn btn-primary" onclick="googleAuthenticate('ui-registration')">Accedi con Google</button>
-                                </li>
-
-                                <!-- Facebook -->
-
-                                <!-- Instagram -->
-
-                            </ul>
-                        </div>
                     </div>
 
                 </div>
