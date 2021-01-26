@@ -81,14 +81,18 @@
                     return;
 
 
-                $('#' + this.id + '-side').find('a').each(e => {
+                let active = undefined;
 
-                    console.log(e);
+                $('#' + this.id + '-side').find('a').each((i, e) => {
 
-                    if(window.scrollY > $(e.href).position().top)
-                        e.classList.add('active');
+                    e.classList.remove('active');
+
+                    if(window.scrollY + window.innerHeight / 4 > $(e.href.substr(e.href.indexOf('#'))).position().top)
+                        active = e;
 
                 });
+
+                active.classList.add('active');
 
             });
 
