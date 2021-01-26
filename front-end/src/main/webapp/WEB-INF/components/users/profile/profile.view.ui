@@ -36,7 +36,6 @@
         { key: strings.status,  value: user.status  },
     ];
 
-
 ?>
 
 <div class="ui-profile">
