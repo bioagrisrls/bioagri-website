@@ -24,6 +24,21 @@
   -->
 
 
+<?
+
+    const details = [
+        { key: strings.name,    value: user.name    },
+        { key: strings.surname, value: user.surname },
+        { key: strings.mail,    value: user.mail    },
+        { key: strings.gender,  value: user.gender  },
+        { key: strings.phone,   value: user.phone   },
+        { key: strings.birth,   value: user.birth   },
+        { key: strings.status,  value: user.status  },
+    ];
+
+
+?>
+
 <div class="ui-profile">
     <div class="ui-profile-side">
 
@@ -32,21 +47,103 @@
         </div>
 
         <div class="ui-profile-side-menu">
-            <button onclick="$$.state = { current: 'details'  }">Dettagli</button>
-            <button onclick="$$.state = { current: 'password' }">Reimposta Password</button>
-            <button onclick="$$.state = { current: 'delete'   }">Elimina Account</button>
-            <button onclick="$$.state = { current: 'log-out'  }">Esci</button>
+            <a href="#{{this.id}}-details">{{strings.details}}</a>
+            <a href="#{{this.id}}-password">{{strings.password}}</a>
+            <a href="#{{this.id}}-delete">{{strings.delete}}</a>
+            <a href="#{{this.id}}-logout">{{strings.logout}}</a>
         </div>
 
 
     </div>
     <div class="ui-profile-content">
 
-        <div class="ui-profile-content-header">
+        <div class="ui-profile-content-items">
+
+            <h1 id="#{{this.id}}-details">{{strings.details}}</h1>
+
+            <? details.forEach(i => { ?>
+
+                <div class="ui-profile-content-item">
+                    <div class="ui-profile-content-label">
+                        <p>{{i.key}}</p>
+                    </div>
+
+                    <div class="ui-profile-content-value">
+                        <p>{{i.value}}</p>
+                    </div>
+                </div>
+
+            <? }); ?>
 
         </div>
 
-        <div class="ui-profile-content-body">
+        <div class="ui-profile-content-items">
+
+            <h1 id="#{{this.id}}-password">{{strings.password}}</h1>
+
+
+            <div class="ui-profile-content-item">
+
+                <div class="ui-profile-content-label">
+                    <p>{{strings.password_old}}</p>
+                </div>
+
+                <div class="ui-profile-content-value">
+                    <input type="password" minlength="8" autocomplete="password" />
+                </div>
+
+            </div>
+
+            <div class="ui-profile-content-item">
+
+                <div class="ui-profile-content-label">
+                    <p>{{strings.password_new}}</p>
+                </div>
+
+                <div class="ui-profile-content-value">
+                    <input type="password" minlength="8" autocomplete="new-password" />
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="ui-profile-content-items">
+
+            <h1 id="#{{this.id}}-delete">{{strings.delete}}</h1>
+
+
+            <div class="ui-profile-content-item">
+
+                <div class="ui-profile-content-label">
+                    <p>{{strings.delete}}</p>
+                </div>
+
+                <div class="ui-profile-content-value">
+                    <button onclick="$$.delete()">{{strings.delete}}</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="ui-profile-content-items">
+
+            <h1 id="#{{this.id}}-logout">{{strings.logout}}</h1>
+
+
+            <div class="ui-profile-content-item">
+
+                <div class="ui-profile-content-label">
+                    <p>{{strings.logout}}</p>
+                </div>
+
+                <div class="ui-profile-content-value">
+                    <button onclick="disconnect()">{{strings.logout}}</button>
+                </div>
+
+            </div>
 
         </div>
 
