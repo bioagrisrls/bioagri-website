@@ -1,4 +1,4 @@
-<!--
+<%--
   ~ MIT License
   ~
   ~ Copyright (c) 2020 BioAgri S.r.l.s.
@@ -21,36 +21,48 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  -->
+  --%>
 
-<div class="ui-side-menu fade" id="{{this.id}}-modal">
-    <div class="modal-dialog ui-side-menu-container">
+<%--@elvariable id="components" type="java.util.Map"--%>
+<%--@elvariable id="locale" type="java.util.Map"--%>
+<%--@elvariable id="reference" type="java.lang.String"--%>
 
-        <div class="ui-side-menu-content vw-100">
+<section id="ui-navigation-container" ui-title="${locale.page_myorder} &ndash; ${locale.info_title}">
 
-            <div class="text-end p-3">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+    <!-- Navigation Bar -->
+    <ui-navbar id="ui-navbar" ui:current="myorder"></ui-navbar>
 
-            <div class="ui-wish-container">
-                <ui-wish id="{{this.id}}-wish"></ui-wish>
-            </div>
-        </div>
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <div class="mx-5" ui-animated="slideInLeft">
+
+        <!-- Breadcrumb -->
+        <ui-breadcrumb id="ui-breadcrumb-14" ui:current="${locale.page_myorder}"></ui-breadcrumb>
 
     </div>
-</div>
 
 
-<script>
 
-    (() => {
+    <!-- My Order -->
+    <section ui-animated>
 
-        const el = document.getElementById('{{this.id}}-modal');
-        const md = new bootstrap.Modal(el, {});
 
-        md.show();
+        <br>
+        <br>
 
-    }) ();
+        <ui-order id="{{this.id}}-order"></ui-order>
 
-</script>
+    </section>
+
+
+    <!-- Footer -->
+    <ui-footer id="ui-footer" ui:current="myorder"></ui-footer>
+
+</section>

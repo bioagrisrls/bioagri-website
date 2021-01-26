@@ -47,6 +47,8 @@
   "page_checkout" : "Checkout",
   "page_details" : "Dettagli Prodotto",
   "page_redirect" : "Redirect",
+  "page_myorder" : "I miei ordini",
+  "page_mywish" : "La mia lista dei desideri",
 
   "nav_logo" : "/assets/img/logo/logo-extended.png",
   "nav_home" : "Home",
