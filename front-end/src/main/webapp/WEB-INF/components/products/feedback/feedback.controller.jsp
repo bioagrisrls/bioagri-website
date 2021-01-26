@@ -68,7 +68,7 @@
 
         onReady(state) {
 
-            Promise.all((state.feedbacks || []).map(i => api('/feedbacks/' + i.userId + '/owner')))
+            Promise.all((state.feedbacks || []).map(i => api('/feedbacks/' + i.id + '/owner')))
                 .then(response => {
                     this.state = {
                         users: response
@@ -89,7 +89,7 @@
                 .then(() => {
 
                     return Promise.all(
-                        this.state.feedbacks.map(i => api('/feedbacks/' + i.userId + '/owner')
+                        this.state.feedbacks.map(i => api('/feedbacks/' + i.id + '/owner')
                             .then(user => this.state.users.push(user))
                         )
                     );

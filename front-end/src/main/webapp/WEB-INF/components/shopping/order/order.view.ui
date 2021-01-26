@@ -31,7 +31,7 @@
 
     <div class="ui-order-body">
 
-        <? if(+orders.lenght > 0) { ?>
+        <? if(+orders.length === 0) { ?>
 
             <div class="ui-order-empty">
                 <img src="/assets/img/common/404.png" alt="">
