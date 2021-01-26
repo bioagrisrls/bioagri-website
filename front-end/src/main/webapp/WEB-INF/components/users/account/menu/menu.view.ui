@@ -36,10 +36,10 @@
             <div class="row vh-100 align-items-center justify-content-center">
                 <div class="col-auto">
                     <ul>
-                        <li><a data-bs-dismiss="modal" onclick="navigate('/')"><span>Il mio account</span></a></li>
-                        <li><a data-bs-dismiss="modal" onclick="window.components['ui-navbar'].onOrderClicked()"><span>I miei ordini</span></a></li>
-                        <li><a data-bs-dismiss="modal" onclick="window.components['ui-navbar'].onWishClicked()"><span>La mia lista desideri</span></a></li>
-                        <li><a data-bs-dismiss="modal" onclick="disconnect(true)"><span>Esci</span></a></li>
+                        <li><a data-bs-dismiss="modal" onclick="navigate('/myaccount')"><span>{{userAccount}}</span></a></li>
+                        <li><a data-bs-dismiss="modal" onclick="navigate('/myorder')"><span>{{userOrder}}</span></a></li>
+                        <li><a data-bs-dismiss="modal" onclick="navigate('/mywish')"><span>{{userWish}}</span></a></li>
+                        <li><a data-bs-dismiss="modal" onclick="disconnect(true)"><span>{{userExit}}</span></a></li>
                     </ul>
                 </div>
             </div>
