@@ -1,0 +1,54 @@
+<!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2020 BioAgri S.r.l.s.
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  ~
+  -->
+
+
+<div class="ui-profile">
+    <div class="ui-profile-side">
+
+        <div class="ui-profile-side-header">
+            <h1><span class="mdi mdi-24px mdi-cog"></span> {{strings.account}}</h1>
+        </div>
+
+        <div class="ui-profile-side-menu">
+            <button onclick="$$.state = { current: 'details'  }">Dettagli</button>
+            <button onclick="$$.state = { current: 'password' }">Reimposta Password</button>
+            <button onclick="$$.state = { current: 'delete'   }">Elimina Account</button>
+            <button onclick="$$.state = { current: 'log-out'  }">Esci</button>
+        </div>
+
+
+    </div>
+    <div class="ui-profile-content">
+
+        <div class="ui-profile-content-header">
+
+        </div>
+
+        <div class="ui-profile-content-body">
+
+        </div>
+
+    </div>
+</div>

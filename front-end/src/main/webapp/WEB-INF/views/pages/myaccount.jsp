@@ -56,7 +56,7 @@
         <br>
         <br>
 
-        <ui-account id="ui-account"></ui-account>
+        <ui-profile id="ui-profile"></ui-profile>
 
     </section>
 
