@@ -23,5 +23,47 @@
  *
  */
 
+.ui-profile {
 
+  @extend .w-100;
+  @extend .h-100;
+  @extend .text-dark;
+  @extend .bg-white;
+
+  .ui-profile-side {
+
+    .ui-profile-side-header {
+
+      h1 {
+        @extend .ui-font-title-primary;
+      }
+    }
+
+    .ui-profile-side-menu {
+
+      button {
+        @extend .btn;
+        @extend .btn-lg;
+        @extend .btn-primary;
+        @extend .ui-font-title-primary;
+        @extend .fs-5;
+      }
+
+    }
+
+  }
+
+  .ui-profile-content {
+
+    .ui-profile-content-header {
+
+    }
+
+    .ui-profile-content-body {
+
+    }
+
+  }
+
+}
 
