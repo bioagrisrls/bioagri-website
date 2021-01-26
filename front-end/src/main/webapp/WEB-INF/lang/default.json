@@ -49,6 +49,7 @@
   "page_redirect" : "Redirect",
   "page_myorder" : "I miei ordini",
   "page_mywish" : "La mia lista dei desideri",
+  "page_myaccount" : "Il mio account",
 
   "nav_logo" : "/assets/img/logo/logo-extended.png",
   "nav_home" : "Home",
