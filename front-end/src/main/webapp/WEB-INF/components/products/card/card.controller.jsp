@@ -153,6 +153,7 @@
                 authenticated()
                     .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + this.state.product.id, 'POST', {}, 'raw').catch(() => {}))
                     .then(() => Component.render(Component.dummy(), `${components.common_notify}`, { message: '<span class="mdi mdi-18px mdi-heart-plus"></span> ${locale.wish_add}' }))
+                    .then(() => this.raise('wish-add'))
                     .catch(() => requestUserAuthentication());
 
             } else {
@@ -160,6 +161,7 @@
                 authenticated()
                     .then(() => api('/users/' + sessionStorage.getItem('X-Auth-UserInfo-Id') + '/wishlist/' + this.state.product.id, 'DELETE', {}, 'raw').catch(() => {}))
                     .then(() => Component.render(Component.dummy(), `${components.common_notify}`, { message: '<span class="mdi mdi-18px mdi-heart-minus"></span> ${locale.wish_remove}' }))
+                    .then(() => this.raise('wish-remove'))
                     .catch(() => requestUserAuthentication());
 
             }

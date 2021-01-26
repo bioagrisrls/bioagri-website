@@ -193,8 +193,14 @@ class Component {
      */
     raise(event) {
 
-        if(event in this.events)
-            return new Function(this.events[event]).apply(this);
+        try {
+
+            if (event in this.events)
+                return new Function(this.events[event]).apply(this);
+
+        } catch (e) {
+            console.error('Unhandled exception on', event, e);
+        }
 
         return false;
 

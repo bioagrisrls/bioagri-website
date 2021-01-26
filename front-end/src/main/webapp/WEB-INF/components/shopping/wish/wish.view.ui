@@ -32,7 +32,7 @@
     <div class="ui-wish-body">
         <div class="ui-wish-products">
 
-            <? if(products.lenght === 0) { ?>
+            <? if(products.length === 0) { ?>
 
                 <div class="ui-wish-empty">
                     <img src="/assets/img/common/404.png" alt="">
@@ -43,17 +43,18 @@
 
                 <div class="ui-wish-items">
 
-                    <? for (let i of products) { ?>
+                    <? products.forEach((i, j) => { ?>
 
                         <div class="ui-wish-item">
                             <div class="ui-wish-product">
                                 <ui-card id="{{this.id}}-card-{{i.id}}"
                                          ui:id="{{i.id}}"
-                                         ui:view="row"></ui-card>
+                                         ui:view="row"
+                                         ui:on-wish-remove="$$.state = { products: $$.state.products.filter(k => k.id != {{i.id}}) }"></ui-card>
                             </div>
                         </div>
 
-                    <? } ?>
+                    <? }); ?>
 
                 </div>
 
