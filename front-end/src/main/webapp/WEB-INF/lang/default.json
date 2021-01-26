@@ -46,6 +46,7 @@
   "page_registration" : "Registrazione",
   "page_checkout" : "Checkout",
   "page_details" : "Dettagli Prodotto",
+  "page_redirect" : "Redirect",
 
   "nav_logo" : "/assets/img/logo/logo-extended.png",
   "nav_home" : "Home",
