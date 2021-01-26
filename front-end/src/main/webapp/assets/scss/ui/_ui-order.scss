@@ -58,7 +58,7 @@
       .ui-order-item-date{
 
         @extend .col;
-        @extend .col-3;
+        @extend .col-4;
 
         h4 {
           @extend .ui-font-title-primary;
@@ -68,7 +68,7 @@
       .ui-order-item-status{
 
         @extend .col;
-        @extend .col-3;
+        @extend .col-4;
 
         h4 {
           @extend .ui-font-title-primary;
@@ -78,7 +78,8 @@
       .ui-order-item-number{
 
         @extend .col;
-        @extend .col-3;
+        @extend .col-4;
+        @extend .text-end;
 
         h4 {
           @extend .ui-font-title-primary;
@@ -87,38 +88,38 @@
 
     }
 
-    .ui-order-products {
+    .ui-order-empty {
+
+      @extend .w-100;
+      @extend .text-center;
+
+      animation: fadeIn 0.4s linear;
+
+      p {
+        @extend .text-muted;
+        @extend .ui-font-title-primary;
+        @extend .fs-4;
+      }
+
+      img {
+        @extend .my-2;
+        @extend .w-100;
+        @extend .w-sm-auto;
+        max-height: 490px;
+      }
+
+    }
+
+    .ui-order-products-body {
 
       @extend .row;
       @extend .gx-0;
 
-      .ui-order-products-item {
+      .ui-order-products {
 
         @extend .col-lg-9;
 
-        .ui-order-empty {
-
-          @extend .w-100;
-          @extend .text-center;
-
-          animation: fadeIn 0.4s linear;
-
-          p {
-            @extend .text-muted;
-            @extend .ui-font-title-primary;
-            @extend .fs-4;
-          }
-
-          img {
-            @extend .my-2;
-            @extend .w-100;
-            @extend .w-sm-auto;
-            max-height: 490px;
-          }
-
-        }
-
-        .ui-product-items {
+        .ui-order-products-items {
 
           @extend .px-5;
           @extend .py-5;
@@ -130,25 +131,24 @@
             @extend .py-3;
             @extend .border-bottom;
 
-            .ui-product-product {
+            .ui-order-product {
               @extend .col-lg;
 
-              .ui-product-image {
+              .ui-card-image {
                 @extend .col-1;
               }
             }
+          }
 
-            .ui-product-quantity {
+          .ui-product-quantity {
 
-              @extend .col-lg-auto;
-              @extend .text-end;
+            @extend .col-lg-auto;
+            @extend .text-end;
 
-              h5 {
-                @extend .d-block;
-                @extend .ui-font-title-primary;
-                @extend .fs-3;
-              }
-
+            h5 {
+              @extend .d-block;
+              @extend .ui-font-title-primary;
+              @extend .fs-3;
             }
 
           }

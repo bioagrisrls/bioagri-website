@@ -31,61 +31,78 @@
 
     <div class="ui-order-body">
 
-        <? orders.forEach((e, i) => { ?>
+        <? if(+orders.lenght > 0) { ?>
 
-            <?
-                const date = new Date(+e.createdAt);
-                const year = date.getFullYear();
-                const month = (date.getMonth() + 1).toString().padStart(2, '0');
-                const day = date.getDate().toString().padStart(2, '0');
-                const compatted = day + '/' + month + '/' + year;
-            ?>
-
-            <div class="ui-order-item">
-
-                <div class="ui-order-item-date">
-                    <h4>{{strings.date}}:</h4>
-                    <h4>{{compatted}}</h4>
-                </div>
-
-                <div class="ui-order-item-status">
-                    <h4>{{strings.status}}</h4>
-                    <h4>{{e.status}}</h4>
-                </div>
-
-                <div class="ui-order-item-number">
-                    <h4>{{strings.number}} #{{e.id}}</h4>
-                </div>
-
+            <div class="ui-order-empty">
+                <img src="/assets/img/common/404.png" alt="">
+                <p>{{strings.empty}}</p>
             </div>
 
-            <div class="ui-order-products">
+        <? } else { ?>
 
-                <? products[i].forEach(p => {
-                    const id = Object.keys(p)[0];
-                    const qt = Object.values(p)[0];
+            <? orders.forEach((e, i) => { ?>
+
+                <?
+                    const date = new Date(+e.createdAt);
+                    const year = date.getFullYear();
+                    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                    const day = date.getDate().toString().padStart(2, '0');
+                    const compatted = day + '/' + month + '/' + year;
                 ?>
 
-                    <div class="ui-order-products-item">
+                <div class="ui-order-body">
 
-                        <div class="ui-order-product">
-                            <ui-card id="{{this.id}}-card-{{e.id}}-{{id}}"
-                                     ui:id="{{id}}"
-                                     ui:view="row"
-                                     ui:hide="wish,cart,vote"></ui-card>
+                    <div class="ui-order-item">
+                        <div class="ui-order-item-date">
+                            <h4>{{strings.date}}:</h4>
+                            <h4>{{compatted}}</h4>
                         </div>
 
-                        <div class="ui-order-item-quantity">
-                            <h5>{{strings.quantity}}{{qt}}</h5>
+                        <div class="ui-order-item-status">
+                            <h4>{{strings.status}}</h4>
+                            <h4>{{e.status}}</h4>
                         </div>
 
+                        <div class="ui-order-item-number">
+                            <h4>{{strings.number}} #{{e.id}}</h4>
+                        </div>
                     </div>
 
-                <? }); ?>
+                    <div class="ui-order-products-body">
+                        <div class="ui-order-products">
+                            <div class="ui-order-products-items">
 
-            </div>
+                                <? products[i].forEach(p => {
+                                    const id = Object.keys(p)[0];
+                                    const qt = Object.values(p)[0];
+                                ?>
 
-        <? }); ?>
+                                    <div class="ui-order-product-item">
+
+                                        <div class="ui-order-product">
+                                            <ui-card id="{{this.id}}-card-{{e.id}}-{{id}}"
+                                                     ui:id="{{id}}"
+                                                     ui:view="row"
+                                                     ui:hide="wish,cart,vote"></ui-card>
+                                        </div>
+
+                                        <div class="ui-product-quantity">
+                                            <h5>{{strings.quantity}}{{qt}}</h5>
+                                        </div>
+
+                                    </div>
+
+                                <? }); ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            <? }); ?>
+
+        <? } ?>
 
     </div>
 
