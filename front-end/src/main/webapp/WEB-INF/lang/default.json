@@ -1,5 +1,7 @@
 {
 
+  "locale_country" : "IT",
+
   "info_title" : "Bioagri Shop",
   "info_address" : "Rosarno (RC), Via Nazionale Sud, 365",
   "info_phone" : "0966-543210",
@@ -287,6 +289,9 @@
 
   "mail_user_registration_subject" : "Link attivazione account",
   "mail_user_registration_content" : "Attiva il tuo account cliccando sul seguente link: http://localhost:8080/redirect?q=%s",
+
+  "mail_user_payment_subject" : "Ordine su BioAgri Shop",
+  "mail_user_payment_content" : "Il tuo ordine #%s è in fase di elaborazione. Per maggiori informazioni visita la sezione I miei ordini su %s",
 
   "profile_account" : "Il mio account",
   "profile_details" : "Dettagli profilo",
