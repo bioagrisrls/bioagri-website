@@ -75,9 +75,7 @@
         onReady(state) {
             super.onReady(state);
 
-            new bootstrap.ScrollSpy(document.querySelector('#' + this.id + '-content'), {
-                target: '#' + this.id + '-side'
-            });
+
 
         }
 

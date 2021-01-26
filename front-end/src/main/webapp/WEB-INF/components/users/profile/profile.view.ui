@@ -39,26 +39,28 @@
 ?>
 
 <div class="ui-profile">
-    <div class="ui-profile-side">
+    <div class="ui-profile-side-container">
+        <div class="ui-profile-side">
 
-        <div class="ui-profile-side-header">
-            <h1><span class="mdi mdi-24px mdi-cog"></span> {{strings.account}}</h1>
+            <div class="ui-profile-side-header">
+                <h1><span class="mdi mdi-24px mdi-cog"></span> {{strings.account}}</h1>
+            </div>
+
+            <div id="{{this.id}}-side" class="ui-profile-side-menu list-group">
+                <a href="#{{this.id}}-details"  class="list-group-item list-group-item-action">{{strings.details}}</a>
+                <a href="#{{this.id}}-password" class="list-group-item list-group-item-action">{{strings.password}}</a>
+                <a href="#{{this.id}}-remove"   class="list-group-item list-group-item-action">{{strings.remove}}</a>
+                <a href="#{{this.id}}-logout"   class="list-group-item list-group-item-action">{{strings.logout}}</a>
+            </div>
+
+
         </div>
-
-        <div id="{{this.id}}-side" class="ui-profile-side-menu">
-            <a href="#{{this.id}}-details">{{strings.details}}</a>
-            <a href="#{{this.id}}-password">{{strings.password}}</a>
-            <a href="#{{this.id}}-remove">{{strings.remove}}</a>
-            <a href="#{{this.id}}-logout">{{strings.logout}}</a>
-        </div>
-
-
     </div>
-    <div id="{{this.id}}-content" class="ui-profile-content">
+    <div id="{{this.id}}-content" class="ui-profile-content" data-bs-spy="scroll" data-bs-target="#{{this.id}}-side" data-bs-offset="0">
 
         <div class="ui-profile-content-items">
 
-            <h1 id="#{{this.id}}-details">{{strings.details}}</h1>
+            <h1 id="{{this.id}}-details">{{strings.details}}</h1>
 
             <? details.forEach(i => { ?>
 
@@ -76,9 +78,64 @@
 
         </div>
 
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
         <div class="ui-profile-content-items">
 
-            <h1 id="#{{this.id}}-password">{{strings.password}}</h1>
+            <h1 id="{{this.id}}-password">{{strings.password}}</h1>
 
 
             <div class="ui-profile-content-item">
@@ -122,7 +179,7 @@
 
         <div class="ui-profile-content-items">
 
-            <h1 id="#{{this.id}}-remove">{{strings.remove}}</h1>
+            <h1 id="{{this.id}}-remove">{{strings.remove}}</h1>
 
 
             <div class="ui-profile-content-item">
@@ -141,7 +198,7 @@
 
         <div class="ui-profile-content-items">
 
-            <h1 id="#{{this.id}}-logout">{{strings.logout}}</h1>
+            <h1 id="{{this.id}}-logout">{{strings.logout}}</h1>
 
 
             <div class="ui-profile-content-item">

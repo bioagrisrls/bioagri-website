@@ -185,6 +185,14 @@ $(document).ready(() => {
 });
 
 
+
+window.pathname = document.location.pathname;
+
 window.onpopstate = (e) => {
-    navigate(document.location.href, e.state,'#ui-navigation-container', false);
+
+    if(window.pathname !== document.location.pathname)
+        navigate(document.location.href, e.state, '#ui-navigation-container', false);
+
+    window.pathname = document.location.pathname;
+
 }

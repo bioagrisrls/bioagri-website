@@ -31,30 +31,33 @@
   @extend .gx-0;
   @extend .px-5;
 
-  .ui-profile-side {
+  .ui-profile-side-container {
 
-    @extend .list-group;
-    @extend .show-only-desktop;
     @extend .col-3;
-    @extend .px-5;
 
-    .ui-profile-side-header {
+    .ui-profile-side {
 
-      h1 {
-        @extend .ui-font-title-primary;
-        @extend .fs-3;
+      @extend .show-only-desktop;
+      @extend .px-5;
+
+      position: sticky;
+      top: 8rem;
+
+      .ui-profile-side-header {
+
+        h1 {
+          @extend .ui-font-title-primary;
+          @extend .fs-3;
+        }
       }
-    }
 
-    .ui-profile-side-menu {
+      .ui-profile-side-menu {
 
-     @extend .list-group;
+        a {
+          @extend .ui-font-title-primary;
+          @extend .fs-5;
+        }
 
-      a {
-        @extend .list-group-item;
-        @extend .list-group-item-action;
-        @extend .ui-font-title-primary;
-        @extend .fs-5;
       }
 
     }
