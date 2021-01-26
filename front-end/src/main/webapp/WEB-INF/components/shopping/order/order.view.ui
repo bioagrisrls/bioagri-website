@@ -55,12 +55,12 @@
                     <div class="ui-order-item">
                         <div class="ui-order-item-date">
                             <h4>{{strings.date}}:</h4>
-                            <h4>{{compatted}}</h4>
+                            <h5>{{compatted}}</h5>
                         </div>
 
                         <div class="ui-order-item-status">
                             <h4>{{strings.status}}</h4>
-                            <h4>{{e.status}}</h4>
+                            <h5>{{e.status}}</h5>
                         </div>
 
                         <div class="ui-order-item-number">
