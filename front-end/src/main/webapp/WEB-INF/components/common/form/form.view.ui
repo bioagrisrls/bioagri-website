@@ -168,6 +168,22 @@
                             break;
 
 
+                        case 'select':
+
+                        ?>
+                            <div class="{{v.style || ''}}">
+                                <label class="form-label" for="{{this.id}}-{{k}}">{{v.label || ''}}</label>
+                                <select id="{{this.id}}-{{k}}" class="form-control py-3" type="text" {{getprops(v)}} onchange="$$.$check(this)" >
+                                    <? for(let i of v.options) { ?>
+                                        <option value="{{i.value}}">{{i.key}}</option>
+                                    <? } ?>
+                                </select>
+                            </div>
+                        <?
+
+                            break;
+
+
                         case 'textarea':
 
                         ?>
@@ -230,8 +246,8 @@
             ?>
 
 
-            <div class="d-flex justify-content-{{ $submit.align || 'left' }} {{$submit.style || ''}} ">
-                <button id="{{this.id}}-form-submit" type="submit" class="btn btn-primary btn-block mb-3" onclick="$$.$submit(this, event)" disabled>{{ $submit.value || 'OK' }}</button>
+            <div class="d-flex justify-content-{{ $submit.align || 'left' }} ">
+                <button id="{{this.id}}-form-submit" type="submit" class="btn btn-primary btn-block mb-3 {{$submit.style || ''}}" onclick="$$.$submit(this, event)" disabled>{{ $submit.value || 'OK' }}</button>
             </div>
 
         </form>

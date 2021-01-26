@@ -34,40 +34,38 @@
 
 
     <!-- Navigation Bar -->
-    <ui-navbar id="ui-navbar" ui:current="home"></ui-navbar>
+    <ui-navbar id="ui-navbar"></ui-navbar>
 
 
     <section ui-animated>
 
-        <!-- Page Header -->
-        <ui-parallax id="ui-parallax-registration-header" ui:src="/assets/img/about/header.jpg" ui:reserve="300px">
-            <div class="ui-container">
-                <div class="row">
-                    <div class="col-12 ui-about-header">
-                        <h1 class="display-6 p-3">${locale.page_registration}</h1>
-                    </div>
-                </div>
-            </div>
-        </ui-parallax>
 
-
+        <br>
+        <br>
         <br>
         <br>
         <br>
         <br>
 
         <div class="ui-container">
-            <div class="bg-light shadow border w-50 w-lg-100 mx-auto my-5" ui-animated="backInUp">
+            <div class="bg-light shadow border w-100 w-lg-50 mx-auto my-5" ui-animated="backInUp">
                 <div class="my-5">
 
                     <!-- Registration Logo -->
-                    <div class="d-flex justify-content-center pt-4">
-                        <img src="${locale.nav_logo}" width="64" height="64" />
+                    <div class="w-100 py-4">
+                        <ui-image id="ui-registration-logo-image"
+                                  ui:src="${locale.nav_logo}"
+                                  ui:width="100%"
+                                  ui:height="64px"
+                                  ui:position="center"
+                                  ui:size="contain"></ui-image>
                     </div>
 
                     <!-- Registration Slogan -->
-                    <h4 class="text-center display-6">${locale.registration_slogan_title}</h4>
-                    <p class="text-center display-7">${locale.registration_slogan_subtitle}</p>
+                    <div class="text-center">
+                        <h4 class="ui-font-title-primary display-6">${locale.registration_slogan_title}</h4>
+                        <p class="ui-font-title-secondary fs-5">${locale.registration_slogan_subtitle}</p>
+                    </div>
 
                     <div class="p-5">
 

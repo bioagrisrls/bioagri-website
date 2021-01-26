@@ -49,7 +49,7 @@
                 $submit: {
                     value: `${locale.registration_button}`,
                     align: 'center',
-                    style: 'btn-block clear-both'
+                    style: 'btn-lg btn-block ui-font-title-primary'
                 },
 
 
@@ -65,17 +65,17 @@
 
                 username: {
                     type: 'email',
-                    label: "Indirizzo email", // FIXME
+                    label: "${locale.registration_username}",
                     pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                     required: true,
                     autocomplete: 'email',
-                    size: 128, // FIXME
-                    wrong: "Username wrong! (FIXME)"
+                    size: 128,
+                    wrong: "${locale.registration_username_wrong}"
                 },
 
                 password: {
                     type: 'password',
-                    label: "Password", // FIXME
+                    label: "${locale.registration_password}",
                     minlength: 8,
                     pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
                     required: true,
@@ -85,7 +85,7 @@
 
                 name: {
                     type: 'text',
-                    label: 'Nome', // FIXME,
+                    label: '${locale.registration_name}',
                     required: true,
                     autocomplete: 'given-name',
                     maxlength: 32
@@ -93,7 +93,7 @@
 
                 surname: {
                     type: 'text',
-                    label: 'Cognome', // FIXME,
+                    label: '${locale.registration_surname}',
                     required: true,
                     autocomplete: 'family-name',
                     maxlength: 32
@@ -101,35 +101,38 @@
 
                 gender: {
                     type: 'select',
-                    label: 'Sesso', // FIXME,
+                    label: '${locale.registration_gender}',
                     required: true,
                     autocomplete: 'sex',
                     options: [
-                        { key: 'male',      value: 'MALE'       },
-                        { key: 'female',    value: 'FEMALE'     },
-                        { key: 'other',     value: 'OTHER'      },
-                        { key: 'undefined', value: 'UNDEFINED'  },
+                        { key: '${locale.registration_gender_female}',    value: 'FEMALE'     },
+                        { key: '${locale.registration_gender_male}',      value: 'MALE'       },
+                        { key: '${locale.registration_gender_other}',     value: 'OTHER'      },
+                        { key: '${locale.registration_gender_undefined}', value: 'UNDEFINED'  },
                     ]
                 },
 
                 birth: {
                     type: 'date',
-                    label: 'Data di nascita', // FIXME
+                    label: '${locale.registration_birth}',
                     required: true,
                     autocomplete: 'bday'
                 },
 
                 phone: {
                     type: 'tel',
-                    label: 'Recapito telefonico', // FIXME
+                    label: '${locale.registration_phone}',
                     required: true,
                     autocomplete: 'tel',
-                    size: 16
+                    minlength: 9,
+                    maxlength: 11,
+                    size: 11
                 },
 
                 legals: {
                     type: 'switch',
                     label: `${locale.registration_legal}`,
+                    style: 'my-5',
                     required: true
                 },
 

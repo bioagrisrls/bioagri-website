@@ -137,7 +137,7 @@ public class ProductDaoImpl extends ProductDao {
         getDataSource().update(
                 """
                     UPDATE shop_product 
-                       SET name = ?, description = ?, info = ?, price = ?, stock = ?, status = ?, created_at = ?, updated_at = ?
+                       SET name = ?, description = ?, info = ?, price = ?, discount = ?, stock = ?, status = ?, created_at = ?, updated_at = ?
                      WHERE id = ?
                     """,
                     s -> {
