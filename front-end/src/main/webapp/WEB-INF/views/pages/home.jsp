@@ -72,7 +72,7 @@
                 <h2 ui-animated-scroll="slideInUp">${locale.home_promo_last_news}</h2>
 
                 <div class="ui-home-promo-slider" ui-animated-scroll="slideInRight">
-                    <ui-product-related id="ui-home-promo-slider-related-1"></ui-product-related>
+                    <ui-product-related id="ui-home-promo-slider-related-1" ui:kind="tags" ui:id="1"></ui-product-related>
                 </div>
 
             </article>

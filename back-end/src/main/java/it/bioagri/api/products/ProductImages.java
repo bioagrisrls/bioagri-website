@@ -87,6 +87,7 @@ public class ProductImages {
                     Files.walk(imagesPath)
                             .filter(i -> !i.equals(imagesPath))
                             .map(i -> rootPath.relativize(i).toString())
+                            .sorted()
                             .filter(i -> ApiRequestQuery.filterBy(filterBy, filterValue, i, dataSource))
                             .sorted((a, b) -> ApiRequestQuery.sortedBy(sortedBy, order, a, b))
                             .skip(skip)
