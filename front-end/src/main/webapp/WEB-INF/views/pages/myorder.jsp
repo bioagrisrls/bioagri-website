@@ -57,7 +57,7 @@
         <br>
         <br>
 
-        <ui-order id="ui-order"></ui-order>
+        <ui-order class="text-dark" id="ui-order"></ui-order>
 
     </section>
 

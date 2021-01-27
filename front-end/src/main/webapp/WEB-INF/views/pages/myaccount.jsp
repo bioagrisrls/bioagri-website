@@ -56,7 +56,7 @@
         <br>
         <br>
 
-        <ui-profile id="ui-profile"></ui-profile>
+        <ui-profile class="text-dark" id="ui-profile"></ui-profile>
 
     </section>
 
