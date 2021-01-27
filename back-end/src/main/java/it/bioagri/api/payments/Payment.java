@@ -93,6 +93,8 @@ public class Payment {
                             i.getValue()
                     );
 
+                request.setOrderId(order.getId());
+
             }
 
             // TODO: Add transaction
