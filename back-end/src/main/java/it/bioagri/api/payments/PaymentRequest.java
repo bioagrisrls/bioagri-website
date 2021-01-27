@@ -39,7 +39,7 @@ public class PaymentRequest {
     private final String service;
     private final String id;
     private final String data;
-    private final Long orderId;
+    private Long orderId;
     private final List<Map.Entry<Long, Integer>> items;
 
     @JsonIgnore
@@ -77,6 +77,10 @@ public class PaymentRequest {
 
     public Long getOrderId() {
         return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
     public List<Map.Entry<Long, Integer>> getItems() {
