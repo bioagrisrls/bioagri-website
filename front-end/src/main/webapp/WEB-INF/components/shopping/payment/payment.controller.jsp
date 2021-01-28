@@ -88,7 +88,7 @@
                     return Promise.all(shopping_cart_map(item => api('/products/' + item.id)))
                         .then(response => {
 
-                            const total = +(+response.reduce((j, i) => j + shopping_cart_count(i.id) * (+i.price - ((+i.price / 100) * +i.discount)), 0));
+                            const total = +(+response.reduce((j, i) => j + shopping_cart_count(i.id) * +(+i.price - ((+i.price / 100) * +i.discount)).toFixed(2), 0));
                             const shipping = 10; // TODO: read from server
 
                             const order = {
