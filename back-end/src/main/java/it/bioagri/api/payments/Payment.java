@@ -97,12 +97,9 @@ public class Payment {
 
             }
 
-            // TODO: Add transaction
 
             if(!paymentService.authorize(request))
                 return ResponseEntity.status(HttpStatus.PAYMENT_REQUIRED).build();
-
-            // TODO: Make transaction success
 
 
 

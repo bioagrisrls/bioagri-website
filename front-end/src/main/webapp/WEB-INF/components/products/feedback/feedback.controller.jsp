@@ -85,11 +85,12 @@
         more() {
 
             api('/feedbacks?sorted-by=createdAt&filter-by=productId&filter-val=' + this.state.productId + '&limit=3&skip=' + this.state.feedbacks.length)
-                .then(feedbacks => feedbacks.forEach(i => this.state.feedbacks.push(i)))
-                .then(() => {
+                .then(feedbacks => {
+
+                    feedbacks.forEach(i => this.state.feedbacks.push(i));
 
                     return Promise.all(
-                        this.state.feedbacks.map(i => api('/feedbacks/' + i.id + '/owner')
+                        feedbacks.map(i => api('/feedbacks/' + i.id + '/owner')
                             .then(user => this.state.users.push(user))
                         )
                     );
