@@ -176,10 +176,7 @@
                     .then(response => authenticate(data.username, password, false, data.token)
                         .then(response => {
 
-                            if (window.history.length)
-                                window.history.back();
-                            else
-                                navigate('/home');
+                            navigate('/home');
 
                         })
                     )
