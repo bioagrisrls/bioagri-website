@@ -109,4 +109,45 @@ public class TicketResponse implements Model {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+
+    public static final class Builder {
+
+        private long id;
+        private String response;
+        private Timestamp createdAt;
+        private Timestamp updatedAt;
+        private Long ticketId;
+
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withResponse(String response) {
+            this.response = response;
+            return this;
+        }
+
+        public Builder withCreatedAt(Timestamp createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder withUpdatedAt(Timestamp updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
+        public Builder withTicketId(Long ticketId) {
+            this.ticketId = ticketId;
+            return this;
+        }
+
+        public TicketResponse build() {
+            return new TicketResponse(id, response, createdAt, updatedAt, ticketId);
+        }
+
+    }
 }

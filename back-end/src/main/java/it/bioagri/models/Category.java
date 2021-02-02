@@ -30,7 +30,7 @@ import java.util.Objects;
 public final class Category implements Model {
 
     private long id;
-    private final String name;
+    private String name;
 
     public Category() {
         this.id = 0;
@@ -54,16 +54,43 @@ public final class Category implements Model {
         return name;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return getId() == category.getId();
+        return getId().equals(category.getId());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+
+    public static final class Builder {
+
+        private long id;
+        private String name;
+
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Category build() {
+            Category category = new Category(null, name);
+            category.setId(id);
+            return category;
+        }
+
+    }
+
 }

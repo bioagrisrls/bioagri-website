@@ -141,4 +141,46 @@ public final class Order implements Model {
         return Objects.hash(getId());
     }
 
+
+    public static final class Builder {
+
+        private long id;
+        private OrderStatus status;
+        private Timestamp createdAt;
+        private Timestamp updatedAt;
+        private Long userId;
+
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withStatus(OrderStatus status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder withCreatedAt(Timestamp createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder withUpdatedAt(Timestamp updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
+        public Builder withUserId(Long userId) {
+            this.userId = userId;
+            return this;
+        }
+
+        public Order build() {
+            Order order = new Order(null, status, createdAt, updatedAt, userId, null, null);
+            order.setId(id);
+            return order;
+        }
+
+    }
 }

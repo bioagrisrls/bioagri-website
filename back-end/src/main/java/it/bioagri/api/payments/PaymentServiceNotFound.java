@@ -23,10 +23,18 @@
  *
  */
 
-package it.bioagri.models;
+package it.bioagri.api.payments;
 
-public enum TransactionStatus {
-    PROCESSING,
-    OK,
-    FAILED,
+public class PaymentServiceNotFound extends Exception {
+
+    private final PaymentRequest request;
+
+    public PaymentServiceNotFound(PaymentRequest request) {
+        this.request = request;
+    }
+
+    public PaymentRequest getRequest() {
+        return request;
+    }
+
 }

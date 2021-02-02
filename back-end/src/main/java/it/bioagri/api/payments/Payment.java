@@ -98,8 +98,16 @@ public class Payment {
             }
 
 
-            if(!paymentService.authorize(request))
+            try {
+
+                var transaction = paymentService.authorize(request);
+
+                // TODO: Transaction failed.
+                // TODO: Transaction success.
+
+            } catch (PaymentServiceNotFound e) {
                 return ResponseEntity.status(HttpStatus.PAYMENT_REQUIRED).build();
+            }
 
 
 

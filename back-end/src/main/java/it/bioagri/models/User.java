@@ -196,4 +196,93 @@ public final class User implements Model {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+
+    public static final class Builder {
+
+        private long id;
+        private String mail;
+        private String password;
+        private UserStatus status;
+        private UserRole role;
+        private String name;
+        private String surname;
+        private UserGender gender;
+        private String phone;
+        private Date birth;
+        private AuthServiceType auth;
+        private Timestamp createdAt;
+        private Timestamp updatedAt;
+
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withMail(String mail) {
+            this.mail = mail;
+            return this;
+        }
+
+        public Builder withPassword(String password) {
+            this.password = password;
+            return this;
+        }
+
+        public Builder withStatus(UserStatus status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder withRole(UserRole role) {
+            this.role = role;
+            return this;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withSurname(String surname) {
+            this.surname = surname;
+            return this;
+        }
+
+        public Builder withGender(UserGender gender) {
+            this.gender = gender;
+            return this;
+        }
+
+        public Builder withPhone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public Builder withBirth(Date birth) {
+            this.birth = birth;
+            return this;
+        }
+
+        public Builder withAuth(AuthServiceType auth) {
+            this.auth = auth;
+            return this;
+        }
+
+        public Builder withCreatedAt(Timestamp createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder withUpdatedAt(Timestamp updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
+        public User build() {
+            return new User(id, mail, password, status, role, name, surname, gender, phone, birth, auth, createdAt, updatedAt, null, null, null);
+        }
+
+    }
 }

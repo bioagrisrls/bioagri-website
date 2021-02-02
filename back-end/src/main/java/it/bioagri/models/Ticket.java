@@ -139,4 +139,51 @@ public final class Ticket implements Model {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+
+    public static final class Builder {
+
+        private long id;
+        private String title;
+        private String description;
+        private TicketStatus status;
+        private Timestamp createdAt;
+        private Timestamp updatedAt;
+
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withTitle(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder withDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder withStatus(TicketStatus status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder withCreatedAt(Timestamp createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder withUpdatedAt(Timestamp updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
+        public Ticket build() {
+            return new Ticket(id, title, description, status, createdAt, updatedAt, null, null);
+        }
+
+    }
 }

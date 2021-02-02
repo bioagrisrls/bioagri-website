@@ -182,4 +182,74 @@ public final class Product implements Model {
     public String toString() {
         return getId().toString();
     }
+
+
+    public static final class Builder {
+
+        private long id;
+        private String name;
+        private String description;
+        private String info;
+        private float price;
+        private float discount;
+        private int stock;
+        private ProductStatus status;
+        private Timestamp updatedAt;
+        private Timestamp createdAt;
+
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder withDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder withInfo(String info) {
+            this.info = info;
+            return this;
+        }
+
+        public Builder withPrice(float price) {
+            this.price = price;
+            return this;
+        }
+
+        public Builder withDiscount(float discount) {
+            this.discount = discount;
+            return this;
+        }
+
+        public Builder withStock(int stock) {
+            this.stock = stock;
+            return this;
+        }
+
+        public Builder withStatus(ProductStatus status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder withUpdatedAt(Timestamp updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
+        public Builder withCreatedAt(Timestamp createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Product build() {
+            return new Product(id, name, description, info, price, discount, stock, status, updatedAt, createdAt, null, null, null);
+        }
+    }
 }
