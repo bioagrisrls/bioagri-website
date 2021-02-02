@@ -36,7 +36,7 @@
 
 
     <section class="ui-home" ui-animated>
-        <img class="ui-home-background" src="/assets/img/home/background.png" alt="" ui-animated="slideInRight"/>
+        <img class="ui-home-background" src="/assets/img/home/background.webp" alt="" ui-animated="slideInRight"/>
         <div class="ui-home-content" ui-animated="slideInLeft">
             <h3>${locale.home_intro_header}</h3>
             <h1>${locale.home_intro_title}</h1>
@@ -44,7 +44,7 @@
             <div class="ui-home-order-now" ui-animated="slideInUp">
                 <div class="row">
                     <div class="col-sm-auto">
-                        <img src="/assets/img/home/content01.png" alt="" />
+                        <img src="/assets/img/home/content01.webp" alt="" />
                     </div>
                     <div class="col-sm">
                         <div class="ui-home-order-content" ui-animated-hover>
@@ -86,7 +86,7 @@
                         <div class="col-auto" ui-animated-scroll="slideInLeft">
                             <ui-image id="ui-home-promo-first-section-start"
                                       class="ui-home-promo-section-image"
-                                      ui:src="/assets/img/home/man01.png"
+                                      ui:src="/assets/img/home/man01.webp"
                                       ui:width="220px"
                                       ui:height="320px"
                                       ui:position="center"
@@ -105,7 +105,7 @@
                         <div class="col-auto" ui-animated-scroll="slideInRight">
                             <ui-image id="ui-home-promo-first-section-end"
                                       class="ui-home-promo-section-image"
-                                      ui:src="/assets/img/home/woman02.png"
+                                      ui:src="/assets/img/home/woman02.webp"
                                       ui:width="220px"
                                       ui:height="320px"
                                       ui:position="center"
@@ -132,7 +132,7 @@
                                     <div class="ui-home-promo-category" ui-animated-hover="pulse">
                                         <ui-image id="ui-home-promo-second-section-1"
                                                   class="ui-home-promo-section-image"
-                                                  ui:src="/assets/img/home/promo01.jpg"
+                                                  ui:src="/assets/img/home/promo01.webp"
                                                   ui:width="340px"
                                                   ui:height="200px"
                                                   ui:position="center"
@@ -147,7 +147,7 @@
                                     <div class="ui-home-promo-category" ui-animated-hover="pulse">
                                         <ui-image id="ui-home-promo-second-section-2"
                                                   class="ui-home-promo-section-image"
-                                                  ui:src="/assets/img/home/promo02.jpg"
+                                                  ui:src="/assets/img/home/promo02.webp"
                                                   ui:width="340px"
                                                   ui:height="200px"
                                                   ui:position="center"
@@ -165,7 +165,7 @@
                             <div class="ui-home-promo-category" ui-animated-hover="pulse">
                             <ui-image id="ui-home-promo-second-section-3"
                                       class="ui-home-promo-section-image"
-                                      ui:src="/assets/img/home/promo03.jpg"
+                                      ui:src="/assets/img/home/promo03.webp"
                                       ui:width="400px"
                                       ui:height="720px"
                                       ui:position="center"
@@ -183,7 +183,7 @@
                                     <div class="ui-home-promo-category" ui-animated-hover="pulse">
                                         <ui-image id="ui-home-promo-second-section-4"
                                                   class="ui-home-promo-section-image"
-                                                  ui:src="/assets/img/home/promo04.jpg"
+                                                  ui:src="/assets/img/home/promo04.webp"
                                                   ui:width="340px"
                                                   ui:height="200px"
                                                   ui:position="center"
@@ -197,7 +197,7 @@
                                     <div class="ui-home-promo-category" ui-animated-hover="pulse">
                                         <ui-image id="ui-home-promo-second-section-5"
                                                   class="ui-home-promo-section-image"
-                                                  ui:src="/assets/img/home/promo05.jpg"
+                                                  ui:src="/assets/img/home/promo05.webp"
                                                   ui:width="340px"
                                                   ui:height="200px"
                                                   ui:position="center"
@@ -241,7 +241,7 @@
 
                             <ui-image id="ui-home-promo-third-section-center"
                                       class="ui-home-promo-section-image-center"
-                                      ui:src="/assets/img/home/newsletter1.png"
+                                      ui:src="/assets/img/home/newsletter1.webp"
                                       ui:width="100%"
                                       ui:height="320px"
                                       ui:position="center"

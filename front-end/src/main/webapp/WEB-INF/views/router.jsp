@@ -44,10 +44,10 @@
         <meta property="og:description" content="" />  <!-- TODO! -->
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.bioagrishop.it" />
-        <meta property="og:image" content="/assets/favicon.png" />
+        <meta property="og:image" content="/assets/favicon.ico" />
     
         <link rel="profile" href="http://gmpg.org/xfn/11">
-        <link rel="icon" href="/assets/favicon.png">
+        <link rel="icon" href="/assets/favicon.ico">
     
         <title>Bioagri Shop</title>
     

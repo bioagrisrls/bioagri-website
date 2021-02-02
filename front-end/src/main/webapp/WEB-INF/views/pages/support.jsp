@@ -55,7 +55,7 @@
                     <ui-image id="ui-support-header-image"
                               class="ui-support-header-image"
                               ui:animation="slideInLeft"
-                              ui:src="/assets/img/support/support.png"
+                              ui:src="/assets/img/support/support.webp"
                               ui:width="100%"
                               ui:height="320px"
                               ui:position="center"

@@ -39,7 +39,7 @@
                         <ui-image id="ui-checkout-success-header-image"
                                   class="ui-checkout-success-header-image"
                                   ui:animation="slideInLeft"
-                                  ui:src="/assets/img/checkout/success.png"
+                                  ui:src="/assets/img/checkout/success.webp"
                                   ui:width="100%"
                                   ui:height="320px"
                                   ui:position="center"
@@ -268,7 +268,7 @@
     <? } else if(current === 'error') { ?>
 
         <div class="ui-payment-error">
-            <img src="/assets/img/common/404.png" alt="">
+            <img src="/assets/img/common/404.webp" alt="">
             <p>{{strings.error}}</p>
             <button>{{strings.back}}</button>
         </div>

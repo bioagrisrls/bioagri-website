@@ -37,7 +37,7 @@
                 if(shopping_cart_empty()) {
                     ?>
                         <div class="ui-cart-empty">
-                            <img src="/assets/img/common/404.png" alt="">
+                            <img src="/assets/img/common/404.webp" alt="">
                             <p>{{strings.empty}}</p>
                         </div>
                     <?

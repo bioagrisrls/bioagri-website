@@ -35,7 +35,7 @@
             <? if(products.length === 0) { ?>
 
                 <div class="ui-wish-empty">
-                    <img src="/assets/img/common/404.png" alt="">
+                    <img src="/assets/img/common/404.webp" alt="">
                     <p>{{strings.empty}}</p>
                 </div>
 

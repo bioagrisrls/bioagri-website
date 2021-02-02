@@ -34,7 +34,7 @@
         <? if(+orders.length === 0) { ?>
 
             <div class="ui-order-empty">
-                <img src="/assets/img/common/404.png" alt="">
+                <img src="/assets/img/common/404.webp" alt="">
                 <p>{{strings.empty}}</p>
             </div>
 

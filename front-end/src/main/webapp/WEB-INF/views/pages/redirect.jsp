@@ -53,7 +53,7 @@
                     <ui-image id="ui-about-header-image"
                               class="ui-about-header-image"
                               ui:animation="slideInLeft"
-                              ui:src="/assets/img/common/working.png"
+                              ui:src="/assets/img/common/working.webp"
                               ui:width="100%"
                               ui:height="320px"
                               ui:position="center"

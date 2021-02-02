@@ -55,7 +55,7 @@
 
         <div class="mx-5 text-center">
             <ui-image id="ui-catalog-promo-image"
-                      ui:src="/assets/img/catalog/promo.jpg"
+                      ui:src="/assets/img/catalog/promo.webp"
                       ui:width="90%"
                       ui:height="620px"
                       ui:size="cover"
