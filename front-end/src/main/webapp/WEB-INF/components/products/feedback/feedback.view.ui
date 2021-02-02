@@ -79,6 +79,7 @@
                     <div class="ui-feedback-body">
                         <h1>{{ e.title }}</h1>
                         <p>{{ e.description }}</p>
+
                     </div>
 
                 </div>
