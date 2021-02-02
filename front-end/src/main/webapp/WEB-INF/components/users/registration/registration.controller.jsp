@@ -172,7 +172,7 @@
                     createdAt   : new Date().toISOString(),
                     updatedAt   : new Date().toISOString(),
 
-                }, false)
+                }, 'raw')
                     .then(response => authenticate(data.username, password, false, data.token)
                         .then(response => {
 
