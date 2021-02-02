@@ -33,10 +33,15 @@ import com.paypal.orders.Order;
 import com.paypal.orders.OrderRequest;
 import com.paypal.orders.OrdersCaptureRequest;
 import it.bioagri.api.payments.PaymentRequest;
+import it.bioagri.models.Transaction;
+import it.bioagri.models.TransactionStatus;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
 import java.io.IOException;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 import static java.util.Objects.requireNonNull;
 
@@ -74,7 +79,7 @@ public class PaypalPayment implements PaymentExternalService {
 
 
     @Override
-    public boolean authorize(PaymentRequest request) {
+    public Transaction authorize(PaymentRequest request, Transaction.Builder builder) {
 
         try {
 
@@ -87,8 +92,11 @@ public class PaypalPayment implements PaymentExternalService {
 
                 logger.debug("===== PAYPAL AUTHORIZATION =====");
                 logger.debug("Status Code: %d".formatted(response.statusCode()));
-                logger.debug("Status     : %s".formatted(response.result().status()));
                 logger.debug("OrderId    : %s".formatted(response.result().id()));
+                logger.debug("Status     : %s".formatted(response.result().status()));
+                logger.debug("CreateTime : %s".formatted(response.result().createTime()));
+                logger.debug("UpdateTime : %s".formatted(response.result().updateTime()));
+                logger.debug("Expiration : %s".formatted(response.result().expirationTime()));
 
                 for(var i : response.result().links())
                     logger.debug("Links      : %s => %s".formatted(i.rel(), i.href()));
@@ -105,10 +113,34 @@ public class PaypalPayment implements PaymentExternalService {
             }
 
 
-            if(HttpStatus.resolve(response.statusCode()) != null)
-                return HttpStatus.valueOf(response.statusCode()).is2xxSuccessful();
+            // TODO: fill data...
+            builder
+                    .withStatus(TransactionStatus.PROCESSING)
+                    .withTransactionCode(response.result().id())
+                    .withAddress("%s, %s, %s, %s, %s, %s, %s".formatted(
+                            response.result().payer().addressPortable().addressLine1(),
+                            response.result().payer().addressPortable().addressLine2(),
+                            response.result().payer().addressPortable().addressLine3(),
+                            response.result().payer().addressPortable().adminArea1(),
+                            response.result().payer().addressPortable().adminArea2(),
+                            response.result().payer().addressPortable().adminArea3(),
+                            response.result().payer().addressPortable().adminArea4()))
+                    .withCity(response.result().payer().addressPortable().countryCode())
+                    .withCreatedAt(Timestamp.from(Instant.now()))
+                    .withUpdatedAt(Timestamp.from(Instant.now()))
+                    .withCourierService("undefined");
 
-            return false;
+
+
+            if(HttpStatus.resolve(response.statusCode()) != null
+                    && HttpStatus.valueOf(response.statusCode()).is2xxSuccessful()) {
+
+                return builder
+                        .withStatus(TransactionStatus.OK)
+                        .build();
+
+            }
+
 
         } catch (IOException e) {
 
@@ -116,9 +148,12 @@ public class PaypalPayment implements PaymentExternalService {
             logger.error(e.getMessage(), e);
             logger.error("=====  END AUTHORIZATION   =====");
 
-            return false;
-
         }
+
+
+        return builder
+                .withStatus(TransactionStatus.FAILED)
+                .build();
 
     }
 

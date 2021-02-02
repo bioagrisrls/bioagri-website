@@ -26,6 +26,7 @@
 package it.bioagri.persistence.dao.impl;
 
 import it.bioagri.models.Feedback;
+import it.bioagri.models.FeedbackStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.FeedbackDao;
 
@@ -52,6 +53,7 @@ public class FeedbackDaoImpl extends FeedbackDao {
                         r.getString("title"),
                         r.getString("description"),
                         r.getFloat("vote"),
+                        FeedbackStatus.values()[r.getShort("status")],
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
                         r.getLong("user_id"),
@@ -74,6 +76,7 @@ public class FeedbackDaoImpl extends FeedbackDao {
                         r.getString("title"),
                         r.getString("description"),
                         r.getFloat("vote"),
+                        FeedbackStatus.values()[r.getShort("status")],
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
                         r.getLong("user_id"),
@@ -90,7 +93,7 @@ public class FeedbackDaoImpl extends FeedbackDao {
 
         getDataSource().update(
                 """
-                    INSERT INTO shop_feedback (id, title, description, vote, product_id, created_at, updated_at, user_id) 
+                    INSERT INTO shop_feedback (id, title, description, vote, status, product_id, created_at, updated_at, user_id) 
                                        VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                 s -> {
@@ -98,10 +101,11 @@ public class FeedbackDaoImpl extends FeedbackDao {
                     s.setString(2, value.getTitle());
                     s.setString(3, value.getDescription());
                     s.setFloat(4, value.getVote());
-                    s.setLong(5, value.getProductId());
-                    s.setTimestamp(6, value.getCreatedAt());
-                    s.setTimestamp(7, value.getUpdatedAt());
-                    s.setLong(8, value.getUserId());
+                    s.setShort(5, (short) value.getStatus().ordinal());
+                    s.setLong(6, value.getProductId());
+                    s.setTimestamp(7, value.getCreatedAt());
+                    s.setTimestamp(8, value.getUpdatedAt());
+                    s.setLong(9, value.getUserId());
                 });
 
     }
@@ -112,16 +116,17 @@ public class FeedbackDaoImpl extends FeedbackDao {
         getDataSource().update(
                     """
                         UPDATE shop_feedback 
-                           SET title = ?, description = ?, vote = ?, created_at = ?, updated_at = ?
+                           SET title = ?, description = ?, vote = ?, status = ?, created_at = ?, updated_at = ?
                          WHERE id = ?
                         """,
                     s -> {
                         s.setString(1, newValue.getTitle());
                         s.setString(2, newValue.getDescription());
                         s.setFloat(3, newValue.getVote());
-                        s.setTimestamp(4, newValue.getCreatedAt());
-                        s.setTimestamp(5, newValue.getUpdatedAt());
-                        s.setLong(6, oldValue.getId());
+                        s.setShort(4, (short) newValue.getStatus().ordinal());
+                        s.setTimestamp(5, newValue.getCreatedAt());
+                        s.setTimestamp(6, newValue.getUpdatedAt());
+                        s.setLong(7, oldValue.getId());
                     });
 
     }

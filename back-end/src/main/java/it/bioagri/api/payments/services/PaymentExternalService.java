@@ -26,7 +26,8 @@
 package it.bioagri.api.payments.services;
 
 import it.bioagri.api.payments.PaymentRequest;
+import it.bioagri.models.Transaction;
 
 public interface PaymentExternalService {
-    boolean authorize(PaymentRequest request);
+    Transaction authorize(PaymentRequest request, Transaction.Builder builder);
 }

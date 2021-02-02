@@ -212,4 +212,135 @@ public final class Transaction implements Model {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+
+    public static final class Builder {
+
+        private long id;
+        private TransactionStatus status;
+        private String result;
+        private double total;
+        private TransactionType type;
+        private String courierService;
+        private String shipmentNumber;
+        private double weight;
+        private String recipient;
+        private String address;
+        private String city;
+        private String province;
+        private String zip;
+        private String phone;
+        private String additionalInfo;
+        private String invoice;
+        private Timestamp createdAt;
+        private Timestamp updatedAt;
+        private Long orderId;
+        private String transactionCode;
+
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withStatus(TransactionStatus status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder withResult(String result) {
+            this.result = result;
+            return this;
+        }
+
+        public Builder withTotal(double total) {
+            this.total = total;
+            return this;
+        }
+
+        public Builder withType(TransactionType type) {
+            this.type = type;
+            return this;
+        }
+
+        public Builder withCourierService(String courierService) {
+            this.courierService = courierService;
+            return this;
+        }
+
+        public Builder withShipmentNumber(String shipmentNumber) {
+            this.shipmentNumber = shipmentNumber;
+            return this;
+        }
+
+        public Builder withWeight(double weight) {
+            this.weight = weight;
+            return this;
+        }
+
+        public Builder withRecipient(String recipient) {
+            this.recipient = recipient;
+            return this;
+        }
+
+        public Builder withAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder withCity(String city) {
+            this.city = city;
+            return this;
+        }
+
+        public Builder withProvince(String province) {
+            this.province = province;
+            return this;
+        }
+
+        public Builder withZip(String zip) {
+            this.zip = zip;
+            return this;
+        }
+
+        public Builder withPhone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
+        public Builder withAdditionalInfo(String additionalInfo) {
+            this.additionalInfo = additionalInfo;
+            return this;
+        }
+
+        public Builder withInvoice(String invoice) {
+            this.invoice = invoice;
+            return this;
+        }
+
+        public Builder withCreatedAt(Timestamp createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder withUpdatedAt(Timestamp updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
+        public Builder withOrderId(Long orderId) {
+            this.orderId = orderId;
+            return this;
+        }
+
+        public Builder withTransactionCode(String transactionCode) {
+            this.transactionCode = transactionCode;
+            return this;
+        }
+
+        public Transaction build() {
+            return new Transaction(id, status, result, total, type, courierService, shipmentNumber, weight, recipient, address, city, province, zip, phone, additionalInfo, invoice, createdAt, updatedAt, orderId, transactionCode);
+        }
+
+    }
 }

@@ -66,4 +66,29 @@ public final class Tag implements Model {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+
+    public static final class Builder {
+
+        private long id;
+        private String hashtag;
+
+
+        public Builder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withHashtag(String hashtag) {
+            this.hashtag = hashtag;
+            return this;
+        }
+
+        public Tag build() {
+            Tag tag = new Tag(null, hashtag);
+            tag.setId(id);
+            return tag;
+        }
+
+    }
 }

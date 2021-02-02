@@ -27,6 +27,7 @@ package it.bioagri.api.payments;
 
 import it.bioagri.api.payments.services.PaymentExternalService;
 import it.bioagri.api.payments.services.PaypalPayment;
+import it.bioagri.models.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -54,16 +55,16 @@ public class PaymentService {
 
 
 
-    public boolean authorize(PaymentRequest request) {
+    public Transaction authorize(PaymentRequest request) throws PaymentServiceNotFound {
 
         for(var service : services.keySet()) {
 
-            if(request.getService().equals(service) && services.get(service).authorize(request))
-                return true;
+            if(request.getService().equals(service))
+                return services.get(service).authorize(request, new Transaction.Builder());
 
         }
 
-        return false;
+        throw new PaymentServiceNotFound(request);
 
     }
 

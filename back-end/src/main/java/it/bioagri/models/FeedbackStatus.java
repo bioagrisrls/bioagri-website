@@ -25,8 +25,8 @@
 
 package it.bioagri.models;
 
-public enum TransactionStatus {
-    PROCESSING,
-    OK,
-    FAILED,
+public enum FeedbackStatus {
+    WAIT_FOR_REVISION,
+    DENIED,
+    ACCEPTED
 }
