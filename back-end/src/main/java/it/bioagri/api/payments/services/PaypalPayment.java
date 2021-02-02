@@ -39,11 +39,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.Instant;
-
-import static java.util.Objects.requireNonNull;
 
 public class PaypalPayment implements PaymentExternalService {
 

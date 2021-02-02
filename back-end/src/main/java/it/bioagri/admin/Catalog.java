@@ -24,6 +24,7 @@
  */
 
 package it.bioagri.admin;
+
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Product;
 import it.bioagri.models.ProductStatus;
@@ -32,10 +33,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
-
-import java.io.*;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
 

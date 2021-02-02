@@ -27,8 +27,6 @@ package it.bioagri.admin;
 
 
 import it.bioagri.models.Category;
-import it.bioagri.models.Product;
-import it.bioagri.models.ProductStatus;
 import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,8 +35,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.time.Instant;
 
 
 @Controller

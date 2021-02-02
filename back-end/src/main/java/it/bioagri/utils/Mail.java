@@ -26,7 +26,6 @@
 package it.bioagri.utils;
 
 import ch.qos.logback.classic.Logger;
-import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.Auth;
 import it.bioagri.web.Locale;
 import org.slf4j.LoggerFactory;
@@ -37,7 +36,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpSession;
 import java.nio.charset.StandardCharsets;

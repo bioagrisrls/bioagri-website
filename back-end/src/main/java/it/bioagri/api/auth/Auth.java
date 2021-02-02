@@ -35,7 +35,6 @@ import it.bioagri.models.User;
 import it.bioagri.models.UserRole;
 import it.bioagri.models.UserStatus;
 import it.bioagri.persistence.DataSource;
-import it.bioagri.utils.Mail;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

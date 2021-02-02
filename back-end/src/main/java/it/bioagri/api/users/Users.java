@@ -27,7 +27,10 @@ package it.bioagri.api.users;
 
 
 import ch.qos.logback.classic.Logger;
-import it.bioagri.api.*;
+import it.bioagri.api.ApiPermission;
+import it.bioagri.api.ApiPermissionOperation;
+import it.bioagri.api.ApiPermissionType;
+import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.User;
 import it.bioagri.models.UserStatus;
@@ -43,8 +46,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
