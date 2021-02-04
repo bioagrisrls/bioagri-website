@@ -29,18 +29,21 @@ import ch.qos.logback.classic.Logger;
 import com.paypal.core.PayPalEnvironment;
 import com.paypal.core.PayPalHttpClient;
 import com.paypal.http.HttpResponse;
-import com.paypal.orders.Order;
-import com.paypal.orders.OrderRequest;
-import com.paypal.orders.OrdersCaptureRequest;
+import com.paypal.orders.*;
 import it.bioagri.api.payments.PaymentRequest;
+import it.bioagri.api.payments.PaymentServiceFailed;
 import it.bioagri.models.Transaction;
 import it.bioagri.models.TransactionStatus;
+import it.bioagri.models.TransactionType;
+import it.bioagri.persistence.DataSource;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 public class PaypalPayment implements PaymentExternalService {
 
@@ -75,8 +78,9 @@ public class PaypalPayment implements PaymentExternalService {
     }
 
 
+
     @Override
-    public Transaction authorize(PaymentRequest request, Transaction.Builder builder) {
+    public Transaction authorize(DataSource dataSource, PaymentRequest request, Transaction.Builder builder) {
 
         try {
 
@@ -94,13 +98,23 @@ public class PaypalPayment implements PaymentExternalService {
                 logger.debug("CreateTime : %s".formatted(response.result().createTime()));
                 logger.debug("UpdateTime : %s".formatted(response.result().updateTime()));
                 logger.debug("Expiration : %s".formatted(response.result().expirationTime()));
+                logger.debug("Units      : %d".formatted(response.result().purchaseUnits().size()));
+                logger.debug("Items      : %d".formatted(request.getItems().size()));
 
                 for(var i : response.result().links())
                     logger.debug("Links      : %s => %s".formatted(i.rel(), i.href()));
 
-                for(var i : response.result().purchaseUnits())
-                    for(var j : i.payments().captures())
+                for(var i : response.result().purchaseUnits()) {
+
+                    for (var j : i.payments().captures())
                         logger.debug("Captures   : %s".formatted(j.id()));
+
+//                    logger.debug("Price      : %s".formatted(i.amountWithBreakdown()
+//                            .amountBreakdown()
+//                            .itemTotal()
+//                            .value()));
+
+                }
 
                 logger.debug("BuyerMail  : %s".formatted(response.result().payer().email()));
                 logger.debug("BuyerName  : %s".formatted(response.result().payer().name().fullName()));
@@ -110,9 +124,33 @@ public class PaypalPayment implements PaymentExternalService {
             }
 
 
-            // TODO: fill data...
+
+
+            if(response.result().purchaseUnits().size() != 1)
+                throw new PaymentServiceFailed(request, "PurchaseUnits must be equal to 1");
+
+
+//            for(var i : request.getItems()) {
+//
+//                var j = dataSource.getProductDao()
+//                        .findByPrimaryKey(i.getKey())
+//                        .orElseThrow(() -> new PaymentServiceFailed(request, "Invalid Product ID %s".formatted(i.getKey())));
+//
+//                if(i.getValue() > j.getStock())
+//                    throw new PaymentServiceFailed(request, "Stock < Quantity for Product ID %s".formatted(i.getKey()));
+//
+////                if(Double.parseDouble(i.unitAmount().value()) != (j.getPrice() - (j.getPrice() * j.getDiscount()) / 100))
+////                    throw new PaymentServiceFailed(request, "UnitAmount != Price for Product ID %s".formatted(i.sku()));
+//
+//                // TODO: Edit Quantity
+//
+//            }
+
+
+
             builder
                     .withStatus(TransactionStatus.PROCESSING)
+                    .withType(TransactionType.PAYPAL)
                     .withTransactionCode(response.result().id())
                     .withAddress("%s, %s, %s, %s, %s, %s, %s".formatted(
                             response.result().payer().addressPortable().addressLine1(),
@@ -122,10 +160,13 @@ public class PaypalPayment implements PaymentExternalService {
                             response.result().payer().addressPortable().adminArea2(),
                             response.result().payer().addressPortable().adminArea3(),
                             response.result().payer().addressPortable().adminArea4()))
-                    .withCity(response.result().payer().addressPortable().countryCode())
-                    .withCreatedAt(Timestamp.from(Instant.now()))
-                    .withUpdatedAt(Timestamp.from(Instant.now()))
-                    .withCourierService("undefined");
+                    .withCity(response.result().payer().addressPortable().countryCode());
+//                    .withTotal(response.result().purchaseUnits().get(0)
+//                            .items()
+//                            .stream()
+//                            .map(i -> Double.parseDouble(i.unitAmount().value()) * Double.parseDouble(i.quantity()))
+//                            .reduce(0.0, Double::sum)
+//                    );
 
 
 
@@ -139,14 +180,13 @@ public class PaypalPayment implements PaymentExternalService {
             }
 
 
-        } catch (IOException e) {
+        } catch (IOException | PaymentServiceFailed e) {
 
             logger.error("===== PAYPAL AUTHORIZATION =====");
             logger.error(e.getMessage(), e);
             logger.error("=====  END AUTHORIZATION   =====");
 
         }
-
 
         return builder
                 .withStatus(TransactionStatus.FAILED)

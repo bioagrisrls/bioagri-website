@@ -42,6 +42,10 @@ payments:
       paypal:
         id: "AdSsZffa44n1DoLBL0_iEScA7-niopna57PacKEDWZK09xtv8xM1qaG2SMkxu83BaBC0vIovrdyfC8yA"
         secret: "ECa-ydTH0gc0z48ph9ZsVqbygtf5-tY3_sZwGa4_isoO1SONvwyEH491OAi5GdRh7pOeHikP-zkhhLyh"
+  shipment:
+    price: 10
+    courier: "GLS"
+    recipient: "Via Nazionale Sud 365/A, Rosarno, 89025, RC, Italy"
 
 
 info:

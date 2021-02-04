@@ -130,6 +130,7 @@
                                         return {
 
                                             name: i.name,
+                                            sku: i.id,
                                             quantity: shopping_cart_count(i.id),
 
                                             unit_amount: {

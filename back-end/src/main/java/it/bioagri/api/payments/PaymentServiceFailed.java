@@ -23,12 +23,24 @@
  *
  */
 
-package it.bioagri.api.payments.services;
+package it.bioagri.api.payments;
 
-import it.bioagri.api.payments.PaymentRequest;
-import it.bioagri.models.Transaction;
-import it.bioagri.persistence.DataSource;
+public class PaymentServiceFailed extends Exception {
 
-public interface PaymentExternalService {
-    Transaction authorize(DataSource dataSource, PaymentRequest request, Transaction.Builder builder);
+    private final PaymentRequest request;
+    private final String reason;
+
+    public PaymentServiceFailed(PaymentRequest request, String reason) {
+        this.request = request;
+        this.reason = reason;
+    }
+
+    public PaymentRequest getRequest() {
+        return request;
+    }
+
+    public String getMessage() {
+        return reason;
+    }
+
 }

@@ -102,7 +102,7 @@ public class Payment {
 
             try {
 
-                var transaction = paymentService.authorize(request);
+                var transaction = paymentService.authorize(dataSource, request);
 
                 // TODO: Transaction failed.
                 // TODO: Transaction success.

@@ -44,6 +44,21 @@
       "name": "info.mail.sender",
       "type": "java.lang.String",
       "description": "Description for info.mail.sender."
+    },
+    {
+      "name": "payments.shipment.price",
+      "type": "java.lang.String",
+      "description": "Description for payments.shipment.price."
+    },
+    {
+      "name": "payments.shipment.recipient",
+      "type": "java.lang.String",
+      "description": "Description for payments.shipment.recipient."
+    },
+    {
+      "name": "payments.shipment.courier",
+      "type": "java.lang.String",
+      "description": "Description for payments.shipment.courier."
     }
   ]
 }
