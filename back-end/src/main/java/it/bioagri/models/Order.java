@@ -177,7 +177,7 @@ public final class Order implements Model {
         }
 
         public Order build() {
-            Order order = new Order(null, status, createdAt, updatedAt, userId, null, null);
+            Order order = new Order(0L, status, createdAt, updatedAt, userId, null, null);
             order.setId(id);
             return order;
         }
