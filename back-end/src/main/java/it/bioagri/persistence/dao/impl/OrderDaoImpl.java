@@ -176,7 +176,7 @@ public class OrderDaoImpl extends OrderDao {
 
 
     @Override
-    public Optional<Order> getByTransactionId(String transactionId) {
+    public Optional<Order> findByTransactionId(String transactionId) {
 
         final AtomicReference<Optional<Order>> result = new AtomicReference<>(Optional.empty());
 
