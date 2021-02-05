@@ -111,6 +111,28 @@ public final class Order implements Model {
         return status;
     }
 
+    public String getResult() { return result; }
+
+    public Double getPrice() { return price; }
+
+    public String getTransactionId() { return transactionId; }
+
+    public TransactionType getTransactionType() { return transactionType; }
+
+    public String getShipmentNumber() { return shipmentNumber; }
+
+    public String getAddress() { return address; }
+
+    public String getCity() { return city; }
+
+    public String getProvince() { return province; }
+
+    public String getZip() { return zip; }
+
+    public String getAdditionalInfo() { return additionalInfo; }
+
+    public String getInvoice() { return invoice; }
+
     public Timestamp getCreatedAt() {
         return createdAt;
     }

@@ -28,6 +28,7 @@ package it.bioagri.persistence.dao.impl;
 import it.bioagri.models.Order;
 import it.bioagri.models.OrderStatus;
 import it.bioagri.models.Product;
+import it.bioagri.models.TransactionType;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.dao.OrderDao;
 
@@ -53,10 +54,20 @@ public class OrderDaoImpl extends OrderDao {
                 r -> result.set(Optional.of(new Order(
                         r.getLong("id"),
                         OrderStatus.values()[r.getShort("status")],
+                        r.getString("result"),
+                        r.getDouble("price"),
+                        r.getString("transaction_id"),
+                        TransactionType.values()[r.getShort("transaction_type")],
+                        r.getString("shipment_number"),
+                        r.getString("address"),
+                        r.getString("city"),
+                        r.getString("province"),
+                        r.getString("zip"),
+                        r.getString("additional_info"),
+                        r.getString("invoice"),
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
                         r.getLong("user_id"),
-                        null,
                         null
                 )))
         );
@@ -74,10 +85,20 @@ public class OrderDaoImpl extends OrderDao {
                 r -> orders.add(new Order(
                         r.getLong("id"),
                         OrderStatus.values()[r.getShort("status")],
+                        r.getString("result"),
+                        r.getDouble("price"),
+                        r.getString("transaction_id"),
+                        TransactionType.values()[r.getShort("transaction_type")],
+                        r.getString("shipment_number"),
+                        r.getString("address"),
+                        r.getString("city"),
+                        r.getString("province"),
+                        r.getString("zip"),
+                        r.getString("additional_info"),
+                        r.getString("invoice"),
                         r.getTimestamp("created_at"),
                         r.getTimestamp("updated_at"),
                         r.getLong("user_id"),
-                        null,
                         null
                 ))
         );
@@ -91,15 +112,26 @@ public class OrderDaoImpl extends OrderDao {
 
         getDataSource().update(
                 """
-                    INSERT INTO shop_order (id, status, created_at, updated_at, user_id)
-                                    VALUES (?, ?, ?, ?, ?)
+                    INSERT INTO shop_order (id, status, result, price, transaction_id, transaction_type, shipment_number, address, city, province, zip, additional_info, invoice, created_at, updated_at, user_id)
+                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                 s -> {
                     s.setLong(1, value.getId());
                     s.setShort(2, (short) value.getStatus().ordinal());
-                    s.setTimestamp(3, value.getCreatedAt());
-                    s.setTimestamp(4, value.getUpdatedAt());
-                    s.setLong(5, value.getUserId());
+                    s.setString(3, value.getResult());
+                    s.setDouble(4, value.getPrice());
+                    s.setString(5, value.getTransactionId());
+                    s.setShort(6, (short) value.getTransactionType().ordinal());
+                    s.setString(7, value.getShipmentNumber());
+                    s.setString(8, value.getAddress());
+                    s.setString(9, value.getCity());
+                    s.setString(10, value.getProvince());
+                    s.setString(11, value.getZip());
+                    s.setString(12, value.getAdditionalInfo());
+                    s.setString(13, value.getInvoice());
+                    s.setTimestamp(14, value.getCreatedAt());
+                    s.setTimestamp(15, value.getUpdatedAt());
+                    s.setLong(16, value.getUserId());
                 });
 
     }
@@ -110,14 +142,26 @@ public class OrderDaoImpl extends OrderDao {
         getDataSource().update(
                 """
                     UPDATE shop_order
-                       SET status = ?, created_at = ?, updated_at = ?
+                       SET status = ?, result = ?, price = ?, transaction_id = ?, transaction_type = ?, shipment_number = ?, address = ?, city = ?, province = ?, zip = ?, additional_info = ?, invoice = ?, created_at = ?, updated_at = ?, user_id = ?
                      WHERE id = ?
                     """,
                 s -> {
                     s.setShort(1, (short) newValue.getStatus().ordinal());
-                    s.setTimestamp(2, newValue.getCreatedAt());
-                    s.setTimestamp(3, newValue.getUpdatedAt());
-                    s.setLong(4, oldValue.getId());
+                    s.setString(2, newValue.getResult());
+                    s.setDouble(3, newValue.getPrice());
+                    s.setString(4, newValue.getTransactionId());
+                    s.setShort(5, (short) newValue.getTransactionType().ordinal());
+                    s.setString(6, newValue.getShipmentNumber());
+                    s.setString(7, newValue.getAddress());
+                    s.setString(8, newValue.getCity());
+                    s.setString(9, newValue.getProvince());
+                    s.setString(10, newValue.getZip());
+                    s.setString(11, newValue.getAdditionalInfo());
+                    s.setString(12, newValue.getInvoice());
+                    s.setTimestamp(13, newValue.getCreatedAt());
+                    s.setTimestamp(14, newValue.getUpdatedAt());
+                    s.setLong(15, newValue.getUserId());
+                    s.setLong(16, oldValue.getId());
                 });
 
     }
