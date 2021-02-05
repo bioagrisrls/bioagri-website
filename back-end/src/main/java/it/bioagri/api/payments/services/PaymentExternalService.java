@@ -26,9 +26,11 @@
 package it.bioagri.api.payments.services;
 
 import it.bioagri.api.payments.PaymentRequest;
-import it.bioagri.models.Transaction;
+import it.bioagri.api.payments.PaymentServiceFailed;
+import it.bioagri.models.Order;
 import it.bioagri.persistence.DataSource;
 
 public interface PaymentExternalService {
-    Transaction authorize(DataSource dataSource, PaymentRequest request, Transaction.Builder builder);
+    String create(DataSource dataSource, PaymentRequest request, double shippingPrice) throws PaymentServiceFailed;
+    boolean authorize(DataSource dataSource, PaymentRequest request, Order.Builder builder);
 }

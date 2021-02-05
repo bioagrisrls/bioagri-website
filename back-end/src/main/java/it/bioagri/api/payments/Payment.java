@@ -62,6 +62,29 @@ public class Payment {
     }
 
 
+
+    @PostMapping("create")
+    public ResponseEntity<String> create(HttpServletRequest http, @RequestBody PaymentRequest request) {
+
+        try {
+
+            try {
+
+                return paymentService.create(dataSource, request, shi);
+
+            } catch (PaymentServiceFailed e) {
+                return ResponseEntity.status(HttpStatus.PAYMENT_REQUIRED).build();
+            } catch (PaymentServiceNotFound e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            }
+
+
+        } catch (DataSourceSQLException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
+
     @PostMapping("authorize")
     public ResponseEntity<String> authorize(HttpServletRequest http, @RequestBody PaymentRequest request) {
 
@@ -72,32 +95,32 @@ public class Payment {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
 
-            if(request.getOrder(dataSource).isEmpty()) {
-
-                var order = new Order(
-                        dataSource.getId("shop_order", Long.class),
-                        OrderStatus.PROCESSING,
-                        Timestamp.from(Instant.now()),
-                        Timestamp.from(Instant.now()),
-                        authToken.getUserId(),
-                        null,
-                        null
-                );
-
-                dataSource.getOrderDao().save(order);
-
-                for(var i : request.getItems())
-                    dataSource.getOrderDao().addProduct(
-                            order,
-                            dataSource.getProductDao()
-                                    .findByPrimaryKey(i.getKey())
-                                    .orElseThrow(() -> new ApiResponseStatus(400)),
-                            i.getValue()
-                    );
-
-                request.setOrderId(order.getId());
-
-            }
+//            if(request.getOrder(dataSource).isEmpty()) {
+//
+//                var order = new Order(
+//                        dataSource.getId("shop_order", Long.class),
+//                        OrderStatus.PROCESSING,
+//                        Timestamp.from(Instant.now()),
+//                        Timestamp.from(Instant.now()),
+//                        authToken.getUserId(),
+//                        null,
+//                        null
+//                );
+//
+//                dataSource.getOrderDao().save(order);
+//
+//                for(var i : request.getItems())
+//                    dataSource.getOrderDao().addProduct(
+//                            order,
+//                            dataSource.getProductDao()
+//                                    .findByPrimaryKey(i.getKey())
+//                                    .orElseThrow(() -> new ApiResponseStatus(400)),
+//                            i.getValue()
+//                    );
+//
+//                request.setOrderId(order.getId());
+//
+//            }
 
 
             try {

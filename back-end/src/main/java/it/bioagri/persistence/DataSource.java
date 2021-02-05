@@ -60,7 +60,6 @@ public class DataSource {
     private final TagDao tagDao;
     private final TicketDao ticketDao;
     private final TicketResponseDao ticketResponseDao;
-    private final TransactionDao transactionDao;
 
     // TODO: ...
     private Connection connection;
@@ -85,7 +84,6 @@ public class DataSource {
         this.tagDao = new TagDaoImpl(this);
         this.ticketDao = new TicketDaoImpl(this);
         this.ticketResponseDao = new TicketResponseDaoImpl(this);
-        this.transactionDao = new TransactionDaoImpl(this);
 
     }
 
@@ -130,9 +128,6 @@ public class DataSource {
         return ticketResponseDao;
     }
 
-    public TransactionDao getTransactionDao() {
-        return transactionDao;
-    }
 
 
     public void fetch(@Language("SQL") String sql, DataSourcePrepareStatement prepareStatement, DataSourceFetchResult fetchResult) {

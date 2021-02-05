@@ -27,6 +27,7 @@ package it.bioagri.api.payments;
 
 import it.bioagri.api.payments.services.PaymentExternalService;
 import it.bioagri.api.payments.services.PaypalPayment;
+import it.bioagri.models.Order;
 import it.bioagri.models.Transaction;
 import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,22 +68,27 @@ public class PaymentService {
 
 
 
-    public Transaction authorize(DataSource dataSource, PaymentRequest request) throws PaymentServiceNotFound {
-
-        var builder = new Transaction.Builder()
-                .withId(0)
-                .withOrderId(request.getOrderId())
-                .withRecipient(shipmentRecipient)
-                .withCourierService(shipmentCourierService)
-                .withWeight(0)
-                .withCreatedAt(Timestamp.from(Instant.now()))
-                .withUpdatedAt(Timestamp.from(Instant.now()));
+    public String create(DataSource dataSource, PaymentRequest request) throws PaymentServiceNotFound, PaymentServiceFailed {
 
 
         for(var service : services.keySet()) {
 
             if(request.getService().equals(service))
-                return services.get(service).authorize(dataSource, request, builder);
+                return services.get(service).create(dataSource, request, Double.parseDouble(shipmentPrice));
+
+        }
+
+        throw new PaymentServiceNotFound(request);
+
+    }
+
+    public boolean authorize(DataSource dataSource, PaymentRequest request) throws PaymentServiceNotFound {
+
+
+        for(var service : services.keySet()) {
+
+            if(request.getService().equals(service))
+                return services.get(service).authorize(dataSource, request, new Order.Builder());
 
         }
 
