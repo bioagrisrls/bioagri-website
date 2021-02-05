@@ -37,7 +37,7 @@ public abstract class OrderDao extends Dao<Order, Long> {
         super(dataSource);
     }
 
-    public abstract Optional<Order> getByTransactionId(String transactionId);
+    public abstract Optional<Order> findByTransactionId(String transactionId);
 
     public abstract void addProduct(Order order, Product product, int quantity);
     public abstract void removeProduct(Order order, Product product);
