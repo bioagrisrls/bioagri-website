@@ -198,6 +198,21 @@ public final class Product implements Model {
         private Timestamp createdAt;
 
 
+        public Builder() {}
+
+        public Builder(Product product) {
+            this.id = product.getId();
+            this.name = product.getName();
+            this.description = product.getDescription();
+            this.info = product.getInfo();
+            this.price = product.getPrice();
+            this.discount = product.getDiscount();
+            this.stock = product.getStock();
+            this.status = product.getStatus();
+            this.updatedAt = product.getUpdatedAt();
+            this.createdAt = product.getCreatedAt();
+        }
+
         public Builder withId(long id) {
             this.id = id;
             return this;
