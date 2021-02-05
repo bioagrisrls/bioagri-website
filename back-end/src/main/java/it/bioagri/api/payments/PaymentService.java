@@ -28,7 +28,7 @@ package it.bioagri.api.payments;
 import it.bioagri.api.payments.services.PaymentExternalService;
 import it.bioagri.api.payments.services.PaypalPayment;
 import it.bioagri.models.Order;
-import it.bioagri.models.Transaction;
+import it.bioagri.models.TransactionType;
 import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,25 +43,19 @@ import java.util.Map;
 @Scope("singleton")
 public class PaymentService {
 
-    private final Map<String, PaymentExternalService> services;
-    private final String shipmentRecipient;
+    private final Map<TransactionType, PaymentExternalService> services;
     private final String shipmentPrice;
-    private final String shipmentCourierService;
 
     @Autowired
     private PaymentService(
             @Value("${payments.services.external.paypal.id}"      ) String paypalId,
             @Value("${payments.services.external.paypal.secret}"  ) String paypalSecret,
-            @Value("${payments.shipment.recipient}"               ) String shipmentRecipient,
-            @Value("${payments.shipment.courier}"                 ) String shipmentCourierService,
             @Value("${payments.shipment.price}"                   ) String shipmentPrice) {
 
-        this.shipmentRecipient = shipmentRecipient;
-        this.shipmentCourierService = shipmentCourierService;
         this.shipmentPrice = shipmentPrice;
 
         services = Map.of(
-                "<<PAYMENT_TYPE_PAYPAL>>", new PaypalPayment(paypalId, paypalSecret)
+                TransactionType.PAYPAL, new PaypalPayment(paypalId, paypalSecret)
         );
 
     }

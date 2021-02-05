@@ -68,9 +68,36 @@ public class Payment {
 
         try {
 
+
+            if(!authToken.isLoggedIn())
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+
+
             try {
 
-                return paymentService.create(dataSource, request, shi);
+                String transactionId = paymentService.create(dataSource, request);
+
+                dataSource.getOrderDao().save(new Order.Builder()
+                        .withId(dataSource.getId("shop_order", Long.class))
+                        .withStatus(OrderStatus.PROCESSING)
+                        .withResult("")
+                        .withPrice(0.)
+                        .withTransactionId(transactionId)
+                        .withTransactionType(request.getService())
+                        .withAddress("")
+                        .withCity("")
+                        .withProvince("")
+                        .withZip("")
+                        .withAdditionalInfo("")
+                        .withInvoice("")
+                        .withUserId(authToken.getUserId())
+                        .withCreatedAt(Timestamp.from(Instant.now()))
+                        .withUpdatedAt(Timestamp.from(Instant.now()))
+                        .build()
+                );
+
+
+                return ResponseEntity.ok(transactionId);
 
             } catch (PaymentServiceFailed e) {
                 return ResponseEntity.status(HttpStatus.PAYMENT_REQUIRED).build();

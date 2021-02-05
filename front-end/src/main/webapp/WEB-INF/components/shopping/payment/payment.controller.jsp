@@ -87,10 +87,9 @@
 
                     return api('/payments/create', 'POST', {
 
-                        service:    '<<PAYMENT_TYPE_PAYPAL>>',
+                        service:    'PAYPAL',
                         id:         0,
                         data:       0,
-                        orderId:    0,
                         items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
 
                     }, 'text')
@@ -102,10 +101,9 @@
 
                     return api('/payments/authorize', 'POST', {
 
-                        service:    '<<PAYMENT_TYPE_PAYPAL>>',
+                        service:    'PAYPAL',
                         id:         data.orderID,
                         data:       data.payerID,
-                        orderId:    0,
                         items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
 
                     }, 'raw')

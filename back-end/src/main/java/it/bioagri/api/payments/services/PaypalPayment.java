@@ -33,8 +33,6 @@ import com.paypal.orders.*;
 import it.bioagri.api.payments.PaymentRequest;
 import it.bioagri.api.payments.PaymentServiceFailed;
 import it.bioagri.models.Product;
-import it.bioagri.models.Transaction;
-import it.bioagri.models.TransactionStatus;
 import it.bioagri.models.TransactionType;
 import it.bioagri.persistence.DataSource;
 import org.slf4j.LoggerFactory;
@@ -237,7 +235,7 @@ public class PaypalPayment implements PaymentExternalService {
                     .stream()
                     .mapToDouble(i -> BigDecimal
                             .valueOf(i.getKey().getPrice() - (i.getKey().getPrice() * i.getKey().getDiscount() / 100))
-                            .setScale(2, RoundingMode.FLOOR)
+                            .setScale(2, RoundingMode.HALF_UP)
                             .doubleValue() * i.getValue())
                     .reduce(0.0, Double::sum);
 
@@ -250,18 +248,18 @@ public class PaypalPayment implements PaymentExternalService {
                                     .amountWithBreakdown(new AmountWithBreakdown()
                                             .currencyCode("EUR")
                                             .value(BigDecimal.valueOf(priceTotal + shippingPrice)
-                                                    .setScale(2, RoundingMode.FLOOR)
+                                                    .setScale(2, RoundingMode.HALF_UP)
                                                     .toPlainString())
                                             .amountBreakdown(new AmountBreakdown()
                                                     .itemTotal(new Money()
                                                             .currencyCode("EUR")
                                                             .value(BigDecimal.valueOf(priceTotal)
-                                                                    .setScale(2, RoundingMode.FLOOR)
+                                                                    .setScale(2, RoundingMode.HALF_UP)
                                                                     .toPlainString()))
                                                     .shipping(new Money()
                                                             .currencyCode("EUR")
                                                             .value(BigDecimal.valueOf(shippingPrice)
-                                                                    .setScale(2, RoundingMode.FLOOR)
+                                                                    .setScale(2, RoundingMode.HALF_UP)
                                                                     .toPlainString()))
                                                     .handling(new Money()
                                                             .currencyCode("EUR")
@@ -281,7 +279,7 @@ public class PaypalPayment implements PaymentExternalService {
                                                             .currencyCode("EUR")
                                                             .value(BigDecimal
                                                                     .valueOf(i.getKey().getPrice() - (i.getKey().getPrice() * i.getKey().getDiscount() / 100))
-                                                                    .setScale(2, RoundingMode.FLOOR)
+                                                                    .setScale(2, RoundingMode.HALF_UP)
                                                                     .toPlainString()))
                                                     .tax(new Money()
                                                             .currencyCode("EUR")
