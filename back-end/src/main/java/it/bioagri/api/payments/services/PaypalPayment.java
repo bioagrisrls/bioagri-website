@@ -29,6 +29,7 @@ import ch.qos.logback.classic.Logger;
 import com.paypal.core.PayPalEnvironment;
 import com.paypal.core.PayPalHttpClient;
 import com.paypal.http.HttpResponse;
+import com.paypal.http.serializer.Json;
 import com.paypal.orders.*;
 import it.bioagri.api.payments.PaymentRequest;
 import it.bioagri.api.payments.PaymentServiceFailed;
@@ -308,6 +309,93 @@ public class PaypalPayment implements PaymentExternalService {
 
     @Override
     public boolean authorize(DataSource dataSource, PaymentRequest request, it.bioagri.models.Order.Builder builder) {
-        return false;
+
+        try {
+
+            HttpResponse<Order> response = getClient().execute(new OrdersCaptureRequest(request.getId()) {{
+                requestBody(new OrderRequest());
+            }});
+
+
+            if(logger.isDebugEnabled()) {
+
+                logger.debug("===== PAYPAL AUTHORIZATION =====");
+                logger.debug("Status Code: %d".formatted(response.statusCode()));
+                logger.debug("OrderId    : %s".formatted(response.result().id()));
+                logger.debug("Status     : %s".formatted(response.result().status()));
+                logger.debug("CreateTime : %s".formatted(response.result().createTime()));
+                logger.debug("UpdateTime : %s".formatted(response.result().updateTime()));
+                logger.debug("Expiration : %s".formatted(response.result().expirationTime()));
+                logger.debug("Units      : %d".formatted(response.result().purchaseUnits().size()));
+                logger.debug("Items      : %d".formatted(request.getItems().size()));
+
+                for(var i : response.result().links())
+                    logger.debug("Links      : %s => %s".formatted(i.rel(), i.href()));
+
+                for(var i : response.result().purchaseUnits()) {
+
+                    for (var j : i.payments().captures())
+                        logger.debug("Captures   : %s".formatted(j.id()));
+
+                    logger.debug("InvoiceId  : %s".formatted(i.invoiceId()));
+
+                }
+
+                logger.debug("BuyerMail  : %s".formatted(response.result().payer().email()));
+                logger.debug("BuyerName  : %s".formatted(response.result().payer().name().fullName()));
+
+                logger.debug("=====  END AUTHORIZATION   =====");
+
+            }
+
+
+
+            if(response.statusCode() != 201)
+                return false;
+
+            if(response.result().purchaseUnits().size() != 1)
+                return false;
+
+            if(response.result().purchaseUnits().get(0).payments().captures().size() != 1)
+                return false;
+
+
+            var unit = response.result().purchaseUnits().get(0);
+            var capture = unit.payments().captures().get(0);
+
+            if(unit.shippingDetail().addressPortable() != null) {
+
+                builder
+                        .withAddress("%s, %s, %s, %s, %s, %s, %s, %s".formatted(
+                                unit.shippingDetail().addressPortable().addressLine1(),
+                                unit.shippingDetail().addressPortable().addressLine2(),
+                                unit.shippingDetail().addressPortable().addressLine3(),
+                                unit.shippingDetail().addressPortable().adminArea1(),
+                                unit.shippingDetail().addressPortable().adminArea2(),
+                                unit.shippingDetail().addressPortable().adminArea3(),
+                                unit.shippingDetail().addressPortable().adminArea4(),
+                                unit.shippingDetail().addressPortable().countryCode()))
+                        .withCity(unit.shippingDetail().addressPortable().adminArea1())
+                        .withZip(unit.shippingDetail().addressPortable().postalCode());
+
+            }
+
+            if(unit.invoiceId() != null)
+                builder.withInvoice(unit.invoiceId());
+
+            if(capture.amount() != null)
+                builder.withPrice(Double.parseDouble(capture.amount().value()));
+
+
+            builder.withResult(new Json().serialize(response.result()));
+
+
+            return true;
+
+
+        } catch (IOException ignored) {
+            return false;
+        }
+
     }
 }

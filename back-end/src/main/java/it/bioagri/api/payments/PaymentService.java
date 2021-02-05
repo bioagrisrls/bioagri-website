@@ -76,13 +76,13 @@ public class PaymentService {
 
     }
 
-    public boolean authorize(DataSource dataSource, PaymentRequest request) throws PaymentServiceNotFound {
+    public boolean authorize(DataSource dataSource, PaymentRequest request, Order.Builder builder) throws PaymentServiceNotFound {
 
 
         for(var service : services.keySet()) {
 
             if(request.getService().equals(service))
-                return services.get(service).authorize(dataSource, request, new Order.Builder());
+                return services.get(service).authorize(dataSource, request, builder);
 
         }
 

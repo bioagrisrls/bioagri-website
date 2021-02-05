@@ -205,6 +205,29 @@ public final class Order implements Model {
         private List<Map.Entry<Product, Integer>> products;
 
 
+        public Builder() {}
+
+        public Builder(Order order) {
+            this.id = order.getId();
+            this.status = order.getStatus();
+            this.result = order.getResult();
+            this.price = order.getPrice();
+            this.transactionId = order.getTransactionId();
+            this.transactionType = order.getTransactionType();
+            this.shipmentNumber = order.getShipmentNumber();
+            this.address = order.getAddress();
+            this.city = order.getCity();
+            this.province = order.getProvince();
+            this.zip = order.getZip();
+            this.additionalInfo = order.getAdditionalInfo();
+            this.invoice = order.getInvoice();
+            this.createdAt = order.getCreatedAt();
+            this.updatedAt = order.getUpdatedAt();
+            this.userId = order.getUserId();
+            this.products = null;
+        }
+
+
         public Builder withId(Long id) {
             this.id = id;
             return this;
