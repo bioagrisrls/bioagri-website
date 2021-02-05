@@ -27,6 +27,7 @@ package it.bioagri.api.payments;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.bioagri.models.Order;
+import it.bioagri.models.TransactionType;
 import it.bioagri.persistence.DataSource;
 
 import java.util.ArrayList;
@@ -36,21 +37,19 @@ import java.util.Optional;
 
 public class PaymentRequest {
 
-    private final String service;
+    private final TransactionType service;
     private final String id;
     private final String data;
-    private Long orderId;
     private final List<Map.Entry<Long, Integer>> items;
 
     @JsonIgnore
     private Order order;
 
 
-    public PaymentRequest(String service, String id, String data, Long orderId, List<Map.Entry<Long, Integer>> items) {
+    public PaymentRequest(TransactionType service, String id, String data, List<Map.Entry<Long, Integer>> items) {
         this.service = service;
         this.id = id;
         this.data = data;
-        this.orderId = orderId;
         this.items = items;
     }
 
@@ -58,7 +57,6 @@ public class PaymentRequest {
         this.service = null;
         this.id = null;
         this.data = null;
-        this.orderId = null;
         this.items = new ArrayList<>();
     }
 
@@ -67,7 +65,7 @@ public class PaymentRequest {
         return id;
     }
 
-    public String getService() {
+    public TransactionType getService() {
         return service;
     }
 
@@ -75,13 +73,6 @@ public class PaymentRequest {
         return data;
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
 
     public List<Map.Entry<Long, Integer>> getItems() {
         return items;
@@ -92,7 +83,7 @@ public class PaymentRequest {
 
         if(order == null) {
             order = dataSource.getOrderDao()
-                    .findByPrimaryKey(orderId)
+                    .findByTransactionId(getId())
                     .orElse(null);
         }
 
@@ -100,4 +91,38 @@ public class PaymentRequest {
 
     }
 
+
+    public static final class Builder {
+
+        private TransactionType service;
+        private String id;
+        private String data;
+        private List<Map.Entry<Long, Integer>> items;
+
+
+        public Builder withService(TransactionType service) {
+            this.service = service;
+            return this;
+        }
+
+        public Builder withId(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withData(String data) {
+            this.data = data;
+            return this;
+        }
+
+        public Builder withItems(List<Map.Entry<Long, Integer>> items) {
+            this.items = items;
+            return this;
+        }
+
+        public PaymentRequest build() {
+            return new PaymentRequest(service, id, data, items);
+        }
+
+    }
 }

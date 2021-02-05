@@ -90,10 +90,7 @@
                 .values(items)
                 .reduce((i, v) => {
 
-                    if(discount)
-                        return ((+v.price - ((+v.price / 100) * +v.discount)) * shopping_cart_count(v.id)) + i;
-
-                    return (+v.price * shopping_cart_count(v.id)) + i;
+                    return (+(+v.price - ((+v.price / 100) * +v.discount)).toFixed(2) * shopping_cart_count(v.id)) + i;
 
                 }, +addend).toFixed(2);
 
