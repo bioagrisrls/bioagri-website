@@ -85,76 +85,16 @@
 
                 createOrder: (data, actions) => {
 
-                    return Promise.all(shopping_cart_map(item => api('/products/' + item.id)))
-                        .then(response => {
+                    return api('/payments/create', 'POST', {
 
-                            const total = +(+response.reduce((j, i) => j + shopping_cart_count(i.id) * +(+i.price - ((+i.price / 100) * +i.discount)).toFixed(2), 0));
-                            const shipping = 10; // TODO: read from server
+                        service:    '<<PAYMENT_TYPE_PAYPAL>>',
+                        id:         0,
+                        data:       0,
+                        orderId:    0,
+                        items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
 
-                            const order = {
-
-                                purchase_units: [{
-
-                                    description: "Acquisto su Bioagri Shop",
-
-                                    amount: {
-                                        currency_code: 'EUR',
-                                        value: (total + shipping).toFixed(2),
-
-                                        breakdown: {
-                                            item_total: {
-                                                currency_code: 'EUR',
-                                                value: total.toFixed(2),
-                                            },
-                                            shipping: {
-                                                currency_code: 'EUR',
-                                                value: shipping.toFixed(2),
-                                            },
-                                            handling: {
-                                                currency_code: 'EUR',
-                                                value: '0.00'
-                                            },
-                                            tax_total: {
-                                                currency_code: 'EUR',
-                                                value: '0.00'
-                                            },
-                                            shipping_discount: {
-                                                currency_code: 'EUR',
-                                                value: '0.00'
-                                            }
-                                        }
-
-                                    },
-
-                                    items: response.map(i => {
-                                        return {
-
-                                            name: i.name,
-                                            sku: i.id,
-                                            quantity: shopping_cart_count(i.id),
-
-                                            unit_amount: {
-                                                currency_code: 'EUR',
-                                                value: (+i.price - ((+i.price / 100) * +i.discount)).toFixed(2)
-                                            },
-                                            tax: {
-                                                currency_code: 'EUR',
-                                                value: '0.00'
-                                            },
-
-                                        }
-                                    }),
-
-
-                                }],
-
-
-                            };
-
-                            return actions.order.create(order);
-
-                        });
-
+                    }, 'text')
+                    .catch(reason  => this.state = { current: 'error'     });
 
                 },
 
