@@ -27,6 +27,7 @@ package it.bioagri.models;
 
 public enum OrderStatus {
     PROCESSING,
+    PREPARING,
     SENT,
     RECEIVED,
     ABORTED,

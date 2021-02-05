@@ -26,7 +26,6 @@
 package it.bioagri.models;
 
 public enum TransactionType {
-    PICKUP_IN_STORE,
     PAYPAL,
     BANK_TRANSFER,
     CASH_ON_DELIVERY
