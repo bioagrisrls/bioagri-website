@@ -55,7 +55,7 @@ public class OrderDaoImpl extends OrderDao {
                         r.getLong("id"),
                         OrderStatus.values()[r.getShort("status")],
                         r.getString("result"),
-                        r.getDouble("price"),
+                        r.getFloat("price"),
                         r.getString("transaction_id"),
                         TransactionType.values()[r.getShort("transaction_type")],
                         r.getString("shipment_number"),
@@ -86,7 +86,7 @@ public class OrderDaoImpl extends OrderDao {
                         r.getLong("id"),
                         OrderStatus.values()[r.getShort("status")],
                         r.getString("result"),
-                        r.getDouble("price"),
+                        r.getFloat("price"),
                         r.getString("transaction_id"),
                         TransactionType.values()[r.getShort("transaction_type")],
                         r.getString("shipment_number"),
@@ -119,7 +119,7 @@ public class OrderDaoImpl extends OrderDao {
                     s.setLong(1, value.getId());
                     s.setShort(2, (short) value.getStatus().ordinal());
                     s.setString(3, value.getResult());
-                    s.setDouble(4, value.getPrice());
+                    s.setFloat(4, value.getPrice());
                     s.setString(5, value.getTransactionId());
                     s.setShort(6, (short) value.getTransactionType().ordinal());
                     s.setString(7, value.getShipmentNumber());
@@ -148,7 +148,7 @@ public class OrderDaoImpl extends OrderDao {
                 s -> {
                     s.setShort(1, (short) newValue.getStatus().ordinal());
                     s.setString(2, newValue.getResult());
-                    s.setDouble(3, newValue.getPrice());
+                    s.setFloat(3, newValue.getPrice());
                     s.setString(4, newValue.getTransactionId());
                     s.setShort(5, (short) newValue.getTransactionType().ordinal());
                     s.setString(6, newValue.getShipmentNumber());
@@ -186,7 +186,7 @@ public class OrderDaoImpl extends OrderDao {
                         r.getLong("id"),
                         OrderStatus.values()[r.getShort("status")],
                         r.getString("result"),
-                        r.getDouble("price"),
+                        r.getFloat("price"),
                         r.getString("transaction_id"),
                         TransactionType.values()[r.getShort("transaction_type")],
                         r.getString("shipment_number"),
