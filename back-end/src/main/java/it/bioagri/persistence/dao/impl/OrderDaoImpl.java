@@ -176,6 +176,39 @@ public class OrderDaoImpl extends OrderDao {
 
 
     @Override
+    public Optional<Order> getByTransactionId(String transactionId) {
+
+        final AtomicReference<Optional<Order>> result = new AtomicReference<>(Optional.empty());
+
+        getDataSource().fetch("SELECT * FROM shop_order WHERE shop_order.transaction_id = ?",
+                s -> s.setString(1, transactionId),
+                r -> result.set(Optional.of(new Order(
+                        r.getLong("id"),
+                        OrderStatus.values()[r.getShort("status")],
+                        r.getString("result"),
+                        r.getDouble("price"),
+                        r.getString("transaction_id"),
+                        TransactionType.values()[r.getShort("transaction_type")],
+                        r.getString("shipment_number"),
+                        r.getString("address"),
+                        r.getString("city"),
+                        r.getString("province"),
+                        r.getString("zip"),
+                        r.getString("additional_info"),
+                        r.getString("invoice"),
+                        r.getTimestamp("created_at"),
+                        r.getTimestamp("updated_at"),
+                        r.getLong("user_id"),
+                        null
+                )))
+        );
+
+        return result.get();
+
+    }
+
+
+    @Override
     public void addProduct(Order order, Product product, int quantity) {
 
         getDataSource().update(
