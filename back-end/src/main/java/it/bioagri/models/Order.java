@@ -39,7 +39,7 @@ public final class Order implements Model {
     private Long id;
     private final OrderStatus status;
     private final String result;
-    private final Double price;
+    private final Float price;
     private final String transactionId;
     private final TransactionType transactionType;
     private final String shipmentNumber;
@@ -59,7 +59,7 @@ public final class Order implements Model {
     private User user;
 
 
-    public Order(long id, OrderStatus status, String result, Double price, String transactionId, TransactionType transactionType, String shipmentNumber, String address, String city, String province, String zip, String additionalInfo, String invoice, Timestamp createdAt, Timestamp updatedAt, Long userId, List<Map.Entry<Product, Integer>> products) {
+    public Order(long id, OrderStatus status, String result, Float price, String transactionId, TransactionType transactionType, String shipmentNumber, String address, String city, String province, String zip, String additionalInfo, String invoice, Timestamp createdAt, Timestamp updatedAt, Long userId, List<Map.Entry<Product, Integer>> products) {
         this.id = id;
         this.status = status;
         this.result = result;
@@ -83,7 +83,7 @@ public final class Order implements Model {
         this.id = 0L;
         this.status = null;
         this.result = null;
-        this.price = 0.;
+        this.price = 0.f;
         this.transactionId = null;
         this.transactionType = null;
         this.shipmentNumber = null;
@@ -113,7 +113,7 @@ public final class Order implements Model {
 
     public String getResult() { return result; }
 
-    public Double getPrice() { return price; }
+    public Float getPrice() { return price; }
 
     public String getTransactionId() { return transactionId; }
 
@@ -189,7 +189,7 @@ public final class Order implements Model {
         private Long id;
         private OrderStatus status;
         private String result;
-        private Double price;
+        private Float price;
         private String transactionId;
         private TransactionType transactionType;
         private String shipmentNumber;
@@ -220,7 +220,7 @@ public final class Order implements Model {
             return this;
         }
 
-        public Builder withPrice(Double price) {
+        public Builder withPrice(Float price) {
             this.price = price;
             return this;
         }
