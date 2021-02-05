@@ -121,6 +121,13 @@ public class Payment {
             if(!authToken.isLoggedIn())
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
+            if(request.getOrder(dataSource).isEmpty())
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+
+
+            var order = request.getOrder(dataSource);
+
+
 
 //            if(request.getOrder(dataSource).isEmpty()) {
 //
