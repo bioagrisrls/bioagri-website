@@ -54,6 +54,7 @@
   "page_mywish" : "La mia lista dei desideri",
   "page_myaccount" : "Il mio account",
   "page_myticket" : "Il miei ticket",
+  "page_policy" : "Cookie Policy",
 
   "nav_logo" : "/assets/img/logo/logo-extended.webp",
   "nav_home" : "Home",
@@ -316,6 +317,8 @@
   "profile_status" : "Stato",
 
   "ticket_empty" : "Non hai nessun ticket in sospeso",
-  "ticket_title" : "I miei ticket"
+  "ticket_title" : "I miei ticket",
+
+  "policy_header" : "Ci teniamo alla tua privacy!"
 
 }

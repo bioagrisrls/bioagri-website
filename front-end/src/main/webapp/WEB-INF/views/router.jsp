@@ -105,6 +105,7 @@
         <%@ include file="/WEB-INF/components/shopping/wish/wish.controller.jsp"                %>
         <%@ include file="/WEB-INF/components/shopping/order/order.controller.jsp"              %>
         <%@ include file="/WEB-INF/components/users/profile/profile.controller.jsp"             %>
+        <%@ include file="/WEB-INF/components/users/ticket/ticket.controller.jsp"               %>
 
     </head>
 
