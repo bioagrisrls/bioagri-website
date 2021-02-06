@@ -42,6 +42,7 @@
                         return {
 
                             user: response,
+                            current: "Default",
 
                             strings: {
                                 account:        '${locale.profile_account}',
@@ -64,11 +65,11 @@
                                 logout:         '${locale.profile_logout}',
                                 logout_warn:    '${locale.profile_logout_warn}',
 
-                                theme_default:  '${locale.profile_default}',
-                                theme_charcoal: '${locale.profile_charcoal}',
-                                theme_hookers:  '${locale.profile_hookers}',
-                                theme_raisin:   '${locale.profile_raisin}',
-                                theme_twitter:  '${locale.profile_twitter}',
+                                theme_default:  '${locale.theme_default}',
+                                theme_charcoal: '${locale.theme_charcoal}',
+                                theme_hookers:  '${locale.theme_hookers}',
+                                theme_raisin:   '${locale.theme_raisin}',
+                                theme_twitter:  '${locale.theme_twitter}',
                             }
 
                         }

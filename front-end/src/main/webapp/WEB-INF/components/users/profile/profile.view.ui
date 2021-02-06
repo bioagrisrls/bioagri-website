@@ -154,13 +154,13 @@
                 </div>
 
                 <div class="ui-profile-content-value">
-                    <div class="ui-profile-dropdown">
+                    <div class="ui-profile-dropdown dropdown-toggle" data-toggle="dropdown">
                         <button>
-                            TO DO...
+                            {{current}}
                         </button>
-                        <div>
+                        <div class="dropdown-menu">
                             <a class="dropdown-item">{{strings.theme_default}}</a>
-                            <a class="dropdown-item">{{strings.theme_chorcoal}}</a>
+                            <a class="dropdown-item">{{strings.theme_charcoal}}</a>
                             <a class="dropdown-item">{{strings.theme_hookers}}</a>
                             <a class="dropdown-item">{{strings.theme_raisin}}</a>
                             <a class="dropdown-item">{{strings.theme_twitter}}</a>
