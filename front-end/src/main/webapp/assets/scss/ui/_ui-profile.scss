@@ -113,6 +113,25 @@
             @extend .fs-5;
           }
 
+          .ui-profile-dropdown {
+
+            @extend .btn-group;
+
+            button {
+              @extend .btn;
+              @extend .btn-sm;
+              @extend .btn-primary;
+              @extend .fs-5;
+              @extend .ui-font-title-primary;
+              @extend .dropdown-toggle;
+            }
+
+            div {
+              @extend .dropdown-menu;
+            }
+
+          }
+
         }
 
 
