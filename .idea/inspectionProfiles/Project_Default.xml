@@ -19,7 +19,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="35">
+          <list size="36">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -55,6 +55,7 @@
             <item index="32" class="java.lang.String" itemvalue="ui-order" />
             <item index="33" class="java.lang.String" itemvalue="ui-account" />
             <item index="34" class="java.lang.String" itemvalue="ui-profile" />
+            <item index="35" class="java.lang.String" itemvalue="ui-ticket" />
           </list>
         </value>
       </option>

@@ -52,6 +52,7 @@
   "page_myorder" : "I miei ordini",
   "page_mywish" : "La mia lista dei desideri",
   "page_myaccount" : "Il mio account",
+  "page_myticket" : "Il miei ticket",
 
   "nav_logo" : "/assets/img/logo/logo-extended.webp",
   "nav_home" : "Home",
@@ -75,6 +76,7 @@
   "menu_account" : "Il mio account",
   "menu_order" : "I miei ordini",
   "menu_wishlist" : "La mia lista desideri",
+  "menu_ticket" : "I miei ticket",
   "menu_exit" : "Esci",
 
   "foo_header_connected" : "Seguici sui nostri social network per rimanere connesso!",
