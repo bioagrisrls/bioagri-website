@@ -113,6 +113,8 @@ const navigate = (url, data = undefined, container = '#ui-navigation-container',
                 prog.css('width', '66%')
                     .attr('aria-valuenow', '66');
 
+                window.scroll(0, 0);
+
 
             })
                 .then(() => Component.run())
