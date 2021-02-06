@@ -305,6 +305,8 @@
   "profile_password_save" : "Reimposta password",
   "profile_remove" : "Elimina profilo",
   "profile_remove_warn" : "Attenzione! Cliccando su Elimina profilo confermi l\\'eliminazione dell\\'account, e tutti i dati ad esso associati",
+  "profile_theme" : "Temi",
+  "profile_theme_change" : "Seleziona un tema",
   "profile_logout" : "Disconnetti",
   "profile_logout_warn" : "Premi il tasto Disconnetti per uscire dal tuo account",
 
