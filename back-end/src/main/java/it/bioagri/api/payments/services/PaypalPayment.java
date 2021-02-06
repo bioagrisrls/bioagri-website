@@ -264,7 +264,7 @@ public class PaypalPayment implements PaymentExternalService {
                 builder.withInvoice(unit.invoiceId());
 
             if(capture.amount() != null)
-                builder.withPrice(Double.parseDouble(capture.amount().value()));
+                builder.withPrice(Float.parseFloat(capture.amount().value()));
 
 
             builder.withResult(new Json().serialize(response.result()));

@@ -84,7 +84,7 @@ public class Payment {
                         .withId(dataSource.getId("shop_order", Long.class))
                         .withStatus(OrderStatus.PROCESSING)
                         .withResult("")
-                        .withPrice(0.)
+                        .withPrice(0.f)
                         .withShipmentNumber("")
                         .withTransactionId("")
                         .withTransactionType(request.getService())
