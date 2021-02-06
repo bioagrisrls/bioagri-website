@@ -3,12 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Editors</title>
+  <title>BioAgri | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" />
-
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/assets/admin/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -17,8 +14,6 @@
   <link rel="stylesheet" href="/assets/admin/css/adminlte.min.css">
   <!-- summernote -->
   <link rel="stylesheet" href="/assets/admin/plugins/summernote/summernote-bs4.css">
-
-  <link rel="stylesheet" href="/assets/admin/css/input.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -142,56 +137,96 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <div class="row mt-5 d-flex justify-content-center">
-      <div class="col-md-8 mt-5">
-        <div class="card">
-          <div class="card-header bg-success text-white">
-            <h2><strong>Inserisci categoria</strong></h2>
-          </div>
-          <div class="card-body">
-            <label>Categoria :</label>
-            <input type="text" data-role="tagsinput" name="tags" class="form-control">
-          </div>
-        </div>
-      </div>
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+
     </div>
-  </div><!-- /.container-fluid -->
+    <!-- /.content-header -->
 
-  <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
-<footer class="main-footer">
-  <strong>Copyright &copy;  <a href="http://adminlte.io">Bioagri Shop</a>.</strong>
-  All rights reserved.
-  <div class="float-right d-none d-sm-inline-block">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-6">
+            <!-- Box Comment -->
+            <div class="card card-widget collapsed-card">
+              <div class="card-header">
+                <div class="user-block">
+                  <img class="img-circle mr-5" src="/assets/admin/css/img/prod-1.jpg" alt="User Image">
+                  <span class="username"><a href="#">solfato di ferro</a></span>
+                  <span class="description">pubblicato il - oggi alle 7:30</span>
+                </div>
+                <!-- /.user-block -->
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="card-footer card-comments">
+                  <div class="card-comment">
+                    <div class="comment-text">
+                    <span class="username">
+                      Maria Gonzales
+                      <span class="text-muted float-right">8:03 oggi </span>
+                    </span><!-- /.username -->
+                      It is a long established fact that a reader will be distracted
+                      by the readable content of a page when looking at its layout.
+                    </div>
+                    <!-- /.comment-text -->
+                  </div>
+                  <!-- /.card-comment -->
+                  <button type="button" class="btn btn-danger float-right mx-1"><i class="far fa-trash-alt"></i>Elimina</button>
+                  <button type="button" class="btn btn-success float-right mx-1"><i class="far fa-thumbs-up"></i> Approva</button>
+
+              </div>
+              <!-- /.card-body -->
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+
+       </section>
+
   </div>
-</footer>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <strong>Copyright &copy;  <a href="http://adminlte.io">Bioagri Shop</a>.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+    </div>
+  </footer>
 
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-<script src="../js/bootstrap-tagsinput.js"></script>
+
 <!-- jQuery -->
 <script src="/assets/admin/plugins/jquery/jquery.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
 <!-- Bootstrap 4 -->
 <script src="/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/assets/admin/js/adminlte.min.js"></script>
 <!-- Summernote -->
 <script src="/assets/admin/plugins/summernote/summernote-bs4.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
-
-<script>
-  $(function () {
-    // Summernote
-    $('.textarea').summernote()
-  })
-
-  $(document).ready(function () {
-    bsCustomFileInput.init();
-  });
-</script>
+<!-- AdminLTE App -->
+<script src="/assets/admin/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="/assets/admin/js/pages/dashboard.js"></script>
 </body>
 </html>
