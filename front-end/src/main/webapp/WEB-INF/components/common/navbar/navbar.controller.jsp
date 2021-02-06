@@ -58,6 +58,7 @@
                 userAccount : '${locale.menu_account}',
                 userOrder : '${locale.menu_order}',
                 userWish : '${locale.menu_wishlist}',
+                userTicket : '${locale.menu_ticket}',
                 userExit : '${locale.menu_exit}',
 
             });
