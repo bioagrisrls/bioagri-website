@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Editors</title>
+  <title>Bioagri | Editors</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,8 +15,6 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/assets/admin/css/adminlte.min.css">
-  <!-- summernote -->
-  <link rel="stylesheet" href="/assets/admin/plugins/summernote/summernote-bs4.css">
 
   <link rel="stylesheet" href="/assets/admin/css/input.css">
   <!-- Google Font: Source Sans Pro -->
@@ -148,10 +146,10 @@
       <div class="col-md-8 mt-5">
         <div class="card">
           <div class="card-header bg-success text-white">
-            <h2><strong>Inserisci categoria</strong></h2>
+            <h2><strong>Inserisci tag</strong></h2>
           </div>
           <div class="card-body">
-            <label>Categoria :</label>
+            <label>Tags :</label>
             <input type="text" data-role="tagsinput" name="tags" class="form-control">
           </div>
         </div>
@@ -178,8 +176,6 @@
 <script src="/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/assets/admin/js/adminlte.min.js"></script>
-<!-- Summernote -->
-<script src="/assets/admin/plugins/summernote/summernote-bs4.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
 
