@@ -36,16 +36,16 @@
                 <div class="col-auto">
 
                     <ul>
-                        <li class="{{ current === 'home'    ? 'active' : ''}}" data-bs-dismiss="modal" onclick="navigate('/home')"><span>{{ home }}</span></li>
-                        <li class="{{ current === 'catalog' ? 'active' : ''}}" data-bs-dismiss="modal" onclick="navigate('/catalog')"><span>{{ catalog }}</span></li>
-                        <li class="{{ current === 'about'   ? 'active' : ''}}" data-bs-dismiss="modal" onclick="navigate('/about')"><span>{{ about }}</span></li>
-                        <li class="{{ current === 'support' ? 'active' : ''}}" data-bs-dismiss="modal" onclick="navigate('/support')"><span>{{ support }}</span></li>
+                        <li class="{{ current === 'home'    ? 'active' : ''}}" data-bs-dismiss="modal" onclick="navigate('/home')"><span>{{ strings.home }}</span></li>
+                        <li class="{{ current === 'catalog' ? 'active' : ''}}" data-bs-dismiss="modal" onclick="navigate('/catalog')"><span>{{ strings.catalog }}</span></li>
+                        <li class="{{ current === 'about'   ? 'active' : ''}}" data-bs-dismiss="modal" onclick="navigate('/about')"><span>{{ strings.about }}</span></li>
+                        <li class="{{ current === 'support' ? 'active' : ''}}" data-bs-dismiss="modal" onclick="navigate('/support')"><span>{{ strings.support }}</span></li>
                     </ul>
 
                     <div class="ui-side-menu-content-icons">
                         <span data-bs-dismiss="modal" onclick="window.components['ui-navbar'].onAccountClicked()" class="mdi mdi-48px mdi-account-outline"></span>
                         <span data-bs-dismiss="modal" onclick="window.components['ui-navbar'].onShoppingClicked()" class="mdi mdi-48px mdi-cart-outline"></span>
-                        <span onclick="window.components['ui-navbar'].onDarkModeSwitched()" class="mdi mdi-48px mdi-lightbulb-outline"></span>
+                        <span onclick="window.components['ui-navbar'].switchTheme()" class="mdi mdi-48px mdi-lightbulb-outline"></span>
                     </div>
 
                 </div>
