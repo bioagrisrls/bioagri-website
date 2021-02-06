@@ -83,14 +83,19 @@
 
 
     <!-- Support -->
-    <section class="ui-container" ui-animated>
+    <section class="ui-container bg-white text-dark" ui-animated>
 
+        <br>
         <br>
         <br>
 
         <article>
             ${locale.info_policy}
         </article>
+
+        <br>
+        <br>
+        <br>
 
     </section>
 
