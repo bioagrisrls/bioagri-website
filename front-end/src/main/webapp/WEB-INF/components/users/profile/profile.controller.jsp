@@ -59,6 +59,8 @@
                                 password_save:  '${locale.profile_password_save}',
                                 remove:         '${locale.profile_remove}',
                                 remove_warn:    '${locale.profile_remove_warn}',
+                                theme:          '${locale.profile_theme}',
+                                theme_change:   '${locale.profile_theme_change}',
                                 logout:         '${locale.profile_logout}',
                                 logout_warn:    '${locale.profile_logout_warn}',
                             }

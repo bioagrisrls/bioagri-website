@@ -50,6 +50,7 @@
                 <a class="active" href="#{{this.id}}-details">{{strings.details}}</a>
                 <a href="#{{this.id}}-password">{{strings.password}}</a>
                 <a href="#{{this.id}}-remove">{{strings.remove}}</a>
+                <a href="#{{this.id}}-theme">{{strings.theme}}</a>
                 <a href="#{{this.id}}-logout">{{strings.logout}}</a>
             </div>
 
@@ -135,6 +136,24 @@
 
                 <div class="ui-profile-content-value">
                     <button onclick="$$.remove()">{{strings.remove}}</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="ui-profile-content-items">
+
+            <h1 id="{{this.id}}-theme">{{strings.theme}}</h1>
+
+
+            <div class="ui-profile-content-item">
+
+                <div class="ui-profile-content-label">
+                    <p>{{strings.theme_change}}</p>
+                </div>
+
+                <div class="ui-profile-content-value">
                 </div>
 
             </div>
