@@ -63,6 +63,12 @@
                                 theme_change:   '${locale.profile_theme_change}',
                                 logout:         '${locale.profile_logout}',
                                 logout_warn:    '${locale.profile_logout_warn}',
+
+                                theme_default:  '${locale.profile_default}',
+                                theme_charcoal: '${locale.profile_charcoal}',
+                                theme_hookers:  '${locale.profile_hookers}',
+                                theme_raisin:   '${locale.profile_raisin}',
+                                theme_twitter:  '${locale.profile_twitter}',
                             }
 
                         }
