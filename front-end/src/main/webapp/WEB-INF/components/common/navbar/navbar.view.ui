@@ -28,15 +28,15 @@
     <div class="row">
         <div class="col-3">
             <a ui-navigate href="/">
-                <img class="ui-nav-logo" src="{{logo}}" alt="" ui-animated-hover />
+                <img class="ui-nav-logo" src="/assets/img/logo/logo-extended.webp" alt="" ui-animated-hover />
             </a>
         </div>
         <div class="col-6 show-only-desktop">
             <ul class="ui-nav-menu primary">
-                <li class="{{ current === 'home'    ? 'active' : ''}}" onclick="navigate('/home')"><span>{{ home }}</span></li>
-                <li class="{{ current === 'catalog' ? 'active' : ''}}" onclick="navigate('/catalog')"><span>{{ catalog }}</span></li>
-                <li class="{{ current === 'about'   ? 'active' : ''}}" onclick="navigate('/about')"><span>{{ about }}</span></li>
-                <li class="{{ current === 'support' ? 'active' : ''}}" onclick="navigate('/support')"><span>{{ support }}</span></li>
+                <li class="{{ current === 'home'    ? 'active' : ''}}" onclick="navigate('/home')"><span>{{ strings.home }}</span></li>
+                <li class="{{ current === 'catalog' ? 'active' : ''}}" onclick="navigate('/catalog')"><span>{{ strings.catalog }}</span></li>
+                <li class="{{ current === 'about'   ? 'active' : ''}}" onclick="navigate('/about')"><span>{{ strings.about }}</span></li>
+                <li class="{{ current === 'support' ? 'active' : ''}}" onclick="navigate('/support')"><span>{{ strings.support }}</span></li>
             </ul>
         </div>
         <div class="col-3 show-only-desktop">

@@ -159,6 +159,11 @@
                             TO DO...
                         </button>
                         <div>
+                            <a class="dropdown-item">{{strings.theme_default}}</a>
+                            <a class="dropdown-item">{{strings.theme_chorcoal}}</a>
+                            <a class="dropdown-item">{{strings.theme_hookers}}</a>
+                            <a class="dropdown-item">{{strings.theme_raisin}}</a>
+                            <a class="dropdown-item">{{strings.theme_twitter}}</a>
                         </div>
                     </div>
                 </div>

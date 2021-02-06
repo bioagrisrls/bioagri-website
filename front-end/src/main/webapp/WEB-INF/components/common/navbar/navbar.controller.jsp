@@ -37,29 +37,22 @@
 
                 current: props.current || '',
 
-                title: `${locale.info_title}`,
-                logo: `${locale.nav_logo}`,
-                home: `${locale.nav_home}`,
-                catalog: `${locale.nav_catalog}`,
-                about: `${locale.nav_about}`,
-                support: `${locale.nav_support}`,
-                welcome: `${locale.nav_user_greetings}`,
-                account: `${locale.nav_user_account}`,
-                order: `${locale.nav_user_order}`,
-                wishlist: `${locale.nav_user_wishlist}`,
-                settings: `${locale.nav_user_settings}`,
-                exit: `${locale.nav_user_exit}`,
-                cart: `${locale.nav_shopping_cart}`,
-                total: `${locale.nav_shopping_cart_total}`,
-                cartOrder: `${locale.nav_shopping_cart_order}`,
-                clear: `${locale.nav_shopping_cart_clear}`,
-                article: `${locale.nav_shopping_cart_article}`,
+                strings: {
 
-                userAccount : '${locale.menu_account}',
-                userOrder : '${locale.menu_order}',
-                userWish : '${locale.menu_wishlist}',
-                userTicket : '${locale.menu_ticket}',
-                userExit : '${locale.menu_exit}',
+                    title:      `${locale.info_title}`,
+                    home:       `${locale.nav_home}`,
+                    catalog:    `${locale.nav_catalog}`,
+                    about:      `${locale.nav_about}`,
+                    support:    `${locale.nav_support}`,
+
+                    userAccount:    '${locale.menu_account}',
+                    userOrder:      '${locale.menu_order}',
+                    userWish:       '${locale.menu_wishlist}',
+                    userTicket:     '${locale.menu_ticket}',
+                    userExit:       '${locale.menu_exit}',
+
+                }
+
 
             });
         }
@@ -159,6 +152,7 @@
 
 
             localStorage.setItem('X-Interface-Dark-Mode', dark.toString());
+            localStorage.setItem('X-Interface-Theme', theme.toString());
 
         }
 
