@@ -25,22 +25,22 @@
 
 
 // Colors
-$ui-theme-primary: #85B973;
-$ui-theme-primary-variant: rgb(42, 57, 48);
+$ui-theme-primary: #85B973 !default;
+$ui-theme-primary-variant: rgb(42, 57, 48) !default;
 
-$ui-theme-secondary: #E1983C;
-$ui-theme-secondary-variant: darken($ui-theme-secondary, 5%);
+$ui-theme-secondary: #E1983C !default;
+$ui-theme-secondary-variant: darken($ui-theme-secondary, 5%) !default;
 
-$ui-theme-primary-text: #FFFFFF;
-$ui-theme-secondary-text: #FFFFFF;
-$ui-theme-background-text: #212529;
-$ui-theme-light-text: #FFFFFF;
-$ui-theme-dark-text: #212529;
+$ui-theme-primary-text: #FFFFFF !default;
+$ui-theme-secondary-text: #FFFFFF !default;
+$ui-theme-background-text: #212529 !default;
+$ui-theme-light-text: #FFFFFF !default;
+$ui-theme-dark-text: #212529 !default;
 
-$ui-theme-background: #F8F9FA;
-$ui-theme-background-variant: darken($ui-theme-background, 5%);
+$ui-theme-background: #F8F9FA !default;
+$ui-theme-background-variant: darken($ui-theme-background, 5%) !default;
 
-$ui-theme-divider-color: #BDBDBD;
+$ui-theme-divider-color: #BDBDBD !default;
 
 
 $ui-theme-light: #f8f9fa !default;
