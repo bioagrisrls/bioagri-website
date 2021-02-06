@@ -39,6 +39,7 @@
                 shipment: 10, // FIXME
                 prices: [ 0, 0 ],
                 count: 0,
+                authenticated: false,
 
                 strings: {
                     empty:                  `${locale.cart_empty}`,
@@ -59,12 +60,31 @@
             });
         }
 
-        onInit() {
+        onReady(state) {
+
             $(document).on('shopping-cart-has-changed', this, (e) => {
                 if(e.data.running) {
                     e.data.state = { count: shopping_cart_count() };
                 }
             });
+
+            $(document).on('auth-connection-occurred', this, (e) => {
+                if(e.data.running) {
+                    e.data.state = { authenticated: true }
+                }
+            });
+
+            $(document).on('auth-disconnection-occurred', this, (e) => {
+                if(e.data.running) {
+                    e.data.state = { authenticated: false }
+                }
+            });
+
+
+            authenticated(false)
+                .then(()  => this.state = { authenticated: true  })
+                .catch(() => this.state = { authenticated: false });
+
         }
 
         onRender() {

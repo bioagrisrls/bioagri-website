@@ -147,8 +147,8 @@
                 </div>
 
                 <div class="ui-cart-checkout-controls">
-                    <button class="{{count == 0 ? 'disabled' : ''}}" onclick="shopping_cart_clear()"><span class="mdi mdi-18px mdi-cart-remove"></span> {{strings.clear}}</button>
-                    <button class="{{count == 0 ? 'disabled' : ''}}" onclick="navigate('/checkout')" data-bs-dismiss="modal"><span class="mdi mdi-18px mdi-cash-check"></span> {{strings.checkout}}</button>
+                    <button class="{{count == 0                   ? 'disabled' : ''}}" onclick="shopping_cart_clear()"><span class="mdi mdi-18px mdi-cart-remove"></span> {{strings.clear}}</button>
+                    <button class="{{count == 0 || !authenticated ? 'disabled' : ''}}" onclick="navigate('/checkout')" data-bs-dismiss="modal"><span class="mdi mdi-18px mdi-cash-check"></span> {{strings.checkout}}</button>
                 </div>
 
             </div>

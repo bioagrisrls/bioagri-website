@@ -53,6 +53,7 @@ public class Access implements Filter {
             "/myaccount",    Map.entry("/home", true),
             "/mywish",       Map.entry("/home", true),
             "/myorder",      Map.entry("/home", true),
+            "/myticket",     Map.entry("/home", true),
             "/registration", Map.entry("/home", false)
         );
 
