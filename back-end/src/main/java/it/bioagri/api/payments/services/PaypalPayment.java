@@ -34,18 +34,12 @@ import com.paypal.orders.*;
 import it.bioagri.api.payments.PaymentRequest;
 import it.bioagri.api.payments.PaymentServiceFailed;
 import it.bioagri.models.Product;
-import it.bioagri.models.TransactionType;
 import it.bioagri.persistence.DataSource;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -274,7 +268,6 @@ public class PaypalPayment implements PaymentExternalService {
 
 
             builder.withResult(new Json().serialize(response.result()));
-
 
             return true;
 
