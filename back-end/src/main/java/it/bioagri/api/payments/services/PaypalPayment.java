@@ -84,121 +84,6 @@ public class PaypalPayment implements PaymentExternalService {
 
 
 
-//    @Override
-//    public Transaction authorize(DataSource dataSource, PaymentRequest request, Transaction.Builder builder) {
-//
-//        try {
-//
-//            HttpResponse<Order> response = getClient().execute(new OrdersCaptureRequest(request.getId()) {{
-//                requestBody(new OrderRequest());
-//            }});
-//
-//
-//            if(logger.isDebugEnabled()) {
-//
-//                logger.debug("===== PAYPAL AUTHORIZATION =====");
-//                logger.debug("Status Code: %d".formatted(response.statusCode()));
-//                logger.debug("OrderId    : %s".formatted(response.result().id()));
-//                logger.debug("Status     : %s".formatted(response.result().status()));
-//                logger.debug("CreateTime : %s".formatted(response.result().createTime()));
-//                logger.debug("UpdateTime : %s".formatted(response.result().updateTime()));
-//                logger.debug("Expiration : %s".formatted(response.result().expirationTime()));
-//                logger.debug("Units      : %d".formatted(response.result().purchaseUnits().size()));
-//                logger.debug("Items      : %d".formatted(request.getItems().size()));
-//
-//                for(var i : response.result().links())
-//                    logger.debug("Links      : %s => %s".formatted(i.rel(), i.href()));
-//
-//                for(var i : response.result().purchaseUnits()) {
-//
-//                    for (var j : i.payments().captures())
-//                        logger.debug("Captures   : %s".formatted(j.id()));
-//
-////                    logger.debug("Price      : %s".formatted(i.amountWithBreakdown()
-////                            .amountBreakdown()
-////                            .itemTotal()
-////                            .value()));
-//
-//                }
-//
-//                logger.debug("BuyerMail  : %s".formatted(response.result().payer().email()));
-//                logger.debug("BuyerName  : %s".formatted(response.result().payer().name().fullName()));
-//
-//                logger.debug("=====  END AUTHORIZATION   =====");
-//
-//            }
-//
-//
-//
-//
-//            if(response.result().purchaseUnits().size() != 1)
-//                throw new PaymentServiceFailed(request, "PurchaseUnits must be equal to 1");
-//
-//
-////            for(var i : request.getItems()) {
-////
-////                var j = dataSource.getProductDao()
-////                        .findByPrimaryKey(i.getKey())
-////                        .orElseThrow(() -> new PaymentServiceFailed(request, "Invalid Product ID %s".formatted(i.getKey())));
-////
-////                if(i.getValue() > j.getStock())
-////                    throw new PaymentServiceFailed(request, "Stock < Quantity for Product ID %s".formatted(i.getKey()));
-////
-//////                if(Double.parseDouble(i.unitAmount().value()) != (j.getPrice() - (j.getPrice() * j.getDiscount()) / 100))
-//////                    throw new PaymentServiceFailed(request, "UnitAmount != Price for Product ID %s".formatted(i.sku()));
-////
-////                // TODO: Edit Quantity
-////
-////            }
-//
-//
-//
-//            builder
-//                    .withStatus(TransactionStatus.PROCESSING)
-//                    .withType(TransactionType.PAYPAL)
-//                    .withTransactionCode(response.result().id())
-//                    .withAddress("%s, %s, %s, %s, %s, %s, %s".formatted(
-//                            response.result().payer().addressPortable().addressLine1(),
-//                            response.result().payer().addressPortable().addressLine2(),
-//                            response.result().payer().addressPortable().addressLine3(),
-//                            response.result().payer().addressPortable().adminArea1(),
-//                            response.result().payer().addressPortable().adminArea2(),
-//                            response.result().payer().addressPortable().adminArea3(),
-//                            response.result().payer().addressPortable().adminArea4()))
-//                    .withCity(response.result().payer().addressPortable().countryCode());
-////                    .withTotal(response.result().purchaseUnits().get(0)
-////                            .items()
-////                            .stream()
-////                            .map(i -> Double.parseDouble(i.unitAmount().value()) * Double.parseDouble(i.quantity()))
-////                            .reduce(0.0, Double::sum)
-////                    );
-//
-//
-//
-//            if(HttpStatus.resolve(response.statusCode()) != null
-//                    && HttpStatus.valueOf(response.statusCode()).is2xxSuccessful()) {
-//
-//                return builder
-//                        .withStatus(TransactionStatus.OK)
-//                        .build();
-//
-//            }
-//
-//
-//        } catch (IOException | PaymentServiceFailed e) {
-//
-//            logger.error("===== PAYPAL AUTHORIZATION =====");
-//            logger.error(e.getMessage(), e);
-//            logger.error("=====  END AUTHORIZATION   =====");
-//
-//        }
-//
-//        return builder
-//                .withStatus(TransactionStatus.FAILED)
-//                .build();
-//
-//    }
-
     @Override
     public String create(DataSource dataSource, PaymentRequest request, double shippingPrice) throws PaymentServiceFailed {
 
@@ -366,7 +251,7 @@ public class PaypalPayment implements PaymentExternalService {
             if(unit.shippingDetail().addressPortable() != null) {
 
                 builder
-                        .withAddress("%s, %s, %s, %s, %s, %s, %s, %s".formatted(
+                        .withAddress("%s %s %s, %s, %s, %s %s, %s".formatted(
                                 unit.shippingDetail().addressPortable().addressLine1(),
                                 unit.shippingDetail().addressPortable().addressLine2(),
                                 unit.shippingDetail().addressPortable().addressLine3(),
@@ -375,7 +260,8 @@ public class PaypalPayment implements PaymentExternalService {
                                 unit.shippingDetail().addressPortable().adminArea3(),
                                 unit.shippingDetail().addressPortable().adminArea4(),
                                 unit.shippingDetail().addressPortable().countryCode()))
-                        .withCity(unit.shippingDetail().addressPortable().adminArea1())
+                        .withProvince(unit.shippingDetail().addressPortable().adminArea1())
+                        .withCity(unit.shippingDetail().addressPortable().adminArea2())
                         .withZip(unit.shippingDetail().addressPortable().postalCode());
 
             }
