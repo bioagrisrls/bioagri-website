@@ -57,9 +57,9 @@
         <link rel="stylesheet" href="/assets/css/third-party/animate/animate.min.css">
     
         <!-- Styles -->
-        <link rel="preload" href="/assets/css/ui-bootstrap.min.css" as="style">
-        <link rel="preload" href="/assets/css/ui-bootstrap-dark.min.css" as="style">
-        <link id="ui-theme-stylesheet" rel="stylesheet" href="/assets/css/ui-bootstrap.min.css">
+        <link rel="preload" href="/assets/css/ui-bootstrap-default.min.css" as="style">
+        <link rel="preload" href="/assets/css/ui-bootstrap-default-dark.min.css" as="style">
+        <link id="ui-theme-stylesheet" rel="stylesheet" href="/assets/css/ui-bootstrap-default.min.css">
 
     
         <!-- Third-party Dependencies -->

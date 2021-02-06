@@ -44,7 +44,7 @@
 
                 <li>
                     <div class="ui-dark-mode" id="{{this.id}}-dark-mode">
-                        <input type="checkbox" class="ui-dark-mode-switch" id="{{this.id}}-dark-mode-switch" onchange="$$.onDarkModeSwitched(this.checked)" />
+                        <input type="checkbox" class="ui-dark-mode-switch" id="{{this.id}}-dark-mode-switch" onchange="$$.switchTheme(this.checked)" />
                         <label class="ui-dark-mode-label" for="{{this.id}}-dark-mode-switch">
                             <i class="mdi mdi-moon-waxing-crescent"></i>
                             <i class="mdi mdi-weather-sunny"></i>

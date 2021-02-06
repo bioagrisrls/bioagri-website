@@ -87,7 +87,7 @@
             });
 
 
-            this.onDarkModeSwitched(localStorage.getItem('X-Interface-Dark-Mode') === 'true');
+            this.switchTheme(localStorage.getItem('X-Interface-Dark-Mode') === 'true');
 
         }
 
@@ -110,45 +110,55 @@
             Component.render(Component.dummy('side-menu'), `${components.users_account_side}`, this.state);
         }
 
-        onDarkModeSwitched(checked = undefined) {
 
-            const theme = document.querySelector('#ui-theme-stylesheet');
+
+
+        /**
+         * Change current theme style.
+         * @param dark {boolean}
+         * @param theme {string}
+         */
+        switchTheme(dark = undefined, theme = undefined) {
+
+
+            if(dark === undefined)
+                dark = !(localStorage.getItem('X-Interface-Dark-Mode') === 'true');
+
+            if(theme === undefined)
+                theme = localStorage.getItem('X-Interface-Theme') || 'default';
+
+
+
+            const resource = '/assets/css/ui-bootstrap-' + theme + (dark ? '-dark' : '') + ".min.css"
+
+            const style = document.querySelector('#ui-theme-stylesheet');
             const check = document.querySelector('#' + this.id + '-dark-mode');
             const chkbx = document.querySelector('#' + this.id + '-dark-mode-switch');
 
-            if(!theme)
-                throw new Error('theme cannot be null');
+
+            if(!style)
+                throw new Error('style cannot be null');
 
             if(!check)
                 throw new Error('check cannot be null');
 
 
-            if(checked === undefined)
-                checked = !(localStorage.getItem('X-Interface-Dark-Mode') === 'true');
 
 
-            if(checked) {
+            if (style.attributes['href'] && style.attributes['href'] !== resource)
+                style.attributes['href'].value = resource;
 
-                if (theme.attributes['href'] && theme.attributes['href'] !== '/assets/css/ui-bootstrap-dark.min.css')
-                    theme.attributes['href'].value = '/assets/css/ui-bootstrap-dark.min.css';
-
-                check.title = '${locale.nav_daymode}';
-
-            } else {
-
-                if (theme.attributes['href'] && theme.attributes['href'] !== '/assets/css/ui-bootstrap.min.css')
-                    theme.attributes['href'].value = '/assets/css/ui-bootstrap.min.css';
-
-                check.title = '${locale.nav_nightmode}';
-
-            }
+            check.title = dark
+                ? '${locale.nav_daymode}'
+                : '${locale.nav_nightmode}';
 
 
-            if(chkbx && !!chkbx.checked !== checked)
-                chkbx.checked = checked;
+
+            if(chkbx && !!chkbx.checked !== dark)
+                chkbx.checked = dark;
 
 
-            localStorage.setItem('X-Interface-Dark-Mode', checked.toString());
+            localStorage.setItem('X-Interface-Dark-Mode', dark.toString());
 
         }
 
