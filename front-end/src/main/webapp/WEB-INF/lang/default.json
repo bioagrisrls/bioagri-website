@@ -312,6 +312,9 @@
   "profile_gender" : "Sesso",
   "profile_phone" : "Recapito telefonico",
   "profile_birth" : "Data di nascita",
-  "profile_status" : "Stato"
+  "profile_status" : "Stato",
+
+  "ticket_empty" : "Non hai nessun ticket in sospeso",
+  "ticket_title" : "I miei ticket"
 
 }
