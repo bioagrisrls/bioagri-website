@@ -88,6 +88,7 @@ public class CategoryManager {
 
         dataSource.getCategoryDao().update(
 
+
                 dataSource.getCategoryDao().findByPrimaryKey(id).get(),
                 new Category(id,name)
 
@@ -98,6 +99,7 @@ public class CategoryManager {
 
 
     }
+
 
 
 }

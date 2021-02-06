@@ -86,7 +86,7 @@
 
 <form action="/admin/delete/product" method="POST">
 
-        <label>titolo</label>
+        <label>id</label>
         <input type="text" name="id"><br><br>
         <input type="submit" value="Submit">
 

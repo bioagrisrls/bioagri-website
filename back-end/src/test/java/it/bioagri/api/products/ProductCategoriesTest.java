@@ -62,7 +62,6 @@ class ProductCategoriesTest {
     void findAll(String username) {
 
         String id = ProductsTest.createAs(username,201).split("/")[3];
-        System.out.println("SONO QUI: " + id);
 
         RestAssured.given()
                 .header("X-Auth-Token", AuthTest.authenticate(username, "123").getString("token"))
