@@ -26,8 +26,7 @@
 package it.bioagri.admin;
 
 import it.bioagri.api.auth.AuthToken;
-import it.bioagri.models.Product;
-import it.bioagri.models.ProductStatus;
+import it.bioagri.models.*;
 import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,39 +61,36 @@ public class Catalog {
             HttpServletResponse response,
             @RequestParam String name,
             @RequestParam String description,
-            @RequestParam Float price,
-            @RequestParam Integer stock,
             @RequestParam String info,
+            @RequestParam Float price,
             @RequestParam Float discount,
+            @RequestParam Integer stock,
             @RequestParam ProductStatus status,
-            @RequestParam String image
+            @RequestParam Long tag,
+            @RequestParam Long category
 
     ) throws IOException {
 
+        Product product = new Product(
+                dataSource.getId("shop_product", Long.class),
+                name,
+                description,
+                info,
+                price,
+                discount,
+                stock,
+                status,
+                Timestamp.from(Instant.now()),
+                Timestamp.from(Instant.now()),
+                null,
+                null,
+                null
+        );
 
-            dataSource.getProductDao().save(
-
-                    new Product(
-                            dataSource.getId("shop_product", Long.class),
-                            name,
-                            description,
-                            info,
-                            price,
-                            discount,
-                            stock,
-                            status,
-                            Timestamp.from(Instant.now()),
-                            Timestamp.from(Instant.now()),
-                            null,
-                            null,
-                            null
-                    )
-
-            );
-
-
+            dataSource.getProductDao().save(product);
+            dataSource.getProductDao().addCategory(product,dataSource.getCategoryDao().findByPrimaryKey(category).get());
+            dataSource.getProductDao().addTag(product,dataSource.getTagDao().findByPrimaryKey(tag).get());
             response.sendRedirect("/admin/dashboard");
-
 
 
     }
