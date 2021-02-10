@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Summernote</title>
+    <title>products</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/assets/admin/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
@@ -20,6 +20,7 @@
 
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -150,41 +151,49 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form">
+                <form action="/admin/create/product" method="post">
                     <div class="card-body">
                         <div class="form-group">
                             <label>Nome</label>
-                            <input class="form-control"  placeholder="nome prodotto">
+                            <input class="form-control"  name="name" placeholder="nome prodotto">
                         </div>
                         <div class="form-group">
                             <label>Prezzo</label>
-                            <input class="form-control"  placeholder="prezzo">
+                            <input class="form-control" name="price" placeholder="prezzo">
                         </div>
                         <div class="form-group">
                             <label>Giacenza</label>
-                            <input class="form-control"  placeholder="giacenza">
+                            <input class="form-control"  name="stock" placeholder="giacenza">
                         </div>
                         <div class="form-group">
-                            <label>Categoria</label>
-                            <input class="form-control"  placeholder="categoria">
+                            <label>category</label>
+                            <div>
+                                <input class="form-control"  name="category" placeholder="category">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Tag</label>
-                            <input class="form-control"  placeholder="Tag">
+                            <input class="form-control"  name="tag" placeholder="Tag">
+                        </div>
+                        <div class="form-group">
+                            <label>info</label>
+                            <input class="form-control"  name="info" placeholder="info">
+                        </div>
+                        <div class="form-group">
+                            <label>discount</label>
+                            <input class="form-control"  name="discount" placeholder="discount">
                         </div>
 
                         <div class="form-group">
                             <label>Status</label>
                             <div>
-                                <select>
+                                <select class="form-control" name="status">
                                     <option value="AVAILABLE">DISPONIBILE</option>
-                                    <option value="NOT AVAILABLE">NON DISPONIBILE</option>
-                                    <option value="AVAILABLE SOON">DISPONIBILE A BREVE</option>
+                                    <option value="NOT_AVAILABLE">NON DISPONIBILE</option>
+                                    <option value="AVAILABLE_SOON">DISPONIBILE A BREVE</option>
                                 </select>
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <label for="exampleInputFile">File input</label>
                             <div class="input-group">
@@ -196,15 +205,13 @@
                                     <span class="input-group-text" id="">Upload</span>
                                 </div>
                             </div>
+                        </div>
                             <hr>
                             <div class="form-group">
-                                <textarea id="compose-textarea" class="form-control"></textarea>
+                                <textarea id="compose-textarea" name="description" class="form-control"></textarea>
                             </div>
-
-                        </div>
                     </div>
                     <!-- /.card-body -->
-
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

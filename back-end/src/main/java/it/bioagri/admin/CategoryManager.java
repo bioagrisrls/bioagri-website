@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
 @Controller
@@ -45,6 +46,10 @@ public class CategoryManager {
     @Autowired
     public CategoryManager(DataSource dataSource) {
         this.dataSource = dataSource;
+    }
+
+    public List<Category> getAllCategories(){
+        return dataSource.getCategoryDao().findAll();
     }
 
     @PostMapping("/admin/create/category")
