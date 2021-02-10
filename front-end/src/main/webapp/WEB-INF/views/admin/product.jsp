@@ -168,7 +168,6 @@
                         <div class="form-group">
                             <label>category</label>
                             <div>
-                                <input class="form-control"  name="category" placeholder="category">
                             </div>
                         </div>
                         <div class="form-group">
