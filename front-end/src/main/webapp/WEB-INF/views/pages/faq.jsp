@@ -119,6 +119,8 @@
 
             </div>
 
+            <br>
+            <br>
             <h1>${locale.faq_product_title}</h1>
             <div class="accordion accordion-flush" id="faq-accordion-2">
 
@@ -161,6 +163,8 @@
 
             </div>
 
+            <br>
+            <br>
             <h1>${locale.faq_payment_title}</h1>
             <div class="accordion accordion-flush" id="faq-accordion-3">
 
@@ -215,6 +219,8 @@
 
             </div>
 
+            <br>
+            <br>
             <h1>${locale.faq_shipping_title}</h1>
             <div class="accordion accordion-flush" id="faq-accordion-4">
 
@@ -245,6 +251,8 @@
 
             </div>
 
+            <br>
+            <br>
             <h1>${locale.faq_other_title}</h1>
             <div class="accordion accordion-flush" id="faq-accordion-5">
 
@@ -276,6 +284,8 @@
             </div>
         </article>
 
+        <br>
+        <br>
         <br>
         <br>
         <br>
