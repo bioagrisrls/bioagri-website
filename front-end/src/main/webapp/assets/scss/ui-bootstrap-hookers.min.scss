@@ -23,5 +23,12 @@
  *
  */
 
+$ui-theme-light:              darken(#CAD2C5, 10%);
+$ui-theme-white:              #CAD2C5;
+$ui-theme-dark:               #111111;
+$ui-theme-primary:            #84A98C;
+$ui-theme-primary-variant:    #60867D;
+$ui-theme-secondary:          #354F52;
+$ui-theme-secondary-variant:  #354F52;
 
 @import 'ui/ui-all';

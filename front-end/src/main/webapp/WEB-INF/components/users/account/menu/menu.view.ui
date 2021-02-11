@@ -39,7 +39,6 @@
                         <li><a data-bs-dismiss="modal" onclick="navigate('/myaccount')"><span>{{strings.userAccount}}</span></a></li>
                         <li><a data-bs-dismiss="modal" onclick="navigate('/myorder')"><span>{{strings.userOrder}}</span></a></li>
                         <li><a data-bs-dismiss="modal" onclick="navigate('/mywish')"><span>{{strings.userWish}}</span></a></li>
-                        <li><a data-bs-dismiss="modal" onclick="navigate('/myticket')"><span>{{strings.userTicket}}</span></a></li>
                         <li><a data-bs-dismiss="modal" onclick="disconnect(true)"><span>{{strings.userExit}}</span></a></li>
                     </ul>
                 </div>

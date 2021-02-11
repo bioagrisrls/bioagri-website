@@ -115,7 +115,7 @@
 
 
             if(dark === undefined)
-                dark = !(localStorage.getItem('X-Interface-Dark-Mode') === 'true');
+                dark = (localStorage.getItem('X-Interface-Dark-Mode') === 'true');
 
             if(theme === undefined)
                 theme = localStorage.getItem('X-Interface-Theme') || 'default';

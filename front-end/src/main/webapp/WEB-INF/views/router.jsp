@@ -57,8 +57,16 @@
         <link rel="stylesheet" href="/assets/css/third-party/animate/animate.min.css">
     
         <!-- Styles -->
-        <link rel="preload" href="/assets/css/ui-bootstrap-default.min.css" as="style">
+        <link rel="preload" href="/assets/css/ui-bootstrap-charcoal.min.css" as="style">
+        <link rel="preload" href="/assets/css/ui-bootstrap-hookers.min.css" as="style">
+        <link rel="preload" href="/assets/css/ui-bootstrap-raisin.min.css" as="style">
+        <link rel="preload" href="/assets/css/ui-bootstrap-twitter.min.css" as="style">
         <link rel="preload" href="/assets/css/ui-bootstrap-default-dark.min.css" as="style">
+        <link rel="preload" href="/assets/css/ui-bootstrap-charcoal-dark.min.css" as="style">
+        <link rel="preload" href="/assets/css/ui-bootstrap-hookers-dark.min.css" as="style">
+        <link rel="preload" href="/assets/css/ui-bootstrap-raisin-dark.min.css" as="style">
+        <link rel="preload" href="/assets/css/ui-bootstrap-twitter-dark.min.css" as="style">
+
         <link id="ui-theme-stylesheet" rel="stylesheet" href="/assets/css/ui-bootstrap-default.min.css">
 
     
@@ -105,7 +113,6 @@
         <%@ include file="/WEB-INF/components/shopping/wish/wish.controller.jsp"                %>
         <%@ include file="/WEB-INF/components/shopping/order/order.controller.jsp"              %>
         <%@ include file="/WEB-INF/components/users/profile/profile.controller.jsp"             %>
-        <%@ include file="/WEB-INF/components/users/ticket/ticket.controller.jsp"               %>
 
     </head>
 

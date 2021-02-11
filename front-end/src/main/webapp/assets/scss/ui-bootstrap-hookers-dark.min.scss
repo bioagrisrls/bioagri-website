@@ -23,13 +23,13 @@
  *
  */
 
-$ui-theme-light: #343A40;
-$ui-theme-dark: #F8F9FA;
-$ui-theme-white: #212529;
-$ui-theme-info: gray;
-$ui-theme-success: #28A745;
-$ui-theme-danger: #DC3545;
-$ui-theme-warning: #FFC107;
+$ui-theme-light:              lighten(#2F3E46, 10%);
+$ui-theme-white:              #2F3E46;
+$ui-theme-dark:               #F8F9FA;
+$ui-theme-primary:            #84A98C;
+$ui-theme-primary-variant:    #60867D;
+$ui-theme-secondary:          #354F52;
+$ui-theme-secondary-variant:  #354F52;
 
 @import 'ui/ui-all';
 
