@@ -140,6 +140,10 @@
 
         }
 
+        setTheme(theme) {
+            this.state = { current: theme };
+        }
+
 
     });
 

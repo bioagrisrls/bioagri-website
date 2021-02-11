@@ -154,17 +154,42 @@
                 </div>
 
                 <div class="ui-profile-content-value">
-                    <div class="ui-profile-dropdown dropdown-toggle" data-toggle="dropdown">
-                        <button>
+                    <div class="ui-profile-dropdown dropdown">
+                        <button class="dropdown-toggle" data-bs-toggle="dropdown">
                             {{current}}
                         </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item">{{strings.theme_default}}</a>
-                            <a class="dropdown-item">{{strings.theme_charcoal}}</a>
-                            <a class="dropdown-item">{{strings.theme_hookers}}</a>
-                            <a class="dropdown-item">{{strings.theme_raisin}}</a>
-                            <a class="dropdown-item">{{strings.theme_twitter}}</a>
-                        </div>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item {{current === 'Default' ? 'active' : ''}}"
+                                   onclick="$$.setTheme('Default')">
+                                    {{strings.theme_default}}
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {{current === 'Charcoal' ? 'active' : ''}}"
+                                   onclick="$$.setTheme('Charcoal')">
+                                    {{strings.theme_charcoal}}
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {{current === 'Hookers' ? 'active' : ''}}"
+                                   onclick="$$.setTheme('Hookers')">
+                                    {{strings.theme_hookers}}
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {{current === 'Raisin' ? 'active' : ''}}"
+                                   onclick="$$.setTheme('Raisin')">
+                                    {{strings.theme_raisin}}
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {{current === 'Twitter' ? 'active' : ''}}"
+                                   onclick="$$.setTheme('Twitter')">
+                                    {{strings.theme_twitter}}
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
