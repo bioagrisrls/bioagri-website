@@ -61,6 +61,7 @@
   "page_myaccount" : "Il mio account",
   "page_myticket" : "Il miei ticket",
   "page_policy" : "Cookie Policy",
+  "page_faq" : "FAQ",
 
   "nav_logo" : "/assets/img/logo/logo-extended.webp",
   "nav_home" : "Home",
@@ -327,6 +328,55 @@
   "ticket_empty" : "Non hai nessun ticket in sospeso",
   "ticket_title" : "I miei ticket",
 
-  "policy_header" : "Ci teniamo alla tua privacy!"
+  "policy_header" : "Ci teniamo alla tua privacy!",
 
+  "faq_header" : "Hai bisogno di aiuto? Lo sapevi che...",
+
+  "faq_covid_title" : "COVID-19 FAQ",
+  "faq_covid_1_subtitle" : "Il COVID-19 inciderà sul mio ordine?",
+  "faq_covid_1_content" : "Le massime priorità di BioAgri sono la salute e il benessere dei nostri clienti e collaboratori e della nostra community, soprattutto dopo gli ultimi eventi legati allo sviluppo del coronavirus (COVID-19). <br><br> BioAgrShop.it rimane aperto per continuare a garantire un’esperienza di acquisto di alta qualità. <br> I tempi di spedizione stimati per gli articoli disponibili sono di 1-2 giorni lavorativi. Ti preghiamo di fare riferimento alla data di consegna stimata indicata nella pagina prodotto e al check-out.<br> Il periodo di reso per gli acquisti online e in store è esteso a 30 giorni. Per maggiori informazioni fai riferimento alla sezione \"Resi e Cambi\". <br> Per la sicurezza dei nostri clienti e collaboratori e della nostra community, stiamo lavorando con i corrieri per contenere la diffusione del COVID-19. Come da linee guide dell’Organizzazione Mondiale della Sanità (OMS), i corrieri hanno temporaneamente sospeso la richiesta della firma alla consegna per la maggior parte degli ordini. Ti invitiamo a tracciare la tua spedizione al link incluso nella email di conferma della spedizione. <br><br> Per qualsiasi domanda, non esitare a contattarci. ",
+
+  "faq_covid_2_subtitle" : "Il vostro servizio clienti è operativo?",
+  "faq_covid_2_content" : "Il nostro servizio clienti risponde in sicurezza da casa e puoi metterti in contatto con noi tramite la pagina Contatti del nostro sito.",
+
+  "faq_product_title" : "Informazioni sul prodotto",
+
+  "faq_product_1_subtitle" : "Che cosa posso fare se un articolo che vorrei acquistare non è disponibile online?",
+  "faq_product_1_content" : "Se un prodotto o la taglia che hai selezionato non sono disponibili all’acquisto su BioAgriShop.it, puoi trovarli nel negozio BioAgri più vicino a te.",
+
+  "faq_product_2_subtitle" : "BioAgri offre promozioni online?",
+  "faq_product_2_content" : "BioAgri non prevede promozioni nello store fisico. Le promozioni sono disponibili esclusivamente sul sito BioAgriShop.it.",
+
+  "faq_product_3_subtitle" : "Come posso ricevere assistenza per i prodotti BioAgri?",
+  "faq_product_3_content" : "Gucci mette a disposizione un servizio di assistenza post-vendita per i prodotti acquistati su BioAgri, negli store BioAgri e presso i rivenditori autorizzati. <br><br> Per ogni richiesta di assistenza è possibile rivolgersi: <br> Al rivenditore autorizzato dove il prodotto è stato acquistato o a qualsiasi store BioAgri <br> Al nostro Client Services.",
+
+  "faq_payment_title" : "Ordini e Pagamenti",
+
+  "faq_payment_1_subtitle" : "Quali forme di pagamento accettate?",
+  "faq_payment_1_content" : "Per gli acquisti online, accettiamo le seguenti forme di pagamento: Paypal, Bonifico Bancario, Ordine e ritiro in negozio. <br><br> * I pagamenti tramite Paypal non sono disponibili in Saudi Arabia, Kuwait e Qatar. <br> **Il bonifico bancario non è accettato per l’acquisto di articoli personalizzati. <br> Si prega di notare che al momento non accettiamo gift card Gucci per gli acquisti su BioAgriShop.it. <br> Quando si effettua un ordine, l'indirizzo di fatturazione deve corrispondere alle informazioni collegate al proprio metodo di pagamento. Se il pagamento viene rifiutato, si prega di contattare la propria banca o istituto finanziario per ricevere assistenza. ",
+
+  "faq_payment_2_subtitle" : "Posso usare più metodi di pagamento per lo stesso ordine?",
+  "faq_payment_2_content" : "Al momento, accettiamo un unico metodo di pagamento per ordine.",
+
+  "faq_payment_3_subtitle" : "Quando mi sarà addebitato il pagamento?",
+  "faq_payment_3_content" : "Per la maggior parte degli articoli (esclusi gli articoli Made to Order e quelli personalizzati), non ti verrà addebitato alcun costo fino alla spedizione dell'ordine. Una volta effettuato l'ordine, autorizzeremo il pagamento dell'intero importo e prepareremo l'ordine per la spedizione. L'intero importo verrà addebitato al momento della spedizione dell'ordine. <br><br> Per gli articoli personalizzati e Made to Order è richiesto di pagare l’intero importo al momento dell’ordine. Quando avremo ricevuto il tuo ordine, sarai contattato dal Servizio Clienti di BioAgri per confermare e procedere con il pagamento.",
+
+  "faq_payment_4_subtitle" : "L’autorizzazione all’addebito è stata negata; devo impostare un nuovo ordine?",
+  "faq_payment_4_content" : "Se hai ricevuto un’email da parte nostra per informarti che il tuo ordine è stato cancellato, ti preghiamo di effettuare un nuovo ordine online.",
+
+  "faq_shipping_title" : "Spedizione e Consegna",
+
+  "faq_shipping_1_subtitle" : "Come posso tracciare il mio ordine?",
+  "faq_shipping_1_content" : "Quando il tuo ordine sarà spedito, riceverai un’email di conferma con un link per tracciarne lo stato tramite il corriere.",
+
+  "faq_shipping_2_subtitle" : "È richiesta una firma al momento della consegna?",
+  "faq_shipping_2_content" : "Per motivi di sicurezza, al momento della consegna è richiesta la firma di un adulto. Se non potrai essere disponibile per firmare, ti preghiamo di Contattarci.",
+
+  "faq_other_title" : "Altro",
+
+  "faq_other_1_subtitle" : "Come modifico o cancello il mio account BioAgri?",
+  "faq_other_1_content" : "Per modificare le informazioni personali, tra cui nome, data di nascita e indirizzo email, visita la sezione Impostazioni Account in BioAgri Account. <br><br> Accedi al tuo account <br><br> Per cancellare il tuo account, ti preghiamo di Contattarci.",
+
+  "faq_other_2_subtitle" : "Qual è la Privacy Policy di BioAgri?",
+  "faq_other_2_content" : "La Privacy Policy è consultabile nell'apposita pagina del nostro sito."
 }
