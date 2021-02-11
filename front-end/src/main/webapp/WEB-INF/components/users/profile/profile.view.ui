@@ -36,6 +36,14 @@
         { key: strings.status,  value: user.status  },
     ];
 
+    const themes = [
+        { key: strings.theme_default,  value: 'default'  },
+        { key: strings.theme_charcoal, value: 'charcoal' },
+        { key: strings.theme_hookers,  value: 'hookers'  },
+        { key: strings.theme_raisin,   value: 'raisin'   },
+        { key: strings.theme_twitter,  value: 'twitter'  },
+    ];
+
 ?>
 
 <div class="ui-profile">
@@ -158,37 +166,20 @@
                         <button class="dropdown-toggle" data-bs-toggle="dropdown">
                             {{current}}
                         </button>
+
                         <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item {{current === 'Default' ? 'active' : ''}}"
-                                   onclick="$$.setTheme('Default')">
-                                    {{strings.theme_default}}
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item {{current === 'Charcoal' ? 'active' : ''}}"
-                                   onclick="$$.setTheme('Charcoal')">
-                                    {{strings.theme_charcoal}}
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item {{current === 'Hookers' ? 'active' : ''}}"
-                                   onclick="$$.setTheme('Hookers')">
-                                    {{strings.theme_hookers}}
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item {{current === 'Raisin' ? 'active' : ''}}"
-                                   onclick="$$.setTheme('Raisin')">
-                                    {{strings.theme_raisin}}
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item {{current === 'Twitter' ? 'active' : ''}}"
-                                   onclick="$$.setTheme('Twitter')">
-                                    {{strings.theme_twitter}}
-                                </a>
-                            </li>
+
+                            <? for(const i of themes) { ?>
+
+                                <li>
+                                    <a class="dropdown-item {{current === '{{i.value}}' ? 'active' : ''}}"
+                                       onclick="$$.setTheme('{{i.value}}')">
+                                        {{i.key}}
+                                    </a>
+                                </li>
+
+                            <? } ?>
+
                         </ul>
                     </div>
                 </div>

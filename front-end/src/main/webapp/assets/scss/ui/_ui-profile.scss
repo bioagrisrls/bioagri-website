@@ -115,16 +115,13 @@
 
           .ui-profile-dropdown {
 
-            button {
-              @extend .btn;
-              @extend .btn-sm;
-              @extend .btn-primary;
-              @extend .fs-5;
-              @extend .ui-font-title-primary;
-            }
-
             li {
               cursor: pointer;
+
+              a {
+                @extend .text-dark;
+              }
+
             }
 
           }

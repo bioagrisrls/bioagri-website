@@ -101,8 +101,8 @@
 
                     <ul>
                         <li><a ui-navigate href="/registration">{{ registration }}</a></li>
-                        <li><a ui-navigate href="/tickets">{{ tickets }}</a></li>
-                        <li><a ui-navigate href="/support#faq">{{ faq }}</a></li>
+                        <li><a ui-navigate href="/support">{{ tickets }}</a></li>
+                        <li><a ui-navigate href="/faq">{{ faq }}</a></li>
                         <li><a ui-navigate href="/policy">{{ policy }}</a></li>
                     </ul>
 

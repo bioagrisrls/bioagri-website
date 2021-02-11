@@ -42,7 +42,7 @@
                         return {
 
                             user: response,
-                            current: "Default",
+                            current: localStorage.getItem('X-Interface-Theme') || 'default',
 
                             strings: {
                                 account:        '${locale.profile_account}',
@@ -141,7 +141,13 @@
         }
 
         setTheme(theme) {
-            this.state = { current: theme };
+
+            window.components['ui-navbar'].switchTheme(undefined, theme);
+
+            this.state = {
+                current: theme
+            };
+
         }
 
 

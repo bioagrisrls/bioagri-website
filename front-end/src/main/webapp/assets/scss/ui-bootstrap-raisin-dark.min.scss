@@ -23,12 +23,12 @@
  *
  */
 
-$ui-theme-light: #343A40;
-$ui-theme-dark: #F8F9FA;
-$ui-theme-white: #212529;
-$ui-theme-info: gray;
-$ui-theme-success: #28A745;
-$ui-theme-danger: #DC3545;
-$ui-theme-warning: #FFC107;
+$ui-theme-light:              lighten(#2E2E3A, 10%);
+$ui-theme-white:              #2E2E3A;
+$ui-theme-dark:               #F8F9FA;
+$ui-theme-primary:            #BC5D2E;
+$ui-theme-primary-variant:    darken(#BC5D2E, 10%);
+$ui-theme-secondary:          #BBB8B2;
+$ui-theme-secondary-variant:  #BBB8B2;
 
 @import 'ui/ui-all';
