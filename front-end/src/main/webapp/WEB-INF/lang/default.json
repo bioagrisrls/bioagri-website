@@ -352,8 +352,8 @@
 
   "faq_payment_title" : "Ordini e Pagamenti",
 
-  "faq_payment_1_subtitle" : "Quali forme di pagamento accettate?",
-  "faq_payment_1_content" : "Per gli acquisti online, accettiamo le seguenti forme di pagamento: Paypal, Bonifico Bancario, Ordine e ritiro in negozio. <br><br> * I pagamenti tramite Paypal non sono disponibili in Saudi Arabia, Kuwait e Qatar. <br> **Il bonifico bancario non è accettato per l’acquisto di articoli personalizzati. <br> Si prega di notare che al momento non accettiamo gift card Gucci per gli acquisti su BioAgriShop.it. <br> Quando si effettua un ordine, l'indirizzo di fatturazione deve corrispondere alle informazioni collegate al proprio metodo di pagamento. Se il pagamento viene rifiutato, si prega di contattare la propria banca o istituto finanziario per ricevere assistenza. ",
+  "faq_payment_1_subtitle" : "Quali forme di pagamento sono accettate?",
+  "faq_payment_1_content" : "Per gli acquisti online, accettiamo le seguenti forme di pagamento: Paypal, Bonifico Bancario, Ordine e ritiro in negozio. <br><br> * I pagamenti tramite Paypal non sono disponibili in Saudi Arabia, Kuwait e Qatar. <br> **Il bonifico bancario non è accettato per l’acquisto di articoli personalizzati. <br><br><br> Si prega di notare che al momento non accettiamo gift card BioAgri per gli acquisti su BioAgriShop.it. <br> Quando si effettua un ordine, l'indirizzo di fatturazione deve corrispondere alle informazioni collegate al proprio metodo di pagamento. Se il pagamento viene rifiutato, si prega di contattare la propria banca o istituto finanziario per ricevere assistenza. ",
 
   "faq_payment_2_subtitle" : "Posso usare più metodi di pagamento per lo stesso ordine?",
   "faq_payment_2_content" : "Al momento, accettiamo un unico metodo di pagamento per ordine.",
