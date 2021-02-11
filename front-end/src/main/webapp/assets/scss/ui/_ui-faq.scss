@@ -56,4 +56,27 @@
 
 }
 
+.ui-faq-body {
+
+  h1 {
+    @extend .ui-font-title-primary;
+    @extend .fs-3;
+  }
+
+  .accordion-item {
+    .accordion-header {
+      .accordion-button {
+        @extend .text-dark;
+        &:focus, &:active, &.active {
+          @extend .text-dark;
+        }
+      }
+    }
+    .accordion-body {
+      font-size: small;
+    }
+  }
+
+}
+
 

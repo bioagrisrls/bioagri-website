@@ -89,7 +89,7 @@
         <br>
         <br>
 
-        <article>
+        <article class="ui-faq-body">
             <div class="accordion accordion-flush" id="faq-accordion-1">
                 <h1>${locale.faq_covid_title}</h1>
                 <div class="accordion-item">
