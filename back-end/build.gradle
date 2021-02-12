@@ -60,6 +60,13 @@ dependencies {
     implementation 'com.google.api-client:google-api-client:1.31.1'
     implementation 'com.paypal.sdk:checkout-sdk:1.0.3'
 
+    compile('javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1') {
+        transitive = false
+    }
+    compile('org.glassfish.web:javax.servlet.jsp.jstl:1.2.1') {
+        transitive = false
+    }
+
     implementation 'org.jetbrains:annotations:19.0.0'
     implementation 'io.swagger.core.v3:swagger-annotations:2.1.6'
 

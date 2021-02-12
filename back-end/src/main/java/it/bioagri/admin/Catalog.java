@@ -30,6 +30,8 @@ import it.bioagri.models.*;
 import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -53,7 +55,12 @@ public class Catalog {
         this.servletContext = servletContext;
     }
 
-
+    @GetMapping("/admin/product")
+    public String getAllData(ModelMap model) {
+        model.addAttribute("categories", dataSource.getCategoryDao().findAll());
+        model.addAttribute("tags", dataSource.getTagDao().findAll());
+        return "/admin/product";
+    }
 
     @PostMapping("/admin/create/product")
     public void save(

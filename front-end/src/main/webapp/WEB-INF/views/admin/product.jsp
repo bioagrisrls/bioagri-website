@@ -1,3 +1,4 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +21,8 @@
 
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
+
 
 <div class="wrapper">
 
@@ -143,7 +146,6 @@
     </aside>
 
     <div class = "row d-flex justify-content-center py-5 pl-5">
-
         <div class = "col-6">
             <div class="card card-success">
                 <div class="card-header">
@@ -152,6 +154,7 @@
                 <!-- /.card-header -->
                 <!-- form start -->
                 <form action="/admin/create/product" method="post">
+
                     <div class="card-body">
                         <div class="form-group">
                             <label>Nome</label>
@@ -168,11 +171,22 @@
                         <div class="form-group">
                             <label>category</label>
                             <div>
+                                <select class="form-control" name="category">
+                                    <c:forEach var="category" items="${categories}">
+                                        <option value="${category.id}">${category.name}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Tag</label>
-                            <input class="form-control"  name="tag" placeholder="Tag">
+                            <label>tags</label>
+                            <div>
+                                <select class="form-control" name="tag">
+                                    <c:forEach var="tag" items="${tags}">
+                                        <option value="${tag.id}">${tag.hashtag}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>info</label>
