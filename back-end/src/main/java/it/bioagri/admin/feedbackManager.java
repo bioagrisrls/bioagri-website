@@ -23,11 +23,10 @@
  *
  */
 
-
 package it.bioagri.admin;
 
-
-import it.bioagri.models.Tag;
+import it.bioagri.models.Feedback;
+import it.bioagri.models.FeedbackStatus;
 import it.bioagri.persistence.DataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,78 +34,72 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
-public class TagsManager {
+public class feedbackManager {
 
 
     private final DataSource dataSource;
 
 
-    public TagsManager(DataSource dataSource) {
+    public feedbackManager(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    @PostMapping("/admin/create/tag")
-    public void save(
 
-            HttpServletResponse response,
-            @RequestParam String hashtag
+    @PostMapping("/admin/feedbacks/update/status")
+    public void updateStatus(@RequestParam  long id, @RequestParam FeedbackStatus feedbackStatus) {
 
-    ) throws IOException {
-
-
-        dataSource.getTagDao().save(
-
-                new Tag(
-                        dataSource.getId("shop_tag", Long.class),
-                        hashtag
-                )
-
-        );
-
-        response.sendRedirect("/admin/dashboard");
-
+        dataSource.update(
+                """
+                    UPDATE shop_feedback 
+                    SET  status = ?
+                    WHERE id = ?
+                    """,
+                s -> {
+                    s.setInt(1,feedbackStatus.ordinal());
+                    s.setLong(2, id);
+                });
 
     }
 
 
-    @PostMapping("/admin/delete/tag")
-    public void delete(@RequestParam long id, HttpServletResponse response) throws IOException {
+    @GetMapping("/admin/feedbacks")
+    public String getAllPendingFeedbacks(ModelMap model){
 
-        dataSource.getTagDao().delete(dataSource.getTagDao().findByPrimaryKey(id).get());
+        List<CustomFeedback> customFeedbacks = new ArrayList<>();
 
-        response.sendRedirect("/admin/dashboard");
+        for(Feedback feedback : dataSource.getFeedbackDao().findAll()){
 
-    }
+            if(feedback.getStatus() == FeedbackStatus.WAIT_FOR_REVISION) {
 
-    @PostMapping("/admin/update/tag")
-    public void update(
+                String[] date = feedback.getCreatedAt().toString().split(" |\\.");
 
-            HttpServletResponse response,
-            @RequestParam long id,
-            @RequestParam String hashtag
+                customFeedbacks.add(new CustomFeedback(
 
-    ) throws IOException {
+                        feedback.getId(),
+                        feedback.getProduct(dataSource).get().getName(),
+                        feedback.getUser(dataSource).get().getName(),
+                        feedback.getDescription(),
+                        date[0],
+                        date[1]
 
 
-        dataSource.getTagDao().update(dataSource.getTagDao().findByPrimaryKey(id).get(),
+                ));
+            }
+        }
 
-                new Tag(
-                        id,
-                        hashtag
-                )
+        model.addAttribute("feedbacks",customFeedbacks);
 
-        );
-
-        response.sendRedirect("/admin/dashboard");
-
+        return "/admin/feedbacks";
 
     }
+
+
+
 
 
 }
+

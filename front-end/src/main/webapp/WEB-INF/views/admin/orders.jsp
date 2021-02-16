@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +18,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
     <!-- Navbar -->
@@ -48,11 +50,9 @@
         </form>
     </nav>
     <!-- /.navbar -->
-    <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="" class="brand-link">
-            <img src="/assets/admin/img/logo/logo.webp" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                 style="opacity: .8">
+            <img src="/assets/admin/img/logo/logo.webp" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">BioAgri</span>
         </a>
 
@@ -71,7 +71,7 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
+                     with font-awesome or any other icon font library -->
                     <li class="nav-item has-treeview menu-open">
                         <a href="dashboard" class="nav-link active">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -97,15 +97,9 @@
                                 </a>
                             </li>
                             <li class="nav-item ml-2">
-                                <a href="category" class="nav-link">
+                                <a href="tagscategory" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>category</p>
-                                </a>
-                            </li>
-                            <li class="nav-item ml-2">
-                                <a href="tags" class="nav-link">
-                                    <i class="fas fa-tags nav-icon"></i>
-                                    <p>tags</p>
+                                    <p>tags and category</p>
                                 </a>
                             </li>
                         </ul>
@@ -162,7 +156,7 @@
                                 <div class="table-responsive">
                                     <table class="table m-0">
                                         <thead>
-                                        <tr class = "text-center">
+                                        <tr class="text-center">
                                             <th style="min-width:100px;">Order ID</th>
                                             <th>Item</th>
                                             <th>Status</th>
@@ -182,7 +176,7 @@
                                             <td><a href="invoice">OR9842</a></td>
                                             <td>Call of Duty IV</td>
                                             <td><span class="badge badge-success">Shipped</span></td>
-                                            <td >
+                                            <td>
                                                 <div style="min-width:80px;" class="sparkbar" data-color="#00a65a" data-height="20">non via via,90</div>
                                             </td>
                                             <td>Rosarno</td>
@@ -252,7 +246,7 @@
                                 <div class="table-responsive">
                                     <table class="table m-0">
                                         <thead>
-                                        <tr class = "text-center">
+                                        <tr class="text-center">
                                             <th style="min-width:100px;">Order ID</th>
                                             <th>Item</th>
                                             <th>Status</th>
@@ -273,7 +267,7 @@
                                             <td><a href="invoice">OR9842</a></td>
                                             <td>Call of Duty IV</td>
                                             <td><span class="badge badge-warning">Pending</span></td>
-                                            <td >
+                                            <td>
                                                 <div style="min-width:80px;" class="sparkbar" data-color="#00a65a" data-height="20">non via via,90</div>
                                             </td>
                                             <td>Rosarno</td>
@@ -456,7 +450,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong>Copyright &copy;  <a href="http://adminlte.io">Bioagri Shop</a>.</strong>
+        <strong>Copyright &copy; <a href="http://adminlte.io">Bioagri Shop</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
         </div>
@@ -482,4 +476,5 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/assets/admin/js/pages/dashboard.js"></script>
 </body>
+
 </html>

@@ -57,9 +57,11 @@ public class Catalog {
 
     @GetMapping("/admin/product")
     public String getAllData(ModelMap model) {
+
         model.addAttribute("categories", dataSource.getCategoryDao().findAll());
         model.addAttribute("tags", dataSource.getTagDao().findAll());
         return "/admin/product";
+
     }
 
     @PostMapping("/admin/create/product")
@@ -106,7 +108,6 @@ public class Catalog {
     public void delete(@RequestParam long id, HttpServletResponse response) throws IOException {
 
         dataSource.getProductDao().delete(dataSource.getProductDao().findByPrimaryKey(id).get());
-
         response.sendRedirect("/admin/dashboard");
 
     }

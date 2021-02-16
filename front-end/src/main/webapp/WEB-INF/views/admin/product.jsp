@@ -1,6 +1,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>products</title>
@@ -55,12 +56,9 @@
     </nav>
     <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <!-- Brand Logo -->
         <a href="" class="brand-link">
-            <img src="/assets/admin/img/logo/logo.webp" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                 style="opacity: .8">
+            <img src="/assets/admin/img/logo/logo.webp" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">BioAgri</span>
         </a>
 
@@ -75,12 +73,11 @@
                     <a href="#" class="d-block">Salvatore Crisafulli</a>
                 </div>
             </div>
-
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
+                     with font-awesome or any other icon font library -->
                     <li class="nav-item has-treeview menu-open">
                         <a href="dashboard" class="nav-link active">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -106,15 +103,9 @@
                                 </a>
                             </li>
                             <li class="nav-item ml-2">
-                                <a href="category" class="nav-link">
+                                <a href="tagscategory" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>category</p>
-                                </a>
-                            </li>
-                            <li class="nav-item ml-2">
-                                <a href="tags" class="nav-link">
-                                    <i class="fas fa-tags nav-icon"></i>
-                                    <p>tags</p>
+                                    <p>tags and category</p>
                                 </a>
                             </li>
                         </ul>
@@ -145,8 +136,8 @@
         <!-- /.sidebar -->
     </aside>
 
-    <div class = "row d-flex justify-content-center py-5 pl-5">
-        <div class = "col-6">
+    <div class="row d-flex justify-content-center py-5 pl-5">
+        <div class="col-6">
             <div class="card card-success">
                 <div class="card-header">
                     <h3 class="card-title">Carica Prodotto</h3>
@@ -158,7 +149,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Nome</label>
-                            <input class="form-control"  name="name" placeholder="nome prodotto">
+                            <input class="form-control" name="name" placeholder="nome prodotto">
                         </div>
                         <div class="form-group">
                             <label>Prezzo</label>
@@ -166,7 +157,7 @@
                         </div>
                         <div class="form-group">
                             <label>Giacenza</label>
-                            <input class="form-control"  name="stock" placeholder="giacenza">
+                            <input class="form-control" name="stock" placeholder="giacenza">
                         </div>
                         <div class="form-group">
                             <label>category</label>
@@ -190,11 +181,11 @@
                         </div>
                         <div class="form-group">
                             <label>info</label>
-                            <input class="form-control"  name="info" placeholder="info">
+                            <input class="form-control" name="info" placeholder="info">
                         </div>
                         <div class="form-group">
                             <label>discount</label>
-                            <input class="form-control"  name="discount" placeholder="discount">
+                            <input class="form-control" name="discount" placeholder="discount">
                         </div>
 
                         <div class="form-group">
@@ -219,10 +210,10 @@
                                 </div>
                             </div>
                         </div>
-                            <hr>
-                            <div class="form-group">
-                                <textarea id="compose-textarea" name="description" class="form-control"></textarea>
-                            </div>
+                        <hr>
+                        <div class="form-group">
+                            <textarea id="compose-textarea" name="description" class="form-control"></textarea>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
@@ -239,7 +230,7 @@
 </div>
 <!-- /.content-wrapper -->
 <footer class="main-footer">
-    <strong>Copyright &copy;  <a href="http://adminlte.io">Bioagri Shop</a>.</strong>
+    <strong>Copyright &copy; <a href="http://adminlte.io">Bioagri Shop</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
     </div>
@@ -262,11 +253,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
 
 <script>
-    $(function () {
+    $(function() {
         //Add text editor
         $('#compose-textarea').summernote()
     })
 </script>
 
 </body>
+
 </html>

@@ -1,5 +1,8 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,9 +17,13 @@
   <link rel="stylesheet" href="/assets/admin/css/adminlte.min.css">
   <!-- summernote -->
   <link rel="stylesheet" href="/assets/admin/plugins/summernote/summernote-bs4.css">
+
+  <script src="/assets/admin/js/feedbacks.js"> </script>
+
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -49,11 +56,9 @@
   </nav>
   <!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="" class="brand-link">
-      <img src="/assets/admin/img/logo/logo.webp" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
+      <img src="/assets/admin/img/logo/logo.webp" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">BioAgri</span>
     </a>
 
@@ -68,12 +73,11 @@
           <a href="#" class="d-block">Salvatore Crisafulli</a>
         </div>
       </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
             <a href="dashboard" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -99,15 +103,9 @@
                 </a>
               </li>
               <li class="nav-item ml-2">
-                <a href="category" class="nav-link">
+                <a href="tagscategory" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>category</p>
-                </a>
-              </li>
-              <li class="nav-item ml-2">
-                <a href="tags" class="nav-link">
-                  <i class="fas fa-tags nav-icon"></i>
-                  <p>tags</p>
+                  <p>tags and category</p>
                 </a>
               </li>
             </ul>
@@ -151,56 +149,57 @@
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
             <!-- Box Comment -->
-            <div class="card card-widget collapsed-card">
-              <div class="card-header">
-                <div class="user-block">
-                  <img class="img-circle mr-5" src="/assets/admin/css/img/prod-1.jpg" alt="User Image">
-                  <span class="username"><a href="#">solfato di ferro</a></span>
-                  <span class="description">pubblicato il - oggi alle 7:30</span>
-                </div>
-                <!-- /.user-block -->
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <div class="card-footer card-comments">
-                  <div class="card-comment">
-                    <div class="comment-text">
-                    <span class="username">
-                      Maria Gonzales
-                      <span class="text-muted float-right">8:03 oggi </span>
-                    </span><!-- /.username -->
-                      It is a long established fact that a reader will be distracted
-                      by the readable content of a page when looking at its layout.
-                    </div>
-                    <!-- /.comment-text -->
+            <h3 class="py-2"> Feedbacks in attesa : ${feedbacks.size()}</h3>
+            <c:forEach var="feedback" items="${feedbacks}">
+              <div class="card card-widget collapsed-card">
+                <div class="card-header">
+                  <div class="user-block">
+                    <span class="username"><a href="#">${feedback.productName}</a></span>
+                    <span class="description">pubblicato il ${feedback.createdAt}</span>
                   </div>
-                  <!-- /.card-comment -->
-                  <button type="button" class="btn btn-danger float-right mx-1"><i class="far fa-trash-alt"></i>Elimina</button>
-                  <button type="button" class="btn btn-success float-right mx-1"><i class="far fa-thumbs-up"></i> Approva</button>
+                  <!-- /.user-block -->
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                  <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div class="card-footer card-comments">
+                    <div class="card-comment">
+                      <div class="comment-text">
+                          <span class="username">
+                              ${feedback.userName}
+                              <span class="text-muted float-right">${feedback.hour} </span>
+                          </span><!-- /.username -->
+                          ${feedback.comment}
+                      </div>
+                      <!-- /.comment-text -->
+                    </div>
+                    <!-- /.card-comment -->
+                    <button onclick="denie(this)" value="${feedback.id}" type="button" class="btn btn-danger float-right mx-1"><i class="far fa-thumbs-down"></i> Nega</button>
+                    <button onclick="approve(this)" value="${feedback.id}" type="button" class="btn btn-success float-right mx-1"><i class="far fa-thumbs-up"></i> Approva</button>
 
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card-footer -->
               </div>
-              <!-- /.card-body -->
-              </div>
-              <!-- /.card-footer -->
-            </div>
-            <!-- /.card -->
+              <!-- /.card -->
+            </c:forEach>
           </div>
           <!-- /.col -->
         </div>
         <!-- /.row -->
       </div>
 
-       </section>
+    </section>
 
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy;  <a href="http://adminlte.io">Bioagri Shop</a>.</strong>
+    <strong>Copyright &copy; <a href="http://adminlte.io">Bioagri Shop</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
     </div>
@@ -229,4 +228,5 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/assets/admin/js/pages/dashboard.js"></script>
 </body>
+
 </html>
