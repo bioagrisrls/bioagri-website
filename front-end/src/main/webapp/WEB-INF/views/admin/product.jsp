@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="/assets/admin/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" />
 
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -37,22 +36,8 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="dashboard" class="nav-link">Home</a>
             </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
-            </li>
         </ul>
 
-        <!-- SEARCH FORM -->
-        <form class="form-inline ml-3">
-            <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
     </nav>
     <!-- /.navbar -->
 
@@ -78,8 +63,8 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview menu-open">
-                        <a href="dashboard" class="nav-link active">
+                    <li class="nav-item has-treeview">
+                        <a href="dashboard" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -97,7 +82,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item ml-2">
-                                <a href="product" class="nav-link">
+                                <a href="product" class="nav-link active">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>product</p>
                                 </a>
@@ -247,11 +232,6 @@
 <!-- Summernote -->
 <script src="/assets/admin/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- Page Script -->
-<!-- ./wrapper -->
-<script src="../js/bootstrap-tagsinput.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" integrity="sha512-VvWznBcyBJK71YKEKDMpZ0pCVxjNuKwApp4zLF3ul+CiflQi6aIJR+aZCP/qWsoFBA28avL5T5HA+RE+zrGQYg==" crossorigin="anonymous"></script>
-
 <script>
     $(function() {
         //Add text editor
