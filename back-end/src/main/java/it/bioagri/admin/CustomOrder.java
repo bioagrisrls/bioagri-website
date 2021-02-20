@@ -25,42 +25,29 @@
 
 package it.bioagri.admin;
 
-public class CustomFeedback {
-
-    private Long id;
-    private String productName;
-    private String userName;
-    private String comment;
-    private String createdAt;
-    private String hour;
+import it.bioagri.models.Order;
 
 
-    public CustomFeedback(Long id, String productName, String userName, String comment, String createdAt, String hour){
+public class CustomOrder {
 
-        this.id = id;
-        this.productName = productName;
-        this.userName = userName;
-        this.comment = comment;
-        this.createdAt = createdAt;
-        this.hour = hour;
+
+    private Order order;
+    private String item;
+
+
+    public CustomOrder(Order order, String item){
+
+        this.order = order;
+        this.item = item;
 
     }
 
-    public Long getId() { return id; }
-
-    public String getProductName() {
-        return productName;
+    public Order getOrder() {
+        return order;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getItem() {
+        return item;
     }
 
-    public String getComment() {
-        return comment;
-    }
-
-    public String getCreatedAt() { return createdAt; }
-
-    public String getHour() { return hour; }
 }

@@ -25,8 +25,8 @@
 
 package it.bioagri.admin;
 
-import it.bioagri.models.Feedback;
-import it.bioagri.models.FeedbackStatus;
+
+import it.bioagri.models.*;
 import it.bioagri.persistence.DataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,70 +36,63 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
-public class feedbackManager {
+public class OrderManager {
 
 
     private final DataSource dataSource;
 
 
-    public feedbackManager(DataSource dataSource) {
+    public OrderManager(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
 
-    @PostMapping("/admin/feedbacks/update/status")
-    public void updateStatus(@RequestParam  long id, @RequestParam FeedbackStatus feedbackStatus) {
+    @GetMapping("/admin/orders")
+    public void getAllData(ModelMap model){
+
+        List<CustomOrder> orders = new ArrayList<>();
+        List<CustomOrder> pendingOrders = new ArrayList<>();
+        String items;
+
+        for(Order order : dataSource.getOrderDao().findAll()){
+
+            items = "";
+
+            for(Map.Entry<Product, Integer> product : order.getProducts(dataSource)){
+                items += product.getKey().getName() + " ";
+            }
+
+            if(order.getStatus() == OrderStatus.PENDING)
+                pendingOrders.add(new CustomOrder(order,items));
+            else
+                orders.add(new CustomOrder(order,items));
+
+        }
+
+        model.addAttribute("orders", orders);
+        model.addAttribute("pendingOrders", pendingOrders);
+
+    }
+
+
+    @PostMapping("/admin/orders/update/status")
+    public void updateStatus(@RequestParam long id, @RequestParam String shipmentNumber) {
 
         dataSource.update(
                 """
-                    UPDATE shop_feedback 
-                    SET  status = ?
+                    UPDATE shop_order 
+                    SET  status = 2, shipment_number = ?
                     WHERE id = ?
                     """,
                 s -> {
-                    s.setInt(1,feedbackStatus.ordinal());
+                    s.setString(1,shipmentNumber);
                     s.setLong(2, id);
                 });
 
     }
 
 
-    @GetMapping("/admin/feedbacks")
-    public String getAllPendingFeedbacks(ModelMap model){
-
-        List<CustomFeedback> customFeedbacks = new ArrayList<>();
-
-        for(Feedback feedback : dataSource.getFeedbackDao().findAll()){
-
-            if(feedback.getStatus() == FeedbackStatus.WAIT_FOR_REVISION) {
-
-                String[] date = feedback.getCreatedAt().toString().split(" |\\.");
-
-                customFeedbacks.add(new CustomFeedback(
-
-                        feedback.getId(),
-                        feedback.getProduct(dataSource).get().getName(),
-                        feedback.getUser(dataSource).get().getName(),
-                        feedback.getDescription(),
-                        date[0],
-                        date[1]
-
-
-                ));
-            }
-        }
-
-        model.addAttribute("feedbacks",customFeedbacks);
-
-        return "/admin/feedbacks";
-
-    }
-
-
-
-
-
 }
-

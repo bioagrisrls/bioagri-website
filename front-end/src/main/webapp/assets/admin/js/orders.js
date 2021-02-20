@@ -23,44 +23,33 @@
  *
  */
 
-package it.bioagri.admin;
 
-public class CustomFeedback {
+function addShipmentNumber() {
 
-    private Long id;
-    private String productName;
-    private String userName;
-    private String comment;
-    private String createdAt;
-    private String hour;
+    $('#orderModal').on('show.bs.modal', function(event) {
 
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var id = button.data('whatever') //
+        $('#saveShipmentNumber').val(id)
 
-    public CustomFeedback(Long id, String productName, String userName, String comment, String createdAt, String hour){
+    })
 
-        this.id = id;
-        this.productName = productName;
-        this.userName = userName;
-        this.comment = comment;
-        this.createdAt = createdAt;
-        this.hour = hour;
-
-    }
-
-    public Long getId() { return id; }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public String getCreatedAt() { return createdAt; }
-
-    public String getHour() { return hour; }
 }
+
+
+function updateOrderStatus() {
+
+    console.log("sono qui in updateOrderStatus")
+
+    const http = new XMLHttpRequest();
+    shipmentNumber = $('#shipmentNumberInput').val();
+    id = $('#saveShipmentNumber').val()
+    http.open('POST', '/admin/orders/update/status', true);
+    http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    http.send("shipmentNumber="+shipmentNumber+"&id="+id);
+    location.reload();
+
+
+}
+
+

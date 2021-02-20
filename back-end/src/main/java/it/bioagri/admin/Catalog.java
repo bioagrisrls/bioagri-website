@@ -25,6 +25,7 @@
 
 package it.bioagri.admin;
 
+import com.paypal.http.serializer.Multipart;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.*;
 import it.bioagri.persistence.DataSource;
@@ -34,10 +35,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartRequest;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -76,9 +81,11 @@ public class Catalog {
             @RequestParam Integer stock,
             @RequestParam ProductStatus status,
             @RequestParam Long tag,
-            @RequestParam Long category
+            @RequestParam Long category,
+            @RequestParam String files
 
     ) throws IOException {
+
 
         Product product = new Product(
                 dataSource.getId("shop_product", Long.class),
