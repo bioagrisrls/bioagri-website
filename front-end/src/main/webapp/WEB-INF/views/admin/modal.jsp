@@ -96,7 +96,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" value='' onclick="updateTag()" id = "updateTagButton" class="btn btn-primary">update</button>
+                <button type="button" value='' onclick="updateTag()" id = "updateTagButton" class="btn btn-primary">Update</button>
             </div>
         </div>
     </div>

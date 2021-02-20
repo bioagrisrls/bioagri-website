@@ -37,22 +37,8 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="dashboard" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
     </ul>
 
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
   </nav>
   <!-- /.navbar -->
 
@@ -78,8 +64,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
 with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="dashboard" class="nav-link active">
+          <li class="nav-item has-treeview">
+            <a href="dashboard" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -118,7 +104,7 @@ with font-awesome or any other icon font library -->
             </a>
           </li>
           <li class="nav-item">
-            <a href="feedbacks" class="nav-link">
+            <a href="feedbacks" class="nav-link active">
               <i class="nav-icon fas fa-star"></i>
               <p>
                 feedbacks
@@ -225,8 +211,6 @@ with font-awesome or any other icon font library -->
 <script src="/assets/admin/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/assets/admin/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/assets/admin/js/pages/dashboard.js"></script>
 </body>
 
 </html>
