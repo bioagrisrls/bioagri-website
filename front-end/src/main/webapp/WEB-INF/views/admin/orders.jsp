@@ -1,3 +1,6 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@include  file="orderModal.jsp" %>
 <!DOCTYPE html>
 <html>
 
@@ -17,6 +20,8 @@
     <link rel="stylesheet" href="/assets/admin/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -167,58 +172,42 @@
                                             <th>Transaction id</th>
                                             <th>Transaction type</th>
                                             <th>shipment number</th>
-                                            <th>invoice</th>
                                             <th>additional info</th>
                                         </tr>
                                         </thead>
                                         <tbody class="text-center">
+
+                                        <c:forEach var="order" items="${orders}">
                                         <tr>
-                                            <td><a href="invoice">OR9842</a></td>
-                                            <td>Call of Duty IV</td>
-                                            <td><span class="badge badge-success">Shipped</span></td>
-                                            <td>
-                                                <div style="min-width:80px;" class="sparkbar" data-color="#00a65a" data-height="20">non via via,90</div>
+
+                                            <td><a href="invoice">${order.order.id}</a></td>
+                                            <td>${order.item}</td>
+                                            <c:if test="${order.order.status == 'PROCESSING'}">
+                                                <td><span class="badge badge-info">Processing</span></td>
+                                            </c:if>
+                                            <c:if test="${order.order.status == 'SENT'}">
+                                                <td><span class="badge badge-primary">Shipped</span></td>
+                                            </c:if>
+                                            <c:if test="${order.order.status == 'RECEIVED'}">
+                                                <td><span class="badge badge-success">Delivered</span></td>
+                                            </c:if>
+                                            <c:if test="${order.order.status == 'ABORTED'}">
+                                                <td><span class="badge badge-danger">Aborted</span></td>
+                                            </c:if>
+
+                                            <td><div class="sparkbar" data-color="#00a65a" data-height="20">
+                                                    ${fn:replace(fn:replace(order.order.address, 'null,', ''),'null', '')}
+                                                </div>
                                             </td>
-                                            <td>Rosarno</td>
-                                            <td>RC</td>
-                                            <td>8900</td>
-                                            <td>72365102391238347</td>
-                                            <td>Pypal</td>
-                                            <td>3423534</td>
-                                            <td><a>link</a></td>
-                                            <td>scala A piano 3</td>
+                                            <td>${order.order.city}</td>
+                                            <td>${order.order.province}</td>
+                                            <td>${order.order.zip}</td>
+                                            <td>${order.order.transactionId}</td>
+                                            <td>${order.order.transactionType}</td>
+                                            <td>${order.order.shipmentNumber}</td>
+                                            <td>${order.order.additionalInfo}</td>
                                         </tr>
-                                        <tr>
-                                            <td><a href="invoice">OR7429</a></td>
-                                            <td>iPhone 6 Plus</td>
-                                            <td><span class="badge badge-danger">Delivered</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f56954" data-height="20">via senza mani, 88</div>
-                                            </td>
-                                            <td>Gioia Tauro</td>
-                                            <td>RC</td>
-                                            <td>8900</td>
-                                            <td>72365102391238347</td>
-                                            <td>Pypal</td>
-                                            <td>3423534</td>
-                                            <td><a>link</a></td>
-                                            <td>scala A piano 3</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="invoice">OR7429</a></td>
-                                            <td>Samsung Smart TV</td>
-                                            <td><span class="badge badge-info">Processing</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#00c0ef" data-height="20">via senza nome, 57 </div>
-                                            </td>
-                                            <td>Polistena</td>
-                                            <td>RC</td>
-                                            <td>8900</td>
-                                            <td>72365102391238347</td>
-                                            <td>Pypal</td>
-                                            <td>3423534</td>
-                                            <td><a>link</a></td>
-                                            <td>scala A piano 3</td>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -257,179 +246,31 @@
                                             <th>Transaction id</th>
                                             <th>Transaction type</th>
                                             <th>shipment number</th>
-                                            <th>invoice</th>
                                             <th>additional info</th>
                                             <th class="px-5">send</th>
                                         </tr>
                                         </thead>
                                         <tbody class="text-center">
+                                        <c:forEach var = "pendingOrder" items="${pendingOrders}">
                                         <tr>
-                                            <td><a href="invoice">OR9842</a></td>
-                                            <td>Call of Duty IV</td>
+                                            <td><a href="invoice">${pendingOrder.order.id}</a></td>
+                                            <td>${pendingOrder.item}</td>
                                             <td><span class="badge badge-warning">Pending</span></td>
                                             <td>
-                                                <div style="min-width:80px;" class="sparkbar" data-color="#00a65a" data-height="20">non via via,90</div>
-                                            </td>
-                                            <td>Rosarno</td>
-                                            <td>RC</td>
-                                            <td>8900</td>
-                                            <td>72365102391238347</td>
-                                            <td>Pypal</td>
-                                            <td>3423534</td>
-                                            <td><a>link</a></td>
-                                            <td>scala A piano 3</td>
-                                            <td class="px-5">
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                                                    send
-                                                </button>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Send</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <label class="col-form-label">inserisci codice spedizione</label>
-                                                                <input type="text" class="form-control">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-success">Save changes</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div class="sparkbar" data-color="#00a65a" data-height="20">
+                                                    ${fn:replace(fn:replace(pendingOrder.order.address, 'null,', ''),'null', '')}
                                                 </div>
                                             </td>
+                                            <td>${pendingOrder.order.city}</td>
+                                            <td>${pendingOrder.order.province}</td>
+                                            <td>${pendingOrder.order.zip}</td>
+                                            <td>${pendingOrder.order.transactionId}</td>
+                                            <td>${pendingOrder.order.transactionType}</td>
+                                            <td>${pendingOrder.order.shipmentNumber}</td>
+                                            <td>${pendingOrder.order.additionalInfo}</td>
+                                            <td><button onclick="addShipmentNumber()" type="button" class="btn btn-success" data-whatever="${pendingOrder.order.id}" data-toggle="modal" data-target="#orderModal">send</button></td>
                                         </tr>
-                                        <tr>
-                                            <td><a href="invoice">OR1848</a></td>
-                                            <td>Samsung Smart TV</td>
-                                            <td><span class="badge badge-warning">Pending</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f39c12" data-height="20">via senza via, 34</div>
-                                            </td>
-                                            <td>Rizziconi</td>
-                                            <td>RC</td>
-                                            <td>8900</td>
-                                            <td>72365102391238347</td>
-                                            <td>Pypal</td>
-                                            <td>3423534</td>
-                                            <td><a>link</a></td>
-                                            <td>scala A piano 3</td>
-                                            <td class="px-5">
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                                                    send
-                                                </button>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Send</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <label class="col-form-label">inserisci codice spedizione</label>
-                                                                <input type="text" class="form-control">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-success">Save changes</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="invoice">OR7429</a></td>
-                                            <td>iPhone 6 Plus</td>
-                                            <td><span class="badge badge-warning">Pending</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f56954" data-height="20">via senza mani, 88</div>
-                                            </td>
-                                            <td>Gioia Tauro</td>
-                                            <td>RC</td>
-                                            <td>8900</td>
-                                            <td>72365102391238347</td>
-                                            <td>Pypal</td>
-                                            <td>3423534</td>
-                                            <td><a>link</a></td>
-                                            <td>scala A piano 3</td>
-                                            <td class="px-5">
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                                                    send
-                                                </button>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Send</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <label class="col-form-label">inserisci codice spedizione</label>
-                                                                <input type="text" class="form-control">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-success">Save changes</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="invoice">OR7429</a></td>
-                                            <td>Samsung Smart TV</td>
-                                            <td><span class="badge badge-warning">Pending</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#00c0ef" data-height="20">via senza nome, 57 </div>
-                                            </td>
-                                            <td>Polistena</td>
-                                            <td>RC</td>
-                                            <td>8900</td>
-                                            <td>72365102391238347</td>
-                                            <td>Pypal</td>
-                                            <td>3423534</td>
-                                            <td><a>link</a></td>
-                                            <td>scala A piano 3</td>
-                                            <td class="px-5">
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                                                    send
-                                                </button>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Send</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <label class="col-form-label">inserisci codice spedizione</label>
-                                                                <input type="text" class="form-control">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-success">Save changes</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
