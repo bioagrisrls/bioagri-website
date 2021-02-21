@@ -116,6 +116,15 @@
 
         }
 
+        onBeforeUpdate(state) {
+
+            super.onBeforeUpdate(state);
+
+            if(state.current.includes('ok-'))
+                shopping_cart_clear();
+
+        }
+
     });
 
 
