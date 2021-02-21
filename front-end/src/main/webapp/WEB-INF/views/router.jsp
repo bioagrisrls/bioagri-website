@@ -77,12 +77,13 @@
         <script src="/assets/js/third-party/bootstrap/bootstrap.min.js"></script>
         <script src="https://apis.google.com/js/api.js"></script>
         <script src="https://apis.google.com/js/platform.js"></script>
-        <script src="https://www.google.com/recaptcha/api.js"></script>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
         <script src="https://www.paypal.com/sdk/js?client-id=${paypalId}&currency=EUR&locale=it_IT" data-namespace="paypal_sdk"></script>
-    
+
     
         <!-- Dependencies -->
         <script src="/assets/js/services/google.js"></script>
+        <script src="/assets/js/services/facebook.js"></script>
         <script src="/assets/js/ui/api.js"></script>
         <script src="/assets/js/ui/auth.js"></script>
         <script src="/assets/js/ui/components.js"></script>

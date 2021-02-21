@@ -41,7 +41,7 @@
                     <hr>
                     <div class="text-center">
                         <button onclick="googleAuthenticate('` + id.id + `')" class="btn-auth-google"><span class="mdi mdi-google"></span></button>
-                        <button class="btn-auth-facebook"><span class="mdi mdi-facebook"></span></button>
+                        <button onclick="facebookAuthenticate('` + id.id + `')" class="btn-auth-facebook"><span class="mdi mdi-facebook"></span></button>
                         <button class="btn-auth-twitter"><span class="mdi mdi-twitter"></span></button>
                     </div>
                 `,
