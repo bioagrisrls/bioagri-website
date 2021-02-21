@@ -83,9 +83,9 @@ const googleAuthenticate = (form = undefined) => {
 
                                         const extractDate = (r) => {
                                             return (r && new Date (
-                                                r.date.year     || 0,
-                                                (r.date.month   || 0) - 1,
-                                                r.date.day      || 0
+                                                +r.date.year     || 0,
+                                                +(r.date.month   || 0) - 1,
+                                                +r.date.day      || 0
                                             ).toISOString()) || '';
                                         };
 
