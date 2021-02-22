@@ -39,18 +39,18 @@
 /**
  * Authenticate with back-end and getting a new auth-token.
  * @param username {string}
- * @param password {string}
+ * @param encryptedPassword {string}
  * @param store {boolean}
  * @param token {string}
  * @param triggerEvent {boolean}
  * @returns {Promise<* | void>}
  */
-const authenticate = async (username, password, store = false, token = '', triggerEvent = true) => {
+const authenticate = async (username, encryptedPassword, store = false, token = '', triggerEvent = true) => {
 
     return api('/auth/authenticate', 'POST', {
 
         username    : username,
-        password    : password,
+        password    : encryptedPassword,
         token       : token,
 
     }).then(
@@ -58,7 +58,7 @@ const authenticate = async (username, password, store = false, token = '', trigg
 
             if(store && !token) {
                 localStorage.setItem('X-Auth-Username', username);
-                localStorage.setItem('X-Auth-Password', password);
+                localStorage.setItem('X-Auth-Password', encryptedPassword);
             }
 
             sessionStorage.setItem('X-Auth-Token', response.token);
