@@ -140,7 +140,7 @@
 
                                         <h5>${locale.home_promo_insecticide_motto}</h5>
                                         <h4>${locale.home_promo_insecticide_link} &rightarrow;</h4>
-                                        <a class="stretched-link" href="/catalog&category=insetticidi"></a>
+                                        <a class="stretched-link" href="/catalog"></a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-12">
@@ -154,7 +154,7 @@
                                                   ui:size="cover"></ui-image>
                                         <h5>${locale.home_promo_gardening_motto}</h5>
                                         <h4>${locale.home_promo_gardening_link} &rightarrow;</h4>
-                                        <a class="stretched-link" href="/catalog&category=giardinaggio"></a>
+                                        <a class="stretched-link" href="/catalog"></a>
                                     </div>
                                 </div>
                             </div>
@@ -172,7 +172,7 @@
                                       ui:size="cover"></ui-image>
                             <h5>${locale.home_promo_food_motto}</h5>
                             <h4>${locale.home_promo_food_link} &rightarrow;</h4>
-                            <a class="stretched-link" href="/catalog&category=alimentari"></a>
+                            <a class="stretched-link" href="/catalog"></a>
                         </div>
 
                         </div>
@@ -190,7 +190,7 @@
                                                   ui:size="cover"></ui-image>
                                         <h5>${locale.home_promo_household_motto}</h5>
                                         <h4>${locale.home_promo_household_link} &rightarrow;</h4>
-                                        <a class="stretched-link" href="/catalog&category=casalinghi"></a>
+                                        <a class="stretched-link" href="/catalog"></a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-12">
@@ -204,7 +204,7 @@
                                                   ui:size="cover"></ui-image>
                                         <h5>${locale.home_promo_accident_motto}</h5>
                                         <h4>${locale.home_promo_accident_link} &rightarrow;</h4>
-                                        <a class="stretched-link" href="/catalog&category=infortunistica"></a>
+                                        <a class="stretched-link" href="/catalog"></a>
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +248,7 @@
                                       ui:size="contain"></ui-image>
 
                             <p>
-                                ${locale.home_promo_newsletter_info} <a ui-navigate href="/privacy">${locale.home_promo_newsletter_info_link}</a>.
+                                ${locale.home_promo_newsletter_info} <a ui-navigate href="/policy">${locale.home_promo_newsletter_info_link}</a>.
                             </p>
 
                             <form>
