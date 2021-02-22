@@ -68,7 +68,7 @@ public class Components {
                                         .transform(s -> p.toString().endsWith(".loading.ui") ? "%s_loading".formatted(s) : s)
                                         .replace('\\', '_')
                                         .replace('/', '_')
-                                        .replace('.', '_'), Page.escapize(Page.minimize(Files.readString(p), true)));
+                                        .replace('.', '_'), Page.escapize(Page.minimize(sanitize(Files.readString(p)), true)));
 
 
                             } catch (IOException ignored) {
@@ -89,6 +89,24 @@ public class Components {
 
     public Map<String, String> getComponents() {
         return components;
+    }
+
+
+    private String sanitize(String content) {
+
+        StringBuilder buffer = new StringBuilder();
+
+        for(var ch : content.toCharArray()) {
+
+            if(Character.getNumericValue(ch) > 255)
+                buffer.append("#%d;".formatted(Character.getNumericValue(ch)));
+            else
+                buffer.append(ch);
+
+        }
+
+        return buffer.toString();
+
     }
 
 }

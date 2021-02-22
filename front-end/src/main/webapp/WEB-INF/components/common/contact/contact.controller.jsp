@@ -37,21 +37,21 @@
 
                 name: {
                     type: 'text',
-                    placeholder: '${locale.support_form_name}',
+                    placeholder: `${locale.support_form_name}`,
                     required: true,
                     maxlength: 32
                 },
 
                 surname: {
                     type: 'text',
-                    placeholder: '${locale.support_form_surname}',
+                    placeholder: `${locale.support_form_surname}`,
                     required: true,
                     maxlength: 32
                 },
 
                 email: {
                     type: 'email',
-                    placeholder: '${locale.support_form_email}',
+                    placeholder: `${locale.support_form_email}`,
                     pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                     required: true,
                     size: 128, // FIXME
@@ -60,20 +60,20 @@
 
                 phone: {
                     type: 'tel',
-                    placeholder: '${locale.support_form_phone}',
+                    placeholder: `${locale.support_form_phone}`,
                     required: true,
                     size: 16
                 },
 
                 object: {
                     type: 'text',
-                    placeholder: '${locale.support_form_subject}',
+                    placeholder: `${locale.support_form_subject}`,
                     required: true,
                     maxlength: 32
                 },
                 message: {
                     type: 'textarea',
-                    placeholder: '${locale.support_form_message}',
+                    placeholder: `${locale.support_form_message}`,
                     required: true,
                     maxlength: 512
                 },

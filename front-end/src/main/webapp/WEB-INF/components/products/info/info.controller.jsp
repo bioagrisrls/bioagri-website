@@ -208,7 +208,7 @@
                 .catch(reason => {
 
                     if(reason === 'purchase-first')
-                        Component.render(Component.dummy(), `${components.common_notify}`, { message: '${locale.review_purchase_first}' });
+                        Component.render(Component.dummy(), `${components.common_notify}`, { message: `${locale.review_purchase_first}` });
                     else
                         requestUserAuthentication()
 

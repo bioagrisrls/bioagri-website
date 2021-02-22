@@ -57,7 +57,7 @@
 
 
                 $submit: {
-                    value: '${locale.auth_login}',
+                    value: `${locale.auth_login}`,
                     align: 'center',
                     style: 'btn-block clear-both'
                 },
@@ -74,34 +74,34 @@
 
                 username: {
                     type: 'email',
-                    label: '${locale.auth_email}',
+                    label: `${locale.auth_email}`,
                     pattern: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                     required: true,
                     autocomplete: 'email',
                     size: 128, // FIXME
-                    wrong: '${locale.auth_email_wrong}'
+                    wrong: `${locale.auth_email_wrong}`
                 },
 
                 password: {
                     type: 'password',
-                    label: '${locale.auth_password}',
+                    label: `${locale.auth_password}`,
                     minlength: 8,
                     pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
                     required: true,
                     autocomplete: 'current-password',
                     size: 128,
-                    wrong: '${locale.auth_password_wrong}'
+                    wrong: `${locale.auth_password_wrong}`
                 },
 
                 store: {
                     type: 'switch',
-                    label: '${locale.auth_remember}',
+                    label: `${locale.auth_remember}`,
                     style: 'float-end',
                 },
 
                 forgotten: {
                     type: 'link',
-                    value: '${locale.auth_forgotten}',
+                    value: `${locale.auth_forgotten}`,
                     style: 'float-start'
                 },
 

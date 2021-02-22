@@ -47,7 +47,7 @@
 
 
                 $submit: {
-                    value: '${locale.review_send}',
+                    value: `${locale.review_send}`,
                     align: 'center',
                     style: 'btn-block clear-both'
                 },
@@ -69,16 +69,16 @@
 
                 title: {
                     type: 'text',
-                    placeholder: '${locale.review_title}',
+                    placeholder: `${locale.review_title}`,
                     required: true,
-                    wrong: '${locale.review_title_wrong}'
+                    wrong: `${locale.review_title_wrong}`
                 },
 
                 description: {
                     type: 'textarea',
-                    placeholder: '${locale.review_description}',
+                    placeholder: `${locale.review_description}`,
                     required: true,
-                    wrong: '${locale.review_description_wrong}'
+                    wrong: `${locale.review_description_wrong}`
                 },
 
                 stars: {

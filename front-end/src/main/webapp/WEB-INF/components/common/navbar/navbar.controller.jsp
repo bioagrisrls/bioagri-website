@@ -45,11 +45,11 @@
                     about:      `${locale.nav_about}`,
                     support:    `${locale.nav_support}`,
 
-                    userAccount:    '${locale.menu_account}',
-                    userOrder:      '${locale.menu_order}',
-                    userWish:       '${locale.menu_wishlist}',
-                    userTicket:     '${locale.menu_ticket}',
-                    userExit:       '${locale.menu_exit}',
+                    userAccount:    `${locale.menu_account}`,
+                    userOrder:      `${locale.menu_order}`,
+                    userWish:       `${locale.menu_wishlist}`,
+                    userTicket:     `${locale.menu_ticket}`,
+                    userExit:       `${locale.menu_exit}`,
 
                 }
 
@@ -142,8 +142,8 @@
                 style.attributes['href'].value = resource;
 
             check.title = dark
-                ? '${locale.nav_daymode}'
-                : '${locale.nav_nightmode}';
+                ? `${locale.nav_daymode}`
+                : `${locale.nav_nightmode}`;
 
 
 

@@ -85,7 +85,7 @@
 
                 name: {
                     type: 'text',
-                    label: '${locale.registration_name}',
+                    label: `${locale.registration_name}`,
                     required: true,
                     autocomplete: 'given-name',
                     maxlength: 32
@@ -93,7 +93,7 @@
 
                 surname: {
                     type: 'text',
-                    label: '${locale.registration_surname}',
+                    label: `${locale.registration_surname}`,
                     required: true,
                     autocomplete: 'family-name',
                     maxlength: 32
@@ -105,24 +105,24 @@
                     required: true,
                     autocomplete: 'sex',
                     options: [
-                        { key: '${locale.registration_gender}',           value: ''           },
-                        { key: '${locale.registration_gender_female}',    value: 'FEMALE'     },
-                        { key: '${locale.registration_gender_male}',      value: 'MALE'       },
-                        { key: '${locale.registration_gender_other}',     value: 'OTHER'      },
-                        { key: '${locale.registration_gender_undefined}', value: 'UNDEFINED'  },
+                        { key: `${locale.registration_gender}`,           value: ''           },
+                        { key: `${locale.registration_gender_female}`,    value: 'FEMALE'     },
+                        { key: `${locale.registration_gender_male}`,      value: 'MALE'       },
+                        { key: `${locale.registration_gender_other}`,     value: 'OTHER'      },
+                        { key: `${locale.registration_gender_undefined}`, value: 'UNDEFINED'  },
                     ]
                 },
 
                 birth: {
                     type: 'date',
-                    label: '${locale.registration_birth}',
+                    label: `${locale.registration_birth}`,
                     required: true,
                     autocomplete: 'bday'
                 },
 
                 phone: {
                     type: 'tel',
-                    label: '${locale.registration_phone}',
+                    label: `${locale.registration_phone}`,
                     required: true,
                     autocomplete: 'tel',
                     minlength: 9,

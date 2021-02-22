@@ -46,7 +46,7 @@
 
                     if(reason === 404) {
                         return {
-                            images: [ '${locale.card_not_available}' ],
+                            images: [ `${locale.card_not_available}` ],
                             current: 0
                         }
                     }

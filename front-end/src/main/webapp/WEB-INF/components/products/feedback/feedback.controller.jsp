@@ -42,7 +42,7 @@
 
                     const count     = response[0].value || 0;
                     const feedbacks = response[1].value || [];
-                    const images    = response[2].value || [ '${locale.card_not_available}' ];
+                    const images    = response[2].value || [ `${locale.card_not_available}` ];
 
                     return {
 
