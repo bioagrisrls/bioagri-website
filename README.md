@@ -24,7 +24,7 @@ visionare una vetrina che evidenzia le principali informazioni riguardo la
 sopracitata azienda e in seguito accedere al catalogo dei prodotti, per mezzo
 del quale effettuare eventuali operazioni d’acquisto.
 
-:link: Documentazione: [QUI](docs/wcomp/documentation.pdf)  
+:books: **Documentazione:** [QUI](docs/wcomp/documentation.pdf)
 
 -----------------------
   
