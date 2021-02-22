@@ -1,13 +1,33 @@
 # bioagri-website
+
 [![Build Status](https://travis-ci.com/nefele-org/nefele-desktop.svg?branch=master)](https://travis-ci.com/nefele-org/nefele-desktop)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/nefele-org/nefele-desktop.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/nefele-org/nefele-desktop/alerts/)
 [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/nefele-org/nefele-desktop.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/nefele-org/nefele-desktop/context:java)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](/LICENSE)
 
-Bioagri Website
+## Descrizione :it:
+L’applicativo web sviluppato è uno strumento pensato per consentire la vendita
+di servizi e prodotti da parte di una realtà aziendale esistente: BioAgri S.r.l.s. -
+azienda che opera nel settore agrario distribuendo ed erogando servizi di
+consulenza e prodotti per il giardinaggio, coltura, e strumenti per l’agronomia.  
+
+Il progetto prevede uno sviluppo di un’architettura modello **Client-Server**, con
+standard di comunicazione **RESTful** e supporto multilingua per una fruizione
+multipiattaforma di un’applicazione web orientata allo **shopping online** e
+all’ingresso della stessa nel mercato digitale globale.  
+
+La piattaforma offre ai clienti, acquisiti e potenziali, tutte le informazioni e i
+consigli necessari sia nella fase di pre-vendita che di post-vendita.  
+
+Tramite un’interfaccia molto semplice e intuitiva l’utente ha la possibilità di
+visionare una vetrina che evidenzia le principali informazioni riguardo la
+sopracitata azienda e in seguito accedere al catalogo dei prodotti, per mezzo
+del quale effettuare eventuali operazioni d’acquisto.
+
+![Screenshots](docs/wcomp/images/5-themes.png)
 
 
-## Building from sources
+## Instructions :en:
 Clone sources from this repository:
 ```shell
 $ git clone --depth=1 https://github.com/bioagrisrls/bioagri-website
