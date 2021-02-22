@@ -28,7 +28,7 @@ del quale effettuare eventuali operazioni d’acquisto.
 ![Screenshots](docs/wcomp/images/5-themes.png)
 
 
-## Instructions :en:
+## Instructions :uk:
 Clone sources from this repository:
 ```shell
 $ git clone --depth=1 https://github.com/bioagrisrls/bioagri-website
