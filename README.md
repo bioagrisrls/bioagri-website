@@ -22,7 +22,11 @@ consigli necessari sia nella fase di pre-vendita che di post-vendita.
 Tramite un’interfaccia molto semplice e intuitiva l’utente ha la possibilità di
 visionare una vetrina che evidenzia le principali informazioni riguardo la
 sopracitata azienda e in seguito accedere al catalogo dei prodotti, per mezzo
-del quale effettuare eventuali operazioni d’acquisto.  
+del quale effettuare eventuali operazioni d’acquisto.
+
+:link: Documentazione: [QUI](docs/wcomp/documentation.pdf)  
+
+-----------------------
   
 ### Screenshots
 ![Screenshots](docs/wcomp/images/5-themes.png)
