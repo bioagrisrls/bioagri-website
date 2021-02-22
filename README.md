@@ -73,7 +73,23 @@ Open with your editor ```back-end/src/main/resources/application.yml``` and set 
 
 ## Build
 
-To run BioagriShop, execute the following command in the project root:
+**NOTE:** Building from sources requires **JDK 15.0.x**, you can download directly and unzip it from [OpenJDK Archive](https://jdk.java.net/archive/):
+* [Windows](https://download.java.net/java/GA/jdk15.0.1/51f4f36ad4ef43e39d0dfdbaf6549e32/9/GPL/openjdk-15.0.1_windows-x64_bin.zip)
+* [Mac](https://download.java.net/java/GA/jdk15.0.1/51f4f36ad4ef43e39d0dfdbaf6549e32/9/GPL/openjdk-15.0.1_osx-x64_bin.tar.gz)
+* [Linux](https://download.java.net/java/GA/jdk15.0.1/51f4f36ad4ef43e39d0dfdbaf6549e32/9/GPL/openjdk-15.0.1_linux-x64_bin.tar.gzhttps://download.java.net/java/GA/jdk15/779bf45e88a44cbd9ea6621d33e33db1/36/GPL/openjdk-15_linux-x64_bin.tar.gz)
+
+You need to set **JAVA_HOME** environment variable to point to your Java 15 directory, before running Gradle Wrapper.  
+Or execute following command (keep your terminal open!)
+
+```shell
+# Linux/Mac
+export JAVA_HOME=/path_to_jdk_15
+
+# Windows
+set JAVA_HOME="X:\path_to_jdk_15"
+```
+
+Finally to run BioagriShop, execute the following command in the project root:
 ```shell
 # Linux/Mac
 $ ./gradlew :front-end:run --console=rich
@@ -81,25 +97,6 @@ $ ./gradlew :front-end:run --console=rich
 # Windows (CMD)
 > gradlew.bat :front-end:run --console=rich
 ```
-
-**NOTE:** Building from sources requires **JDK 15.0.x**, you can download directly and unzip it from [OpenJDK Archive](https://jdk.java.net/archive/):
-* [Windows](https://download.java.net/java/GA/jdk15.0.1/51f4f36ad4ef43e39d0dfdbaf6549e32/9/GPL/openjdk-15.0.1_windows-x64_bin.zip)
-* [Mac](https://download.java.net/java/GA/jdk15.0.1/51f4f36ad4ef43e39d0dfdbaf6549e32/9/GPL/openjdk-15.0.1_osx-x64_bin.tar.gz)
-* [Linux](https://download.java.net/java/GA/jdk15.0.1/51f4f36ad4ef43e39d0dfdbaf6549e32/9/GPL/openjdk-15.0.1_linux-x64_bin.tar.gzhttps://download.java.net/java/GA/jdk15/779bf45e88a44cbd9ea6621d33e33db1/36/GPL/openjdk-15_linux-x64_bin.tar.gz)
-
-**NOTE**: You need to set **JAVA_HOME** environment variable to point to your Java 15 directory, before running Gradle Wrapper.
-
-[comment]: <> (```shell)
-
-[comment]: <> (# Linux/Mac)
-
-[comment]: <> (export JAVA_HOME=/path_to_jdk_15)
-
-[comment]: <> (# Windows)
-
-[comment]: <> (set JAVA_HOME="X:\path_to_jdk_15")
-
-[comment]: <> (```)
 
 ## Run
 Open your web browser on http://localhost:8080 after successful build.
