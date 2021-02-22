@@ -73,15 +73,13 @@ function updateTag() {
 
 function updateCategory() {
 
-    console.log("category uopdate")
     const http = new XMLHttpRequest();
-    id = $('#updateButton').val();
+    id = $('#updateCategoryButton').val();
     name = $('#nameCategoryForm').val();
     http.open('POST', '/admin/update/category', true);
     http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     http.send("id=" + id + "&name=" + name);
     location.reload();
-
 
 }
 
