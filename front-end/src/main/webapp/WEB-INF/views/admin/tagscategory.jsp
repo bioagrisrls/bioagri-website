@@ -65,7 +65,6 @@
 
 <div class="wrapper">
   <!-- Navbar -->
-  <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -76,9 +75,9 @@
         <a href="dashboard" class="nav-link">Home</a>
       </li>
     </ul>
-
   </nav>
   <!-- /.navbar -->
+
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="" class="brand-link">
@@ -273,7 +272,6 @@
               <!-- /.card-footer -->
             </div>
             <!-- /.card -->
-
           </div>
           <!-- /.col -->
         </div>
