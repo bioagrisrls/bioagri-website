@@ -53,7 +53,8 @@ Password: admin
 ```
 
 #### 3. Create and restore database
-Create a new databased named ```bioagridb```, open *Tools->QueryTool* from the top menu and paste all the content from ```utils/database/prefab.sql```
+1. Create a new database named ```bioagridb```
+2. Open *Tools->QueryTool* from the top menu and paste all the content from ```utils/database/prefab.sql```
 
 
 
