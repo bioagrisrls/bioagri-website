@@ -65,7 +65,7 @@ $ sudo docker-compose -d up
 ```
 
 #### 1. Open PgAdmin4
-After successful running, open your web browser e go to: http://localhost:5050 or open your PgAdmin4 application  
+After successful running, open your web browser e go to: http://localhost:5050 or open your PgAdmin4 application.  
 Authenticate yourself with:
 ```shell
 Username: admin@web.unical.it
