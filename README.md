@@ -7,28 +7,44 @@
 Bioagri Website
 
 
-
+## Building from sources
+Clone sources from this repository:
+```shell
+$ git clone --depth=1 https://github.com/bioagrisrls/bioagri-website
+```
 ## Prerequisites
+
 - Docker
-- Docker Compose (provided by Docker Hub on Windows)
+- Docker Compose (provided by Docker Desktop on Windows)
 - NodeJS
+- PostgreSQL
+
+## Docker / Docker Compose
+You can download Docker from [Docker Website](https://www.docker.com/get-started)
+
+### NodeJS
+In order to run building you need to install NodeJS dependencies, so open your project directory and execute the following command:
+```shell
+$ npm install
+```
 
 ### PostgreSQL
 In order to install PostgreSQL, we provide a ```docker-compose.yml``` script file inside ```utils/postgres``` directory.  
-Run with following command:
+Run it with following command:
 ```shell script
 $ cd utils/postgres
 $ sudo docker-compose -d up
 ```
 
-#### Load Database
+#### 1. Open PgAdmin4
 After successful running, open your web browser e go to: http://localhost:5050  
-Authenticate yourself with
+Authenticate yourself with:
 ```shell
 Username: admin@web.unical.it
 Password: admin
 ```
 
+#### 2. Setup a new Server
 Setup a new server with these following properties:
 ```shell
 Host: postgres
@@ -36,7 +52,9 @@ Username: admin
 Password: admin
 ```
 
-Create a new databased named ```bioagridb```, open Tools->QueryTool and paste all the content from ```utils/database/prefab.sql```
+#### 3. Create and restore database
+Create a new databased named ```bioagridb```, open *Tools->QueryTool* from the top menu and paste all the content from ```utils/database/prefab.sql```
+
 
 
 ## Build
@@ -56,7 +74,7 @@ You need to set JAVA_HOME environment variable to point to your Java 15 director
 export JAVA_HOME=/path_to_jdk_15
 ```
 
-## Running
+## Run
 Open your web browser on http://localhost:8080 after successful build.
 
 ## License
