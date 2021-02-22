@@ -29,6 +29,8 @@ $ npm install
 ```
 
 ### PostgreSQL
+ **NOTE:** If you already own a PostgreSQL installation, skip to step 3.
+
 In order to install PostgreSQL, we provide a ```docker-compose.yml``` script file inside ```utils/postgres``` directory.  
 Run it with following command:
 ```shell script
@@ -37,7 +39,7 @@ $ sudo docker-compose -d up
 ```
 
 #### 1. Open PgAdmin4
-After successful running, open your web browser e go to: http://localhost:5050  
+After successful running, open your web browser e go to: http://localhost:5050 or open your PgAdmin4 application  
 Authenticate yourself with:
 ```shell
 Username: admin@web.unical.it
@@ -56,13 +58,28 @@ Password: admin
 1. Create a new database named ```bioagridb```
 2. Open *Tools->QueryTool* from the top menu and paste all the content from ```utils/database/prefab.sql```
 
+**NOTE:** If you get error about *role admin*, try with ```utils/database/prefab.alternative.sql```
 
+#### 4. Set user/password in application.yml
+**NOTE:** Only if you have a custom installation of PostgreSQL, otherwise just skip.
+
+Open with your editor ```back-end/src/main/resources/application.yml``` and set your PostgreSQL credentials:
+```yaml
+# ...
+    POSTGRES_USER: INSERT_YOUR_USERNAME
+    POSTGRES_PASSWORD: INSERT_YOUR_PASSWORD
+# ...
+```
 
 ## Build
 
-To run BioagriShop, execute the following command:
+To run BioagriShop, execute the following command in the project root:
 ```shell
+# Linux/Mac
 $ ./gradlew :front-end:run --console=rich
+
+# Windows (CMD)
+> gradlew.bat :front-end:run --console=rich
 ```
 
 **NOTE:** Building from sources requires **JDK 15.0.x**, you can download directly and unzip it from [OpenJDK Archive](https://jdk.java.net/archive/):
@@ -72,7 +89,11 @@ $ ./gradlew :front-end:run --console=rich
 
 You need to set JAVA_HOME environment variable to point to your Java 15 directory, before running Gradle Wrapper.
 ```shell
+# Linux/Mac
 export JAVA_HOME=/path_to_jdk_15
+
+# Windows
+set JAVA_HOME="X:\path_to_jdk_15"
 ```
 
 ## Run
