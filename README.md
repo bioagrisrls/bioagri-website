@@ -24,7 +24,8 @@ visionare una vetrina che evidenzia le principali informazioni riguardo la
 sopracitata azienda e in seguito accedere al catalogo dei prodotti, per mezzo
 del quale effettuare eventuali operazioni d’acquisto.
 
-:books: **Documentazione:** [QUI](docs/wcomp/documentation.pdf)
+:books: **Documentazione:** [QUI](docs/wcomp/documentation.pdf)  
+:floppy_disk: **Volume Postgres**: [QUI](utils/postgres/postgres-volume.tar.xz)
 
 -----------------------
   
