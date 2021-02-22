@@ -64,3 +64,4 @@ Open your web browser on http://localhost:8080 after successful build.
 Copyright (c) Bioagri S.r.l.s. All rights reserved.
 
 Licensed under the [MIT](/LICENSE) license.
+
