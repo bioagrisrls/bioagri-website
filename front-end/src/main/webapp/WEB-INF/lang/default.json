@@ -307,8 +307,8 @@
   "mail_bank_tansfer_subject" : "Ordine su BioAgri Shop",
   "mail_bank_tansfer_content" : "Il tuo ordine #%s è in fase di elaborazione. Per completare l'ordine è necessario effettuare il pagamento al seguente IBAN: 000343546898, inserendo come causale: Pagamento Ordine [n° Ordine] su BioAgri Shop. Una volta che avremo ricevuto il pagamento provvederemo a spedire il tuo ordine. Per maggiori informazioni visita la sezione I miei ordini su http://localhost:8080/myorder",
 
-  "mail_user_pickup_in_store_subject" : "Ordine su BioAgri Shop",
-  "mail_user_pickup_in_store_content" : "Il tuo ordine #%s è in fase di elaborazione. Verrai contattato tramite mail o al numero di telefono inserito durante la registrazione per finalizzare il tuo ordine. Per maggiori informazioni visita la sezione I miei ordini su http://localhost:8080/myorder",
+  "mail_pickup_in_store_subject" : "Ordine su BioAgri Shop",
+  "mail_pickup_in_store_content" : "Il tuo ordine #%s è in fase di elaborazione. Verrai contattato tramite mail o al numero di telefono inserito durante la registrazione per finalizzare il tuo ordine. Per maggiori informazioni visita la sezione I miei ordini su http://localhost:8080/myorder",
 
   "profile_account" : "Il mio account",
   "profile_details" : "Dettagli profilo",
