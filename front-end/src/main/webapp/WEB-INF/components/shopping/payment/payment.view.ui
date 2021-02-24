@@ -95,32 +95,32 @@
 
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="name" class="form-label">{{strings.shipping_name}}</label>
-                            <input type="text" class="form-control" id="name" placeholder="{{strings.shipping_name_example}}">
+                            <label for="name" class="form-label">{{strings.shipping_name}}*</label>
+                            <input type="text" class="form-control" id="name" autocomplete="given-name" placeholder="{{strings.shipping_name_example}}" required oninput="$$.verify()">
                         </div>
                         <div class="col-md-6">
-                            <label for="surname" class="form-label">{{strings.shipping_surname}}</label>
-                            <input type="text" class="form-control" id="surname" placeholder="{{strings.shipping_surname_example}}">
+                            <label for="surname" class="form-label">{{strings.shipping_surname}}*</label>
+                            <input type="text" class="form-control" id="surname" autocomplete="family-name" placeholder="{{strings.shipping_surname_example}}" required oninput="$$.verify()">
                         </div>
                         <div class="col-md-6">
-                            <label for="city" class="form-label">{{strings.shipping_city}}</label>
-                            <input type="text" class="form-control" id="city" placeholder="{{strings.shipping_city_example}}">
+                            <label for="city" class="form-label">{{strings.shipping_city}}*</label>
+                            <input type="text" class="form-control" id="city" autocomplete="address-level2" placeholder="{{strings.shipping_city_example}}" required oninput="$$.verify()">
                         </div>
                         <div class="col-md-4">
-                            <label for="country" class="form-label">{{strings.shipping_country}}</label>
-                            <input type="text" class="form-control" id="country" value="{{strings.italy}}" disabled>
+                            <label for="country" class="form-label">{{strings.shipping_country}}*</label>
+                            <input type="text" class="form-control" id="country" autocomplete="country-name" value="{{strings.italy}}" disabled required>
                         </div>
                         <div class="col-md-2">
-                            <label for="zip" class="form-label">{{strings.shipping_zip}}</label>
-                            <input type="text" class="form-control" id="zip" placeholder="{{strings.shipping_zip}}">
+                            <label for="zip" class="form-label">{{strings.shipping_zip}}*</label>
+                            <input type="text" class="form-control" id="zip" autocomplete="postal-code" placeholder="{{strings.shipping_zip}}" required oninput="$$.verify()">
                         </div>
                         <div class="col-md-10">
-                            <label for="address" class="form-label">{{strings.shipping_address}}</label>
-                            <input type="text" class="form-control" id="address" placeholder="{{strings.shipping_address_example}}">
+                            <label for="address" class="form-label">{{strings.shipping_address}}*</label>
+                            <input type="text" class="form-control" id="address" autocomplete="street-address" placeholder="{{strings.shipping_address_example}}" required oninput="$$.verify()">
                         </div>
                         <div class="col-md-2">
-                            <label for="province" class="form-label">{{strings.shipping_province}}</label>
-                            <select type="text" class="form-control" id="province">
+                            <label for="province" class="form-label">{{strings.shipping_province}}*</label>
+                            <select type="text" class="form-control" id="province" autocomplete="off" required oninput="$$.verify()">
                                 <option value="ag">Agrigento</option>
                                 <option value="al">Alessandria</option>
                                 <option value="an">Ancona</option>
@@ -235,12 +235,12 @@
                         </div>
                         <div class="col-md-12">
                             <label for="info" class="form-label">{{strings.shipping_info}}</label>
-                            <input type="text" class="form-control" id="info" placeholder="{{strings.shipping_info_example}}">
+                            <input type="text" class="form-control" id="info" autocomplete="on" placeholder="{{strings.shipping_info_example}}">
                         </div>
                     </div>
 
                     <div>
-                        <button onclick="$$.purchase('BANK_TRANSFER', 'ok-purchase')">{{strings.paynow}}</button>
+                        <button id="purchase" disabled onclick="$$.purchase('BANK_TRANSFER', 'ok-purchase')">{{strings.paynow}}</button>
                     </div>
 
                 </div>
