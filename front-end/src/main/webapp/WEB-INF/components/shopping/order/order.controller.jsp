@@ -35,7 +35,7 @@
         constructor() {
 
             super(id,
-                api('/orders?sorted-by=createdAt&order=asc')
+                api('/orders?sorted-by=createdAt&order=desc')
                     .then(orders => {
 
                         return Promise.all(orders.map(i => api('/orders/' + i.id + '/products')))
