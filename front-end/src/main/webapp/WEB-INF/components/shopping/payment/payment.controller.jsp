@@ -132,7 +132,26 @@
 
                 service:    type,
                 id:         0,
-                data:       0,
+                data:       ((type) => {
+
+                    if(type === 'BANK_TRANSFER') {
+                        return JSON.stringify({
+
+                            name:       $('#name').val(),
+                            surname:    $('#surname').val(),
+                            city:       $('#city').val(),
+                            country:    $('#country').val(),
+                            zip:        $('#zip').val(),
+                            address:    $('#address').val(),
+                            province:   $('#province').val(),
+                            info:       $('#info').val(),
+
+                        });
+                    }
+
+                    return 0;
+
+                }) (type),
                 items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
 
             }, 'text').then(response => {

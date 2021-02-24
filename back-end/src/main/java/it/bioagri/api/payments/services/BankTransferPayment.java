@@ -30,6 +30,9 @@ import it.bioagri.api.payments.PaymentServiceFailed;
 import it.bioagri.models.Order;
 import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 import java.util.List;
 import java.util.Map;
@@ -40,7 +43,34 @@ public class BankTransferPayment implements PaymentExternalService {
 
     @Override
     public String create(DataSource dataSource, PaymentRequest request, double shippingPrice, double priceTotal, List<Map.Entry<Product, Integer>> items, Order.Builder builder) throws PaymentServiceFailed {
+
+        if (request.getData() == null || request.getData().isBlank())
+            throw new PaymentServiceFailed(request, "DATA_EMPTY");
+
+        try {
+
+            JSONObject form = new JSONObject(request.getData());
+
+            builder.withAddress("%s, %s, %s %s".formatted(
+                    form.getString("address"),
+                    form.getString("country"),
+                    form.getString("name"),
+                    form.getString("surname")
+            ));
+
+            builder
+                    .withCity(form.getString("city"))
+                    .withZip(form.getString("zip"))
+                    .withProvince(form.getString("province"))
+                    .withAdditionalInfo(form.getString("info"));
+
+
+        } catch (JSONException e) {
+            throw new PaymentServiceFailed(request, "DATA_WRONG");
+        }
+
         return "BT_" + UUID.randomUUID().toString().substring(0, 28);
+
     }
 
     @Override

@@ -56,6 +56,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.session:spring-session-core'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'org.json:json:20201115'
     implementation 'org.postgresql:postgresql:42.2.18'
     implementation 'com.google.api-client:google-api-client:1.31.1'
     implementation 'com.paypal.sdk:checkout-sdk:1.0.3'
