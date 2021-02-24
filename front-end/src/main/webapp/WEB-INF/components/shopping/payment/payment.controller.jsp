@@ -171,7 +171,7 @@
 
                         }, 'raw')
                             .then(response => this.state = { current: 'ok-purchase' })
-                            .catch(reason  => this.state = { current: 'error'     });
+                            .catch(reason  => this.state = { current: 'error'       });
 
                     });
 
