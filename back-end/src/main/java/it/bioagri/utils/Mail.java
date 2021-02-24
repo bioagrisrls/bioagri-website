@@ -97,12 +97,34 @@ public class Mail {
     }
 
 
-    public void sendUserPayment(ServletRequest request, HttpSession session, Long userId, String to, Long orderId) {
+    public void sendUserPayment(ServletRequest request, HttpSession session, String to, Long orderId) {
 
         send(
                 to,
                 locale.getCurrentLocale(request, session).get("mail_user_payment_subject"),
                 locale.getCurrentLocale(request, session).get("mail_user_payment_content"),
+                orderId, request.getRemoteHost()
+        );
+
+    }
+
+    public void sendBankTransferInstructions(ServletRequest request, HttpSession session, String to, Long orderId) {
+
+        send(
+                to,
+                locale.getCurrentLocale(request, session).get("mail_bank_transfer_subject"),
+                locale.getCurrentLocale(request, session).get("mail_bank_transfer_content"),
+                orderId, request.getRemoteHost()
+        );
+
+    }
+
+    public void sendPickupInStoreInstructions(ServletRequest request, HttpSession session, String to, Long orderId) {
+
+        send(
+                to,
+                locale.getCurrentLocale(request, session).get("mail_pickup_in_store_subject"),
+                locale.getCurrentLocale(request, session).get("mail_pickup_in_store_content"),
                 orderId, request.getRemoteHost()
         );
 

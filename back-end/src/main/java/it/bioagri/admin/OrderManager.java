@@ -26,7 +26,9 @@
 package it.bioagri.admin;
 
 
-import it.bioagri.models.*;
+import it.bioagri.models.Order;
+import it.bioagri.models.OrderStatus;
+import it.bioagri.models.Product;
 import it.bioagri.persistence.DataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

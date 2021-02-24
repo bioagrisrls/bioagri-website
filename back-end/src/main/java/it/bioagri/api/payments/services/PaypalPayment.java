@@ -79,45 +79,10 @@ public class PaypalPayment implements PaymentExternalService {
 
 
     @Override
-    public String create(DataSource dataSource, PaymentRequest request, double shippingPrice) throws PaymentServiceFailed {
-
-
-        if (request.getItems().size() == 0)
-            throw new PaymentServiceFailed(request, "EMPTY");
-
-
-        List<Map.Entry<Product, Integer>> items;
-
-        try {
-
-            items = request.getItems()
-                    .stream()
-                    .filter(i -> i.getValue() > 0)
-                    .map(i -> Map.entry(
-                            dataSource.getProductDao()
-                                    .findByPrimaryKey(i.getKey())
-                                    .orElseThrow(() -> new RuntimeException("PRODUCT_NOT_FOUND")), i.getValue()
-                    ))
-                    .peek(i -> {
-                        if (i.getKey().getStock() < i.getValue())
-                            throw new RuntimeException("PRODUCT_NOT_AVAILABLE");
-                    })
-                    .collect(Collectors.toList());
-
-        } catch (RuntimeException e) {
-            throw new PaymentServiceFailed(request, e.getMessage());
-        }
+    public String create(DataSource dataSource, PaymentRequest request, double shippingPrice, double priceTotal, List<Map.Entry<Product, Integer>> items, it.bioagri.models.Order.Builder builder) throws PaymentServiceFailed {
 
 
         try {
-
-            double priceTotal = items
-                    .stream()
-                    .mapToDouble(i -> BigDecimal
-                            .valueOf(i.getKey().getPrice() - (i.getKey().getPrice() * i.getKey().getDiscount() / 100))
-                            .setScale(2, RoundingMode.HALF_UP)
-                            .doubleValue() * i.getValue())
-                    .reduce(0.0, Double::sum);
 
 
             OrderRequest order = new OrderRequest()

@@ -25,9 +25,12 @@
 
 package it.bioagri.api.payments;
 
+import it.bioagri.api.payments.services.BankTransferPayment;
 import it.bioagri.api.payments.services.PaymentExternalService;
 import it.bioagri.api.payments.services.PaypalPayment;
+import it.bioagri.api.payments.services.PickupInStorePayment;
 import it.bioagri.models.Order;
+import it.bioagri.models.Product;
 import it.bioagri.models.TransactionType;
 import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +38,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
-import java.time.Instant;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -52,23 +54,26 @@ public class PaymentService {
             @Value("${payments.services.external.paypal.secret}"  ) String paypalSecret,
             @Value("${payments.shipment.price}"                   ) String shipmentPrice) {
 
+
         this.shipmentPrice = shipmentPrice;
 
         services = Map.of(
-                TransactionType.PAYPAL, new PaypalPayment(paypalId, paypalSecret)
+                TransactionType.PAYPAL,          new PaypalPayment(paypalId, paypalSecret),
+                TransactionType.PICKUP_IN_STORE, new PickupInStorePayment(),
+                TransactionType.BANK_TRANSFER,   new BankTransferPayment()
         );
 
     }
 
 
 
-    public String create(DataSource dataSource, PaymentRequest request) throws PaymentServiceNotFound, PaymentServiceFailed {
+    public String create(DataSource dataSource, PaymentRequest request, double priceTotal, List<Map.Entry<Product, Integer>> items, Order.Builder builder) throws PaymentServiceNotFound, PaymentServiceFailed {
 
 
         for(var service : services.keySet()) {
 
             if(request.getService().equals(service))
-                return services.get(service).create(dataSource, request, Double.parseDouble(shipmentPrice));
+                return services.get(service).create(dataSource, request, Double.parseDouble(shipmentPrice), priceTotal, items, builder);
 
         }
 
