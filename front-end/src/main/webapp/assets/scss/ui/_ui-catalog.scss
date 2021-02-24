@@ -142,6 +142,8 @@
         &.block {
           @extend .flex-basis-md-2;
           @extend .flex-basis-lg-3;
+          @extend .mw-md-50;
+          @extend .mw-lg-33;
           min-height: 70vh;
         }
 

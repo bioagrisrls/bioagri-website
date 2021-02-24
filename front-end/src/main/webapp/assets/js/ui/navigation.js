@@ -48,7 +48,10 @@ const navigate = (url, data = undefined, container = '#ui-navigation-container',
             window.history.scrollRestoration = 'manual';
 
 
-        let prog = $('#ui-navigation-progress-bar').show()
+        const cont = $('#ui-navigation-progress-box')
+            .removeClass('d-none');
+
+        const prog = $('#ui-navigation-progress-bar')
             .css('width', '33%')
             .attr('aria-valuenow', '33');
 
@@ -118,8 +121,10 @@ const navigate = (url, data = undefined, container = '#ui-navigation-container',
 
             })
                 .then(() => Component.run())
-                .then(() => prog.hide())
+                .then(() => prog.css('width', '100%').attr('aria-valuenow', '100'))
                 .then(() => $(document).trigger('ui-ready'))
+                .then(() => cont.addClass('d-none'))
+                .then(() => prog.css('width', '0').attr('aria-valuenow', '0'))
 
             .catch(reason => {
 
@@ -173,8 +178,8 @@ $(document).ready(() => {
     });
 
     $('body').append(`
-        <div class="ui-navigation-progress progress bg-white fixed-top">
-            <div id="ui-navigation-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        <div id="ui-navigation-progress-box" class="ui-navigation-progress progress bg-white fixed-top">
+            <div id="ui-navigation-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated d-none" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     `);
 
