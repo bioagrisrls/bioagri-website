@@ -80,6 +80,7 @@
   "menu_wishlist" : "Meine Wunschliste",
   "menu_ticket" : "Meine Tickets",
   "menu_exit" : "Hinausgehen",
+  "menu_dashboard" : "Dashboard",
   "foo_header_connected" : "Folgen Sie uns in unseren sozialen Netzwerken, um in Verbindung zu bleiben!",
   "foo_body_logo" : "/assets/img/logo/logo-extended.webp",
   "foo_body_description" : "BioAgri S.r.l.s. ist ein Unternehmen, das im Agrarsektor tätig ist und Beratungsdienstleistungen und Produkte für den Gartenbau, den Anbau und Werkzeuge für die Agronomie vertreibt und anbietet.",
@@ -313,5 +314,17 @@
   "faq_other_1_subtitle" : "Wie ändere oder lösche ich mein BioAgri-Konto?",
   "faq_other_1_content" : "Um Ihre persönlichen Daten wie Name, Geburtsdatum und E-Mail-Adresse zu ändern, besuchen Sie den Abschnitt Kontoeinstellungen im BioAgri-Konto. <br> <br> Melden Sie sich bei Ihrem Konto an <br> <br> Um Ihr Konto zu kündigen, kontaktieren Sie uns bitte.",
   "faq_other_2_subtitle" : "Was ist die Datenschutzrichtlinie von BioAgri?",
-  "faq_other_2_content" : "Die Datenschutzbestimmungen finden Sie auf der entsprechenden Seite unserer Website."
+  "faq_other_2_content" : "Die Datenschutzbestimmungen finden Sie auf der entsprechenden Seite unserer Website.",
+  "order_status_processing": "Ausstehend",
+  "order_status_pending": "Versand",
+  "order_status_sent": "Versand",
+  "order_status_received": "Received",
+  "order_status_aborted": "Abgebrochen",
+  "user_status_active": "Active",
+  "user_status_wait_for_mail": "Warten auf Genehmigung",
+  "user_status_banned": "Suspended",
+  "user_gender_male": "Man",
+  "user_gender_female": "Frau",
+  "user_gender_other": "Andere",
+  "user_gender_prefer_not_said": "Nicht angegeben"
 }
