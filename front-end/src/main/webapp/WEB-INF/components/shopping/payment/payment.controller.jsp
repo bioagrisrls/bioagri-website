@@ -175,7 +175,7 @@
                             province:      $('#province').val(),
                             address:       $('#address').val(),
                             zip:           $('#zip').val(),
-                            info:           $('#info').val(),
+                            info:          $('#info').val(),
 
                             items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
 
