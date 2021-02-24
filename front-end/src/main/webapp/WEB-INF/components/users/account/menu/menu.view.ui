@@ -39,8 +39,8 @@
                         <li><a data-bs-dismiss="modal" onclick="navigate('/myaccount')"><span>{{strings.userAccount}}</span></a></li>
                         <li><a data-bs-dismiss="modal" onclick="navigate('/myorder')"><span>{{strings.userOrder}}</span></a></li>
                         <li><a data-bs-dismiss="modal" onclick="navigate('/mywish')"><span>{{strings.userWish}}</span></a></li>
-                        <? if(userIsAdmin) { ?>
-                            <li><a data-bs-dismiss="modal" href="/admin/dashboard"><span>{{strings.userDashboard}}</span></a></li>
+                        <? if(strings.userRole === 'ADMIN') { ?>
+                            <li><a href="/admin/dashboard"><span>{{strings.userDashboard}}</span></a></li>
                         <? } ?>
                         <li><a data-bs-dismiss="modal" onclick="disconnect(true)"><span>{{strings.userExit}}</span></a></li>
                     </ul>

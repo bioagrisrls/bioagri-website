@@ -53,7 +53,15 @@
                                         date:       `${locale.order_date}`,
                                         status:     `${locale.order_status}`,
                                         quantity:   `${locale.order_quantity}`,
-                                        review:     `${locale.details_feedbacks_write}`
+                                        review:     `${locale.details_feedbacks_write}`,
+
+                                        order_status: {
+                                            "PROCESSING" : `${locale.order_status_processing}`,
+                                            "PENDING"    : `${locale.order_status_pending}`,
+                                            "SENT"       : `${locale.order_status_sent}`,
+                                            "RECEIVED"   : `${locale.order_status_received}`,
+                                            "ABORTED"    : `${locale.order_status_aborted}`,
+                                        }
                                     }
 
                                 }

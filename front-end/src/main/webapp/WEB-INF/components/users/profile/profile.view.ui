@@ -27,13 +27,13 @@
 <?
 
     const details = [
-        { key: strings.name,    value: user.name    },
-        { key: strings.surname, value: user.surname },
-        { key: strings.mail,    value: user.mail    },
-        { key: strings.gender,  value: user.gender  },
-        { key: strings.phone,   value: user.phone   },
+        { key: strings.name,    value: user.name                            },
+        { key: strings.surname, value: user.surname                         },
+        { key: strings.mail,    value: user.mail                            },
+        { key: strings.gender,  value: strings.user_genders[user.gender]    },
+        { key: strings.phone,   value: user.phone                           },
         { key: strings.birth,   value: new Date(user.birth).toLocaleDateString(undefined, { dateStyle: 'short' })   },
-        { key: strings.status,  value: user.status  },
+        { key: strings.status,  value: strings.user_status[user.status]     },
     ];
 
     const themes = [

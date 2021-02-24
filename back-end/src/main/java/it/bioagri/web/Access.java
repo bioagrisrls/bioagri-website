@@ -27,6 +27,7 @@ package it.bioagri.web;
 
 import ch.qos.logback.classic.Logger;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.models.UserRole;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -49,12 +50,12 @@ public class Access implements Filter {
     static {
 
         accessWithAuthentication = Map.of (
-            "/checkout",     Map.entry("/catalog", true),
-            "/myaccount",    Map.entry("/home", true),
-            "/mywish",       Map.entry("/home", true),
-            "/myorder",      Map.entry("/home", true),
-            "/myticket",     Map.entry("/home", true),
-            "/registration", Map.entry("/home", false)
+            "/checkout",        Map.entry("/catalog", true),
+            "/myaccount",       Map.entry("/home", true),
+            "/mywish",          Map.entry("/home", true),
+            "/myorder",         Map.entry("/home", true),
+            "/myticket",        Map.entry("/home", true),
+            "/registration",    Map.entry("/home", false)
         );
 
     }
@@ -69,33 +70,44 @@ public class Access implements Filter {
 
 
 
-    private void filterAccess(String URI, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void denyAccess(String URI, HttpServletRequest request, HttpServletResponse response, String redirectURL) throws IOException {
 
-        if (authToken.isLoggedIn() != accessWithAuthentication.get(URI).getValue()) {
+        response.sendRedirect(Optional
+                .ofNullable(request.getHeader("Referer"))
+                .orElse(redirectURL)
+        );
 
-            response.sendRedirect(Optional
-                    .ofNullable(request.getHeader("Referer"))
-                    .orElse(accessWithAuthentication.get(URI).getKey())
-            );
-
-            logger.error("Access denied for URI {} by {}", URI, authToken);
-
-        }
+        logger.error("Access denied from URI {} by {}", URI, authToken);
 
     }
 
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
 
-        if(request instanceof HttpServletRequest && response instanceof HttpServletResponse) {
+        if(servletRequest instanceof HttpServletRequest && servletResponse instanceof HttpServletResponse) {
 
-            if(accessWithAuthentication.containsKey(((HttpServletRequest) request).getRequestURI()))
-                filterAccess(((HttpServletRequest) request).getRequestURI(), (HttpServletRequest) request, (HttpServletResponse) response);
+            final var request  = (HttpServletRequest)  servletRequest;
+            final var response = (HttpServletResponse) servletResponse;
+
+
+            if(request.getRequestURI().startsWith("/admin/")) {
+
+                if (!authToken.isLoggedIn() || !authToken.getUserRole().equals(UserRole.ADMIN))
+                    denyAccess(request.getRequestURI(), request, response, "/home");
+
+            }
+
+            else if(accessWithAuthentication.containsKey(request.getRequestURI())) {
+
+                if (authToken.isLoggedIn() != accessWithAuthentication.get(request.getRequestURI()).getValue())
+                    denyAccess(request.getRequestURI(), request, response, accessWithAuthentication.get(request.getRequestURI()).getKey());
+
+            }
 
         }
 
-        chain.doFilter(request, response);
+        chain.doFilter(servletRequest, servletResponse);
 
     }
 

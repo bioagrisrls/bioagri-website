@@ -26,7 +26,7 @@
 <%--@elvariable id="components" type="java.util.Map"--%>
 <%--@elvariable id="locale" type="java.util.Map"--%>
 <%--@elvariable id="reference" type="java.lang.String"--%>
-
+<%--@elvariable id="authToken" type="it.bioagri.api.auth.AuthToken"--%>
 
 <script defer>
 
@@ -50,6 +50,8 @@
                     userWish:       `${locale.menu_wishlist}`,
                     userTicket:     `${locale.menu_ticket}`,
                     userExit:       `${locale.menu_exit}`,
+                    userDashboard:  `${locale.menu_dashboard}`,
+                    userRole:       `${authToken.userRole}`,
 
                 }
 

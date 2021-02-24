@@ -45,6 +45,7 @@
                             current: localStorage.getItem('X-Interface-Theme') || 'default',
 
                             strings: {
+
                                 account:        `${locale.profile_account}`,
                                 name:           `${locale.profile_name}`,
                                 surname:        `${locale.profile_surname}`,
@@ -70,6 +71,20 @@
                                 theme_hookers:  `${locale.theme_hookers}`,
                                 theme_raisin:   `${locale.theme_raisin}`,
                                 theme_twitter:  `${locale.theme_twitter}`,
+
+                                user_genders: {
+                                    'MALE':             `${locale.user_gender_male}`,
+                                    'FEMALE':           `${locale.user_gender_female}`,
+                                    'OTHER':            `${locale.user_gender_other}`,
+                                    'PREFER_NOT_SAID':  `${locale.user_gender_prefer_not_said}`,
+                                },
+
+                                user_status: {
+                                    'ACTIVE':           `${locale.user_status_active}`,
+                                    'WAIT_FOR_MAIL':    `${locale.user_status_wait_for_mail}`,
+                                    'BANNED':           `${locale.user_status_banned}`,
+                                }
+
                             }
 
                         }
