@@ -86,7 +86,11 @@
 
                 <div class="ui-cart-checkout-total">
                     <p>{{strings.total}}</p>
-                    <h1>{{prices[2]}} &euro;</h1>
+                    <? if(shopping_cart_empty()) { ?>
+                        <h1>0.00 &euro;</h1>
+                    <? } else { ?>
+                        <h1>{{prices[2]}} &euro;</h1>
+                    <? } ?>
                 </div>
 
                 <div class="ui-cart-checkout-info">
@@ -133,16 +137,20 @@
                     <h1>{{strings.shipment}}</h1>
 
                     <? if(+shipment === 0) { ?>
-                    <p>{{strings.shipment_free}}</p>
+                        <p>{{strings.shipment_free}}</p>
                     <? } else { ?>
-                    <div class="ui-cart-checkout-row">
-                        <div class="ui-cart-checkout-label">
-                            {{strings.shipment}}:
+                        <div class="ui-cart-checkout-row">
+                            <div class="ui-cart-checkout-label">
+                                {{strings.shipment}}:
+                            </div>
+                            <div class="ui-cart-checkout-value">
+                                <? if(shopping_cart_empty()) { ?>
+                                    0.00 &euro;
+                                <? } else { ?>
+                                    {{(+shipment).toFixed(2)}} &euro;
+                                <? } ?>
+                            </div>
                         </div>
-                        <div class="ui-cart-checkout-value">
-                            {{(+shipment).toFixed(2)}} &euro;
-                        </div>
-                    </div>
                     <? } ?>
                 </div>
 
