@@ -30,7 +30,7 @@
         <div class="ui-feedback-item">
             <div class="ui-feedback-content">
                 <div class="ui-feedback-body">
-                    <p class="text-muted">{{none}}</p>
+                    <p class="text-muted">{{strings.none}}</p>
                 </div>
             </div>
         </div>
