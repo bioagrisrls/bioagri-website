@@ -38,7 +38,7 @@
                 api('/orders')
                     .then(orders => {
 
-                        return Promise.all(orders.map(i => api('/orders/' + i.id + '/products')))
+                        return Promise.all(orders.map(i => api('/orders/' + i.id + '/products?sorted-by=createdAt&order=asc')))
                             .then(products => {
 
                                 return {

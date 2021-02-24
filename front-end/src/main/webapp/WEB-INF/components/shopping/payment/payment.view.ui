@@ -270,7 +270,7 @@
         <div class="ui-payment-error">
             <img src="/assets/img/common/404.webp" alt="">
             <p>{{strings.error}}</p>
-            <button>{{strings.back}}</button>
+            <button onclick="navigate('/catalog')">{{strings.back}}</button>
         </div>
 
     <? } else { ?>

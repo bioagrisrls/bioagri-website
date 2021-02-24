@@ -146,10 +146,10 @@
                             items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
 
                         }, 'raw')
-                            .then(response => this.state = { current: 'ok-pickup' })
-                            .catch(reason  => this.state = { current: 'error'     });
 
-                    });
+                    })
+                        .then(response => this.state = { current: 'ok-pickup' })
+                        .catch(reason  => this.state = { current: 'error'     });
 
                     break;
 
@@ -180,10 +180,10 @@
                             items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
 
                         }, 'raw')
-                            .then(response => this.state = { current: 'ok-purchase' })
-                            .catch(reason  => this.state = { current: 'error'       });
 
-                    });
+                    })
+                        .then(response => this.state = { current: 'ok-purchase' })
+                        .catch(reason  => this.state = { current: 'error'       });
 
                     break;
 
