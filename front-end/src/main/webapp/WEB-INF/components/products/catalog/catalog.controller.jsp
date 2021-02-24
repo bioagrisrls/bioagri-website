@@ -51,7 +51,7 @@
                         skip: 0,
                         count: 0,
 
-                        sortType: 'updatedAt',
+                        sortType: 'createdAt',
                         viewType: 'block',
 
                         filterCategory: props.category || '',
