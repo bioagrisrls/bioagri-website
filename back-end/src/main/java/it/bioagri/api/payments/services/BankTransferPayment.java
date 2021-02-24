@@ -23,10 +23,28 @@
  *
  */
 
-package it.bioagri.models;
+package it.bioagri.api.payments.services;
 
-public enum TransactionType {
-    PAYPAL,
-    BANK_TRANSFER,
-    PICKUP_IN_STORE,
+import it.bioagri.api.payments.PaymentRequest;
+import it.bioagri.api.payments.PaymentServiceFailed;
+import it.bioagri.models.Order;
+import it.bioagri.models.Product;
+import it.bioagri.persistence.DataSource;
+
+import java.util.List;
+import java.util.Map;
+
+public class BankTransferPayment implements PaymentExternalService {
+
+
+    @Override
+    public String create(DataSource dataSource, PaymentRequest request, double shippingPrice, double priceTotal, List<Map.Entry<Product, Integer>> items, Order.Builder builder) throws PaymentServiceFailed {
+        return "<<PICKUP_IN_STORE>>";
+    }
+
+    @Override
+    public boolean authorize(DataSource dataSource, PaymentRequest request, Order.Builder builder) {
+        return true;
+    }
+
 }

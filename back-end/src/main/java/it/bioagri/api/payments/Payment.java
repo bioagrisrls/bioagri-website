@@ -27,7 +27,6 @@ package it.bioagri.api.payments;
 
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
-import it.bioagri.api.orders.Orders;
 import it.bioagri.models.Order;
 import it.bioagri.models.OrderStatus;
 import it.bioagri.models.Product;
@@ -44,9 +43,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Time;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/payments")
@@ -76,6 +78,9 @@ public class Payment {
             if(!authToken.isLoggedIn())
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 
+            if (request.getItems().size() == 0)
+                return ResponseEntity.status(HttpStatus.LENGTH_REQUIRED).build();
+
 
             try {
 
@@ -104,6 +109,11 @@ public class Payment {
 
 
 
+
+                var items = new ArrayList<Map.Entry<Product, Integer>>();
+                var priceTotal = 0.0;
+
+
                 for(var i : request.getItems()) {
 
                     if(i.getValue() <= 0)
@@ -128,6 +138,14 @@ public class Payment {
                             .build();
 
 
+                    priceTotal += BigDecimal
+                            .valueOf(product.getPrice() - (product.getPrice() * product.getDiscount() / 100))
+                            .setScale(2, RoundingMode.HALF_UP)
+                            .doubleValue() * i.getValue();
+
+                    items.add(Map.entry(product, i.getValue()));
+
+
                     dataSource.getProductDao().update(product, product);
                     dataSource.getOrderDao().addProduct(order, product, i.getValue());
 
@@ -135,7 +153,8 @@ public class Payment {
 
 
                 order = builder
-                        .withTransactionId(paymentService.create(dataSource, request))
+                        .withPrice((float) priceTotal)
+                        .withTransactionId(paymentService.create(dataSource, request, priceTotal, items, builder))
                         .build();
 
                 dataSource.getOrderDao().update(order, order);
@@ -190,7 +209,12 @@ public class Payment {
                             .findByPrimaryKey(authToken.getUserId())
                             .orElseThrow(() -> new ApiResponseStatus(502));
 
-                    mail.sendUserPayment(http, http.getSession(), user.getId(), user.getMail(), order.getId());
+
+                    switch (request.getService()) {
+                        case PICKUP_IN_STORE -> mail.sendPickupInStoreInstructions(http, http.getSession(), user.getMail(), order.getId());
+                        case BANK_TRANSFER   -> mail.sendBankTransferInstructions (http, http.getSession(), user.getMail(), order.getId());
+                        default              -> mail.sendUserPayment              (http, http.getSession(), user.getMail(), order.getId());
+                    }
 
 
                 } else {

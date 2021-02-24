@@ -25,9 +25,9 @@
 
 package it.bioagri.admin;
 
-import com.paypal.http.serializer.Multipart;
 import it.bioagri.api.auth.AuthToken;
-import it.bioagri.models.*;
+import it.bioagri.models.Product;
+import it.bioagri.models.ProductStatus;
 import it.bioagri.persistence.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,14 +35,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartRequest;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.sql.Timestamp;
 import java.time.Instant;
 

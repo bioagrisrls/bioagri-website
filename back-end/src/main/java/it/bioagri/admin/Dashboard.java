@@ -25,17 +25,10 @@
 
 package it.bioagri.admin;
 
-import it.bioagri.models.Category;
 import it.bioagri.persistence.DataSource;
-import it.bioagri.persistence.DataSourceFetchResult;
-import it.bioagri.persistence.DataSourcePrepareStatement;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Optional;
 
 @Controller
 public class Dashboard {
