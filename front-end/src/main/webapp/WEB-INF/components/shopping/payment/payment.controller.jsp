@@ -166,7 +166,17 @@
 
                         api('/payments/authorize', 'POST', {
 
-                            service:    'BANK_TRANSFER',
+                            service:       'BANK_TRANSFER',
+
+                            name:          $('#name').val(),
+                            surname:       $('#surname').val(),
+                            country:       $('#country').val(),
+                            city:          $('#city').val(),
+                            province:      $('#province').val(),
+                            address:       $('#address').val(),
+                            zip:           $('#zip').val(),
+                            info:           $('#info').val(),
+
                             items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
 
                         }, 'raw')
