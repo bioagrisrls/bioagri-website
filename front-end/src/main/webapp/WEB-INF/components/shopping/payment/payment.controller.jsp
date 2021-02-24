@@ -125,6 +125,62 @@
 
         }
 
+        order(type) {
+
+            switch(type) {
+
+                case 'pickup':
+
+                    api('/payments/create', 'POST', {
+
+                        service:    'PICKUP_IN_STORE',
+                        id:         0,
+                        data:       0,
+                        items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
+
+                    }, 'text').then(() => {
+
+                        api('/payments/authorize', 'POST', {
+
+                            service:    'PICKUP_IN_STORE',
+                            items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
+
+                        }, 'raw')
+                            .then(response => this.state = { current: 'ok-pickup' })
+                            .catch(reason  => this.state = { current: 'error'     });
+
+                    });
+
+                    break;
+
+                case 'purchase':
+
+                    api('/payments/create', 'POST', {
+
+                        service:    'BANK_TRANSFER',
+                        id:         0,
+                        data:       0,
+                        items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
+
+                    }, 'text').then(() => {
+
+                        api('/payments/authorize', 'POST', {
+
+                            service:    'BANK_TRANSFER',
+                            items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
+
+                        }, 'raw')
+                            .then(response => this.state = { current: 'ok-purchase' })
+                            .catch(reason  => this.state = { current: 'error'     });
+
+                    });
+
+                    break;
+
+            }
+
+        }
+
     });
 
 
