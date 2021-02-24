@@ -242,6 +242,13 @@
   "catalog_side_alltags" : "Tutti i tags",
   "catalog_main_more" : "Mostra altro",
   "catalog_main_empty" : "La ricerca non ha prodotto nessun risultato",
+  "catalog_order_name_asc" : "Ordina per nome: a-Z",
+  "catalog_order_name_desc" : "Ordina per nome: z-A",
+  "catalog_order_price_asc" : "Ordina per prezzo: 0-9",
+  "catalog_order_price_desc" : "Ordina per prezzo: 9-0",
+  "catalog_order_recent" : "Ordina per prodotti recenti",
+  "catalog_order_list" : "Visualizza lista",
+  "catalog_order_grid" : "Visualizza griglia",
 
   "details_products_suggest" : "Protrebbe interessarti anche..",
   "details_products_news" : "Le novità del momento",

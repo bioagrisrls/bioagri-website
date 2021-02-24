@@ -141,19 +141,24 @@
                         </div>
                         <div class="col text-end">
 
-                            <span onclick="$$.applyFilter('order', 'name&order=asc')"
+                            <span title="{{strings.name_asc}}"
+                                  onclick="$$.applyFilter('order', 'name&order=asc')"
                                   class="{{ sortType === 'name&order=asc' ? 'active' : '' }} mdi mdi-18px mdi-order-alphabetical-ascending"></span>
 
-                            <span onclick="$$.applyFilter('order', 'name&order=desc')"
+                            <span title="{{strings.name_desc}}"
+                                  onclick="$$.applyFilter('order', 'name&order=desc')"
                                   class="{{ sortType === 'name&order=desc' ? 'active' : '' }} mdi mdi-18px mdi-order-alphabetical-descending"></span>
 
-                            <span onclick="$$.applyFilter('order', 'price&order=asc')"
+                            <span title="{{strings.price_asc}}"
+                                  onclick="$$.applyFilter('order', 'price&order=asc')"
                                   class="{{ sortType === 'price&order=asc' ? 'active' : '' }} mdi mdi-18px mdi-order-numeric-ascending"></span>
 
-                            <span onclick="$$.applyFilter('order', 'price&order=desc')"
+                            <span title="{{strings.price_desc}}"
+                                  onclick="$$.applyFilter('order', 'price&order=desc')"
                                   class="{{ sortType === 'price&order=desc' ? 'active' : '' }} mdi mdi-18px mdi-order-numeric-descending"></span>
 
-                            <span onclick="$$.applyFilter('order', 'updatedAt')"
+                            <span title="{{strings.recent}}"
+                                  onclick="$$.applyFilter('order', 'updatedAt')"
                                   class="{{ sortType === 'updatedAt' ? 'active' : '' }} mdi mdi-18px mdi-clock-outline"></span>
 
                         </div>
@@ -165,10 +170,12 @@
                         </div>
                         <div class="col text-end">
 
-                            <span onclick="$$.view('row')"
+                            <span title="{{strings.list}}"
+                                  onclick="$$.view('row')"
                                   class="{{ viewType === 'row' ? 'active' : '' }} mdi mdi-18px mdi-table-of-contents"></span>
 
-                            <span onclick="$$.view('block')"
+                            <span title="{{strings.grid}}"
+                                  onclick="$$.view('block')"
                                   class="{{ viewType === 'block' ? 'active' : '' }} mdi mdi-18px mdi-grid-large"></span>
 
                         </div>

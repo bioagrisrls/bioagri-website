@@ -71,6 +71,14 @@
                             views:          `${locale.catalog_main_views}`,
                             more:           `${locale.catalog_main_more}`,
                             empty:          `${locale.catalog_main_empty}`,
+
+                            name_asc:       `${locale.catalog_order_name_asc}`,
+                            name_desc:      `${locale.catalog_order_name_desc}`,
+                            price_asc:      `${locale.catalog_order_price_asc}`,
+                            price_desc:     `${locale.catalog_order_price_desc}`,
+                            recent:         `${locale.catalog_order_recent}`,
+                            list:           `${locale.catalog_order_list}`,
+                            grid:           `${locale.catalog_order_grid}`,
                         }
 
                     };
