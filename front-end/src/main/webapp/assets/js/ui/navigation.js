@@ -123,6 +123,7 @@ const navigate = (url, data = undefined, container = '#ui-navigation-container',
                 .then(() => Component.run())
                 .then(() => prog.css('width', '100%').attr('aria-valuenow', '100'))
                 .then(() => $(document).trigger('ui-ready'))
+                .then(() => new Promise(r => setTimeout(r, 1000)))
                 .then(() => cont.addClass('d-none'))
                 .then(() => prog.css('width', '0').attr('aria-valuenow', '0'))
 
@@ -178,8 +179,8 @@ $(document).ready(() => {
     });
 
     $('body').append(`
-        <div id="ui-navigation-progress-box" class="ui-navigation-progress progress bg-white fixed-top">
-            <div id="ui-navigation-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated d-none" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        <div id="ui-navigation-progress-box" class="ui-navigation-progress progress bg-white fixed-top d-none">
+            <div id="ui-navigation-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     `);
 
