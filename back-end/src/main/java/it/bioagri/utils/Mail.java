@@ -103,7 +103,7 @@ public class Mail {
                 to,
                 locale.getCurrentLocale(request, session).get("mail_user_payment_subject"),
                 locale.getCurrentLocale(request, session).get("mail_user_payment_content"),
-                orderId, request.getRemoteHost()
+                orderId
         );
 
     }
@@ -114,7 +114,7 @@ public class Mail {
                 to,
                 locale.getCurrentLocale(request, session).get("mail_bank_transfer_subject"),
                 locale.getCurrentLocale(request, session).get("mail_bank_transfer_content"),
-                orderId, request.getRemoteHost()
+                orderId
         );
 
     }
@@ -125,7 +125,7 @@ public class Mail {
                 to,
                 locale.getCurrentLocale(request, session).get("mail_pickup_in_store_subject"),
                 locale.getCurrentLocale(request, session).get("mail_pickup_in_store_content"),
-                orderId, request.getRemoteHost()
+                orderId
         );
 
     }
