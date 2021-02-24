@@ -25,8 +25,10 @@
 
 package it.bioagri.api.payments;
 
+import ch.qos.logback.classic.Logger;
 import it.bioagri.api.ApiResponseStatus;
 import it.bioagri.api.auth.AuthToken;
+import it.bioagri.api.payments.services.PaypalPayment;
 import it.bioagri.models.Order;
 import it.bioagri.models.OrderStatus;
 import it.bioagri.models.Product;
@@ -34,6 +36,7 @@ import it.bioagri.models.ProductStatus;
 import it.bioagri.persistence.DataSource;
 import it.bioagri.persistence.DataSourceSQLException;
 import it.bioagri.utils.Mail;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,6 +56,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/payments")
 public class Payment {
+
+    private final static Logger logger = (Logger) LoggerFactory.getLogger(Payment.class);
 
     private final AuthToken authToken;
     private final DataSource dataSource;
@@ -210,10 +215,14 @@ public class Payment {
                             .orElseThrow(() -> new ApiResponseStatus(502));
 
 
-                    switch (request.getService()) {
-                        case PICKUP_IN_STORE -> mail.sendPickupInStoreInstructions(http, http.getSession(), user.getMail(), order.getId());
-                        case BANK_TRANSFER   -> mail.sendBankTransferInstructions (http, http.getSession(), user.getMail(), order.getId());
-                        default              -> mail.sendUserPayment              (http, http.getSession(), user.getMail(), order.getId());
+                    try {
+                        switch (request.getService()) {
+                            case PICKUP_IN_STORE -> mail.sendPickupInStoreInstructions(http, http.getSession(), user.getMail(), order.getId());
+                            case BANK_TRANSFER   -> mail.sendBankTransferInstructions(http, http.getSession(), user.getMail(), order.getId());
+                            default              -> mail.sendUserPayment(http, http.getSession(), user.getMail(), order.getId());
+                        }
+                    } catch (RuntimeException e) {
+                        logger.error("Sending email failed: %s".formatted(e.getMessage()), e);
                     }
 
 

@@ -240,7 +240,7 @@
                     </div>
 
                     <div>
-                        <button onclick="$$.order('purchase')">{{strings.paynow}}</button>
+                        <button onclick="$$.purchase('BANK_TRANSFER', 'ok-purchase')">{{strings.paynow}}</button>
                     </div>
 
                 </div>
@@ -260,7 +260,7 @@
 
             <div class="ui-payment-pickup-instructions-button">
                 <button onclick="navigate('/catalog')" ><span class="mdi mdi-18px mdi-chevron-left"></span>{{strings.back}}</button>
-                <button onclick="$$.order('pickup')"><span class="mdi mdi-18px mdi-check"></span>{{strings.pickup_confirm}}</button>
+                <button onclick="$$.purchase('PICKUP_IN_STORE', 'ok-pickup')"><span class="mdi mdi-18px mdi-check"></span>{{strings.pickup_confirm}}</button>
             </div>
 
         </div>

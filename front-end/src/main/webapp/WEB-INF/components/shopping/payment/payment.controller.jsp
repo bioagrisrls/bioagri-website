@@ -125,69 +125,29 @@
 
         }
 
-        order(type) {
 
-            switch(type) {
+        purchase(type, success) {
 
-                case 'pickup':
+            return api('/payments/create', 'POST', {
 
-                    api('/payments/create', 'POST', {
+                service:    type,
+                id:         0,
+                data:       0,
+                items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
 
-                        service:    'PICKUP_IN_STORE',
-                        id:         0,
-                        data:       0,
-                        items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
+            }, 'text').then(response => {
 
-                    }, 'text').then(() => {
+                return api('/payments/authorize', 'POST', {
 
-                        api('/payments/authorize', 'POST', {
+                    service:    type,
+                    id:         response,
+                    data:       0,
+                    items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
 
-                            service:    'PICKUP_IN_STORE',
-                            items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
+                }, 'raw')
 
-                        }, 'raw')
-                            .then(response => this.state = { current: 'ok-pickup' })
-                            .catch(reason  => this.state = { current: 'error'     });
-
-                    });
-
-                    break;
-
-                case 'purchase':
-
-                    api('/payments/create', 'POST', {
-
-                        service:    'BANK_TRANSFER',
-                        id:         0,
-                        data:       0,
-                        items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
-
-                    }, 'text').then(() => {
-
-                        api('/payments/authorize', 'POST', {
-
-                            service:       'BANK_TRANSFER',
-
-                            name:          $('#name').val(),
-                            surname:       $('#surname').val(),
-                            country:       $('#country').val(),
-                            city:          $('#city').val(),
-                            province:      $('#province').val(),
-                            address:       $('#address').val(),
-                            zip:           $('#zip').val(),
-                            info:          $('#info').val(),
-
-                            items:      shopping_cart_map(i => { return {[i.id]: i.quantity}; })
-
-                        }, 'raw')
-                            .then(response => this.state = { current: 'ok-purchase' })
-                            .catch(reason  => this.state = { current: 'error'       });
-
-                    });
-
-                    break;
-
-            }
+            }).then(response => this.state = { current: success })
+              .catch(reason  => this.state = { current: 'error' });
 
         }
 

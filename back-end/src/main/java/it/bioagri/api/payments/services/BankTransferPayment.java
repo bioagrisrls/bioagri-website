@@ -33,13 +33,14 @@ import it.bioagri.persistence.DataSource;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class BankTransferPayment implements PaymentExternalService {
 
 
     @Override
     public String create(DataSource dataSource, PaymentRequest request, double shippingPrice, double priceTotal, List<Map.Entry<Product, Integer>> items, Order.Builder builder) throws PaymentServiceFailed {
-        return "<<PICKUP_IN_STORE>>";
+        return "BT_" + UUID.randomUUID().toString().substring(0, 28);
     }
 
     @Override

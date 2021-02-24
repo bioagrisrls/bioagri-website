@@ -5,18 +5,18 @@ spring:
       prefix: "/WEB-INF/views/"
       suffix: ".jsp"
   mail:
-    host: "smtp.pepipost.com"
-    port: 25
-    username: "davidecrisafull2015"
-    password: "davidecrisafull2015_05b493e847bc05b996c3bb3d20118dcc"
+    host: "smtp.gmail.com"
+    port: 587
+    username: "inferdevil97@gmail.com"
+    password: ""
     properties:
       mail:
+        transport:
+          protocol: "smtp"
         smtp:
           auth: true
-        starttls:
-          enable: true
-        ssl:
-          trust: "smtp.pepipost.com"
+          starttls:
+            enable: true
 
 
 database:
