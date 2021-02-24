@@ -126,6 +126,36 @@
 
   .ui-payment-error {
 
+    @extend .w-100;
+    @extend .text-center;
+
+    animation: fadeIn 0.4s linear;
+
+
+    p {
+      @extend .text-muted;
+      @extend .ui-font-title-primary;
+      @extend .fs-4;
+    }
+
+    img {
+      @extend .my-2;
+      @extend .w-100;
+      @extend .w-sm-auto;
+      max-height: 490px;
+    }
+
+    button {
+
+      @extend .btn;
+      @extend .btn-primary;
+      @extend .ui-font-title-primary;
+      @extend .fs-5;
+      @extend .w-100;
+      @extend .w-sm-auto;
+
+    }
+
   }
 
   .ui-checkout-success {
