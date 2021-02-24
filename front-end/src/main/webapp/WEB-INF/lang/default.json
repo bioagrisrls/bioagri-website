@@ -86,6 +86,7 @@
   "menu_wishlist" : "La mia lista desideri",
   "menu_ticket" : "I miei ticket",
   "menu_exit" : "Esci",
+  "menu_dashboard" : "Dashboard",
 
   "foo_header_connected" : "Seguici sui nostri social network per rimanere connesso!",
   "foo_body_logo" : "/assets/img/logo/logo-extended.webp",
@@ -377,5 +378,21 @@
   "faq_other_1_content" : "Per modificare le informazioni personali, tra cui nome, data di nascita e indirizzo email, visita la sezione Impostazioni Account in BioAgri Account. <br><br> Accedi al tuo account <br><br> Per cancellare il tuo account, ti preghiamo di Contattarci.",
 
   "faq_other_2_subtitle" : "Qual è la Privacy Policy di BioAgri?",
-  "faq_other_2_content" : "La Privacy Policy è consultabile nell'apposita pagina del nostro sito."
+  "faq_other_2_content" : "La Privacy Policy è consultabile nell'apposita pagina del nostro sito.",
+
+  "order_status_processing" : "In attesa",
+  "order_status_pending" : "In spedizione",
+  "order_status_sent" : "Spedito",
+  "order_status_received" : "Ricevuto",
+  "order_status_aborted" : "Annullato",
+
+  "user_status_active" : "Attivo",
+  "user_status_wait_for_mail" : "In attesa di approvazione",
+  "user_status_banned" : "Sospeso",
+
+  "user_gender_male" : "Uomo",
+  "user_gender_female" : "Donna",
+  "user_gender_other" : "Altro",
+  "user_gender_prefer_not_said" : "Non specificato"
+
 }

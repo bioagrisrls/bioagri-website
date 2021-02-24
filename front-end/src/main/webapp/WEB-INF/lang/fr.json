@@ -80,6 +80,7 @@
   "menu_wishlist" : "Ma liste d'envies",
   "menu_ticket" : "Mes billets",
   "menu_exit" : "Sortir",
+  "menu_dashboard" : "Dashboard",
   "foo_header_connected" : "Suivez-nous sur nos réseaux sociaux pour rester connecté!",
   "foo_body_logo" : "/assets/img/logo/logo-extended.webp",
   "foo_body_description" : "BioAgri S.r.l.s. est une entreprise qui opère dans le secteur agricole en distribuant et en fournissant des services de conseil et des produits pour le jardinage, la culture et des outils pour l'agronomie.",
@@ -313,5 +314,17 @@
   "faq_other_1_subtitle" : "Comment modifier ou supprimer mon compte BioAgri?",
   "faq_other_1_content" : "Pour modifier vos informations personnelles, y compris le nom, la date de naissance et l'adresse e-mail, visitez la section Paramètres du compte dans Compte BioAgri. <br> <br> Connectez-vous à votre compte <br> <br> Pour annuler votre compte, veuillez nous contacter.",
   "faq_other_2_subtitle" : "Quelle est la politique de confidentialité de BioAgri?",
-  "faq_other_2_content" : "La politique de confidentialité peut être consultée sur la page appropriée de notre site."
+  "faq_other_2_content" : "La politique de confidentialité peut être consultée sur la page appropriée de notre site.",
+  "order_status_processing": "En attente",
+  "order_status_pending": "Expédition",
+  "order_status_sent": "Expédié",
+  "order_status_received": "Reçu",
+  "order_status_aborted": "Annulé",
+  "user_status_active": "Actif",
+  "user_status_wait_for_mail": "En attente d'approbation",
+  "user_status_banned": "Suspendu",
+  "user_gender_male": "Homme",
+  "user_gender_female": "Femme",
+  "user_gender_other": "Autre",
+  "user_gender_prefer_not_said": "Non spécifié"
 }
