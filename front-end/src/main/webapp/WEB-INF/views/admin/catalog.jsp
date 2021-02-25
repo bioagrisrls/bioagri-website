@@ -91,8 +91,8 @@
                 <div class="row">
                     <c:forEach var="product" items="${products}">
                     <div class="col-lg-3 col-6">
-                        <div class="card" style="width: 18rem;">
-                            <img style = "height:300px;" src="/assets/img/products/${product.id}/1.jpg" class="card-img-top img-thumbnail" alt="...">
+                        <div class="card">
+                            <img style = "height:420px;" src="/assets/img/products/${product.id}/1.jpg" class="card-img-top img-thumbnail" alt="Immagine non disponibile">
                             <div class="card-body">
                                 <h5 class="card-title">${product.name}</h5>
                                 <p class="card-text overflow-auto" style="height:150px;">${product.info}</p>

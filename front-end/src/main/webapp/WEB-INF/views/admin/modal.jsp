@@ -28,18 +28,18 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addCategoryModalLabel">Add</h5>
+                <h5 class="modal-title" id="addCategoryModalLabel">Aggiungi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <label class="col-form-label">category name</label>
+                <label class="col-form-label">Nome Categoria</label>
                 <input id = "category" type="text" class="form-control">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button onclick="createCategory()" type="button" class="btn btn-success">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                <button onclick="createCategory()" type="button" class="btn btn-success">Salva</button>
             </div>
         </div>
     </div>
@@ -58,7 +58,7 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="nameCategoryForm" class="col-form-label">category name</label>
+                        <label for="nameCategoryForm" class="col-form-label">Nome Categoria</label>
                         <input class="form-control" id="nameCategoryForm">
                     </div>
                 </form>
@@ -67,8 +67,8 @@
                 </button>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" value='' onclick="updateCategory()" id = "updateCategoryButton" class="btn btn-primary">update</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                <button type="button" value='' onclick="updateCategory()" id = "updateCategoryButton" class="btn btn-primary">Aggiorna</button>
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="nameTagForm" class="col-form-label">Tag Name</label>
+                        <label for="nameTagForm" class="col-form-label">Nome Tag</label>
                         <input class="form-control" id="nameTagForm">
                     </div>
                 </form>
@@ -95,8 +95,8 @@
                 </button>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" value='' onclick="updateTag()" id = "updateTagButton" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                <button type="button" value='' onclick="updateTag()" id = "updateTagButton" class="btn btn-primary">Aggiorna</button>
             </div>
         </div>
     </div>
@@ -107,18 +107,18 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tagsModalLabel">Add</h5>
+                <h5 class="modal-title" id="tagsModalLabel">Aggiungi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <label class="col-form-label">tag name</label>
+                <label class="col-form-label">Nome Tag</label>
                 <input id = "tag" type="text" class="form-control">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button onclick="createTag()" type="button" class="btn btn-success">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                <button onclick="createTag()" type="button" class="btn btn-success">Salva</button>
             </div>
         </div>
     </div>

@@ -36,6 +36,7 @@
             super(id, {
 
                 current: props.current || '',
+                userRole: `${authToken.userRole}`,
 
                 strings: {
 
@@ -51,7 +52,6 @@
                     userTicket:     `${locale.menu_ticket}`,
                     userExit:       `${locale.menu_exit}`,
                     userDashboard:  `${locale.menu_dashboard}`,
-                    userRole:       `${authToken.userRole}`,
 
                 }
 
@@ -78,6 +78,21 @@
                 else
                     this.elem.querySelector('#' + this.id + '-container').classList.remove('scrolled');
 
+
+            });
+
+
+            $(document).on('auth-connection-occurred', () => {
+
+                if (this.running)
+                    this.setState({ userRole: sessionStorage.getItem('X-Auth-UserInfo-Role') }, false);
+
+            });
+
+            $(document).on('auth-disconnection-occurred', () => {
+
+                if (this.running)
+                    this.setState({ userRole: '' }, false);
 
             });
 

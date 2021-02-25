@@ -32,7 +32,7 @@ function editTagModal() {
         const button = $(event.relatedTarget) // Button that triggered the modal
         const id = button.data('whatever') //
         const modal = $(this)
-        modal.find('.modal-title').text('id :' + id)
+        modal.find('.modal-title').text('Id :' + id)
         modal.find('modal-recipient').val(id)
         $('#deleteTagButton').val(id)
         $('#updateTagButton').val(id);
@@ -48,7 +48,7 @@ function editCategorymodal() {
         const button = $(event.relatedTarget) // Button that triggered the modal
         const id = button.data('whatever') //
         const modal = $(this)
-        modal.find('.modal-title').text('id :' + id)
+        modal.find('.modal-title').text('Id :' + id)
         modal.find('modal-recipient').val(id)
         $('#deleteCategoryButton').val(id)
         $('#updateCategoryButton').val(id);
