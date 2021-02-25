@@ -145,8 +145,11 @@
                     ? hash(data.password)
                     : new Promise(resolve => resolve(data.password))
             ).then(password => authenticate(data.username, password, data.store, data.token)
-                    .then(response => api('/users/' + response.userId)
-                    .then(response => this.state = { $state: 'ok', $userInfo: response }))
+                    .then(response => api('/users/' + response.userId))
+                    .then(response => this.state = { $state: 'ok', $userInfo: response })
+                    .then(response => Component.render(Component.dummy(), `${components.common_notify}`, {
+                        message: '<span class="mdi mdi-18px mdi-login"></span> ${locale.nav_user_greetings} ' + (this.state.$userInfo.name || '')
+                    }))
             ).catch(reason => {
 
                 switch(reason) {
