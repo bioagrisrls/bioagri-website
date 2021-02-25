@@ -23,31 +23,11 @@
  *
  */
 
-
-function addShipmentNumber() {
-
-    $('#orderModal').on('show.bs.modal', function(event) {
-
-        const button = $(event.relatedTarget) // Button that triggered the modal
-        const id = button.data('whatever') //
-        $('#saveShipmentNumber').val(id)
-
-    })
-
+function updateProduct(element){
+    window.location.href = "/admin/get/productData?id=" + element.value;
 }
 
-
-function updateOrderStatus() {
-
-    const http = new XMLHttpRequest();
-    const shipmentNumber = $('#shipmentNumberInput').val();
-    const id = $('#saveShipmentNumber').val()
-    http.open('POST', '/admin/orders/update/status', true);
-    http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    http.send("shipmentNumber="+shipmentNumber+"&id="+id);
-    location.reload();
-
-
+function deleteProduct(element){
+    if(confirm("Sei sicuro di voler eliminare questo articolo ? "))
+    window.location.href = "/admin/delete/product?id=" + element.value;
 }
-
-

@@ -77,91 +77,25 @@
     </ul>
   </nav>
   <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="" class="brand-link">
-      <img src="/assets/admin/img/logo/logo.webp" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">BioAgri</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="/assets/admin/img/owner.webp" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Salvatore Crisafulli</a>
-        </div>
-      </div>
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
- with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
-            <a href="dashboard" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-          </li>
-          </li>
-          <li class="nav-item has-treeview">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                catalog
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item ml-2">
-                <a href="product" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>product</p>
-                </a>
-              </li>
-              <li class="nav-item ml-2">
-                <a href="tagscategory" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>tags and category</p>
-                </a>
-              </li>
-            </ul>
-          <li class="nav-item">
-            <a href="orders" class="nav-link">
-              <i class="nav-icon fas fa-clipboard-list"></i>
-              <p>
-                orders
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="feedbacks" class="nav-link">
-              <i class="nav-icon fas fa-star"></i>
-              <p>
-                feedbacks
-              </p>
-            </a>
-          </li>
-          </li>
-          </li>
-          </li>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+  <%@include  file="sidebar.jsp" %>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Tag e categorie</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+              <li class="breadcrumb-item active">Tag e categorie</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div>
+
     </div>
     <!-- /.content-header -->
     <!-- Main content -->
@@ -172,7 +106,7 @@
             <!-- /.card -->
             <div class="card">
               <div class="card-header border-transparent">
-                <h3 class="card-title">Categories</h3>
+                <h3 class="card-title">Categorie</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -187,9 +121,9 @@
                   <table class="table m-0">
                     <thead>
                     <tr class="text-center">
-                      <th>id</th>
-                      <th>name</th>
-                      <th>edit</th>
+                      <th>Id</th>
+                      <th>Nome</th>
+                      <th>Modifica</th>
                     </tr>
                     </thead>
                     <tbody class="text-center">
@@ -213,7 +147,7 @@
               <div class="card-footer clearfix">
 
                 <button style="float:right;" type="button" class="btn btn-success" data-toggle="modal" data-target="#addCategoryModal">
-                  add
+                  Aggiungi
                 </button>
 
               </div>
@@ -224,7 +158,7 @@
             <!-- /.card -->
             <div class="card">
               <div class="card-header border-transparent">
-                <h3 class="card-title">Tags</h3>
+                <h3 class="card-title">Tag</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -239,9 +173,9 @@
                   <table class="table m-0">
                     <thead>
                     <tr class="text-center">
-                      <th>id</th>
-                      <th>name</th>
-                      <th>edit</th>
+                      <th>Id</th>
+                      <th>Nome</th>
+                      <th>Modifica</th>
                     </tr>
                     </thead>
                     <tbody class="text-center">
@@ -265,7 +199,7 @@
               <div class="card-footer clearfix">
 
                 <button style="float:right;" type="button" class="btn btn-success" data-toggle="modal" data-target="#addTagsModal">
-                  add
+                  Aggiungi
                 </button>
                 <!-- Modal -->
               </div>

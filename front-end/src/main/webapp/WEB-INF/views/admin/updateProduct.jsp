@@ -1,4 +1,30 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2020 BioAgri S.r.l.s.
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  ~
+  --%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,8 +43,6 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="/assets/admin/css/input.css">
-    <!-- jQuery -->
-    <script src="/assets/admin/plugins/jquery/jquery.min.js"></script>
 </head>
 
 
@@ -45,24 +69,6 @@
 
     <%@include  file="sidebar.jsp" %>
 
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Product</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-                            <li class="breadcrumb-item active">Product</li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div>
-        </div>
-
     <div class="row d-flex justify-content-center py-5 pl-5">
         <div class="col-6">
             <div class="card card-success">
@@ -71,30 +77,35 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="/admin/create/product" method="post">
-
+                <form action="/admin/update/product" method="post">
+                    <input value = "${productData.id}"  type="hidden" class="form-control" name="id">
                     <div class="card-body">
                         <div class="form-group">
                             <label>Nome</label>
-                            <input class="form-control" name="name" placeholder="Nome Prodotto">
+                            <input value = "${productData.name}" class="form-control" name="name" placeholder="nome prodotto">
                         </div>
                         <div class="form-group">
                             <label>Prezzo</label>
-                            <input class="form-control" name="price" placeholder="Prezzo">
+                            <input value = "${productData.price}" class="form-control" name="price" placeholder="prezzo">
                         </div>
                         <div class="form-group">
                             <label>Giacenza</label>
-                            <input class="form-control" name="stock" placeholder="Giacenza">
+                            <input value = "${productData.stock}"class="form-control" name="stock" placeholder="giacenza">
                         </div>
                         <div class="form-group">
                             <label>Categoria</label>
-                            <div>
-                                <div class="overflow-auto" style = "height:120px;" >
-                                    <c:forEach var="category" items="${categories}">
-                                        <input type="checkbox" id = "category" name="category" value="${category.id}">
-                                        <label for="category">${category.name}</label><br>
-                                    </c:forEach>
-                                </div>
+                            <div class="overflow-auto" style = "height:120px;" >
+                                <c:forEach var="category" items="${categories}">
+                                    <c:choose>
+                                        <c:when test = "${fn:contains(productCategories, category.name)}">
+                                            <input checked type="checkbox" id = "category" name="category" value="${category.id}">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <input type="checkbox" id = "category" name="category" value="${category.id}">
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <label for="category">${category.name}</label><br>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class="form-group">
@@ -102,7 +113,14 @@
                             <div>
                                 <div class="overflow-auto" style = "height:120px;" >
                                     <c:forEach var="tag" items="${tags}">
-                                        <input type="checkbox" id = "tag" name="tag" value="${tag.id}">
+                                        <c:choose>
+                                            <c:when test = "${fn:contains(productTags, tag.hashtag)}">
+                                                <input checked type="checkbox" id = "tag" name="tag" value="${tag.id}">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="checkbox" id = "tag" name="tag" value="${tag.id}">
+                                            </c:otherwise>
+                                        </c:choose>
                                         <label for="tag">${tag.hashtag}</label><br>
                                     </c:forEach>
                                 </div>
@@ -110,11 +128,11 @@
                         </div>
                         <div class="form-group">
                             <label>Descrizione Breve</label>
-                            <input class="form-control" name="info" placeholder="Descrizione breve">
+                            <input value = "${productData.info}" class="form-control" name="info" placeholder="Descrizione Breve">
                         </div>
                         <div class="form-group">
                             <label>Sconto</label>
-                            <input class="form-control" name="discount" placeholder="Sconto">
+                            <input value = "${productData.discount}" class="form-control" name="discount" placeholder="Sconto">
                         </div>
 
                         <div class="form-group">
@@ -145,8 +163,8 @@
                         </div>
                     </div>
                     <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Carica</button>
+                    <div class="card-footer float-right">
+                        <button type="submit" class="btn btn-primary">Aggiorna</button>
                     </div>
                 </form>
             </div>
@@ -167,6 +185,8 @@
 
 </div>
 
+<!-- jQuery -->
+<script src="/assets/admin/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
@@ -176,8 +196,7 @@
 <!-- Page Script -->
 <script>
     $(function() {
-        //Add text editor
-        $('#compose-textarea').summernote()
+        $('#compose-textarea').summernote('code', `${productData.description}`);
     })
 </script>
 

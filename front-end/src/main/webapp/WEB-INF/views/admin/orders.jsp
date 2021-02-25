@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="/assets/admin/plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+    <!-- jQuery -->
+    <script src="/assets/admin/plugins/jquery/jquery.min.js"></script>
 
 </head>
 
@@ -40,89 +41,24 @@
         </ul>
     </nav>
     <!-- /.navbar -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <a href="" class="brand-link">
-            <img src="/assets/admin/img/logo/logo.webp" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">BioAgri</span>
-        </a>
-
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="/assets/admin/img/owner.webp" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block">Salvatore Crisafulli</a>
-                </div>
-            </div>
-            <!-- Sidebar Menu -->
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview">
-                        <a href="dashboard" class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Dashboard
-                            </p>
-                        </a>
-                    </li>
-                    </li>
-                    <li class="nav-item has-treeview">
-                        <a href="" class="nav-link">
-                            <i class="nav-icon fas fa-edit"></i>
-                            <p>
-                                catalog
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item ml-2">
-                                <a href="product" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>product</p>
-                                </a>
-                            </li>
-                            <li class="nav-item ml-2">
-                                <a href="tagscategory" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>tags and category</p>
-                                </a>
-                            </li>
-                        </ul>
-                    <li class="nav-item">
-                        <a href="orders" class="nav-link active">
-                            <i class="nav-icon fas fa-clipboard-list"></i>
-                            <p>
-                                orders
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="feedbacks" class="nav-link">
-                            <i class="nav-icon fas fa-star"></i>
-                            <p>
-                                feedbacks
-                            </p>
-                        </a>
-                    </li>
-                    </li>
-                    </li>
-                    </li>
-                    </li>
-                </ul>
-            </nav>
-            <!-- /.sidebar-menu -->
-        </div>
-        <!-- /.sidebar -->
-    </aside>
+    <%@include  file="sidebar.jsp" %>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Ordini</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+                            <li class="breadcrumb-item active">Ordini</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div>
         </div>
         <!-- /.content-header -->
         <!-- Main content -->
@@ -133,7 +69,7 @@
 
                         <div class="card">
                             <div class="card-header border-transparent">
-                                <h3 class="card-title">Latest Orders</h3>
+                                <h3 class="card-title">Ultimi Ordini</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -147,17 +83,17 @@
                                     <table class="table m-0">
                                         <thead>
                                         <tr class="text-center">
-                                            <th style="min-width:100px;">Order ID</th>
-                                            <th>Item</th>
-                                            <th>Status</th>
-                                            <th>address</th>
-                                            <th>City</th>
-                                            <th>province</th>
-                                            <th>zip</th>
-                                            <th>Transaction id</th>
-                                            <th>Transaction type</th>
-                                            <th>shipment number</th>
-                                            <th>additional info</th>
+                                            <th style="min-width:100px;">ID ordine</th>
+                                            <th>Nome</th>
+                                            <th>Stato</th>
+                                            <th>Indirizzo</th>
+                                            <th>Citt&agrave</th>
+                                            <th>Provincia</th>
+                                            <th>CAP</th>
+                                            <th>Id Transazione</th>
+                                            <th>Tipo Transazione</th>
+                                            <th>Numero Spedizione</th>
+                                            <th>Info Aggiuntive</th>
                                         </tr>
                                         </thead>
                                         <tbody class="text-center">
@@ -165,19 +101,19 @@
                                         <c:forEach var="order" items="${orders}">
                                         <tr>
 
-                                            <td><a href="invoice">${order.order.id}</a></td>
+                                            <td><p>${order.order.id}</p></td>
                                             <td>${order.item}</td>
                                             <c:if test="${order.order.status == 'PROCESSING'}">
-                                                <td><span class="badge badge-info">Processing</span></td>
+                                                <td><span class="badge badge-info">Elaborazione</span></td>
                                             </c:if>
                                             <c:if test="${order.order.status == 'SENT'}">
-                                                <td><span class="badge badge-primary">Shipped</span></td>
+                                                <td><span class="badge badge-primary">Spedito</span></td>
                                             </c:if>
                                             <c:if test="${order.order.status == 'RECEIVED'}">
-                                                <td><span class="badge badge-success">Delivered</span></td>
+                                                <td><span class="badge badge-success">Consegnato</span></td>
                                             </c:if>
                                             <c:if test="${order.order.status == 'ABORTED'}">
-                                                <td><span class="badge badge-danger">Aborted</span></td>
+                                                <td><span class="badge badge-danger">Annullato</span></td>
                                             </c:if>
 
                                             <td><div class="sparkbar" data-color="#00a65a" data-height="20">
@@ -207,7 +143,7 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header border-transparent">
-                                <h3 class="card-title">Pending Orders</h3>
+                                <h3 class="card-title">Ordini in Attesa</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -221,26 +157,26 @@
                                     <table class="table m-0">
                                         <thead>
                                         <tr class="text-center">
-                                            <th style="min-width:100px;">Order ID</th>
-                                            <th>Item</th>
-                                            <th>Status</th>
-                                            <th>address</th>
-                                            <th>City</th>
-                                            <th>province</th>
-                                            <th>zip</th>
-                                            <th>Transaction id</th>
-                                            <th>Transaction type</th>
-                                            <th>shipment number</th>
-                                            <th>additional info</th>
-                                            <th class="px-5">send</th>
+                                            <th style="min-width:100px;">ID ordine</th>
+                                            <th>Nome</th>
+                                            <th>Stato</th>
+                                            <th>Indirizzo</th>
+                                            <th>Citt&agrave</th>
+                                            <th>Provincia</th>
+                                            <th>CAP</th>
+                                            <th>Id Transazione</th>
+                                            <th>Tipo Transazione</th>
+                                            <th>Numero Spedizione</th>
+                                            <th>Info Aggiuntive</th>
+                                            <th class="px-5">Invia</th>
                                         </tr>
                                         </thead>
                                         <tbody class="text-center">
                                         <c:forEach var = "pendingOrder" items="${pendingOrders}">
                                         <tr>
-                                            <td><a href="invoice">${pendingOrder.order.id}</a></td>
+                                            <td><p>${pendingOrder.order.id}</p></td>
                                             <td>${pendingOrder.item}</td>
-                                            <td><span class="badge badge-warning">Pending</span></td>
+                                            <td><span class="badge badge-warning">Attesa</span></td>
                                             <td>
                                                 <div class="sparkbar" data-color="#00a65a" data-height="20">
                                                     ${fn:replace(fn:replace(pendingOrder.order.address, 'null,', ''),'null', '')}
@@ -253,7 +189,7 @@
                                             <td>${pendingOrder.order.transactionType}</td>
                                             <td>${pendingOrder.order.shipmentNumber}</td>
                                             <td>${pendingOrder.order.additionalInfo}</td>
-                                            <td><button onclick="addShipmentNumber()" type="button" class="btn btn-success" data-whatever="${pendingOrder.order.id}" data-toggle="modal" data-target="#orderModal">send</button></td>
+                                            <td><button onclick="addShipmentNumber()" type="button" class="btn btn-success" data-whatever="${pendingOrder.order.id}" data-toggle="modal" data-target="#orderModal">Invia</button></td>
                                         </tr>
                                         </c:forEach>
                                         </tbody>
@@ -288,8 +224,7 @@
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-<!-- jQuery -->
-<script src="/assets/admin/plugins/jquery/jquery.min.js"></script>
+
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>

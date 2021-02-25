@@ -29,9 +29,9 @@ function editTagModal() {
 
     $('#editTagModal').on('show.bs.modal', function(event) {
 
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var id = button.data('whatever') //
-        var modal = $(this)
+        const button = $(event.relatedTarget) // Button that triggered the modal
+        const id = button.data('whatever') //
+        const modal = $(this)
         modal.find('.modal-title').text('id :' + id)
         modal.find('modal-recipient').val(id)
         $('#deleteTagButton').val(id)
@@ -45,9 +45,9 @@ function editCategorymodal() {
 
     $('#editCategoryModal').on('show.bs.modal', function(event) {
 
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var id = button.data('whatever') //
-        var modal = $(this)
+        const button = $(event.relatedTarget) // Button that triggered the modal
+        const id = button.data('whatever') //
+        const modal = $(this)
         modal.find('.modal-title').text('id :' + id)
         modal.find('modal-recipient').val(id)
         $('#deleteCategoryButton').val(id)
@@ -60,8 +60,8 @@ function editCategorymodal() {
 function updateTag() {
 
     const http = new XMLHttpRequest();
-    id = $('#updateTagButton').val();
-    name = $('#nameTagForm').val();
+    const id = $('#updateTagButton').val();
+    const name = $('#nameTagForm').val();
     http.open('POST', '/admin/update/tag', true);
     http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     http.send("id=" + id + "&hashtag=#" + name);
@@ -74,8 +74,8 @@ function updateTag() {
 function updateCategory() {
 
     const http = new XMLHttpRequest();
-    id = $('#updateCategoryButton').val();
-    name = $('#nameCategoryForm').val();
+    const id = $('#updateCategoryButton').val();
+    const name = $('#nameCategoryForm').val();
     http.open('POST', '/admin/update/category', true);
     http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     http.send("id=" + id + "&name=" + name);

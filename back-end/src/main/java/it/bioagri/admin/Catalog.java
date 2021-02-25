@@ -25,17 +25,20 @@
 
 package it.bioagri.admin;
 
+import it.bioagri.models.Category;
+import it.bioagri.models.Tag;
 import it.bioagri.api.auth.AuthToken;
 import it.bioagri.models.Product;
 import it.bioagri.models.ProductStatus;
 import it.bioagri.persistence.DataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -45,117 +48,51 @@ import java.time.Instant;
 @Controller
 public class Catalog {
 
-    private final AuthToken authToken;
     private final DataSource dataSource;
-    private final ServletContext servletContext;
 
-    @Autowired
-    public Catalog(AuthToken authToken, DataSource dataSource, ServletContext servletContext) {
-        this.authToken = authToken;
+    public Catalog(DataSource dataSource){
         this.dataSource = dataSource;
-        this.servletContext = servletContext;
     }
 
-    @GetMapping("/admin/product")
+    @GetMapping("/admin/catalog")
     public String getAllData(ModelMap model) {
+        model.addAttribute("products", dataSource.getProductDao().findAll());
+        return "/admin/catalog";
+    }
+
+    @GetMapping("/admin/get/productData")
+    public String getProductData(@RequestParam long id, ModelMap model){
 
         model.addAttribute("categories", dataSource.getCategoryDao().findAll());
         model.addAttribute("tags", dataSource.getTagDao().findAll());
-        return "/admin/product";
+        model.addAttribute("productData",dataSource.getProductDao().findByPrimaryKey(id).get());
 
+        String categories = "";
+        String tags = "";
+        String categoriesId = "";
+        String tagsId = "";
+
+        for(Category category : dataSource.getProductDao().findByPrimaryKey(id).get().getCategories(dataSource)) {
+            categories += category.getName() + ",";
+            categoriesId+= category.getId().toString() + ",";
+        }
+
+        if(categories.length() > 0)
+            categories = categories.substring(0,categories.length()-1);
+
+        for(Tag tag : dataSource.getProductDao().findByPrimaryKey(id).get().getTags(dataSource)) {
+            tags += tag.getHashtag() + ",";
+            tagsId+= tag.getId().toString() + ",";
+        }
+
+        if(tags.length() > 0)
+            tags = tags.substring(0,tags.length()-1);
+
+        model.addAttribute("productCategories",categories);
+        model.addAttribute("productCategoriesId",categoriesId);
+        model.addAttribute("productTags",tags);
+        model.addAttribute("productTagsId",tagsId);
+        return "/admin/updateProduct";
     }
-
-    @PostMapping("/admin/create/product")
-    public void save(
-
-            HttpServletResponse response,
-            @RequestParam String name,
-            @RequestParam String description,
-            @RequestParam String info,
-            @RequestParam Float price,
-            @RequestParam Float discount,
-            @RequestParam Integer stock,
-            @RequestParam ProductStatus status,
-            @RequestParam Long tag,
-            @RequestParam Long category,
-            @RequestParam String files
-
-    ) throws IOException {
-
-
-        Product product = new Product(
-                dataSource.getId("shop_product", Long.class),
-                name,
-                description,
-                info,
-                price,
-                discount,
-                stock,
-                status,
-                Timestamp.from(Instant.now()),
-                Timestamp.from(Instant.now()),
-                null,
-                null,
-                null
-        );
-
-            dataSource.getProductDao().save(product);
-            dataSource.getProductDao().addCategory(product,dataSource.getCategoryDao().findByPrimaryKey(category).get());
-            dataSource.getProductDao().addTag(product,dataSource.getTagDao().findByPrimaryKey(tag).get());
-            response.sendRedirect("/admin/dashboard");
-
-
-    }
-
-    @PostMapping("/admin/delete/product")
-    public void delete(@RequestParam long id, HttpServletResponse response) throws IOException {
-
-        dataSource.getProductDao().delete(dataSource.getProductDao().findByPrimaryKey(id).get());
-        response.sendRedirect("/admin/dashboard");
-
-    }
-
-
-    @PostMapping("/admin/update/product")
-    public void update(
-
-            HttpServletResponse response,
-            @RequestParam long id,
-            @RequestParam String name,
-            @RequestParam String description,
-            @RequestParam Float price,
-            @RequestParam Integer stock,
-            @RequestParam String info,
-            @RequestParam Float discount,
-            @RequestParam ProductStatus status
-
-    ) throws IOException {
-
-
-        dataSource.getProductDao().update(dataSource.getProductDao().findByPrimaryKey(id).get(),
-
-                new Product(
-                        id,
-                        name,
-                        description,
-                        info,
-                        price,
-                        discount,
-                        stock,
-                        status,
-                        Timestamp.from(Instant.now()),
-                        Timestamp.from(Instant.now()),
-                        null,
-                        null,
-                        null
-                )
-
-        );
-
-        response.sendRedirect("/admin/dashboard");
-
-
-    }
-
 
 }
